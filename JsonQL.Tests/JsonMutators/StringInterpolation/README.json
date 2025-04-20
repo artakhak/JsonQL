@@ -1,0 +1,4 @@
+﻿{
+	"Comment": "String inerpolation mutator is thge operator '$' that can be used in simple json values as follow",
+	"DbConnection": "Data Source=$(GlobalSettings.DatabaseServer);Initial Catalog=$(GlobalSettings.Database.Server);Persist Security Info=True;User ID=$(GlobalSettings.Database.User);Password=$(GlobalSettings.Database.Password);"
+}

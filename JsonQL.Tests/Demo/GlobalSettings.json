@@ -1,0 +1,73 @@
+{
+  "JWT": {
+    "ValidAudience": "http://localhost/api",
+    "ValidIssuer": "http://localhost:1111/",
+    "SigningCertPublicKey": {
+      "ServerVarName": "JWT_SIGNING_CERT_PUBLIC_KEY"
+    },
+    "AccessTokenTtlSeconds": 120,
+    "IdTokenTtlSeconds": 180,
+    "JwtSecurity": {
+      "PrivateSigningKeyCertificate": {
+        "ServerVarName": "PRIVATE_SIGNING_KEY_CERTIFICATE"
+      },
+      "PrivateEncryptionKeyCertificate": {
+        "ServerVarName": "PRIVATE_ENCRYPTION_KEY_CERTIFICATE"
+      }
+    }
+  },
+  "AppSettings": {
+    "HostName": "PC1",
+    "HostName2": "PC2",
+    "ServicePublicUrl": "http://$(parent.AppSettings.HostName:localhost):1111"
+  },
+  "WebRequestLogger": [
+    {
+      "Id": "Default",
+      "Paths": [],
+      "LogWebRequest": true,
+      "LogWebRequestHeaders": true,
+      "LogWebRequestBody": false,
+      "LogWebRequestClaims": false,
+      "RequestHeadersNotToLog": [
+        "authorization",
+        "Cookie"
+      ],
+      "ClaimsNotToLog": [
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ]
+    },
+    {
+      "Id": "IsAlive",
+      "Paths": [
+        "/ServiceAliveCheck/is-alive"
+      ],
+      "LogWebRequest": false
+    }
+  ],
+  "RabbitMq": {
+    "RabbitMqConfigPath": {
+      "ServerVarName": "RABBITMQ_HOSTNAME"
+    },
+    "RabbitMqUser": {
+      "ServerVarName": "RABBITMQ_USER"
+    },
+    "RabbitMqPassword": {
+      "ServerVarName": "RABBITMQ_PASSWORD"
+    }
+  },
+  "Rebus": {
+    "DataBusDirectoryPath": "K:\\RabbitMq\\Docker",
+    "IncomingMessageLoggerConfiguration": {
+      "LogRebusMessages": true,
+      "LogMessageHeaders": true,
+      "LogMessageBody": true,
+      "LogMessageHandlers": false
+    },
+    "OutgoingMessageLoggerConfiguration": {
+      "LogRebusMessages": true,
+      "LogMessageHeaders": true,
+      "LogMessageBody": true
+    }
+  }
+}

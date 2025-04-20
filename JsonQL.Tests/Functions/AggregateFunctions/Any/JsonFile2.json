@@ -1,0 +1,42 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      4
+    ]
+  },  
+
+  "ThereAreEvenNumbers1": "$(Any(Object1.EvenNumbersArray.Where(x => typeof x == 'Number'), x => x % 2 == 0)) is true",
+  "ThereAreEvenNumbers2": "$(Any(Object1.EvenNumbersArray, x => x % 2 == 0)) is true",
+  "ThereAreNoOddNumbers": "$(Any(Object1.EvenNumbersArray.Where(x => typeof x == 'Number'), x => x % 2 == 1)) is false",
+  "ThereAreItems": "$(Any(Object1.EvenNumbersArray)) is true",
+
+  "SubArraysWithAnyEvenNumbers1": [
+    "$merge(parent.Object1.Array2.Where(x => Any(x, y => typeof y == 'Number' && y % 2 == 0)))"
+  ],
+  "SubArraysWithAnyEvenNumbers2": [
+    "$merge(parent.Object1.Array2.Where(x => Any(x, y => y % 2 == 0)))"
+  ],
+
+  "Any_InMultipleArrays1": "$(Any(parent.Object1.Array2.Flatten(), x => x == 'test1')) is true",
+  "Any_InMultipleArrays2": "$(Any(parent.Object1.Array2.Flatten(), x => x == 'test2')) is false",
+  "AnyEmployeesEarnsMoreThan_60000": "$(Any(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 60000)) is true",
+  "AnyEmployeesEarnsMoreThan_200000": "$(Any(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 200000)) is false",
+
+  "CompaniesWithEmployeeWithSalaryOf_88000": [ "$merge(Companies.Where(x => Any(x.Employees, y => y.Salary == 88000)))" ]
+}

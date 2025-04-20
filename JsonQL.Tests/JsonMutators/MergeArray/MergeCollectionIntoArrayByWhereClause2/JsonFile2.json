@@ -1,0 +1,7 @@
+{ 
+  "Array2": [
+    "START",
+    "$merge(parent.Object1.Array1.Where(x => x > 50 || x == 'Test 1' || x.Age >= 40 && Lower(x.Address.Street) starts with 'virgina '))",
+    "END"
+  ]
+}

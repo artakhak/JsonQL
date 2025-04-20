@@ -1,0 +1,32 @@
+{
+  "Object1": {    
+    "Array1": [
+      1,
+      10,
+      "Test 1",
+      {
+        "Age": 65,
+        "Address": {
+          "Street": "Perry Highway"
+        }
+      },
+      {
+        "Age": 43,
+        "Address": {
+          "Street": "Virgina Drive"
+        }
+      },
+      {
+        "Age": 44,
+        "Address": {
+          "Street": "Penn Avenue"
+        }
+      },
+      "Test 2",
+      51,
+      55,
+      48
+
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ParsedValue":"Robin Wood",
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

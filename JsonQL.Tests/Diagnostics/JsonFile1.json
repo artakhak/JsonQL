@@ -1,0 +1,48 @@
+[
+  [ 1, 2, 3 ],
+  {
+    "Array1": [
+      [ 0, 1, 2 ],
+      [
+        {
+          "Age": 65,
+          "Name": "John Smith",
+          "Address": {
+            "Street": "Perry highway"
+          }
+        },
+        {
+          "Age": 66,
+          "Name": "King George",
+          "Address": {
+            "Street": "UK"
+          }
+        }
+      ]
+
+    ]
+  },
+  [
+    10,
+    {
+      "Age": 65,
+      "Name": "John Smith",
+      "Address": {
+        "Street": "Perry highway"
+      }
+    },
+    {
+      "Age": 25,
+      "Name": "james Gordon",
+      "Address": {
+        "Street": "Virginia Avenue"
+      }
+    }
+  ],
+
+  [
+    [ 1 ],
+    [ 1, 2, 3 ],
+    [ 4, 5, 6 ]
+  ]
+]

@@ -1,0 +1,23 @@
+{
+  "Array1": [
+    "Merge all items in array parent.Object1.Array1[1]",
+    6,
+    7
+  ],
+  "Array2": [
+    "Merge all items in array parent.Object1.Array2[1, 1]",
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "Array3": [
+    "Merge all items in array parent.Object1.Array2[1, 1] that are greater than 10 and are not equal to 13",
+    11,
+    12,
+    14,
+    15
+  ]
+}

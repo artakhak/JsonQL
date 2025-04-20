@@ -1,0 +1,19 @@
+{
+  "Object1": {
+    "InvalidDateTimeText": "DateTime",
+    "DateTimeText1": "2022-05-23T18:25:43.511Z",
+    "DateTimeText2": "2022-05-23T18:25:43",
+    "DateTimeText3": "2022-05-23"
+  },
+
+  "ConvertToDate1": "'$(ToDate(Object1.InvalidDateTimeText, false))' is ToDate('InvalidDateTimeText')==null",
+  "ConvertToDate2": "'$(ToDate(Object1.InvalidDateTimeText))' is ToDate('InvalidDateTimeText')==null",
+
+  "ConvertToDate3": "ToDate(Object1.DateTimeText1) is '$(ToDate(Object1.DateTimeText1))' and (typeof ToDate(Object1.DateTimeText1)) is '$(typeof ToDate(Object1.DateTimeText1))'",
+  "ConvertToDate4": "ToDate(Object1.DateTimeText2) is '$(ToDate(Object1.DateTimeText2))' and (typeof ToDate(Object1.DateTimeText2)) is '$(typeof ToDate(Object1.DateTimeText2))'",
+  "ConvertToDate5": "ToDate(Object1.DateTimeText3) is '$(ToDate(Object1.DateTimeText3))' and (typeof ToDate(Object1.DateTimeText3)) is '$(typeof ToDate(Object1.DateTimeText3))'",
+
+  "ConvertToDate6": "ToDate('2022-05-23T18:25:43.511Z') is '$(ToDate('2022-05-23T18:25:43.511Z'))' and (typeof ToDate('2022-05-23T18:25:43.511Z')) is '$(typeof ToDate('2022-05-23T18:25:43.511Z'))'",
+  "ConvertToDate7": "ToDate('2022-05-23T18:25:43') is '$(ToDate('2022-05-23T18:25:43'))' and (typeof ToDate('2022-05-23T18:25:43')) is '$(typeof ToDate('2022-05-23T18:25:43'))'",
+  "ConvertToDate8": "ToDate('2022-05-23') is '$(ToDate('2022-05-23'))' and (typeof ToDate('2022-05-23')) is '$(typeof ToDate('2022-05-23'))'"
+}

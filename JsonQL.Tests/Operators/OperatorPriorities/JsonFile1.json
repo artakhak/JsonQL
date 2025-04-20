@@ -1,0 +1,18 @@
+{
+  "Variables": {
+    "x": 2,
+    "y": 3,
+    "z": 4
+  },
+
+  "MultiplicationisHigherpriorityThanSum_1": "$(Variables.x+Variables.y*Variables.z) is 14",
+  "MultiplicationisHigherpriorityThanSum_2": "$(Variables.x+(Variables.y*Variables.z)) is 14",
+  "ChangingOperatorApplicationOrderUsingBraces": "$((Variables.x+Variables.y)*Variables.z) is 20",
+
+  "ComparisonisHigherPriorityThanLogicalOperators_1": "$(Variables.y > Variables.x && Variables.y == 3) is true",
+  "ComparisonisHigherPriorityThanLogicalOperators_2": "$((Variables.y > Variables.x) && (Variables.y == 3)) is true",
+
+  "LogicalAndIsHigherpriorityThanLogicalOr_1": "$(true && true || false && false) is true",
+  "LogicalAndIsHigherpriorityThanLogicalOr_2": "$((true && true) || (false && false)) is true",
+  "ChangingOperatorApplicationOrderUsingBraces_2": "$((true && true || false) && false) is false"
+}

@@ -1,0 +1,51 @@
+{
+  "Object1": {
+    "Array1": [
+      1,
+      10,
+      "Test 1",
+      {
+        "Object2": {
+          "Int1": 1
+        }
+      }
+    ]
+  },
+  "Array2_CopyItemsInArray1": [
+    "If no items selector is used in path, like 'where', 'first', 'reverse' etc, items of single array selected by path will be copied.",
+    1,
+    10,
+    "Test 1",
+    {
+      "Object2": {
+        "Int1": 1
+      }
+    }
+  ],
+  "Array3_CopyItemsInArray1_WithWhere1": [
+    "If items selector is used in path, 'where', 'first', 'reverse' etc, items selected by path will be copied.",
+    1,
+    10,
+    "Test 1",
+    {
+      "Object2": {
+        "Int1": 1
+      }
+    }
+  ],
+  "Array4_CopyItemsInArray1_WithWhere2": [
+    "If items selector is used in path, 'where', 'first', 'reverse' etc, items selected by path will be copied.",
+    1,
+    10
+  ],
+  "MergeSimpleValueIntoArray": [
+    1
+  ],
+  "MergeObjectIntoArray": [
+    {
+      "Object2": {
+        "Int1": 1
+      }
+    }
+  ]
+}

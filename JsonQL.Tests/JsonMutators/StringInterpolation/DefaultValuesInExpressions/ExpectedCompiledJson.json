@@ -1,0 +1,6 @@
+{
+  "Object2": {
+    "DefaultInDefault_WithoutUsingBraces": "3 is defaulted to 3",
+    "DefaultInDefault_WithUsingBraces": "3 is defaulted to 3"
+  }
+}

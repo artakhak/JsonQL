@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="appsettings.json" />
+	  <None Remove="Examples\QueryExamples\Companies.json" />
+	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryAverageSalaryAsDoubleValue.result.json" />
+	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.result.json" />
+	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
+	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompany.result.json" />
+	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
+	  <None Remove="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
+	  <None Remove="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+	  <None Remove="JosnQL.log4net.config" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="JosnQL.log4net.config">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryAverageSalaryAsDoubleValue.result.json" />
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.result.json" />
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.json" />
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompany.result.json" />
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
+	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
+	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\Companies.json" />
+	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
+	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="8.0.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+	  <ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
+	  <ProjectReference Include="..\JsonQL.Extensions\JsonQL.Extensions.csproj" />
+	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="CustomJsonQL\Compilation\" />
+	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
+	</ItemGroup>
+
+</Project>

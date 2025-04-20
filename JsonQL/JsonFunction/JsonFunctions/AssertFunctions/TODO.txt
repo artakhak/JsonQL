@@ -1,0 +1,1 @@
+﻿Add path function that uses a logic similar to "is undefined" operator.

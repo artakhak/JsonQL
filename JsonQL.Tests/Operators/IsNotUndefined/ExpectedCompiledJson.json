@@ -1,0 +1,45 @@
+{
+  "Variables": {
+    "x": null,
+    "y": 10,
+    "Array1": [
+      1,
+      "a",
+      3,
+      [
+        5,
+        2
+      ]
+    ]
+  },
+  "Comment1": "'is null' operator returns true only if the path references an existing json null value",
+  "Comment2": "To check if path is invalid, All other cases, like path is invalid, 'is undefined' can be used.",
+  "InvalidPath_IsNotUndefined_false": "false is false",
+  "InvalidPath_InParent_IsNotUndefined_false": "false is false",
+  "ValidPath_IsNotUndefined_true": "true is true",
+  "ValidPath_InParent_IsNotUndefined_true": "true is true",
+  "SelectedCollectionEmpty_IsNotUndefined_true": "true is true",
+  "ValidArrayIndex_IsNotUndefined_true_1": "true is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_1": "true is true",
+  "ValidArrayIndex_IsNotUndefined_true_2": "true is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_2": "true is true",
+  "ValidArrayIndex_IsNotUndefined_true_3": "true is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_3": "true is true",
+  "IndexOutOfRange_IsNotUndefined_false_1": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_1": "false is false",
+  "IndexOutOfRange_IsNotUndefined_false_2": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_true_2": "false is false",
+  "IndexOutOfRange_IsNotUndefined_false_3": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_3": "false is false",
+  "IndexOutOfRange_IsNotUndefined_false_4": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_4": "false is false",
+  "IndexOutOfRange_IsNotUndefined_false_5": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_5": "false is false",
+  "IndexOutOfRange_IsNotUndefined_false_6": "false is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_6": "false is false",
+  "IndexUsedWithNonArray_IsNotUndefined_false": "false is false",
+  "IndexUsedWithNonArray_InParent_IsNotUndefined_false": "false is false",
+  "IndexUsedWithNullValue_IsNotUndefined_false": "false is false",
+  "IndexUsedWithNullValue_InParent_IsNotUndefined_false": "false is false",
+  "ArithmeticValueWithUndefinedValue_IsNotIndefined": "false is false"
+}

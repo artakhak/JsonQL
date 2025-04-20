@@ -1,0 +1,43 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [ 5, "test", 20 ],
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+
+  "GetAllValues_Between_2_And_6": [
+    "$merge(Object1.Array1.Where(x => x >= 2 && x <= 6))"
+  ],
+  "GetAllValues_In_Array_And_Sub_Arrays_Between_2_And_6": [
+    "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6))"
+  ],
+  "GetAllCompaniesWithName_Company1_or_Company3": [
+    "START",
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')))",
+    "END"
+  ],
+  "GetAllEmployees_in_Company1_and_Company3": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => HasField(x, 'EmployeeId')))"
+  ],
+  "GetAverageEmployeeSallary_in_Company1_and_Company3": "$(Average(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => x.Salary >= 0), value->x => x.Salary))",
+  "GetAverageValueOfArrayAndSubArrays": "$(Average(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6)))"
+}

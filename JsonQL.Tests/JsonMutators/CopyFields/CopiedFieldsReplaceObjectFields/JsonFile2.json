@@ -1,0 +1,13 @@
+{
+  "Object2": {
+    "Int1": 21,
+    "String1": "String that will be replaced by copied field",
+    "Object1_1": {
+      "Int1": 101,
+      "String1": "Will be replaced"
+    },
+    "willBeReplacedWithCopiedFields": "$copyFields(parent.Examples.Object1)",
+    "NewInt1": 7,
+    "NewString1": "New string 1"
+  }
+}

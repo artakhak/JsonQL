@@ -1,0 +1,56 @@
+{
+  "WhereAppliedToParentRootArrayImplicitly": [
+    2,
+    7,
+    9,
+    15
+  ],
+  "WhereAppliedToParentRootArrayExplicitly": [
+    2,
+    7,
+    9,
+    15
+  ],
+  "FlattenAppliedToParentRootArrayImplicitly": [
+    2,
+    7,
+    9,
+    11,
+    17,
+    15
+  ],
+  "FlattenAppliedToParentRootArrayExplicitly": [
+    2,
+    7,
+    9,
+    11,
+    17,
+    15
+  ],
+  "IndexerAppliedToParentRootArrayImplicitly": 2,
+  "IndexerAppliedToParentRootArrayExplicitly": 2,
+  "AtAppliedToParentRootArrayImplicitly": 2,
+  "AtAppliedToParentRootArrayExplicitly": 2,
+  "FirstAppliedToParentRootArrayImplicitly": 1,
+  "FirstAppliedToParentRootArrayExplicitly": 1,
+  "LastAppliedToParentRootArrayImplicitly": 15,
+  "LastAppliedToParentRootArrayExplicitly": 15,
+  "SelectAppliedToParentRootArrayImplicitly": [
+    17
+  ],
+  "SelectAppliedToParentRootArrayExplicitly": [
+    17
+  ],
+  "ReverseAppliedToParentRootArrayImplicitly": [
+    15,
+    9,
+    7,
+    2
+  ],
+  "ReverseAppliedToParentRootArrayExplicitly": [
+    15,
+    9,
+    7,
+    2
+  ]
+}

@@ -1,0 +1,38 @@
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace JsonQL.JsonObjects;
+
+public interface IRootParsedJson : IRootParsedValue, IParsedJson
+{
+
+}
+
+public class RootParsedJson: ParsedJsonAbstr, IRootParsedJson
+{
+    private readonly Dictionary<Guid, IParsedValue> _valueIdToValueMap = new();
+
+    public RootParsedJson(IParsedJsonVisitor parsedJsonVisitor) : base(parsedJsonVisitor,null, null)
+    {
+    }
+
+    /// <inheritdoc />
+    public bool TryGetParsedValue(Guid valueId, [NotNullWhen(true)] out IParsedValue? parsedValue)
+    {
+        return _valueIdToValueMap.TryGetValue(valueId, out parsedValue);
+    }
+
+    /// <inheritdoc />
+    public void ValueAdded(IParsedValue parsedValue)
+    {
+        _valueIdToValueMap[parsedValue.Id] = parsedValue;
+    }
+
+    /// <inheritdoc />
+    public void ValueRemoved(IParsedValue parsedValue)
+    {
+        _valueIdToValueMap.Remove(parsedValue.Id);
+    }
+
+    /// <inheritdoc />
+    public override IRootParsedValue RootParsedValue => this;
+}

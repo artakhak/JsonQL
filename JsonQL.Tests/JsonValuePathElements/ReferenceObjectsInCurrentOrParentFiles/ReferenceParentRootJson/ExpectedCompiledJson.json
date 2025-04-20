@@ -1,0 +1,29 @@
+{
+  "Object_1": {
+    "Int1": 14
+  },
+  "ParentReference": {
+    "Object_1": {
+      "Int1": 23
+    }
+  },
+  "ArrayThatIncludesParent": [
+    "START",
+    {
+      "Object_1": {
+        "Int1": 23
+      }
+    },
+    "END"
+  ],
+  "ParentMergedIntoJson": {
+    "START": "START",
+    "Object_1": {
+      "Int1": 23
+    },
+    "END": "END"
+  },
+  "ReferenceParentKeyValue": {
+    "Int1": 23
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "JsonFile3_Int1": 3,
+  "JsonFile3_Array": [
+    "a",
+    "b",
+    1,
+    7,
+    "c",
+    3
+  ],
+  "Companies": [
+    {
+      "CompanyData": {
+        "Name": "Abc",
+        "CEO": "John Malkowich",
+        "Address": {
+          "Street": "123 Maple Street",
+          "City": "Springfield",
+          "State": "IL",
+          "ZipCode": "62701"
+        }
+      },
+      "Employees": [
+        {
+          "Id": 100000001,
+          "Name": "John Smith",
+          "Address": {
+            "Street": "456 Oak Avenue",
+            "City": "Chicago",
+            "State": "IL",
+            "ZipCode": "60601"
+          },
+          "Salary": 99500,
+          "Age": 45
+        },
+        {
+          "Id": 100000002,
+          "Name": "Alice Johnson",
+          "Address": {
+            "Street": "123 Maple Street",
+            "City": "New York",
+            "State": "NY",
+            "ZipCode": "10001"
+          },
+          "Salary": 105000,
+          "Age": 38
+        }
+      ]
+    }
+  ],
+  "ThisExamples": "ThisExamplesSection",
+  "AccessObjectInThisFile_Using_This_Implicitly_1": "Abc is 'Abc'",
+  "AccessObjectInThisFile_Using_This_Explicitly_1": "Abc is 'Abc'",
+  "AccessObjectInThisFile_Using_This_Implicitly_2": "3 is 3",
+  "AccessObjectInThisFile_Using_This_Explicitly_2": "3 is 3",
+  "AccessObjectInThisFile_Using_This_Implicitly_3": "b is 'b'",
+  "AccessObjectInThisFile_Using_This_Explicitly_3": "b is 'b'",
+  "AccessObjectInThisFile_Using_This_Implicitly_4": "3 is 3",
+  "AccessObjectInThisFile_Using_This_Explicitly_4": "3 is 3",
+  "AccessObjectInThisFile_Using_This_Explicitly_5": "'' is ''",
+  "AccessObjectInThisFile_Using_This_Explicitly_6": "'' is ''",
+  "ParentExamplesBelowThis": "ParentExamplesSection",
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_1": "Sherwood Forest Timber, Inc is 'Sherwood Forest Timber, Inc'",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_1": "Sherwood Forest Timber, Inc is 'Sherwood Forest Timber, Inc'",
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_2": "15 is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_2": "15 is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_3": "3 is 3",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_3": "3 is 3",
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_4": "15 is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_4": "15 is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_5": "'' is ''",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_6": "'' is ''",
+  "AccessObjectOnlyInParentsParent_Using_Parent_Implicitly_1": "19 is 19",
+  "AccessObjectOnlyInParentsParent_Using_Parent_Explicitly_1": "19 is 19"
+}

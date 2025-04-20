@@ -1,0 +1,38 @@
+{
+  "Array1": [
+    "ARRAY1",
+    "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))",
+    "ARRAY2",
+    "$merge(parent.Where(x => Count(x) > 10000 || Any(x, y => y.Capitalization > 'INVALID')).Flatten().Where(x => x.Age > 60))",
+    "End"
+  ],
+  "Array2": [
+    {
+      "EmployeeId": 100,
+      "Age": 20,
+      "Address": "Street 100"
+    },
+    "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))",
+    {
+      "EmployeeId": 101,
+      "Age": 21,
+      "Address": "Street 101"
+    }
+  ],
+  "Array3": [
+    {
+      "EmployeeId": 100,
+      "Age": 20,
+      "Address": "Street 100"
+    },
+    "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))"
+  ],
+  "Array4": [
+    "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))",
+    {
+      "EmployeeId": 101,
+      "Age": 21,
+      "Address": "Street 101"
+    }
+  ]
+}

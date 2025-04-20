@@ -1,0 +1,51 @@
+{
+  "Array1": [
+    1,
+    [
+      2,
+      3
+    ]
+  ],
+  "EmptyResult": [
+    "Start",
+    "End"
+  ],
+  "EmptyResult2": [
+    "Start",
+    "End"
+  ],
+  "EmptyResult3": [
+    "Start",
+    "End"
+  ],
+  "InvalidPath1": [
+    "Start",
+    null,
+    "End"
+  ],
+  "InvalidPath2": [
+    "Start",
+    null,
+    "End"
+  ],
+  "InvalidPath3": [
+    "Start",
+    null,
+    "End"
+  ],
+  "InvalidPath4": [
+    "Start",
+    null,
+    "End"
+  ],
+  "MergeResultOfInvalidExpression1": [
+    "Start",
+    null,
+    "End"
+  ],
+  "MergeResultOfInvalidPath": [
+    "Start",
+    null,
+    "End"
+  ]
+}

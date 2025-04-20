@@ -1,0 +1,115 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [
+        5,
+        "test",
+        20
+      ],
+      6,
+      13,
+      4
+    ],
+    "Object2": [
+      {
+        "Value": 1
+      },
+      {
+        "Value": 3
+      },
+      {
+        "Value": 2
+      },
+      {
+        "Value": 9
+      },
+      {
+        "Test": 17
+      }
+    ]
+  },
+  "SelectAllEmployeeIds": [
+    1,
+    2,
+    3,
+    201,
+    202
+  ],
+  "SelectAllEmployeeIds_WithSalariesGreaterThan_80000": [
+    1,
+    3,
+    201,
+    202
+  ],
+  "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000": [
+    {
+      "Street": "Stree 1",
+      "City": "City 1"
+    },
+    {
+      "Street": "Stree 3",
+      "City": "City 3"
+    },
+    {
+      "Street": "Stree 201",
+      "City": "City 201"
+    },
+    {
+      "Street": "Stree 202",
+      "City": "City 202"
+    }
+  ],
+  "SelectAllEmployeeStreets_WithSalariesGreaterThan_80000": [
+    "Stree 1",
+    "Stree 3",
+    "Stree 201",
+    "Stree 202"
+  ],
+  "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000_InCity1_or_City3_1": [
+    {
+      "Street": "Stree 1",
+      "City": "City 1"
+    },
+    {
+      "Street": "Stree 3",
+      "City": "City 3"
+    }
+  ],
+  "AverageEmpoyeeAgee_In_Company_1_or_Company3": "54.6",
+  "MaxNumberOfHomesOfEmployees_In_Company_1_or_Company3": "4",
+  "SelectWithWhere": [
+    {
+      "Value": 1
+    },
+    {
+      "Value": 3
+    },
+    {
+      "Value": 2
+    },
+    {
+      "Value": 9
+    }
+  ],
+  "AverageSalaryAcrossCompanies": {
+    "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
+    "AverageSalary": "102356.75"
+  }
+}

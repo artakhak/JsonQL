@@ -1,0 +1,123 @@
+{
+  "Object1": {
+    "Array1": [
+      1,
+      "Value1",
+      3,
+      4,
+      true,
+      1,
+      false,     
+      "10",
+      "2022-05-23T18:25:43.511Z",     
+      true
+    ],
+    "Array2": [
+      [ -1, 2],
+      10,
+      4,
+      1,
+      [ 5, 8, 10 ],
+      [ 1, 3, 7, "test1", 13, 19 ],
+      [ 10, 11, 7, 8, true, 20 ]
+    ],
+    "Companies": [
+      [
+        { "Name": "Company1" },
+        {
+          "EmployeeId": 1,
+          "Age": 55,
+          "Salary": 100000,
+          "Assets": {
+            "NumberOfHomes":  3
+          },
+          "Address": {
+              "Street": "Stree 1",
+              "City": "City 1"
+            }
+          },
+        {
+          "EmployeeId": 2,
+          "Age": 45,
+          "Salary": 80000,
+          "Assets": {
+            "NumberOfHomes": 1
+          },
+          "Address": {
+            "Street": "Stree 2",
+            "City": "City 2"
+          }
+        },
+        {
+          "EmployeeId": 3,
+          "Age": 75,
+          "Salary": 120000,
+          "Assets": {
+            "NumberOfHomes": 2
+          },
+          "Address": {
+            "Street": "Stree 3",
+            "City": "City 3"
+          }
+        }
+      ],
+      [
+        { "Name": "Company2" },
+        {
+          "EmployeeId": 100,
+          "Age": 47,
+          "Salary": 110000,
+          "Address": {
+            "Street": "Stree 100",
+            "City": "City 100"
+          }
+        },
+        {
+          "EmployeeId": 101,
+          "Age": 65,
+          "Salary": 95000,
+          "Address": {
+            "Street": "Stree 101",
+            "City": "City 101"
+          }
+        },
+        {
+          "EmployeeId": 102,
+          "Age": 715,
+          "Salary": 98000,
+          "Address": {
+            "Street": "Stree 102",
+            "City": "City 102"
+          }
+        }
+      ],
+      [
+        { "Name": "Company3" },
+        {
+          "EmployeeId": 201,
+          "Age": 39,
+          "Salary": 103000,
+          "Assets": {
+            "NumberOfHomes": 3
+          },
+          "Address": {
+            "Street": "Stree 201",
+            "City": "City 201"
+          }
+        },
+        {
+          "EmployeeId": 202,
+          "Age": 59,
+          "Salary": 175000,
+          "Assets": {
+            "NumberOfHomes": 4
+          },
+          "Address": {
+            "Street": "Stree 202",
+            "City": "City 202"
+          }
+        }
+      ]
+    ]
+  }
+}

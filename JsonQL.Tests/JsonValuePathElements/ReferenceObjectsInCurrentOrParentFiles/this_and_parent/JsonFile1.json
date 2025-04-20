@@ -1,0 +1,7 @@
+{
+  "JsonFile1_Int1": 15,
+  "JsonFile1_Object1": {
+    "Int1": 5
+  },
+  "JsonFile1_Array1": [ 1, 2, 17, 3, 19 ]
+}

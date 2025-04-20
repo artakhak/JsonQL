@@ -1,0 +1,119 @@
+{
+  "$type": "JsonQL.Extensions.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL.Extensions",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Demos.Examples.DataModels.Manager, JsonQL.Demos",
+        "Employees": {
+          "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+              "Id": 100000005,
+              "FirstName": "Christopher",
+              "LastName": "Garcia",
+              "Address": {
+                "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+                "Street": "654 Cedar Road",
+                "City": "Phoenix",
+                "State": "AZ",
+                "ZipCode": "85001",
+                "County": null
+              },
+              "Manager": null,
+              "Phones": {
+                "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+                "$values": [
+                  "525-000-0001"
+                ]
+              }
+            },
+            {
+              "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+              "Id": 100000007,
+              "FirstName": "David",
+              "LastName": "Martinez",
+              "Address": {
+                "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+                "Street": "147 Birch Street",
+                "City": "San Antonio",
+                "State": "TX",
+                "ZipCode": "78201",
+                "County": null
+              },
+              "Manager": null,
+              "Phones": {
+                "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+                "$values": [
+                  "515-100-0001"
+                ]
+              }
+            }
+          ]
+        },
+        "Id": 100000006,
+        "FirstName": "Sarah",
+        "LastName": "Wilson",
+        "Address": {
+          "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+          "Street": "987 Ash Boulevard",
+          "City": "Philadelphia",
+          "State": "PA",
+          "ZipCode": "19101",
+          "County": null
+        },
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "632-111-1112",
+            "632-111-1113"
+          ]
+        }
+      },
+      {
+        "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+        "Id": 100000007,
+        "FirstName": "David",
+        "LastName": "Martinez",
+        "Address": {
+          "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+          "Street": "147 Birch Street",
+          "City": "San Antonio",
+          "State": "TX",
+          "ZipCode": "78201",
+          "County": null
+        },
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "515-100-0001"
+          ]
+        }
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Extensions.Query.QueryResultErrorsAndWarnings, JsonQL.Extensions",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "Errors": {
+      "$type": "JsonQL.Extensions.JsonToObjectConversion.ConversionErrors, JsonQL.Extensions",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Extensions.JsonToObjectConversion.IConversionError, JsonQL.Extensions]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "Warnings": {
+      "$type": "JsonQL.Extensions.JsonToObjectConversion.ConversionErrors, JsonQL.Extensions",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Extensions.JsonToObjectConversion.IConversionError, JsonQL.Extensions]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{  
+  "WhereAppliedToParentRootArrayImplicitly": "$value(Where(x => x > 1))",
+  "WhereAppliedToParentRootArrayExplicitly": "$value(parent.Where(x => x > 1))",
+
+  "FlattenAppliedToParentRootArrayImplicitly": "$value(Flatten().Where(x => x > 1))",
+  "FlattenAppliedToParentRootArrayExplicitly": "$value(parent.Flatten().Where(x => x > 1))",
+
+  "IndexerAppliedToParentRootArrayImplicitly": "$value([1])",
+  "IndexerAppliedToParentRootArrayExplicitly": "$value(parent[1])",
+
+  "AtAppliedToParentRootArrayImplicitly": "$value(At(1))",
+  "AtAppliedToParentRootArrayExplicitly": "$value(parent.At(1))",
+
+  "FirstAppliedToParentRootArrayImplicitly": "$value(First())",
+  "FirstAppliedToParentRootArrayExplicitly": "$value(parent.First())",
+
+  "LastAppliedToParentRootArrayImplicitly": "$value(Last())",
+  "LastAppliedToParentRootArrayExplicitly": "$value(parent.Last())",
+
+  "SelectAppliedToParentRootArrayImplicitly": "$value(Select(x=>x[1]))",
+  "SelectAppliedToParentRootArrayExplicitly": "$value(parent.Select(x=>x[1]))",
+
+  "ReverseAppliedToParentRootArrayImplicitly": "$value(Reverse().Where(x => x > 1))",
+  "ReverseAppliedToParentRootArrayExplicitly": "$value(parent.Reverse().Where(x => x > 1))"
+}

@@ -1,0 +1,4 @@
+{
+  "OperatorPrecedenceTest": "32 is '2+5*6=32'",
+  "BracesWithOperatorsTest": "42 is '(2+5)*6=42'"
+}

@@ -1,0 +1,11 @@
+{
+  "Object4": {
+    "Copy_Object3_FromParent_JsonFile2_Referencing_JsonFile1": "$value(parent.Object3)",
+    "Copy_CopiedObjectExample_FromParent_JsonFile2_Referencing_JsonFile1": "$value(parent.Object3.CopiedObjectExample)",
+    "Int1": 2,
+    "CopyArray_FromParentsParent_JsonFile1": "$value(parent.Array1)",
+    "CopyString_FromParentsParent_JsonFile1": "$value(parent.String1)",
+    "CopyInt_FromParentsParent_JsonFile1": "$value(parent.Int1)",
+    "CopyBoolean_FromParentsParent_JsonFile1": "$value(parent.Boolean1)"
+  }
+}

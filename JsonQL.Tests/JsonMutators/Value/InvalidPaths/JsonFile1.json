@@ -1,0 +1,12 @@
+{
+  "Object1": {
+    "Array1": [
+      1,
+      [ 2, 3 ]
+    ]
+  },
+  "InvalidPath1": "$value(Object1.Invalid)",
+  "InvalidPath2": "$value(Object1.Invalid.Where(x => x > 1))",
+  "InvalidPath3": "$value(parent.Object1.Invalid)",
+  "InvalidPath4": "$value(parent.Object1.Invalid.Where(x => x > 1))"
+}

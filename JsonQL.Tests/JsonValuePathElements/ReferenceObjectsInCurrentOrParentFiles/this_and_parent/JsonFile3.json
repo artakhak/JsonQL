@@ -1,0 +1,80 @@
+{
+  "JsonFile3_Int1": 3,
+  "JsonFile3_Array": [ "a", "b", 1, 7, "c", 3 ],
+  "Companies": [
+    {
+      "CompanyData": {
+        "Name": "Abc",
+        "CEO": "John Malkowich",
+        "Address": {
+          "Street": "123 Maple Street",
+          "City": "Springfield",
+          "State": "IL",
+          "ZipCode": "62701"
+        }
+      },
+      "Employees": [
+        {
+          "Id": 100000001,
+          "Name": "John Smith",
+          "Address": {
+            "Street": "456 Oak Avenue",
+            "City": "Chicago",
+            "State": "IL",
+            "ZipCode": "60601"
+          },
+          "Salary": 99500,
+          "Age": 45
+        },
+        {
+          "Id": 100000002,
+          "Name": "Alice Johnson",
+          "Address": {
+            "Street": "123 Maple Street",
+            "City": "New York",
+            "State": "NY",
+            "ZipCode": "10001"
+          },
+          "Salary": 105000,
+          "Age": 38
+        }
+      ]
+    }
+  ],
+
+  "ThisExamples": "ThisExamplesSection",
+  "AccessObjectInThisFile_Using_This_Implicitly_1": "$(Companies[0].CompanyData.Name) is 'Abc'",
+  "AccessObjectInThisFile_Using_This_Explicitly_1": "$(this.Companies[0].CompanyData.Name) is 'Abc'",
+
+  "AccessObjectInThisFile_Using_This_Implicitly_2": "$(JsonFile3_Int1) is 3",
+  "AccessObjectInThisFile_Using_This_Explicitly_2": "$(this.JsonFile3_Int1) is 3",
+
+  "AccessObjectInThisFile_Using_This_Implicitly_3": "$(JsonFile3_Array[1]) is 'b'",
+  "AccessObjectInThisFile_Using_This_Explicitly_3": "$(this.JsonFile3_Array[1]) is 'b'",
+
+  "AccessObjectInThisFile_Using_This_Implicitly_4": "$(JsonFile3_Array.Where(x => x >= JsonFile3_Int1).At(1)) is 3",
+  "AccessObjectInThisFile_Using_This_Explicitly_4": "$(this.JsonFile3_Array.Where(x => x >= this.JsonFile3_Int1).At(1)) is 3",
+
+  "AccessObjectInThisFile_Using_This_Explicitly_5": "'$(this.JsonFile2_Int1)' is ''",
+  "AccessObjectInThisFile_Using_This_Explicitly_6": "'$(this.JsonFile2_Array[1])' is ''",
+
+  "ParentExamplesBelowThis": "ParentExamplesSection",
+
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_1": "$(JsonFile2_Companies[0].CompanyData.Name) is 'Sherwood Forest Timber, Inc'",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_1": "$(parent.JsonFile2_Companies[0].CompanyData.Name) is 'Sherwood Forest Timber, Inc'",
+
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_2": "$(JsonFile2_Int1) is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_2": "$(parent.JsonFile2_Int1) is 15",
+
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_3": "$(JsonFile2_Array[1]) is 3",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_3": "$(parent.JsonFile2_Array[1]) is 3",
+
+  "AccessObjectOnlyInParent_Using_Parent_Implicitly_4": "$(JsonFile2_Array.Where(x => x >= JsonFile2_Int1).At(1)) is 15",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_4": "$(parent.JsonFile2_Array.Where(x => x >= parent.JsonFile2_Int1).At(1)) is 15",
+
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_5": "'$(parent.JsonFile3_Int1)' is ''",
+  "AccessObjectOnlyInParent_Using_Parent_Explicitly_6": "'$(parent.JsonFile3_Array[1])' is ''",
+
+  "AccessObjectOnlyInParentsParent_Using_Parent_Implicitly_1": "$(JsonFile1_Array1.Where(x => x >= JsonFile1_Int1).At(1)) is 19",
+  "AccessObjectOnlyInParentsParent_Using_Parent_Explicitly_1": "$(parent.JsonFile1_Array1.Where(x => x >= parent.JsonFile1_Int1).At(1)) is 19"
+}

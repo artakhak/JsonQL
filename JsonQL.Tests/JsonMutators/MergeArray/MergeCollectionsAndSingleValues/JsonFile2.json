@@ -1,0 +1,39 @@
+{
+  "Comment1": "merge mutation function can be used both with a space without opening/closing bracases ",
+  "Comment2": "as in this example:",
+  "ExampleWithoutBraces": [ "$merge Object1.Array2[1, 1, 2] + 1" ],
+  "Comment4": "as well as using opening/closing braces, such as in this example:",
+  "ExampleWithBraces": [ "$merge(Object1.Array2[1, 1, 2] + 1)" ],
+
+  "AverageSalary": [ "$merge Average(Companies.Select(x => x.Employees.Select(x => x.Salary)))" ],
+  "AverageSalaryPlus10": [ "$merge Average(Companies.Select(x => x.Employees.Select(x => x.Salary))) + 10" ],
+  "StringExpression": [ "$merge Concatenate('Average is :', Average(Companies.Select(x => x.Employees.Select(x => x.Salary))))" ],
+
+  "MergeResultOfMultipleItemsSelectorQuery1": [
+    "$merge Object1.Array2[1, 1].Where(x => x > 10)"
+  ],
+  "MergeResultOfMultipleItemsSelectorQuery2": [
+    "$merge Object1.Array2.Flatten().Where(x => Max(x) >= 9)"
+  ],
+  "MergeResultOfSingleItemSelectorQuery1": [
+    "$merge Object1.Array2"
+  ],
+  "MergeResultOfSingleItemSelectorQuery2": [
+    "$merge Object1.Array2[1, 1]"
+  ],
+  "MergeResultOfSingleItemSelectorQuery3": [
+    "$merge(Object1.Array2.Flatten().At(2))"
+  ],
+  "MergeResultOfNonPathNumericExpression1": [
+    "$merge(Object1.Array2[1, 1, 2] + 1)"
+  ],
+  "MergeResultOfNonPathBooleanExpression1": [
+    "$merge(Object1.Array2[1, 1, 2] == 12)"
+  ],
+  "MergeResultOfNonPathDateTimeExpression1": [
+    "$merge(ToDateTime('2022-05-23T18:25:43.511Z'))"
+  ],
+  "MergeResultOfNonPathStringExpression1": [
+    "$merge Concatenate('Date time is :''', ToDateTime('2022-05-23T18:25:43.511Z'), '''')"
+  ]  
+}

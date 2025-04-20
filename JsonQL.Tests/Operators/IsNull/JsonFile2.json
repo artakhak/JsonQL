@@ -1,0 +1,17 @@
+{
+  "Variables": {
+    "x": null,
+    "y": 10
+  },
+
+  "Comment1": "'is null' operator returns true only if the path references an existing json null value",
+  "Comment2": "To check if path is invalid, All other cases, like path is invalid, 'is undefined' can be used.",
+  "NullJsonValue_IsNull_Test": "$(this.Variables.x is null) is true",
+  "NullJsonValue_InParent_IsNull_Test": "$(parent.Variables.x is null) is true",
+
+  "NonNullJsonValue_IsNull_Test": "$(this.Variables.y is null) is false",
+  "NonNullJsonValue_InParent_IsNull_Test": "$(parent.Variables.y is null) is false",
+
+  "InvalidPathValue_IsNull_Test": "$(this.Variables.NonExistent is null) is false",
+  "InvalidPathValue_InParent_IsNull_Test": "$(parent.Variables.NonExistent is null) is false"
+}

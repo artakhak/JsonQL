@@ -1,0 +1,20 @@
+{
+  "Array2_CopyItemsInArray1": [
+    "If no items selector is used in path, like 'where', 'first', 'reverse' etc, items of single array selected by path will be copied.",
+    "$merge(parent.Object1.Array1)"
+  ],
+  "Array3_CopyItemsInArray1_WithWhere1": [
+    "If items selector is used in path, 'where', 'first', 'reverse' etc, items selected by path will be copied.",
+    "$merge(parent.Object1.Array1.Where(x => true))"
+  ],
+  "Array4_CopyItemsInArray1_WithWhere2": [
+    "If items selector is used in path, 'where', 'first', 'reverse' etc, items selected by path will be copied.",
+    "$merge(parent.Object1.Array1.Where(x => x >= 1))"
+  ],
+  "MergeSimpleValueIntoArray": [
+    "$merge(parent.Object1.Array1[0])"
+  ],
+  "MergeObjectIntoArray": [
+    "$merge(parent.Object1.Array1[3])"
+  ]
+}

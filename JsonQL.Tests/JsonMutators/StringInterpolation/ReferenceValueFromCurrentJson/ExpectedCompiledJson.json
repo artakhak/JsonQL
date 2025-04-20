@@ -1,0 +1,19 @@
+{
+  "Example": {
+    "Object1": {
+      "Int1": 123,
+      "Int2": 456,
+      "String1": "String 1",
+      "String2": "String 2"
+    }
+  },
+  "Array1": [
+    1,
+    "Value 2",
+    3
+  ],
+  "Object2": {
+    "Values1": "Int1=123==123, String1='String 1'='String 1'",
+    "ArrayValue1": "Array1[0]=1==1 and Array1[1]='Value 2'=='Value 2'"
+  }
+}

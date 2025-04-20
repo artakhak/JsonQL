@@ -1,0 +1,51 @@
+{
+  "Array1": [
+    1,
+    [ 2, 3 ]
+  ],
+  "EmptyResult": [
+    "Start",
+    "$merge(Array1[1].Where(x => x > 10))",
+    "End"
+  ],
+  "EmptyResult2": [
+    "Start",
+    "$merge(Where(x => x > 3))",
+    "End"
+  ],
+  "EmptyResult3": [
+    "Start",
+    "$merge(parent.Where(x => x > 3))",
+    "End"
+  ],
+  "InvalidPath1": [
+    "Start",
+    "$merge(Invalid)",
+    "End"
+  ],
+  "InvalidPath2": [
+    "Start",
+    "$merge(Invalid.Where(x => x > 1))",
+    "End"
+  ],
+  "InvalidPath3": [
+    "Start",
+    "$merge(parent.Invalid)",
+    "End"
+  ],
+  "InvalidPath4": [
+    "Start",
+    "$merge(parent.Invalid.Where(x => x > 1))",
+    "End"
+  ],
+  "MergeResultOfInvalidExpression1": [
+    "Start",
+    "$merge(InvalidPath + 1)",
+    "End"
+  ],
+  "MergeResultOfInvalidPath": [
+    "Start",
+    "$merge(InvalidPath)",
+    "End"
+  ]
+}

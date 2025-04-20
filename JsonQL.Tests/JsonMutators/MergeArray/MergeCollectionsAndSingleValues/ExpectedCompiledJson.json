@@ -1,0 +1,96 @@
+{
+  "Comment1": "merge mutation function can be used both with a space without opening/closing bracases ",
+  "Comment2": "as in this example:",
+  "ExampleWithoutBraces": [
+    13
+  ],
+  "Comment4": "as well as using opening/closing braces, such as in this example:",
+  "ExampleWithBraces": [
+    13
+  ],
+  "AverageSalary": [
+    102356.75
+  ],
+  "AverageSalaryPlus10": [
+    102366.75
+  ],
+  "StringExpression": [
+    "Average is :102356.75"
+  ],
+  "MergeResultOfMultipleItemsSelectorQuery1": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "MergeResultOfMultipleItemsSelectorQuery2": [
+    [
+      7,
+      8,
+      9
+    ],
+    [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  ],
+  "MergeResultOfSingleItemSelectorQuery1": [
+    [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    [
+      [
+        7,
+        8,
+        9
+      ],
+      [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ]
+  ],
+  "MergeResultOfSingleItemSelectorQuery2": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "MergeResultOfSingleItemSelectorQuery3": [
+    7,
+    8,
+    9
+  ],
+  "MergeResultOfNonPathNumericExpression1": [
+    13
+  ],
+  "MergeResultOfNonPathBooleanExpression1": [
+    true
+  ],
+  "MergeResultOfNonPathDateTimeExpression1": [
+    "2022-05-23 14:25:43.5110000"
+  ],
+  "MergeResultOfNonPathStringExpression1": [
+    "Date time is :'5/23/2022 2:25:43 PM'"
+  ]
+}

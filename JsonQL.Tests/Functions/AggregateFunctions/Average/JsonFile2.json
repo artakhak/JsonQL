@@ -1,0 +1,46 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+
+  "AverageOfArrayEvenNumbers1": "$(Average(Object1.Array1.Where(x => typeof x == 'Number'), x => x % 2 == 0)) is 4",
+  "AverageOfArrayEvenNumbers2": "$(Average(Object1.Array1, x => x % 2 == 0)) is 4",
+  "AverageOfEmptyArray": "'$(Average(Object1EmptyArray))' is null",
+  "AverageOfEmptyArrayWithDefault": "$(Average(Object1EmptyArray):0) is 0",
+  "AverageOfEmptyCollection": "'$(Average(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000))' is null",
+  "AverageOfEmptyCollectionWithDefault": "$(Average(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000):0) is 0",
+  "AverageOfArrayOddNumbers": "$(Average(Object1.Array1, x => x % 2 == 1)) is 7",
+  "AverageOfAllArrayValuesWithoutCriteria": "$(Average(Object1.Array1)) is 5.2",
+  "AverageOfAllCollectionValuesWithoutCriteria": "$(Average(Object1.Array1.Where(x => x > 1))) is 6.25",
+  "SubArraysWithAverageOfEvenNumbersGreaterThanOrEqualTo_8": [
+    "$merge(parent.Object1.Array2.Where(x => Average(x, y => typeof y == 'Number' && y % 2 == 0) >= 8))"
+  ],
+  "SubArraysWithAverageOfOddNumbersGreaterThanOrEqualTo_8": [
+    "$merge(parent.Object1.Array2.Where(x => Average(x, y => y % 2 == 1) > 8))"
+  ],
+  "Average_InMultipleArrays1": "$(Average(parent.Object1.Array2.Flatten(), x => x > 5)) is 11.181818181818182",
+  "Average_InMultipleArrays2": "'$(Average(parent.Object1.Array2.Flatten(), x => x == 'test2'))' is null",
+  "AverageOfSalariesOfEmployeesEarningMoreThan_60000_1": "$(Average(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 90000, x => x.Salary)) is 114428.57142857143",
+  "AverageOfSalariesOfEmployeesEarningMoreThan_60000_2": "$(Average(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')  && x.Salary > 90000), value->x => x.Salary)) is 114428.57142857143",
+  "AverageOfSalariesOfEmployeesEarningMoreThan_200000": "'$(Average(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId') && x.Salary > 200000), value->x => x.Salary))' is null"
+}

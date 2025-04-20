@@ -1,0 +1,15 @@
+{
+  "Variables": {
+    "x": 2,
+    "y": 3,
+    "z": 4
+  },
+  "MultiplicationisHigherpriorityThanSum_1": "14 is 14",
+  "MultiplicationisHigherpriorityThanSum_2": "14 is 14",
+  "ChangingOperatorApplicationOrderUsingBraces": "20 is 20",
+  "ComparisonisHigherPriorityThanLogicalOperators_1": "true is true",
+  "ComparisonisHigherPriorityThanLogicalOperators_2": "true is true",
+  "LogicalAndIsHigherpriorityThanLogicalOr_1": "true is true",
+  "LogicalAndIsHigherpriorityThanLogicalOr_2": "true is true",
+  "ChangingOperatorApplicationOrderUsingBraces_2": "false is false"
+}

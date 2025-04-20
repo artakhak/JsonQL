@@ -1,0 +1,9 @@
+{
+  "Object3": {
+    "CopiedObjectExample": "$value(parent.Example.Object2)",
+    "Int1": 2
+  },
+
+  "CopySimpleValue": "$value(parent.Example.Object2.Int1)",
+  "CopyArrayValue": "$value(parent.Example.Object2.Array1)"
+}

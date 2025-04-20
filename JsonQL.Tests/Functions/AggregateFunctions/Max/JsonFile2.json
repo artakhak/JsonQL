@@ -1,0 +1,49 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+
+  "MaxOfArrayEvenNumbers1": "$(Max(Object1.Array1.Where(x => typeof x == 'Number'), x => IsEven(x))) is 6",
+  "MaxOfArrayEvenNumbers2": "$(Max(Object1.Array1, x => IsEven(x))) is 6",
+  "MaxOfEmptyArray": "'$(Max(Object1EmptyArray))' is null",
+  "MaxOfEmptyArrayWithDefault": "$(Max(Object1EmptyArray):0) is 0",
+  "MaxOfEmptyCollection": "'$(Max(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000))' is null",
+  "MaxOfEmptyCollectionWithDefault": "$(Max(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000):0) is 0",
+  "MaxOfArrayOddNumbers": "$(Max(Object1.Array1, x => IsOdd(x))) is 13",
+  "MaxOfAllArrayValuesWithoutCriteria": "$(Max(Object1.Array1)) is 13",
+  "MaxOfAllCollectionValuesWithoutCriteria": "$(Max(Object1.Array1.Where(x => x != 13))) is 6",
+  "SubArraysWithMaxOfEvenNumbersLessThan_20": [
+    "$merge(parent.Object1.Array2.Where(x => Max(x, y => typeof y == 'Number' && IsEven(y)) < 20))"
+  ],
+  "SubArraysWithMaxOfOddNumbersLessThan_19": [
+    "$merge(parent.Object1.Array2.Where(x => Max(x, y => IsOdd(y)) < 19))"
+  ],
+
+
+  "Max_InMultipleArrays1": "$(Max(parent.Object1.Array2.Flatten(), x => x < 19)) is 13",
+  "Max_InMultipleArrays2": "'$(Max(parent.Object1.Array2.Flatten(), x => x == 'test2'))' is null",
+
+  "MaxOfSalariesOfEmployeesEarningLessThan_120000_1": "$(Max(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary < 120000, x => x.Salary)) is 110000",
+  "MaxOfSalariesOfEmployeesEarningMoreThan_120000_2": "$(Max(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')  && x.Salary < 120000), value->x => x.Salary)) is 110000",
+  "MaxOfSalariesOfEmployeesEarningMoreThan_200000": "'$(Max(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId') && x.Salary > 200000), value->x => x.Salary))' is null"
+}

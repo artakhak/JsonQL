@@ -1,0 +1,43 @@
+{
+  "Object1": {
+    "InvalidDoubleText": "Double",
+    "DoubleText1": "1.36",
+    "NegativeDoubleText1": "-1.36",
+
+    "IntText1": "15",
+    "NegativeIntText1": "-15",
+
+    "Double1": 1.36,
+    "NegativeDouble1": -1.36,
+
+    "Int1": 15,
+    "NegativeInt1": -15
+  },
+
+  "ConvertToDouble1": "'$(ToDouble(Object1.InvalidDoubleText, false))' is ToDouble('InvalidDoubleText')==null",
+  "ConvertToDouble2": "'$(ToDouble(Object1.InvalidDoubleText))' is ToDouble('InvalidDoubleText')==null",
+
+  "ConvertToDouble3": "$(ToDouble(Object1.DoubleText1) == 1.36) is (ToDouble(Object1.DoubleText1)==1.36)==true",
+  "ConvertToDouble4": "$(ToDouble('1.36') == 1.36) is (ToDouble('1.36')==1.36)==true",
+
+  "ConvertToDouble5": "$(ToDouble(Object1.NegativeDoubleText1) == -1.36) is (ToDouble(Object1.NegativeDoubleText1)==-1.36)==true",
+  "ConvertToDouble6": "$(ToDouble('-1.36') == -1.36) is (ToDouble('-1.36')==-1.36)==true",
+
+  "ConvertToDouble7": "$(ToDouble(Object1.IntText1) == 15) is (ToDouble(Object1.IntText1)==15)==true",
+  "ConvertToDouble8": "$(ToDouble('15') == 15) is (ToDouble('15')==15)==true",
+
+  "ConvertToDouble9": "$(ToDouble(Object1.NegativeIntText1) == -15) is (ToDouble(Object1.NegativeIntText1)==-15)==true",
+  "ConvertToDouble10": "$(ToDouble('-15') == -15) is (ToDouble('-15')==-15)==true",
+
+  "ConvertToDouble11": "$(ToDouble(Object1.Double1) == 1.36) is (ToDouble(Object1.Double1)==1.36)==true",
+  "ConvertToDouble12": "$(ToDouble(1.36) == 1.36) is (ToDouble(1.36)==1.36)==true",
+
+  "ConvertToDouble13": "$(ToDouble(Object1.NegativeDouble1) == -1.36) is (ToDouble(Object1.NegativeDouble1)==-1.36)==true",
+  "ConvertToDouble14": "$(ToDouble(-1.36) == -1.36) is (ToDouble(-1.36)==-1.36)==true",
+
+  "ConvertToDouble15": "$(ToDouble(Object1.Int1) == 15) is (ToDouble(Object1.Int1)==15)==true",
+  "ConvertToDouble16": "$(ToDouble(15) == 15) is (ToDouble(15)==15)==true",
+
+  "ConvertToDouble17": "$(ToDouble(Object1.NegativeInt1) == -15) is (ToDouble(Object1.NegativeInt1)==-15)==true",
+  "ConvertToDouble18": "$(ToDouble(-15) == -15) is (ToDouble(-15)==-15)==true"
+}

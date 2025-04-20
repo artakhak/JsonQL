@@ -1,0 +1,100 @@
+{
+  "Comment1": "value mutation function can be used both with a space without opening/closing bracases ",
+  "Comment2": "as in this example:",
+  "ExampleWithoutBraces": 13,
+  "Comment4": "as well as using opening/closing braces, such as in this example:",
+  "ExampleWithBraces": 13,
+  "AverageSalary": 102356.75,
+  "AverageSalaryPlus10": 102366.75,
+  "StringExpression": "Average is :102356.75",
+  "ResultOfMultipleItemsSelectorQuery1": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "ResultOfMultipleItemsSelectorQuery2": [
+    [
+      7,
+      8,
+      9
+    ],
+    [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  ],
+  "ResultOfSingleItemSelectorQuery1": [
+    [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    [
+      [
+        7,
+        8,
+        9
+      ],
+      [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ]
+  ],
+  "ResultOfSingleItemSelectorQuery2": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "ResultOfSingleItemSelectorQuery3": [
+    7,
+    8,
+    9
+  ],
+  "ResultOfNonPathNumericExpression1": 13,
+  "ResultOfNonPathBooleanExpression1": true,
+  "ResultOfNonPathDateTimeExpression1": "2022-05-23 14:25:43.5110000",
+  "ResultOfNonPathStringExpression1": "Date time is :'5/23/2022 2:25:43 PM'",
+  "ArrayValueInAnotherArray": [
+    "START",
+    [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "END"
+  ],
+  "SingleValueInArray": [
+    "START",
+    10,
+    "END"
+  ],
+  "ExpressionInArray": [
+    "START",
+    11,
+    "END"
+  ]
+}

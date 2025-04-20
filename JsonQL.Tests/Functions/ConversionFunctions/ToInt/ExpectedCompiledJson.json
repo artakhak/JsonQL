@@ -1,0 +1,24 @@
+{
+  "Object1": {
+    "InvalidIntText": "Int",
+    "DoubleText1": "17.36",
+    "NegativeDoubleText1": "-17.36",
+    "IntText1": "17",
+    "NegativeIntText1": "-17",
+    "Double1": 17.36,
+    "NegativeDouble1": -17.36,
+    "Int1": 17,
+    "NegativeInt1": -17
+  },
+  "ConvertToInt3_TEST": "17",
+  "ConvertToInt1": "'' is ToInt('InvalidIntText')==null",
+  "ConvertToInt2": "'' is ToInt('InvalidIntText')==null",
+  "ConvertToInt3": "true is (ToInt('17.36')==17)==true",
+  "ConvertToInt4": "true is (ToInt('-17.36')==-17)==true",
+  "ConvertToInt5": "true is (ToInt('17')==17)==true",
+  "ConvertToInt6": "true is (ToInt('-17')==-17)==true",
+  "ConvertToInt7": "true is (ToInt(17.36)==17)==true",
+  "ConvertToInt8": "true is (ToInt(-17.36)==-17)==true",
+  "ConvertToInt9": "true is (ToInt(17)==17)==true",
+  "ConvertToInt10": "true is (ToInt(-17)==-17)==true"
+}

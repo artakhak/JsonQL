@@ -1,0 +1,48 @@
+{
+  "Object1": {
+    "Array1": [
+      1,
+      [ 3, 4, 7 ],
+      {
+        "EmployeeId": 11,
+        "Age": 35
+      },
+      [
+        [
+          59,
+          9,
+          {
+            "EmployeeId": 1,
+            "Age": 55
+          },
+          {
+            "EmployeeId": 2,
+            "Age": 67
+          },
+          [ 17, 8, 13 ]
+        ],
+        19
+      ],
+      41,
+      [ 148, 156 ],
+      [
+        [ "test", 9, 158 ]
+      ]
+    ]
+  },
+
+  "SingleIndexExample_ReferenceJsonValue": "$(Object1.Array1[0]) is 1",
+  "SingleIndexExample_ReferenceJsonArray": "$value(Object1.Array1[1])",
+  "SingleIndexExample_ReferenceJsonObject": "$value(Object1.Array1[2])",
+  "MultipleIndexsExample_ReferenceJsonValue": "$(Object1.Array1[1, 1]) is 4",
+  "MultipleIndexsExample_ReferenceJsonArray": "$value(Object1.Array1[3, 0, 4])",
+  "MultipleIndexsExample_ReferenceJsonObject": "$value(Object1.Array1[3, 0, 2])",
+  "UsingIndexersInWhere": [
+    "$merge(Object1.Array1.Where(x => x[0, 1] == 9))"
+  ],
+  "SingleIndexExample_ReferenceJsonValue_InParentFile": "$(parent.Object1.Array2[4, 1]) is 8",
+  "SingleIndexExample_ReferenceJsonArray_InParentFile": [
+    "$merge(parent.Object1.Array2[4])"
+  ],
+  "ReferenceJsonObject_InParentFile": "$value(parent.Object1.Companies[1, 2])"
+}

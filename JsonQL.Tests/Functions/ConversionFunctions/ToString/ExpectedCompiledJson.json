@@ -1,0 +1,20 @@
+{
+  "Object1": {
+    "Number1": 15,
+    "Number2": 15.36,
+    "Text1": "Text 1",
+    "TrueValue": true,
+    "FalseValue": false
+  },
+  "ConvertToString1": "'' is ToString('MissingValue')==null",
+  "ConvertToString2": "'' is ToString('MissingValue')==null",
+  "ConvertToString3": "true is (ToString(Object1.Number1) == '15')==true",
+  "ConvertToString4": "true is (ToString(Object1.Number1) == '15.36')==true",
+  "ConvertToString5": "true is (ToString(Object1.TrueValue) == 'true')==true",
+  "ConvertToString6": "true is (ToString(Object1.FalseValue) == 'false')==true",
+  "ConvertToString7": "true is (ToString(15) == '15')==true",
+  "ConvertToString8": "true is (ToString(15.00) == '15')==true",
+  "ConvertToString9": "true is (ToString(ToDateTime('2022-05-23T18:25:43.511Z')) == '2022-05-23 14:25:43.5110000')==true",
+  "ConvertToString10": "true is (ToString(ToDateTime('2022-05-23T18:25:43')) == '2022-05-23 18:25:43.0000000')==true",
+  "ConvertToString11": "true is (ToString(ToDateTime('2022-05-23')) == '2022-05-23 00:00:00.0000000')==true"
+}

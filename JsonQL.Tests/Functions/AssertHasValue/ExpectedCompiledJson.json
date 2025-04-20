@@ -1,0 +1,34 @@
+{
+  "Object1": {
+    "DateTime1": "2022-05-23T18:25:43.511Z",
+    "Number1": 15.39,
+    "TrueText": "true",
+    "TrueValue": true,
+    "FalseText": "false",
+    "FalseValue": false
+  },
+  "Array1": [
+    "x",
+    "2022-05-23T18:25:43.511Z",
+    5,
+    [
+      1,
+      2,
+      3
+    ],
+    6,
+    "2022-05-23T18:26:43.511Z",
+    true,
+    "true",
+    false,
+    "false"
+  ],
+  "AssertHasValue1": "true is true",
+  "AssertHasValue2": "true is true",
+  "AssertHasValue3": "true is true",
+  "AssertHasValue4": "true is true",
+  "AssertHasValue5": "true is true",
+  "AssertHasValue6": "true is true",
+  "AssertHasValue7": "5 is 5",
+  "AssertHasValue8": "true is true"
+}

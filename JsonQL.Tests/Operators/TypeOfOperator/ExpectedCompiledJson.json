@@ -1,0 +1,16 @@
+{
+  "TypeOf_MissingValue": "'Undefined' is 'Undefined'",
+  "TypeOf_DoubleJsonValue": "'Number' is 'Number'",
+  "TypeOf_DoubleFunction": "'Number' is 'Number'",
+  "TypeOf_NullValueInJsonObject": "'JsonNull' is 'JsonNull'",
+  "TypeOf_NullValueInArray": "'JsonNull' is 'JsonNull'",
+  "TypeOf_Array1": "'JsonArray' is 'JsonArray'",
+  "TypeOf_CollectionType": "'Collection' is 'Collection'",
+  "TypeOf_DateTime1": "'String' is 'String'",
+  "TypeOf_DateTimeFunction": "'DateTime' is 'DateTime'",
+  "TypeOf_Boolean_True": "'Boolean' is 'Boolean'",
+  "TypeOf_Boolean_False": "'Boolean' is 'Boolean'",
+  "TypeOf_BooleanFunction": "'Boolean' is 'Boolean'",
+  "TypeOf_String1": "'String' is 'String'",
+  "TypeOf_StringFunction": "'String' is 'String'"
+}

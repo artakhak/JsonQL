@@ -1,0 +1,40 @@
+{
+  "Example": {
+    "Object1": {
+      "Int1": 1,
+      "String1": "String 1",
+      "Array1": [
+        1,
+        2,
+        3
+      ]
+    },
+    "Object2": {
+      "Int1": 2,
+      "String1": "String 2",
+      "Array1": [
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "Object3": {
+    "CopiedObjectExample": {
+      "Int1": 2,
+      "String1": "String 2",
+      "Array1": [
+        4,
+        5,
+        6
+      ]
+    },
+    "Int1": 2
+  },
+  "CopySimpleValue": 2,
+  "CopyArrayValue": [
+    4,
+    5,
+    6
+  ]
+}
