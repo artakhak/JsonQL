@@ -1,8 +1,4 @@
-﻿using JsonQL.Compilation;
-using JsonQL.Diagnostics;
-using JsonQL.Query;
-
-namespace JsonQL.Demos;
+﻿namespace JsonQL.Demos;
 
 public static class LoadJsonFileHelpers
 {

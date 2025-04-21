@@ -1,5 +1,5 @@
-﻿using JsonQL.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
+using JsonQL.Diagnostics;
 
 namespace JsonQL.Demos.Examples.QueryExamples;
 

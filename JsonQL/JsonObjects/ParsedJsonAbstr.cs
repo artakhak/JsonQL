@@ -1,5 +1,5 @@
-﻿using OROptimizer.Diagnostics.Log;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonObjects;
 

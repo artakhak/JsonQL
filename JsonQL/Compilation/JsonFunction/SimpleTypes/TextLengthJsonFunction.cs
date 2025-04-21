@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using JsonQL.JsonObjects;
+﻿using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.SimpleTypes;
 

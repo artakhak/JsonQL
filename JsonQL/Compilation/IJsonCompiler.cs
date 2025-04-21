@@ -1,5 +1,6 @@
 ﻿using JsonQL.Compilation.JsonValueMutator;
 using JsonQL.JsonObjects;
+using Newtonsoft.Json;
 using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation;
@@ -65,7 +66,7 @@ public class JsonCompiler : IJsonCompiler
 
             JsonLineInfo? errorLineInfo = null;
 
-            if (e is Newtonsoft.Json.JsonReaderException jsonReaderException)
+            if (e is JsonReaderException jsonReaderException)
             {
                 errorLineInfo = new JsonLineInfo(jsonReaderException.LineNumber, jsonReaderException.LinePosition);
             }

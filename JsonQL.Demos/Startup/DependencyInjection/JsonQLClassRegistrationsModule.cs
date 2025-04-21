@@ -4,7 +4,6 @@ using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.Compilation.JsonValueTextGenerator.StringFormatters;
 using JsonQL.Demos.AppSettings;
 using JsonQL.Demos.CustomJsonQL.Compilation;
-using JsonQL.JsonToObjectConversion;
 using JsonQL.Query;
 using Microsoft.Extensions.Configuration;
 using OROptimizer.Diagnostics.Log;

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace JsonQL.JsonToObjectConversion;
+﻿namespace JsonQL.JsonToObjectConversion;
 
 public interface IJsonConversionSettingsOverrides
 {

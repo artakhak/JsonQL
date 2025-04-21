@@ -1,8 +1,9 @@
-﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
-using JsonQL.Compilation.JsonFunction.JsonFunctions;
+﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.JsonFunctions.DefaultValueOperatorFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
+using UniversalExpressionParser;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
@@ -36,8 +37,8 @@ public interface IBinaryOperatorJsonFunctionFactory
 
 public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBinaryOperatorJsonFunctionFactory
 {
-    private static readonly string StartsWithOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.StartsWith);
-    private static readonly string EndsWithOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.EndsWith);
+    private static readonly string StartsWithOperatorName = Helpers.GetOperatorName(JsonOperatorNames.StartsWith);
+    private static readonly string EndsWithOperatorName = Helpers.GetOperatorName(JsonOperatorNames.EndsWith);
 
     /// <inheritdoc />
     public IParseResult<IJsonFunction> GetBinaryOperatorFunction(IParsedSimpleValue parsedSimpleValue, IOperatorExpressionItem operatorExpressionItem, IExpressionItemBase operand1, IExpressionItemBase operand2, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? operatorLineInfo)

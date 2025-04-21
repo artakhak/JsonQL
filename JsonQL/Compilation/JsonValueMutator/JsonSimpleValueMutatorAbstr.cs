@@ -1,6 +1,6 @@
-﻿using OROptimizer.Diagnostics.Log;
-using JsonQL.Compilation.JsonValueTextGenerator;
+﻿using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.JsonObjects;
+using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 

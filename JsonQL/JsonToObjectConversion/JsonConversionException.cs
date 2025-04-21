@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JsonQL.JsonToObjectConversion;
+﻿namespace JsonQL.JsonToObjectConversion;
 
 public class JsonConversionException : ApplicationException
 {

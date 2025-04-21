@@ -1,9 +1,9 @@
-﻿using JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
-using JsonQL.Compilation.JsonValueTextGenerator;
+﻿using System.Text;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
+using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.JsonObjects;
-using System.Text;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonValueMutator;

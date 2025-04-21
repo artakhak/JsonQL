@@ -1,7 +1,7 @@
-﻿using JsonQL.Compilation.JsonValueLookup;
+﻿using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.JsonObjects;
-using System.Diagnostics.CodeAnalysis;
 using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction;

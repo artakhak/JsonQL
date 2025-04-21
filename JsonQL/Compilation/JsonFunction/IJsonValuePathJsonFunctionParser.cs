@@ -1,8 +1,7 @@
-﻿using JsonQL.Compilation;
+﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 using JsonQL.Compilation.UniversalExpressionParserJsonQL;
-using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 using UniversalExpressionParser;
 using UniversalExpressionParser.ExpressionItems;

@@ -35,11 +35,11 @@ while (true)
 
     Console.Write(exampleSelectionPrompt);
 
-    var userEntry = System.Console.ReadLine();
+    var userEntry = Console.ReadLine();
 
     if (!int.TryParse(userEntry, out var selectedNumber) || selectedNumber < 0 || selectedNumber > exampleManagers.Count)
     {
-        System.Console.WriteLine("Invalid entry. Try again.");
+        Console.WriteLine("Invalid entry. Try again.");
         continue;
     }
 
@@ -106,7 +106,7 @@ static void RegisterLogger()
     }
     catch (Exception e)
     {
-        System.Console.Out.WriteLine($"Failed to initialize the logger: Error: {e.Message}.{Environment.NewLine}{e.StackTrace}.");
+        Console.Out.WriteLine($"Failed to initialize the logger: Error: {e.Message}.{Environment.NewLine}{e.StackTrace}.");
         throw new ApplicationException($"Failed to initialize the logger from [{loggerFileName}] configuration.");
     }
 }

@@ -1,6 +1,4 @@
-﻿using JsonQL.JsonObjects.JsonPath;
-
-namespace JsonQL.JsonToObjectConversion;
+﻿namespace JsonQL.JsonToObjectConversion;
 
 public enum ConversionErrorType
 {

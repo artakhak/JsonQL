@@ -1,12 +1,13 @@
-﻿using Autofac;
-using System.Reflection;
+﻿using System.Reflection;
+using Autofac;
 using JsonQL.Demos.Examples;
 using JsonQL.Diagnostics;
 using JsonQL.Utilities;
+using Module = Autofac.Module;
 
 namespace JsonQL.Demos.Startup.DependencyInjection;
 
-public class ExampleManagersModule: Autofac.Module
+public class ExampleManagersModule: Module
 {
     protected override void Load(ContainerBuilder builder)
     {

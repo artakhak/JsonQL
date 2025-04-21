@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using JsonQL.JsonToObjectConversion.NullabilityCheck.Diagnostics.TestClasses;
 using OROptimizer.Diagnostics.Log;
 

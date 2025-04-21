@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JsonQL.JsonToObjectConversion;
+﻿namespace JsonQL.JsonToObjectConversion;
 
 /// <summary>
 /// Mapping used when de-serializing json objects to model classes.

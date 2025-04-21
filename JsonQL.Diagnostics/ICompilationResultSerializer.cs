@@ -1,8 +1,8 @@
-﻿using JsonQL.Compilation;
+﻿using System.Text;
+using JsonQL.Compilation;
+using JsonQL.JsonObjects;
 using JsonQL.Query;
 using JsonQL.Utilities;
-using System.Text;
-using JsonQL.JsonObjects;
 
 namespace JsonQL.Diagnostics;
 
@@ -34,7 +34,7 @@ public class CompilationResultSerializer : ICompilationResultSerializer
 
     private string IndentJsonValue(string jsonVale, string indention)
     {
-        var lines = jsonVale.Split(System.Environment.NewLine);
+        var lines = jsonVale.Split(Environment.NewLine);
 
         var indentedValue = new StringBuilder();
 

@@ -1,6 +1,6 @@
-﻿using OROptimizer.Diagnostics.Log;
-using JsonQL.Compilation.JsonFunction.SimpleTypes;
+﻿using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
+using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonFunction;
 

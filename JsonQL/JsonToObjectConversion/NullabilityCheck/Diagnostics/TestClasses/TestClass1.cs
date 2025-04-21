@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace JsonQL.JsonToObjectConversion.NullabilityCheck.Diagnostics.TestClasses;
+﻿namespace JsonQL.JsonToObjectConversion.NullabilityCheck.Diagnostics.TestClasses;
 
 internal class TestClass1
 {

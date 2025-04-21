@@ -1,4 +1,5 @@
-﻿using OROptimizer.Diagnostics.Log;
+﻿using System.Reflection;
+using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 
@@ -13,7 +14,7 @@ public class JsonParserFactory
     {
         logger ??= new LogToConsole(LogLevel.Debug);
 
-        (bool parameterValueWasResolved, object resolvedValue) TryResolveConstructorParameterValue(Type type, System.Reflection.ParameterInfo parameterInfo)
+        (bool parameterValueWasResolved, object resolvedValue) TryResolveConstructorParameterValue(Type type, ParameterInfo parameterInfo)
         {
             var resolvedValue = tryResolveConstructorParameterValueDelegate(type, parameterInfo);
 

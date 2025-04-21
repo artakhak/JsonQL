@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using JsonQL.Compilation;
+﻿using JsonQL.Compilation;
 using JsonQL.JsonToObjectConversion;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Query;
 
@@ -50,7 +48,7 @@ public static class QueryManagerExtensions
 
         if (queryResult.Value is not T convertedValue)
         {
-            throw new System.ApplicationException($"Internal error. The query result is expected to be of type [{typeof(T)}]. Actual type is [{queryResult.Value.GetType()}]. This exception should never happen and if happens it is due to some bug.");
+            throw new ApplicationException($"Internal error. The query result is expected to be of type [{typeof(T)}]. Actual type is [{queryResult.Value.GetType()}]. This exception should never happen and if happens it is due to some bug.");
         }
         
         return new ObjectQueryResult<T>(convertedValue, queryResult.ErrorsAndWarnings);

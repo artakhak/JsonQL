@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonValueTextGenerator;
 
 namespace JsonQL.JsonToObjectConversion.Serializers;

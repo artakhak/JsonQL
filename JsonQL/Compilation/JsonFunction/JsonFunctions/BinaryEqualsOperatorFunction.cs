@@ -20,6 +20,6 @@ public class BinaryEqualsOperatorFunction : BinaryComparisonOperatorFunctionAbst
         if (evaluatedValueOfOperand1.TypeCode != evaluatedValueOfOperand2.TypeCode)
             return new ParseResult<bool?>(false);
 
-        return new ParseResult<bool?>(object.Equals(evaluatedValueOfOperand1.Value, evaluatedValueOfOperand2.Value));
+        return new ParseResult<bool?>(Equals(evaluatedValueOfOperand1.Value, evaluatedValueOfOperand2.Value));
     }
 }

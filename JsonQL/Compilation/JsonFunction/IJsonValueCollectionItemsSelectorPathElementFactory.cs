@@ -1,10 +1,9 @@
-﻿using JsonQL.Compilation;
-using JsonQL.Compilation.JsonValueLookup;
-using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
+﻿using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.Compilation.JsonValueLookup;
+using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 using JsonQL.JsonObjects;
-using System.Diagnostics.CodeAnalysis;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;

@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace JsonQL.Demos.Examples.QueryExamples.JsonCompilerExamples;
 

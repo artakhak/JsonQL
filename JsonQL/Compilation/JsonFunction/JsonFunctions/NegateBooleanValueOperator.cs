@@ -1,5 +1,4 @@
-﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
-using JsonQL.Compilation.JsonFunction.SimpleTypes;
+﻿using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
 using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 

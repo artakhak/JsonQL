@@ -1,8 +1,9 @@
-﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
-using JsonQL.Compilation.JsonFunction.JsonFunctions;
+﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.JsonFunctions.AssertFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
+using UniversalExpressionParser;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
@@ -34,11 +35,11 @@ public interface IUnaryPostfixOperatorJsonFunctionFactory
 
 public class UnaryPostfixOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IUnaryPostfixOperatorJsonFunctionFactory
 {
-    private static readonly string IsNullOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.IsNullOperator);
-    private static readonly string IsNotNullOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.IsNotNullOperator);
+    private static readonly string IsNullOperatorName = Helpers.GetOperatorName(JsonOperatorNames.IsNullOperator);
+    private static readonly string IsNotNullOperatorName = Helpers.GetOperatorName(JsonOperatorNames.IsNotNullOperator);
 
-    private static readonly string IsUndefinedOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.IsUndefinedOperator);
-    private static readonly string IsNotUndefinedOperatorName = UniversalExpressionParser.Helpers.GetOperatorName(JsonOperatorNames.IsNotUndefinedOperator);
+    private static readonly string IsUndefinedOperatorName = Helpers.GetOperatorName(JsonOperatorNames.IsUndefinedOperator);
+    private static readonly string IsNotUndefinedOperatorName = Helpers.GetOperatorName(JsonOperatorNames.IsNotUndefinedOperator);
 
     private readonly IAssertOperatorFunctionFactory _assertOperatorFunctionFactory;
 

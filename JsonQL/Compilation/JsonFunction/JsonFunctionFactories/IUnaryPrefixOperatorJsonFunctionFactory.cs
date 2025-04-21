@@ -1,5 +1,5 @@
-﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
-using JsonQL.Compilation.JsonFunction.JsonFunctions;
+﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
 using UniversalExpressionParser.ExpressionItems;
 

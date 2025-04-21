@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using OROptimizer.Diagnostics.Log;
-using JsonQL.JsonObjects;
+﻿using JsonQL.JsonObjects;
 using JsonQL.NewtonsoftImplementations;
+using Newtonsoft.Json.Linq;
+using OROptimizer.Diagnostics.Log;
 using IJsonLineInfo = Newtonsoft.Json.IJsonLineInfo;
 
 namespace JsonQL;
