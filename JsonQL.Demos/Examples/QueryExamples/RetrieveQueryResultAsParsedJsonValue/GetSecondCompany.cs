@@ -1,5 +1,5 @@
 ﻿using JsonQL.Compilation;
-using JsonQL.Extensions.Query;
+using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsParsedJsonValue;
 

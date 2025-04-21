@@ -1,6 +1,6 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Diagnostics;
-using JsonQL.Extensions.Query;
+using JsonQL.Query;
 using OROptimizer;
 
 namespace JsonQL.Demos;

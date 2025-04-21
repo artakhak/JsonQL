@@ -1,4 +1,4 @@
-﻿using JsonQL.Extensions.Query;
+﻿using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples;
 

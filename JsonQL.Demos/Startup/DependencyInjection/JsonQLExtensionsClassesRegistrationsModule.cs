@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using JsonQL.Extensions.JsonToObjectConversion;
-using JsonQL.Extensions.JsonToObjectConversion.NullabilityCheck;
-using JsonQL.Extensions.JsonToObjectConversion.Serializers;
-using JsonQL.Extensions.Query;
+using JsonQL.JsonToObjectConversion;
+using JsonQL.JsonToObjectConversion.NullabilityCheck;
+using JsonQL.JsonToObjectConversion.Serializers;
+using JsonQL.Query;
 
 namespace JsonQL.Demos.Startup.DependencyInjection;
 

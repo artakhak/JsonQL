@@ -13,7 +13,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
-	  <ProjectReference Include="..\JsonQL.Extensions\JsonQL.Extensions.csproj" />
 	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 </Project>

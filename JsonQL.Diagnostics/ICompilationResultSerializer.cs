@@ -1,5 +1,5 @@
 ﻿using JsonQL.Compilation;
-using JsonQL.Extensions.Query;
+using JsonQL.Query;
 using JsonQL.Utilities;
 using System.Text;
 using JsonQL.JsonObjects;

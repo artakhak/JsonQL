@@ -1,7 +1,7 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Demos.Examples.DataModels;
-using JsonQL.Extensions.JsonToObjectConversion;
-using JsonQL.Extensions.Query;
+using JsonQL.JsonToObjectConversion;
+using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsObject;
 
