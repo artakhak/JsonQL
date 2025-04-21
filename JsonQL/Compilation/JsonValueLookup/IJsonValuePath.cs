@@ -1,4 +1,4 @@
-﻿using JsonQL.JsonExpression;
+﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup;

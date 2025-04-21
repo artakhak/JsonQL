@@ -1,5 +1,5 @@
 ﻿using JsonQL.Compilation.JsonValueTextGenerator;
-using JsonQL.JsonFunction;
+using JsonQL.Compilation.JsonFunction;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;

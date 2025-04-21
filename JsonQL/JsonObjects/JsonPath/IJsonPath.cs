@@ -1,4 +1,4 @@
-﻿using JsonQL.JsonExpression;
+﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using System.Text;
 
 namespace JsonQL.JsonObjects.JsonPath;

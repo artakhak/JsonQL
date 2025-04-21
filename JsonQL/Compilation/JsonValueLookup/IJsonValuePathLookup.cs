@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OROptimizer.Diagnostics.Log;
-using JsonQL.JsonExpression;
-using JsonQL.JsonFunction;
+using JsonQL.Compilation.UniversalExpressionParserJsonQL;
+using JsonQL.Compilation.JsonFunction;
 using JsonQL.JsonObjects;
 using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 using JsonQL.JsonObjects.JsonPath;

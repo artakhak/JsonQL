@@ -1,4 +1,4 @@
-﻿using JsonQL.JsonFunction;
+﻿using JsonQL.Compilation.JsonFunction;
 using JsonQL.JsonObjects;
 using UniversalExpressionParser.ExpressionItems;
 

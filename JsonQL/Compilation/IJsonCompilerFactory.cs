@@ -1,8 +1,8 @@
 ﻿using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.Compilation.JsonValueTextGenerator.StringFormatters;
-using JsonQL.JsonExpression;
-using JsonQL.JsonFunction;
-using JsonQL.JsonFunction.JsonFunctionFactories;
+using JsonQL.Compilation.UniversalExpressionParserJsonQL;
+using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;

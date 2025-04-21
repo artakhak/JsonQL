@@ -1,4 +1,4 @@
-﻿using JsonQL.JsonFunction.JsonFunctions;
+﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;

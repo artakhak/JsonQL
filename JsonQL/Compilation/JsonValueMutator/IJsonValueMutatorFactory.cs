@@ -1,7 +1,7 @@
 ﻿using JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 using JsonQL.Compilation.JsonValueTextGenerator;
-using JsonQL.JsonFunction;
-using JsonQL.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 using System.Text;
 using UniversalExpressionParser.ExpressionItems;

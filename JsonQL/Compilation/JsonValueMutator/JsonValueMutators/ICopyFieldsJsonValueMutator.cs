@@ -1,5 +1,5 @@
 ﻿using OROptimizer.Diagnostics.Log;
-using JsonQL.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 using JsonQL.JsonObjects.JsonPath;
 

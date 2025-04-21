@@ -1,6 +1,6 @@
 ﻿using OROptimizer.Diagnostics.Log;
 using JsonQL.Compilation.JsonValueLookup;
-using JsonQL.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueMutator;

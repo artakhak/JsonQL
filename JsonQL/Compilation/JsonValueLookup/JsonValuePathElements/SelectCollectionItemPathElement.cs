@@ -1,7 +1,7 @@
-﻿using JsonQL.JsonFunction;
-using JsonQL.JsonFunction.JsonFunctions.AggregateFunctions;
+﻿using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
-using TypeCode = JsonQL.JsonFunction.SimpleTypes.TypeCode;
+using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 

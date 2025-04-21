@@ -1,7 +1,7 @@
 ﻿using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.Compilation.JsonValueTextGenerator;
-using JsonQL.JsonFunction;
-using JsonQL.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 using OROptimizer.Diagnostics.Log;
 
