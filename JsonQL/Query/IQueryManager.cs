@@ -115,17 +115,24 @@ public class QueryManager : IQueryManager
     /// <inheritdoc />
     public IJsonValueQueryResult QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)
     {
-        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) =>
-        {
-            //var queryJsonTextData = new JsonTextData(queryTextIdentifier, queryJsonText, queriedJsonTextData);
-            return _jsonCompiler.Compile(queryTextIdentifier, queryJsonText, compiledJsonDataToQuery);
-        });
+        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) => _jsonCompiler.Compile(queryTextIdentifier, queryJsonText, compiledJsonDataToQuery));
     }
 
     /// <inheritdoc />
     public IObjectQueryResult<object?> QueryObject(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability = null, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null)
     {
-        throw new NotImplementedException();
+        var executeQueryResult = QueryJsonValue(query, compiledJsonDataToQuery);
+
+        if (executeQueryResult.CompilationErrors.Count > 0 || executeQueryResult.ParsedValue == null)
+        {
+            return new ObjectQueryResult<object?>(executeQueryResult.CompilationErrors);
+        }
+
+        var conversionResult = _jsonParsedValueConversionManager.Convert(executeQueryResult.ParsedValue, typeToConvertTo, convertedValueNullability, jsonConversionSettingOverrides);
+
+        return new ObjectQueryResult<object?>(conversionResult.Value,
+            new QueryResultErrorsAndWarnings(executeQueryResult.CompilationErrors,
+                conversionResult.ConversionErrorsAndWarnings.ConversionErrors, conversionResult.ConversionErrorsAndWarnings.ConversionWarnings));
     }
     
     private IJsonValueQueryResult ExecuteQuery(string query, CompileJsonQueryDelegate compileJsonQuery) 

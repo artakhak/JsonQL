@@ -10,13 +10,9 @@ public interface IJsonCompiler
 {
     /// <summary>
     /// Compiles json with expressions in <paramref name="jsonText"/> and returns a result and returns <see cref="ICompilationResult"/>.<br/>
-    /// The first value is the compiled parsed json value of type <see cref="IRootParsedArrayValue"/>, which can be one of the following<br/>
-    /// interfaces: <see cref="IRootParsedJson"/> or <see cref="IRootParsedArrayValue"/>.<br/>
-    /// The value can be null, if compilation failed.<br/>
-    /// The second value is a list of compilation errors. The list is empty, if compilation succeeded.
-    /// The parameter <paramref name="jsonText"/> is a json text that can have JsonQL expressions that might reference objects in the same json or any
-    /// of the parents in <paramref name="compiledParents"/>. The objects referenced in JsonQL expressions in <paramref name="jsonText"/>
-    /// are looked up first in <paramref name="jsonText"/> and then in <paramref name="compiledParents"/>, in such a way that json files
+    /// The parameter <paramref name="jsonText"/> is a json text that can have JsonQL expressions that might reference objects in the same json or any<br/>
+    /// of the parents in <paramref name="compiledParents"/>. The objects referenced in JsonQL expressions in <paramref name="jsonText"/><br/>
+    /// are looked up first in <paramref name="jsonText"/> and then in <paramref name="compiledParents"/>, in such a way that json files<br/>
     /// that appear earlier in list <paramref name="compiledParents"/> will be searched first.
     /// </summary>
     /// <param name="jsonText">Json text to compile.</param>
@@ -62,12 +58,12 @@ public class JsonCompiler : IJsonCompiler
         DateTimeOperationsAmbientContext.Context = parameters.DateTimeOperations;
     }
 
-    public (IRootParsedValue? compiledParsedValue, IReadOnlyList<ICompilationErrorItem> compilationErrors) Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)
+    public ICompilationResult Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)
     {
         var compilationResult = new CompilationResult();
       
         if (!TryParse(jsonText, jsonTextIdentifier, compilationResult.CompilationErrors, out var rootParsedValue))
-            return (null, compilationResult.CompilationErrors);
+            return compilationResult;
 
         JsonObjectData? parentJsonObjectData = null;
         JsonTextData? parentJsonTextData = null;
@@ -93,11 +89,10 @@ public class JsonCompiler : IJsonCompiler
         var compiledJsonData = compilationResult.CompiledJsonFiles.FirstOrDefault(x => x.TextIdentifier == jsonTextIdentifier);
 
         if (compiledJsonData == null)
-            return (null, compilationResult.CompilationErrors);
+            return compilationResult;
 
         _compilationResultLogger.LogCompilationResult(jsonTextData, compilationResult);
-
-        return (compiledJsonData.CompiledParsedValue, compilationResult.CompilationErrors);
+        return compilationResult;
     }
 
     /// <inheritdoc />
