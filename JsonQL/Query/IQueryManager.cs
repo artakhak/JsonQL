@@ -9,14 +9,14 @@ namespace JsonQL.Query;
 public interface IQueryManager
 {
     /// <summary>
-    /// Queries json in <param name="jsonTextData"></param> for single json object. If the query result does not find a single object, null value will be returned in<br/>
+    /// Queries json in <param name="queriedJsonTextData"></param> for single json object. If the query result does not find a single object, null value will be returned in<br/>
     /// <see cref="IObjectQueryResult{TQueryObject}.Value"/>. Example when null is returned is object does not exist, or it is a collection of multiple<br/>
     /// json objects selected by query.<br/>
     /// Note, single objects include values of type <see cref="IParsedJson"/>, <see cref="IParsedSimpleValue"/>, <see cref="IParsedArrayValue"/>.<br/>
     /// <see cref="IObjectQueryResult{TQueryObject}.ErrorsAndWarnings"/> might contain compilation errors in <see cref="IQueryResultErrorsAndWarnings.CompilationErrors"/>.
     /// </summary>
     /// <param name="query">Query text. Examples: "x.Array1", "x.Array1[1, 2]", "x.Array1.Where(x => x.Salary > 10 && index > 2).First(x => x.Company == 'XYZ')"</param>
-    /// <param name="jsonTextData">Queried json text(s) data. In many cases we might query a single json text, in which case
+    /// <param name="queriedJsonTextData">Queried json text(s) data. In many cases we might query a single json text, in which case
     /// <see cref="IJsonTextData.ParentJsonTextData"/> will be null. In some cases, some json texts might have query expressions that start with
     /// "parent", which are resolved from parent json in <see cref="IJsonTextData.ParentJsonTextData"/> (or parents of parent, if the object is not found in parent).
     /// </param>
@@ -26,13 +26,15 @@ public interface IQueryManager
     /// <see cref="IParsedArrayValue"/> for a result representing collections. Example [1, 3, 7]<br/>
     /// <see cref="IParsedSimpleValue"/> for results representing simple values like numbers, texts, booleans.
     /// </returns>
-    IJsonValueQueryResult QueryJsonValue(string query, IJsonTextData jsonTextData);
+    IJsonValueQueryResult QueryJsonValue(string query, IJsonTextData queriedJsonTextData);
+    
+    IJsonValueQueryResult QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery);
 
     /// <summary>
-    /// Queries json in <param name="jsonTextData"></param> and converts the query result to an instance of <typeparamref name="T"/>.
+    /// Queries json in <param name="queriedJsonTextData"></param> and converts the query result to an instance of <typeparamref name="T"/>.
     /// </summary>
     /// <param name="query">Query text. Examples: "x.Array1", "x.Array1[1, 2]", "x.Array1.Where(x => x.Salary > 10 && index > 2)"</param>
-    /// <param name="jsonTextData">Queried json text(s) data. In many cases we might query a single json text, in which case
+    /// <param name="queriedJsonTextData">Queried json text(s) data. In many cases we might query a single json text, in which case
     /// <see cref="IJsonTextData.ParentJsonTextData"/> will be null. In some cases, some json texts might have query expressions that start with
     /// "parent", which are resolved from parent json in <see cref="IJsonTextData.ParentJsonTextData"/> (or parents of parent, if the object is not found in parent).
     /// </param>
@@ -60,14 +62,19 @@ public interface IQueryManager
     /// The settings will be merged with default settings.
     /// </param>
     /// <returns></returns>
-    IObjectQueryResult<object?> QueryObject(string query, IJsonTextData jsonTextData, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability = null, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null);
+    IObjectQueryResult<object?> QueryObject(string query, IJsonTextData queriedJsonTextData, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability = null, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null);
+
+    IObjectQueryResult<object?> QueryObject(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability = null, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null);
 }
 
 public class QueryManager : IQueryManager
 {
+    private delegate ICompilationResult CompileJsonQueryDelegate(string queryTextIdentifier, string queryJsonText);
+
     private readonly IJsonCompiler _jsonCompiler;
     private readonly IJsonParsedValueConversionManager _jsonParsedValueConversionManager;
     private readonly ILog _logger;
+    
 
     private const string InvalidStateReachedError = "Failed to generate query result. Invalid state reached.";
 
@@ -79,14 +86,19 @@ public class QueryManager : IQueryManager
     }
 
     /// <inheritdoc />
-    public IJsonValueQueryResult QueryJsonValue(string query, IJsonTextData jsonTextData)
+    public IJsonValueQueryResult QueryJsonValue(string query, IJsonTextData queriedJsonTextData)
     {
-        return ExecuteQuery(query, jsonTextData);
+        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) =>
+        {
+            var queryJsonTextData = new JsonTextData(queryTextIdentifier, queryJsonText, queriedJsonTextData);
+            return _jsonCompiler.Compile(queryJsonTextData);
+        });
     }
 
-    public IObjectQueryResult<object?> QueryObject(string query, IJsonTextData jsonTextData, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null)
+    /// <inheritdoc />
+    public IObjectQueryResult<object?> QueryObject(string query, IJsonTextData queriedJsonTextData, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null)
     {
-        var executeQueryResult = ExecuteQuery(query, jsonTextData);
+        var executeQueryResult = QueryJsonValue(query, queriedJsonTextData);
 
         if (executeQueryResult.CompilationErrors.Count > 0 || executeQueryResult.ParsedValue == null)
         {
@@ -95,12 +107,28 @@ public class QueryManager : IQueryManager
 
         var conversionResult = _jsonParsedValueConversionManager.Convert(executeQueryResult.ParsedValue, typeToConvertTo, convertedValueNullability, jsonConversionSettingOverrides);
 
-        return new ObjectQueryResult<object?>(conversionResult.Value, 
+        return new ObjectQueryResult<object?>(conversionResult.Value,
             new QueryResultErrorsAndWarnings(executeQueryResult.CompilationErrors,
-            conversionResult.ConversionErrorsAndWarnings.ConversionErrors, conversionResult.ConversionErrorsAndWarnings.ConversionWarnings));
+                conversionResult.ConversionErrorsAndWarnings.ConversionErrors, conversionResult.ConversionErrorsAndWarnings.ConversionWarnings));
     }
 
-    private IJsonValueQueryResult ExecuteQuery(string query, IJsonTextData jsonTextData)
+    /// <inheritdoc />
+    public IJsonValueQueryResult QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)
+    {
+        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) =>
+        {
+            //var queryJsonTextData = new JsonTextData(queryTextIdentifier, queryJsonText, queriedJsonTextData);
+            return _jsonCompiler.Compile(queryTextIdentifier, queryJsonText, compiledJsonDataToQuery);
+        });
+    }
+
+    /// <inheritdoc />
+    public IObjectQueryResult<object?> QueryObject(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery, Type typeToConvertTo, IReadOnlyList<bool>? convertedValueNullability = null, IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private IJsonValueQueryResult ExecuteQuery(string query, CompileJsonQueryDelegate compileJsonQuery) 
     {
         var jsonTextStrBldr = new StringBuilder();
 
@@ -114,10 +142,8 @@ public class QueryManager : IQueryManager
         const int errorLineNumber = 1;
 
         var jsonText = jsonTextStrBldr.ToString();
-
-        var queryJsonTextData = new JsonTextData(Constants.QueryTextIdentifier, jsonText, jsonTextData);
-
-        var compilationResult = _jsonCompiler.Compile(queryJsonTextData);
+        
+        var compilationResult = compileJsonQuery(Constants.QueryTextIdentifier, jsonText);
 
         if (compilationResult.CompilationErrors.Count > 0)
             return new JsonValueQueryResult(compilationResult.CompilationErrors);
@@ -133,7 +159,7 @@ public class QueryManager : IQueryManager
             });
         }
 
-        if (compiledJsonData.CompiledParsedValue.RootParsedValue is not IRootParsedJson rootParsedJson)
+        if (compiledJsonData.CompiledParsedValue is not IRootParsedJson rootParsedJson)
         {
             _logger.ErrorFormat("The value of [{0}] is expected to be of type [{1}]. Actual type is [{2}].",
                 nameof(ICompiledJsonData.CompiledParsedValue.RootParsedValue),
