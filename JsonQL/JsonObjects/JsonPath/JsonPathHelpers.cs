@@ -1,7 +1,26 @@
 ﻿namespace JsonQL.JsonObjects.JsonPath;
 
+/// <summary>
+/// Provides helper methods for comparing and analyzing JSON paths.
+/// </summary>
 public static class JsonPathHelpers
 {
+    /// <summary>
+    /// Compares two JSON paths and determines their relationship.
+    /// </summary>
+    /// <param name="jsonPath1">The first JSON path to compare.</param>
+    /// <param name="jsonPath2">The second JSON path to compare.</param>
+    /// <returns>
+    /// A <see cref="JsonPathComparisonResult"/> value that represents the relationship
+    /// between the two JSON paths. Possible results include:
+    /// <list type="bullet">
+    /// <item><description><c>None</c>: The paths have no relationship.</description></item>
+    /// <item><description><c>Child</c>: The first path is a child of the second.</description></item>
+    /// <item><description><c>Parent</c>: The first path is a parent of the second.</description></item>
+    /// <item><description><c>Equal</c>: The paths are equivalent.</description></item>
+    /// <item><description><c>Sibling</c>: The paths are siblings.</description></item>
+    /// </list>
+    /// </returns>
     public static JsonPathComparisonResult Compare(IJsonPath jsonPath1, IJsonPath jsonPath2)
     {
         if (jsonPath1.Path.Count == 0 || jsonPath2.Path.Count == 0)

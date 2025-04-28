@@ -3,8 +3,23 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents a binary operator function that evaluates the inequality between two operands.
+/// This function checks whether two JSON-comparable operands are not equal in value.
+/// </summary>
 public class BinaryNotEqualsOperatorFunction : BinaryComparisonOperatorFunctionAbstr
 {
+    /// <summary>
+    /// Defines a function for performing the binary not-equals comparison operation between two JSON function operands.
+    /// </summary>
+    /// <param name="operatorName">The binary operator's name, typically representing inequality.</param>
+    /// <param name="operand1">The first operand of the not-equals comparison.</param>
+    /// <param name="operand2">The second operand of the not-equals comparison.</param>
+    /// <param name="jsonFunctionContext">Provides the evaluation context in which the function operates.</param>
+    /// <param name="lineInfo">Optional line information for debugging or error tracing.</param>
+    /// <remarks>
+    /// This class inherits from the abstract binary comparison operator function and evaluates whether the two operands are not equal.
+    /// </remarks>
     public BinaryNotEqualsOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) : base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)

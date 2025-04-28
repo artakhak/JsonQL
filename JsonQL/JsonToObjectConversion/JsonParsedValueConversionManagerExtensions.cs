@@ -2,6 +2,11 @@
 
 namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Provides extension methods for simplifying and enhancing the functionality
+/// of the <see cref="IJsonParsedValueConversionManager"/> interface in the context
+/// of JSON to object conversion processes.
+/// </summary>
 public static class JsonParsedValueConversionManagerExtensions
 {
     /// <summary>

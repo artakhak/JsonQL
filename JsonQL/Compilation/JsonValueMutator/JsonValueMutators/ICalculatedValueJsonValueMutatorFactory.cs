@@ -4,8 +4,17 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 
+/// <summary>
+/// Defines a factory interface for creating instances of <see cref="ICalculatedValueJsonValueMutator"/>.
+/// </summary>
 public interface ICalculatedValueJsonValueMutatorFactory
 {
+    /// <summary>
+    /// Creates an instance of <see cref="ICalculatedValueJsonValueMutator"/> using the provided parsed simple value and JSON function.
+    /// </summary>
+    /// <param name="parsedSimpleValue">The parsed simple value used to initialize the mutator.</param>
+    /// <param name="jsonFunction">The JSON function that defines the calculation logic for mutation.</param>
+    /// <returns>An instance of <see cref="ICalculatedValueJsonValueMutator"/>.</returns>
     ICalculatedValueJsonValueMutator Create(IParsedSimpleValue parsedSimpleValue, IJsonFunction jsonFunction);
 }
 
@@ -16,6 +25,9 @@ public class CalculatedValueJsonValueMutatorFactory : ICalculatedValueJsonValueM
     private readonly IParsedJsonVisitor _parsedJsonVisitor;
     private readonly IStringFormatter _stringFormatter;
 
+    /// <summary>
+    /// Factory for creating instances of <see cref="ICalculatedValueJsonValueMutator"/> using the specified components for parsed value copying, parsed JSON visiting, and string formatting.
+    /// </summary>
     public CalculatedValueJsonValueMutatorFactory(IParsedValueCopy parsedValueCopy,
         IParsedJsonVisitor parsedJsonVisitor, IStringFormatter stringFormatter)
     {

@@ -9,15 +9,17 @@ using UniversalExpressionParser.ExpressionItems;
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 
 /// <summary>
-/// A factory for parsing a unary postfix operator expressions (e.g., "x[0].Any(y => y assert > 3)" or "x[0].Any(y => (y > 3) assert)", where assert is the postfix operator that asserts that the value ios not null) into a <see cref="IJsonFunction"/>.
+/// A factory for parsing a unary postfix operator expressions (e.g., <b>x[0].Any(y => y assert > 3)</b> or <b>x[0].Any(y => (y > 3) assert)</b>,
+/// where <b>assert</b> is the postfix operator that fails expression evaluation, if the operand value is missing (null, undefined, etc) or evaluates to operand value
+/// (as if the operand was not present at all) otherwise.
 /// </summary>
 public interface IUnaryPostfixOperatorJsonFunctionFactory
 {
     /// <summary>
     /// Tries to create <see cref="IJsonFunction"/> from unary prefix operator expression. 
-    /// Example: "x[0].Any(y => y assert > 3)" or "x[0].Any(y => (y > 3) assert)"
+    /// Example: <b>x[0].Any(y => y assert > 3)</b> or <b>x[0].Any(y => (y > 3) assert)</b>
     /// </summary>
-    /// <param name="parsedSimpleValue">Parsed json value which contains the expression to be parsed.</param>
+    /// <param name="parsedSimpleValue">Parsed JSON value which contains the expression to be parsed.</param>
     /// <param name="operatorExpressionItem">Operator expression to convert to <see cref="IJsonFunction"/>.</param>
     /// <param name="jsonFunctionContext">If not null, parent function data.</param>
     /// <param name="operand">Operand.</param>
@@ -43,10 +45,19 @@ public class UnaryPostfixOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr,
 
     private readonly IAssertOperatorFunctionFactory _assertOperatorFunctionFactory;
 
+    /// <summary>
+    /// Factory for creating JSON functions from unary postfix operator expressions.
+    /// Provides support for parsing and constructing JSON functions associated with postfix operators,
+    /// such as assertions or validations, within the JSON evaluation and compilation process.
+    /// </summary>
+    /// <param name="assertOperatorFunctionFactory">
+    /// Factory responsible for creating assert operator functions used in the construction of JSON functions tied to postfix operators.
+    /// </param>
     public UnaryPostfixOperatorJsonFunctionFactory(IAssertOperatorFunctionFactory assertOperatorFunctionFactory)
     {
         _assertOperatorFunctionFactory = assertOperatorFunctionFactory;
     }
+
     /// <inheritdoc />
     public IParseResult<IJsonFunction> GetUnaryOperatorFunction(IParsedSimpleValue parsedSimpleValue, IOperatorExpressionItem operatorExpressionItem, IExpressionItemBase operand, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? operatorLineInfo)
     {

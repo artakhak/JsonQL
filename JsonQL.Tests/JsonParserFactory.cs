@@ -3,7 +3,7 @@ using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 
-namespace JsonQL.Compilation;
+namespace JsonQL.Tests;
 
 public class JsonParserFactory
 {

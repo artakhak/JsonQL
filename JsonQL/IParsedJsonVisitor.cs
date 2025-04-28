@@ -4,21 +4,36 @@ namespace JsonQL;
 
 public delegate bool VisitJsonValueDelegate(IParsedValue parsedValue);
 
+/// <summary>
+/// Represents an interface for visiting parsed JSON values. This interface
+/// defines methods for traversing and processing the parsed JSON structure
+/// using a custom delegate to handle specific JSON values.
+/// </summary>
 public interface IParsedJsonVisitor
 {
     /// <summary>
-    /// 
+    /// Visits a parsed JSON value and processes it using the provided delegate.
     /// </summary>
-    /// <param name="parsedValue">json value to recursively visit.</param>
-    /// <param name="visitJsonValue"></param>
-    /// <exception cref="ArgumentException">Throws this exception if <param name="parsedValue"></param> is not
-    /// an instance of <see cref="IParsedJson"/> or  <see cref="IParsedArrayValue"/>.
+    /// <param name="parsedValue">
+    /// The parsed JSON value to visit. This value can be an array, object, or simple JSON value,
+    /// such as a string, number, or boolean.
+    /// </param>
+    /// <param name="visitJsonValue">
+    /// A delegate that defines the processing logic for the visited JSON value. The delegate
+    /// takes an <see cref="IParsedValue"/> as its input and returns a boolean indicating the outcome
+    /// of the visit operation.
+    /// </param>
+    /// <exception cref="ArgumentException">
+    /// Thrown when the given <paramref name="parsedValue"/> is not an instance of <see cref="IParsedArrayValue"/>
+    /// or <see cref="IParsedJson"/>.
     /// </exception>
     void Visit(IParsedValue parsedValue, VisitJsonValueDelegate visitJsonValue);
 }
 
+/// <inheritdoc />
 public class ParsedJsonVisitor : IParsedJsonVisitor
 {
+    /// <inheritdoc />
     public void Visit(IParsedValue parsedValue, VisitJsonValueDelegate visitJsonValue)
     {
         if (parsedValue is IParsedArrayValue parsedArrayValue)

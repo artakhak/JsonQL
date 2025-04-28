@@ -8,8 +8,18 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
+/// <summary>
+/// Factory interface for creating instances of <see cref="IJsonValueMutator"/> based on specified parameters.
+/// </summary>
 public interface IJsonValueMutatorFactory
 {
+    /// <summary>
+    /// Creates an instance of <see cref="IJsonValueMutator"/> using the specified parameters.
+    /// </summary>
+    /// <param name="jsonObjectData">The JSON object data to be used for creating the mutator.</param>
+    /// <param name="parsedSimpleValue">The parsed simple value to be used for initialization.</param>
+    /// <param name="parsedExpressionsData">A collection of parsed expressions data to be used in the mutator creation process.</param>
+    /// <returns>A result containing the created <see cref="IJsonValueMutator"/> or a collection of errors if creation fails.</returns>
     IParseResult<IJsonValueMutator> Create(IJsonObjectData jsonObjectData, IParsedSimpleValue parsedSimpleValue,
         IReadOnlyList<IParsedExpressionData> parsedExpressionsData);
 }

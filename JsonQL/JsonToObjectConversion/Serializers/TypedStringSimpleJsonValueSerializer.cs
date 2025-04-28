@@ -3,17 +3,21 @@ using JsonQL.Compilation.JsonValueTextGenerator;
 
 namespace JsonQL.JsonToObjectConversion.Serializers;
 
+/// <inheritdoc />
 public class TypedStringSimpleJsonValueSerializer : ITypedSimpleJsonValueSerializer
 {
     private readonly IStringFormatter _stringFormatter;
+    
+    /// <inheritdoc />
     public Type SerializedType => typeof(string);
 
     public TypedStringSimpleJsonValueSerializer(IStringFormatter stringFormatter)
     {
         _stringFormatter = stringFormatter;
     }
+    
     /// <inheritdoc />
-    public bool TrySerialize(Type typeToDeserializeTo, object value, [NotNullWhen(true)] out object? serializedValue)
+    public bool TrySerialize(object value, [NotNullWhen(true)] out object? serializedValue)
     {
         if (_stringFormatter.TryFormat(value, out var formattedText))
         {

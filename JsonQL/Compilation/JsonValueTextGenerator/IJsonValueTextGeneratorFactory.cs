@@ -4,8 +4,19 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonValueTextGenerator;
 
+/// <summary>
+/// Represents a factory for creating instances of text generators
+/// that convert JSON value expressions to their string representations.
+/// </summary>
 public interface IJsonValueTextGeneratorFactory
 {
+    /// <summary>
+    /// Creates an instance of <c>IParseResult</c> containing an <c>IJsonSimpleValueExpressionToStringConverter</c>.
+    /// </summary>
+    /// <param name="parsedSimpleValue">The parsed simple value to be converted to a JSON-compatible text representation.</param>
+    /// <param name="variablesManager">The manager responsible for resolving variable values used during the conversion.</param>
+    /// <param name="expressionItem">The base expression item associated with the parsed value.</param>
+    /// <returns>A result containing the object responsible for converting the parsed simple value to a string.</returns>
     IParseResult<IJsonSimpleValueExpressionToStringConverter> Create(IParsedSimpleValue parsedSimpleValue, IVariablesManager variablesManager, IExpressionItemBase expressionItem);
 }
 
@@ -15,6 +26,12 @@ public class JsonValueTextGeneratorFactory : IJsonValueTextGeneratorFactory
     private readonly IJsonFunctionFromExpressionParser _jsonFunctionFromExpressionParser;
     private readonly IStringFormatter _stringFormatter;
 
+    /// <summary>
+    /// Factory class for generating text representations of JSON values by creating instances of <c>IJsonSimpleValueExpressionToStringConverter</c>.
+    /// </summary>
+    /// <remarks>
+    /// This class processes parsed JSON values, applies formatting, and resolves variable values to generate a string representation.
+    /// </remarks>
     public JsonValueTextGeneratorFactory(
         IJsonFunctionFromExpressionParser jsonFunctionFromExpressionParser,
         IStringFormatter stringFormatter)

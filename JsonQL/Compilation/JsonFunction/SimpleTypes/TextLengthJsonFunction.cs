@@ -6,7 +6,7 @@ namespace JsonQL.Compilation.JsonFunction.SimpleTypes;
 public class TextLengthJsonFunction: JsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
-
+    
     public TextLengthJsonFunction(string functionName, IJsonFunction jsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : base(
         functionName, jsonFunctionContext, lineInfo)
     {

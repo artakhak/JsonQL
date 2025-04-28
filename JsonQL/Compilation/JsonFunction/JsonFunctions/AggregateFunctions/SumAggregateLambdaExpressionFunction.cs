@@ -11,6 +11,19 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 /// </summary>
 public class SumAggregateLambdaExpressionFunction : AggregateLambdaExpressionFunctionAbstr<SumAggregationCalculationsData, double>, IDoubleJsonFunction
 {
+    /// <summary>
+    /// Represents a sum aggregate function that operates on JSON data with support for lambda expressions.
+    /// </summary>
+    /// <remarks>
+    /// This class is a specialized implementation of <see cref="AggregateLambdaExpressionFunctionAbstr{TAggregationCalculationsData, TResult}"/>
+    /// designed to compute the sum of numeric values within a collection of JSON elements, optionally filtered by a predicate.
+    /// </remarks>
+    /// <param name="functionName">The name of the aggregate function.</param>
+    /// <param name="jsonValuePathJsonFunction">Specifies the JSON path function to extract values from JSON data.</param>
+    /// <param name="lambdaPredicate">Optional lambda predicate used to filter the JSON elements.</param>
+    /// <param name="numericValueLambdaFunction">Optional lambda function to calculate numeric values from JSON elements.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating JSON function values.</param>
+    /// <param name="lineInfo">The line information for debugging or error reporting.</param>
     public SumAggregateLambdaExpressionFunction(
         string functionName,
         IJsonValuePathJsonFunction jsonValuePathJsonFunction,

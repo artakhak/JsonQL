@@ -73,7 +73,6 @@ public class JsonQLExtensionsClassesRegistrationsModule: Module
             JsonPropertyFormat = JsonPropertyFormat.PascalCase,
             FailOnFirstError = true,
             ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
-
             
             // Set custom interface to implementation mappings here. Default mappings (i.e., IModelClassMapper) will 
             // use try to find an implementation that has the same name space and class name that matches interface name

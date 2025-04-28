@@ -2,6 +2,9 @@
 
 namespace JsonQL.JsonToObjectConversion.NullabilityCheck;
 
+/// <summary>
+/// Provides methods to assess nullability of types and collection items for value conversions.
+/// </summary>
 public interface IValueNullabilityHelpers
 {
     /// <summary>

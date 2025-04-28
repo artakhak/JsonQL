@@ -18,7 +18,7 @@ public class QuerySalariesAsListOfDoubleValues : QueryObjectExampleManagerAbstr<
         var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
 
         var salariesResult =
-            _queryManager.Query<List<double>>(query,
+            _queryManager.QueryObject<List<double>>(query,
                 new JsonTextData("Companies",
                     LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])));
 

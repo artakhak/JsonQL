@@ -4,10 +4,21 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace JsonQL.Compilation.UniversalExpressionParserJsonQL;
 
+/// <summary>
+/// Provides implementation for the JSON expression language, enabling the parsing of JSON-like expressions.
+/// Implements the <see cref="UniversalExpressionParser.IExpressionLanguageProvider"/> interface.
+/// </summary>
+/// <remarks>
+/// This class defines the rules and characteristics of the JSON expression language. It includes properties for
+/// language-specific features such as supported constant markers, operators, and other language-specific rules.
+/// </remarks>
 public class JsonExpressionLanguageProvider : IExpressionLanguageProvider // ExpressionLanguageProviderBase
 {
     private readonly List<IOperatorInfo> _operators;
 
+    /// <summary>
+    /// Constructor.
+    /// </summary>
     public JsonExpressionLanguageProvider()
     {
         _operators = new List<IOperatorInfo>

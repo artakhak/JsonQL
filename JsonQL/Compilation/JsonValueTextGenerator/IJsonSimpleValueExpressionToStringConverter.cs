@@ -12,11 +12,18 @@ public interface IJsonSimpleValueExpressionToStringConverter
     IParseResult<string> GenerateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues);
 }
 
+/// <summary>
+/// Implements the conversion of evaluated JSON simple value expressions to string values.
+/// </summary>
 public class JsonSimpleValueExpressionToStringConverter : IJsonSimpleValueExpressionToStringConverter
 {
     private readonly IStringFormatter _stringFormatter;
     private readonly IJsonFunction _jsonFunction;
 
+    /// <summary>
+    /// Implements the conversion of evaluated JSON simple value expressions to their string representations.
+    /// Utilizes a string formatter and JSON function to process and format the values.
+    /// </summary>
     public JsonSimpleValueExpressionToStringConverter(IStringFormatter stringFormatter, IJsonFunction jsonFunction)
     {
         _stringFormatter = stringFormatter;
@@ -50,17 +57,6 @@ public class JsonSimpleValueExpressionToStringConverter : IJsonSimpleValueExpres
             else
                 parsedValue = string.Empty;
         }
-
-        //if (jsonFunctionParseResult.Value is IEnumerable<IParsedValue> parsedValues)
-        //{
-        //    var firstParsedValue = parsedValues.FirstOrDefault();
-        //    if (firstParsedValue is IParsedSimpleValue parsedSimpleValue)
-        //    {
-        //        return new JsonValueTextGeneratorResult(parsedSimpleValue.Value ?? string.Empty);
-        //    }
-
-        //    return new JsonValueTextGeneratorResult(string.Empty);
-        //}
 
         if (parsedValue == null)
             return new ParseResult<string>(string.Empty);

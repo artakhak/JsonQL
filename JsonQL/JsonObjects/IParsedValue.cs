@@ -2,6 +2,11 @@
 
 namespace JsonQL.JsonObjects;
 
+/// <summary>
+/// Represents a parsed value from a JSON object.
+/// Provides access to associated metadata such as the value's unique identifier,
+/// its path within the JSON structure, and related parent and root objects.
+/// </summary>
 public interface IParsedValue
 {
     /// <summary>

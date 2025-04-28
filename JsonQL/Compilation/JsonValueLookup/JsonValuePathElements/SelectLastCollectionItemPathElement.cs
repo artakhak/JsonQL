@@ -4,10 +4,18 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
+/// <summary>
+/// Represents a path element used to select the last item of a JSON collection.
+/// Additionally, it allows optional predicate-based filtering to evaluate which element in the collection qualifies.
+/// </summary>
 public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
 
+    /// <summary>
+    /// Represents a path element responsible for selecting the last item from a collection in a JSON data structure.
+    /// Implements a predicate lambda for filtering and optionally includes line information for JSON parsing context.
+    /// </summary>
     public SelectLastCollectionItemPathElement(
         IPredicateLambdaFunction? lambdaPredicate,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.LastCollectionItemSelectorFunction, lineInfo)

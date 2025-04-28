@@ -27,6 +27,13 @@ public interface ISpecialLiteralJsonFunctionFactory
         IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <summary>
+/// A factory for parsing a special literal <see cref="ILiteralExpressionItem"/> (e.g., true, value, etc.) into a <see cref="IJsonFunction"/>.
+/// </summary>
+/// <remarks>
+/// A special literal is a literal that is not a variable.
+/// Examples of special literals are: true, false, null, etc.
+/// </remarks>
 public class SpecialLiteralJsonFunctionFactory : JsonFunctionFactoryAbstr, ISpecialLiteralJsonFunctionFactory
 {
     /// <inheritdoc />
@@ -46,12 +53,7 @@ public class SpecialLiteralJsonFunctionFactory : JsonFunctionFactoryAbstr, ISpec
             return new ParseResult<IJsonFunction?>(new TrueFalseBooleanValueFunction(literalText, false, jsonFunctionContext,
                 parsedSimpleValue.LineInfo.GenerateRelativePosition(literalExpressionItem)));
         }
-
-        //if (literalText == JsonFunctionNames.ContextValue)
-        //{
-        //    return new ParseResult<IJsonFunction?>(new ContextValueFunction(jsonFunctionContext, parsedSimpleValue.LineInfo.GenerateRelativePosition(literalExpressionItem)));
-        //}
-
+     
         if (literalText == JsonFunctionNames.ContextValueIndex)
         {
             return new ParseResult<IJsonFunction?>(new CollectionItemIndexValueFunction(JsonFunctionNames.ContextValueIndex, jsonFunctionContext, parsedSimpleValue.LineInfo.GenerateRelativePosition(literalExpressionItem)));

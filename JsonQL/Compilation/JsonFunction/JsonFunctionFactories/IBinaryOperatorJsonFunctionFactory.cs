@@ -9,7 +9,7 @@ using UniversalExpressionParser.ExpressionItems;
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 
 /// <summary>
-/// A factory for parsing a binary operator expressions (e.g., "Object1.Int1 + 10")) into a <see cref="IJsonFunction"/>.
+/// A factory for parsing binary operator expressions (e.g., <b>Object1.Int1 + 10")</b>) into a <see cref="IJsonFunction"/>.
 /// </summary>
 public interface IBinaryOperatorJsonFunctionFactory
 {
@@ -35,6 +35,9 @@ public interface IBinaryOperatorJsonFunctionFactory
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? operatorLineInfo);
 }
 
+/// <summary>
+/// A factory for parsing binary operator expressions (e.g., <b>Object1.Int1 + 10")</b>) into a <see cref="IJsonFunction"/>.
+/// </summary>
 public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBinaryOperatorJsonFunctionFactory
 {
     private static readonly string StartsWithOperatorName = Helpers.GetOperatorName(JsonOperatorNames.StartsWith);

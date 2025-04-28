@@ -4,6 +4,14 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Abstract base class representing a binary arithmetic operation for numeric operands.
+/// This class is designed to handle calculations involving two numeric values (doubles).
+/// </summary>
+/// <remarks>
+/// Classes that inherit from this abstract class should implement the abstract <c>Calculate</c> method
+/// to define specific arithmetic operations (e.g., addition, multiplication, etc.).
+/// </remarks>
 public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : BinaryArithmeticOperationOperatorFunctionAbstr
 {
     protected BinaryNumericArithmeticOperationOperatorFunctionAbstr(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
@@ -14,16 +22,8 @@ public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : Bi
     }
 
     /// <inheritdoc />
-    public sealed override IParseResult<object?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value)
+    protected sealed override IParseResult<object?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value)
     {
-        //string GetInvalidOperandTypeErrorMessage(string operandName) => $"{operandName} is not a numeric value";
-
-        //if (operand1Value.Value is not double operand1DoubleValue)
-        //    return new ParseResult<object?>([new JsonObjectParseError(GetInvalidOperandTypeErrorMessage("Operand 1"), Operand1.LineInfo)]);
-
-        //if (operand2Value.Value is not double operand2DoubleValue)
-        //    return new ParseResult<object?>([new JsonObjectParseError(GetInvalidOperandTypeErrorMessage("Operand 2"), Operand2.LineInfo)]);
-
         if (operand1Value.Value is not double operand1DoubleValue || operand2Value.Value is not double operand2DoubleValue)
             return new ParseResult<object?>((bool?)null);
 
@@ -39,5 +39,11 @@ public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : Bi
         }
     }
 
+    /// <summary>
+    /// Calculates the result of an arithmetic operation using two provided double operands.
+    /// </summary>
+    /// <param name="operand1Value">The first operand in the arithmetic operation.</param>
+    /// <param name="operand2Value">The second operand in the arithmetic operation.</param>
+    /// <returns>The result of the arithmetic operation as an implementation of <see cref="IParseResult{TValue}"/>.</returns>
     protected abstract IParseResult<object?> Calculate(double operand1Value, double operand2Value);
 }

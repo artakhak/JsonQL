@@ -4,16 +4,16 @@ using System.Diagnostics.CodeAnalysis;
 namespace JsonQL.JsonToObjectConversion;
 
 /// <summary>
-/// Provides mapping from one class to another to de-serialize objects during Json conversion.
+/// Provides mapping from one class to another to deserialize objects during JSON conversion.
 /// </summary>
 public interface IModelClassMapper
 {
     /// <summary>
-    /// Tries to map a model class to another class used in de-serialized objects during Json conversion.
+    /// Tries to map a model class to another class used in deserialized objects during JSON conversion.
     /// Note, this is not a DI service container and deals only with model classes.
     /// Normally, this mapping will provide mapping from interfaces to implementations, but this interface can also
     /// map non-interface abstract or non-abstract classes to subclasses too.
-    /// Typical example is when trying to find implementation of IAddress when deserialize Json object into IEmployee class that has
+    /// A typical example is when trying to find implementation of IAddress when deserializing a JSON object into IEmployee class that has
     /// IAddress property
     /// </summary>
     /// <param name="modelClassToMap">Class to map.</param>
@@ -32,6 +32,7 @@ public interface IModelClassMapper
 public class ModelClassMapper : IModelClassMapper
 {
     private readonly ConcurrentDictionary<Type, Type?> _cachedMapping = new();
+    
     /// <inheritdoc />
     public bool TryMap(Type modelClassToMap, [NotNullWhen(true)] out Type? implementation)
     {

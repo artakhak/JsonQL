@@ -3,8 +3,30 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Provides helper methods to evaluate whether a JSON value is null or undefined during
+/// the execution of JSON functions.
+/// </summary>
 public static class IsNullUndefinedFunctionHelpers
 {
+    /// <summary>
+    /// Determines whether the specified value or path result is undefined.
+    /// </summary>
+    /// <param name="rootParsedValue">
+    /// The root parsed value to evaluate.
+    /// </param>
+    /// <param name="compiledParentRootParsedValues">
+    /// The list of compiled parent root parsed values.
+    /// </param>
+    /// <param name="contextData">
+    /// The evaluation context data, if available.
+    /// </param>
+    /// <param name="jsonFunction">
+    /// The JSON function used to evaluate the value or path result.
+    /// </param>
+    /// <returns>
+    /// A parse result containing a nullable boolean indicating whether the value or path is undefined.
+    /// </returns>
     public static IParseResult<bool?> IsUndefined(IRootParsedValue rootParsedValue, 
         IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData,
         IJsonFunction jsonFunction)
@@ -26,6 +48,24 @@ public static class IsNullUndefinedFunctionHelpers
         return new ParseResult<bool?>(valueResult.Value == null);
     }
 
+    /// <summary>
+    /// Determines whether the specified value or path result is null.
+    /// </summary>
+    /// <param name="rootParsedValue">
+    /// The root parsed value to evaluate.
+    /// </param>
+    /// <param name="compiledParentRootParsedValues">
+    /// The list of compiled parent root parsed values.
+    /// </param>
+    /// <param name="contextData">
+    /// The evaluation context data, if available.
+    /// </param>
+    /// <param name="jsonValuePathJsonFunction">
+    /// The JSON function used to evaluate the value or path result.
+    /// </param>
+    /// <returns>
+    /// A parse result containing a nullable boolean indicating whether the value or path is null.
+    /// </returns>
     public static IParseResult<bool?> IsNull(IRootParsedValue rootParsedValue,
         IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData,
         IJsonValuePathJsonFunction jsonValuePathJsonFunction)

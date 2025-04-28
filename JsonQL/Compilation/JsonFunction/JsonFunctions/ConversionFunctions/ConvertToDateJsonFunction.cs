@@ -4,11 +4,26 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Represents a JSON function implementation for converting input values to a <see cref="DateTime"/> format.
+/// </summary>
+/// <remarks>
+/// This class is used to handle the conversion of JSON-compatible input values into <see cref="DateTime"/> objects.
+/// It includes functionality to assert behavior when the conversion fails, if such assertions are provided.
+/// </remarks>
 public class ConvertToDateJsonFunction : DateTimeJsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
     private readonly IBooleanJsonFunction? _assertIfConversionFailsJsonFunction;
 
+    /// <summary>
+    /// A JSON function that converts a specified value to a date format.
+    /// </summary>
+    /// <param name="functionName">The name of the JSON function.</param>
+    /// <param name="jsonFunction">A JSON function used to provide the value to be converted.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">Optional JSON function to assert if the conversion fails.</param>
+    /// <param name="jsonFunctionContext">The evaluation context for the JSON function.</param>
+    /// <param name="lineInfo">Optional line information for debugging and tracking.</param>
     public ConvertToDateJsonFunction(string functionName, IJsonFunction jsonFunction,
         IBooleanJsonFunction? assertIfConversionFailsJsonFunction,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :

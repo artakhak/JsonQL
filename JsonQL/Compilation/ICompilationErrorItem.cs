@@ -2,6 +2,11 @@
 
 namespace JsonQL.Compilation;
 
+/// <summary>
+/// Represents a single error encountered during the compilation of JSON data.
+/// Provides contextual information about the error, including its location
+/// in the JSON document and a descriptive error message.
+/// </summary>
 public interface ICompilationErrorItem
 {
     /// <summary>
@@ -20,8 +25,12 @@ public interface ICompilationErrorItem
     string ErrorMessage { get; }
 }
 
+/// <inheritdoc />
 public class CompilationErrorItem : ICompilationErrorItem
 {
+    /// <summary>
+    /// Represents a compilation error item produced during the compilation process.
+    /// </summary>
     public CompilationErrorItem(string jsonTextIdentifier, string errorMessage, IJsonLineInfo? lineInfo)
     {
         JsonTextIdentifier = jsonTextIdentifier;

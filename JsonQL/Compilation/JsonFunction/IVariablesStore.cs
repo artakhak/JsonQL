@@ -1,16 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.Compilation.JsonFunction;
-
+// TODO: Delete in  next release if not used.
 [Obsolete("TODO: DELETE IF NOT USED")]
-public interface IVariablesStore
+internal interface IVariablesStore
 {
     IReadOnlyList<IVariableJsonFunction> AllVariables { get; }
     bool TryGetVariable(string variableName, [NotNullWhen(true)] out IVariableJsonFunction? variableJsonFunction);
 }
 
 [Obsolete("TODO: DELETE IF NOT USED")]
-public class VariablesStore : IVariablesStore
+internal class VariablesStore : IVariablesStore
 {
     private List<IVariableJsonFunction> _allVariables = new();
     private readonly Dictionary<string, IVariableJsonFunction> _variableNameToVariableMap = new(StringComparer.Ordinal);

@@ -5,15 +5,15 @@ using UniversalExpressionParser.ExpressionItems;
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 
 /// <summary>
-/// A factory for parsing <see cref="IOperatorExpressionItem"/> (e.g., "Object1.Int1 + 10") into a <see cref="IJsonFunction"/>.
+/// A factory for parsing <see cref="IOperatorExpressionItem"/> (e.g., <b>Object1.Int1 + 10</b>) into a <see cref="IJsonFunction"/>.
 /// </summary>
 public interface IOperatorJsonFunctionFactory
 {
     /// <summary>
     /// Tries to create <see cref="IJsonFunction"/> from operator expression. 
-    /// Example:[x &lt; 10] 
+    /// Example:<b>x &lt; 10</b>
     /// </summary>
-    /// <param name="parsedSimpleValue">Parsed json value which contains the expression to be parsed.</param>
+    /// <param name="parsedSimpleValue">Parsed JSON value which contains the expression to be parsed.</param>
     /// <param name="operatorExpressionItem">Operator expression to convert to <see cref="IJsonFunction"/>.</param>
     /// <param name="jsonFunctionContext">If not null, parent function data.</param>
     /// <returns>
@@ -26,12 +26,30 @@ public interface IOperatorJsonFunctionFactory
     IParseResult<IJsonFunction> TryCreateOperatorFunction(IParsedSimpleValue parsedSimpleValue, IOperatorExpressionItem operatorExpressionItem, IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <summary>
+/// A factory for parsing <see cref="IOperatorExpressionItem"/> (e.g., <b>Object1.Int1 + 10</b>) into a <see cref="IJsonFunction"/>.
+/// </summary>
 public class OperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IOperatorJsonFunctionFactory
 {
     private readonly IBinaryOperatorJsonFunctionFactory _binaryOperatorJsonFunctionFactory;
     private readonly IUnaryPrefixOperatorJsonFunctionFactory _prefixOperatorJsonFunctionFactory;
     private readonly IUnaryPostfixOperatorJsonFunctionFactory _postfixOperatorJsonFunctionFactory;
 
+    /// <summary>
+    /// A factory for creating <see cref="IJsonFunction"/> instances from operator expressions.
+    /// </summary>
+    /// <remarks>
+    /// This class handles parsing of operator expressions, such as binary, prefix unary, and postfix unary operators, into respective JSON function implementations.
+    /// </remarks>
+    /// <param name="binaryOperatorJsonFunctionFactory">
+    /// Factory for creating JSON functions from binary operator expressions.
+    /// </param>
+    /// <param name="prefixOperatorJsonFunctionFactory">
+    /// Factory for creating JSON functions from prefix unary operator expressions.
+    /// </param>
+    /// <param name="postfixOperatorJsonFunctionFactory">
+    /// Factory for creating JSON functions from postfix unary operator expressions.
+    /// </param>
     public OperatorJsonFunctionFactory(
         IBinaryOperatorJsonFunctionFactory binaryOperatorJsonFunctionFactory,
         IUnaryPrefixOperatorJsonFunctionFactory prefixOperatorJsonFunctionFactory,

@@ -4,11 +4,28 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Represents a JSON function that attempts to convert a given value to a double.
+/// This class inherits from <see cref="DoubleJsonFunctionAbstr"/> and provides the implementation for
+/// handling the conversion logic and error handling when converting JSON values to a double.
+/// </summary>
 public class ConvertToDoubleJsonFunction : DoubleJsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
     private readonly IBooleanJsonFunction? _assertIfConversionFailsJsonFunction;
 
+    /// <summary>
+    /// Represents a JSON function that converts a specified input to a double value.
+    /// </summary>
+    /// <remarks>
+    /// This class extends <see cref="DoubleJsonFunctionAbstr"/> and includes additional functionality,
+    /// such as handling assertions when the conversion fails.
+    /// </remarks>
+    /// <param name="functionName">The name of the function being invoked.</param>
+    /// <param name="jsonFunction">The JSON function providing the input value to be converted.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">An optional JSON function to assert conditions during failed conversion.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating the JSON function values.</param>
+    /// <param name="lineInfo">Optional information about the source code line where the function is defined, for error reporting or debugging purposes.</param>
     public ConvertToDoubleJsonFunction(string functionName, IJsonFunction jsonFunction,
         IBooleanJsonFunction? assertIfConversionFailsJsonFunction,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :

@@ -1,31 +1,43 @@
-﻿using JsonQL.JsonObjects;
+﻿using JsonQL.Compilation.UniversalExpressionParserJsonQL;
+using JsonQL.JsonObjects;
 using TextParser;
 using UniversalExpressionParser;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
-// Old Class name is IJsonValueMutatorFromJsonTextValueParser
+/// <summary>
+/// Defines an interface for parsing JSON value mutator function templates from parsed JSON data.
+/// </summary>
+/// <remarks>
+/// Implementations are responsible for interpreting JSON value strings as potential mutator functions
+/// and extracting structured expressions templates for further processing.
+/// </remarks>
 public interface IJsonValueMutatorFunctionTemplatesParser
 {
     /// <summary>
-    /// Tries to parse text <see cref="IParsedSimpleValue.Value"/> in <param name="parsedSimpleValue"></param> int oan instance
-    /// of <see cref="IJsonValueMutator"/>.
+    /// Tries to parse the value of <see cref="IParsedSimpleValue"/> in the provided <paramref name="parsedSimpleValue"/>
+    /// into a list of mutator function expression templates.
     /// </summary>
-    /// <param name="jsonObjectData">An instance of <see cref="IJsonObjectData"/> with data about parsed json.</param>
-    /// <param name="parsedSimpleValue">Json value with <see cref="IParsedSimpleValue.Value"/> that will be parsed.</param>
+    /// <param name="jsonObjectData">An object containing data about the parsed JSON.</param>
+    /// <param name="parsedSimpleValue">The JSON value with the associated value to be parsed.</param>
     /// <returns>
-    /// Returns parse expressions templates list. If the value of <see cref="IParsedSimpleValue.Value"/> in <param name="parsedSimpleValue"></param>
-    /// does not have any mutator function expressions empty list is returned.
+    /// A result containing a list of parsed expression data. If no mutator function expression templates
+    /// are found, the returned list will be empty.
     /// </returns>
     IParseResult<IReadOnlyList<IParsedExpressionData>> TryParseExpression(IJsonObjectData jsonObjectData, IParsedSimpleValue parsedSimpleValue);
 }
 
+/// <inheritdoc />
 public class JsonValueMutatorFunctionTemplatesParser : IJsonValueMutatorFunctionTemplatesParser
 {
     private readonly IExpressionParser _expressionParser;
     private readonly ITextSymbolsParserFactory _textSymbolsParserFactory;
 
+    /// <summary>
+    /// Responsible for parsing JSON value mutator function templates into expression templates using
+    /// specified text and expression parsers.
+    /// </summary>
     public JsonValueMutatorFunctionTemplatesParser(
         IExpressionParser expressionParser,
         ITextSymbolsParserFactory textSymbolsParserFactory)

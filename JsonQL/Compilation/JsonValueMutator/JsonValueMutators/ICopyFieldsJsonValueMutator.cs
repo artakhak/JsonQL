@@ -5,15 +5,35 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 
+/// <summary>
+/// Represents a JSON value mutator that specifically handles field copying operations within a JSON object.
+/// This interface defines the contract for implementing functionality that allows fields to be copied
+/// from one location to another within the context of JSON value mutation.
+/// </summary>
 public interface ICopyFieldsJsonValueMutator : IJsonValueMutator
 {
 
 }
 
+/// <summary>
+/// Represents a JSON value mutator responsible for performing field copying operations within a JSON object.
+/// This class facilitates copying fields from a source location to a target location within the JSON structure,
+/// while managing path-specific mutations and handling any errors that may occur during the operation.
+/// </summary>
 public class CopyFieldsJsonValueMutator : PathJsonValueMutatorAbstr, ICopyFieldsJsonValueMutator
 {
     private readonly IParsedValueCopy _parsedValueCopy;
 
+    /// <summary>
+    /// Represents a class that extends <see cref="PathJsonValueMutatorAbstr"/> and implements
+    /// <see cref="ICopyFieldsJsonValueMutator"/> to support copying JSON fields
+    /// from a source specified by path to a target within a JSON object structure.
+    /// </summary>
+    /// <remarks>
+    /// This class is typically used to perform field-level transformations or modifications
+    /// within JSON objects, ensuring that specific fields are copied or moved to predefined locations
+    /// as per the instructions provided by its dependencies.
+    /// </remarks>
     public CopyFieldsJsonValueMutator(IParsedSimpleValue parsedSimpleValue, IJsonValuePathJsonFunction jsonValuePathJsonFunction,
         IParsedValueCopy parsedValueCopy) : base(parsedSimpleValue, jsonValuePathJsonFunction)
     {

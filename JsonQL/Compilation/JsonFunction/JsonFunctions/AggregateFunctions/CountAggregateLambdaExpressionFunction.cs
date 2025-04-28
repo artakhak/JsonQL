@@ -12,9 +12,21 @@ public class CountAggregateLambdaExpressionFunction: AggregateLambdaExpressionFu
 {
     private readonly IUniversalLambdaFunction? _lambdaPredicate;
 
+    /// <summary>
+    /// Represents a function for counting elements within a JSON structure using a lambda expression predicate.
+    /// Inherits from <see cref="AggregateLambdaExpressionFunctionAbstr{CountAggregationCalculationsData, double}"/>.
+    /// </summary>
+    /// <remarks>
+    /// This function aggregates values based on a lambda expression and counts the qualifying elements.
+    /// </remarks>
+    /// <param name="functionName">The name of the function.</param>
+    /// <param name="jsonValuePathJsonFunction">The JSON value path function used to provide the data to process.</param>
+    /// <param name="lambdaPredicate">The lambda expression defining the filtering or evaluation logic for the count operation.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating JSON function values.</param>
+    /// <param name="lineInfo">Optional line information for the function.</param>
     public CountAggregateLambdaExpressionFunction(string functionName,
         IJsonValuePathJsonFunction jsonValuePathJsonFunction,
-        IUniversalLambdaFunction? lambdaPredicate, 
+        IUniversalLambdaFunction? lambdaPredicate,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : 
         base(functionName, jsonValuePathJsonFunction, lambdaPredicate, null, jsonFunctionContext, lineInfo)
     {
@@ -27,6 +39,7 @@ public class CountAggregateLambdaExpressionFunction: AggregateLambdaExpressionFu
         return this.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToDouble(LineInfo);
     }
 
+    /// <inheritdoc />
     protected override void InitAggregationCalculationsData(CountAggregationCalculationsData calculationsData, IReadOnlyList<IParsedValue> valuesCollection)
     {
         base.InitAggregationCalculationsData(calculationsData, valuesCollection);
@@ -37,6 +50,7 @@ public class CountAggregateLambdaExpressionFunction: AggregateLambdaExpressionFu
         }
     }
 
+    /// <inheritdoc />
     protected override void UpdateAggregatedValue(CountAggregationCalculationsData calculationsData, 
         IJsonFunctionEvaluationContextData? contextData, double? lambdaFunctionSelectedValue, bool predicateEvaluationResult, List<IJsonObjectParseError> errors, ref bool stopEvaluatingValues)
     {

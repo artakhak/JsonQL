@@ -3,8 +3,9 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup;
 
+// These classes will either be deleted or used in next release.
 [Obsolete("TODO: Either use this for value transformations or delete")]
-public interface IParsedSimpleValueAttachedValues
+internal interface IParsedSimpleValueAttachedValues
 {
     /// <summary>
     /// Maps an instance of <see cref="IParsedSimpleValue"/> to a new mutated value.<br/>
@@ -14,7 +15,7 @@ public interface IParsedSimpleValueAttachedValues
     /// <param name="parsedSimpleValue">Current value</param>
     /// <param name="attachedValue">Attached value</param>
     /// <returns></returns>
-    bool TryGetAttachedValue(IParsedSimpleValue parsedSimpleValue, [NotNullWhen(true)] out IParsedSimpleValue? attachedValue);
+    internal bool TryGetAttachedValue(IParsedSimpleValue parsedSimpleValue, [NotNullWhen(true)] out IParsedSimpleValue? attachedValue);
 
     /// <summary>
     /// Associates the value in <param name="attachedValue"></param> with <param name="parsedSimpleValue"></param>.
@@ -23,11 +24,11 @@ public interface IParsedSimpleValueAttachedValues
     /// </summary>
     /// <param name="parsedSimpleValue">Current value</param>
     /// <param name="attachedValue">Attached value</param>
-    void AttachValue(IParsedSimpleValue parsedSimpleValue, IParsedSimpleValue attachedValue);
+    internal void AttachValue(IParsedSimpleValue parsedSimpleValue, IParsedSimpleValue attachedValue);
 }
 
 [Obsolete("TODO: Either use this for value transformations or delete")]
-public class ParsedSimpleValueAttachedValues : IParsedSimpleValueAttachedValues
+internal class ParsedSimpleValueAttachedValues : IParsedSimpleValueAttachedValues
 {
     private readonly Dictionary<IParsedSimpleValue, IParsedSimpleValue> _valueToAttachedValueMap = new();
 

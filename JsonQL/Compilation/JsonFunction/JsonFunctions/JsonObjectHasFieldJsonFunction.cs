@@ -4,12 +4,23 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents a JSON function that evaluates whether a JSON object contains a specific field.
+/// </summary>
 public class JsonObjectHasFieldJsonFunction: BooleanJsonFunctionAbstr
 {
     private readonly IJsonValuePathJsonFunction _jsonValuePathJsonFunction;
     private readonly IJsonFunction _fieldNameJsonFunction;
 
-    public JsonObjectHasFieldJsonFunction(string functionName, IJsonValuePathJsonFunction jsonValuePathJsonFunction, IJsonFunction fieldNameJsonFunction,  IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : base(
+    /// <summary>
+    /// Represents a JSON function that checks whether a specific field exists within a JSON object.
+    /// </summary>
+    /// <param name="functionName">The name of the function.</param>
+    /// <param name="jsonValuePathJsonFunction">The JSON value path function used to locate the target JSON object.</param>
+    /// <param name="fieldNameJsonFunction">The function that provides the field name to check for existence.</param>
+    /// <param name="jsonFunctionContext">The context in which the JSON function is being evaluated.</param>
+    /// <param name="lineInfo">Debugging information related to the source code location.</param>
+    public JsonObjectHasFieldJsonFunction(string functionName, IJsonValuePathJsonFunction jsonValuePathJsonFunction, IJsonFunction fieldNameJsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : base(
         functionName, jsonFunctionContext, lineInfo)
     {
         _jsonValuePathJsonFunction = jsonValuePathJsonFunction;

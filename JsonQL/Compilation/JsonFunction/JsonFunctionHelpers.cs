@@ -6,16 +6,19 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Provides helper methods for JSON function operations, including handling type conversions and evaluating JSON-comparable values.
+/// </summary>
 public static class JsonFunctionHelpers
 {
     /// <summary>
     /// Tries to convert value in <param name="evaluatedValue"></param> to instance of <see cref="IJsonComparable"/>.<br/>
     /// If the returned value is true, the value in <param name="jsonComparable"></param> will be non-null.<br/>
-    /// -If the value in <param name="evaluatedValue"></param> is not null, and is one of the types specified in<br/>
+    /// - If the value in <param name="evaluatedValue"></param> is not null, and is one of the types specified in<br/>
     /// <see cref="SimpleTypes.TypeCode"/> (e.g., <see cref="String"/>, <see cref="Double"/>, etc.), then<br/>
     /// <param name="jsonComparable"></param> will be set to an instance of <see cref="IJsonComparable"/> created with the value of<br/>
     /// <param name="evaluatedValue"></param>.<br/>
-    /// -Otherwise, if the value is a non-empty collection of <see cref="IParsedValue"/>, and the first item is <see cref="IParsedSimpleValue"/>, with<br/>
+    /// - Otherwise, if the value is a non-empty collection of <see cref="IParsedValue"/>, and the first item is <see cref="IParsedSimpleValue"/>, with<br/>
     /// non-null value of <see cref="IParsedSimpleValue.Value"/>, <param name="jsonComparable"></param> is either created from<br/>
     /// <see cref="IParsedSimpleValue.Value"/><br/>
     /// </summary>

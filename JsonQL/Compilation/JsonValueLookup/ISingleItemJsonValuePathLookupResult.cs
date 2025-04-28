@@ -9,14 +9,18 @@ namespace JsonQL.Compilation.JsonValueLookup;
 /// </summary>
 public interface ISingleItemJsonValuePathLookupResult: IJsonValuePathLookupResult
 {
+    /// <summary>
+    /// Gets the parsed value associated with the JSON value path lookup result.
+    /// </summary>
     IParsedValue? ParsedValue { get; }
 
     /// <summary>
-    /// If the value is true, path is valid. Otherwise, the path does not exist.
+    /// Gets a value indicating whether the specified JSON path is valid or not.
     /// </summary>
     bool IsValidPath { get; }
 }
 
+/// <inheritdoc />
 public class SingleItemJsonValuePathLookupResult : ISingleItemJsonValuePathLookupResult
 {
     private SingleItemJsonValuePathLookupResult(bool isValidPath,IParsedValue? parsedValue)
@@ -25,24 +29,35 @@ public class SingleItemJsonValuePathLookupResult : ISingleItemJsonValuePathLooku
         ParsedValue = parsedValue;
     }
 
+    /// <summary>
+    /// Creates a new instance of <see cref="SingleItemJsonValuePathLookupResult"/> for a valid path
+    /// based on the provided parsed value.
+    /// </summary>
+    /// <param name="parsedValue">The parsed value representing a valid JSON path element. Can be null.</param>
+    /// <returns>A new instance of <see cref="SingleItemJsonValuePathLookupResult"/> representing a valid path.</returns>
     public static SingleItemJsonValuePathLookupResult CreateForValidPath(IParsedValue? parsedValue)
     {
         return new SingleItemJsonValuePathLookupResult(true, parsedValue);
     }
 
+    /// <summary>
+    /// Creates a new instance of <see cref="SingleItemJsonValuePathLookupResult"/> representing an invalid path.
+    /// </summary>
+    /// <returns>A new instance of <see cref="SingleItemJsonValuePathLookupResult"/> indicating an invalid path.</returns>
     public static SingleItemJsonValuePathLookupResult CreateForInvalidPath()
     {
         return new SingleItemJsonValuePathLookupResult(false, null);
     }
 
-
     /// <inheritdoc />
     public bool IsSingleItemLookup => true;
 
+    /// <inheritdoc />
     public bool HasValue => this.ParsedValue != null;
 
     /// <inheritdoc />
     public IParsedValue? ParsedValue { get; }
 
+    /// <inheritdoc />
     public bool IsValidPath { get; }
 }

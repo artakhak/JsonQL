@@ -5,10 +5,25 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 
+/// <summary>
+/// Represents a specialized mutator for JSON values that are calculated.
+/// This interface extends the base contract provided by <see cref="IJsonValueMutator"/>
+/// and is responsible for handling the mutation of JSON values that involve calculated properties or functions.
+/// Implementations of this interface may process values, apply calculations, and mutate the resulting JSON structure accordingly.
+/// </summary>
 public interface ICalculatedValueJsonValueMutator : IJsonValueMutator
 {
 }
 
+/// <summary>
+/// Represents an implementation of <see cref="ICalculatedValueJsonValueMutator"/>, designed to handle the mutation of JSON values
+/// that involve calculated properties or functions. This class extends the functionality provided by <see cref="CalculatedJsonValueMutatorAbstr"/>.
+/// </summary>
+/// <remarks>
+/// This class processes JSON values and modifies their structure or content based on calculations or transformations.
+/// It can handle scenarios involving parent JSON structures like arrays or objects, ensuring appropriate updates
+/// based on the provided parsed values and functions. Errors encountered during the mutation process are collected and managed.
+/// </remarks>
 public class CalculatedValueJsonValueMutator : CalculatedJsonValueMutatorAbstr, ICalculatedValueJsonValueMutator
 {
     private readonly IParsedValueCopy _parsedValueCopy;

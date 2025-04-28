@@ -16,8 +16,4 @@
 	  <ProjectReference Include="..\..\..\MyGitHubProjects\UniversalExpressionParser\UniversalExpressionParser\UniversalExpressionParser.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Compilation\JsonValueTextGenerator\StringFormatters\" />
-	</ItemGroup>
-
 </Project>

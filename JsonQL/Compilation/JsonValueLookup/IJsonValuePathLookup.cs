@@ -9,18 +9,21 @@ namespace JsonQL.Compilation.JsonValueLookup;
 public interface IJsonValuePathLookup
 {
     /// <summary>
-    /// Looks up a json value in one of json values in <param name="rootParsedValue"></param> and <param name="compiledParentRootParsedValues"></param>.
-    /// The value will be looked up in <param name="compiledParentRootParsedValues"></param> is the path starts with 'parent', and
-    /// in <param name="rootParsedValue"></param> otherwise.
+    /// Looks up a JSON value in one of JSON value in <param name="rootParsedValue"></param> and if value not found, looks up
+    /// JSON value in parsed parent JSON files in <param name="compiledParentRootParsedValues"></param>.
+    /// The value will be looked up only in <param name="compiledParentRootParsedValues"></param> if the path starts with 'parent', and
+    /// only in <param name="rootParsedValue"></param> if the path starts with 'this'.
     /// </summary>
     /// <param name="rootParsedValue">Root parsed value.</param>
     /// <param name="compiledParentRootParsedValues">Parent root parsed value.</param>
     /// <param name="jsonFunctionValueEvaluationContext">Context.</param>
     /// <param name="jsonValuePath">Path</param>
     /// <returns>
-    /// If the returned value has no error in <see cref="IParseResult{TValue}.Errors"/> and has empty list in <see cref="IParseResult{TValue}.Value"/>,
-    /// then lookup didn't produce any results and no errors were reported.
-    /// Otherwise, the result resulted either in errors in <see cref="IParseResult{TValue}.Errors"/> or the looked up value is returned in <see cref="IParseResult{TValue}.Value"/>.
+    /// If the returned value has no error in <see cref="IParseResult{TValue}.Errors"/> or if the value of <see cref="IParseResult{TValue}.Value"/> is null,
+    /// then lookup didn't produce any results and no errors were reported.<br/>
+    /// Otherwise, the result in <see cref="IParseResult{TValue}.Value"/> is either an instance  of<br/>
+    /// <see cref="ICollectionJsonValuePathLookupResult"/> which contains a collection of <see cref="IParsedValue"/> values, or is an instance of<br/>
+    /// <see cref="ISingleItemJsonValuePathLookupResult"/> which contains a single <see cref="IParsedValue"/> value.
     /// </returns>
     IParseResult<IJsonValuePathLookupResult> LookupJsonValue(
         IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues,
@@ -28,15 +31,17 @@ public interface IJsonValuePathLookup
         IJsonValuePath jsonValuePath);
 
     /// <summary>
-    /// Looks up a json value in <param name="parentParsedValue"></param>.
+    /// Looks up a JSON value in <param name="parentParsedValue"></param>.
     /// </summary>
-    /// <param name="parentParsedValue">Parent parsed value where to lookup the value.</param>
+    /// <param name="parentParsedValue">Parent parsed value where to look up the value.</param>
     /// <param name="jsonFunctionValueEvaluationContext">Context.</param>
     /// <param name="jsonValuePath">Path</param>
     /// <returns>
-    /// If the returned value has no error in <see cref="IParseResult{TValue}.Errors"/> and has empty list in <see cref="IParseResult{TValue}.Value"/>,
-    /// then lookup didn't produce any results and no errors were reported.
-    /// Otherwise, the result resulted either in errors in <see cref="IParseResult{TValue}.Errors"/> or the looked up value is returned in <see cref="IParseResult{TValue}.Value"/>.
+    /// If the returned value has no error in <see cref="IParseResult{TValue}.Errors"/> or if the value of <see cref="IParseResult{TValue}.Value"/> is null,
+    /// then lookup didn't produce any results and no errors were reported.<br/>
+    /// Otherwise, the result in <see cref="IParseResult{TValue}.Value"/> is either an instance  of<br/>
+    /// <see cref="ICollectionJsonValuePathLookupResult"/> which contains a collection of <see cref="IParsedValue"/> values, or is an instance of<br/>
+    /// <see cref="ISingleItemJsonValuePathLookupResult"/> which contains a single <see cref="IParsedValue"/> value.
     /// </returns>
     IParseResult<IJsonValuePathLookupResult> LookupJsonValue(IParsedValue parentParsedValue,
         IJsonFunctionValueEvaluationContext jsonFunctionValueEvaluationContext,
@@ -329,10 +334,6 @@ public class JsonValuePathLookup : IJsonValuePathLookup
 
                 break;
         }
-
-        //LogHelper.Context.Log.DebugFormat("Path [{0}] not found. LineInfo: [{1}]",
-        //    jsonValuePath,
-        //    currentJsonValuePathElement.LineInfo?.ToString() ?? "null");
 
         return new ParseResult<IJsonValuePathLookupResult>(SingleItemJsonValuePathLookupResult.CreateForInvalidPath());
     }

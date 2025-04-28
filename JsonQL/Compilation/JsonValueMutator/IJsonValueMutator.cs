@@ -2,13 +2,24 @@
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
+/// <summary>
+/// Defines the contract for mutating JSON values during compilation.
+/// Implementations of this interface modify a JSON value and may generate errors
+/// that occur during the mutation process.
+/// </summary>
 public interface IJsonValueMutator
 {
     /// <summary>
-    /// Mutates the json value in <param name="rootParsedValue"></param>
+    /// Mutates the root JSON value and generates errors that occur during the mutation process.
     /// </summary>
-    /// <param name="rootParsedValue">Mutated json value.</param>
-    /// <param name="compiledParentRootParsedValues">Parent json values.</param>
-    /// <param name="errors">Errors reported during the mutation. The implementation should add errors to this list.</param>
+    /// <param name="rootParsedValue">
+    /// The root-parsed JSON value to be mutated.
+    /// </param>
+    /// <param name="compiledParentRootParsedValues">
+    /// A collection of already compiled root JSON values that may influence the mutation process.
+    /// </param>
+    /// <param name="errors">
+    /// A list to which any errors encountered during the mutation will be added.
+    /// </param>
     void Mutate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, List<IJsonObjectParseError> errors);
 }

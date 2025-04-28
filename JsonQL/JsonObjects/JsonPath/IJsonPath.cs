@@ -3,8 +3,15 @@ using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 
 namespace JsonQL.JsonObjects.JsonPath;
 
+/// <summary>
+/// Represents a JSON path used to navigate data within a JSON structure.
+/// </summary>
 public interface IJsonPath
 {
+    /// <summary>
+    /// Gets the ordered collection of elements that constitute the JSON path,
+    /// allowing navigation and identification of specific locations within a JSON structure.
+    /// </summary>
     IReadOnlyList<IJsonPathElement> Path { get; }
 }
 
@@ -13,6 +20,10 @@ public class JsonPath : IJsonPath
 {
     private readonly string _pathToString;
 
+    /// <summary>
+    /// Represents a JSON path, which defines a sequence of navigation steps to a specific value or node within a JSON structure.
+    /// This class implements transformations of path elements into a string representation for JSON path notation.
+    /// </summary>
     public JsonPath(IReadOnlyList<IJsonPathElement> path)
     {
         Path = path;

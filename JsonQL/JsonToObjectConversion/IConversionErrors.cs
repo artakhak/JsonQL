@@ -2,13 +2,32 @@
 
 namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Represents a collection of conversion errors encountered during a JSON to object conversion process.
+/// </summary>
 public interface IConversionErrors
 {
+    /// <summary>
+    /// Gets the collection of conversion errors encountered during the JSON to object conversion process.
+    /// </summary>
     IReadOnlyList<IConversionError> Errors { get; }
+
+    /// <summary>
+    /// Adds a conversion error to the collection of errors.
+    /// </summary>
+    /// <param name="conversionError">The conversion error to add to the collection.</param>
     void AddError(IConversionError conversionError);
+
+    /// <summary>
+    /// Attempts to retrieve conversion errors of a specific type.
+    /// </summary>
+    /// <param name="conversionErrorType">The type of conversion errors to retrieve.</param>
+    /// <param name="errors">When this method returns, contains the list of conversion errors of the specified type, if found; otherwise, null.</param>
+    /// <returns>True if errors of the specified type are found; otherwise, false.</returns>
     bool TryGetErrorsOfType(ConversionErrorType conversionErrorType, [NotNullWhen(true)] out IReadOnlyList<IConversionError>? errors);
 }
 
+/// <inheritdoc />
 internal class ConversionErrors : IConversionErrors
 {
     private readonly List<IConversionError> _errors = new();

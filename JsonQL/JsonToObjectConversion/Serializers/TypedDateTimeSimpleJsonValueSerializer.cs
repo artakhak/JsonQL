@@ -2,12 +2,14 @@
 
 namespace JsonQL.JsonToObjectConversion.Serializers;
 
+/// <inheritdoc />
 public class TypedDateTimeSimpleJsonValueSerializer : ITypedSimpleJsonValueSerializer
 {
+    /// <inheritdoc />
     public Type SerializedType => typeof(DateTime);
 
     /// <inheritdoc />
-    public bool TrySerialize(Type typeToDeserializeTo, object value, [NotNullWhen(true)] out object? serializedValue)
+    public bool TrySerialize(object value, [NotNullWhen(true)] out object? serializedValue)
     {
         if (value is DateTime dateTime)
         {

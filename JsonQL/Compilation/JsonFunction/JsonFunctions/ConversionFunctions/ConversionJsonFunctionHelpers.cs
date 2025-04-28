@@ -3,9 +3,24 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Provides utility methods to assist with JSON function conversions, specifically handling parsing results and errors
+/// encountered during type conversions within the context of JSON functions.
+/// </summary>
 public static class ConversionJsonFunctionHelpers
 {
-    public static IParseResult<T?>? GetParseResultForConversionError<T>(string convertedTypeName, 
+    /// <summary>
+    /// Creates a parse result to handle conversion errors based on the provided parameters.
+    /// </summary>
+    /// <typeparam name="T">The type to which the value is being converted.</typeparam>
+    /// <param name="convertedTypeName">The name of the type to which the conversion is attempted.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">The JSON function representing the condition to assert if the conversion fails.</param>
+    /// <param name="assertIfConversionFailsResult">The result of evaluating the condition for asserting conversion failure.</param>
+    /// <param name="lineInfo">Optional line information for error reporting.</param>
+    /// <returns>
+    /// A parse result containing the errors related to conversion, or null if no errors occurred.
+    /// </returns>
+    public static IParseResult<T?>? GetParseResultForConversionError<T>(string convertedTypeName,
         IBooleanJsonFunction assertIfConversionFailsJsonFunction,
         IParseResult<bool?> assertIfConversionFailsResult, IJsonLineInfo? lineInfo)
     {

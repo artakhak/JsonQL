@@ -6,20 +6,16 @@ namespace JsonQL.Compilation.JsonFunction;
 public interface IJsonFunctionParameterMetadata
 {
     /// <summary>
-    /// Name that will appear in logs. For example "operand1", etc. The name might tbe different from actual parameter value
+    /// Name that will appear in logs. For example, "operand1", etc. The name might tbe different from actual parameter value
     /// passed to classes that extend <see cref="JsonFunctionAbstr"/>.
     /// </summary>
     string Name { get; }
-
-    ///// <summary>
-    ///// Possible type identifiers for parameter types.
-    ///// Example: [<see cref="FunctionReturnAndParameterTypes.Double"/>, <see cref="FunctionReturnAndParameterTypes.ArrayOfReferencedParsedJsonValues"/>]
-    ///// </summary>
-    //public IReadOnlyList<Guid> ValidTypes { get; }
-
+   
     /// <summary>
-    /// If the value is true, parameter will be validated to not be a json value path <see cref="IJsonValuePathJsonFunction"/>
-    /// that evaluates to a path that has elements of that select multiple items (e.g., <see cref="WhereClauseArrayItemsSelectorPathElement"/>)
+    /// Indicates whether a parameter should be validated to ensure it is not a JSON value path
+    /// that resolves to a selector path containing elements that can select multiple items.
+    /// For example, a path with elements that do not exclusively select single items
+    /// would fail validation when this property is set to true.
     /// </summary>
     bool ValidateIsNotMultipleValuesSelectorPath { get; }
 
@@ -38,18 +34,20 @@ public interface IJsonFunctionParameterMetadata
 public class JsonFunctionParameterMetadata: IJsonFunctionParameterMetadata
 {
     /// <summary>
-    /// Constructor.
+    /// Represents metadata information for a JSON function parameter.
+    /// Provides details such as the parameter's name, expected type, and whether it is required.
     /// </summary>
     /// <param name="name">
-    /// Name that will appear in logs. For example "operand1", etc. The name might tbe different from actual parameter value
+    /// Name that will appear in logs. For example, "operand1", etc. The name might tbe different from actual parameter value
     /// passed to classes that extend <see cref="JsonFunctionAbstr"/>.
     /// </param>
     /// <param name="expectedParameterFunctionType">
     /// One of the types: <see cref="IBooleanJsonFunction"/>, <see cref="IStringJsonFunction"/>, <see cref="IDoubleJsonFunction"/>,
     /// <see cref="IDateTimeJsonFunction"/>, <see cref="IJsonFunction"/>, etc.
     /// </param>
-    /// <param name="isRequired">True, if parameter is required.</param>
-    ///// <param name="validateParameterIsNotCollection">If the value is true, parameter will be validated to not be a </param>
+    /// <param name="isRequired">
+    /// True, if parameter is required.
+    /// </param>
     public JsonFunctionParameterMetadata(string name, Type expectedParameterFunctionType, bool isRequired)
     {
         Name = name;

@@ -2,6 +2,11 @@
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Represents a universal lambda function that integrates with the JSON function evaluation framework.
+/// This interface extends the capabilities of <see cref="ILambdaFunction{TJsonFunction}"/> for more
+/// generic operations on JSON-based lambda expressions.
+/// </summary>
 public interface IUniversalLambdaFunction : ILambdaFunction<IJsonFunction>
 {
 
@@ -10,6 +15,10 @@ public interface IUniversalLambdaFunction : ILambdaFunction<IJsonFunction>
 /// <inheritdoc />
 public class UniversalLambdaFunction : IUniversalLambdaFunction
 {
+    /// <summary>
+    /// Represents a universal lambda function that is used within JSON function evaluation contexts.
+    /// It is composed of a parameter JSON function and a lambda expression function.
+    /// </summary>
     public UniversalLambdaFunction(ILambdaFunctionParameterJsonFunction parameterJsonFunction, IJsonFunction lambdaExpressionFunction)
     {
         ParameterJsonFunction = parameterJsonFunction;

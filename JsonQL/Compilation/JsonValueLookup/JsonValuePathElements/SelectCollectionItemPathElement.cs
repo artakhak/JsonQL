@@ -5,12 +5,31 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
+/// <summary>
+/// Represents a path element in a JSON value path that is used to select an item
+/// from a collection based on certain criteria.
+/// </summary>
+/// <remarks>
+/// This class is an implementation of <see cref="JsonValueCollectionItemSelectorPathElementAbstr"/>
+/// and supports the selection of collection items through index, optional lambda predicate,
+/// and optional reverse search functionality.
+/// </remarks>
+/// <seealso cref="JsonValueCollectionItemSelectorPathElementAbstr"/>
+/// <seealso cref="IResolvesVariableValue"/>
 public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IJsonFunction _itemIndex;
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
     private readonly IJsonFunction? _isReverseSearch;
 
+    /// <summary>
+    /// Represents a path element that is responsible for selecting an element from a JSON collection
+    /// based on a specified index, an optional lambda predicate for filtering, and an optional reverse search.
+    /// </summary>
+    /// <remarks>
+    /// This class extends <see cref="JsonValueCollectionItemSelectorPathElementAbstr" /> and implements <see cref="IResolvesVariableValue" />.
+    /// It utilizes a function name "At" to specify the collection item selector behavior.
+    /// </remarks>
     public SelectCollectionItemPathElement(
         IJsonFunction itemIndex,
         IPredicateLambdaFunction? lambdaPredicate,

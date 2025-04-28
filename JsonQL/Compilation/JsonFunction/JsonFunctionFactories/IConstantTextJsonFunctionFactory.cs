@@ -14,7 +14,7 @@ public interface IConstantTextJsonFunctionFactory
     /// Tries to create <see cref="IJsonFunction"/> from braces expression. 
     /// Example of special literal functions are: value, true, etc. 
     /// </summary>
-    /// <param name="parsedSimpleValue">Parsed json value which contains the expression to be parsed.</param>
+    /// <param name="parsedSimpleValue">Parsed JSON value which contains the expression to be parsed.</param>
     /// <param name="constantTextExpressionItem">Constant text expression to convert to <see cref="IJsonFunction"/>.</param>
     /// <param name="jsonFunctionContext">If not null, parent function data.</param>
     /// <returns>
@@ -28,6 +28,9 @@ public interface IConstantTextJsonFunctionFactory
         IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <summary>
+/// A factory for paring a constant text expression <see cref="INumericExpressionItem"/> (e.g., 'Some text', etc.) into a <see cref="IDoubleJsonFunction"/>.
+/// </summary>
 public class ConstantTextJsonFunctionFactory : JsonFunctionFactoryAbstr, IConstantTextJsonFunctionFactory
 {
     /// <inheritdoc />

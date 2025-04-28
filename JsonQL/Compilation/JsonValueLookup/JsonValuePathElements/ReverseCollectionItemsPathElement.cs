@@ -2,8 +2,22 @@
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
+/// <summary>
+/// Represents a path element that selects items from a collection in reverse order.
+/// </summary>
+/// <remarks>
+/// This class is used as a part of a JSON value lookup path, specifically for handling
+/// operations that reverse the order of elements in a collection. It extends the
+/// <c>JsonValueCollectionItemsSelectorPathElementAbstr</c> abstract class and provides
+/// the specific implementation for reversing collection items.
+/// </remarks>
+/// <seealso cref="JsonValueCollectionItemsSelectorPathElementAbstr" />
 public class ReverseCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr
 {
+    /// <summary>
+    /// Represents a path element that selects and reverses items within a JSON collection
+    /// based on the provided function name and line information.
+    /// </summary>
     public ReverseCollectionItemsPathElement(
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.ReverseCollectionItemsSelectorFunction, lineInfo)
     {

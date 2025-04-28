@@ -3,9 +3,20 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
-public static class MutatorHelpers
+/// <summary>
+/// Provides helper methods used for mutating and validating parsed JSON values in the context
+/// of JSON value mutators.
+/// </summary>
+internal static class MutatorHelpers
 {
-    public static IParsedSimpleValue? TryGetParsedSimpleValue(IParsedSimpleValue parsedSimpleValue)
+    /// <summary>
+    /// Attempts to retrieve and validate the parsed simple value associated with the given input.
+    /// </summary>
+    /// <param name="parsedSimpleValue">The parsed simple value to validate and retrieve.</param>
+    /// <returns>
+    /// The validated and retrieved parsed simple value if found and unaltered; otherwise, null if the value is not found or has been modified.
+    /// </returns>
+    internal static IParsedSimpleValue? TryGetParsedSimpleValue(IParsedSimpleValue parsedSimpleValue)
     {
         const string valueChangedIsOkMessage = "This is Ok, since the value might have been replaced by other mutators.";
 

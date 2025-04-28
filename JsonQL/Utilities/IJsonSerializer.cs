@@ -4,11 +4,21 @@ using Newtonsoft.Json;
 
 namespace JsonQL.Utilities;
 
+/// <summary>
+/// Defines methods for serializing objects into JSON format.
+/// </summary>
 public interface IJsonSerializer
 {
+    /// <summary>
+    /// Serializes a given parsed JSON value into a string representation, optionally using specified serialization parameters.
+    /// </summary>
+    /// <param name="parsedValue">The parsed JSON value to serialize.</param>
+    /// <param name="jsonSerializerParameters">Optional parameters to customize the JSON serialization process.</param>
+    /// <returns>A string representation of the serialized JSON.</returns>
     string Serialize(IParsedValue parsedValue, IJsonSerializerParameters? jsonSerializerParameters = null);
 }
 
+/// <inheritdoc />
 public class JsonSerializer : IJsonSerializer
 {
     public static readonly IJsonSerializerParameters DefaultJsonSerializerParameters = new JsonSerializerParameters
@@ -26,18 +36,18 @@ public class JsonSerializer : IJsonSerializer
         switch (parsedValue)
         {
             case IParsedJson parsedJson:
-                {
-                    var serializedValue = new StringBuilder();
-                    SerializeParsedJson(serializedValue, parsedJson, jsonSerializerParameters, 0, false);
-                    return serializedValue.ToString();
-                }
+            {
+                var serializedValue = new StringBuilder();
+                SerializeParsedJson(serializedValue, parsedJson, jsonSerializerParameters, 0, false);
+                return serializedValue.ToString();
+            }
 
             case IParsedArrayValue parsedArrayValue:
-                {
-                    var serializedValue = new StringBuilder();
-                    SerializeParsedArrayValue(serializedValue, parsedArrayValue, jsonSerializerParameters, 0, false);
-                    return serializedValue.ToString();
-                }
+            {
+                var serializedValue = new StringBuilder();
+                SerializeParsedArrayValue(serializedValue, parsedArrayValue, jsonSerializerParameters, 0, false);
+                return serializedValue.ToString();
+            }
 
             case IParsedSimpleValue parsedSimpleValue:
                 return GetSerializedSimpleJsonValue(parsedSimpleValue);
@@ -51,13 +61,10 @@ public class JsonSerializer : IJsonSerializer
     {
         if (parsedSimpleValue.Value == null)
             return "null";
-
-        //var value = JsonConvert.SerializeObject(parsedSimpleValue.Value);
+        
         if (parsedSimpleValue.IsString)
         {
-            //return string.Concat("\"", value, "\"");
-            var value = JsonConvert.SerializeObject(parsedSimpleValue.Value);
-            return value;
+            return JsonConvert.SerializeObject(parsedSimpleValue.Value);
         }
 
         return parsedSimpleValue.Value;
@@ -117,7 +124,7 @@ public class JsonSerializer : IJsonSerializer
         }
     }
 
-    private void SerializeParsedJson(StringBuilder serializedText, IParsedJson parsedJson, IJsonSerializerParameters jsonSerializerParameters, 
+    private void SerializeParsedJson(StringBuilder serializedText, IParsedJson parsedJson, IJsonSerializerParameters jsonSerializerParameters,
         int nestedLevel, bool startedOnNewLine)
     {
         var parsedJsonIndention = CreateIndentation(nestedLevel, jsonSerializerParameters.IndentationFromParent);
@@ -130,7 +137,7 @@ public class JsonSerializer : IJsonSerializer
                 serializedText.Append(parsedJsonIndention);
             }
         }
-        
+
         serializedText.Append("{");
 
         if (parsedJson.KeyValues.Count > 0)
@@ -162,7 +169,7 @@ public class JsonSerializer : IJsonSerializer
                     serializedText.Append(',');
             }
         }
-      
+
         if (!jsonSerializerParameters.Minify)
         {
             serializedText.AppendLine();
@@ -173,7 +180,7 @@ public class JsonSerializer : IJsonSerializer
         serializedText.Append("}");
     }
 
-    private void SerializeParsedArrayValue(StringBuilder serializedText, IParsedArrayValue parsedArrayValue, IJsonSerializerParameters jsonSerializerParameters, 
+    private void SerializeParsedArrayValue(StringBuilder serializedText, IParsedArrayValue parsedArrayValue, IJsonSerializerParameters jsonSerializerParameters,
         int nestedLevel, bool startedOnNewLine)
     {
         var parsedArrayIndention = CreateIndentation(nestedLevel, jsonSerializerParameters.IndentationFromParent);
@@ -186,14 +193,13 @@ public class JsonSerializer : IJsonSerializer
                 serializedText.Append(parsedArrayIndention);
             }
         }
-        
+
         serializedText.Append("[");
 
         if (parsedArrayValue.Values.Count > 0)
         {
             for (var i = 0; i < parsedArrayValue.Values.Count; ++i)
             {
-                
                 if (!jsonSerializerParameters.Minify)
                 {
                     serializedText.AppendLine();

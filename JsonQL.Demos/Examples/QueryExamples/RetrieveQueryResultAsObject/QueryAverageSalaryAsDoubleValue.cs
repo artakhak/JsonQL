@@ -19,7 +19,7 @@ public class QueryAverageSalaryAsDoubleValue : QueryObjectExampleManagerAbstr<do
         var query = "Average(Companies.Select(x => x.Employees.Select(x => x.Salary)))";
 
         var averageSalaryResult =
-            _queryManager.Query<double>(query,
+            _queryManager.QueryObject<double>(query,
                 new JsonTextData("Companies",
                     LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])), null);
 

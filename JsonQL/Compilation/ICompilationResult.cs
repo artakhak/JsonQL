@@ -1,12 +1,20 @@
 ﻿namespace JsonQL.Compilation;
 
+/// <summary>
+/// Represents the result of a JSON compilation process.
+/// </summary>
 public interface ICompilationResult
 {
+    /// <summary>
+    /// Represents a collection of errors encountered during the JSON compilation process.
+    /// If this list is empty, it indicates a successful compilation. Otherwise, it contains
+    /// one or more items describing the issues that occurred.
+    /// </summary>
     IReadOnlyList<ICompilationErrorItem> CompilationErrors { get; }
 
     /// <summary>
-    /// List of compiled json files. If <see cref="CompilationErrors"/> is empty, the list is not empty.
-    /// Otherwise, the list might be empty, or might have some items (for example if some parent Json files were compiled, but the main
+    /// List of compiled JSON files. If <see cref="CompilationErrors"/> is empty, the list is not empty.
+    /// Otherwise, the list might be empty or might have some items (for example, if some parent JSON files were compiled, but the main
     /// file failed to compile).
     /// </summary>
     IReadOnlyList<ICompiledJsonData> CompiledJsonFiles { get; }
@@ -15,6 +23,9 @@ public interface ICompilationResult
 /// <inheritdoc />
 public class CompilationResult : ICompilationResult
 {
+    /// <summary>
+    /// Represents the result of a compilation process, including compiled JSON files and any compilation errors.
+    /// </summary>
     public CompilationResult(IReadOnlyList<ICompiledJsonData> compiledJsonFiles, IReadOnlyList<ICompilationErrorItem> compilationErrors)
     {
         CompiledJsonFiles = compiledJsonFiles;

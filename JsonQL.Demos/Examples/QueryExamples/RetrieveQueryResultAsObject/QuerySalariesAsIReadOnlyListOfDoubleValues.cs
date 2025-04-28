@@ -18,7 +18,7 @@ public class QuerySalariesAsIReadOnlyListOfDoubleValues : QueryObjectExampleMana
         var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
 
         var salariesResult =
-            _queryManager.Query<IReadOnlyList<double>>(query,
+            _queryManager.QueryObject<IReadOnlyList<double>>(query,
                 new JsonTextData("Companies",
                     LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])));
 

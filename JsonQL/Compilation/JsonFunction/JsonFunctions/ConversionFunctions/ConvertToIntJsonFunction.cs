@@ -4,11 +4,32 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Represents a JSON function that attempts to convert a given input value into a double/int-equivalent representation.
+/// This function evaluates the input JSON value, processes potential type conversion, and handles related errors during the conversion operation.
+/// </summary>
+/// <remarks>
+/// This class is intended to support the conversion of JSON values by leveraging its base functionality provided by <see cref="DoubleJsonFunctionAbstr"/>.
+/// It also provides error handling mechanisms through an optional assertion function for conversion failures.
+/// </remarks>
 public class ConvertToIntJsonFunction : DoubleJsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
     private readonly IBooleanJsonFunction? _assertIfConversionFailsJsonFunction;
 
+    /// <summary>
+    /// Represents a JSON function for converting values to integers. This class extends the abstract class for double JSON functions
+    /// and implements specific functionality for integer conversion.
+    /// </summary>
+    /// <remarks>
+    /// The conversion process involves evaluating the provided JSON function and attempting to convert its output to an integer.
+    /// An optional assertion function can be provided to handle scenarios when the conversion fails.
+    /// </remarks>
+    /// <param name="functionName">The name of the function being converted.</param>
+    /// <param name="jsonFunction">The JSON function whose value will be converted.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">An optional function to assert or handle conversion failures.</param>
+    /// <param name="jsonFunctionContext">The context in which the JSON function is being evaluated.</param>
+    /// <param name="lineInfo">Optional line information for the function definition.</param>
     public ConvertToIntJsonFunction(string functionName, IJsonFunction jsonFunction,
         IBooleanJsonFunction? assertIfConversionFailsJsonFunction,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :

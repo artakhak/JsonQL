@@ -3,10 +3,15 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Query;
 
+/// <inheritdoc />
 public class QueryManagerCompilationResultLogger : ICompilationResultLogger
 {
     private readonly ICompilationResultLogger _compilationResultLogger;
 
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="compilationResultLogger">Compilation result logger</param>
     public QueryManagerCompilationResultLogger(ICompilationResultLogger compilationResultLogger)
     {
         _compilationResultLogger = compilationResultLogger;

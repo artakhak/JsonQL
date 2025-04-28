@@ -3,17 +3,42 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents a JSON function that operates based on a JSON value path.
+/// </summary>
 public interface IJsonValuePathJsonFunction: IJsonFunction
 {
+    /// <summary>
+    /// Gets the path information used for JSON value lookups within the function implementation.
+    /// </summary>
     JsonValuePath JsonValuePath { get; }
+
+    /// <summary>
+    /// Evaluates the JSON value path function based on the provided parsed values and evaluation context.
+    /// </summary>
+    /// <param name="rootParsedValue">The root parsed value to evaluate.</param>
+    /// <param name="compiledParentRootParsedValues">A collection of compiled parent root parsed values required for evaluation.</param>
+    /// <param name="contextData">The optional context data used during the evaluation process.</param>
+    /// <returns>A parse result containing the lookup result for the JSON value path.</returns>
     IParseResult<IJsonValuePathLookupResult> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues,
         IJsonFunctionEvaluationContextData? contextData);
 }
 
+/// <summary>
+/// Represents a JSON function implementation that evaluates expressions based on a specified JSON value path.
+/// </summary>
 public class JsonValuePathJsonFunction: JsonFunctionAbstr, IJsonValuePathJsonFunction
 {
     private readonly IJsonValuePathLookup _jsonValuePathLookup;
 
+    /// <summary>
+    /// Represents a JSON function that evaluates JSON value paths using a provided lookup mechanism.
+    /// </summary>
+    /// <param name="functionName">The name of the function.</param>
+    /// <param name="jsonValuePath">The JSON value path to be evaluated.</param>
+    /// <param name="jsonValuePathLookup">The lookup mechanism for evaluating JSON value paths.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating the function's value.</param>
+    /// <param name="lineInfo">Optional information about the line where the function is located.</param>
     public JsonValuePathJsonFunction(string functionName, JsonValuePath jsonValuePath,
         IJsonValuePathLookup jsonValuePathLookup,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
@@ -23,7 +48,6 @@ public class JsonValuePathJsonFunction: JsonFunctionAbstr, IJsonValuePathJsonFun
         JsonValuePath = jsonValuePath;
         _jsonValuePathLookup = jsonValuePathLookup;
     }
-  
 
     /// <inheritdoc />
     protected override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)

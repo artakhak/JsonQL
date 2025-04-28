@@ -8,28 +8,31 @@ using UniversalExpressionParser.ExpressionItems;
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 
 /// <summary>
-/// A factory for parsing <see cref="IBracesExpressionItem"/> (e.g., lower('EXAMPLE TEXT')) into a <see cref="IJsonFunction"/>.
+/// A factory for parsing <see cref="IBracesExpressionItem"/> (e.g., <b>Lower('EXAMPLE TEXT')</b>) into a <see cref="IJsonFunction"/>.
 /// </summary>
 public interface IBracesJsonFunctionFactory
 {
     /// <summary>
     /// Tries to create <see cref="IJsonFunction"/> from braces expression. 
-    /// Example of custom functions is [lower('EXAMPLE TEXT')] 
+    /// An example of custom functions is <b>Lower('EXAMPLE TEXT')</b>
     /// </summary>
-    /// <param name="parsedSimpleValue">Parsed json value which contains the expression to be parsed.</param>
+    /// <param name="parsedSimpleValue">Parsed JSON value which contains the expression to be parsed.</param>
     /// <param name="bracesExpressionItem">Braces expression to convert to <see cref="IJsonFunction"/>.</param>
     /// <param name="jsonFunctionContext">Context.</param>
     /// <returns>
     /// Returns parse result.
-    /// If the value <see cref="IParseResult{TValue}.Errors"/> is not empty, function failed to be parsed.
-    /// Otherwise, the value <see cref="IParseResult{TValue}.Value"/> will be non-null, if function parsed, or null, if <see cref="IJsonFunction"/> does not
-    /// know how to parse the expression into <see cref="IJsonFunction"/> (in which case the caller of this method will either try to parse the expression
+    /// If the value <see cref="IParseResult{TValue}.Errors"/> is not empty, function failed to be parsed.<br/>
+    /// Otherwise, the value <see cref="IParseResult{TValue}.Value"/> will be non-null, if function parsed, or null, if <see cref="IJsonFunction"/> does not<br/>
+    /// know how to parse the expression into <see cref="IJsonFunction"/> (in which case the caller of this method will either try to parse the expression<br/>
     /// some other way, or will report an error).
     /// </returns>
     IParseResult<IJsonFunction> TryCreateBracesCustomFunction(IParsedSimpleValue parsedSimpleValue, IBracesExpressionItem bracesExpressionItem,
         IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <summary>
+/// A factory for parsing <see cref="IBracesExpressionItem"/> (e.g., <b>Lower('EXAMPLE TEXT')</b>) into a <see cref="IJsonFunction"/>.
+/// </summary>
 public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFunctionFactory
 {
     /// <inheritdoc />

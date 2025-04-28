@@ -1,5 +1,9 @@
 ﻿namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Represents an interface for overriding JSON conversion settings, allowing fine-grained control
+/// over the behavior of JSON-to-object conversion processes.
+/// </summary>
 public interface IJsonConversionSettingsOverrides
 {
     /// <summary>

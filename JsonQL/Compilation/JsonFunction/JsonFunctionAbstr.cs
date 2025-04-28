@@ -22,6 +22,10 @@ public abstract class JsonFunctionAbstr : IJsonFunction
     /// <inheritdoc />
     public IJsonFunction? ParentJsonFunction => JsonFunctionValueEvaluationContext.ParentJsonFunction;
 
+    /// <summary>
+    /// Represents a context that encapsulates the evaluation of function values
+    /// within JSON processing, providing access to parent functions and variable management.
+    /// </summary>
     protected IJsonFunctionValueEvaluationContext JsonFunctionValueEvaluationContext { get; }
     
     /// <inheritdoc />
@@ -41,6 +45,13 @@ public abstract class JsonFunctionAbstr : IJsonFunction
         return result;
     }
 
+    /// <summary>
+    /// Evaluates a value based on the provided parsed value, parent root parsed values, and context data.
+    /// </summary>
+    /// <param name="rootParsedValue">The root parsed value to base the evaluation on.</param>
+    /// <param name="compiledParentRootParsedValues">A collection of parent root parsed values used during evaluation.</param>
+    /// <param name="contextData">Optional context data used during the evaluation.</param>
+    /// <returns>A result of the evaluation encapsulated in an <see cref="IParseResult{TValue}" /> instance.</returns>
     protected abstract IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues,
         IJsonFunctionEvaluationContextData? contextData);
 }

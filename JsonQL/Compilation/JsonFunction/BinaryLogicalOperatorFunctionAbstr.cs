@@ -8,6 +8,12 @@ namespace JsonQL.Compilation.JsonFunction;
 /// </summary>
 public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAbstr
 {
+    /// <summary>
+    /// Represents an abstract base class for binary logical operator functions such as "&&" and "||".
+    /// </summary>
+    /// <remarks>
+    /// This class handles the evaluation of binary logical operations with two boolean operands.
+    /// </remarks>
     protected BinaryLogicalOperatorFunctionAbstr(string operatorName,
         IBooleanJsonFunction operand1, IBooleanJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
@@ -17,7 +23,24 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
         Operand2 = operand2;
     }
 
+    /// <summary>
+    /// Gets the first operand for the binary logical operation.
+    /// </summary>
+    /// <remarks>
+    /// This property represents the first operand for binary logical operator functions,
+    /// such as "&&" and "||". The operand is of type <see cref="IBooleanJsonFunction"/> and
+    /// is evaluated as part of the logical operation.
+    /// </remarks>
     protected IBooleanJsonFunction Operand1 { get; }
+
+    /// <summary>
+    /// Gets the second operand for the binary logical operation.
+    /// </summary>
+    /// <remarks>
+    /// This property represents the second operand for binary logical operator functions,
+    /// such as "&&" and "||". The operand is of type <see cref="IBooleanJsonFunction"/> and
+    /// is evaluated as part of the logical operation.
+    /// </remarks>
     protected IBooleanJsonFunction Operand2 { get; }
 
     /// <inheritdoc />
@@ -36,5 +59,11 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
         return DoEvaluate(result1.Value, result2.Value);
     }
 
+    /// <summary>
+    /// Evaluates a binary logical operation given the evaluated boolean values of its two operands.
+    /// </summary>
+    /// <param name="evaluatedValueOfOperand1">The evaluated boolean value of the first operand. Can be null.</param>
+    /// <param name="evaluatedValueOfOperand2">The evaluated boolean value of the second operand. Can be null.</param>
+    /// <returns>The result of the binary logical operation as a parsed value, including potential parsing errors.</returns>
     protected abstract IParseResult<bool?> DoEvaluate(bool? evaluatedValueOfOperand1, bool? evaluatedValueOfOperand2);
 }

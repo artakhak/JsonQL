@@ -4,10 +4,26 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
+/// <summary>
+/// Represents a path element that flattens the elements of a collection and allows for optional filtering
+/// using a predicate function within a JSON query framework. This path element is designed to process
+/// collections by aggregating their items into a single-level structure.
+/// </summary>
 public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
 
+    /// <summary>
+    /// Represents a path element for flattening collection items in a JSON value lookup operation.
+    /// </summary>
+    /// <param name="lambdaPredicate">If the value is not null, a predicate that will filter out the collection items.</param>
+    /// <param name="lineInfo">Path expression position.</param>
+    /// <remarks>
+    /// This class serves as a specialized implementation for selecting and retrieving collection items
+    /// from a JSON object during a JSON query execution. It supports filtering collection items
+    /// using an optional lambda predicate function provided during initialization.
+    /// Inherits from <see cref="JsonValueCollectionItemsSelectorPathElementAbstr"/>.
+    /// </remarks>
     public FlattenCollectionItemsPathElement(
         IPredicateLambdaFunction? lambdaPredicate,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.FlattenCollectionItemsSelectorFunction, lineInfo)

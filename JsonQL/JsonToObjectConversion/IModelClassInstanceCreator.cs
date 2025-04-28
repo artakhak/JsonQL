@@ -4,8 +4,27 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Provides an interface for creating instances of a model class based on a specified type and collection of property data.
+/// This interface defines a method for attempting to create an object instance with appropriate validation and error reporting.
+/// It is intended to be used in JSON-to-object conversion processes where instances of model classes need to be dynamically created.
+/// </summary>
 public interface IModelClassInstanceCreator
 {
+    /// <summary>
+    /// Attempts to create an instance of the specified type using the provided collection of property data.
+    /// </summary>
+    /// <param name="createdInstanceType">The <see cref="Type"/> of the instance to be created.</param>
+    /// <param name="propertyValues">A collection of property data to be used for populating the instance.</param>
+    /// <param name="createdInstance">
+    /// When successful, contains the created instance of the specified type. If unsuccessful, it will be <see langword="null"/>.
+    /// </param>
+    /// <param name="errorMessage">
+    /// When the creation fails, contains an error message describing the reason for failure. Otherwise, it will be <see langword="null"/>.
+    /// </param>
+    /// <returns>
+    /// <see langword="true"/> if the instance was created successfully; otherwise, <see langword="false"/>.
+    /// </returns>
     bool TryCreate(Type createdInstanceType, IReadOnlyList<IModelClassCreationPropertyData> propertyValues, [NotNullWhen(true)] out object? createdInstance, 
         [NotNullWhen(false)] out string? errorMessage);
 }

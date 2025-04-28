@@ -9,6 +9,11 @@ namespace JsonQL.Compilation.JsonFunction;
 /// </summary>
 public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctionAbstr
 {
+    /// <summary>
+    /// Represents an abstract base class for binary comparison operator functions.
+    /// Provides the foundation for specific binary comparison operations
+    /// by handling two operands and their evaluation context.
+    /// </summary>
     protected BinaryComparisonOperatorFunctionAbstr(string operatorName,
         IJsonFunction operand1, IJsonFunction operand2, IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) : base(operatorName, jsonFunctionContext, lineInfo)
@@ -17,7 +22,16 @@ public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctio
         Operand2 = operand2;
     }
 
+    /// <summary>
+    /// Gets the first operand of the binary comparison operator function.
+    /// Represents the left-hand side value in the comparison operation.
+    /// </summary>
     protected IJsonFunction Operand1 { get; }
+
+    /// <summary>
+    /// Gets the second operand of the binary comparison operator function.
+    /// Represents the right-hand side value in the comparison operation.
+    /// </summary>
     protected IJsonFunction Operand2 { get; }
 
     /// <inheritdoc />

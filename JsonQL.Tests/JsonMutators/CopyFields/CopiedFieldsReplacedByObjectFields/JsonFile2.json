@@ -1,5 +1,5 @@
 {
-  "Object2": {
+  "Object2": {    
     "copyFields1": "$copyFields(parent.Examples.Object1)",
     "Int1": 21,
     "String1": "String that will replace the copied field",

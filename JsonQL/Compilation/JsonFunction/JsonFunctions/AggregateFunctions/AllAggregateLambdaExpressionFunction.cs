@@ -10,6 +10,20 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 /// </summary>
 public class AllAggregateLambdaExpressionFunction : AggregateLambdaExpressionFunctionAbstr<AllAggregationCalculationsData, bool>, IBooleanJsonFunction
 {
+    /// <summary>
+    /// Represents an aggregate lambda expression function implementation that evaluates
+    /// whether all elements in a specified collection satisfy a given predicate.
+    /// </summary>
+    /// <remarks>
+    /// This class processes a collection and determines if all elements fulfill a specified condition,
+    /// utilizing a provided predicate lambda function. It is a specialized aggregate function suitable
+    /// for JSON data handling contexts.
+    /// </remarks>
+    /// <param name="functionName">The name of the function.</param>
+    /// <param name="jsonValuePathJsonFunction">The JSON value path function to be evaluated against the input.</param>
+    /// <param name="predicateLambdaFunction">The lambda function defining the predicate to apply on elements of the collection.</param>
+    /// <param name="jsonFunctionContext">The execution context for the JSON function, which holds the environmental data needed during evaluation.</param>
+    /// <param name="lineInfo">Optional line information for error diagnostics, referencing the relevant position in the source.</param>
     public AllAggregateLambdaExpressionFunction(string functionName,
         IJsonValuePathJsonFunction jsonValuePathJsonFunction,
         IUniversalLambdaFunction predicateLambdaFunction,

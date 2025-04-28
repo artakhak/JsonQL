@@ -3,6 +3,10 @@
 /// <inheritdoc />
 public class DoubleJsonComparable : IJsonComparable
 {
+    /// <summary>
+    /// Represents a comparable value of type double within JSON context, allowing comparisons
+    /// and type code identification for double values.
+    /// </summary>
     public DoubleJsonComparable(double value)
     {
         Value = value;

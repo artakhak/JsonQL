@@ -5,16 +5,34 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 
+/// <summary>
+/// Represents a mutator responsible for merging a collection of JSON objects into an array during
+/// the JSON value mutation process.
+/// This interface is used in scenarios where multiple JSON values must be aggregated
+/// into a single JSON array structure.
+/// </summary>
 public interface IMergeCollectionIntoArrayJsonValueMutator : IJsonValueMutator
 {
 
 }
 
+/// <summary>
+/// Represents a concrete implementation of a JSON value mutator responsible for merging
+/// a collection of JSON objects or values into an array during JSON handling processes.
+/// This class facilitates the transformation or aggregation of JSON elements
+/// into a unified array structure, ensuring that the mutator operates
+/// exclusively within a valid array context.
+/// </summary>
 public class MergeCollectionIntoArrayJsonValueMutator : CalculatedJsonValueMutatorAbstr, IMergeCollectionIntoArrayJsonValueMutator
 {
     private readonly IParsedValueCopy _parsedValueCopy;
 
-    public MergeCollectionIntoArrayJsonValueMutator(IParsedSimpleValue parsedSimpleValue, 
+    /// <summary>
+    /// Represents a JSON value mutator that merges a collection into an array within a JSON structure.
+    /// This mutator utilizes a combination of parsed values, functions, visitors, and formatting logic
+    /// to produce a calculated JSON value.
+    /// </summary>
+    public MergeCollectionIntoArrayJsonValueMutator(IParsedSimpleValue parsedSimpleValue,
         IJsonFunction jsonFunction, IParsedValueCopy parsedValueCopy,
         IParsedJsonVisitor parsedJsonVisitor, IStringFormatter stringFormatter) : base(parsedSimpleValue, jsonFunction, parsedJsonVisitor, stringFormatter)
     {

@@ -11,6 +11,16 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 /// </summary>
 public class AverageAggregateLambdaExpressionFunction : AggregateLambdaExpressionFunctionAbstr<AverageValueAggregationCalculationsData, double>, IDoubleJsonFunction
 {
+    /// <summary>
+    /// Represents an aggregate lambda expression function that calculates the average value
+    /// based on specified criteria and numeric expressions within a JSON context.
+    /// </summary>
+    /// <param name="functionName">The name of the aggregate function.</param>
+    /// <param name="jsonValuePathJsonFunction">The JSON value path function to extract values for the calculation.</param>
+    /// <param name="lambdaPredicate">An optional predicate lambda function to filter the data.</param>
+    /// <param name="numericValueLambdaFunction">An optional lambda function to compute numeric values from the data.</param>
+    /// <param name="jsonFunctionContext">The context to evaluate JSON function values.</param>
+    /// <param name="lineInfo">Optional line information for debugging and error context.</param>
     public AverageAggregateLambdaExpressionFunction(string functionName,
         IJsonValuePathJsonFunction jsonValuePathJsonFunction,
         IUniversalLambdaFunction? lambdaPredicate,

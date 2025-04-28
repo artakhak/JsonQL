@@ -4,11 +4,27 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Represents a JSON function that converts a given input to a Boolean value.
+/// </summary>
+/// <remarks>
+/// This class is responsible for evaluating a JSON input and attempting to convert it into a Boolean value.
+/// It also manages errors encountered during the conversion process and can optionally assert if conversion fails.
+/// Inherits from <see cref="BooleanJsonFunctionAbstr"/>.
+/// </remarks>
 public class ConvertToBooleanJsonFunction : BooleanJsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
     private readonly IBooleanJsonFunction? _assertIfConversionFailsJsonFunction;
 
+    /// <summary>
+    /// Represents a function that converts a value to a boolean type in JSON processing, inheriting from BooleanJsonFunctionAbstr.
+    /// </summary>
+    /// <param name="functionName">The name of the function to be used in JSON processing.</param>
+    /// <param name="jsonFunction">The JSON function used to perform the conversion.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">Optional boolean function to be invoked if the conversion fails.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating JSON function values.</param>
+    /// <param name="lineInfo">Optional line information associated with the JSON function.</param>
     public ConvertToBooleanJsonFunction(string functionName, IJsonFunction jsonFunction, IBooleanJsonFunction? assertIfConversionFailsJsonFunction,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
         base(functionName, jsonFunctionContext, lineInfo)

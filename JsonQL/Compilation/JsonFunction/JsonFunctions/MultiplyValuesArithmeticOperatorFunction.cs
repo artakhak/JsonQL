@@ -3,8 +3,23 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents a function that performs multiplication of two numeric values
+/// within the context of JSON function execution.
+/// </summary>
 public class MultiplyValuesArithmeticOperatorFunction : BinaryNumericArithmeticOperationOperatorFunctionAbstr
 {
+    /// <summary>
+    /// Represents a function that performs multiplication on two numeric operands using the multiply operator.
+    /// </summary>
+    /// <param name="operand1">The first operand to be multiplied.</param>
+    /// <param name="operand2">The second operand to be multiplied.</param>
+    /// <param name="jsonFunctionContext">The context used for evaluating the JSON function.</param>
+    /// <param name="lineInfo">Optional line information for error tracing or debugging.</param>
+    /// <remarks>
+    /// This class inherits from <see cref="BinaryNumericArithmeticOperationOperatorFunctionAbstr"/>
+    /// and leverages the multiply operator implementation defined in <see cref="JsonOperatorNames.MultiplyOperator"/>.
+    /// </remarks>
     public MultiplyValuesArithmeticOperatorFunction(IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
         base(JsonOperatorNames.MultiplyOperator, operand1, operand2, jsonFunctionContext, lineInfo)

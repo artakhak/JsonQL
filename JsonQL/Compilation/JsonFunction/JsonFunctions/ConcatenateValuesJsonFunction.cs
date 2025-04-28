@@ -3,10 +3,20 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents a JSON function that concatenates values provided as operands into a single string result.
+/// </summary>
 public class ConcatenateValuesJsonFunction : StringJsonFunctionAbstr
 {
     private readonly IReadOnlyList<IJsonFunction> _operands;
 
+    /// <summary>
+    /// Represents a JSON function for concatenating multiple JSON values into a single unified string result.
+    /// </summary>
+    /// <remarks>
+    /// Inherits from <see cref="StringJsonFunctionAbstr"/> to provide advanced functionality for
+    /// combining multiple operands into a concatenated string within a JSON processing context.
+    /// </remarks>
     public ConcatenateValuesJsonFunction(string functionName, IReadOnlyList<IJsonFunction> operands, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
         base(functionName, jsonFunctionContext, lineInfo)
     {

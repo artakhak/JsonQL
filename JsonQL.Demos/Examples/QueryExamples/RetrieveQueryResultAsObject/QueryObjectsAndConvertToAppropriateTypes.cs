@@ -25,7 +25,7 @@ public class QueryObjectsAndConvertToAppropriateTypes : QueryObjectExampleManage
         // -Array T[],
         // In these examples T is either an object (value or reference type), or another collection type (one of the listed here). 
         var employees =
-            _queryManager.Query<IReadOnlyList<IEmployee>>(query,
+            _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
                 new JsonTextData("Employees",
                     LoadJsonFileHelpers.LoadJsonFile("QueryObjectsAndConvertToAppropriateTypes.json",
                         ["Examples", "QueryExamples", "RetrieveQueryResultAsObject"])),

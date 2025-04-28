@@ -7,11 +7,23 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
+/// <summary>
+/// Represents an abstract base class for JSON value mutators that work with computed or calculated values.
+/// This class is designed to modify and process JSON structures by utilizing specific JSON functions and
+/// parsed values, providing an abstraction for implementing more specialized mutator behaviors.
+/// </summary>
 public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
 {
     private readonly IParsedJsonVisitor _parsedJsonVisitor;
     private readonly IStringFormatter _stringFormatter;
 
+    /// <summary>
+    /// Represents an abstract base class for mutators that calculate custom JSON values during processing.
+    /// </summary>
+    /// <remarks>
+    /// This class extends <see cref="JsonValueMutatorAbstr"/> and provides functionality to handle parsed JSON values,
+    /// functions, and formatting during the mutation process.
+    /// </remarks>
     protected CalculatedJsonValueMutatorAbstr(IParsedSimpleValue parsedSimpleValue,
         IJsonFunction jsonFunction,
         IParsedJsonVisitor parsedJsonVisitor,
@@ -31,7 +43,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
 
         if (parsedSimpleValue == null)
         {
-            LogHelper.Context.Log.InfoFormat("The mutator [{0}] will not execute.", GetType().FullName??"null");
+            LogHelper.Context.Log.WarnFormat("The mutator [{0}] will not execute.", GetType().FullName??"null");
             return;
         }
 
@@ -42,9 +54,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
             errors.AddRange(jsonFunctionResult.Errors);
             return;
         }
-
-
-        //IReadOnlyList<IParsedValue> parsedValues = Array.Empty<IParsedValue>();
+       
         IParsedValue? parsedEvaluatedValue = null;
 
         IParsedArrayValue? CreateParsedArrayValue(IReadOnlyList<IParsedValue> parsedValues)
@@ -143,8 +153,31 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
         MutateValue(parsedSimpleValue, parsedEvaluatedValue, errors);
     }
 
+    /// <summary>
+    /// Represents the parsed simple value utilized by the JSON value mutator.
+    /// This property holds the parsed value from the JSON structure that the mutator operates upon.
+    /// It provides the context necessary to apply transformations or to evaluate JSON paths.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="ParsedSimpleValue"/> is a protected member used internally by derived
+    /// classes to access the specific parsed simple value to be mutated.
+    /// Implementations of the <see cref="CalculatedJsonValueMutatorAbstr"/>
+    /// class rely on this property for performing actions on the associated
+    /// <see cref="IParsedSimpleValue"/> during the mutation process.
+    /// </remarks>
     protected IParsedSimpleValue ParsedSimpleValue { get; }
 
+    /// <summary>
+    /// Represents the JSON function used in the calculated JSON value mutator.
+    /// This property provides access to an implementation of <see cref="IJsonFunction"/>
+    /// that defines the computational logic or lookup for evaluating JSON values during mutation processes.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="JsonFunction"/> is a protected member utilized by the
+    /// <see cref="CalculatedJsonValueMutatorAbstr"/> class to perform JSON function evaluations.
+    /// It is instrumental in determining how JSON values are processed or modified, enabling
+    /// complex transformation scenarios involving computational logic or path-based lookups.
+    /// </remarks>
     protected IJsonFunction JsonFunction { get; }
 
     /// <summary>

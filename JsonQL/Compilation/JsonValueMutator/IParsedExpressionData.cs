@@ -2,6 +2,9 @@
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
+/// <summary>
+/// Represents data for a parsed expression within a compiled JSON value mutator.
+/// </summary>
 public interface IParsedExpressionData
 {
     /// <summary>
@@ -12,23 +15,23 @@ public interface IParsedExpressionData
     string MutatorFunctionName { get; }
 
     /// <summary>
-    /// Start index of template. For example if the parsed text is "Int1 is $value(Example:Object1:Int1) and Int2 is $value(Example:Object1:Int2)",
-    /// the value of <see cref="TemplateStartIndex"/> is the index of the first or second occurrence of '$', based on which
-    /// expression an instance of <see cref="IParsedExpressionData"/> represents.
+    /// Index of template text that starts with the '$' character. For example, if the parsed text is "Int1 is $(Example.Object1.Int1) and Int2 is $(Example.Object1.Int2)",
+    /// the value of <see cref="TemplateStartIndex"/> is the index of the first '$' character for the first expression parsed from "$(Example.Object1.Int1)",
+    /// and it is the index of the second '$' character for the second expression parsed from "$(Example.Object1.Int2)".
     /// </summary>
     int TemplateStartIndex { get; }
 
     /// <summary>
-    /// Length of template text. For example if the parsed text is "Int1 is $value(Example:Object1:Int1) and Int2 is $value(Example:Object1:Int2)",
-    /// the value of <see cref="TemplateStartIndex"/> is the length of text "$value(Example:Object1:Int1)" of "$value(Example:Object1:Int2)",
-    /// based on which expression an instance of <see cref="IParsedExpressionData"/> represents.
+    /// Length of template text that starts with the '$' character. For example, if the parsed text is "Int1 is $(Example.Object1.Int1) and Int2 is $(Example.Object1.Int2)",
+    /// the value of <see cref="TemplateLength"/> is the length of a text "$(Example.Object1.Int1)" for the first parsed expression, and
+    /// it is the length of $(Example.Object1.Int2)" for the second parsed expression.
     /// </summary>
     int TemplateLength { get; }
    
     /// <summary>
     /// Parsed expression.
-    /// Example of parsed text is "Value is $value(Example:Object1:Int1 => 10)" or
-    /// "Value is $value(Example:Object1:String1 => 'String 1')".
+    /// Example of parsed text is "Value is $value(Example.Object1.Int1:10)" or
+    /// "Value is $(Example.Object1.String1:'String 1')".
     /// </summary>
     IExpressionItemBase ParsedExpressionItem { get; }
 }
@@ -44,6 +47,7 @@ public class ParsedExpressionData : IParsedExpressionData
         TemplateLength = templateLength;
     }
 
+    /// <inheritdoc />
     public IExpressionItemBase ParsedExpressionItem { get; }
 
     /// <inheritdoc />

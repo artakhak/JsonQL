@@ -11,6 +11,10 @@ public abstract class ParsedArrayValueAbstr : ParsedValueAbstr, IParsedArrayValu
     private readonly Dictionary<Guid, int> _valueIdToParsedValueIndexMap = new();
     private readonly List<IParsedValue> _values = new();
 
+    /// <summary>
+    /// Serves as an abstract base class for parsed JSON array values, providing a framework for implementing
+    /// functionality to handle and manipulate multiple parsed values within a JSON array structure.
+    /// </summary>
     protected ParsedArrayValueAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue) : base(parentJsonValue, jsonKeyValue)
     {
         _parsedJsonVisitor = parsedJsonVisitor;

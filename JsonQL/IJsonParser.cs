@@ -9,8 +9,8 @@ namespace JsonQL;
 public interface IJsonParser
 {
     /// <summary>
-    /// Parses a json text into <see cref="IRootParsedValue"/>.<br/>
-    /// The parsed value is either <see cref="IRootParsedJson"/> if the root object is json object,
+    /// Parses a JSON text into <see cref="IRootParsedValue"/>.<br/>
+    /// The parsed value is either <see cref="IRootParsedJson"/> if the root object is JSON object,
     /// or <see cref="IRootParsedArrayValue"/> if the root object is an array.
     /// </summary>
     /// <param name="jsonText">Parsed text.</param>

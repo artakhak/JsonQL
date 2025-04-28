@@ -4,6 +4,9 @@ using BindingFlags = System.Reflection.BindingFlags;
 
 namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Provides utility methods to assist with operations on collection types.
+/// </summary>
 public interface ICollectionTypeHelpers
 {
     bool TryGetItemType(Type collectionType, [NotNullWhen(true)] out Type? collectionItemType);
@@ -12,7 +15,7 @@ public interface ICollectionTypeHelpers
     /// Converts collection in <param name="convertedCollection"></param> to collection of type <param name="convertedToCollectionType"></param>>
     /// </summary>
     /// <param name="convertedCollection">Collection to convert to type <param name="convertedToCollectionType"></param></param>
-    /// <param name="convertedToCollectionType">Type to convert collection to.</param>
+    /// <param name="convertedToCollectionType">Type to convert a collection to.</param>
     /// <param name="convertedCollectionItemType">Item type of collection in collection <paramref name="convertedCollection"/>.</param>
     /// <exception cref="JsonConversionException">Throws this exception if conversion fails.</exception>
     object ConvertToCollection(IEnumerable<object?> convertedCollection, Type convertedToCollectionType, Type convertedCollectionItemType);

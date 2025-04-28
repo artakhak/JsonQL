@@ -8,25 +8,32 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Defines the contract for parsing JSON path expressions and creating corresponding JSON path functions.
+/// </summary>
 public interface IJsonValuePathJsonFunctionParser
 {
     /// <summary>
-    /// Tries to create an instance of <see cref="IJsonValuePath"/> from <param name="expressionItem"></param>.
+    /// Tries to parse and create an instance of <see cref="IJsonValuePathJsonFunction"/> using the provided parameters.
     /// </summary>
-    /// <param name="expressionItem">An expression item. Should be either an instance of <see cref="IOperatorExpressionItem"/></param>
-    /// <param name="parsedSimpleValue">Parsed element value containing json path is.</param>
-    /// <param name="jsonFunctionContext">if not null, parent function data.</param>
-    /// for multipart path expressions (e.g., parent:properties:JWT:description:Description1) or <see cref="ILiteralExpressionItem"/>
-    /// for simple json paths (e.g., WebRequestLogger).
+    /// <param name="parsedSimpleValue">The parsed simple value used to extract JSON path data.</param>
+    /// <param name="expressionItem">The expression item representing either an operator or a literal expression item.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating the JSON function, providing additional information for interpretation.</param>
+    /// <returns>An <see cref="IParseResult{T}"/> containing the parsed <see cref="IJsonValuePathJsonFunction"/>, or null if parsing fails.</returns>
     IParseResult<IJsonValuePathJsonFunction?> TryParse(IParsedSimpleValue parsedSimpleValue, IExpressionItemBase expressionItem, IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <inheritdoc />
 public class JsonValuePathJsonFunctionParser : IJsonValuePathJsonFunctionParser
 {
     private readonly IJsonValuePathLookup _jsonValuePathLookup;
 
     private readonly IJsonValueCollectionItemsSelectorPathElementFactory _collectionItemsSelectorPathElementFactory;
-    
+
+    /// <summary>
+    /// Represents a parser responsible for creating instances of <see cref="IJsonValuePathJsonFunction"/>
+    /// by analyzing the provided JSON path elements and resolving them into a functional structure.
+    /// </summary>
     public JsonValuePathJsonFunctionParser(IJsonValuePathLookup jsonValuePathLookup,
         IJsonValueCollectionItemsSelectorPathElementFactory collectionItemsSelectorPathElementFactory)
     {
@@ -161,7 +168,7 @@ public class JsonValuePathJsonFunctionParser : IJsonValuePathJsonFunctionParser
         {
             if (bracesExpressionItem.OpeningBrace.IsRoundBrace)
             {
-                // Try parse items selectors, such as 'where', 'first', etc.
+                // Try parse items selectors, such as 'Where', 'First', etc.
                 if (bracesExpressionItem.NameLiteral == null)
                 {
                     parseErrors.Add(new JsonObjectParseError(ParseErrorsConstants.InvalidSymbol,
@@ -193,14 +200,6 @@ public class JsonValuePathJsonFunctionParser : IJsonValuePathJsonFunctionParser
                 parseErrors.Add(new JsonObjectParseError("Expected at least one index.", parsedSimpleValue.LineInfo.GenerateRelativePosition(expressionItem)));
                 return null;
             }
-
-            //// TODO: See if this restriction should be removed
-            //if (currentJsonPathElements.Count > 0 && currentJsonPathElements[^1] is IJsonValueCollectionItemsSelectorPathElement {SelectsSingleItem: false} arrayItemsSelectorPathElement)
-            //{
-            //    parseErrors.Add(new JsonObjectParseError($"Multiple array items selector clause '[{arrayItemsSelectorPathElement.FunctionName}]' cannot be followed by array indexes.",
-            //        parsedSimpleValue.LineInfo.GenerateRelativePosition(expressionItem)));
-            //    return null;
-            //}
 
             var jsonValuePathElements = new List<IJsonValuePathElement>(2);
 

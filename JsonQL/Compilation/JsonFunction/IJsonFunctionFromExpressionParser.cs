@@ -5,12 +5,24 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Defines a parser interface that converts parsed expressions and context information
+/// into an instance of a JSON-based function implementation.
+/// </summary>
 public interface IJsonFunctionFromExpressionParser
 {
+    /// <summary>
+    /// Parses a JSON function from the provided simple value and expression item within the specified context.
+    /// </summary>
+    /// <param name="parsedSimpleValue">The parsed simple value representing input data to be processed into a JSON function.</param>
+    /// <param name="expressionItem">The expression item providing structural information for parsing the JSON function.</param>
+    /// <param name="jsonFunctionContext">The context containing additional information for evaluating or processing the JSON function.</param>
+    /// <returns>A parse result containing the parsed JSON function.</returns>
     IParseResult<IJsonFunction> Parse(IParsedSimpleValue parsedSimpleValue, IExpressionItemBase expressionItem,
         IJsonFunctionValueEvaluationContext jsonFunctionContext);
 }
 
+/// <inheritdoc />
 public class JsonFunctionFromExpressionParser : IJsonFunctionFromExpressionParser
 {
     private readonly IJsonValuePathJsonFunctionParser _jsonValuePathJsonFunctionParser;
@@ -20,6 +32,15 @@ public class JsonFunctionFromExpressionParser : IJsonFunctionFromExpressionParse
     private readonly IBracesJsonFunctionFactory _bracesJsonFunctionFactory;
     private readonly IOperatorJsonFunctionFactory _operatorJsonFunctionFactory;
 
+    /// <summary>
+    /// Parses expressions into corresponding JSON functions based on provided factories and parsers.
+    /// </summary>
+    /// <param name="jsonValuePathJsonFunctionParser">The parser responsible for handling JSON value path expressions.</param>
+    /// <param name="numericValueJsonFunctionFactory">Factory for creating JSON functions that handle numeric values.</param>
+    /// <param name="specialLiteralJsonFunctionFactory">Factory for creating JSON functions for special literal values.</param>
+    /// <param name="constantTextJsonFunctionFactory">Factory for creating JSON functions based on constant text values.</param>
+    /// <param name="bracesJsonFunctionFactory">Factory for handling JSON functions involving braces or grouped expressions.</param>
+    /// <param name="operatorJsonFunctionFactory">Factory for creating JSON functions based on operators within the expression.</param>
     public JsonFunctionFromExpressionParser(IJsonValuePathJsonFunctionParser jsonValuePathJsonFunctionParser,
         INumericValueJsonFunctionFactory numericValueJsonFunctionFactory,
         ISpecialLiteralJsonFunctionFactory specialLiteralJsonFunctionFactory,
@@ -117,7 +138,7 @@ public class JsonFunctionFromExpressionParser : IJsonFunctionFromExpressionParse
         if (expressionItem is IBracesExpressionItem bracesExpressionItem)
         {
             // It is possible the braces expression has no function and is used to change the order of operations like this ((x+y)*z) or (((x+y))*z) 
-            // In this case, we want to get the inner-most expression
+            // In this case, we want to get the innermost expression
             if (bracesExpressionItem.NameLiteral == null && bracesExpressionItem.OpeningBrace.IsRoundBrace)
             {
                 IBracesExpressionItem? currentBracesExpressionItem = bracesExpressionItem;

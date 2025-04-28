@@ -2,12 +2,26 @@
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Provides functionality to manage variable resolvers and resolve variable values
+/// within an evaluation context.
+/// </summary>
 public interface IVariablesManager: IResolvesVariableValue
 {
+    /// <summary>
+    /// Registers a variable resolver for use in variable value resolution.
+    /// </summary>
+    /// <param name="resolvesVariableValue">The variable resolver to register.</param>
     void Register(IResolvesVariableValue resolvesVariableValue);
+
+    /// <summary>
+    /// Unregisters a variable resolver, removing it from the list of registered resolvers.
+    /// </summary>
+    /// <param name="resolvesVariableValue">The variable resolver to unregister.</param>
     void UnRegister(IResolvesVariableValue resolvesVariableValue);
 }
 
+/// <inheritdoc />
 public class VariablesManager : IVariablesManager
 {
     private readonly List<IResolvesVariableValue> _variableResolvers = new();

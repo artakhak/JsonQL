@@ -8,6 +8,11 @@ namespace JsonQL.Compilation.JsonFunction;
 /// </summary>
 public abstract class BinaryArithmeticOperationOperatorFunctionAbstr : JsonFunctionAbstr
 {
+    /// <summary>
+    /// Abstract base class representing a binary arithmetic operation for operators such as '+', '-', '/', '*', etc.
+    /// Inherits from <see cref="JsonFunctionAbstr" /> and provides common properties and operations
+    /// for evaluating binary arithmetic expressions.
+    /// </summary>
     protected BinaryArithmeticOperationOperatorFunctionAbstr(string operatorName,
         IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
@@ -17,7 +22,16 @@ public abstract class BinaryArithmeticOperationOperatorFunctionAbstr : JsonFunct
         Operand2 = operand2;
     }
 
+    /// <summary>
+    /// Gets the first operand for the binary arithmetic operation.
+    /// This represents the left-hand side of the operation and is evaluated during the execution of the operation.
+    /// </summary>
     protected IJsonFunction Operand1 { get; }
+
+    /// <summary>
+    /// Gets the second operand for the binary arithmetic operation.
+    /// This represents the right-hand side of the operation and is evaluated during the execution of the operation.
+    /// </summary>
     protected IJsonFunction Operand2 { get; }
 
     /// <inheritdoc />
@@ -41,6 +55,12 @@ public abstract class BinaryArithmeticOperationOperatorFunctionAbstr : JsonFunct
 
         return Calculate(jsonComparable1, jsonComparable2);
     }
-    
-    public abstract IParseResult<object?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value);
+
+    /// <summary>
+    /// Performs the calculation based on the two provided JSON-comparable operand values.
+    /// </summary>
+    /// <param name="operand1Value">The first operand as an instance of <see cref="IJsonComparable"/>.</param>
+    /// <param name="operand2Value">The second operand as an instance of <see cref="IJsonComparable"/>.</param>
+    /// <returns>An instance of <see cref="IParseResult{TValue}"/> containing the result of the calculation or any errors encountered during the process.</returns>
+    protected abstract IParseResult<object?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value);
 }

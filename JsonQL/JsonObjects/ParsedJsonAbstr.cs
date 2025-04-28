@@ -12,6 +12,16 @@ public abstract class ParsedJsonAbstr : ParsedValueAbstr, IParsedJson
     private readonly List<IJsonKeyValue> _keyValues = new();
     private readonly Dictionary<string, IJsonKeyValue> _keyToJsonKeyValueMap = new(StringComparer.Ordinal);
 
+    /// <summary>
+    /// Represents an abstract base class for JSON objects parsed from a JSON structure.
+    /// Implements the <see cref="IParsedJson"/> interface and serves as a foundation
+    /// for classes representing specific types of parsed JSON objects.
+    /// </summary>
+    /// <remarks>
+    /// This class provides common properties and methods to interact with key-value pairs
+    /// contained within a parsed JSON object. It also supports traversal and visiting
+    /// of the parsed JSON structure using an <see cref="IParsedJsonVisitor"/>.
+    /// </remarks>
     protected ParsedJsonAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue) : base(parentJsonValue, jsonKeyValue)
     {
         _parsedJsonVisitor = parsedJsonVisitor;

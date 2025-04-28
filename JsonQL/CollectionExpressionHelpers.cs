@@ -12,7 +12,7 @@ internal static class CollectionExpressionHelpers
     /// <typeparam name="T">Value type.</typeparam>
     /// <param name="values"></param>
     /// <returns></returns>
-    public static IReadOnlyList<T> Create<T>(params T[] values)
+    internal static IReadOnlyList<T> Create<T>(params T[] values)
     {
         return new List<T>(values);
     }

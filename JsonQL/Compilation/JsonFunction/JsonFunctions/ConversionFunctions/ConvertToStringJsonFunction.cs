@@ -4,11 +4,28 @@ using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions.ConversionFunctions;
 
+/// <summary>
+/// Represents a function that converts an input value into a string representation in JSON format.
+/// </summary>
+/// <remarks>
+/// This class extends the <see cref="StringJsonFunctionAbstr"/> to implement custom logic for converting
+/// various types of JSON-compatible input values into their respective string representations.
+/// If the conversion process encounters errors, it can optionally assert them through the
+/// provided assertion function.
+/// </remarks>
 public class ConvertToStringJsonFunction : StringJsonFunctionAbstr
 {
     private readonly IJsonFunction _jsonFunction;
     private readonly IBooleanJsonFunction? _assertIfConversionFailsJsonFunction;
 
+    /// <summary>
+    /// Represents a JSON function to handle conversion of values to string type.
+    /// </summary>
+    /// <param name="functionName">The name of the function being implemented.</param>
+    /// <param name="jsonFunction">The JSON function instance providing the value to convert to a string.</param>
+    /// <param name="assertIfConversionFailsJsonFunction">An optional Boolean JSON function to assert if conversion to string fails.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating the JSON function value.</param>
+    /// <param name="lineInfo">Optional information about the source line for debugging and error tracking.</param>
     public ConvertToStringJsonFunction(string functionName, IJsonFunction jsonFunction,
         IBooleanJsonFunction? assertIfConversionFailsJsonFunction,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :

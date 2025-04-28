@@ -1,5 +1,8 @@
 ﻿namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
+/// <summary>
+/// Represents the possible result types produced by a JSON function.
+/// </summary>
 public enum JsonFunctionResultType
 {
     /// <summary>
@@ -33,7 +36,7 @@ public enum JsonFunctionResultType
     JsonArray,
 
     /// <summary>
-    /// Collection. This is normally result of json path function, such as x.Where(y => y > 10).
+    /// Collection. This is normally result of JSON path function, such as "x.Where(y => y > 10)".
     /// </summary>
     Collection,
 

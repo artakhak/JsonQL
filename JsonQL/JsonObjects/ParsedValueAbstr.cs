@@ -3,7 +3,11 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonObjects;
 
-/// <inheritdoc />
+/// <summary>
+/// Represents an abstract base class for parsed values in a JSON structure.
+/// Implements the <see cref="IParsedValue"/> interface and provides shared functionality
+/// for handling JSON path resolution, parent-child relationships, and JSON metadata.
+/// </summary>
 public abstract class ParsedValueAbstr: IParsedValue
 {
     protected ParsedValueAbstr(IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue)

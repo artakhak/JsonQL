@@ -13,6 +13,12 @@
 		<None Remove="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 		<None Remove="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
 		<None Remove="Diagnostics\ExpectedCompiledJson.json" />
+		<None Remove="Functions\MathFunctions\ExpectedCompiledJson.json" />
+		<None Remove="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
+		<None Remove="Functions\MathFunctions\IsOdd\JsonFile1.json" />
+		<None Remove="Functions\MathFunctions\IsOdd\JsonFile2.json" />
+		<None Remove="Functions\MathFunctions\JsonFile1.json" />
+		<None Remove="Functions\MathFunctions\JsonFile2.json" />
 		<None Remove="JsonMutators\CopyFields\CopiedFieldsReplaceObjectFields\ExpectedCompiledJson.json" />
 		<None Remove="JsonMutators\CopyFields\CopyFieldsFromCurrentJson\ExpectedCompiledJson.json" />
 		<None Remove="JsonMutators\CopyFields\CopyFieldsFromParent\ExpectedCompiledJson.json" />
@@ -202,6 +208,12 @@
 	  <EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 	  <EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
 	  <EmbeddedResource Include="Diagnostics\ExpectedCompiledJson.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile1.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile2.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\ExpectedCompiledJson.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile1.json" />
+	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile2.json" />
 	  <EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplaceObjectFields\ExpectedCompiledJson.json" />
 	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromCurrentJson\ExpectedCompiledJson.json" />
 	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromParent\ExpectedCompiledJson.json" />

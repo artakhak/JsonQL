@@ -6,6 +6,11 @@ using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonToObjectConversion;
 
+/// <summary>
+/// Represents a manager responsible for converting parsed JSON values into strongly-typed objects.
+/// This interface defines the contract for handling the transformation of JSON data into various target types
+/// while respecting type nullability and applying any specified conversion settings overrides.
+/// </summary>
 public interface IJsonParsedValueConversionManager
 {
     /// <summary>
@@ -37,6 +42,7 @@ public interface IJsonParsedValueConversionManager
         IJsonConversionSettingsOverrides? jsonConversionSettingOverrides = null);
 }
 
+/// <inheritdoc />
 public class JsonParsedValueConversionManager : IJsonParsedValueConversionManager
 {
     private readonly ISimpleJsonValueSerializer _simpleJsonValueSerializer;
@@ -48,7 +54,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     private readonly IJsonConversionSettingsWrapper _jsonConversionSettingsWrapper;
 
     private const string GeneralConversionError = "Conversion failed";
-
+    
     public JsonParsedValueConversionManager(ISimpleJsonValueSerializer simpleJsonValueSerializer, IJsonConversionSettings jsonConversionSettings,
         IJsonConversionSettingsWrapperFactory jsonConversionSettingsWrapperFactory,
         IValueNullabilityHelpers valueNullabilityHelpers, ICollectionTypeHelpers collectionTypeHelpers,
@@ -209,7 +215,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             if (!CanCreateInstanceOfType(typeToConvertToImplementation))
             {
-                createInstanceErrorMessage = $"Cannot created an instance of type [{typeToConvertToImplementation}] mapped to [{typeToConvertTo}]";
+                createInstanceErrorMessage = $"Cannot create an instance of type [{typeToConvertToImplementation}] mapped to [{typeToConvertTo}]";
             }
         }
         else if (CanCreateInstanceOfType(typeToConvertTo))
@@ -358,7 +364,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
    
     /// <summary>
     /// Adds an error and returns true if processing can continue.
-    /// Returns false, if added error should fail conversion.
+    /// Returns false if added error should fail conversion.
     /// </summary>
     private bool AddError(ContextObject contextObject, ConversionErrorType conversionErrorType, string error, IParsedValue? parsedValue)
     {

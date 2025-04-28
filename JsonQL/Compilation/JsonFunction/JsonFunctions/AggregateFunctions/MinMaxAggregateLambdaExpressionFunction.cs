@@ -7,12 +7,21 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 /// <summary>
 /// Evaluating expressions like:<br/>
 /// "Min(Object1.Array1, x => x > 10 || any(x.Capitalization > 300) || x.count() >= 2)"<br/>
-/// "$(Max(Object1.Array1, x => x % 2 == 0))==156"
+/// "$(Min(Object1.Array1, x => x % 2 == 0))==156"
 /// </summary>
 public class MinMaxAggregateLambdaExpressionFunction : AggregateLambdaExpressionFunctionAbstr<MinMaxAggregationCalculationsData, double>, IDoubleJsonFunction
 {
     private readonly bool _isMinAggregation;
 
+    /// <summary>
+    /// Represents a specialized aggregate lambda expression function that computes the minimum or maximum
+    /// value based on specified criteria within a JSON data structure.
+    /// </summary>
+    /// <remarks>
+    /// This function supports aggregating numeric values and determining either the minimum or maximum value,
+    /// as defined by the <paramref name="isMinAggregation"/> parameter, while supporting optional predicates
+    /// and JSON path evaluations.
+    /// </remarks>
     public MinMaxAggregateLambdaExpressionFunction(
         string functionName,
         bool isMinAggregation,
@@ -38,6 +47,7 @@ public class MinMaxAggregateLambdaExpressionFunction : AggregateLambdaExpression
         calculationsData.MinMaxValue = _isMinAggregation ? Double.MaxValue : Double.MinValue;
     }
 
+    /// <inheritdoc />
     protected override void UpdateAggregatedValue(MinMaxAggregationCalculationsData calculationsData, 
         IJsonFunctionEvaluationContextData? contextData, double? lambdaFunctionSelectedValue, bool predicateEvaluationResult, List<IJsonObjectParseError> errors, ref bool stopEvaluatingValues)
     {

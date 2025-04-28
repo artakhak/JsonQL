@@ -1,40 +1,59 @@
-﻿using JsonQL.Compilation.JsonValueMutator;
+﻿using System.Diagnostics.CodeAnalysis;
+using JsonQL.Compilation.JsonValueMutator;
 using JsonQL.JsonObjects;
 using Newtonsoft.Json;
 using OROptimizer.Diagnostics.Log;
-using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.Compilation;
 
+/// <summary>
+/// Represents an interface for compiling JSON text into an executable or analyzable structure.
+/// </summary>
 public interface IJsonCompiler
 {
     /// <summary>
-    /// Compiles json with expressions in <paramref name="jsonText"/> and returns a result and returns <see cref="ICompilationResult"/>.<br/>
-    /// The parameter <paramref name="jsonText"/> is a json text that can have JsonQL expressions that might reference objects in the same json or any<br/>
-    /// of the parents in <paramref name="compiledParents"/>. The objects referenced in JsonQL expressions in <paramref name="jsonText"/><br/>
-    /// are looked up first in <paramref name="jsonText"/> and then in <paramref name="compiledParents"/>, in such a way that json files<br/>
-    /// that appear earlier in list <paramref name="compiledParents"/> will be searched first.
+    /// Compiles the JSON provided in <paramref name="jsonTextData"/> and produces a result that includes the compiled JSON and any errors encountered during the process.
+    /// Compilation is performed hierarchically from parent JSON files to the specified JSON, resolving any references to parent JSON during the process.
     /// </summary>
-    /// <param name="jsonText">Json text to compile.</param>
-    /// <param name="jsonTextIdentifier">Json text unique identifier. Will be used in errors in result (in <see cref="ICompilationErrorItem.JsonTextIdentifier"/>).</param>
-    /// <param name="compiledParents"></param>
-    /// <returns></returns>
+    /// <remarks>Use this overload if JSON texts in <paramref name="jsonTextData"/> either have no parents,
+    /// or if the parents in <see cref="IJsonTextData.ParentJsonTextData"/> are used only once.
+    /// If JSON texts are used multiple times, use the over overloaded method instead.
+    /// </remarks>
+    /// <param name="jsonTextData">An object containing the JSON text and metadata for compilation, including references to parent JSON data.</param>
+    /// <returns>
+    /// An <see cref="ICompilationResult"/> containing the output of the compilation.<br/>
+    /// The result includes the compiled JSON files in order, starting with parent JSON files followed by child JSON files,<br/>
+    /// as well as any errors that occurred during the compilation.<br/>
+    /// Since in the presence of compilation errors some files might not be in <see cref="ICompilationResult.CompiledJsonFiles"/>,<br/>
+    /// a compiled file can be looked up by using <see cref="ICompiledJsonData.TextIdentifier"/>.<br/>
+    /// Example: [var compiledFile=result.CompiledJsonFiles.FirstOrDefault(x=> x.TextIdentifier=="myJsonTextIdentifier")].
+    /// </returns>
+    ICompilationResult Compile(IJsonTextData jsonTextData);
+    
+    /// <summary>
+    /// Compiles JSON with expressions in <paramref name="jsonText"/> and returns the results in <see cref="ICompilationResult"/>.
+    /// JsonQL expressions in <paramref name="jsonText"/> are resolved by looking up objects in the following order:
+    /// 1. Objects within <paramref name="jsonText"/> itself.
+    /// 2. Objects in JSON files within <paramref name="compiledParents"/>, searched in the order they appear in the list.
+    /// </summary>
+    /// <remarks>
+    /// Use this overload if the same JSON texts are compiled multiple times.
+    /// In these scenarios it is more efficient to compile the JSON texts once using <see cref="Compile"/> method,
+    /// and then re-use the compiled files.
+    /// </remarks>
+    /// <param name="jsonText">The JSON text to compile, which includes ma JsonQL expressions.</param>
+    /// <param name="jsonTextIdentifier">A unique identifier for the JSON text. Used to tag errors in the compilation result.</param>
+    /// <param name="compiledParents">A list of already compiled JSON data providing parent objects for resolving JsonQL expressions.</param>
+    /// <returns>
+    /// An <see cref="ICompilationResult"/> containing the output of the compilation.<br/>
+    /// The result includes the compiled JSON files in order, starting with parent JSON files followed by child JSON files,<br/>
+    /// as well as any errors that occurred during the compilation.<br/>
+    /// Since in the presence of compilation errors some files might not be in <see cref="ICompilationResult.CompiledJsonFiles"/>,<br/>
+    /// a compiled file can be looked up by using <see cref="ICompiledJsonData.TextIdentifier"/>.<br/>
+    /// Example: [var compiledFile=result.CompiledJsonFiles.FirstOrDefault(x=> x.TextIdentifier=="myJsonTextIdentifier")].
+    /// </returns>
     ICompilationResult Compile(
         string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents);
-
-    /// <summary>
-    /// Compiles json with expressions in <paramref name="jsonTextData"/> and returns <see cref="ICompilationResult"/>.
-    /// Json objects in <paramref name="jsonTextData"/> are compiled in the following order:
-    /// The topmost parent (retrieved via generating list of objects using <see cref="IJsonTextData.ParentJsonTextData"/> properties) is
-    /// compiled first. Then the next parent is complied by using json in parent json objects compiled earlier, to resolve any expressions that
-    /// reference parent jsons (by looking up closest parent first). Eventually json in <paramref name="jsonTextData"/>.<see cref="IJsonTextData.JsonText"/>
-    /// is compiled and the result is returned in result in <see cref="ICompilationResult.CompiledJsonFiles"/>.
-    /// To look-up the parsed json in specific file, look up parsed json in <see cref="ICompilationResult.CompiledJsonFiles"/> by using
-    /// <see cref="ICompiledJsonData.TextIdentifier"/>.
-    /// The compiled files are sorted in such a way that the parent parsed json files appear before the child parsed json files.
-    /// </summary>
-    /// <param name="jsonTextData">Json text data that contains json data for all json files to compile.</param>
-    ICompilationResult Compile(IJsonTextData jsonTextData);
 }
 
 /// <inheritdoc />
@@ -47,6 +66,14 @@ public class JsonCompiler : IJsonCompiler
 
     private readonly ICompilationResultLogger _compilationResultLogger;
 
+    /// <summary>
+    /// Provides functionality to compile JSON strings with embedded expressions into structured data.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="JsonCompiler"/> utilizes a set of implementations specified in <see cref="IJsonCompilerParameters"/>
+    /// to parse JSON, handle parsed JSON objects, apply mutators, and log compilation results. It supports creating
+    /// resulting JSON data by resolving references to objects within the input JSON or its compiled parent JSONs.
+    /// </remarks>
     public JsonCompiler(IJsonCompilerParameters parameters)
     {
         _jsonParser = parameters.JsonParser;
@@ -58,6 +85,7 @@ public class JsonCompiler : IJsonCompiler
         DateTimeOperationsAmbientContext.Context = parameters.DateTimeOperations;
     }
 
+    /// <inheritdoc />
     public ICompilationResult Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)
     {
         var compilationResult = new CompilationResult();
@@ -72,8 +100,6 @@ public class JsonCompiler : IJsonCompiler
             var currentParentCompiledJsonData = compiledParents[i];
 
             var currentParentJsonTextData = new JsonTextData(currentParentCompiledJsonData.TextIdentifier, currentParentCompiledJsonData.JsonText, parentJsonTextData);
-
-
             var currentParentJsonObjectData = new JsonObjectData(currentParentJsonTextData, currentParentCompiledJsonData.CompiledParsedValue, parentJsonObjectData);
 
             parentJsonObjectData = currentParentJsonObjectData;

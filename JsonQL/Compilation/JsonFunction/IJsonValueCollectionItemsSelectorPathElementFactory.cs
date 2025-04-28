@@ -8,12 +8,33 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Provides a factory for creating instances of <see cref="IJsonValueCollectionItemsSelectorPathElement"/>
+/// based on specified parameters like parsed values, function context, and function name.
+/// </summary>
 public interface IJsonValueCollectionItemsSelectorPathElementFactory
 {
+    // TODO: See if it makes sense to move this method somewhere else.
+    // Currently it makes sense to have this in the same intreface since the implementation
+    // of <see cref="Create"/> needs access to collection function names list too, but this method will be re-evaluated.
+    /// <summary>
+    /// Determines whether the specified function name corresponds to a JSON value collection items selector function.
+    /// </summary>
+    /// <param name="functionName">The name of the function to check.</param>
+    /// <returns><c>true</c> if the function name is recognized as a JSON value collection items selector function; otherwise, <c>false</c>.</returns>
     bool IsJsonValueCollectionItemsSelectorFunction(string functionName);
 
+    /// <summary>
+    /// Creates an instance of <see cref="IJsonValueCollectionItemsSelectorPathElement"/> based on the provided parameters.
+    /// </summary>
+    /// <param name="parsedSimpleValue">The parsed simple value to be used for constructing the selector path element.</param>
+    /// <param name="bracesExpressionItem">The braces expression item associated with the selector path.</param>
+    /// <param name="functionName">The name of the function associated with the selector.</param>
+    /// <param name="jsonFunctionContext">The context for evaluating the JSON function during compilation.</param>
+    /// <param name="lineInfo">Optional line information for the parsed content.</param>
+    /// <returns>A parse result that includes the created <see cref="IJsonValueCollectionItemsSelectorPathElement"/>.</returns>
     IParseResult<IJsonValueCollectionItemsSelectorPathElement> Create(IParsedSimpleValue parsedSimpleValue,
-        IBracesExpressionItem bracesExpressionItem, string functionName, 
+        IBracesExpressionItem bracesExpressionItem, string functionName,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo);
 }
 
@@ -28,19 +49,13 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         {JsonValuePathFunctionNames.ReverseCollectionItemsSelectorFunction},
         {JsonValuePathFunctionNames.WhereCollectionItemsFunction},
         {JsonValuePathFunctionNames.SelectCollectionItemsFunction},
-        {JsonValuePathFunctionNames.TransformCollectionItemsFunction},
         {JsonValuePathFunctionNames.FirstCollectionItemSelectorFunction},
         {JsonValuePathFunctionNames.LastCollectionItemSelectorFunction},
         {JsonValuePathFunctionNames.CollectionItemSelectorFunction}
     };
 
-    public JsonValueCollectionItemsSelectorPathElementFactory()
-    {
-        
-    }
-
     /// <summary>
-    /// This value cannot be injected in constructor because of circular dependencies.
+    /// This value cannot be injected in the constructor because of circular dependencies.
     /// The value is not in interface <see cref="IJsonValuePathJsonFunctionParser"/> and should be set in DI setup.
     /// </summary>
     public IJsonFunctionFromExpressionParser JsonFunctionFromExpressionParser

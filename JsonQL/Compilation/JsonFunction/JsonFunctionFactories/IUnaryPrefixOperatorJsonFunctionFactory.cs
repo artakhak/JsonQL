@@ -6,15 +6,24 @@ using UniversalExpressionParser.ExpressionItems;
 namespace JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 
 /// <summary>
-/// A factory for parsing a unary prefix operator expressions (e.g., "-Object1.Int1" or "!x[0].Bool1")) into a <see cref="IJsonFunction"/>.
+/// Represents a factory interface for creating JSON functions that handle unary prefix operator expressions.
 /// </summary>
+/// <remarks>
+/// A unary prefix operator is an operator placed before its operand such as "-" or "!". This interface provides
+/// the necessary functionality to parse and construct JSON functions for such operations.
+/// </remarks>
+/// <example>
+/// Examples of unary expressions parsed by operators created by this factory are operators "-" and "!" in these expressions:<br/>
+/// <b>-Object1.Int1</b><br/>
+/// <b>!x[0].Bool1</b>
+/// </example>
 public interface IUnaryPrefixOperatorJsonFunctionFactory
 {
     /// <summary>
     /// Tries to create <see cref="IJsonFunction"/> from unary prefix operator expression. 
-    /// Example:[-Object1.Int1] or [!x[0].Bool1]
+    /// Examples:<b>-Object1.Int1</b> or <b>!x[0].Bool1</b>
     /// </summary>
-    /// <param name="parsedSimpleValue">Parsed json value which contains the expression to be parsed.</param>
+    /// <param name="parsedSimpleValue">Parsed JSON value which contains the expression to be parsed.</param>
     /// <param name="operatorExpressionItem">Operator expression to convert to <see cref="IJsonFunction"/>.</param>
     /// <param name="jsonFunctionContext">If not null, parent function data.</param>
     /// <param name="operand">Operand.</param>
@@ -30,6 +39,15 @@ public interface IUnaryPrefixOperatorJsonFunctionFactory
         IExpressionItemBase operand, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? operatorLineInfo);
 }
 
+/// <summary>
+/// Represents a factory for creating JSON functions corresponding to unary prefix operator expressions.
+/// </summary>
+/// <remarks>
+/// A unary prefix operator is an operator applied to a single operand, positioned before the operand, such as "-" (negative value operator),
+/// "!" (negate boolean value operator), or "typeof" (type evaluation operator). This factory provides methods for constructing JSON functions
+/// to process these operators and their respective operands within the context of the parsed JSON data.
+/// </remarks>
+/// <seealso cref="IUnaryPrefixOperatorJsonFunctionFactory" />
 public class UnaryPrefixOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IUnaryPrefixOperatorJsonFunctionFactory
 {
     /// <inheritdoc />

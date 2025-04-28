@@ -4,10 +4,19 @@ using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
+/// <summary>
+/// Represents a specific path element in a JSON value path used to select items from a collection.
+/// This class provides functionality for filtering or extracting collection items based on a
+/// lambda function and evaluating potential variable values.
+/// </summary>
 public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IJsonPathLambdaFunction _jsonPathLambdaFunction;
 
+    /// <summary>
+    /// Represents a path element in a JSON value lookup that selects items from a collection
+    /// based on a specified lambda function.
+    /// </summary>
     public SelectCollectionItemsPathElement(
         IJsonPathLambdaFunction jsonPathLambdaFunction,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.SelectCollectionItemsFunction, lineInfo)

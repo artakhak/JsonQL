@@ -10,23 +10,24 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;
 
+/// <summary>
+/// Provides helper methods for parsing JSON functions from an expression.
+/// </summary>
 public static class JsonFunctionFromExpressionParseHelpers
 {
-    public static bool ValidateNoParameters(string functionName,
-        IReadOnlyList<IExpressionItemBase> functionParameters,
-        IJsonLineInfo? functionLineInfo,
-        [NotNullWhen(false)] out IJsonObjectParseError? jsonObjectParseError)
-    {
-        jsonObjectParseError = null;
-        if (functionParameters.Any())
-        {
-            jsonObjectParseError = new JsonObjectParseError($"Function [{functionName}] has no parameters. Actual number of parameters is {functionParameters.Count}.", functionLineInfo);
-            return false;
-        }
-
-        return true;
-    }
-
+    /// <summary>
+    /// Attempts to parse a single JSON function parameter and returns an <see cref="IParseResult{T}"/> instance.
+    /// If the parsing is successful, the returned value will contain the parsed parameter corresponding to the provided <paramref name="functionParameterMetadata"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of the JSON function to be returned, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <param name="parser">The JSON function parser used to perform the operation.</param>
+    /// <param name="parsedSimpleValue">The parsed simple value from the JSON input.</param>
+    /// <param name="functionName">The name of the function whose parameter is being parsed.</param>
+    /// <param name="functionParameters">The list of function parameter expressions for the function being parsed.</param>
+    /// <param name="functionParameterMetadata">Metadata describing the expected function parameter to be parsed.</param>
+    /// <param name="jsonFunctionContext">The evaluation context containing additional information for parsing or evaluating the JSON function, if available.</param>
+    /// <param name="functionLineInfo">The line and position information of the function in the JSON source, if available.</param>
+    /// <returns>An <see cref="IParseResult{T}"/> holding the parsed function parameter, or errors if parsing fails.</returns>
     public static IParseResult<T?> TryParseJsonFunctionParameter<T>(this IJsonFunctionFromExpressionParser parser,
         IParsedSimpleValue parsedSimpleValue,
         string functionName,
@@ -45,6 +46,21 @@ public static class JsonFunctionFromExpressionParseHelpers
         return new ParseResult<T?>((T?)parsedJsonFunctionsResult.Value[0]);
     }
 
+    /// <summary>
+    /// Attempts to parse two JSON function parameters and returns an <see cref="IParseResult{TValue}"/> containing a tuple with the parsed parameters.
+    /// If the parsing is successful, the returned tuple will include the parsed parameters corresponding to the provided metadata.
+    /// </summary>
+    /// <typeparam name="T1">The type of the first JSON function to be parsed, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <typeparam name="T2">The type of the second JSON function to be parsed, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <param name="parser">The JSON function parser used to perform the operation.</param>
+    /// <param name="parsedSimpleValue">The parsed simple value from the JSON input.</param>
+    /// <param name="functionName">The name of the function whose parameters are being parsed.</param>
+    /// <param name="functionParameters">The list of function parameter expressions for the function being parsed.</param>
+    /// <param name="functionParameterMetadata1">Metadata describing the expected first function parameter to be parsed.</param>
+    /// <param name="functionParameterMetadata2">Metadata describing the expected second function parameter to be parsed.</param>
+    /// <param name="jsonFunctionContext">The evaluation context containing additional information for parsing or evaluating the JSON function, if available.</param>
+    /// <param name="functionLineInfo">The line and position information of the function in the JSON source, if available.</param>
+    /// <returns>An <see cref="IParseResult{(T1?, T2?)}"/> holding a tuple with the parsed function parameters, or errors if the parsing fails.</returns>
     public static IParseResult<(T1? parameter1, T2? parameter2)> TryParseJsonFunctionParameters<T1, T2>(this IJsonFunctionFromExpressionParser parser,
         IParsedSimpleValue parsedSimpleValue,
         string functionName,
@@ -63,6 +79,23 @@ public static class JsonFunctionFromExpressionParseHelpers
         return new ParseResult<(T1? parameter1, T2? parameter2)>(((T1?)parsedJsonFunctionsResult.Value[0], (T2?)parsedJsonFunctionsResult.Value[1]));
     }
 
+    /// <summary>
+    /// Attempts to parse multiple JSON function parameters and returns an <see cref="IParseResult{T}"/> instance containing a tuple of parsed parameters.
+    /// If the parsing is successful, the tuple will include the parsed parameters corresponding to the provided metadata.
+    /// </summary>
+    /// <typeparam name="T1">The type of the first JSON function to be returned, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <typeparam name="T2">The type of the second JSON function to be returned, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <typeparam name="T3">The type of the third JSON function to be returned, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <param name="parser">The JSON function parser used to perform the operation.</param>
+    /// <param name="parsedSimpleValue">The parsed simple value from the JSON input.</param>
+    /// <param name="functionName">The name of the function whose parameters are being parsed.</param>
+    /// <param name="functionParameters">The list of function parameter expressions for the function being parsed.</param>
+    /// <param name="functionParameterMetadata1">Metadata describing the expected first function parameter to be parsed.</param>
+    /// <param name="functionParameterMetadata2">Metadata describing the expected second function parameter to be parsed.</param>
+    /// <param name="functionParameterMetadata3">Metadata describing the expected third function parameter to be parsed.</param>
+    /// <param name="jsonFunctionContext">The evaluation context containing additional information for parsing or evaluating the JSON function, if available.</param>
+    /// <param name="functionLineInfo">The line and position information of the function in the JSON source, if available.</param>
+    /// <returns>An <see cref="IParseResult{T}"/> holding a tuple with the parsed function parameters, or errors if parsing fails.</returns>
     public static IParseResult<(T1? parameter1, T2? parameter2, T3? parameter3)> TryParseJsonFunctionParameters<T1, T2, T3>(
         this IJsonFunctionFromExpressionParser parser,
         IParsedSimpleValue parsedSimpleValue,
@@ -283,6 +316,19 @@ public static class JsonFunctionFromExpressionParseHelpers
         return new ParseResult<IReadOnlyList<IJsonFunction?>>(resolvedJsonFunctions);
     }
 
+    /// <summary>
+    /// Attempts to parse a collection of JSON function parameters and returns an <see cref="IParseResult{T}"/> containing a list of parsed JSON functions.
+    /// If parsing succeeds, the result will contain a collection of <typeparamref name="TJsonFunction"/> instances corresponding to the provided <paramref name="functionParameters"/>.
+    /// </summary>
+    /// <typeparam name="TJsonFunction">The type of the JSON functions to be parsed, which must implement <see cref="IJsonFunction"/>.</typeparam>
+    /// <param name="parser">The JSON function parser responsible for handling the parsing of the function parameters.</param>
+    /// <param name="parsedSimpleValue">The parsed simple value representing additional contextual information for the JSON input.</param>
+    /// <param name="functionName">The name of the function whose parameters are being parsed.</param>
+    /// <param name="functionParameters">The list of function parameter expressions to be parsed into <typeparamref name="TJsonFunction"/> instances.</param>
+    /// <param name="parameterMetadata">Metadata describing the type and requirements of the function parameters that need to be parsed.</param>
+    /// <param name="jsonFunctionContext">The evaluation context used for parsing or evaluating JSON functions, providing additional contextual data if applicable.</param>
+    /// <param name="functionLineInfo">The line and position information from the JSON source that corresponds to the function being parsed, if available.</param>
+    /// <returns>An <see cref="IParseResult{T}"/> containing the parsed JSON function collection, or errors in case parsing fails.</returns>
     public static IParseResult<IReadOnlyList<TJsonFunction>> TryParseJsonFunctionCollectionParameter<TJsonFunction>(this IJsonFunctionFromExpressionParser parser,
         IParsedSimpleValue parsedSimpleValue,
         string functionName,

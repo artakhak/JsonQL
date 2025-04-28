@@ -2,12 +2,14 @@
 
 namespace JsonQL.JsonToObjectConversion.Serializers;
 
+/// <inheritdoc />
 public class TypedInt32SimpleJsonValueSerializer : ITypedSimpleJsonValueSerializer
 {
+    /// <inheritdoc />
     public Type SerializedType => typeof(Int32);
 
     /// <inheritdoc />
-    public bool TrySerialize(Type typeToDeserializeTo, object value, [NotNullWhen(true)] out object? serializedValue)
+    public bool TrySerialize(object value, [NotNullWhen(true)] out object? serializedValue)
     {
         if (value is int intValue)
         {
