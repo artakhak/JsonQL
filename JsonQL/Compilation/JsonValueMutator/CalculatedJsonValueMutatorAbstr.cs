@@ -43,7 +43,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
 
         if (parsedSimpleValue == null)
         {
-            LogHelper.Context.Log.WarnFormat("The mutator [{0}] will not execute.", GetType().FullName??"null");
+            ThreadStaticLogging.Log.WarnFormat("The mutator [{0}] will not execute.", GetType().FullName??"null");
             return;
         }
 
@@ -61,7 +61,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
         {
             if (parsedSimpleValue.ParentJsonValue == null)
             {
-                LogHelper.Context.Log.ErrorFormat("The value of [{0}.{1}] is null.",
+                ThreadStaticLogging.Log.ErrorFormat("The value of [{0}.{1}] is null.",
                     typeof(IParsedSimpleValue).FullName!, nameof(IParsedSimpleValue.ParentJsonValue));
                 return null;
             }
@@ -89,7 +89,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
             {
                 var jsonValuePathJsonFunction = this.JsonFunction as IJsonValuePathJsonFunction;
 
-                LogHelper.Context.Log.ErrorFormat("Invalid implementation [{0}] in path [{1}]. Expected either [{2}] or [{3}].",
+                ThreadStaticLogging.Log.ErrorFormat("Invalid implementation [{0}] in path [{1}]. Expected either [{2}] or [{3}].",
                     jsonValuePathLookupResult.GetType().FullName??"null",
                     jsonValuePathJsonFunction?.JsonValuePath.ToString()??"null",
                     typeof(ICollectionJsonValuePathLookupResult),
@@ -125,7 +125,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
                         if (!_stringFormatter.TryFormat(jsonFunctionResult.Value, out var formattedValue))
                         {
                             formattedValue = jsonFunctionResult.Value.ToString()!;
-                            LogHelper.Context.Log.ErrorFormat("Failed to format value [{0}] of type [{1}].",
+                            ThreadStaticLogging.Log.ErrorFormat("Failed to format value [{0}] of type [{1}].",
                                 formattedValue, jsonFunctionResult.Value.GetType());
                         }
 

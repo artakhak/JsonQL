@@ -60,7 +60,7 @@ public abstract class ParsedJsonAbstr : ParsedValueAbstr, IParsedJson
                 {
                     _keyValues.Add(value);
                     this.RootParsedValue.ValueAdded(value.Value);
-                    LogHelper.Context.Log.ErrorFormat("Key [{0}] is missing in [{1}]", key, nameof(_keyValues));
+                    ThreadStaticLogging.Log.ErrorFormat("Key [{0}] is missing in [{1}]", key, nameof(_keyValues));
                 }
             }
             else
@@ -103,7 +103,7 @@ public abstract class ParsedJsonAbstr : ParsedValueAbstr, IParsedJson
         }
         else
         {
-            LogHelper.Context.Log.ErrorFormat("Key [{0}] is missing in [{1}]", key, nameof(_keyValues));
+            ThreadStaticLogging.Log.ErrorFormat("Key [{0}] is missing in [{1}]", key, nameof(_keyValues));
         }
 
         _keyToJsonKeyValueMap.Remove(key);

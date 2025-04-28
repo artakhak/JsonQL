@@ -50,7 +50,7 @@ public class ConvertToStringJsonFunction : StringJsonFunctionAbstr
 
             if (jsonComparable.Value is DateTime dateTime)
             {
-                return new ParseResult<string?>((string?)DateTimeOperationsAmbientContext.Context.ToString(dateTime));
+                return new ParseResult<string?>((string?)ThreadStaticDateTimeOperations.DateTimeOperations.ToString(dateTime));
             }
             
             if (jsonComparable.Value is bool)

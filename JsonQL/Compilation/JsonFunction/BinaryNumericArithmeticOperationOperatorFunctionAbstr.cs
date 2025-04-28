@@ -34,7 +34,7 @@ public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : Bi
         catch (Exception e) // OverflowException
         {
             var errorMessage = $"Failed to evaluate the operator [{this.FunctionName}] for values [{operand1Value}] and [{operand2Value}].";
-            LogHelper.Context.Log.Error(errorMessage, e);
+            ThreadStaticLogging.Log.Error(errorMessage, e);
             return new ParseResult<object?>(CollectionExpressionHelpers.Create(new JsonObjectParseError(errorMessage, this.LineInfo)));
         }
     }

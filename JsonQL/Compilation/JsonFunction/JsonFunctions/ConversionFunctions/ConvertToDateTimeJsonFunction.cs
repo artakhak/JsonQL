@@ -55,7 +55,7 @@ public class ConvertToDateTimeJsonFunction : DateTimeJsonFunctionAbstr
                 return new ParseResult<DateTime?>(dateTime);
             }
 
-            if (jsonComparable.Value is string stringValue && DateTimeOperationsAmbientContext.Context.TryParse(stringValue, out var parsedDateTime))
+            if (jsonComparable.Value is string stringValue && ThreadStaticDateTimeOperations.DateTimeOperations.TryParse(stringValue, out var parsedDateTime))
             {
                 return new ParseResult<DateTime?>(parsedDateTime);
             }

@@ -81,8 +81,9 @@ public class JsonCompiler : IJsonCompiler
         _jsonValueMutatorFunctionTemplatesParser = parameters.JsonValueMutatorFunctionTemplatesParser;
         _jsonValueMutatorFactory = parameters.JsonValueMutatorFactory;
         _compilationResultLogger = parameters.CompilationResultLogger;
-        LogAmbientContext.Context = parameters.Logger;
-        DateTimeOperationsAmbientContext.Context = parameters.DateTimeOperations;
+
+        ThreadStaticLogging.Log = parameters.Logger;
+        ThreadStaticDateTimeOperations.DateTimeOperations = parameters.DateTimeOperations;
     }
 
     /// <inheritdoc />
@@ -158,7 +159,7 @@ public class JsonCompiler : IJsonCompiler
         }
         catch (Exception e)
         {
-            LogHelper.Context.Log.Error($"Failed to parse json text file with [{nameof(IJsonTextData.TextIdentifier)}]=[{jsonTextIdentifier}].", e);
+            ThreadStaticLogging.Log.Error($"Failed to parse json text file with [{nameof(IJsonTextData.TextIdentifier)}]=[{jsonTextIdentifier}].", e);
 
             JsonLineInfo? errorLineInfo = null;
 

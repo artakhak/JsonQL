@@ -48,13 +48,13 @@ public class ConvertToDateJsonFunction : DateTimeJsonFunctionAbstr
             {
                 parsedDate = date;
             }
-            else if (jsonComparable.Value is not string stringValue || !DateTimeOperationsAmbientContext.Context.TryParse(stringValue, out parsedDate))
+            else if (jsonComparable.Value is not string stringValue || !ThreadStaticDateTimeOperations.DateTimeOperations.TryParse(stringValue, out parsedDate))
             {
                 parsedDate = null;
             }
 
             if (parsedDate != null)
-                return new ParseResult<DateTime?>(DateTimeOperationsAmbientContext.Context.ConvertToDate(parsedDate.Value));
+                return new ParseResult<DateTime?>(ThreadStaticDateTimeOperations.DateTimeOperations.ConvertToDate(parsedDate.Value));
         }
 
         if (_assertIfConversionFailsJsonFunction == null)

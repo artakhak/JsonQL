@@ -159,7 +159,7 @@ public class JsonFunctionFromExpressionParser : IJsonFunctionFromExpressionParse
 
                         var lineInfo = parsedSimpleValue.LineInfo.GenerateRelativePosition(currentBracesExpressionItem);
 
-                        LogHelper.Context.Log.ErrorFormat("{0} Line info: {1}", errorMessage, lineInfo);
+                        ThreadStaticLogging.Log.ErrorFormat("{0} Line info: {1}", errorMessage, lineInfo);
 
                         errors.Add(new JsonObjectParseError(errorMessage, lineInfo));
                         return null;

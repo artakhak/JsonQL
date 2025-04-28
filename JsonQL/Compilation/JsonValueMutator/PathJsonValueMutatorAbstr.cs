@@ -31,7 +31,7 @@ public abstract class PathJsonValueMutatorAbstr : JsonValueMutatorAbstr
 
         if (parsedSimpleValue == null)
         {
-            LogHelper.Context.Log.InfoFormat("The mutator [{0}] will not execute.", GetType().FullName);
+            ThreadStaticLogging.Log.InfoFormat("The mutator [{0}] will not execute.", GetType().FullName);
             return;
         }
 

@@ -188,7 +188,7 @@ public static class JsonFunctionFromExpressionParseHelpers
             {
                 var errorMessage = $"Parameter name [{parameterMetadata.Name}] is specified multiple times in function metadata for function [{functionName}].";
 
-                LogHelper.Context.Log.Error(errorMessage);
+                ThreadStaticLogging.Log.Error(errorMessage);
                 return new ParseResult<IReadOnlyList<IJsonFunction?>>(
                     CollectionExpressionHelpers.Create(new JsonObjectParseError(errorMessage, functionLineInfo)));
             }

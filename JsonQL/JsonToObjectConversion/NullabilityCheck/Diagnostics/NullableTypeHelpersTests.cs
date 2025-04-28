@@ -10,7 +10,7 @@ public static class NullableTypeHelpersTests
     {
         if (!DoTestNullabilityCheckApi(nullabilityCheck))
         {
-            LogHelper.Context.Log.Error(string.Concat("Nullability checks using Microsoft undocumented API didn't succeed. Microsoft might have made some changes.",
+            ThreadStaticLogging.Log.Error(string.Concat("Nullability checks using Microsoft undocumented API didn't succeed. Microsoft might have made some changes.",
                 Environment.NewLine,
                 "All preference type properties will be considered nullable.",
                 Environment.NewLine,
@@ -33,7 +33,7 @@ public static class NullableTypeHelpersTests
         }
         catch(Exception e)
         {
-            LogHelper.Context.Log.Error($"Nullability diagnostics tests for [{typeof(IMicrosoftInternalApiBasedNullabilityCheck).FullName}] failed", e);
+            ThreadStaticLogging.Log.Error($"Nullability diagnostics tests for [{typeof(IMicrosoftInternalApiBasedNullabilityCheck).FullName}] failed", e);
             return false;
         }
     }

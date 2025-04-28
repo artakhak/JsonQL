@@ -38,7 +38,7 @@ public abstract class BinaryStringComparisonOperatorFunctionAbstr : BinaryCompar
         catch (Exception e)
         {
             var errorMessage = $"Failed to evaluate the operator [{this.FunctionName}] for values [{stringValue1}] and [{stringValue2}].";
-            LogHelper.Context.Log.Error(errorMessage, e);
+            ThreadStaticLogging.Log.Error(errorMessage, e);
             return new ParseResult<bool?>(CollectionExpressionHelpers.Create(new JsonObjectParseError(errorMessage, this.LineInfo)));
         }
     }

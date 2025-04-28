@@ -30,7 +30,7 @@ public class JsonParser : IJsonParser
         _customNewtonsoftJToken = customNewtonsoftJToken;
 
         if (logger != null)
-            LogAmbientContext.Context = logger;
+            ThreadStaticLogging.Log = logger;
     }
 
     /// <inheritdoc />

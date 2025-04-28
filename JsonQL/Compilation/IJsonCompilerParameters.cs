@@ -92,8 +92,6 @@ public class JsonCompilerParameters : IJsonCompilerParameters
         JsonValueMutatorFactory = jsonValueMutatorFactory;
         CompilationResultLogger = compilationResultLogger;
         DateTimeOperations = dateTimeOperations;
-        
-
         Logger = logger ?? new LogToConsole(LogLevel.Debug);
     }
 

@@ -48,7 +48,7 @@ public abstract class ParsedValueAbstr: IParsedValue
 
             if (!parentParsedArrayValue.TryGetValueIndex(this.Id, out var indexInArray))
             {
-                LogHelper.Context.Log.ErrorFormat("Index of value with Id={0} not found in parent array with Id={1}.",
+                ThreadStaticLogging.Log.ErrorFormat("Index of value with Id={0} not found in parent array with Id={1}.",
                     this.Id, parentParsedArrayValue.Id);
                 indexInArray = -1;
             }

@@ -56,7 +56,7 @@ public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctio
         }
         catch (Exception e)
         {
-            LogHelper.Context.Log.Error(e);
+            ThreadStaticLogging.Log.Error(e);
             return new ParseResult<bool?>(CollectionExpressionHelpers.Create(new JsonObjectParseError($"Evaluation of operator [{this.FunctionName}] failed.", this.LineInfo)));
         }
     }

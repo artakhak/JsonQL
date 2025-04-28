@@ -32,7 +32,7 @@ public class CompilationResultLogger : ICompilationResultLogger
 
         if (compiledJsonData != null && compilationResult.CompilationErrors.Count == 0)
         {
-            LogHelper.Context.Log.InfoFormat("Successfully compiled json text with [{0}]=[{1}].",
+            ThreadStaticLogging.Log.InfoFormat("Successfully compiled json text with [{0}]=[{1}].",
                 nameof(IJsonTextData.TextIdentifier), jsonTextData.TextIdentifier);
             return;
         }
@@ -155,7 +155,7 @@ public class CompilationResultLogger : ICompilationResultLogger
                 }
             }
 
-            LogHelper.Context.Log.Error(errorsStringBuilder.ToString());
+            ThreadStaticLogging.Log.Error(errorsStringBuilder.ToString());
         }
     }
 

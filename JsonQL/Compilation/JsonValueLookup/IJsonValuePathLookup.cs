@@ -262,7 +262,7 @@ public class JsonValuePathLookup : IJsonValuePathLookup
         {
             var errorMessage = $"The value of index [{currentPathElementIndex}] should smaller than [{jsonValuePath.Path.Count}].";
 
-            LogHelper.Context.Log.Error(errorMessage);
+            ThreadStaticLogging.Log.Error(errorMessage);
 
             return new ParseResult<IJsonValuePathLookupResult>(
                     CollectionExpressionHelpers.Create(
@@ -366,7 +366,7 @@ public class JsonValuePathLookup : IJsonValuePathLookup
 
             if (currentParent is not IParsedArrayValue currentParentArray)
             {
-                LogHelper.Context.Log.DebugFormat(
+                ThreadStaticLogging.Log.DebugFormat(
                     "Parent json token at path [{0}] is not a json object. LineInfo: [{1}]",
                     GetSubPath(jsonValuePath, currentPathElementIndex + 1),
                     arrayIndexInfo.LineInfo!);
@@ -376,7 +376,7 @@ public class JsonValuePathLookup : IJsonValuePathLookup
 
             if (arrayIndexInfo.Index < 0 || arrayIndexInfo.Index >= currentParentArray.Values.Count)
             {
-                LogHelper.Context.Log.DebugFormat(
+                ThreadStaticLogging.Log.DebugFormat(
                     "Index is out of bounds. Expected an index between [0] and [{0}]. Failed path: [{1}], Actual index: [{2}]. LineInfo: [{3}]",
                     currentParentArray.Values.Count - 1,
                     GetSubPath(jsonValuePath, currentPathElementIndex + 1),
