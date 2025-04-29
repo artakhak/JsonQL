@@ -62,14 +62,14 @@ public class VariablesManager : IVariablesManager
 
         if (indexOfResolver >= 0)
         {
-            ThreadStaticLogging.Log.ErrorFormat("Variable resolver [{0}] of type [{1}] is not at the top of stack when unregistered!",
+            ThreadStaticLoggingContext.Context.ErrorFormat("Variable resolver [{0}] of type [{1}] is not at the top of stack when unregistered!",
                 resolvesVariableValue, resolvesVariableValue.GetType());
 
             _variableResolvers.RemoveAt(indexOfResolver);
             return;
         }
 
-        ThreadStaticLogging.Log.ErrorFormat("Variable resolver [{0}] of type [{1}] was not registered!", 
+        ThreadStaticLoggingContext.Context.ErrorFormat("Variable resolver [{0}] of type [{1}] was not registered!", 
             resolvesVariableValue, resolvesVariableValue.GetType());
     }
 }

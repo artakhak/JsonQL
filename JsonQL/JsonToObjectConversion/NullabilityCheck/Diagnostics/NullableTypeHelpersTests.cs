@@ -10,7 +10,7 @@ public static class NullableTypeHelpersTests
     {
         if (!DoTestNullabilityCheckApi(nullabilityCheck))
         {
-            ThreadStaticLogging.Log.Error(string.Concat("Nullability checks using Microsoft undocumented API didn't succeed. Microsoft might have made some changes.",
+            ThreadStaticLoggingContext.Context.Error(string.Concat("Nullability checks using Microsoft undocumented API didn't succeed. Microsoft might have made some changes.",
                 Environment.NewLine,
                 "All preference type properties will be considered nullable.",
                 Environment.NewLine,
@@ -33,7 +33,7 @@ public static class NullableTypeHelpersTests
         }
         catch(Exception e)
         {
-            ThreadStaticLogging.Log.Error($"Nullability diagnostics tests for [{typeof(IMicrosoftInternalApiBasedNullabilityCheck).FullName}] failed", e);
+            ThreadStaticLoggingContext.Context.Error($"Nullability diagnostics tests for [{typeof(IMicrosoftInternalApiBasedNullabilityCheck).FullName}] failed", e);
             return false;
         }
     }
@@ -95,7 +95,7 @@ public static class NullableTypeHelpersTests
     {
         var typeOfTestClass1 = typeof(TestClass1);
 
-        var propertyInfo = typeOfTestClass1.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+        var propertyInfo = typeOfTestClass1.GetProperties().FirstOrDefault(x => x.Name == propertyName); //.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
 
         if (propertyInfo == null)
         {

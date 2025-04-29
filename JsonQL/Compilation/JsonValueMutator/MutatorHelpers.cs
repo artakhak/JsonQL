@@ -23,13 +23,13 @@ internal static class MutatorHelpers
         if (!parsedSimpleValue.RootParsedValue.TryGetParsedValue(parsedSimpleValue.Id, out var parsedValue))
         {
             // Probably the value was replaced by other mutators by the time we processed the value.
-            ThreadStaticLogging.Log.InfoFormat("The value with Id=[{0}] was not found. {1}", parsedSimpleValue.Id, valueChangedIsOkMessage);
+            ThreadStaticLoggingContext.Context.InfoFormat("The value with Id=[{0}] was not found. {1}", parsedSimpleValue.Id, valueChangedIsOkMessage);
             return null;
         }
 
         if (parsedValue is not IParsedSimpleValue parsedSimpleValueCurrent || parsedSimpleValueCurrent.Value != parsedSimpleValue.Value)
         {
-            ThreadStaticLogging.Log.InfoFormat("The value with Id=[{0}] was modified and does not match the original value anymore. {1}",
+            ThreadStaticLoggingContext.Context.InfoFormat("The value with Id=[{0}] was modified and does not match the original value anymore. {1}",
                 parsedSimpleValue.Id, valueChangedIsOkMessage);
             return null;
         }

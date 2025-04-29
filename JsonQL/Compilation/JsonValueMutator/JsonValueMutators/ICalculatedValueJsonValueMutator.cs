@@ -68,7 +68,7 @@ public class CalculatedValueJsonValueMutator : CalculatedJsonValueMutatorAbstr, 
 
         if (indexOfKey < 0)
         {
-            ThreadStaticLogging.Log.ErrorFormat("Key [{0}] not found.", ParsedSimpleValue.JsonKeyValue.Key);
+            ThreadStaticLoggingContext.Context.ErrorFormat("Key [{0}] not found.", ParsedSimpleValue.JsonKeyValue.Key);
 
             errors.Add(new JsonObjectParseError(ParseErrorsConstants.InvalidSymbol, currentParsedSimpleValueWithPath.LineInfo));
             return;
@@ -83,7 +83,7 @@ public class CalculatedValueJsonValueMutator : CalculatedJsonValueMutatorAbstr, 
     {
         if (!parsedArrayValue.TryGetValueIndex(currentParsedSimpleValueWithPath.Id, out var insertionIndex))
         {
-            ThreadStaticLogging.Log.ErrorFormat("Value not found in array. Line info: [{0}]. Value Id: [{1}]",
+            ThreadStaticLoggingContext.Context.ErrorFormat("Value not found in array. Line info: [{0}]. Value Id: [{1}]",
                 currentParsedSimpleValueWithPath.LineInfo!, currentParsedSimpleValueWithPath.Id);
 
             errors.Add(new JsonObjectParseError(ParseErrorsConstants.InvalidSymbol,

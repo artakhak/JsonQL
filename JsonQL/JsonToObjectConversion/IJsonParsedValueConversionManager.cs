@@ -112,7 +112,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             if (errorsAndWarnings.ConversionErrors.Errors.Count == 0)
             {
                 // We should never get here
-                ThreadStaticLogging.Log.ErrorFormat("No errors are reported when [{0}] is thrown", typeof(JsonConversionException));
+                ThreadStaticLoggingContext.Context.ErrorFormat("No errors are reported when [{0}] is thrown", typeof(JsonConversionException));
                 AddError(contextObject, ConversionErrorType.Error, GeneralConversionError, null);
             }
 
@@ -159,7 +159,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             // We should never get here, since the calls to private methods in this class already do the checks
             var errorMessage = $"Internal error. The query result is expected to be of type [{typeToConvertTo}]. Actual type is [{convertedValue.GetType()}]";
-            ThreadStaticLogging.Log.Error(errorMessage);
+            ThreadStaticLoggingContext.Context.Error(errorMessage);
 
             AddError(contextObject, ConversionErrorType.Error, errorMessage, parsedValue);
             return null;
@@ -460,7 +460,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             if (_convertedObjectPath.Count == 0)
             {
-                ThreadStaticLogging.Log.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
+                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
                 return;
             }
             _convertedObjectPath.RemoveAt(_convertedObjectPath.Count - 1);
@@ -476,13 +476,13 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             if (_currentlyProcessedPropertyAttributes.Count == 0)
             {
-                ThreadStaticLogging.Log.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_currentlyProcessedPropertyAttributes));
+                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_currentlyProcessedPropertyAttributes));
                 return;
             }
 
             if (_convertedObjectPath.Count == 0)
             {
-                ThreadStaticLogging.Log.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
+                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
                 return;
             }
 

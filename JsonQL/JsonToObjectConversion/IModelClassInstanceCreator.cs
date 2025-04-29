@@ -102,7 +102,7 @@ public class ModelClassInstanceCreator : IModelClassInstanceCreator
             catch (Exception e)
             {
                 errorMessage = $"Failed to create an instance of type [{createdInstanceType}] with given parameters. Error message: {e.Message}";
-                ThreadStaticLogging.Log.Error(errorMessage, e);
+                ThreadStaticLoggingContext.Context.Error(errorMessage, e);
                 return false;
             }
         }
@@ -130,7 +130,7 @@ public class ModelClassInstanceCreator : IModelClassInstanceCreator
             }
             catch (Exception e)
             {
-                ThreadStaticLogging.Log.Error($"Failed to set the value of property [{propertyValue.PropertyInfo.Name}] in [{createdInstance.GetType()}]", e);
+                ThreadStaticLoggingContext.Context.Error($"Failed to set the value of property [{propertyValue.PropertyInfo.Name}] in [{createdInstance.GetType()}]", e);
                 continue;
             }
         }

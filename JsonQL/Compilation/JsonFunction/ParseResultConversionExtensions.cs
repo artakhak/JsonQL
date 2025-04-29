@@ -80,7 +80,7 @@ public static class ParseResultConversionExtensions
 
         if (parseResult.Value is not TValue comparableValue)
         {
-            ThreadStaticLogging.Log.DebugFormat("Failed to convert [{0}] to [{1}].",
+            ThreadStaticLoggingContext.Context.DebugFormat("Failed to convert [{0}] to [{1}].",
                 parseResult.Value, typeof(TValue));
             return new ParseResult<TValue?>((TValue?)null);
         }
@@ -98,7 +98,7 @@ public static class ParseResultConversionExtensions
 
         if (parseResult.Value is not TValue comparableValue)
         {
-            ThreadStaticLogging.Log.DebugFormat("Failed to convert [{0}] to [{1}].",
+            ThreadStaticLoggingContext.Context.DebugFormat("Failed to convert [{0}] to [{1}].",
                 parseResult.Value, typeof(TValue));
             return new ParseResult<TValue?>((TValue?)null);
         }

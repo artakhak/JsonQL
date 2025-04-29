@@ -58,7 +58,7 @@ public static class JsonFunctionHelpers
 
                     case TypeCode.DateTime:
 
-                        if (!ThreadStaticDateTimeOperations.DateTimeOperations.TryParse(stringValue, out var parsedDateTime))
+                        if (!ThreadStaticDateTimeOperationsContext.Context.TryParse(stringValue, out var parsedDateTime))
                             return false;
 
                         jsonComparable = new DateTimeJsonComparable(parsedDateTime.Value);
@@ -116,7 +116,7 @@ public static class JsonFunctionHelpers
                     switch (expectedConvertedType)
                     {
                         case TypeCode.DateTime:
-                            if (parsedSimpleValue.Value == null || !ThreadStaticDateTimeOperations.DateTimeOperations.TryParse(parsedSimpleValue.Value, out var parsedDateTime))
+                            if (parsedSimpleValue.Value == null || !ThreadStaticDateTimeOperationsContext.Context.TryParse(parsedSimpleValue.Value, out var parsedDateTime))
                                 return false;
 
                             jsonComparable = new DateTimeJsonComparable(parsedDateTime.Value);

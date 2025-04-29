@@ -65,7 +65,7 @@ public class MergeCollectionIntoArrayJsonValueMutator : CalculatedJsonValueMutat
 
         if (!parentArray.TryGetValueIndex(currentParsedSimpleValueWithPath.Id, out var insertionIndex))
         {
-            ThreadStaticLogging.Log.ErrorFormat("Value not found in array. Line info: [{0}]. Value Id: [{1}]",
+            ThreadStaticLoggingContext.Context.ErrorFormat("Value not found in array. Line info: [{0}]. Value Id: [{1}]",
                 currentParsedSimpleValueWithPath.LineInfo!, currentParsedSimpleValueWithPath.Id);
 
             errors.Add(new JsonObjectParseError(ParseErrorsConstants.InvalidSymbol,

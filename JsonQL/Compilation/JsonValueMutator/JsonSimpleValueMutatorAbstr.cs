@@ -34,7 +34,7 @@ public abstract class JsonSimpleValueMutatorAbstr : JsonValueMutatorAbstr
 
         if (parsedSimpleValue == null)
         {
-            ThreadStaticLogging.Log.InfoFormat("The mutator [{0}] will not execute.", GetType().FullName!);
+            ThreadStaticLoggingContext.Context.InfoFormat("The mutator [{0}] will not execute.", GetType().FullName!);
             return;
         }
 

@@ -64,7 +64,7 @@ public class CopyFieldsJsonValueMutator : PathJsonValueMutatorAbstr, ICopyFields
         
         if (referencedParsedValues.Count != 1)
         {
-            ThreadStaticLogging.Log.WarnFormat("The value referenced in [{0}] value used at path [{1}] should be a single json object (e.g., collection of key/value pairs). Actual number of items is [{2}].",
+            ThreadStaticLoggingContext.Context.WarnFormat("The value referenced in [{0}] value used at path [{1}] should be a single json object (e.g., collection of key/value pairs). Actual number of items is [{2}].",
                 JsonMutatorKeywords.MergedJsonObjectFields, currentParsedSimpleValueWithPath.GetPath(), referencedParsedValues.Count);
 
             RemoveCopyFieldsKeyOnError();
@@ -81,7 +81,7 @@ public class CopyFieldsJsonValueMutator : PathJsonValueMutatorAbstr, ICopyFields
 
         if (referencedParsedValue is not IParsedJson referencedParsedJson)
         {
-            ThreadStaticLogging.Log.WarnFormat("The value referenced in [{0}] value used at path [{1}] should be a json object (e.g., collection of key/value pairs).",
+            ThreadStaticLoggingContext.Context.WarnFormat("The value referenced in [{0}] value used at path [{1}] should be a json object (e.g., collection of key/value pairs).",
                 JsonMutatorKeywords.MergedJsonObjectFields, currentParsedSimpleValueWithPath.GetPath());
 
             RemoveCopyFieldsKeyOnError();

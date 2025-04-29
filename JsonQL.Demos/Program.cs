@@ -8,6 +8,7 @@ using JsonQL.Demos.Startup.DependencyInjection;
 using JsonQL.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using OROptimizer.Diagnostics.Log;
+using OROptimizer.Log4Net;
 
 RegisterLogger();
 
