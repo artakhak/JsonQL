@@ -1,8 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonValueMutator;
 using JsonQL.JsonObjects;
 using Newtonsoft.Json;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation;
 

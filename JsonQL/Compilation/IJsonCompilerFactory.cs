@@ -91,7 +91,7 @@ public class JsonCompilerFactory: IJsonCompilerFactory
 
             if (parameterInfo.ParameterType == typeof(IExpressionParser))
             {
-                return (true, CreateExpressionParser());
+                return (true, CreateExpressionParser(logger));
             }
 
             if (parameterInfo.ParameterType == typeof(IStringFormatter))
@@ -172,7 +172,7 @@ public class JsonCompilerFactory: IJsonCompilerFactory
         return (new DefaultExpressionLanguageProviderValidator(), new JsonExpressionLanguageProvider());
     }
 
-    private IExpressionParser CreateExpressionParser()
+    private IExpressionParser CreateExpressionParser(ILog logger)
     {
         var expressionParserDependencies = CreateExpressionParserDependencies();
 
@@ -181,6 +181,6 @@ public class JsonCompilerFactory: IJsonCompilerFactory
 
         expressionLanguageProviderCache.RegisterExpressionLanguageProvider(expressionParserDependencies.expressionLanguageProvider);
 
-        return new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache);
+        return new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache, logger);
     }
 }

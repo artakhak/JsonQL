@@ -9,10 +9,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+	  <!--<ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />-->
 	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 </Project>

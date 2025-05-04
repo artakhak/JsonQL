@@ -130,4 +130,18 @@ public class JsonExpressionLanguageProvider : IExpressionLanguageProvider // Exp
 
     /// <inheritdoc />
     public bool SupportsKeywords => false;
+
+    public IEnumerable<char> SpecialOperatorCharacters
+    {
+        get
+        {
+            foreach (var specialOperatorCharacter in DefaultSpecialCharacters.SpecialOperatorCharacters)
+            {
+                yield return specialOperatorCharacter;
+            }
+
+            yield return '.';
+        }
+    }
+    public IEnumerable<char> SpecialNonOperatorCharacters => DefaultSpecialCharacters.SpecialNonOperatorCharacters;
 }

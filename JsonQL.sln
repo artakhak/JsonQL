@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonQL", "JsonQL\JsonQL.csproj", "{46270743-8F0D-4872-83B1-1227449DF7A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{4287B03B-CFD0-494D-921C-1787F0642A32}"
+	ProjectSection(SolutionItems) = preProject
+		DEPENDENCIES.README.txt = DEPENDENCIES.README.txt
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OROptimizer.Shared", "..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj", "{CAEED3C2-4BB8-48B5-A572-533AB574EB01}"
 EndProject
