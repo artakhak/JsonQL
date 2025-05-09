@@ -1,6 +1,5 @@
-﻿using System.Text;
-using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
+﻿using JsonQL.JsonObjects;
+using System.Text;
 
 namespace JsonQL.Compilation;
 

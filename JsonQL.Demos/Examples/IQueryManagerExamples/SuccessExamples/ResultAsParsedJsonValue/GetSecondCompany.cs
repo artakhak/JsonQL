@@ -1,7 +1,7 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsParsedJsonValue;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsParsedJsonValue;
 
 public class GetSecondCompany : QueryJsonValueExampleManagerAbstr
 {

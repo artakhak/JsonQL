@@ -10,17 +10,31 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
-	  <None Remove="Examples\QueryExamples\Companies.json" />
-	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryAverageSalaryAsDoubleValue.result.json" />
-	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.result.json" />
-	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
-	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompany.result.json" />
-	  <None Remove="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\Companies.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompany.result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
 	  <None Remove="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
 	  <None Remove="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
 	  <None Remove="JosnQL.log4net.config" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompany.result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
+		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\Companies.json" />
+		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
+		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -31,15 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryAverageSalaryAsDoubleValue.result.json" />
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.result.json" />
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsObject\QueryObjectsAndConvertToAppropriateTypes.json" />
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompany.result.json" />
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
-	  <EmbeddedResource Include="Examples\QueryExamples\RetrieveQueryResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
-	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\Companies.json" />
-	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
-	  <EmbeddedResource Include="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+		<Content Include="bin\Debug\net8.0\QueryResult.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +66,8 @@
 	<ItemGroup>
 	  <Folder Include="CustomJsonQL\Compilation\" />
 	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
+	  <Folder Include="Examples\IJsonCompilerExamples\FailureExamples\" />
+	  <Folder Include="Examples\IQueryManagerExamples\FailureExamples\" />
 	</ItemGroup>
 
 </Project>

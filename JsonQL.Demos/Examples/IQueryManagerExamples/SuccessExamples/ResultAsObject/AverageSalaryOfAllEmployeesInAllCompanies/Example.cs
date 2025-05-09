@@ -1,13 +1,14 @@
-﻿using JsonQL.Compilation;
+﻿
+using JsonQL.Compilation;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsObject;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.AverageSalaryOfAllEmployeesInAllCompanies;
 
-public class QueryAverageSalaryAsDoubleValue : QueryObjectExampleManagerAbstr<double>
+public class Example : QueryObjectExampleManagerAbstr<double>
 {
     private readonly IQueryManager _queryManager;
 
-    public QueryAverageSalaryAsDoubleValue(IQueryManager queryManager)
+    public Example(IQueryManager queryManager)
     {
         _queryManager = queryManager;
     }
@@ -20,8 +21,7 @@ public class QueryAverageSalaryAsDoubleValue : QueryObjectExampleManagerAbstr<do
 
         var averageSalaryResult =
             _queryManager.QueryObject<double>(query,
-                new JsonTextData("Companies",
-                    LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])), null);
+                new JsonTextData("Example", this.LoadExampleJsonFile("Data.json")), null);
 
         return averageSalaryResult;
     }

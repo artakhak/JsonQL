@@ -1,24 +1,24 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsObject;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject;
 
-public class QuerySalariesAsIReadOnlyListOfDoubleValues : QueryObjectExampleManagerAbstr<IReadOnlyList<double>>
+public class QuerySalariesAsListOfDoubleValues : QueryObjectExampleManagerAbstr<List<double>>
 {
     private readonly IQueryManager _queryManager;
 
-    public QuerySalariesAsIReadOnlyListOfDoubleValues(IQueryManager queryManager)
+    public QuerySalariesAsListOfDoubleValues(IQueryManager queryManager)
     {
         _queryManager = queryManager;
     }
 
     /// <inheritdoc />
-    protected override IObjectQueryResult<IReadOnlyList<double>> QueryObject()
+    protected override IObjectQueryResult<List<double>> QueryObject()
     {
         var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
 
         var salariesResult =
-            _queryManager.QueryObject<IReadOnlyList<double>>(query,
+            _queryManager.QueryObject<List<double>>(query,
                 new JsonTextData("Companies",
                     LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])));
 

@@ -24,18 +24,20 @@ public class JsonParser : IJsonParser
     private readonly IParsedJsonVisitor _parsedJsonVisitor;
     private readonly ICustomNewtonsoftJToken _customNewtonsoftJToken;
 
-    public JsonParser(IParsedJsonVisitor parsedJsonVisitor, ICustomNewtonsoftJToken customNewtonsoftJToken, ILog? logger = null)
+    private readonly ILog _logger;
+
+    public JsonParser(IParsedJsonVisitor parsedJsonVisitor, ICustomNewtonsoftJToken customNewtonsoftJToken, ILog logger)
     {
         _parsedJsonVisitor = parsedJsonVisitor;
         _customNewtonsoftJToken = customNewtonsoftJToken;
-
-        if (logger != null)
-            ThreadStaticLoggingContext.Context = logger;
+        _logger = logger;
     }
 
     /// <inheritdoc />
     public IRootParsedValue Parse(string jsonText)
     {
+        ThreadStaticLoggingContext.Context = _logger;
+
         var parsedJToken = _customNewtonsoftJToken.Parse(jsonText, new JsonLoadSettings
         {
             CommentHandling = CommentHandling.Ignore,

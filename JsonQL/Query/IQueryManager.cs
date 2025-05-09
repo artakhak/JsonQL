@@ -167,15 +167,14 @@ public class QueryManager : IQueryManager
     private readonly IJsonCompiler _jsonCompiler;
     private readonly IJsonParsedValueConversionManager _jsonParsedValueConversionManager;
     private readonly ILog _logger;
-    
 
     private const string InvalidStateReachedError = "Failed to generate query result. Invalid state reached.";
 
-    public QueryManager(IJsonCompiler jsonCompiler, IJsonParsedValueConversionManager jsonParsedValueConversionManager, ILog? logger)
+    public QueryManager(IJsonCompiler jsonCompiler, IJsonParsedValueConversionManager jsonParsedValueConversionManager, ILog logger)
     {
         _jsonCompiler = jsonCompiler;
         _jsonParsedValueConversionManager = jsonParsedValueConversionManager;
-        _logger = logger ?? new LogToConsole(LogLevel.Debug);
+        _logger = logger;
     }
 
     /// <inheritdoc />
@@ -208,6 +207,7 @@ public class QueryManager : IQueryManager
     /// <inheritdoc />
     public IJsonValueQueryResult QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)
     {
+        ThreadStaticLoggingContext.Context = _logger;
         return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) => _jsonCompiler.Compile(queryTextIdentifier, queryJsonText, compiledJsonDataToQuery));
     }
 
@@ -230,6 +230,8 @@ public class QueryManager : IQueryManager
     
     private IJsonValueQueryResult ExecuteQuery(string query, CompileJsonQueryDelegate compileJsonQuery) 
     {
+        ThreadStaticLoggingContext.Context = _logger;
+
         var jsonTextStrBldr = new StringBuilder();
 
         const string openingBrace = "{";

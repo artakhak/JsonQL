@@ -1,7 +1,7 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsObject;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject;
 
 public class QuerySalariesAsArrayOfDoubleValues : QueryObjectExampleManagerAbstr<double[]>
 {

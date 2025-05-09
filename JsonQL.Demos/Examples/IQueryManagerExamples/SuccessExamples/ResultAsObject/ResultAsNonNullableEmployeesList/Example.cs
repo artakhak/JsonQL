@@ -1,15 +1,16 @@
-﻿using JsonQL.Compilation;
+﻿
+using JsonQL.Compilation;
 using JsonQL.Demos.Examples.DataModels;
 using JsonQL.JsonToObjectConversion;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsObject;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.ResultAsNonNullableEmployeesList;
 
-public class QueryObjectsAndConvertToAppropriateTypes : QueryObjectExampleManagerAbstr<IReadOnlyList<IEmployee>>
+public class Example : QueryObjectExampleManagerAbstr<IReadOnlyList<IEmployee>>
 {
     private readonly IQueryManager _queryManager;
 
-    public QueryObjectsAndConvertToAppropriateTypes(IQueryManager queryManager)
+    public Example(IQueryManager queryManager)
     {
         _queryManager = queryManager;
     }
@@ -26,9 +27,8 @@ public class QueryObjectsAndConvertToAppropriateTypes : QueryObjectExampleManage
         // In these examples T is either an object (value or reference type), or another collection type (one of the listed here). 
         var employees =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-                new JsonTextData("Employees",
-                    LoadJsonFileHelpers.LoadJsonFile("QueryObjectsAndConvertToAppropriateTypes.json",
-                        ["Examples", "QueryExamples", "RetrieveQueryResultAsObject"])),
+                new JsonTextData("Example",
+                    this.LoadExampleJsonFile("Data.json")),
                 [false, false], new JsonConversionSettingsOverrides
                 {
                     TryMapJsonConversionType = (type, parsedJson) =>

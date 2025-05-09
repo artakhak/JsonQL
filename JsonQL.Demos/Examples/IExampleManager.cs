@@ -1,6 +1,4 @@
-﻿using JsonQL.Demos.Examples.QueryExamples;
-using JsonQL.Diagnostics;
-using OROptimizer.Diagnostics.Log;
+﻿using System.Reflection;
 
 namespace JsonQL.Demos.Examples;
 
@@ -9,32 +7,33 @@ public interface IExampleManager
     Task ExecuteAsync();
 }
 
-public abstract class ExampleManagerAbstr : IExampleManager
+/// <summary>
+/// Extensions for 
+/// </summary>
+public static class ExampleManagerExtensions
 {
-    /// <inheritdoc />
-    public async Task ExecuteAsync()
+    /// <summary>
+    /// Loads a JSON file associated with the example manager's namespace.
+    /// </summary>
+    /// <param name="exampleManager">The example manager used to determine the namespace.</param>
+    /// <param name="jsonFileName">The name of the JSON file to load.</param>
+    /// <returns>Returns the content of the loaded JSON file as a string.</returns>
+    /// <exception cref="ArgumentException">Thrown when the JSON file cannot be loaded.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the type of <paramref name="exampleManager"/> or its namespace is null.</exception>
+    public static string LoadExampleJsonFile(this IExampleManager exampleManager, string jsonFileName)
     {
-        LogHelper.Context.Log.InfoFormat("------EXECUTING EXAMPLE [{0}]---------------------------", this.GetType().FullName!);
-        var result = await GetJsonQlResultAsync();
-        
-        var serializedResult = SerializeResult(result);
-
-        await ExampleManagerHelpers.SaveResultToApplicationOutputFolderAsync(this, serializedResult);
-        var expectedJsonFile = ExampleManagerHelpers.LoadExpectedResultJsonFile(this);
-
-        if (!string.Equals(serializedResult, expectedJsonFile, StringComparison.Ordinal))
-            throw new ApplicationException($"The contents of expected result and actual result do not match. Example type: [{GetType()}].");
-
-        LogHelper.Context.Log.InfoFormat("-----------------------------------------");
-        LogHelper.Context.Log.InfoFormat("Generated output is in file [{0}].", ExampleManagerHelpers.GetOutputFilePath(this));
-        LogHelper.Context.Log.InfoFormat("-----------------------------------------");
+        return LoadJsonFileHelpers.LoadExampleJsonFile(jsonFileName, exampleManager.GetType());
     }
 
-    protected abstract Task<object> GetJsonQlResultAsync();
-
-    protected virtual string SerializeResult(object result)
+    /// <summary>
+    /// Loads the expected result JSON file associated with the example manager's namespace.
+    /// </summary>
+    /// <param name="exampleManager">The example manager used to determine the namespace and locate the JSON file.</param>
+    /// <returns>Returns the content of the loaded expected result JSON file as a string.</returns>
+    /// <exception cref="ArgumentException">Thrown when the JSON file cannot be loaded.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the type of <paramref name="exampleManager"/> or its namespace is null.</exception>
+    public static string LoadExpectedResultJsonFile(this IExampleManager exampleManager)
     {
-        return ClassSerializerAmbientContext.Context.Serialize(result);
+        return LoadJsonFileHelpers.LoadExampleJsonFile("Result.json", exampleManager.GetType());
     }
 }
-

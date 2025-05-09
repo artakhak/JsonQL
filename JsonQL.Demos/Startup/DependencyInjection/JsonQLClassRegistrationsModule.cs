@@ -31,7 +31,7 @@ public class JsonQLClassRegistrationsModule: Module
         builder.Register(x => LogHelper.Context.Log).As<ILog>().SingleInstance();
 
         builder.Register(context => 
-            new QueryManagerCompilationResultLogger(new QueryManagerCompilationResultLogger(new CompilationResultLogger())))
+            new QueryManagerCompilationResultLogger(new CompilationResultLogger()))
             .As<ICompilationResultLogger>().SingleInstance();
 
         builder.Register(context =>

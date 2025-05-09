@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 
 /// <summary>
 /// Represents a specific type of aggregation calculation data used to determine any matching condition

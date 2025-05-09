@@ -201,159 +201,152 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="bin\Debug\net8.0\CompiledTestJson.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
-	  <EmbeddedResource Include="Diagnostics\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplaceObjectFields\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromCurrentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromParent\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplacedByObjectFields\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInCurrentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentsParentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\InvalidPaths\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\Value\InvalidPaths\JsonFile1.json" />
-	  <EmbeddedResource Include="Demo\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Sum\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Max\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Max\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Max\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Min\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Min\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Min\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Average\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Average\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Average\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Any\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Any\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Any\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\All\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\All\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\All\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Count\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Count\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Count\JsonFile2.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToString\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToString\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDate\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDate\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDateTime\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDateTime\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToInt\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToInt\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDouble\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToDouble\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToBoolean\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\ConversionFunctions\ToBoolean\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\AssertHasValue\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\AssertHasValue\JsonFile1.json" />
-	  <EmbeddedResource Include="Functions\TextLength\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Functions\TextLength\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile3.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Last\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Last\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Last\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\First\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\First\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\First\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\At\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\At\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\At\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Reverse\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Reverse\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Reverse\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Flatten\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Flatten\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Flatten\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Select\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Select\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Select\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Where\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Where\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonValuePathElements\Where\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromCurrentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromParentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\MergeArray\MultipleArrayIndexes\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\IsNotNull\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\IsNotNull\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\IsNotNull\JsonFile2.json" />
-	  <EmbeddedResource Include="Operators\IsUndefined\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\IsUndefined\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\IsUndefined\JsonFile2.json" />
-	  <EmbeddedResource Include="Operators\IsNotUndefined\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\IsNotUndefined\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\IsNotUndefined\JsonFile2.json" />
-	  <EmbeddedResource Include="Operators\OperatorPriorities\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\OperatorPriorities\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\IsNull\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\IsNull\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\IsNull\JsonFile2.json" />
-	  <EmbeddedResource Include="OptionalAndNamedParameters\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="OptionalAndNamedParameters\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\TypeOfOperator\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="Operators\TypeOfOperator\JsonFile1.json" />
-	  <EmbeddedResource Include="Operators\TypeOfOperator\JsonFile2.json" />
-	  <EmbeddedResource Include="SharedJsonFiles\CompaniesAsArray.json" />
-	  <EmbeddedResource Include="SharedJsonFiles\CompaniesAsArrayInJson.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\JsonFile2.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingCurrentJson\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingCurrentJson\JsonFile1.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\QueryExpressionsInJsonValues\ExpectedCompiledJson.json" />
-	  <EmbeddedResource Include="JsonMutators\StringInterpolation\QueryExpressionsInJsonValues\JsonFile1.json" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
+		<EmbeddedResource Include="Diagnostics\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsEven\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\MathFunctions\IsEven\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplaceObjectFields\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromCurrentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsFromParent\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithArrayIndexers\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopyFieldsOfObjectSelectedWithFiltering\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplacedByObjectFields\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionsAndSingleValues\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\Value\CollectionsAndSingleValues\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInCurrentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentsParentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\Value\InvalidPaths\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\Value\InvalidPaths\JsonFile1.json" />
+		<EmbeddedResource Include="Demo\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Max\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Max\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Max\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Min\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Min\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Min\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Average\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Average\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Average\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Any\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Any\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Any\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\All\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\All\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\All\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Count\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Count\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AggregateFunctions\Count\JsonFile2.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToString\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToString\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDate\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDate\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDateTime\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDateTime\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToInt\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToInt\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDouble\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToDouble\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToBoolean\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\ConversionFunctions\ToBoolean\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\AssertHasValue\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\AssertHasValue\JsonFile1.json" />
+		<EmbeddedResource Include="Functions\TextLength\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Functions\TextLength\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ArrayIndexers\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceCurrentFileRootArray\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootArray\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\ReferenceParentRootJson\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\ReferenceObjectsInCurrentOrParentFiles\this_and_parent\JsonFile3.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Last\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Last\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Last\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\First\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\First\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\First\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\At\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\At\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\At\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Reverse\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Reverse\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Reverse\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Flatten\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Flatten\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Flatten\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Select\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Select\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Select\JsonFile2.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Where\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Where\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathElements\Where\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause1\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\InvalidPaths\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromCurrentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromParentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\MergeArray\MultipleArrayIndexes\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\IsNotNull\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\IsNotNull\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\IsNotNull\JsonFile2.json" />
+		<EmbeddedResource Include="Operators\IsUndefined\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\IsUndefined\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\IsUndefined\JsonFile2.json" />
+		<EmbeddedResource Include="Operators\IsNotUndefined\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\IsNotUndefined\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\IsNotUndefined\JsonFile2.json" />
+		<EmbeddedResource Include="Operators\OperatorPriorities\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\OperatorPriorities\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\IsNull\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\IsNull\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\IsNull\JsonFile2.json" />
+		<EmbeddedResource Include="OptionalAndNamedParameters\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="OptionalAndNamedParameters\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\TypeOfOperator\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="Operators\TypeOfOperator\JsonFile1.json" />
+		<EmbeddedResource Include="Operators\TypeOfOperator\JsonFile2.json" />
+		<EmbeddedResource Include="SharedJsonFiles\CompaniesAsArray.json" />
+		<EmbeddedResource Include="SharedJsonFiles\CompaniesAsArrayInJson.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValuesInExpressions\JsonFile2.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingCurrentJson\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingCurrentJson\JsonFile1.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\QueryExpressionsInJsonValues\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonMutators\StringInterpolation\QueryExpressionsInJsonValues\JsonFile1.json" />
 		<EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplacedByObjectFields\JsonFile1.json" />
 		<EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplacedByObjectFields\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\CopyFields\CopiedFieldsReplaceObjectFields\JsonFile1.json" />
@@ -373,7 +366,7 @@
 		<EmbeddedResource Include="Diagnostics\JsonFile1.json" />
 		<EmbeddedResource Include="Diagnostics\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\JsonFile1.json">
-		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromCurrentJson\JsonFile1.json" />
@@ -398,6 +391,10 @@
 		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingParentJson\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingParentJson\JsonFile1.json" />
 		<EmbeddedResource Include="JsonMutators\StringInterpolation\DefaultValueCasesReferencingParentJson\JsonFile2.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="bin\Debug\net8.0\CompiledTestJson.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -430,11 +427,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Functions\AggregateFunctions\Any\Companies.json">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
+		<EmbeddedResource Include="Functions\AggregateFunctions\Any\Companies.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>

@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonValueMutator;
 using JsonQL.JsonObjects;
 using Newtonsoft.Json;
+using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation;
 
@@ -66,6 +67,8 @@ public class JsonCompiler : IJsonCompiler
     private readonly IJsonValueMutatorFactory _jsonValueMutatorFactory;
 
     private readonly ICompilationResultLogger _compilationResultLogger;
+    private readonly ILog _logger;
+    private readonly IDateTimeOperations _dateTimeOperations;
 
     /// <summary>
     /// Provides functionality to compile JSON strings with embedded expressions into structured data.
@@ -83,13 +86,16 @@ public class JsonCompiler : IJsonCompiler
         _jsonValueMutatorFactory = parameters.JsonValueMutatorFactory;
         _compilationResultLogger = parameters.CompilationResultLogger;
         
-        ThreadStaticLoggingContext.Context = parameters.Logger;
-        ThreadStaticDateTimeOperationsContext.Context = parameters.DateTimeOperations;
+        _logger = parameters.Logger;
+        _dateTimeOperations = parameters.DateTimeOperations;
     }
 
     /// <inheritdoc />
     public ICompilationResult Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)
     {
+        ThreadStaticLoggingContext.Context = _logger;
+        ThreadStaticDateTimeOperationsContext.Context = _dateTimeOperations;
+
         var compilationResult = new CompilationResult();
       
         if (!TryParse(jsonText, jsonTextIdentifier, compilationResult.CompilationErrors, out var rootParsedValue))
@@ -126,6 +132,9 @@ public class JsonCompiler : IJsonCompiler
     /// <inheritdoc />
     public ICompilationResult Compile(IJsonTextData jsonTextData)
     {
+        ThreadStaticLoggingContext.Context = _logger;
+        ThreadStaticDateTimeOperationsContext.Context = _dateTimeOperations;
+
         var compilationResult = new CompilationResult();
 
         IJsonObjectData? jsonObjectData = Convert(jsonTextData, compilationResult.CompilationErrors);

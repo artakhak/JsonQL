@@ -1,8 +1,8 @@
 ﻿using JsonQL.Compilation;
 
-namespace JsonQL.Demos.Examples.QueryExamples.JsonCompilerExamples;
+namespace JsonQL.Demos.Examples.IJsonCompilerExamples.SuccessExamples;
 
-public class CompiledAppSettingsExample: JsonCompilerExampleManagerAbstr
+public class CompiledAppSettingsExample : JsonCompilerExampleManagerAbstr
 {
     private readonly IJsonCompiler _jsonCompiler;
 
@@ -21,7 +21,7 @@ public class CompiledAppSettingsExample: JsonCompilerExampleManagerAbstr
         var myServiceSettingsJsonTextData = new JsonTextData("MyServiceSettings",
             LoadJsonFileHelpers.LoadJsonFile("MyServiceSettings.json",
                 ["Examples", "SharedDemoJsonFiles"]), globalsSettingsJsonTextData);
-        
+
         var result = _jsonCompiler.Compile(myServiceSettingsJsonTextData);
         return result;
     }

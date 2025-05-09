@@ -1,27 +1,26 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.Query;
 
-namespace JsonQL.Demos.Examples.QueryExamples.RetrieveQueryResultAsParsedJsonValue;
+namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsParsedJsonValue;
 
-public class SingleValue3 : QueryJsonValueExampleManagerAbstr
+public class GetAllEmployeeSalaries : QueryJsonValueExampleManagerAbstr
 {
     private readonly IQueryManager _queryManager;
 
-    public SingleValue3(IQueryManager queryManager)
+    public GetAllEmployeeSalaries(IQueryManager queryManager)
     {
         _queryManager = queryManager;
     }
-    
+
     /// <inheritdoc />
     protected override IJsonValueQueryResult QueryJsonValue()
     {
-        var query = "Companies.Where(x => x.CompanyData.CEO == 'Robin Wood')";
-
-        var companyOfRobinWood =
+        var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
+        var averageSalary =
             _queryManager.QueryJsonValue(query,
                 new JsonTextData("Companies",
                     LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["Examples", "SharedDemoJsonFiles"])));
 
-        return companyOfRobinWood;
+        return averageSalary;
     }
 }
