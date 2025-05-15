@@ -99,7 +99,7 @@ public class JsonValueMutatorFactory : IJsonValueMutatorFactory
             {
                 return new ParseResult<IJsonValueMutator>(
                         CollectionExpressionHelpers.Create(
-                    new JsonObjectParseError($"Special function $({expressionData.MutatorFunctionName}(...), ...) cannot be followed by any characters",
+                    new JsonObjectParseError($"Special function {expressionData.MutatorFunctionName}(...) cannot be followed by any characters",
                         parsedSimpleValue.LineInfo.GenerateRelativePosition(expressionData.TemplateStartIndex))
                 ));
             }

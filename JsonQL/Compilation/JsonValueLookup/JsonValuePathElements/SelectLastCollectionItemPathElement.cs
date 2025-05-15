@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
@@ -11,6 +10,7 @@ namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
+    private readonly IVariablesManager _variablesManager;
 
     /// <summary>
     /// Represents a path element responsible for selecting the last item from a collection in a JSON data structure.
@@ -18,9 +18,11 @@ public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelect
     /// </summary>
     public SelectLastCollectionItemPathElement(
         IPredicateLambdaFunction? lambdaPredicate,
+        IVariablesManager variablesManager,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.LastCollectionItemSelectorFunction, lineInfo)
     {
         _lambdaPredicate = lambdaPredicate;
+        _variablesManager = variablesManager;
     }
 
     /// <inheritdoc />
@@ -28,34 +30,45 @@ public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelect
     {
         IParsedValue? selectedValue = null;
 
-        for (var i = parenParsedValues.Count - 1; i >= 0; --i)
+        this._variablesManager.Register(this);
+        try
         {
-            var parsedValue = parenParsedValues[i];
-            var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
-
-            if (_lambdaPredicate != null)
+            for (var i = parenParsedValues.Count - 1; i >= 0; --i)
             {
-                var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                var parsedValue = parenParsedValues[i];
+                var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
-                if (predicateExpressionResult.Errors.Count > 0)
-                    return new ParseResult<ISingleItemJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+                if (_lambdaPredicate != null)
+                {
+                    this._variablesManager.RegisterVariableValue(this, _lambdaPredicate.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 
-                if (!(predicateExpressionResult.Value ?? false))
-                    continue;
+                    try
+                    {
+                        var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+
+                        if (predicateExpressionResult.Errors.Count > 0)
+                            return new ParseResult<ISingleItemJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+
+                        if (!(predicateExpressionResult.Value ?? false))
+                            continue;
+                    }
+                    finally
+                    {
+                        this._variablesManager.UnregisterVariableValue(this, _lambdaPredicate.ParameterJsonFunction.Name);
+                    }
+                }
+
+                selectedValue = parsedValue;
+                break;
             }
 
-            selectedValue = parsedValue;
-            break;
+            return new ParseResult<ISingleItemJsonValuePathLookupResult>(
+                selectedValue != null ? SingleItemJsonValuePathLookupResult.CreateForValidPath(selectedValue) :
+                    SingleItemJsonValuePathLookupResult.CreateForInvalidPath());
         }
-
-        return new ParseResult<ISingleItemJsonValuePathLookupResult>(
-            selectedValue != null ? SingleItemJsonValuePathLookupResult.CreateForValidPath(selectedValue) :
-                SingleItemJsonValuePathLookupResult.CreateForInvalidPath());
-    }
-
-    /// <inheritdoc />
-    public IParseResult<object?>? TryEvaluateVariableValue(string variableName, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return LambdaFunctionParameterResolverHelpers.TryEvaluateLambdaFunctionParameterValue(this._lambdaPredicate, variableName, contextData);
+        finally
+        {
+            this._variablesManager.UnRegister(this);
+        }
     }
 }

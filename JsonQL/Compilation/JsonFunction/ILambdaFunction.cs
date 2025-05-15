@@ -1,4 +1,5 @@
 ﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
+using JsonQL.Compilation.JsonFunction.SimpleTypes;
 
 namespace JsonQL.Compilation.JsonFunction;
 

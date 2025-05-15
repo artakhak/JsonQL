@@ -6,6 +6,7 @@ public class SuccessfulCompilationTests : SuccessfulJsonCompilationTestsAbstr
     [Test]
     public async Task CollectionItemIndexExpressionsTest()
     {
-        await DoSuccessfulTest(["ContextValues", "CollectionItemIndexExpressions"], "JsonFile1.json");
+        await DoSuccessfulTest(["ContextValues", "CollectionItemIndexExpressions"], 
+            "JsonFile2.json", "JsonFile1.json");
     }
 }

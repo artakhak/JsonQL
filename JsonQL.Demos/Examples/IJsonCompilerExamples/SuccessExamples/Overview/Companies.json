@@ -9,7 +9,8 @@
           "City": "Springfield",
           "State": "IL",
           "ZipCode": "62701"
-        }
+        },
+        "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
       },
       "Employees": [
         {
@@ -71,7 +72,8 @@
           "City": "Denver",
           "State": "CO",
           "ZipCode": "80203"
-        }
+        },
+        "CountryDetails": "$value(Countries.Where(x => x.Name == 'Germany'))"
       },
       "Employees": [
         {
@@ -117,7 +119,8 @@
           "City": "Dallas",
           "State": "TX",
           "ZipCode": "75201"
-        }
+        },
+        "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
       },
       "Employees": [
         {

@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
@@ -12,6 +11,7 @@ namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IJsonPathLambdaFunction _jsonPathLambdaFunction;
+    private readonly IVariablesManager _variablesManager;
 
     /// <summary>
     /// Represents a path element in a JSON value lookup that selects items from a collection
@@ -19,46 +19,60 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
     /// </summary>
     public SelectCollectionItemsPathElement(
         IJsonPathLambdaFunction jsonPathLambdaFunction,
+        IVariablesManager variablesManager,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.SelectCollectionItemsFunction, lineInfo)
     {
         _jsonPathLambdaFunction = jsonPathLambdaFunction;
+        _variablesManager = variablesManager;
     }
-    
+
     /// <inheritdoc />
     protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
-        var selectedParsedValues = new List<IParsedValue>(parenParsedValues.Count);
+        this._variablesManager.Register(this);
 
-        for (var i = 0; i < parenParsedValues.Count; ++i)
+        try
         {
-            var parsedValue = parenParsedValues[i];
-            var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
+            var selectedParsedValues = new List<IParsedValue>(parenParsedValues.Count);
 
-            var pathParsedValuesResult = _jsonPathLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
-
-            if (pathParsedValuesResult.Errors.Count > 0)
-                return new ParseResult<ICollectionJsonValuePathLookupResult>(pathParsedValuesResult.Errors);
-
-            if (pathParsedValuesResult.Value != null)
+            for (var i = 0; i < parenParsedValues.Count; ++i)
             {
-                var parsedValuesResult = pathParsedValuesResult.Value.GetResultAsParsedValuesList(false, this.LineInfo);
+                var parsedValue = parenParsedValues[i];
+                var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
-                if (parsedValuesResult.Errors.Count > 0)
-                    return new ParseResult<ICollectionJsonValuePathLookupResult>(parsedValuesResult.Errors);
+                this._variablesManager.RegisterVariableValue(this, this._jsonPathLambdaFunction.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 
-                if (parsedValuesResult.Value == null || parsedValuesResult.Value.Count == 0)
-                    continue;
+                try
+                {
+                    var pathParsedValuesResult = _jsonPathLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
 
-                selectedParsedValues.AddRange(parsedValuesResult.Value);
+                    if (pathParsedValuesResult.Errors.Count > 0)
+                        return new ParseResult<ICollectionJsonValuePathLookupResult>(pathParsedValuesResult.Errors);
+
+                    if (pathParsedValuesResult.Value != null)
+                    {
+                        var parsedValuesResult = pathParsedValuesResult.Value.GetResultAsParsedValuesList(false, this.LineInfo);
+
+                        if (parsedValuesResult.Errors.Count > 0)
+                            return new ParseResult<ICollectionJsonValuePathLookupResult>(parsedValuesResult.Errors);
+
+                        if (parsedValuesResult.Value == null || parsedValuesResult.Value.Count == 0)
+                            continue;
+
+                        selectedParsedValues.AddRange(parsedValuesResult.Value);
+                    }
+                }
+                finally
+                {
+                    this._variablesManager.UnregisterVariableValue(this, this._jsonPathLambdaFunction.ParameterJsonFunction.Name);
+                }
             }
+
+            return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(selectedParsedValues));
         }
-
-        return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(selectedParsedValues));
-    }
-
-    /// <inheritdoc />
-    public IParseResult<object?>? TryEvaluateVariableValue(string variableName, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return LambdaFunctionParameterResolverHelpers.TryEvaluateLambdaFunctionParameterValue(this._jsonPathLambdaFunction, variableName, contextData);
+        finally
+        {
+            this._variablesManager.UnRegister(this);
+        }
     }
 }

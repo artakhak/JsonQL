@@ -10,30 +10,67 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
 	  <None Remove="Examples\IQueryManagerExamples\Companies.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Result.json" />
 	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
 	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
-	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Data.json" />
-	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Result.json" />
-	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
-	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompany.result.json" />
-	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
-	  <None Remove="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
-	  <None Remove="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Result.json" />
 	  <None Remove="JosnQL.log4net.config" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Result.json" />
 		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
 		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
-		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Data.json" />
-		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInAllCompanies\Result.json" />
-		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompany.result.json" />
-		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetSecondCompanyCeoName.result.json" />
-		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\GetAllEmployeeSalaries.result.json" />
-		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\Companies.json" />
-		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\GlobalSettings.json" />
-		<EmbeddedResource Include="Examples\SharedDemoJsonFiles\MyServiceSettings.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Result.json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="appsettings.json">

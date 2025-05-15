@@ -25,9 +25,7 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
     private readonly IJsonValuePathJsonFunction _jsonValuePathJsonFunction;
     private readonly IUniversalLambdaFunction? _predicateLambdaFunction;
     private readonly IUniversalLambdaFunction? _numericValueLambdaFunction;
-
-    private IUniversalLambdaFunction? _currentLambdaFunctionForVariableValueEvaluation;
-
+  
     /// <summary>
     /// Represents an abstract base class for aggregate lambda expression functions,
     /// extending the core functionality of JSON functions to support aggregation logic
@@ -197,9 +195,11 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
     private IParseResult<bool?> GetPredicateLambdaFunctionValue(IUniversalLambdaFunction predicateLambdaFunction, IRootParsedValue rootParsedValue,
         IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData contextData)
     {
+        JsonFunctionValueEvaluationContext.VariablesManager.RegisterVariableValue(this, predicateLambdaFunction.ParameterJsonFunction.Name,
+            contextData.EvaluatedValue);
+
         try
         {
-            _currentLambdaFunctionForVariableValueEvaluation = _predicateLambdaFunction;
             if (predicateLambdaFunction.LambdaExpressionFunction is IBooleanJsonFunction booleanJsonFunction)
                 return booleanJsonFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -213,17 +213,18 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
         }
         finally
         {
-            _currentLambdaFunctionForVariableValueEvaluation = null;
+            JsonFunctionValueEvaluationContext.VariablesManager.UnregisterVariableValue(this, predicateLambdaFunction.ParameterJsonFunction.Name);
         }
     }
 
     private IParseResult<double?> GetNumericValueLambdaFunctionValue(IUniversalLambdaFunction numericValueLambdaFunction, IRootParsedValue rootParsedValue,
         IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData contextData)
     {
+        JsonFunctionValueEvaluationContext.VariablesManager.RegisterVariableValue(this, numericValueLambdaFunction.ParameterJsonFunction.Name,
+            contextData.EvaluatedValue);
+
         try
         {
-            _currentLambdaFunctionForVariableValueEvaluation = _numericValueLambdaFunction;
-
             if (numericValueLambdaFunction.LambdaExpressionFunction is IDoubleJsonFunction doubleJsonFunction)
                 return doubleJsonFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -237,7 +238,7 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
         }
         finally
         {
-            _currentLambdaFunctionForVariableValueEvaluation = null;
+            JsonFunctionValueEvaluationContext.VariablesManager.UnregisterVariableValue(this, numericValueLambdaFunction.ParameterJsonFunction.Name);
         }
 
     }
@@ -325,11 +326,5 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
         TAggregationCalculationsData calculationsData, List<IJsonObjectParseError> errors)
     {
 
-    }
-
-    /// <inheritdoc />
-    public IParseResult<object?>? TryEvaluateVariableValue(string variableName, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return LambdaFunctionParameterResolverHelpers.TryEvaluateLambdaFunctionParameterValue(_currentLambdaFunctionForVariableValueEvaluation, variableName, contextData);
     }
 }

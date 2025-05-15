@@ -22,7 +22,7 @@
             "ZipCode": "60601"
           },
           "Salary": 99500,
-          "Age": 45          
+          "Age": 45
         },
         {
           "Id": 100000002,
@@ -84,13 +84,17 @@
             "ZipCode": "85001"
           },
           "Salary": 111000,
-          "Age": 29,
-          "Logins": [ "cgarcia@sherwood.com", "cgarcia@gmail.com" ]
+          "Age": 29
         },
         {
           "Id": 100000006,
           "Name": "Sarah Wilson",
-          "Address": null,
+          "Address": {
+            "Street": "987 Ash Boulevard",
+            "City": "Philadelphia",
+            "State": "PA",
+            "ZipCode": "19101"
+          },
           "Salary": 78000,
           "Age": 35
         },

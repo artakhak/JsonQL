@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
@@ -10,6 +9,7 @@ namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 public class WhereCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction _predicateLambdaFunction;
+    private readonly IVariablesManager _variablesManager;
 
     /// <summary>
     /// Represents a path element used to filter collection items based on a predicate.
@@ -20,41 +20,52 @@ public class WhereCollectionItemsPathElement : JsonValueCollectionItemsSelectorP
     /// </remarks>
     public WhereCollectionItemsPathElement(
         IPredicateLambdaFunction predicateLambdaFunction,
+        IVariablesManager variablesManager,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.WhereCollectionItemsFunction, lineInfo)
     {
         _predicateLambdaFunction = predicateLambdaFunction;
+        _variablesManager = variablesManager;
     }
 
     /// <inheritdoc />
     protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
-        var filteredParsedValues = new List<IParsedValue>(parenParsedValues.Count);
+        this._variablesManager.Register(this);
 
-        for (var i = 0; i < parenParsedValues.Count; ++i)
+        try
         {
-            var parsedValue = parenParsedValues[i];
-            var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
+            var filteredParsedValues = new List<IParsedValue>(parenParsedValues.Count);
 
-            if (_predicateLambdaFunction != null)
+            for (var i = 0; i < parenParsedValues.Count; ++i)
             {
-                var predicateExpressionResult = _predicateLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                var parsedValue = parenParsedValues[i];
+                var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
+                this._variablesManager.RegisterVariableValue(this, _predicateLambdaFunction.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 
-                if (predicateExpressionResult.Errors.Count > 0)
-                    return new ParseResult<ICollectionJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+                try
+                {
 
-                if (!(predicateExpressionResult.Value ?? false))
-                    continue;
+                    var predicateExpressionResult = _predicateLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+
+                    if (predicateExpressionResult.Errors.Count > 0)
+                        return new ParseResult<ICollectionJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+
+                    if (!(predicateExpressionResult.Value ?? false))
+                        continue;
+
+                    filteredParsedValues.Add(parsedValue);
+                }
+                finally
+                {
+                    this._variablesManager.UnregisterVariableValue(this, _predicateLambdaFunction.ParameterJsonFunction.Name);
+                }
             }
 
-            filteredParsedValues.Add(parsedValue);
+            return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(filteredParsedValues));
         }
-
-        return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(filteredParsedValues));
-    }
-
-    /// <inheritdoc />
-    public IParseResult<object?>? TryEvaluateVariableValue(string variableName, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return LambdaFunctionParameterResolverHelpers.TryEvaluateLambdaFunctionParameterValue(this._predicateLambdaFunction, variableName, contextData);
+        finally
+        {
+            this._variablesManager.UnRegister(this);
+        }
     }
 }

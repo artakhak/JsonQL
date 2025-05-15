@@ -9,7 +9,7 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 /// </summary>
 public interface ILambdaFunctionParameterJsonFunction : IVariableJsonFunction
 {
-    
+
 }
 
 /// <summary>
@@ -26,22 +26,23 @@ public class LambdaFunctionParameterJsonFunction : JsonFunctionAbstr, ILambdaFun
     /// This class is used to define a parameter for lambda-based expressions in JSON querying. It inherits from the
     /// <see cref="JsonFunctionAbstr"/> base class and is instantiated with a parameter name and context.
     /// </remarks>
-    public LambdaFunctionParameterJsonFunction(string parameterName, IJsonFunctionValueEvaluationContext jsonFunctionContext,
+    public LambdaFunctionParameterJsonFunction(string parameterName,
+        IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) : base(parameterName, jsonFunctionContext, lineInfo)
     {
         Name = parameterName;
     }
 
     /// <inheritdoc />
-    protected override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, 
+    protected override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues,
         IJsonFunctionEvaluationContextData? contextData)
     {
-        var parameterValueResult = JsonFunctionValueEvaluationContext.VariablesManager.TryEvaluateVariableValue(this.Name, contextData);
+        var variableValue = JsonFunctionValueEvaluationContext.VariablesManager.TryResolveVariableValue(this.Name);
 
-        if (parameterValueResult == null)
-            return new ParseResult<object?>(CollectionExpressionHelpers.Create(new JsonObjectParseError("Failed to evaluate parameter value", LineInfo)));
+        if (variableValue != null)
+            return variableValue;
 
-        return parameterValueResult;
+        return new ParseResult<object?>(CollectionExpressionHelpers.Create(new JsonObjectParseError("Failed to evaluate parameter value", LineInfo)));
     }
 
     /// <inheritdoc />

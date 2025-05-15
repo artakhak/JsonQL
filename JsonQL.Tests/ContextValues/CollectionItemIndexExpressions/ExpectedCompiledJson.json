@@ -56,5 +56,8 @@
     7,
     8,
     true
+  ],
+  "EmployeeNamesInSecondCompanyExcludingFirstAndLastEmployee": [
+    "Sarah Wilson"
   ]
 }

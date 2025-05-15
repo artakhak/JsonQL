@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
@@ -12,11 +11,13 @@ namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
+    private readonly IVariablesManager _variablesManager;
 
     /// <summary>
     /// Represents a path element for flattening collection items in a JSON value lookup operation.
     /// </summary>
     /// <param name="lambdaPredicate">If the value is not null, a predicate that will filter out the collection items.</param>
+    /// <param name="variablesManager">Variables manager used to register variables, and retrieve variable values.</param>
     /// <param name="lineInfo">Path expression position.</param>
     /// <remarks>
     /// This class serves as a specialized implementation for selecting and retrieving collection items
@@ -26,48 +27,62 @@ public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     /// </remarks>
     public FlattenCollectionItemsPathElement(
         IPredicateLambdaFunction? lambdaPredicate,
+        IVariablesManager variablesManager,
         IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.FlattenCollectionItemsSelectorFunction, lineInfo)
     {
         _lambdaPredicate = lambdaPredicate;
+        _variablesManager = variablesManager;
     }
 
     /// <inheritdoc />
     protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
-        var flattenedParsedValues = new List<IParsedValue>(parenParsedValues.Count);
+        this._variablesManager.Register(this);
 
-        for (var i = 0; i < parenParsedValues.Count; ++i)
+        try
         {
-            var parsedValue = parenParsedValues[i];
-            var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
+            var flattenedParsedValues = new List<IParsedValue>(parenParsedValues.Count);
 
-            if (_lambdaPredicate != null)
+            for (var i = 0; i < parenParsedValues.Count; ++i)
             {
-                var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                var parsedValue = parenParsedValues[i];
+                var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
-                if (predicateExpressionResult.Errors.Count > 0)
-                    return new ParseResult<ICollectionJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+                if (_lambdaPredicate != null)
+                {
+                    this._variablesManager.RegisterVariableValue(this, _lambdaPredicate.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 
-                if (!(predicateExpressionResult.Value ?? false))
-                    continue;
+                    try
+                    {
+                        var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+
+                        if (predicateExpressionResult.Errors.Count > 0)
+                            return new ParseResult<ICollectionJsonValuePathLookupResult>(predicateExpressionResult.Errors);
+
+                        if (!(predicateExpressionResult.Value ?? false))
+                            continue;
+                    }
+                    finally
+                    {
+                        this._variablesManager.UnregisterVariableValue(this, _lambdaPredicate.ParameterJsonFunction.Name);
+                    }
+                }
+
+                if (parsedValue is IParsedArrayValue parsedArrayValue)
+                {
+                    flattenedParsedValues.AddRange(parsedArrayValue.Values);
+                }
+                else
+                {
+                    flattenedParsedValues.Add(parsedValue);
+                }
             }
 
-            if (parsedValue is IParsedArrayValue parsedArrayValue)
-            {
-                flattenedParsedValues.AddRange(parsedArrayValue.Values);
-            }
-            else
-            {
-                flattenedParsedValues.Add(parsedValue);
-            }
+            return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(flattenedParsedValues));
         }
-
-        return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(flattenedParsedValues));
-    }
-
-    /// <inheritdoc />
-    public IParseResult<object?>? TryEvaluateVariableValue(string variableName, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return LambdaFunctionParameterResolverHelpers.TryEvaluateLambdaFunctionParameterValue(this._lambdaPredicate, variableName, contextData);
+        finally
+        {
+            this._variablesManager.UnRegister(this);
+        }
     }
 }

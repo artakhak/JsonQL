@@ -1,0 +1,97 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "MyServiceSettings",
+      "CompiledParsedValue":
+      {
+        "AppSettings": {
+          "AdminUsername":  "admin",
+          "ServicePublicUrl":  "http://localhost:5121"
+        },
+        "WebRequestLogger": [
+          {
+            "comments":  "We copy all the key values from parent, and then override the value of LogWebRequest to true.",
+            "Id":  "Default",
+            "Paths": [
+            ],
+            "LogWebRequestHeaders":  true,
+            "LogWebRequestBody":  false,
+            "LogWebRequestClaims":  false,
+            "RequestHeadersNotToLog": [
+              "authorization",
+              "Cookie"
+            ],
+            "ClaimsNotToLog": [
+              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+            ],
+            "LogWebRequest":  true
+          },
+          {
+            "Id":  "IsAlive",
+            "Paths": [
+              "/ServiceAliveCheck/is-alive"
+            ],
+            "LogWebRequest":  false
+          },
+          {
+            "Id":  "Login",
+            "Paths": [
+              "/account/login",
+              "/account/login-no-redirect"
+            ],
+            "LogWebRequest":  true,
+            "LogWebRequestBody":  false
+          }
+        ],
+        "Comment_RabbitMq":  "Copy RabbitMq from prent as is.",
+        "RabbitMq": {
+          "RabbitMqConfigPath": {
+            "ServerVarName":  "RABBITMQ_HOSTNAME"
+          },
+          "RabbitMqUser": {
+            "ServerVarName":  "RABBITMQ_USER"
+          },
+          "RabbitMqPassword": {
+            "ServerVarName":  "RABBITMQ_PASSWORD"
+          }
+        },
+        "Rebus": {
+          "comments":  "Copy Rebus key/values from parent JSON, and add new key/values",
+          "DataBusDirectoryPath":  "K:\\RabbitMq\\Docker",
+          "IncomingMessageLoggerConfiguration": {
+            "LogRebusMessages":  true,
+            "LogMessageHeaders":  true,
+            "LogMessageBody":  true,
+            "LogMessageHandlers":  false
+          },
+          "OutgoingMessageLoggerConfiguration": {
+            "LogRebusMessages":  true,
+            "LogMessageHeaders":  true,
+            "LogMessageBody":  true
+          },
+          "BusConfigurations": [
+            {
+              "BusName":  "DefaultMessageSender",
+              "QueueName":  "AuthorizationServer_DefaultMessageSender",
+              "ErrorQueueName":  "AuthorizationServer_DefaultMessageSender_Errors",
+              "RebusNumberOfWorkers":  1,
+              "RebusMaxParallelism":  1,
+              "MaxDeliveryAttempts":  5,
+              "SentMessageResponseTimeoutSeconds":  10
+            }
+          ]
+        },
+        "ConnectionStrings": [
+          "Server=PC2-DELL, Database=DB1",
+          "Server=Server2, Database=DB2",
+          "Server=NewServerForMyService, Database=MyServiceDB"
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

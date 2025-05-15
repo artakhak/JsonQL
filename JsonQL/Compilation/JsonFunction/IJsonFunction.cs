@@ -25,7 +25,7 @@ public interface IJsonFunction
     /// May be null if the current function has no parent.
     /// </summary>
     IJsonFunction? ParentJsonFunction { get; }
-
+    
     /// <summary>
     /// Evaluates a specified value based on the provided root parsed value,
     /// a list of parent root parsed values, and the optional evaluation context data.

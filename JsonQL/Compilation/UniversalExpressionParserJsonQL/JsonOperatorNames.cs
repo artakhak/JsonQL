@@ -8,7 +8,6 @@ public static class JsonOperatorNames
     /// </summary>
     public const string JsonPathSeparator = ".";
 
-
     /// <summary>
     /// Represents the operator used to define a lambda expression in JSON queries.
     /// </summary>

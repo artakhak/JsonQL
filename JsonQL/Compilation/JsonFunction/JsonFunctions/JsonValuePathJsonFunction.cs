@@ -64,8 +64,7 @@ public class JsonValuePathJsonFunction: JsonFunctionAbstr, IJsonValuePathJsonFun
     {
         if (JsonValuePath.Path.Count > 0 && JsonValuePath.Path[0] is IJsonValuePropertyNamePathElement jsonValuePropertyNamePathElement)
         {
-            var variableEvaluationResult = JsonFunctionValueEvaluationContext.VariablesManager.TryEvaluateVariableValue(jsonValuePropertyNamePathElement.Name, contextData);
-            
+            var variableEvaluationResult = JsonFunctionValueEvaluationContext.VariablesManager.TryResolveVariableValue(jsonValuePropertyNamePathElement.Name);
             if (variableEvaluationResult != null)
             {
                 if (variableEvaluationResult.Errors.Count > 0)

@@ -12,6 +12,7 @@
 	<ItemGroup>
 		<None Remove="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 		<None Remove="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
+		<None Remove="ContextValues\CollectionItemIndexExpressions\JsonFile2.json" />
 		<None Remove="Diagnostics\ExpectedCompiledJson.json" />
 		<None Remove="Functions\MathFunctions\ExpectedCompiledJson.json" />
 		<None Remove="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
@@ -55,7 +56,6 @@
 		<None Remove="JsonMutators\Value\InvalidPaths\JsonFile1.json" />
 		<None Remove="JsonMutators\Value\JsonFile1.json" />
 		<None Remove="JsonMutators\Value\JsonFile2.json" />
-		<None Remove="Demo\ExpectedCompiledJson.json" />
 		<None Remove="Diagnostics\JsonFile1.json" />
 		<None Remove="Diagnostics\JsonFile2.json" />
 		<None Remove="Functions\AggregateFunctions\Any\Companies.json" />
@@ -201,8 +201,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
+		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile2.json" />
 		<EmbeddedResource Include="Diagnostics\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile1.json" />
@@ -232,7 +233,6 @@
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="JsonMutators\Value\InvalidPaths\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="JsonMutators\Value\InvalidPaths\JsonFile1.json" />
-		<EmbeddedResource Include="Demo\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile1.json" />
 		<EmbeddedResource Include="Functions\AggregateFunctions\Sum\JsonFile2.json" />
@@ -360,9 +360,6 @@
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentsParentJson\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\JsonFile1.json" />
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\JsonFile2.json" />
-		<EmbeddedResource Include="Demo\AppSettings.json">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</EmbeddedResource>
 		<EmbeddedResource Include="Diagnostics\JsonFile1.json" />
 		<EmbeddedResource Include="Diagnostics\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\JsonFile1.json">
@@ -420,10 +417,6 @@
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="8.0.0" />
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Demo\GlobalSettings.json" />
 	</ItemGroup>
 
 	<ItemGroup>
