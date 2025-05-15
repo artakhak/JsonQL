@@ -16,7 +16,7 @@
       2,
       "Test",
       {
-        "EmployeeId": 1
+        "EmployeeId":  1
       },
       [
         5,
@@ -40,7 +40,25 @@
     2,
     "Test",
     {
-      "EmployeeId": 1
+      "EmployeeId":  1
+    },
+    5,
+    "test",
+    20,
+    [
+      18,
+      21,
+      19
+    ],
+    6,
+    13,
+    4
+  ],
+  "GetAllItemsInArrayAndSubarrays_OneLevel_Filtered": [
+    1,
+    "Test",
+    {
+      "EmployeeId":  1
     },
     5,
     "test",
@@ -65,7 +83,7 @@
     2,
     "Test",
     {
-      "EmployeeId": 1
+      "EmployeeId":  1
     },
     5,
     "test",
@@ -87,31 +105,31 @@
   ],
   "GetAllEmployees_in_Company1_and_Company3": [
     {
-      "EmployeeId": 1,
-      "Age": 55,
-      "Salary": 100000
+      "EmployeeId":  1,
+      "Age":  55,
+      "Salary":  100000
     },
     {
-      "EmployeeId": 2,
-      "Age": 45,
-      "Salary": 80000
+      "EmployeeId":  2,
+      "Age":  45,
+      "Salary":  80000
     },
     {
-      "EmployeeId": 3,
-      "Age": 75,
-      "Salary": 120000
+      "EmployeeId":  3,
+      "Age":  75,
+      "Salary":  120000
     },
     {
-      "EmployeeId": 201,
-      "Age": 39,
-      "Salary": 103000
+      "EmployeeId":  201,
+      "Age":  39,
+      "Salary":  103000
     },
     {
-      "EmployeeId": 202,
-      "Age": 59,
-      "Salary": 175000
+      "EmployeeId":  202,
+      "Age":  59,
+      "Salary":  175000
     }
   ],
-  "GetAverageEmployeeSallary_in_Company1_and_Company3": "115600",
-  "GetAverageValueOfArrayAndSubArrays": "4.25"
+  "GetAverageEmployeeSallary_in_Company1_and_Company3":  "115600",
+  "GetAverageValueOfArrayAndSubArrays":  "4.25"
 }

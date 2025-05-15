@@ -32,6 +32,9 @@
   "GetAllItemsInArrayAndSubarrays_OneLevel": [
     "$merge(Object1.Array1.Flatten())"
   ],
+  "GetAllItemsInArrayAndSubarrays_OneLevel_Filtered": [
+    "$merge(Object1.Array1.Flatten(x => x != 2))"
+  ],
   "GetAllItemsInArrayAndSubarrays_OneLevel_Between_4_and_19": [
     "$merge(Object1.Array1.Flatten().Where(x => x >= 4 && x <= 19))"
   ],

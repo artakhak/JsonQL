@@ -1,11 +1,16 @@
 {
-  "TEST": "$value(Companies[1].Select(x => x.Employees.Where(y => index == Count(x.Employees))))",
   "CountryNamesWithPopulationOf80MlnOrMore": "$value(Countries.Where(x => x.Population >= 80000000).Select(x => x.Name))",
   "CompanyDetailsWithAnyEmployeeWithNullAddress": "$value(Companies.Where(x => Any(x.Employees, x => x.Address is null)).Select(x => x.CompanyData))",
   "EmployeesWithNonEmptyLoginsList": "$value(Companies.Select(x => x.Employees.Where(x => Count(x.Logins) > 0)))",
   "FirstEmployeeWithLoginsField": "$value(Companies.Select(x => x.Employees.Where(x => HasField(x, 'Logins'))).First())",
+  "FlattenExamples": {
+    // Flattening arrays can be applied multiple times to execute sophisticated queries
+    "FlattenArraysAndFilterObjects": "$value(MultiDimensionalMatrix.Flatten().Where(x => x > 3 || x.Name == 'John' || x.CompanyName starts with 'Sherwood'))",
+    "GetAllNumericValuesInArraysFiltered": "$value(MultiDimensionalMatrix.Flatten().Flatten(x => typeof x != 'JsonArray' || All(x, y => y != 12)).Where(x => typeof x == 'Number'))"
+  },
   // If CompanyData.CEO field is missing or value is null for second company, compilation will fail.
   "SelectSecondCompanyCeoNameWithAssertionThatCeoNameFieldIsPresetAndNotNull": "$(Companies[1].CompanyData.CEO assert)",
+
   // Example of merging fields into a JSON object. EnhancedCompanyData has fields in CompanyData for company with Name that starts with text 'Sherwood'
   // enhanced with additonal fields
   "EnhancedCompanyData": {
@@ -13,6 +18,7 @@
     "CompanyDataCopied": "$copyFields(Companies.First(x => x.CompanyData.Name starts with 'Sherwood').CompanyData)",
     "NumberOfEmployees": "$(Count(Companies.First(x => x.CompanyData.Name starts with 'Sherwood').Employees))"
   },
+
   // Example of merging array items into an array
   // List of company data for companies with  max salary of employees at least 110000 will be merged into array ListOfCompaniesEnhancedWithNewCompanies
   "ListOfCompaniesEnhancedWithNewCompanies": [
@@ -29,15 +35,11 @@
   ],
   // Example of simple value using mutator function "$". In contrast to "$value" it generates a simple value (string, numeroc, etc) and not an object.
   "AverageSalaryOfAllEmployeesInFilteredCompanies": "$(Average(Companies.Where(x => !(x.CompanyData.Name starts with 'Sherwood')).Select(x => x.Employees.Select(x => x.Salary))))",
-  "AddressingObjectsInMultiDimensionalMatrix": "$value(MultiDimentionalMattrix[1, 2].Address)",
-  "FlattenExamples": {
-    // Flattening arrays can be applied multiple times to execute soffisticated queries
-    "FlattenArraysAndFilterObjects": "$value(MultiDimentionalMattrix.Flatten().Where(x => x > 3 || x.Name == 'John' || x.CompanyName starts with 'Sherwood'))",
-    "GetAllNumericValluesInArrays": "$value(MultiDimentionalMattrix.Flatten().Flatten().Where(x => typeof x == 'Number'))"
-  },
-  // Examples of using contextual data such a 'index' and 'count'
-  "ContextValueExamples": {
-    "EmployeeNamesInFirstCompanyExcludingFirstAndLastEmployee": "$value(Companies[1].Select(x => x.Employees.Where(y => index != 0 && index != Count(x.Employees) - 1).Select(x => x.Name)))",
-    "EmployeeNamesInAllCompaniesExcludingFirstAndLastEmployee": "$value(Companies.Select(x => x.Employees.Where(y => index != 0  && index != Count(x.Employees) - 1).Select(x => x.Name)))"
-  }
+  "AddressingObjectsInMultiDimensionalMatrix": "$value(MultiDimensionalMatrix[1, 2].Address)",
+
+  // Examples of using contextual data such a 'index' as well as example of referencing parent lamdba function parameter
+  "EmployeeNamesInSecondCompanyExcludingFirstAndLastEmployee": "$value(Companies[1].Select(x => x.Employees.Where(y => index != 0 && index != Count(x.Employees) - 1).Select(x => x.Name)))",
+  // We can use named parameters to change the order of parameters, as well as not specified optional parameter that are before parameters we pass
+  // In this example both criteria and value are optional, and criteria is before value parameter. By using named parameter value, we can ommit criteria parameter
+  "MaxRaisedSalaryAccrossAllCompaniesUsingNamedParameter": "$value(Max(Companies.Select(x => x.Employees).Flatten(), value->x=>x.Salary*1.05))"
 }
