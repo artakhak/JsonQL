@@ -12,7 +12,7 @@ namespace JsonQL.Compilation.UniversalExpressionParserJsonQL;
 /// This class defines the rules and characteristics of the JSON expression language. It includes properties for
 /// language-specific features such as supported constant markers, operators, and other language-specific rules.
 /// </remarks>
-public class JsonExpressionLanguageProvider : IExpressionLanguageProvider // ExpressionLanguageProviderBase
+public class JsonExpressionLanguageProvider : IExpressionLanguageProvider
 {
     private readonly List<IOperatorInfo> _operators;
 
@@ -42,7 +42,6 @@ public class JsonExpressionLanguageProvider : IExpressionLanguageProvider // Exp
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.ContainsOperator), OperatorType.BinaryOperator, 300),
             new OperatorInfoWithAutoId(JsonOperatorNames.StartsWith, OperatorType.BinaryOperator, 300),
             new OperatorInfoWithAutoId(JsonOperatorNames.EndsWith, OperatorType.BinaryOperator, 300),
-
             
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.MultiplyOperator), OperatorType.BinaryOperator, 400),
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.DivideOperator), OperatorType.BinaryOperator, 400),

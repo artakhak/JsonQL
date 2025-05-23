@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using JsonQL.Compilation;
+using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.Compilation.JsonValueTextGenerator.StringFormatters;
 using JsonQL.Demos.AppSettings;
 using JsonQL.Demos.CustomJsonQL.Compilation;
+using JsonQL.Demos.CustomJsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Query;
-using Microsoft.Extensions.Configuration;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver;
 
@@ -14,12 +15,11 @@ namespace JsonQL.Demos.Startup.DependencyInjection;
 // ReSharper disable once InconsistentNaming
 public class JsonQLClassRegistrationsModule: Module
 {
-    private readonly IConfigurationRoot _configurationRoot;
+    
     private readonly ILog _logger;
 
-    public JsonQLClassRegistrationsModule(IConfigurationRoot configurationRoot, ILog logger)
+    public JsonQLClassRegistrationsModule(ILog logger)
     {
-        _configurationRoot = configurationRoot;
         _logger = logger;
     }
 
@@ -34,6 +34,8 @@ public class JsonQLClassRegistrationsModule: Module
             new QueryManagerCompilationResultLogger(new CompilationResultLogger()))
             .As<ICompilationResultLogger>().SingleInstance();
 
+        RegisterCustomOperatorsAndFunctions(builder);
+
         builder.Register(context =>
         {
             var compilationResultLogger = context.Resolve<ICompilationResultLogger>();
@@ -42,6 +44,9 @@ public class JsonQLClassRegistrationsModule: Module
             {
                 if (parameterInfo.ParameterType == typeof(ICompilationResultLogger))
                     return (true, compilationResultLogger);
+
+                if (parameterInfo.ParameterType == typeof(IBinaryOperatorJsonFunctionFactory))
+                    return (true, context.Resolve<IBinaryOperatorJsonFunctionFactory>());
 
                 return (false, null);
             };
@@ -65,4 +70,10 @@ public class JsonQLClassRegistrationsModule: Module
                 }))
             .As<IStringFormatter>().SingleInstance();
     }
+
+    private void RegisterCustomOperatorsAndFunctions(ContainerBuilder builder)
+    {
+        builder.RegisterType<CustomBinaryOperatorJsonFunctionFactory>().As<IBinaryOperatorJsonFunctionFactory>().SingleInstance();
+    }
+
 }

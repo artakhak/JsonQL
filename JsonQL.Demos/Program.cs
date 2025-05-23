@@ -84,7 +84,7 @@ static void RegisterModules(ContainerBuilder containerBuilder, IConfigurationRoo
 {
     containerBuilder.RegisterModule(new ConfigurationModule(configurationRoot));
     containerBuilder.RegisterModule(new JsonQLExtensionsClassesRegistrationsModule());
-    containerBuilder.RegisterModule(new JsonQLClassRegistrationsModule(configurationRoot, LogHelper.Context.Log));
+    containerBuilder.RegisterModule(new JsonQLClassRegistrationsModule(LogHelper.Context.Log));
     
     containerBuilder.RegisterModule(new ExampleManagersModule());
 }

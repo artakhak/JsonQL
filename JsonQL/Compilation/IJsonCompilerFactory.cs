@@ -20,14 +20,10 @@ public interface IJsonCompilerFactory
     /// <summary>
     /// Creates an instance of the default implementation of <see cref="IJsonCompiler"/> with the option to modify the parameters used for its creation.
     /// </summary>
-    /// <param name="mutateJsonCompilerParameters">
-    /// A delegate that allows modification of the default <see cref="IJsonCompilerParameters"/> instance before the compiler is constructed.
-    /// If null, the default parameters will be used without any modification.
-    /// </param>
     /// <returns>
     /// An instance of <see cref="IJsonCompiler"/> configured with the provided or default parameters.
     /// </returns>
-    IJsonCompiler Create(Func<IJsonCompilerParameters, IJsonCompilerParameters>? mutateJsonCompilerParameters = null);
+    IJsonCompiler Create();
 }
 
 /// <inheritdoc />
@@ -151,12 +147,12 @@ public class JsonCompilerFactory: IJsonCompilerFactory
     }
 
     /// <inheritdoc />
-    public IJsonCompiler Create(Func<IJsonCompilerParameters, IJsonCompilerParameters>? mutateJsonCompilerParameters = null)
+    public IJsonCompiler Create()
     {
         // This should not be necessary.
         var jsonCompilerParameters = _defaultImplementationBasedObjectFactory.CreateInstance<IJsonCompilerParameters>();
 
-        var jsonCompiler = CreateJsonCompiler(mutateJsonCompilerParameters?.Invoke(jsonCompilerParameters)?? jsonCompilerParameters);
+        var jsonCompiler = CreateJsonCompiler(jsonCompilerParameters);
 
         InitFunctionFactories();
         return jsonCompiler;
@@ -167,19 +163,14 @@ public class JsonCompilerFactory: IJsonCompilerFactory
         return new JsonCompiler(jsonCompilerParameters);
     }
 
-    protected virtual (IExpressionLanguageProviderValidator expressionLanguageProviderValidator, IExpressionLanguageProvider expressionLanguageProvider) CreateExpressionParserDependencies()
+    protected virtual IExpressionParser CreateExpressionParser(ILog logger)
     {
-        return (new DefaultExpressionLanguageProviderValidator(), new JsonExpressionLanguageProvider());
-    }
-
-    private IExpressionParser CreateExpressionParser(ILog logger)
-    {
-        var expressionParserDependencies = CreateExpressionParserDependencies();
+        var expressionLanguageProvider = new JsonExpressionLanguageProvider();
 
         var expressionLanguageProviderCache =
-            new ExpressionLanguageProviderCache(expressionParserDependencies.expressionLanguageProviderValidator);
+            new ExpressionLanguageProviderCache(new DefaultExpressionLanguageProviderValidator());
 
-        expressionLanguageProviderCache.RegisterExpressionLanguageProvider(expressionParserDependencies.expressionLanguageProvider);
+        expressionLanguageProviderCache.RegisterExpressionLanguageProvider(expressionLanguageProvider);
 
         return new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache, logger);
     }

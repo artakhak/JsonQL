@@ -101,7 +101,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="CustomJsonQL\Compilation\" />
 	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
 	  <Folder Include="Examples\IJsonCompilerExamples\FailureExamples\" />
 	  <Folder Include="Examples\IQueryManagerExamples\FailureExamples\" />

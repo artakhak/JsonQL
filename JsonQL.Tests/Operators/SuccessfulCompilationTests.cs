@@ -38,4 +38,10 @@ public class SuccessfulCompilationTests : SuccessfulJsonCompilationTestsAbstr
     {
         await DoSuccessfulTest(["Operators", "IsNotUndefined"], "JsonFile2.json", "JsonFile1.json");
     }
+
+    [Test]
+    public async Task Operators_DefaultValue()
+    {
+        await DoSuccessfulTest(["Operators", "DefaultValue"], "JsonFile1.json");
+    }
 }

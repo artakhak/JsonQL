@@ -106,7 +106,8 @@
             "ZipCode": "78201"
           },
           "Salary": 95000,
-          "Age": 46
+          "Age": 46,
+          "Logins": [ "dmartinez@sherwood.com", "dmartinez@gmail.com" ]
         }
       ]
     },

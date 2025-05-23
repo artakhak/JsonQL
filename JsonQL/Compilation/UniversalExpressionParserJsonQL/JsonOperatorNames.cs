@@ -40,7 +40,7 @@ public static class JsonOperatorNames
     public const string LessThanOperator = "<";
 
     /// <summary>
-    /// Represents the less than or equal to operator ("<=").
+    /// Represents the less than or equal to operator ("&lt;=").
     /// </summary>
     public const string LessThanOrEqualOperator = "<=";
 
