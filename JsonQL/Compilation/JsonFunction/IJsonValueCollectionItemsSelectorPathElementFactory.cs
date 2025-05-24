@@ -15,7 +15,7 @@ namespace JsonQL.Compilation.JsonFunction;
 public interface IJsonValueCollectionItemsSelectorPathElementFactory
 {
     // TODO: See if it makes sense to move this method somewhere else.
-    // Currently it makes sense to have this in the same intreface since the implementation
+    // Currently it makes sense to have this in the same interface since the implementation
     // of <see cref="Create"/> needs access to collection function names list too, but this method will be re-evaluated.
     /// <summary>
     /// Determines whether the specified function name corresponds to a JSON value collection items selector function.

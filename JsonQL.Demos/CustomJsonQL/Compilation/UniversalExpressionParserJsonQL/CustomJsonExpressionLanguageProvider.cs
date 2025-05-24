@@ -19,7 +19,7 @@ public class CustomJsonExpressionLanguageProvider: IExpressionLanguageProvider
     /// </summary>
     /// <param name="defaultJsonExpressionLanguageProvider">Decorated implementation of <see cref="IExpressionLanguageProvider"/>.
     /// Will be used for most implementations of <see cref="IExpressionLanguageProvider"/>.
-    /// An instance of default JsonQL implementation <see cref="JsonExpressionLanguageProvider"/> can be used for this parameter.</param>
+    /// An instance of default JsonQL implementation <see cref="JsonQLExpressionLanguageProvider"/> can be used for this parameter.</param>
     public CustomJsonExpressionLanguageProvider(IExpressionLanguageProvider defaultJsonExpressionLanguageProvider)
     {
         _defaultJsonExpressionLanguageProvider = defaultJsonExpressionLanguageProvider;

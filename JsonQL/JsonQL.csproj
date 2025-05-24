@@ -12,9 +12,4 @@
 	  <PackageReference Include="UniversalExpressionParser" Version="1.1.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <!--<ProjectReference Include="..\..\..\MyGitHubProjects\TextParser\TextParser\TextParser.csproj" />
-	  <ProjectReference Include="..\..\..\MyGitHubProjects\UniversalExpressionParser\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
-	</ItemGroup>
-
 </Project>

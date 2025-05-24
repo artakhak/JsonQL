@@ -1,6 +1,5 @@
 ﻿using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace JsonQL.Compilation.JsonFunction;

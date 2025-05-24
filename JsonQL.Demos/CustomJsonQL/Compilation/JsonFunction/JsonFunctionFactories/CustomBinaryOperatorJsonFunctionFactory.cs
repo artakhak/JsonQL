@@ -11,7 +11,7 @@ namespace JsonQL.Demos.CustomJsonQL.Compilation.JsonFunction.JsonFunctionFactori
 /// Look at the default implementation <see cref="BinaryOperatorJsonFunctionFactory"/> for examples on how binary operator
 /// functions can be created.
 /// </summary>
-public class CustomBinaryOperatorJsonFunctionFactory: IBinaryOperatorJsonFunctionFactory
+public class CustomBinaryOperatorJsonFunctionFactory: JsonFunctionFactoryAbstr, IBinaryOperatorJsonFunctionFactory
 {
     private readonly IBinaryOperatorJsonFunctionFactory _defaultBinaryOperatorJsonFunctionFactory;
 
@@ -28,6 +28,7 @@ public class CustomBinaryOperatorJsonFunctionFactory: IBinaryOperatorJsonFunctio
         {
             //return null!;
         }
+
         return _defaultBinaryOperatorJsonFunctionFactory.GetBinaryOperatorFunction(parsedSimpleValue, operatorExpressionItem, operand1, operand2, jsonFunctionContext, operatorLineInfo);
     }
 }

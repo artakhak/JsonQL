@@ -15,6 +15,7 @@ namespace JsonQL.Compilation;
 /// <summary>
 /// Factory interface for creating instances of <see cref="IJsonCompiler"/>.
 /// </summary>
+[Obsolete()]
 public interface IJsonCompilerFactory
 {
     /// <summary>
@@ -27,7 +28,8 @@ public interface IJsonCompilerFactory
 }
 
 /// <inheritdoc />
-public class JsonCompilerFactory: IJsonCompilerFactory
+[Obsolete()]
+public class JsonCompilerFactory_OLD: IJsonCompilerFactory
 {
     private readonly IStringFormatter _stringFormatter;
     private readonly ILog _logger;
@@ -63,7 +65,8 @@ public class JsonCompilerFactory: IJsonCompilerFactory
     /// </param>
     /// <param name="logger">Logger. If the value is null, <see cref="LogToConsole"/> will be used.</param>
     /// <exception cref="InvalidOperationException"></exception>
-    public JsonCompilerFactory(TryResolveConstructorParameterValueDelegate tryResolveConstructorParameterValueDelegate,
+    
+    public JsonCompilerFactory_OLD(TryResolveConstructorParameterValueDelegate tryResolveConstructorParameterValueDelegate,
         IStringFormatter? stringFormatter = null,
         Func<Type, bool>? resolvedTypeInstanceCanBeCached = null, ILog? logger = null)
     {
@@ -165,7 +168,7 @@ public class JsonCompilerFactory: IJsonCompilerFactory
 
     protected virtual IExpressionParser CreateExpressionParser(ILog logger)
     {
-        var expressionLanguageProvider = new JsonExpressionLanguageProvider();
+        var expressionLanguageProvider = new JsonQLExpressionLanguageProvider();
 
         var expressionLanguageProviderCache =
             new ExpressionLanguageProviderCache(new DefaultExpressionLanguageProviderValidator());

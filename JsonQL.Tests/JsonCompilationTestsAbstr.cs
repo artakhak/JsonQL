@@ -1,4 +1,5 @@
 ﻿using JsonQL.Compilation;
+using JsonQL.DependencyInjection;
 using OROptimizer.Diagnostics.Log;
 using TestsSharedLibrary;
 using TestsSharedLibrary.Diagnostics.Log;
@@ -21,11 +22,11 @@ public abstract class JsonCompilationTestsAbstr
     [SetUp]
     public void Setup()
     {
-        JsonCompiler = new JsonCompilerFactory(
-                (x, y) => (false, null),
-                null, x => true,
-                LogHelper.Context.Log)
-            .Create();
+        IDefaultStringFormatterFactory defaultStringFormatterFactory = new DefaultStringFormatterFactory(new DateTimeOperations());
+        IDefaultJsonCompilerFactory defaultJsonCompilerFactory = new DefaultJsonCompilerFactory(
+            LogHelper.Context.Log, defaultStringFormatterFactory.Create());
+
+        JsonCompiler = defaultJsonCompilerFactory.Create();
     }
    
     protected IJsonCompiler JsonCompiler { get; private set; } = null!;

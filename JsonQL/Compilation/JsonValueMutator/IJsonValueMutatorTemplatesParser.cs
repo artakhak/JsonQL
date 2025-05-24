@@ -39,10 +39,10 @@ public class JsonValueMutatorFunctionTemplatesParser : IJsonValueMutatorFunction
     /// specified text and expression parsers.
     /// </summary>
     public JsonValueMutatorFunctionTemplatesParser(
-        IExpressionParser expressionParser,
+        IJsonQLExpressionParserFactory jsonQLExpressionParserFactory,
         ITextSymbolsParserFactory textSymbolsParserFactory)
     {
-        _expressionParser = expressionParser;
+        _expressionParser = jsonQLExpressionParserFactory.Create();
         _textSymbolsParserFactory = textSymbolsParserFactory;
     }
 

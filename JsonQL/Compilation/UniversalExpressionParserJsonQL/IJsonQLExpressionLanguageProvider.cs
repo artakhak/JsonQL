@@ -5,6 +5,16 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 namespace JsonQL.Compilation.UniversalExpressionParserJsonQL;
 
 /// <summary>
+/// <see cref="IExpressionLanguageProvider"/> for JsonQL, enabling the parsing of JSON-like expressions.
+/// Defines the rules and characteristics of the JSON expression language. It includes properties for
+/// language-specific features such as supported constant markers, operators, and other language-specific rules.
+/// </summary>
+public interface IJsonQLExpressionLanguageProvider : IExpressionLanguageProvider
+{
+
+}
+
+/// <summary>
 /// Provides implementation for the JSON expression language, enabling the parsing of JSON-like expressions.
 /// Implements the <see cref="UniversalExpressionParser.IExpressionLanguageProvider"/> interface.
 /// </summary>
@@ -12,14 +22,14 @@ namespace JsonQL.Compilation.UniversalExpressionParserJsonQL;
 /// This class defines the rules and characteristics of the JSON expression language. It includes properties for
 /// language-specific features such as supported constant markers, operators, and other language-specific rules.
 /// </remarks>
-public class JsonExpressionLanguageProvider : IExpressionLanguageProvider
+public class JsonQLExpressionLanguageProvider : IJsonQLExpressionLanguageProvider
 {
     private readonly List<IOperatorInfo> _operators;
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    public JsonExpressionLanguageProvider()
+    public JsonQLExpressionLanguageProvider()
     {
         _operators = new List<IOperatorInfo>
         {

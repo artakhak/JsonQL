@@ -12,5 +12,5 @@ public static class CustomJsonOperatorNames
     public const string IncrementByTwoPrefixOperator = "++2";
 
     // Custom unary postfix operators
-    public const string DecrementByTwoPrefixOperator = "--2";
+    public const string DecrementByTwoPostfixOperator = "--2";
 }
