@@ -8,12 +8,12 @@ namespace JsonQL.Compilation.JsonFunction;
 public abstract class JsonFunctionFactoryAbstr
 {
     private IJsonFunctionFromExpressionParser? _jsonFunctionFromExpressionParser;
-    
+
     /// <summary>
     /// This value cannot be injected into a constructor because of circular dependencies.
     /// The value is not in interface <see cref="IJsonValuePathJsonFunctionParser"/> and should be set in DI setup.
     /// </summary>
-    public IJsonFunctionFromExpressionParser JsonFunctionFromExpressionParser
+    protected IJsonFunctionFromExpressionParser JsonFunctionFromExpressionParser
     {
         get => _jsonFunctionFromExpressionParser ?? throw new NullReferenceException($"The value of [{nameof(JsonFunctionFromExpressionParser)}] was not set.");
         set

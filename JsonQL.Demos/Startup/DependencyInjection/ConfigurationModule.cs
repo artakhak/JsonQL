@@ -6,23 +6,17 @@ namespace JsonQL.Demos.Startup.DependencyInjection;
 
 public class ConfigurationModule: Module
 {
-    private readonly IConfigurationRoot _configurationRoot;
+    private readonly ISettings _settings;
 
-    public ConfigurationModule(IConfigurationRoot configurationRoot)
+    public ConfigurationModule(ISettings settings)
     {
-        _configurationRoot = configurationRoot;
+        _settings = settings;
     }
 
     /// <inheritdoc />
     protected override void Load(ContainerBuilder builder)
     {
         base.Load(builder);
-
-        var settings = new Settings();
-
-        if (bool.TryParse(_configurationRoot["Settings:UseCustomJsonQL"], out var useCustomJsonQl) && useCustomJsonQl)
-            settings.UseCustomJsonQL = true;
-      
-        builder.Register(x => new AppSettings.AppSettings(settings)).As<IAppSettings>();
+        builder.Register(x => _settings).As<ISettings>().SingleInstance();
     }
 }

@@ -22,10 +22,7 @@ public abstract class JsonCompilationTestsAbstr
     [SetUp]
     public void Setup()
     {
-        IDefaultStringFormatterFactory defaultStringFormatterFactory = new DefaultStringFormatterFactory(new DateTimeOperations());
-        IDefaultJsonCompilerFactory defaultJsonCompilerFactory = new DefaultJsonCompilerFactory(
-            LogHelper.Context.Log, defaultStringFormatterFactory.Create());
-
+        var defaultJsonCompilerFactory = new DefaultJsonCompilerFactory(LogHelper.Context.Log);
         JsonCompiler = defaultJsonCompilerFactory.Create();
     }
    

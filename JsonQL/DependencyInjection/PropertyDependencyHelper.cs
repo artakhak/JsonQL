@@ -1,4 +1,6 @@
-﻿namespace JsonQL.DependencyInjection;
+﻿using System.Reflection;
+
+namespace JsonQL.DependencyInjection;
 
 /// <summary>
 /// Provides utility methods for handling property dependencies in objects.
@@ -6,7 +8,7 @@
 public static class PropertyDependencyHelper
 {
     /// <summary>
-    /// Sets a property on the given object using reflection where the property type matches the type of the provided value.
+    /// Sets a properties on the given object using reflection where the property type is assignable from the type of the provided value.
     /// </summary>
     /// <typeparam name="TObjectWIthSetter">The type of the object on which the property is to be set. The object must be a reference type and contain a writable property with a type matching <typeparamref name="TPropertyType"/>.</typeparam>
     /// <typeparam name="TPropertyType">The type of the property value to set. This must be a reference type.</typeparam>
@@ -17,11 +19,15 @@ public static class PropertyDependencyHelper
         where TObjectWIthSetter: class
         where TPropertyType: class
     {
-        var propertyInfo = objectWithSetter.GetType().GetProperties().FirstOrDefault(x => x.CanWrite &&
-                                                                                          x.PropertyType == propertyValue.GetType());
+        var propertyValueType = propertyValue.GetType();
 
-        if (propertyInfo != null)
+        var propertiesToSet = objectWithSetter.GetType()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(x => x.CanWrite && x.PropertyType.IsAssignableFrom(propertyValueType));
+
+        foreach (var propertyInfo in propertiesToSet)
             propertyInfo.SetValue(objectWithSetter, propertyValue);
+       
         return objectWithSetter;
     }
 }

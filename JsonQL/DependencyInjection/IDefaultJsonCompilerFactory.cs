@@ -34,7 +34,7 @@ public class DefaultJsonCompilerFactory : IDefaultJsonCompilerFactory
     /// <summary>
     /// Provides a default implementation for creating instances of <see cref="IJsonCompiler"/>.
     /// </summary>
-    public DefaultJsonCompilerFactory(ILog logger, IStringFormatter stringFormatter)
+    public DefaultJsonCompilerFactory(ILog logger)
     {
         _logger = logger;
     }
@@ -43,111 +43,59 @@ public class DefaultJsonCompilerFactory : IDefaultJsonCompilerFactory
     public IJsonCompiler Create()
     {
         DefaultImplementationBasedObjectFactory? defaultImplementationBasedObjectFactory = null;
-        IJsonFunctionFromExpressionParser? jsonFunctionFromExpressionParser = null;
 
         [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
-        (bool parameterValueWasResolved, object? resolvedValue) TryResolveConstructorParameterValue(Type type, ParameterInfo parameterInfo)
+        (bool parameterValueWasResolved, object? resolvedValue) CustomDiResolver(Type type, ParameterInfo parameterInfo)
         {
             if (defaultImplementationBasedObjectFactory == null)
                 throw new InvalidOperationException($"The value of [{nameof(defaultImplementationBasedObjectFactory)}] was not set.");
 
+            if (parameterInfo.ParameterType == typeof(ILog))
+                return (true, _logger);
+
             if (parameterInfo.ParameterType == typeof(IStringFormatter))
                 return (true, defaultImplementationBasedObjectFactory.CreateInstance<IDefaultStringFormatterFactory>().Create());
-            
-            if (parameterInfo.ParameterType == typeof(IJsonFunctionFromExpressionParser))
-                return (true, GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-
-            if (TryResolveJsonFunctionFactory(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser,
-                    parameterInfo.ParameterType, out var jsonFunctionFactory))
-                return (true, jsonFunctionFactory);
 
             return (false, null);
         }
 
         defaultImplementationBasedObjectFactory = new DefaultImplementationBasedObjectFactory(_ => { },
-            TryResolveConstructorParameterValue, type => true, _logger);
+            CustomDiResolver, type => true, _logger);
 
-        return defaultImplementationBasedObjectFactory.CreateInstance<IJsonCompiler>();
+        var jsonCompiler = defaultImplementationBasedObjectFactory.CreateInstance<IJsonCompiler>();
+        InitFunctionFactories(defaultImplementationBasedObjectFactory);
+        return jsonCompiler;
     }
 
-    private static IJsonFunctionFromExpressionParser GetOrCreateJsonFunctionFromExpressionParser(DefaultImplementationBasedObjectFactory? defaultImplementationBasedObjectFactory,
-        ref IJsonFunctionFromExpressionParser? jsonFunctionFromExpressionParser)
+    private void InitFunctionFactories(DefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory)
     {
-        if (defaultImplementationBasedObjectFactory == null)
-            throw new InvalidOperationException($"The value of [{nameof(defaultImplementationBasedObjectFactory)}] was not set.");
+        var jsonFunctionFromExpressionParser = defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonFunctionFromExpressionParser>();
 
-        return jsonFunctionFromExpressionParser ??= defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonFunctionFromExpressionParser>();
-    }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IBracesJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-    private static bool TryResolveJsonFunctionFactory(DefaultImplementationBasedObjectFactory? defaultImplementationBasedObjectFactory,
-        ref IJsonFunctionFromExpressionParser? jsonFunctionFromExpressionParser,
-        Type parameterType, [NotNullWhen(true)] out object? jsonFunctionFactory)
-    {
-        if (parameterType == typeof(IBracesJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IBracesJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IOperatorJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(IBinaryOperatorJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IBinaryOperatorJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IBinaryOperatorJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(IUnaryPrefixOperatorJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IUnaryPrefixOperatorJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IUnaryPrefixOperatorJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(IUnaryPostfixOperatorJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IUnaryPostfixOperatorJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IUnaryPostfixOperatorJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(IJsonValueCollectionItemsSelectorPathElementFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IJsonValueCollectionItemsSelectorPathElementFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonValueCollectionItemsSelectorPathElementFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(ISpecialLiteralJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<ISpecialLiteralJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<ISpecialLiteralJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(INumericValueJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<INumericValueJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<INumericValueJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
 
-        if (parameterType == typeof(IConstantTextJsonFunctionFactory))
-        {
-            jsonFunctionFactory = PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                defaultImplementationBasedObjectFactory.CreateInstance<IConstantTextJsonFunctionFactory>(),
-                GetOrCreateJsonFunctionFromExpressionParser(defaultImplementationBasedObjectFactory, ref jsonFunctionFromExpressionParser));
-            return true;
-        }
-
-        jsonFunctionFactory = null;
-        return false;
+        PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+            defaultImplementationBasedObjectFactory.GetOrCreateInstance<IConstantTextJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
     }
 }

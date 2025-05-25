@@ -6,87 +6,90 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 namespace JsonQL.Demos.CustomJsonQL.Compilation.UniversalExpressionParserJsonQL;
 
 /// <summary>
-/// Custom implementation of <see cref="IExpressionLanguageProvider"/> for JsonQL expressions. 
+/// Custom implementation of <see cref="IJsonQLExpressionLanguageProvider"/> for JsonQL expressions. 
 /// </summary>
-public class CustomJsonExpressionLanguageProvider: IExpressionLanguageProvider
+public class CustomJsonExpressionLanguageProvider: IJsonQLExpressionLanguageProvider
 {
-    private readonly IExpressionLanguageProvider _defaultJsonExpressionLanguageProvider;
+    private readonly IJsonQLExpressionLanguageProvider _defaultJsonQLExpressionLanguageProvider;
 
     private readonly List<IOperatorInfo> _operators;
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    /// <param name="defaultJsonExpressionLanguageProvider">Decorated implementation of <see cref="IExpressionLanguageProvider"/>.
-    /// Will be used for most implementations of <see cref="IExpressionLanguageProvider"/>.
-    /// An instance of default JsonQL implementation <see cref="JsonQLExpressionLanguageProvider"/> can be used for this parameter.</param>
-    public CustomJsonExpressionLanguageProvider(IExpressionLanguageProvider defaultJsonExpressionLanguageProvider)
+    /// <param name="defaultJsonQLExpressionLanguageProvider">
+    /// Decorated implementation of <see cref="IJsonQLExpressionLanguageProvider"/>.
+    /// An instance of default JsonQL implementation <see cref="JsonQLExpressionLanguageProvider"/> can be used for this parameter. 
+    /// </param>
+    public CustomJsonExpressionLanguageProvider(IJsonQLExpressionLanguageProvider defaultJsonQLExpressionLanguageProvider)
     {
-        _defaultJsonExpressionLanguageProvider = defaultJsonExpressionLanguageProvider;
+        _defaultJsonQLExpressionLanguageProvider = defaultJsonQLExpressionLanguageProvider;
 
-        _operators = new List<IOperatorInfo>(_defaultJsonExpressionLanguageProvider.Operators.Count + 10);
+        _operators = new List<IOperatorInfo>(_defaultJsonQLExpressionLanguageProvider.Operators.Count + 10);
 
-        _operators.AddRange(_defaultJsonExpressionLanguageProvider.Operators);
+        _operators.AddRange(_defaultJsonQLExpressionLanguageProvider.Operators);
 
-        _operators.Add(new OperatorInfoWithAutoId(JsonOperatorNames.NegateOperator, OperatorType.PrefixUnaryOperator, 100));
+        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.IncrementByTwoPrefixOperator, OperatorType.PrefixUnaryOperator, 100));
+        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.DecrementByTwoPostfixOperator, OperatorType.PostfixUnaryOperator, 100));
+        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.AddAndIncrementByTwo, OperatorType.PostfixUnaryOperator, 500));
     }
 
     public bool IsValidLiteralCharacter(char character, int positionInLiteral, ITextSymbolsParserState textSymbolsParserState)
     {
-        throw new NotImplementedException();
+        return _defaultJsonQLExpressionLanguageProvider.IsValidLiteralCharacter(character, positionInLiteral, textSymbolsParserState);
     }
 
     /// <inheritdoc />
-    public string LanguageName => _defaultJsonExpressionLanguageProvider.LanguageName;
+    public string LanguageName => _defaultJsonQLExpressionLanguageProvider.LanguageName;
 
     /// <inheritdoc />
-    public string Description => _defaultJsonExpressionLanguageProvider.Description;
+    public string Description => _defaultJsonQLExpressionLanguageProvider.Description;
 
     /// <inheritdoc />
-    public string LineCommentMarker => _defaultJsonExpressionLanguageProvider.LineCommentMarker;
+    public string LineCommentMarker => _defaultJsonQLExpressionLanguageProvider.LineCommentMarker;
 
     /// <inheritdoc />
-    public string MultilineCommentStartMarker => _defaultJsonExpressionLanguageProvider.MultilineCommentStartMarker;
+    public string MultilineCommentStartMarker => _defaultJsonQLExpressionLanguageProvider.MultilineCommentStartMarker;
 
     /// <inheritdoc />
-    public string MultilineCommentEndMarker => _defaultJsonExpressionLanguageProvider.MultilineCommentEndMarker;
+    public string MultilineCommentEndMarker => _defaultJsonQLExpressionLanguageProvider.MultilineCommentEndMarker;
 
     /// <inheritdoc />
-    public char ExpressionSeparatorCharacter => _defaultJsonExpressionLanguageProvider.ExpressionSeparatorCharacter;
+    public char ExpressionSeparatorCharacter => _defaultJsonQLExpressionLanguageProvider.ExpressionSeparatorCharacter;
 
     /// <inheritdoc />
-    public string CodeBlockStartMarker => _defaultJsonExpressionLanguageProvider.CodeBlockStartMarker;
+    public string CodeBlockStartMarker => _defaultJsonQLExpressionLanguageProvider.CodeBlockStartMarker;
 
     /// <inheritdoc />
-    public string CodeBlockEndMarker => _defaultJsonExpressionLanguageProvider.CodeBlockEndMarker;
+    public string CodeBlockEndMarker => _defaultJsonQLExpressionLanguageProvider.CodeBlockEndMarker;
 
     /// <inheritdoc />
-    public IReadOnlyList<char> ConstantTextStartEndMarkerCharacters => _defaultJsonExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters;
+    public IReadOnlyList<char> ConstantTextStartEndMarkerCharacters => _defaultJsonQLExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters;
 
     /// <inheritdoc />
     public IReadOnlyList<IOperatorInfo> Operators => _operators;
 
     /// <inheritdoc />
-    public IReadOnlyList<ILanguageKeywordInfo> Keywords => _defaultJsonExpressionLanguageProvider.Keywords;
+    public IReadOnlyList<ILanguageKeywordInfo> Keywords => _defaultJsonQLExpressionLanguageProvider.Keywords;
 
     /// <inheritdoc />
-    public bool IsLanguageCaseSensitive => _defaultJsonExpressionLanguageProvider.IsLanguageCaseSensitive;
+    public bool IsLanguageCaseSensitive => _defaultJsonQLExpressionLanguageProvider.IsLanguageCaseSensitive;
 
     /// <inheritdoc />
-    public IEnumerable<ICustomExpressionItemParser> CustomExpressionItemParsers => _defaultJsonExpressionLanguageProvider.CustomExpressionItemParsers;
+    public IEnumerable<ICustomExpressionItemParser> CustomExpressionItemParsers => _defaultJsonQLExpressionLanguageProvider.CustomExpressionItemParsers;
 
     /// <inheritdoc />
-    public IReadOnlyList<NumericTypeDescriptor> NumericTypeDescriptors => _defaultJsonExpressionLanguageProvider.NumericTypeDescriptors;
+    public IReadOnlyList<NumericTypeDescriptor> NumericTypeDescriptors => _defaultJsonQLExpressionLanguageProvider.NumericTypeDescriptors;
 
     /// <inheritdoc />
-    public bool SupportsPrefixes => _defaultJsonExpressionLanguageProvider.SupportsPrefixes;
+    public bool SupportsPrefixes => _defaultJsonQLExpressionLanguageProvider.SupportsPrefixes;
 
     /// <inheritdoc />
-    public bool SupportsKeywords => _defaultJsonExpressionLanguageProvider.SupportsKeywords;
+    public bool SupportsKeywords => _defaultJsonQLExpressionLanguageProvider.SupportsKeywords;
 
     /// <inheritdoc />
-    public IEnumerable<char> SpecialOperatorCharacters => _defaultJsonExpressionLanguageProvider.SpecialOperatorCharacters;
+    public IEnumerable<char> SpecialOperatorCharacters => _defaultJsonQLExpressionLanguageProvider.SpecialOperatorCharacters;
 
     /// <inheritdoc />
-    public IEnumerable<char> SpecialNonOperatorCharacters => _defaultJsonExpressionLanguageProvider.SpecialNonOperatorCharacters;
+    public IEnumerable<char> SpecialNonOperatorCharacters => _defaultJsonQLExpressionLanguageProvider.SpecialNonOperatorCharacters;
 }

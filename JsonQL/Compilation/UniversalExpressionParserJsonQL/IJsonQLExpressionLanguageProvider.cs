@@ -16,7 +16,7 @@ public interface IJsonQLExpressionLanguageProvider : IExpressionLanguageProvider
 
 /// <summary>
 /// Provides implementation for the JSON expression language, enabling the parsing of JSON-like expressions.
-/// Implements the <see cref="UniversalExpressionParser.IExpressionLanguageProvider"/> interface.
+/// Implements the <see cref="IJsonQLExpressionLanguageProvider"/> interface.
 /// </summary>
 /// <remarks>
 /// This class defines the rules and characteristics of the JSON expression language. It includes properties for

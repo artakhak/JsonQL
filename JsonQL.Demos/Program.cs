@@ -1,14 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Text;
 using Autofac;
 using JsonQL.Demos;
+using JsonQL.Demos.AppSettings;
 using JsonQL.Demos.Examples;
 using JsonQL.Demos.Startup.DependencyInjection;
 using JsonQL.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.Log4Net;
+using System.Text;
+using OROptimizer.ServiceResolver;
 
 RegisterLogger();
 
@@ -16,7 +18,13 @@ LogHelper.Context.Log.Info("---BETTER LOGS CAN BE FOUND IN [c:/LogFiles/JsonQL.D
 
 var configuration = LoadConfiguration();
 
-var container = RegisterServices(configuration);
+var settings = new Settings(configuration);
+DiBasedObjectFactoryParametersContext.Context = new DiBasedObjectFactoryParameters
+{
+    LogDiagnosticsData = settings.LogDiBasedObjectFactoryDiagnosticsData
+};
+
+var container = RegisterServices(settings);
 
 CompilationResultSerializerAmbientContext.Context = container.Resolve<ICompilationResultSerializer>();
 
@@ -50,7 +58,6 @@ while (true)
         {
             await ExecuteExample(exampleManager);
         }
-           
     }
     else
     {
@@ -70,22 +77,17 @@ async Task ExecuteExample(IExampleManager exampleManager)
     }
 }
 
-
-
-static IContainer RegisterServices(IConfigurationRoot configurationRoot)
+static IContainer RegisterServices(ISettings settings)
 {
     ContainerBuilder containerBuilder = new ContainerBuilder();
-    RegisterModules(containerBuilder, configurationRoot);
-
+    RegisterModules(containerBuilder, settings);
     return containerBuilder.Build();
 }
 
-static void RegisterModules(ContainerBuilder containerBuilder, IConfigurationRoot configurationRoot)
+static void RegisterModules(ContainerBuilder containerBuilder, ISettings settings)
 {
-    containerBuilder.RegisterModule(new ConfigurationModule(configurationRoot));
-    containerBuilder.RegisterModule(new JsonQLExtensionsClassesRegistrationsModule());
-    containerBuilder.RegisterModule(new JsonQLClassRegistrationsModule(LogHelper.Context.Log));
-    
+    containerBuilder.RegisterModule(new ConfigurationModule(settings));
+    containerBuilder.RegisterModule(new IJsonQLClassRegistrationsModule(LogHelper.Context.Log));
     containerBuilder.RegisterModule(new ExampleManagersModule());
 }
 
