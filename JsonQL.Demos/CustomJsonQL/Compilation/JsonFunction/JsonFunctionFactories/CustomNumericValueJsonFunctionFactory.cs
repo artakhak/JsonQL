@@ -22,6 +22,10 @@ public class CustomNumericValueJsonFunctionFactory: JsonFunctionFactoryAbstr, IN
     /// <inheritdoc />
     public IParseResult<IDoubleJsonFunction> TryCreateNumericValueFunction(IParsedSimpleValue parsedSimpleValue, INumericExpressionItem numericExpressionItem, IJsonFunctionValueEvaluationContext jsonFunctionContext)
     {
+        // TODO: this will rarely need to be customized, since the default implementation of INumericValueJsonFunctionFactory
+        // should work in most cases (and if not, we could also specify additional numeric value formats using
+        // CustomJsonExpressionLanguageProvider.NumericTypeDescriptors.
+        // However, if necessary, provide custom implementation here
         return _defaultNumericValueJsonFunctionFactory.TryCreateNumericValueFunction(parsedSimpleValue, numericExpressionItem, jsonFunctionContext);
     }
 }

@@ -21,6 +21,10 @@ public class CustomConstantTextJsonFunctionFactory: JsonFunctionFactoryAbstr, IC
     /// <inheritdoc />
     public IParseResult<IStringJsonFunction> TryCreateConstantTextFunction(IParsedSimpleValue parsedSimpleValue, IConstantTextExpressionItem constantTextExpressionItem, IJsonFunctionValueEvaluationContext jsonFunctionContext)
     {
+        // TODO: this will rarely need to be customized, since the default implementation of INumericValueJsonFunctionFactory
+        // should work in most cases (and if not, we could also specify additional string value formats using
+        // CustomJsonExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters.
+        // However, if necessary, provide custom implementation here
         return _defaultConstantTextJsonFunctionFactory.TryCreateConstantTextFunction(parsedSimpleValue, constantTextExpressionItem, jsonFunctionContext);
     }
 }
