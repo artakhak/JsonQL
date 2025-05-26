@@ -254,8 +254,8 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
         parametersJsonFunctionContext.ParentJsonFunction = isToLowerCaseFunction ?
-            new TextToLowerCaseJsonFunction(parametersParseResult.Value, jsonFunctionContext, functionLineInfo) :
-            new TextToUpperCaseJsonFunction(parametersParseResult.Value, jsonFunctionContext, functionLineInfo);
+            new TextToLowerCaseJsonFunction(functionName, parametersParseResult.Value, jsonFunctionContext, functionLineInfo) :
+            new TextToUpperCaseJsonFunction(functionName, parametersParseResult.Value, jsonFunctionContext, functionLineInfo);
 
         return new ParseResult<IJsonFunction>(parametersJsonFunctionContext.ParentJsonFunction);
     }

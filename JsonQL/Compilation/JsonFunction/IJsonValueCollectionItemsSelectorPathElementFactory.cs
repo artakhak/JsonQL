@@ -15,7 +15,7 @@ namespace JsonQL.Compilation.JsonFunction;
 public interface IJsonValueCollectionItemsSelectorPathElementFactory
 {
     // TODO: See if it makes sense to move this method somewhere else.
-    // Currently it makes sense to have this in the same interface since the implementation
+    // Currently, it makes sense to have this in the same interface since the implementation
     // of <see cref="Create"/> needs access to collection function names list too, but this method will be re-evaluated.
     /// <summary>
     /// Determines whether the specified function name corresponds to a JSON value collection items selector function.
@@ -142,14 +142,14 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value != null)
         {
-            if (!TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
+            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
             }
         }
 
-        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new FlattenCollectionItemsPathElement(lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
+        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new FlattenCollectionItemsPathElement(functionName, lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateReverseCollectionItemsPathElement(
@@ -163,7 +163,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
             ));
         }
 
-        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new ReverseCollectionItemsPathElement(lineInfo));
+        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new ReverseCollectionItemsPathElement(functionName, lineInfo));
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateWhereCollectionItemsPathElement(
@@ -181,13 +181,13 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(parametersParseResult.Errors);
 
-        if (!TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value!, out var lambdaPredicate,
+        if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value!, out var lambdaPredicate,
                 out var jsonObjectParseError))
         {
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
         }
 
-        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new WhereCollectionItemsPathElement(lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
+        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new WhereCollectionItemsPathElement(functionName, lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateSelectCollectionItemsPathElement(
@@ -205,13 +205,13 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(parametersParseResult.Errors);
 
-        if (!TryGetJsonPathLambdaFunctionFromParameter(functionName, parametersParseResult.Value!, out var jsonPathLambdaFunction,
+        if (!JsonValueLookupHelpers.TryGetJsonPathLambdaFunctionFromParameter(functionName, parametersParseResult.Value!, out var jsonPathLambdaFunction,
                 out var jsonObjectParseError))
         {
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
         }
 
-        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new SelectCollectionItemsPathElement(jsonPathLambdaFunction, jsonFunctionContext.VariablesManager, lineInfo));
+        return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new SelectCollectionItemsPathElement(functionName, jsonPathLambdaFunction, jsonFunctionContext.VariablesManager, lineInfo));
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateSelectFirstLastCollectionItemsPathElement(
@@ -234,7 +234,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value != null)
         {
-            if (!TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
+            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -243,8 +243,8 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(
             isSelectFirstItem ?
-            new SelectFirstCollectionItemPathElement(lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo) :
-            new SelectLastCollectionItemPathElement(lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
+            new SelectFirstCollectionItemPathElement(functionName, lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo) :
+            new SelectLastCollectionItemPathElement(functionName, lambdaPredicate, jsonFunctionContext.VariablesManager, lineInfo));
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateSelectCollectionItemPathElement(
@@ -268,7 +268,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value.parameter2 != null)
         {
-            if (!TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value.parameter2, out lambdaPredicate,
+            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value.parameter2, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -276,63 +276,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         }
 
         return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(
-            new SelectCollectionItemPathElement(parametersParseResult.Value.parameter1!,
+            new SelectCollectionItemPathElement(functionName, parametersParseResult.Value.parameter1!,
                 lambdaPredicate, parametersParseResult.Value.parameter3!, parametersJsonFunctionContext.VariablesManager, lineInfo));
-    }
-
-    private bool TryGetLambdaPredicateFromParameter(string functionName, ILambdaExpressionFunction lambdaExpressionFunction, [NotNullWhen(true)] out IPredicateLambdaFunction? lambdaPredicate, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
-    {
-        lambdaPredicate = null;
-        jsonObjectParseError = null;
-
-        if (lambdaExpressionFunction.Parameters.Count != 1)
-        {
-            jsonObjectParseError = new JsonObjectParseError(
-                $"Lambda expression parameter in function [{functionName}] is expected to have one parameter.",
-                lambdaExpressionFunction.Parameters.Count == 0 ? lambdaExpressionFunction.LineInfo : lambdaExpressionFunction.Parameters[1].LineInfo);
-
-            return false;
-        }
-
-        if (lambdaExpressionFunction.Expression is not IBooleanJsonFunction booleanJsonFunction)
-        {
-            jsonObjectParseError = new JsonObjectParseError(
-                $"Lambda expression in function [{functionName}] is expected to be a boolean expression.",
-                lambdaExpressionFunction.Expression.LineInfo);
-
-            return false;
-        }
-
-        lambdaPredicate = new PredicateLambdaFunction(
-            lambdaExpressionFunction.Parameters[0], booleanJsonFunction);
-        return true;
-    }
-
-    private bool TryGetJsonPathLambdaFunctionFromParameter(string functionName, ILambdaExpressionFunction lambdaExpressionFunction, [NotNullWhen(true)] out IJsonPathLambdaFunction? jsonPathLambdaFunction, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
-    {
-        jsonPathLambdaFunction = null;
-        jsonObjectParseError = null;
-
-        if (lambdaExpressionFunction.Parameters.Count != 1)
-        {
-            jsonObjectParseError = new JsonObjectParseError(
-                $"Lambda expression parameter in function [{functionName}] is expected to have one parameter.",
-                lambdaExpressionFunction.Parameters.Count == 0 ? lambdaExpressionFunction.LineInfo : lambdaExpressionFunction.Parameters[1].LineInfo);
-
-            return false;
-        }
-
-        if (lambdaExpressionFunction.Expression is not IJsonValuePathJsonFunction jsonValuePathJsonFunction)
-        {
-            jsonObjectParseError = new JsonObjectParseError(
-                $"Lambda expression in function [{functionName}] is expected to be a json path. Example of valid lambda expression: 'x => x[1].Object1'.",
-                lambdaExpressionFunction.Expression.LineInfo);
-
-            return false;
-        }
-
-        jsonPathLambdaFunction = new JsonPathLambdaFunction(
-            lambdaExpressionFunction.Parameters[0], jsonValuePathJsonFunction);
-        return true;
     }
 }

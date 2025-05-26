@@ -17,9 +17,10 @@ public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelect
     /// Implements a predicate lambda for filtering and optionally includes line information for JSON parsing context.
     /// </summary>
     public SelectLastCollectionItemPathElement(
+        string selectorName,
         IPredicateLambdaFunction? lambdaPredicate,
         IVariablesManager variablesManager,
-        IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.LastCollectionItemSelectorFunction, lineInfo)
+        IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
         _lambdaPredicate = lambdaPredicate;
         _variablesManager = variablesManager;

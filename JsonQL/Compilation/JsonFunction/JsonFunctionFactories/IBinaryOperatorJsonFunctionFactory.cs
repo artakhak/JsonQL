@@ -182,7 +182,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
-        parametersJsonFunctionContext.ParentJsonFunction = new AddValuesArithmeticOperatorFunction(
+        parametersJsonFunctionContext.ParentJsonFunction = new AddValuesArithmeticOperatorFunction(operatorName,
             parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
             jsonFunctionContext, operatorLineInfo);
 
@@ -207,7 +207,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
-        parametersJsonFunctionContext.ParentJsonFunction = new SubtractValuesArithmeticOperatorFunction(
+        parametersJsonFunctionContext.ParentJsonFunction = new SubtractValuesArithmeticOperatorFunction(operatorName,
             parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
             jsonFunctionContext, operatorLineInfo);
 
@@ -232,7 +232,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
-        parametersJsonFunctionContext.ParentJsonFunction = new MultiplyValuesArithmeticOperatorFunction(
+        parametersJsonFunctionContext.ParentJsonFunction = new MultiplyValuesArithmeticOperatorFunction(operatorName,
             parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
             jsonFunctionContext,
             operatorLineInfo);
@@ -259,7 +259,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
         parametersJsonFunctionContext.ParentJsonFunction =
-            new DivideValuesArithmeticOperatorFunction(parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
+            new DivideValuesArithmeticOperatorFunction(operatorName, parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
                 jsonFunctionContext, operatorLineInfo);
 
         return new ParseResult<IJsonFunction>(parametersJsonFunctionContext.ParentJsonFunction);
@@ -284,7 +284,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
             return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
 
         parametersJsonFunctionContext.ParentJsonFunction =
-            new QuotientArithmeticOperatorFunction(parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
+            new QuotientArithmeticOperatorFunction(operatorName, parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
                 jsonFunctionContext, operatorLineInfo);
 
         return new ParseResult<IJsonFunction>(parametersJsonFunctionContext.ParentJsonFunction);

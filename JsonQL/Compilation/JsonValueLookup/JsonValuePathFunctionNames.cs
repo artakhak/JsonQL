@@ -1,4 +1,4 @@
-﻿namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
+﻿namespace JsonQL.Compilation.JsonValueLookup;
 
 /// <summary>
 /// Provides a set of constant names used to represent various JSON value path functions.

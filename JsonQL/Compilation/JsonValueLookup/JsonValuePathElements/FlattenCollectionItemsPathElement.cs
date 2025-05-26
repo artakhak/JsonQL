@@ -16,6 +16,7 @@ public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     /// <summary>
     /// Represents a path element for flattening collection items in a JSON value lookup operation.
     /// </summary>
+    /// <param name="selectorName">Selector name</param>
     /// <param name="lambdaPredicate">If the value is not null, a predicate that will filter out the collection items.</param>
     /// <param name="variablesManager">Variables manager used to register variables, and retrieve variable values.</param>
     /// <param name="lineInfo">Path expression position.</param>
@@ -25,10 +26,10 @@ public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     /// using an optional lambda predicate function provided during initialization.
     /// Inherits from <see cref="JsonValueCollectionItemsSelectorPathElementAbstr"/>.
     /// </remarks>
-    public FlattenCollectionItemsPathElement(
+    public FlattenCollectionItemsPathElement(string selectorName,
         IPredicateLambdaFunction? lambdaPredicate,
         IVariablesManager variablesManager,
-        IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.FlattenCollectionItemsSelectorFunction, lineInfo)
+        IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
         _lambdaPredicate = lambdaPredicate;
         _variablesManager = variablesManager;

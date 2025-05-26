@@ -17,13 +17,14 @@ public class DivideValuesArithmeticOperatorFunction : BinaryNumericArithmeticOpe
     /// <summary>
     /// Represents a function that performs division between two numeric operands in a JSON-based context.
     /// </summary>
+    /// <param name="operatorName">Operator name.</param>
     /// <param name="operand1">The first operand for the division operation.</param>
     /// <param name="operand2">The second operand for the division operation.</param>
     /// <param name="jsonFunctionContext">The evaluation context in which the function is executed.</param>
     /// <param name="lineInfo">Optional line information for debugging or error reporting.</param>
-    public DivideValuesArithmeticOperatorFunction(IJsonFunction operand1, IJsonFunction operand2,
+    public DivideValuesArithmeticOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
-        base(JsonOperatorNames.DivideOperator, operand1, operand2, jsonFunctionContext, lineInfo)
+        base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)
     {
     }
 

@@ -1,14 +1,15 @@
 ﻿using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.JsonObjects;
 
-namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
+namespace JsonQL.Demos.CustomJsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 
 /// <summary>
 /// Represents a path element that selects the first item in a collection within a JSON data structure.
 /// This class provides functionality to evaluate and resolve the first item that satisfies a given predicate
 /// in a collection, or the first item if no predicate is specified.
 /// </summary>
-public class SelectFirstCollectionItemPathElement : JsonValueCollectionItemSelectorPathElementAbstr, IResolvesVariableValue
+public class SelectSecondCollectionItemPathElement : JsonValueCollectionItemSelectorPathElementAbstr, IResolvesVariableValue
 {
     private readonly IPredicateLambdaFunction? _lambdaPredicate;
     private readonly IVariablesManager _variablesManager;
@@ -21,7 +22,7 @@ public class SelectFirstCollectionItemPathElement : JsonValueCollectionItemSelec
     /// The selection behavior can be influenced by providing a lambda predicate function.
     /// This allows filtering within a JSON collection to determine the first matching item.
     /// </remarks>
-    public SelectFirstCollectionItemPathElement(
+    public SelectSecondCollectionItemPathElement(
         string selectorName,
         IPredicateLambdaFunction? lambdaPredicate,
         IVariablesManager variablesManager,
@@ -40,6 +41,7 @@ public class SelectFirstCollectionItemPathElement : JsonValueCollectionItemSelec
 
         try
         {
+            var matchedItemsCount = 0;
             for (var i = 0; i < parenParsedValues.Count; ++i)
             {
                 var parsedValue = parenParsedValues[i];
@@ -65,6 +67,11 @@ public class SelectFirstCollectionItemPathElement : JsonValueCollectionItemSelec
                     }
                 }
 
+                ++matchedItemsCount;
+
+                if (matchedItemsCount == 1)
+                    continue;
+                
                 selectedValue = parsedValue;
                 break;
             }

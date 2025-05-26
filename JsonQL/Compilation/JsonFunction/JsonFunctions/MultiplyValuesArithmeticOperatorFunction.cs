@@ -12,6 +12,7 @@ public class MultiplyValuesArithmeticOperatorFunction : BinaryNumericArithmeticO
     /// <summary>
     /// Represents a function that performs multiplication on two numeric operands using the multiply operator.
     /// </summary>
+    /// <param name="operatorName">Operator name.</param>
     /// <param name="operand1">The first operand to be multiplied.</param>
     /// <param name="operand2">The second operand to be multiplied.</param>
     /// <param name="jsonFunctionContext">The context used for evaluating the JSON function.</param>
@@ -20,9 +21,9 @@ public class MultiplyValuesArithmeticOperatorFunction : BinaryNumericArithmeticO
     /// This class inherits from <see cref="BinaryNumericArithmeticOperationOperatorFunctionAbstr"/>
     /// and leverages the multiply operator implementation defined in <see cref="JsonOperatorNames.MultiplyOperator"/>.
     /// </remarks>
-    public MultiplyValuesArithmeticOperatorFunction(IJsonFunction operand1, IJsonFunction operand2,
+    public MultiplyValuesArithmeticOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
-        base(JsonOperatorNames.MultiplyOperator, operand1, operand2, jsonFunctionContext, lineInfo)
+        base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)
     {
     }
 

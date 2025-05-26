@@ -19,11 +19,12 @@ public class TextToLowerCaseJsonFunction : TextTransformationJsonFunctionAbstr
     /// <summary>
     /// Represents a JSON function implementation that performs a text transformation to convert a string to lower case.
     /// </summary>
+    /// <param name="functionName">Function name.</param>
     /// <param name="stringJsonFunction">The JSON function representing the string input to be transformed.</param>
     /// <param name="jsonFunctionContext">The context for evaluating JSON function values.</param>
     /// <param name="lineInfo">Optional line information for error or debugging purposes.</param>
-    public TextToLowerCaseJsonFunction(IJsonFunction stringJsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
-        base(JsonFunctionNames.StringToLowerCase, stringJsonFunction, jsonFunctionContext, lineInfo)
+    public TextToLowerCaseJsonFunction(string functionName, IJsonFunction stringJsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
+        base(functionName, stringJsonFunction, jsonFunctionContext, lineInfo)
     {
     }
 

@@ -9,7 +9,7 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 /// </summary>
 /// <remarks>
 /// This class operates as a specific implementation of <see cref="StringJsonFunctionAbstr"/> by evaluating
-/// the type of a given JSON value evaluated through a JSON function during compilation or data processing.
+/// the type of given JSON value evaluated through a JSON function during compilation or data processing.
 /// The result of this function is typically a string representation of the data type of the JSON value,
 /// such as a collection type, single item type, or the "undefined" type if no valid type can be derived.
 /// The evaluation is performed using the provided <see cref="IJsonFunction"/> which processes the value,
@@ -27,7 +27,7 @@ public class TypeOfJsonFunctionResultFunction : StringJsonFunctionAbstr
     private readonly IJsonFunction _jsonFunction;
 
     /// <summary>
-    /// Represents a JSON function that evaluates the type of a JSON function result.
+    /// Represents a JSON function that evaluates the type of JSON function result.
     /// </summary>
     /// <remarks>
     /// This class extends from <see cref="StringJsonFunctionAbstr"/> to provide functionality for determining

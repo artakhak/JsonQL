@@ -18,8 +18,7 @@ public class ReverseCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     /// Represents a path element that selects and reverses items within a JSON collection
     /// based on the provided function name and line information.
     /// </summary>
-    public ReverseCollectionItemsPathElement(
-        IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.ReverseCollectionItemsSelectorFunction, lineInfo)
+    public ReverseCollectionItemsPathElement(string selectorName, IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
     }
 

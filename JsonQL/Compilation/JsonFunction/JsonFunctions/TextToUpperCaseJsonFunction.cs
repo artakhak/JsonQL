@@ -15,11 +15,12 @@ public class TextToUpperCaseJsonFunction : TextTransformationJsonFunctionAbstr
     /// Defines a JSON function that applies a transformation to convert text to upper case
     /// within a JSON processing context.
     /// </summary>
+    /// <param name="functionName">Function name.</param>
     /// <param name="stringJsonFunction">The JSON function to be transformed.</param>
     /// <param name="jsonFunctionContext">The context for JSON function value evaluation.</param>
     /// <param name="lineInfo">Optional line information for error handling and debugging.</param>
-    public TextToUpperCaseJsonFunction(IJsonFunction stringJsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
-        base(JsonFunctionNames.StringToUpperCase, stringJsonFunction, jsonFunctionContext, lineInfo)
+    public TextToUpperCaseJsonFunction(string functionName, IJsonFunction stringJsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) :
+        base(functionName, stringJsonFunction, jsonFunctionContext, lineInfo)
     {
     }
 

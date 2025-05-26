@@ -16,14 +16,15 @@ public class QuotientArithmeticOperatorFunction : BinaryNumericArithmeticOperati
     /// Represents an arithmetic division operation designed to take two numeric operands
     /// within a JSON function context and execute a division operation between them.
     /// </summary>
+    /// <param name="operatorName">Operator name.</param>
     /// <param name="operand1">The first numeric input operand to the division operation.</param>
     /// <param name="operand2">The second numeric input operand, which serves as the divisor in the operation.</param>
     /// <param name="jsonFunctionContext">The context used for evaluation of JSON function values.</param>
     /// <param name="lineInfo">Optional line information providing metadata about the location in the source.</param>
-    public QuotientArithmeticOperatorFunction(IJsonFunction operand1, IJsonFunction operand2,
+    public QuotientArithmeticOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) :
-        base(JsonOperatorNames.AddOperator, operand1, operand2, jsonFunctionContext, lineInfo)
+        base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)
     {
     }
 

@@ -32,11 +32,12 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
     /// It utilizes a function name "At" to specify the collection item selector behavior.
     /// </remarks>
     public SelectCollectionItemPathElement(
+        string selectorName,
         IJsonFunction itemIndex,
         IPredicateLambdaFunction? lambdaPredicate,
         IJsonFunction? isReverseSearch,
         IVariablesManager variablesManager,
-        IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.CollectionItemSelectorFunction, lineInfo)
+        IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
         _itemIndex = itemIndex;
         _lambdaPredicate = lambdaPredicate;

@@ -17,14 +17,15 @@ public class AddValuesArithmeticOperatorFunction : BinaryNumericArithmeticOperat
     /// <summary>
     /// Represents a function that performs addition operation on two numeric operands.
     /// </summary>
+    /// <param name="operatorName">Operator name.</param>
     /// <param name="operand1">The first operand of the addition operation.</param>
     /// <param name="operand2">The second operand of the addition operation.</param>
     /// <param name="jsonFunctionContext">The context that defines the evaluation settings for the function.</param>
     /// <param name="lineInfo">Optional line information for error reporting or debugging purposes.</param>
-    public AddValuesArithmeticOperatorFunction(IJsonFunction operand1, IJsonFunction operand2,
+    public AddValuesArithmeticOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) :
-        base(JsonOperatorNames.AddOperator, operand1, operand2, jsonFunctionContext, lineInfo)
+        base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)
     {
     }
 

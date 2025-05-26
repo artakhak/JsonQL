@@ -18,9 +18,10 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
     /// based on a specified lambda function.
     /// </summary>
     public SelectCollectionItemsPathElement(
+        string selectorName,
         IJsonPathLambdaFunction jsonPathLambdaFunction,
         IVariablesManager variablesManager,
-        IJsonLineInfo? lineInfo) : base(JsonValuePathFunctionNames.SelectCollectionItemsFunction, lineInfo)
+        IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
         _jsonPathLambdaFunction = jsonPathLambdaFunction;
         _variablesManager = variablesManager;
