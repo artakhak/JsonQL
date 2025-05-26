@@ -29,9 +29,9 @@ public class AssertOperatorDateTimeFunction : DateTimeJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<DateTime?> GetDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<DateTime?> EvaluateDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return AssertOperatorFunctionHelpers.GetParseResultWithErrorIfValueIsNull(
-            _assertedOperatorFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
+            _assertedOperatorFunction.EvaluateDateTimeValue(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
     }
 }

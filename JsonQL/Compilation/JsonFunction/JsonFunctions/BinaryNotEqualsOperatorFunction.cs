@@ -27,7 +27,7 @@ public class BinaryNotEqualsOperatorFunction : BinaryComparisonOperatorFunctionA
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> DoEvaluate(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2)
+    protected override IParseResult<bool?> DoEvaluateBooleanValue(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2)
     {
         if (evaluatedValueOfOperand1 == null || evaluatedValueOfOperand2 == null)
             return new ParseResult<bool?>(true);

@@ -201,7 +201,7 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
         try
         {
             if (predicateLambdaFunction.LambdaExpressionFunction is IBooleanJsonFunction booleanJsonFunction)
-                return booleanJsonFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
+                return booleanJsonFunction.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
             var predicatedParseResult = predicateLambdaFunction.LambdaExpressionFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -226,7 +226,7 @@ public abstract class AggregateLambdaExpressionFunctionAbstr<TAggregationCalcula
         try
         {
             if (numericValueLambdaFunction.LambdaExpressionFunction is IDoubleJsonFunction doubleJsonFunction)
-                return doubleJsonFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
+                return doubleJsonFunction.EvaluateDoubleValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
             var numericValueParseResult = numericValueLambdaFunction.LambdaExpressionFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 

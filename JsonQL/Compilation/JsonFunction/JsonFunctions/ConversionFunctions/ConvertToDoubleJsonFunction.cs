@@ -38,7 +38,7 @@ public class ConvertToDoubleJsonFunction : DoubleJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<double?> GetDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var evaluatedValueResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -63,7 +63,7 @@ public class ConvertToDoubleJsonFunction : DoubleJsonFunctionAbstr
             return new ParseResult<double?>((double?)null);
 
         return ConversionJsonFunctionHelpers.GetParseResultForConversionError<double?>(TypeCode.Double.ToString(),
-                   _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.Evaluate(rootParsedValue,
+                   _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.EvaluateBooleanValue(rootParsedValue,
                        compiledParentRootParsedValues, contextData), this.LineInfo) ??
                new ParseResult<double?>((double?)null);
     }

@@ -14,5 +14,5 @@ public interface IBooleanJsonFunction : IJsonFunction
     /// <param name="compiledParentRootParsedValues">A read-only list of compiled parent root parsed values that may influence the evaluation.</param>
     /// <param name="contextData">Optional context data to assist in the evaluation.</param>
     /// <returns>A parse result containing a nullable boolean value resulting from the evaluation.</returns>
-    IParseResult<bool?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

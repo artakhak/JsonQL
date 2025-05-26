@@ -13,6 +13,9 @@
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Companies.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\CustomFeaturesOverview.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
@@ -46,6 +49,9 @@
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Companies.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\CustomFeaturesOverview.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
@@ -101,6 +107,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="CustomJsonQL\Compilation\JsonValueLookup\" />
 	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
 	  <Folder Include="Examples\IJsonCompilerExamples\FailureExamples\" />
 	  <Folder Include="Examples\IQueryManagerExamples\FailureExamples\" />

@@ -116,7 +116,7 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
 
                     try
                     {
-                        var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                        var predicateExpressionResult = _lambdaPredicate.LambdaExpressionFunction.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, itemContextData);
 
                         if (predicateExpressionResult.Errors.Count > 0)
                             return new ParseResult<ISingleItemJsonValuePathLookupResult>(predicateExpressionResult.Errors);

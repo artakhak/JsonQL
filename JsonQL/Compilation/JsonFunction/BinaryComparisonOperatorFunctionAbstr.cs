@@ -1,6 +1,5 @@
 ﻿using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonFunction;
 
@@ -35,7 +34,7 @@ public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctio
     protected IJsonFunction Operand2 { get; }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var result1 = Operand1.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -52,7 +51,7 @@ public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctio
 
         try
         {
-            return DoEvaluate(jsonComparable1, jsonComparable2);
+            return DoEvaluateBooleanValue(jsonComparable1, jsonComparable2);
         }
         catch (Exception e)
         {
@@ -67,5 +66,5 @@ public abstract class BinaryComparisonOperatorFunctionAbstr : BooleanJsonFunctio
     /// <param name="evaluatedValueOfOperand1">The first compared value.</param>
     /// <param name="evaluatedValueOfOperand2">The second compared value.</param>
     /// <returns></returns>
-    protected abstract IParseResult<bool?> DoEvaluate(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2);
+    protected abstract IParseResult<bool?> DoEvaluateBooleanValue(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2);
 }

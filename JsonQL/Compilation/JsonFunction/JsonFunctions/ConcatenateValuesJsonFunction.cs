@@ -24,7 +24,7 @@ public class ConcatenateValuesJsonFunction : StringJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<string?> GetStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         if (_operands.Count == 0)
             return new ParseResult<string?>(CollectionExpressionHelpers.Create(new JsonObjectParseError("Parameters are missing", this.LineInfo)));

@@ -23,32 +23,11 @@ public abstract class BooleanJsonFunctionAbstr : JsonFunctionAbstr, IBooleanJson
     }
 
     /// <inheritdoc />
-    public IParseResult<bool?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        return this.DoEvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToBoolean(this.LineInfo);
+        return this.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
     }
 
     /// <inheritdoc />
-    protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return this.GetBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
-    }
-
-    /// <summary>
-    /// Evaluates and returns a boolean result based on the provided root parsed value,
-    /// parent root parsed values, and evaluation context data.
-    /// </summary>
-    /// <param name="rootParsedValue">
-    /// The root parsed value being evaluated.
-    /// </param>
-    /// <param name="compiledParentRootParsedValues">
-    /// The collection of parent root parsed values relevant to the current evaluation.
-    /// </param>
-    /// <param name="contextData">
-    /// Contextual data available for the evaluation process.
-    /// </param>
-    /// <returns>
-    /// A parse result containing the evaluated boolean value or null.
-    /// </returns>
-    protected abstract IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    public abstract IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

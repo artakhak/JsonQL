@@ -15,5 +15,5 @@ public interface IDoubleJsonFunction : IJsonFunction
     /// <param name="compiledParentRootParsedValues">A read-only list of parent parsed values that have been compiled.</param>
     /// <param name="contextData">The additional contextual data required for evaluation, if any.</param>
     /// <returns>An <see cref="IParseResult{TValue}"/> containing the result of the evaluation as a nullable double value.</returns>
-    IParseResult<double?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

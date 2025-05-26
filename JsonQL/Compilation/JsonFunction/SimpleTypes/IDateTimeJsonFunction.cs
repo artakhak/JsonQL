@@ -15,5 +15,5 @@ public interface IDateTimeJsonFunction : IJsonFunction
     /// <param name="compiledParentRootParsedValues">The compiled list of parent root parsed values relevant for the current evaluation.</param>
     /// <param name="contextData">The evaluation context data, providing additional information or configurations for the function evaluation. Can be null.</param>
     /// <returns>An implementation of <see cref="IParseResult{DateTime?}"/> containing the evaluated nullable <see cref="DateTime"/> value and any associated errors.</returns>
-    IParseResult<DateTime?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    IParseResult<DateTime?> EvaluateDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

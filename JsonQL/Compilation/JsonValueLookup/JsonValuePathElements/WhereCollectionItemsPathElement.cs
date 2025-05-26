@@ -44,8 +44,7 @@ public class WhereCollectionItemsPathElement : JsonValueCollectionItemsSelectorP
 
                 try
                 {
-
-                    var predicateExpressionResult = _predicateLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                    var predicateExpressionResult = _predicateLambdaFunction.LambdaExpressionFunction.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, itemContextData);
 
                     if (predicateExpressionResult.Errors.Count > 0)
                         return new ParseResult<ICollectionJsonValuePathLookupResult>(predicateExpressionResult.Errors);

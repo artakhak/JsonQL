@@ -36,7 +36,7 @@ public class ConvertToBooleanJsonFunction : BooleanJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var evaluatedValueResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -69,7 +69,7 @@ public class ConvertToBooleanJsonFunction : BooleanJsonFunctionAbstr
 
         return 
             ConversionJsonFunctionHelpers.GetParseResultForConversionError<bool?>(TypeCode.Boolean.ToString(),
-            _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData),
+            _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData),
             this.LineInfo) ?? new ParseResult<bool?>((bool?)null);
     }
 }

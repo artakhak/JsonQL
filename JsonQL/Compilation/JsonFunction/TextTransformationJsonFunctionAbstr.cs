@@ -30,7 +30,7 @@ public abstract class TextTransformationJsonFunctionAbstr : StringJsonFunctionAb
     }
 
     /// <inheritdoc />
-    protected override IParseResult<string?> GetStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var evaluateResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 

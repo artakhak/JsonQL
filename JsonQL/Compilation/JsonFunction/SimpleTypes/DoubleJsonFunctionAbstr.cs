@@ -22,25 +22,13 @@ public abstract class DoubleJsonFunctionAbstr : JsonFunctionAbstr, IDoubleJsonFu
     protected DoubleJsonFunctionAbstr(string functionName, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : base(functionName, jsonFunctionContext, lineInfo)
     {
     }
-
-    /// <inheritdoc />
-    public IParseResult<double?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return this.DoEvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToDouble(this.LineInfo);
-    }
-
+    
     /// <inheritdoc />
     protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        return this.GetDoubleValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
+        return this.EvaluateDoubleValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
     }
 
-    /// <summary>
-    /// Retrieves a double-precision numerical value based on the provided JSON parsing context and parent values.
-    /// </summary>
-    /// <param name="rootParsedValue">The root parsed value representing the current JSON node being evaluated.</param>
-    /// <param name="compiledParentRootParsedValues">A readonly list of parent root parsed values within the evaluation context.</param>
-    /// <param name="contextData">Optional evaluation context data that provides additional information for the function execution.</param>
-    /// <returns>An object implementing <see cref="IParseResult{T}"/> representing the parsed double-precision value. Returns null if the evaluation does not yield a valid result.</returns>
-    protected abstract IParseResult<double?> GetDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    /// <inheritdoc />
+    public abstract IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

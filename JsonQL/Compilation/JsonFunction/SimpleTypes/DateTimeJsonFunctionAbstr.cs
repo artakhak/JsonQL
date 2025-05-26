@@ -23,24 +23,11 @@ public abstract class DateTimeJsonFunctionAbstr : JsonFunctionAbstr, IDateTimeJs
     }
 
     /// <inheritdoc />
-    public IParseResult<DateTime?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        return this.DoEvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToDateTime(this.LineInfo);
+        return this.EvaluateDateTimeValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
     }
 
     /// <inheritdoc />
-    protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return this.GetDateTimeValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
-    }
-
-    /// <summary>
-    /// Retrieves a parsed DateTime value based on the provided root parsed value, its parent values,
-    /// and optional evaluation context data.
-    /// </summary>
-    /// <param name="rootParsedValue">The root parsed value from which the DateTime value is evaluated.</param>
-    /// <param name="compiledParentRootParsedValues">The list of compiled parent parsed values to aid in the evaluation process.</param>
-    /// <param name="contextData">Optional data for evaluating the function in a specific context.</param>
-    /// <returns>A parse result containing the evaluated DateTime value, or null if the value is not available or cannot be determined.</returns>
-    protected abstract IParseResult<DateTime?> GetDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    public abstract IParseResult<DateTime?> EvaluateDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

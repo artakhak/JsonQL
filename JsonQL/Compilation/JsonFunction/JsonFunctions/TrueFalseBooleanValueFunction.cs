@@ -33,7 +33,7 @@ public class TrueFalseBooleanValueFunction: BooleanJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return new ParseResult<bool?>(_value);
     }

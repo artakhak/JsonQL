@@ -36,7 +36,7 @@ public class DefaultStringValueOperatorFunction : DefaultValueOperatorFunction, 
     }
 
     /// <inheritdoc />
-    public IParseResult<string?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToString(LineInfo);
     }

@@ -1,6 +1,5 @@
 ﻿using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonFunction;
 
@@ -26,7 +25,7 @@ public abstract class BinaryStringComparisonOperatorFunctionAbstr : BinaryCompar
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> DoEvaluate(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2)
+    protected sealed override IParseResult<bool?> DoEvaluateBooleanValue(IJsonComparable? evaluatedValueOfOperand1, IJsonComparable? evaluatedValueOfOperand2)
     {
         string? stringValue1 = evaluatedValueOfOperand1?.Value as string;
         string? stringValue2 = evaluatedValueOfOperand2?.Value as string;

@@ -1,0 +1,6 @@
+{
+  "TestData": [ 1, 5, 8, 17 ],
+  "CustomBinaryOperator": "(TestData[0] +- TestData[2])=$(TestData[0] +- TestData[2])==-9",
+  "CustomPrefixOperator": "(++2 TestData[2])=$(++2 TestData[2])==10",
+  "CustomPostfixOperator": "(TestData[2] is even)=$(TestData[2] is even)==true"
+}

@@ -23,8 +23,8 @@ public class NegativeValueOperatorFunction : DoubleJsonFunctionAbstr
     /// <param name="lineInfo">Optional line information for debugging or error reporting.</param>
     /// <remarks>
     /// This function encapsulates the behavior of performing negation operations on JSON values, extending the double-based functionality
-    /// provided by the base class. It makes use of the operator name, function context, and optional line details to facilitate computation.
     /// </remarks>
+    /// provided by the base class. It makes use of the operator name, function context, and optional line details to facilitate computation.
     public NegativeValueOperatorFunction(string operatorName, IJsonFunction jsonFunction, IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo) : base(
         operatorName, jsonFunctionContext, lineInfo)
     {
@@ -32,7 +32,7 @@ public class NegativeValueOperatorFunction : DoubleJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<double?> GetDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var valueResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 

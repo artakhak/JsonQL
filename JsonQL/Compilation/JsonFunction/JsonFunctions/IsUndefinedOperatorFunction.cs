@@ -31,7 +31,7 @@ public class IsUndefinedOperatorFunction : BooleanJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return IsNullUndefinedFunctionHelpers.IsUndefined(rootParsedValue, compiledParentRootParsedValues, contextData, _jsonFunction);
     }

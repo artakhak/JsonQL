@@ -29,7 +29,7 @@ public class CollectionItemIndexValueFunction : DoubleJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<double?> GetDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         if (contextData?.Index == null)
             return new ParseResult<double?>((double?)null);

@@ -1,5 +1,6 @@
 ﻿using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
+using JsonQL.Demos.CustomJsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Demos.CustomJsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
 using UniversalExpressionParser.ExpressionItems;
@@ -24,11 +25,35 @@ public class CustomBinaryOperatorJsonFunctionFactory: JsonFunctionFactoryAbstr, 
     {
         string operatorName = operatorExpressionItem.OperatorInfoExpressionItem.OperatorInfo.Name;
 
-        if (operatorName == CustomJsonOperatorNames.AddAndIncrementByTwo)
+        if (operatorName == CustomJsonOperatorNames.AndNumbersAndReverseSign)
         {
-            //return null!;
+            return CreateAndNumbersAndReverseSignOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
         }
 
         return _defaultBinaryOperatorJsonFunctionFactory.GetBinaryOperatorFunction(parsedSimpleValue, operatorExpressionItem, operand1, operand2, jsonFunctionContext, operatorLineInfo);
+    }
+
+    private IParseResult<IJsonFunction> CreateAndNumbersAndReverseSignOperatorFunction(IParsedSimpleValue parsedSimpleValue,
+        string operatorName, IExpressionItemBase operand1, IExpressionItemBase operand2,
+        IJsonFunctionValueEvaluationContext jsonFunctionContext,
+        IJsonLineInfo? operatorLineInfo)
+    {
+        var parametersJsonFunctionContext = new JsonFunctionValueEvaluationContext(jsonFunctionContext.VariablesManager);
+
+        var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IJsonFunction>(
+            parsedSimpleValue, operatorName, [operand1, operand2],
+            new JsonFunctionParameterMetadata("operand1", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata("operand2", typeof(IJsonFunction), true),
+            parametersJsonFunctionContext,
+            operatorLineInfo);
+
+        if (parametersParseResult.Errors.Count > 0)
+            return new ParseResult<IJsonFunction>(parametersParseResult.Errors);
+
+        parametersJsonFunctionContext.ParentJsonFunction = new AndNumbersAndReverseSignOperatorFunction(operatorName,
+            parametersParseResult.Value.parameter1!, parametersParseResult.Value.parameter2!,
+            jsonFunctionContext, operatorLineInfo);
+
+        return new ParseResult<IJsonFunction>(parametersJsonFunctionContext.ParentJsonFunction);
     }
 }

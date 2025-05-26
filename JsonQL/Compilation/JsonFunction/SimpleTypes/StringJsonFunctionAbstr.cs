@@ -20,15 +20,9 @@ public abstract class StringJsonFunctionAbstr : JsonFunctionAbstr, IStringJsonFu
     }
 
     /// <inheritdoc />
-    public IParseResult<string?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
-    {
-        return this.DoEvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToString(this.LineInfo);
-    }
-
-    /// <inheritdoc />
     protected sealed override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        return this.GetStringValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
+        return this.EvaluateStringValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToObject();
     }
 
     /// <summary>
@@ -41,5 +35,5 @@ public abstract class StringJsonFunctionAbstr : JsonFunctionAbstr, IStringJsonFu
     /// <param name="contextData">Optional context-specific data that can inform or modify the processing logic.</param>
     /// <returns>A parsed result containing the string value derived from the input parameters, or null if
     /// the operation has no corresponding output.</returns>
-    protected abstract IParseResult<string?> GetStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    public abstract IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

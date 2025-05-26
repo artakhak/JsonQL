@@ -26,7 +26,7 @@ public class IsEvenValueJsonFunction : BooleanJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var valueResult = _evaluatedValue.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 

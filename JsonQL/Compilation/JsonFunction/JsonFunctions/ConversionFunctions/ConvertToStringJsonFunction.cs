@@ -38,7 +38,7 @@ public class ConvertToStringJsonFunction : StringJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<string?> GetStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var evaluatedValueResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -67,7 +67,7 @@ public class ConvertToStringJsonFunction : StringJsonFunctionAbstr
             return new ParseResult<string?>((string?)null);
 
         return ConversionJsonFunctionHelpers.GetParseResultForConversionError<string?>(TypeCode.String.ToString(),
-                   _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.Evaluate(rootParsedValue,
+                   _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.EvaluateBooleanValue(rootParsedValue,
                        compiledParentRootParsedValues, contextData), this.LineInfo) ??
                new ParseResult<string?>((string?)null);
     }

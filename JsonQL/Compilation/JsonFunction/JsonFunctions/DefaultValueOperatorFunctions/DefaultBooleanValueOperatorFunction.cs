@@ -33,7 +33,7 @@ public class DefaultBooleanValueOperatorFunction : DefaultValueOperatorFunction,
     }
 
     /// <inheritdoc />
-    public IParseResult<bool?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToBoolean(LineInfo);
     }

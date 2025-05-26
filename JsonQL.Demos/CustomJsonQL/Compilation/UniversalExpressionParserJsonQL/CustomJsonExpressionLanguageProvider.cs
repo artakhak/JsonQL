@@ -30,8 +30,8 @@ public class CustomJsonExpressionLanguageProvider: IJsonQLExpressionLanguageProv
         _operators.AddRange(_defaultJsonQLExpressionLanguageProvider.Operators);
 
         _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.IncrementByTwoPrefixOperator, OperatorType.PrefixUnaryOperator, 100));
-        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.DecrementByTwoPostfixOperator, OperatorType.PostfixUnaryOperator, 100));
-        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.AddAndIncrementByTwo, OperatorType.PostfixUnaryOperator, 500));
+        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.IsEvenPostfixOperators, OperatorType.PostfixUnaryOperator, 100));
+        _operators.Add(new OperatorInfoWithAutoId(CustomJsonOperatorNames.AndNumbersAndReverseSign, OperatorType.BinaryOperator, 500));
     }
 
     public bool IsValidLiteralCharacter(char character, int positionInLiteral, ITextSymbolsParserState textSymbolsParserState)

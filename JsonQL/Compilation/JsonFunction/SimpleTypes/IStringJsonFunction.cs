@@ -25,5 +25,5 @@ public interface IStringJsonFunction : IJsonFunction
     /// A result object containing the evaluated value as a string, or null if evaluation could not produce a value,
     /// along with any errors encountered during the process.
     /// </returns>
-    IParseResult<string?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
+    IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData);
 }

@@ -27,9 +27,9 @@ public class AssertOperatorBooleanFunction : BooleanJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return AssertOperatorFunctionHelpers.GetParseResultWithErrorIfValueIsNull(
-            _assertedOperatorFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
+            _assertedOperatorFunction.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
     }
 }

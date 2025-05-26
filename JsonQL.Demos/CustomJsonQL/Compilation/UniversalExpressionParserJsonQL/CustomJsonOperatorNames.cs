@@ -6,11 +6,20 @@
 public static class CustomJsonOperatorNames
 {
     // Custom binary operators
-    public const string AddAndIncrementByTwo = "+2";
+    /// <summary>
+    /// Adds two numbers and reverses teh sign. For example [3+-5] will be evaluated to -8.
+    /// </summary>
+    public const string AndNumbersAndReverseSign = "+-";
 
     // Custom unary prefix operators
+    /// <summary>
+    /// Increments a number by 2
+    /// </summary>
     public const string IncrementByTwoPrefixOperator = "++2";
 
     // Custom unary postfix operators
-    public const string DecrementByTwoPostfixOperator = "--2";
+    /// <summary>
+    /// Postfix operator that returns true if the operand is even number.
+    /// </summary>
+    public static readonly IReadOnlyList<string> IsEvenPostfixOperators = ["is", "even"];
 }

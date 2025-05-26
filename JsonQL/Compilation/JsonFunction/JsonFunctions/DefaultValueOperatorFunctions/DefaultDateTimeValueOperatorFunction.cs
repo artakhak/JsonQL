@@ -29,7 +29,7 @@ public class DefaultDateTimeValueOperatorFunction : DefaultValueOperatorFunction
     }
 
     /// <inheritdoc />
-    public IParseResult<DateTime?> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public IParseResult<DateTime?> EvaluateDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData).ConvertToDateTime(LineInfo);
     }

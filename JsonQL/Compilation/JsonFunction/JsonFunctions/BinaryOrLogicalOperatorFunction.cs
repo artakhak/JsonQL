@@ -28,7 +28,7 @@ public class BinaryOrLogicalOperatorFunction : BinaryLogicalOperatorFunctionAbst
     }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> DoEvaluate(bool? evaluatedValueOfOperand1, bool? evaluatedValueOfOperand2)
+    protected override IParseResult<bool?> DoEvaluateBooleanValue(bool? evaluatedValueOfOperand1, bool? evaluatedValueOfOperand2)
     {
         return new ParseResult<bool?>(evaluatedValueOfOperand1 != null && evaluatedValueOfOperand1.Value ||
                                       evaluatedValueOfOperand2 != null && evaluatedValueOfOperand2.Value);

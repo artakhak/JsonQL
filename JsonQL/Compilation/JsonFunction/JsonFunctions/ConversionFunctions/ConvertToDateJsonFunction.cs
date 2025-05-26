@@ -36,7 +36,7 @@ public class ConvertToDateJsonFunction : DateTimeJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<DateTime?> GetDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<DateTime?> EvaluateDateTimeValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         var evaluatedValueResult = _jsonFunction.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
@@ -63,7 +63,7 @@ public class ConvertToDateJsonFunction : DateTimeJsonFunctionAbstr
             return new ParseResult<DateTime?>((DateTime?)null);
 
         return ConversionJsonFunctionHelpers.GetParseResultForConversionError<DateTime?> (TypeCode.DateTime.ToString(),
-                _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.Evaluate(rootParsedValue, 
+                _assertIfConversionFailsJsonFunction, _assertIfConversionFailsJsonFunction.EvaluateBooleanValue(rootParsedValue, 
                     compiledParentRootParsedValues, contextData), this.LineInfo) ?? 
                new ParseResult<DateTime?>((DateTime?)null);
     }

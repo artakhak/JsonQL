@@ -44,19 +44,19 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
     protected IBooleanJsonFunction Operand2 { get; }
 
     /// <inheritdoc />
-    protected override IParseResult<bool?> GetBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public sealed override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        var result1 = Operand1.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
+        var result1 = Operand1.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
         if (result1.Errors.Count > 0)
             return new ParseResult<bool?>(result1.Errors);
 
-        var result2 = Operand2.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData);
+        var result2 = Operand2.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
         if (result2.Errors.Count > 0)
             return new ParseResult<bool?>(result2.Errors);
 
-        return DoEvaluate(result1.Value, result2.Value);
+        return DoEvaluateBooleanValue(result1.Value, result2.Value);
     }
 
     /// <summary>
@@ -65,5 +65,5 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
     /// <param name="evaluatedValueOfOperand1">The evaluated boolean value of the first operand. Can be null.</param>
     /// <param name="evaluatedValueOfOperand2">The evaluated boolean value of the second operand. Can be null.</param>
     /// <returns>The result of the binary logical operation as a parsed value, including potential parsing errors.</returns>
-    protected abstract IParseResult<bool?> DoEvaluate(bool? evaluatedValueOfOperand1, bool? evaluatedValueOfOperand2);
+    protected abstract IParseResult<bool?> DoEvaluateBooleanValue(bool? evaluatedValueOfOperand1, bool? evaluatedValueOfOperand2);
 }

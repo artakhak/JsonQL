@@ -34,9 +34,9 @@ public class AssertOperatorStringFunction : StringJsonFunctionAbstr
     }
 
     /// <inheritdoc />
-    protected override IParseResult<string?> GetStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    public override IParseResult<string?> EvaluateStringValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
         return AssertOperatorFunctionHelpers.GetParseResultWithErrorIfValueIsNull(
-            _assertedOperatorFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
+            _assertedOperatorFunction.EvaluateStringValue(rootParsedValue, compiledParentRootParsedValues, contextData), LineInfo);
     }
 }
