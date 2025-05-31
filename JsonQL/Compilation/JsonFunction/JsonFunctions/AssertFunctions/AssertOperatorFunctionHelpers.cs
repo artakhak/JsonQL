@@ -28,9 +28,20 @@ public static class AssertOperatorFunctionHelpers
         if (parseResult.Errors.Count > 0)
             return parseResult;
 
-        if (parseResult.Value == null || parseResult.Value is IJsonValuePathLookupResult {HasValue: false})
+        bool isValueNull = parseResult.Value == null;
+
+        if (!isValueNull)
+        {
+            var jsonValuePathLookupResult = 
+                (parseResult as IJsonValuePathLookupResult)??(parseResult.Value as IJsonValuePathLookupResult);
+
+            if (jsonValuePathLookupResult is {HasValue: false})
+                isValueNull = true;
+        }
+
+        if (isValueNull)
             return new ParseResult<T>(CollectionExpressionHelpers.Create(new JsonObjectParseError("Value not-null assertion failed", lineInfo)));
-        
+
         return parseResult;
     }
 }

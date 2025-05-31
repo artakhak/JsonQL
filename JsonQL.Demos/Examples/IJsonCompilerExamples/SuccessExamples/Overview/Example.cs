@@ -2,7 +2,7 @@
 
 namespace JsonQL.Demos.Examples.IJsonCompilerExamples.SuccessExamples.Overview;
 
-public class Example : JsonCompilerExampleManagerAbstr
+public class Example : JsonCompilerExampleManagerForSuccessAbstr
 {
     private readonly IJsonCompiler _jsonCompiler;
 

@@ -1,0 +1,35 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "TestData": [
+          1,
+          3,
+          4,
+          "TEST",
+          7
+        ],
+        "ValidParametersExample":  "Lower(TestData[3])=test=='test'",
+        "InvalidParametersExample":  "Lower(TestData[3])=$(Lower(TestData[3], 7))=='test'"
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
+        "JsonTextIdentifier": "Example",
+        "LineInfo": {
+          "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
+          "LineNumber": 4,
+          "LinePosition": 53
+        },
+        "ErrorMessage": "Too many parameters provided for function [Lower]. Expected at most 1 parameters."
+      }
+    ]
+  }
+}

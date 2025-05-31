@@ -31,7 +31,7 @@ public interface IJsonCompiler
     /// Example: [var compiledFile=result.CompiledJsonFiles.FirstOrDefault(x=> x.TextIdentifier=="myJsonTextIdentifier")].
     /// </returns>
     ICompilationResult Compile(IJsonTextData jsonTextData);
-    
+
     /// <summary>
     /// Compiles JSON with expressions in <paramref name="jsonText"/> and returns the results in <see cref="ICompilationResult"/>.
     /// JsonQL expressions in <paramref name="jsonText"/> are resolved by looking up objects in the following order:
@@ -40,12 +40,18 @@ public interface IJsonCompiler
     /// </summary>
     /// <remarks>
     /// Use this overload if the same JSON texts are compiled multiple times.
-    /// In these scenarios it is more efficient to compile the JSON texts once using <see cref="Compile"/> method,
+    /// In these scenarios it is more efficient to compile the JSON texts once using <see cref="Compile(JsonQL.Compilation.IJsonTextData)"/> method,
     /// and then re-use the compiled files.
     /// </remarks>
     /// <param name="jsonText">The JSON text to compile, which includes ma JsonQL expressions.</param>
     /// <param name="jsonTextIdentifier">A unique identifier for the JSON text. Used to tag errors in the compilation result.</param>
-    /// <param name="compiledParents">A list of already compiled JSON data providing parent objects for resolving JsonQL expressions.</param>
+    /// <param name="compiledParents">
+    /// A list of already compiled JSON data providing parent objects for resolving JsonQL expressions.
+    /// Json objects will be looked up first in <paramref name="jsonText"/> with identifier <paramref name="jsonTextIdentifier"/>,
+    /// and then in <paramref name="compiledParents"/> starting with parent at index 0, and moving up, if object is not found.
+    /// In other words, compiled json that appear earlier in <paramref name="compiledParents"/> have precedence over
+    ///  json that appear later in <paramref name="compiledParents"/>.
+    /// </param>
     /// <returns>
     /// An <see cref="ICompilationResult"/> containing the output of the compilation.<br/>
     /// The result includes the compiled JSON files in order, starting with parent JSON files followed by child JSON files,<br/>
@@ -66,6 +72,7 @@ public class JsonCompiler : IJsonCompiler
     private readonly IJsonValueMutatorFunctionTemplatesParser _jsonValueMutatorFunctionTemplatesParser;
     private readonly IJsonValueMutatorFactory _jsonValueMutatorFactory;
 
+    private readonly ICompilationResultMapper _compilationResultMapper;
     private readonly ICompilationResultLogger _compilationResultLogger;
     private readonly ILog _logger;
     private readonly IDateTimeOperations _dateTimeOperations;
@@ -84,6 +91,7 @@ public class JsonCompiler : IJsonCompiler
         _parsedJsonVisitor = parameters.ParsedJsonVisitor;
         _jsonValueMutatorFunctionTemplatesParser = parameters.JsonValueMutatorFunctionTemplatesParser;
         _jsonValueMutatorFactory = parameters.JsonValueMutatorFactory;
+        _compilationResultMapper = parameters.CompilationResultMapper;
         _compilationResultLogger = parameters.CompilationResultLogger;
         
         _logger = parameters.Logger;
@@ -100,6 +108,11 @@ public class JsonCompiler : IJsonCompiler
       
         if (!TryParse(jsonText, jsonTextIdentifier, compilationResult.CompilationErrors, out var rootParsedValue))
             return compilationResult;
+
+        // ReSharper disable once UseObjectOrCollectionInitializer
+        var jsonTextIdentifiers = new List<string>(compiledParents.Count + 1);
+        jsonTextIdentifiers.Add(jsonTextIdentifier);
+        jsonTextIdentifiers.AddRange(compiledParents.Select(x => x.TextIdentifier));
 
         JsonObjectData? parentJsonObjectData = null;
         JsonTextData? parentJsonTextData = null;
@@ -119,14 +132,11 @@ public class JsonCompiler : IJsonCompiler
         var jsonObjectData = new JsonObjectData(jsonTextData, rootParsedValue, parentJsonObjectData);
 
         Compile(jsonObjectData, compilationResult);
+     
+        var convertedCompilationResult = _compilationResultMapper.Map(jsonTextIdentifiers, compilationResult);
 
-        var compiledJsonData = compilationResult.CompiledJsonFiles.FirstOrDefault(x => x.TextIdentifier == jsonTextIdentifier);
-
-        if (compiledJsonData == null)
-            return compilationResult;
-
-        _compilationResultLogger.LogCompilationResult(jsonTextData, compilationResult);
-        return compilationResult;
+        _compilationResultLogger.LogCompilationResult(jsonTextData, convertedCompilationResult);
+        return convertedCompilationResult;
     }
 
     /// <inheritdoc />
@@ -143,8 +153,20 @@ public class JsonCompiler : IJsonCompiler
             return compilationResult;
 
         Compile(jsonObjectData, compilationResult);
-        
-        _compilationResultLogger.LogCompilationResult(jsonTextData, compilationResult);
+
+        var jsonTextIdentifiers = new List<string>(20);
+        jsonTextIdentifiers.Add(jsonTextData.TextIdentifier);
+
+        var parentJsonTextData = jsonTextData.ParentJsonTextData;
+        while (parentJsonTextData != null)
+        {
+            jsonTextIdentifiers.Add(parentJsonTextData.TextIdentifier);
+            parentJsonTextData = parentJsonTextData.ParentJsonTextData;
+        }
+
+        var convertedCompilationResult = _compilationResultMapper.Map(jsonTextIdentifiers, compilationResult);
+
+        _compilationResultLogger.LogCompilationResult(jsonTextData, convertedCompilationResult);
         return compilationResult;
     }
 

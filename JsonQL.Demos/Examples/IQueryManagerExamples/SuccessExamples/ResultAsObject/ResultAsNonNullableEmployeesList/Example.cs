@@ -6,7 +6,7 @@ using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.ResultAsNonNullableEmployeesList;
 
-public class Example : QueryObjectExampleManagerAbstr<IReadOnlyList<IEmployee>>
+public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IEmployee>>
 {
     private readonly IQueryManager _queryManager;
 

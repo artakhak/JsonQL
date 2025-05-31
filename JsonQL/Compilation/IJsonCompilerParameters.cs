@@ -68,6 +68,11 @@ public interface IJsonCompilerParameters
     IDateTimeOperations DateTimeOperations { get; }
 
     /// <summary>
+    /// Converts the compilation result of type <see cref="ICompilationResultMapper"/>.
+    /// </summary>
+    ICompilationResultMapper CompilationResultMapper { get; }
+
+    /// <summary>
     /// Gets the logger used for recording diagnostics and runtime information during application execution.
     /// </summary>
     /// <remarks>
@@ -83,13 +88,14 @@ public class JsonCompilerParameters : IJsonCompilerParameters
 {
     public JsonCompilerParameters(IJsonParser jsonParser, IParsedJsonVisitor parsedJsonVisitor,
         IJsonValueMutatorFunctionTemplatesParser jsonValueMutatorFunctionTemplatesParser,
-        IJsonValueMutatorFactory jsonValueMutatorFactory,
+        IJsonValueMutatorFactory jsonValueMutatorFactory, ICompilationResultMapper compilationResultMapper,
         ICompilationResultLogger compilationResultLogger,  IDateTimeOperations dateTimeOperations, ILog? logger)
     {
         JsonParser = jsonParser;
         ParsedJsonVisitor = parsedJsonVisitor;
         JsonValueMutatorFunctionTemplatesParser = jsonValueMutatorFunctionTemplatesParser;
         JsonValueMutatorFactory = jsonValueMutatorFactory;
+        CompilationResultMapper = compilationResultMapper;
         CompilationResultLogger = compilationResultLogger;
         DateTimeOperations = dateTimeOperations;
         Logger = logger ?? new LogToConsole(LogLevel.Debug);
@@ -112,7 +118,10 @@ public class JsonCompilerParameters : IJsonCompilerParameters
     
     /// <inheritdoc />
     public IDateTimeOperations DateTimeOperations { get; }
-    
+
+    /// <inheritdoc />
+    public ICompilationResultMapper CompilationResultMapper { get; }
+
     /// <inheritdoc />
     public ILog Logger { get; }
 }

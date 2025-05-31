@@ -4,7 +4,7 @@ using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsParsedJsonValue.CompanyFilteredByCeoName;
 
-public class Example : QueryJsonValueExampleManagerAbstr
+public class Example : QueryJsonValueExampleManagerForSuccessAbstr
 {
     private readonly IQueryManager _queryManager;
 

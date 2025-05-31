@@ -235,7 +235,6 @@ public class QueryManager : IQueryManager
         var jsonTextStrBldr = new StringBuilder();
 
         const string openingBrace = "{";
-
         jsonTextStrBldr.AppendLine(openingBrace);
         jsonTextStrBldr.Append(Constants.QueryPrefix).Append(query).AppendLine(Constants.QuerySuffix);
         jsonTextStrBldr.Append("}");

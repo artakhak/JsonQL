@@ -13,7 +13,6 @@
 		<None Remove="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 		<None Remove="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
 		<None Remove="ContextValues\CollectionItemIndexExpressions\JsonFile2.json" />
-		<None Remove="Diagnostics\ExpectedCompiledJson.json" />
 		<None Remove="Functions\MathFunctions\ExpectedCompiledJson.json" />
 		<None Remove="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
 		<None Remove="Functions\MathFunctions\IsOdd\JsonFile1.json" />
@@ -56,8 +55,6 @@
 		<None Remove="JsonMutators\Value\InvalidPaths\JsonFile1.json" />
 		<None Remove="JsonMutators\Value\JsonFile1.json" />
 		<None Remove="JsonMutators\Value\JsonFile2.json" />
-		<None Remove="Diagnostics\JsonFile1.json" />
-		<None Remove="Diagnostics\JsonFile2.json" />
 		<None Remove="Functions\AggregateFunctions\Any\Companies.json" />
 		<None Remove="Functions\AggregateFunctions\Sum\ExpectedCompiledJson.json" />
 		<None Remove="Functions\AggregateFunctions\Sum\JsonFile1.json" />
@@ -206,7 +203,6 @@
 		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile1.json" />
 		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="ContextValues\CollectionItemIndexExpressions\JsonFile2.json" />
-		<EmbeddedResource Include="Diagnostics\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile1.json" />
 		<EmbeddedResource Include="Functions\MathFunctions\IsOdd\JsonFile2.json" />
@@ -364,8 +360,6 @@
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentsParentJson\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\JsonFile1.json" />
 		<EmbeddedResource Include="JsonMutators\Value\ReferenceJsonObjectsInParentJson\JsonFile2.json" />
-		<EmbeddedResource Include="Diagnostics\JsonFile1.json" />
-		<EmbeddedResource Include="Diagnostics\JsonFile2.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayByWhereClause2\JsonFile1.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>

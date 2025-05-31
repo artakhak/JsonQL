@@ -45,7 +45,7 @@ public abstract class BinaryArithmeticOperationOperatorFunctionAbstr : JsonFunct
         var evaluatedOperand2ValueResult = Operand2.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
         if (evaluatedOperand2ValueResult.Errors.Count > 0)
-            return new ParseResult<object?>(evaluatedOperand1ValueResult.Errors);
+            return new ParseResult<object?>(evaluatedOperand2ValueResult.Errors);
             
         if (!JsonFunctionHelpers.TryConvertValueToJsonComparable(evaluatedOperand1ValueResult.Value, null, out var jsonComparable1) ||
             !JsonFunctionHelpers.TryConvertValueToJsonComparable(evaluatedOperand2ValueResult.Value, null, out var jsonComparable2))

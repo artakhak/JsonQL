@@ -1,0 +1,5 @@
+{
+  "TestData": [ 1, 3, 4 ],
+  "SucceededAssert": "Array item at index 1 is $(TestData[1] assert)==3",
+  "FailedAssert": "$(TestData[1000] assert)"
+}

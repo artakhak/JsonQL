@@ -3,7 +3,7 @@ using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles;
 
-public class Example : QueryObjectExampleManagerAbstr<double[]>
+public class Example : QueryObjectExampleManagerForSuccessAbstr<double[]>
 {
     private readonly IQueryManager _queryManager;
 

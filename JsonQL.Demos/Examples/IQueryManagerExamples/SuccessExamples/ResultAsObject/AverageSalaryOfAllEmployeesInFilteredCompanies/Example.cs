@@ -4,7 +4,7 @@ using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.AverageSalaryOfAllEmployeesInFilteredCompanies;
 
-public class Example : QueryObjectExampleManagerAbstr<double>
+public class Example : QueryObjectExampleManagerForSuccessAbstr<double>
 {
     private readonly IQueryManager _queryManager;
 
@@ -16,7 +16,6 @@ public class Example : QueryObjectExampleManagerAbstr<double>
     /// <inheritdoc />
     protected override IObjectQueryResult<double> QueryObject()
     {
-        //TempTest<IReadOnlyList<IEmployee?>>();
         var query = "Average(Companies.Where(x => !(x.CompanyData.Name starts with 'Sherwood')).Select(x => x.Employees.Select(x => x.Salary)))";
 
         var averageSalaryResult =

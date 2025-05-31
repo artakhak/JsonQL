@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-
-namespace JsonQL.Demos.Examples;
+﻿namespace JsonQL.Demos.Examples;
 
 public interface IExampleManager
 {
+    bool IsSuccessfulEvaluationExample { get; }
     Task ExecuteAsync();
 }
 

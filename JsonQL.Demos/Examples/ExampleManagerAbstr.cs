@@ -8,9 +8,15 @@ namespace JsonQL.Demos.Examples;
 public abstract class ExampleManagerAbstr : IExampleManager
 {
     /// <inheritdoc />
+    public abstract bool IsSuccessfulEvaluationExample { get; }
+
+    /// <inheritdoc />
     public async Task ExecuteAsync()
     {
         LogHelper.Context.Log.InfoFormat("------EXECUTING EXAMPLE [{0}]---------------------------", this.GetType().FullName!);
+        if(!this.IsSuccessfulEvaluationExample)
+            LogHelper.Context.Log.InfoFormat("------------NOTE: THIS IS FAILURE TEST AND ERROR LOGS ARE EXPECTED!!!----------------------");
+
         var result = await GetJsonQlResultAsync();
         
         var serializedResult = RemoveLineEndSpaces(SerializeResult(result));
@@ -21,7 +27,14 @@ public abstract class ExampleManagerAbstr : IExampleManager
         var expectedJsonFile = RemoveLineEndSpaces(this.LoadExpectedResultJsonFile());
 
         if (!string.Equals(serializedResult, expectedJsonFile, StringComparison.Ordinal))
+        {
+            LogHelper.Context.Log.ErrorFormat("FAILURE: Example [{0}]---------------------------", this.GetType().FullName!);
             throw new ApplicationException($"The contents of expected result and actual result do not match. Example type: [{GetType()}].");
+        }
+        else
+        {
+            LogHelper.Context.Log.InfoFormat("SUCCESS: Example [{0}]---------------------------", this.GetType().FullName!);
+        }
 
         LogHelper.Context.Log.InfoFormat("-----------------------------------------");
         LogHelper.Context.Log.InfoFormat("Generated output is in file [{0}].", GetOutputFilePath());
@@ -39,7 +52,6 @@ public abstract class ExampleManagerAbstr : IExampleManager
         var lines = text.Split(System.Environment.NewLine);
         var result = new StringBuilder(text.Length);
         
-        //for (var i = 0; i < lines.Length; ++i)
         foreach (var line in lines)
         {
             var trimmedLine = line.TrimEnd();
