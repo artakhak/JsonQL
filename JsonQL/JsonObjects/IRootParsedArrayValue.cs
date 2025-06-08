@@ -39,9 +39,13 @@ public class RootParsedArrayValue : ParsedArrayValueAbstr, IRootParsedArrayValue
     /// to manage the parsed values, handle events for added or removed values, and interact with
     /// the parsed JSON structure through a visitor interface.
     /// </summary>
-    public RootParsedArrayValue(IParsedJsonVisitor parsedJsonVisitor) : base(parsedJsonVisitor,null, null)
+    public RootParsedArrayValue(IParsedJsonVisitor parsedJsonVisitor, string jsonTextIdentifier) : base(parsedJsonVisitor,null, null, null)
     {
+        JsonTextIdentifier = jsonTextIdentifier;
     }
+
+    /// <inheritdoc />
+    public string JsonTextIdentifier { get; }
 
     /// <inheritdoc />
     public bool TryGetParsedValue(Guid valueId, [NotNullWhen(true)] out IParsedValue? parsedValue)

@@ -18,11 +18,11 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
     {
         var query = "Companies.Where(x => x.CompanyData.CEO == 'Robin Wood')";
 
-        var averageSalary =
+        var companyResult =
             _queryManager.QueryJsonValue(query,
-                new JsonTextData("Example",
+                new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")));
 
-        return averageSalary;
+        return companyResult;
     }
 }

@@ -1,4 +1,6 @@
-﻿using JsonQL.Diagnostics;
+﻿using JsonQL.Compilation;
+using JsonQL.Diagnostics;
+using JsonQL.Query;
 using OROptimizer.Diagnostics.Log;
 using System.Reflection;
 using System.Text;
@@ -14,11 +16,11 @@ public abstract class ExampleManagerAbstr : IExampleManager
     public async Task ExecuteAsync()
     {
         LogHelper.Context.Log.InfoFormat("------EXECUTING EXAMPLE [{0}]---------------------------", this.GetType().FullName!);
-        if(!this.IsSuccessfulEvaluationExample)
+        if (!this.IsSuccessfulEvaluationExample)
             LogHelper.Context.Log.InfoFormat("------------NOTE: THIS IS FAILURE TEST AND ERROR LOGS ARE EXPECTED!!!----------------------");
 
         var result = await GetJsonQlResultAsync();
-        
+
         var serializedResult = RemoveLineEndSpaces(SerializeResult(result));
 
         await ResourceFileHelpers.SaveAsync(serializedResult, "QueryResult.json");
@@ -51,7 +53,7 @@ public abstract class ExampleManagerAbstr : IExampleManager
     {
         var lines = text.Split(System.Environment.NewLine);
         var result = new StringBuilder(text.Length);
-        
+
         foreach (var line in lines)
         {
             var trimmedLine = line.TrimEnd();
@@ -61,7 +63,7 @@ public abstract class ExampleManagerAbstr : IExampleManager
 
             if (result.Length > 0)
                 result.AppendLine();
-            
+
             result.Append(trimmedLine);
         }
 
@@ -70,9 +72,27 @@ public abstract class ExampleManagerAbstr : IExampleManager
 
     protected abstract Task<object> GetJsonQlResultAsync();
 
-    protected virtual string SerializeResult(object result)
+    protected string SerializeResult(object result)
     {
-        return ClassSerializerAmbientContext.Context.Serialize(result);
+        if (result is ICompilationResult compilationResult)
+        {
+            return CompilationResultSerializerAmbientContext.Context.Serialize(compilationResult,
+                x =>
+                    // Lets output only the most recently compiled file
+                    x.TextIdentifier == compilationResult.CompiledJsonFiles[^1].TextIdentifier);
+        }
+
+        if (result is IJsonValueQueryResult jsonValueQueryResult)
+        {
+            return CompilationResultSerializerAmbientContext.Context.Serialize(jsonValueQueryResult);
+        }
+
+        if (result is IObjectQueryResult objectQueryResult)
+        {
+            return CompilationResultSerializerAmbientContext.Context.Serialize(objectQueryResult);
+        }
+
+        throw new ApplicationException($"No conversion exists for type [{result.GetType()}].");
     }
 
     private static async Task SaveResultToApplicationOutputFolderAsync(string serializedResult)

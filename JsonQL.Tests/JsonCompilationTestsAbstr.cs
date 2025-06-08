@@ -20,7 +20,7 @@ public abstract class JsonCompilationTestsAbstr
 
    
     [SetUp]
-    public void Setup()
+    public virtual void Setup()
     {
         var defaultJsonCompilerFactory = new DefaultJsonCompilerFactory(LogHelper.Context.Log);
         JsonCompiler = defaultJsonCompilerFactory.Create();

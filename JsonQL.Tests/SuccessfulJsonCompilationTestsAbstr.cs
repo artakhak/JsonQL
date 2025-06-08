@@ -70,7 +70,7 @@ public abstract class SuccessfulJsonCompilationTestsAbstr : JsonCompilationTests
         var expectedCompiledJsonFile = ResourceFileLoader.LoadJsonFile(
             new ResourcePath("ExpectedCompiledJson.json", expectedCompiledJsonFilePathFolderNames));
 
-        ParsedJsonValidator.ValidateRootParsedJson(compiledJsonData!.CompiledParsedValue, jsonParser.Parse(expectedCompiledJsonFile));
+        ParsedJsonValidator.ValidateRootParsedJson(compiledJsonData!.CompiledParsedValue, jsonParser.Parse(expectedCompiledJsonFile, jsonTextData.TextIdentifier));
     }
     
     private async Task<string> SaveCompiledJsonFileAsync(ICompiledJsonData compiledJsonData)

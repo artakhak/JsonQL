@@ -1,5 +1,4 @@
 ﻿using JsonQL.JsonObjects.JsonPath;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonObjects;
 
@@ -10,18 +9,49 @@ namespace JsonQL.JsonObjects;
 /// </summary>
 public abstract class ParsedValueAbstr: IParsedValue
 {
-    protected ParsedValueAbstr(IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue)
+    private IJsonPath? _jsonPath;
+
+    /// <summary>
+    /// Constructor. 
+    /// </summary>
+    /// <param name="parentJsonValue">
+    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null, and vice versa.
+    /// </param>
+    /// <param name="jsonKeyValue">
+    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null, and vice versa.
+    /// </param>
+    /// <param name="pathInReferencedJson">
+    /// If the value is not null, a json path that points out to original json value.<br/>
+    /// For example, consider the following two json files "Employees.json" that has a JSON array value at JSON key "Employees" (e.g., {"Employees": [...]}<br/>
+    /// Also, lets assume we have another JSON "EmployeeExpressions.json" shown below that has an expression that references the second employee in "Employees.json".<br/>
+    /// {"SecondEmployee": "$value(Employees[1])"}.<br/>
+    /// In this example the value returned by method call <see cref="IParsedValue.GetPath"/> for JSON value "Employees[1]" will be "Root.SecondEmployee" since it is a json value in<br/>
+    /// "EmployeeExpressions.json" mapped to key "Root.SecondEmployee". However, the value of <see cref="PathInReferencedJson"/> will be<br/>
+    /// "Root.Employees[1]" and <see cref="PathInReferencedJson"/>.<see cref="IJsonPath.JsonTextIdentifier"/> will be "Employees.json".
+    /// </param>
+    protected ParsedValueAbstr(IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue, IJsonPath? pathInReferencedJson)
     {
         Id = Guid.NewGuid();
         ParentJsonValue = parentJsonValue;
         JsonKeyValue = jsonKeyValue;
+        PathInReferencedJson = pathInReferencedJson;
     }
 
     /// <inheritdoc />
     public IJsonPath GetPath()
     {
+        return _jsonPath ??= CalculateJsonPath();
+    }
+
+    /// <inheritdoc />
+    public IJsonPath? PathInReferencedJson { get; }
+
+    private IJsonPath CalculateJsonPath()
+    {
+        var jsonTextIdentifier = this.RootParsedValue.JsonTextIdentifier;
+
         if (ParentJsonValue == null)
-            return new JsonPath.JsonPath(CollectionExpressionHelpers.Create(new JsonPropertyNamePathElement(JsonObjectConstants.RootValuePathName)));
+            return new JsonPath.JsonPath(jsonTextIdentifier, CollectionExpressionHelpers.Create(new JsonPropertyNamePathElement(JsonObjectConstants.RootValuePathName)));
 
         var parentPath = this.ParentJsonValue.GetPath();
 
@@ -31,7 +61,7 @@ public abstract class ParsedValueAbstr: IParsedValue
         if (JsonKeyValue is not null)
         {
             jsonPathElements.Add(new JsonPropertyNamePathElement(JsonKeyValue.Key));
-            return new JsonPath.JsonPath(jsonPathElements);
+            return new JsonPath.JsonPath(jsonTextIdentifier, jsonPathElements);
         }
 
         if (ParentJsonValue is IParsedArrayValue parentParsedArrayValue)
@@ -63,10 +93,10 @@ public abstract class ParsedValueAbstr: IParsedValue
             }
 
             jsonPathElements.Add(new JsonArrayIndexesPathElement(parsedArrayValueIndexInParentArray));
-            return new JsonPath.JsonPath(jsonPathElements);
+            return new JsonPath.JsonPath(jsonTextIdentifier, jsonPathElements);
         }
 
-        return new JsonPath.JsonPath(CollectionExpressionHelpers.Create(new JsonPropertyNamePathElement(string.Empty)));
+        return new JsonPath.JsonPath(jsonTextIdentifier, CollectionExpressionHelpers.Create(new JsonPropertyNamePathElement(string.Empty)));
     }
 
     /// <inheritdoc />

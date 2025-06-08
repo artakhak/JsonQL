@@ -17,11 +17,11 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<List<double>>
     {
         var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
 
-        var averageSalaryResult =
+        var salariesResult =
             _queryManager.QueryObject<List<double>>(query,
-                new JsonTextData("Example",
+                new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")), null);
 
-        return averageSalaryResult;
+        return salariesResult;
     }
 }

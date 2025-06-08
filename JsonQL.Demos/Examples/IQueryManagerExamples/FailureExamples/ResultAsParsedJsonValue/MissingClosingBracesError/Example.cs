@@ -32,7 +32,7 @@ public class Example : QueryJsonValueExampleManagerForFailureAbstr
 
         queryResult =
             _queryManager.QueryJsonValue(query,
-                new JsonTextData("Example",
+                new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")));
 
         return queryResult;

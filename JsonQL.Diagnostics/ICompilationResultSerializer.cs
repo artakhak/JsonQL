@@ -11,6 +11,7 @@ public interface ICompilationResultSerializer
     string Serialize(ICompilationResult compilationResult,
         Func<ICompiledJsonData, bool> compiledJsonDataShouldBeIncluded);
     string Serialize(IJsonValueQueryResult jsonValueQueryResult);
+    string Serialize(IObjectQueryResult objectQueryResult);
 }
 
 public class CompilationResultSerializer : ICompilationResultSerializer
@@ -49,17 +50,21 @@ public class CompilationResultSerializer : ICompilationResultSerializer
         return indentedValue.ToString();
     }
 
-    /// <inheritdoc />
-    public string Serialize(ICompilationResult compilationResult, Func<ICompiledJsonData, bool> compiledJsonDataShouldBeIncluded)
+    private JsonSerializerParameters CreateJsonSerializerParameters()
     {
-        string indention = _jsonSerializerParameters.IndentationFromParent;
-
-        var jsonSerializerParameters = new JsonSerializerParameters
+        return new JsonSerializerParameters
         {
             Minify = false,
             IndentationFromParent = _jsonSerializerParameters.IndentationFromParent
         };
-     
+    }
+
+    /// <inheritdoc />
+    public string Serialize(ICompilationResult compilationResult, Func<ICompiledJsonData, bool> compiledJsonDataShouldBeIncluded)
+    {
+        string indention = _jsonSerializerParameters.IndentationFromParent;
+        var jsonSerializerParameters = CreateJsonSerializerParameters();
+
         var serializedText = new StringBuilder();
         serializedText.AppendLine("{");
         serializedText.Append(indention)
@@ -92,7 +97,6 @@ public class CompilationResultSerializer : ICompilationResultSerializer
                 .Append(nameof(ICompiledJsonData.CompiledParsedValue))
                 .Append("\": ");
 
-           
             jsonSerializerParameters.NewLineIndentation = level2Indention;
             serializedText.AppendLine();
             serializedText.Append(level2Indention);
@@ -119,15 +123,11 @@ public class CompilationResultSerializer : ICompilationResultSerializer
         return serializedText.ToString();
     }
 
+    /// <inheritdoc />
     public string Serialize(IJsonValueQueryResult jsonValueQueryResult)
     {
         string indention = _jsonSerializerParameters.IndentationFromParent;
-
-        var jsonSerializerParameters = new JsonSerializerParameters
-        {
-            Minify = false,
-            IndentationFromParent = _jsonSerializerParameters.IndentationFromParent
-        };
+        var jsonSerializerParameters = CreateJsonSerializerParameters();
 
         var serializedText = new StringBuilder();
         serializedText.AppendLine("{");
@@ -163,5 +163,12 @@ public class CompilationResultSerializer : ICompilationResultSerializer
 
         serializedText.AppendLine("}");
         return serializedText.ToString();
+    }
+
+
+    /// <inheritdoc />
+    public string Serialize(IObjectQueryResult objectQueryResult)
+    {
+        return ClassSerializerAmbientContext.Context.Serialize(objectQueryResult);
     }
 }

@@ -1,0 +1,56 @@
+{
+  "Employees": [
+    {
+      "Id": 100000001,
+      "FirstName": "John",
+      "LastName": "Smith",
+      "Address": {
+        "Street": "456 Oak Avenue",
+        "City": "Chicago",
+        "State": "IL",
+        "ZipCode": "60601"
+      },
+      "Salary": 99500,
+      "Age": 45,
+      "Phones": null
+    },
+    {
+      "Id": 100000002,
+      "FirstName": "Alice",
+      "LastName": "Johnson",
+      "Address": null,
+      "Salary": 105000,
+      "Age": 37,
+      "Phones": [ "111-222-3333", "111-222-4444" ]
+    },
+    {
+      "Id": 100000003,
+      "FirstName": "Michael",
+      "LastName": "Brown",
+      "Address": {
+        "Street": "789 Pine Lane",
+        "City": "Los Angeles",
+        "State": "CA",
+        "ZipCode": "90001"
+      },
+      "Salary": 89000,
+      "Age": 50
+    },
+    {
+      "Id": 100000004,
+      "FirstName": "Emily",
+      "LastName": "Davis",
+      "Address": {
+        "Street": "321 Elm Drive",
+        "City": "Houston",
+        "State": "TX",
+        "ZipCode": "77001"
+      },
+      "Salary": 92000,
+      "Age": 42
+    }
+  ],
+
+  "EmployeesCopiedFromParentJson": "$value(parent.Employees)",
+  "MultiDimensionalArrayCopiedFromParentJson": "$value(parent.MultiDimensionalArray)"
+}

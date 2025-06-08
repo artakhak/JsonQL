@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using JsonQL.JsonObjects.JsonPath;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.JsonObjects;
 
@@ -83,8 +84,9 @@ public class ParsedArrayValue : ParsedArrayValueAbstr
     /// It is constructed with references to a root parsed value, its visitor, parent parsed object, and any associated metadata (key-value pair).<br/>
     /// Instances of this class are used during JSON parsing and internal representation building.
     /// </remarks>
-    public ParsedArrayValue(IParsedJsonVisitor parsedJsonVisitor, IRootParsedValue rootParsedValue, IParsedValue parentJsonValue, IJsonKeyValue? jsonKeyValue) : 
-        base(parsedJsonVisitor, parentJsonValue, jsonKeyValue)
+    public ParsedArrayValue(IParsedJsonVisitor parsedJsonVisitor, IRootParsedValue rootParsedValue, IParsedValue parentJsonValue, IJsonKeyValue? jsonKeyValue,
+        IJsonPath? pathInReferencedJson) : 
+        base(parsedJsonVisitor, parentJsonValue, jsonKeyValue, pathInReferencedJson)
     {
         RootParsedValue = rootParsedValue;
     }

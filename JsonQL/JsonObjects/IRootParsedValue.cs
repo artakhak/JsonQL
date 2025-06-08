@@ -7,6 +7,12 @@ namespace JsonQL.JsonObjects;
 /// </summary>
 public interface IRootParsedValue: IParsedValue
 {
+    
+    /// <summary>
+    /// If the value is not null, json text identifier for json file that has the json object that resulted in conversion error.
+    /// </summary>
+    string JsonTextIdentifier { get; }
+
     /// <summary>
     /// If value with <see cref="IParsedValue.Id"/> is found in <see cref="IRootParsedValue"/>, returns true, and the value of
     /// <param name="parsedValue"></param> is set to this value.

@@ -1,7 +1,6 @@
 ﻿using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 
@@ -56,7 +55,7 @@ public class CalculatedValueJsonValueMutator : CalculatedJsonValueMutatorAbstr, 
             return;
         }
 
-        int indexOfKey = -1;
+        var indexOfKey = -1;
         for (var i = 0; i < parsedJson.KeyValues.Count; ++i)
         {
             if (parsedJson.KeyValues[i].Key == ParsedSimpleValue.JsonKeyValue.Key)

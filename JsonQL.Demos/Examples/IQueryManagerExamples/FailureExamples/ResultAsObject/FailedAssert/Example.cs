@@ -17,19 +17,19 @@ public class Example : QueryObjectExampleManagerForFailureAbstr<double>
     protected override IObjectQueryResult<double> QueryObject()
     {
         // This query will succeed
-        /*var query = "TestData[0] + (TestData[1] assert)";
+        var query = "TestData[0] + (TestData[1] assert)";
         var resultAsDouble =
             _queryManager.QueryObject<double>(query,
-                new JsonTextData("Example", this.LoadExampleJsonFile("Data.json")), null);
+                new JsonTextData("Data", this.LoadExampleJsonFile("Data.json")), null);
 
-        Assert.That(resultAsDouble.Value, Is.EqualTo(4));*/
+        Assert.That(resultAsDouble.Value, Is.EqualTo(4));
 
         // This query will fail since TestData has only 3 items
-        var query = "TestData[0] + (TestData[1000] assert)";
+        query = "TestData[0] + (TestData[1000] assert)";
 
-        var resultAsDouble =
+        resultAsDouble =
             _queryManager.QueryObject<double>(query,
-                new JsonTextData("Example", this.LoadExampleJsonFile("Data.json")), null);
+                new JsonTextData("Data", this.LoadExampleJsonFile("Data.json")), null);
 
         return resultAsDouble;
     }

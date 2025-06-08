@@ -28,6 +28,8 @@
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
 	  <None Remove="Examples\IQueryManagerExamples\Companies.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Employees.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Result.json" />
 	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Data.json" />
 	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Result.json" />
 	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Data.json" />
@@ -77,6 +79,8 @@
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Employees.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Result.json" />
 		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Data.json" />
 		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Result.json" />
 		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Data.json" />

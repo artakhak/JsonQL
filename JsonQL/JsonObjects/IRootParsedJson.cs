@@ -28,9 +28,13 @@ public class RootParsedJson: ParsedJsonAbstr, IRootParsedJson
     /// <see cref="IRootParsedJson"/> interface. It provides methods to retrieve,
     /// add, and remove parsed values, as well as access the root value of the parsed JSON.
     /// </remarks>
-    public RootParsedJson(IParsedJsonVisitor parsedJsonVisitor) : base(parsedJsonVisitor,null, null)
+    public RootParsedJson(IParsedJsonVisitor parsedJsonVisitor, string jsonTextIdentifier) : base(parsedJsonVisitor,null, null, null)
     {
+        JsonTextIdentifier = jsonTextIdentifier;
     }
+
+    /// <inheritdoc />
+    public string JsonTextIdentifier { get; }
 
     /// <inheritdoc />
     public bool TryGetParsedValue(Guid valueId, [NotNullWhen(true)] out IParsedValue? parsedValue)

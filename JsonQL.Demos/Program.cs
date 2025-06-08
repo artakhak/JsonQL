@@ -11,10 +11,17 @@ using OROptimizer.Diagnostics.Log;
 using OROptimizer.Log4Net;
 using System.Text;
 using OROptimizer.ServiceResolver;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 RegisterLogger();
 
 LogHelper.Context.Log.Info("---BETTER LOGS CAN BE FOUND IN [c:/LogFiles/JsonQL.Demos.log]. SOME UNICODE CHARACTERS DO NOT SHOW IN CONSOLE LOGS!---");
+
+JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+{
+    Converters = { new StringEnumConverter() }
+};
 
 var configuration = LoadConfiguration();
 

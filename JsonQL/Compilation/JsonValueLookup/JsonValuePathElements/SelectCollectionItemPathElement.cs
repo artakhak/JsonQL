@@ -1,5 +1,4 @@
 ﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonFunction.JsonFunctions.AggregateFunctions;
 using JsonQL.JsonObjects;
 using TypeCode = JsonQL.Compilation.JsonFunction.SimpleTypes.TypeCode;
 

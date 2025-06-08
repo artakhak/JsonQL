@@ -142,10 +142,10 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 break;
 
             default:
-                var conversionErrors = new ConversionErrors();
-                conversionErrors.AddError(new ConversionError(ConversionErrorType.Error,
-                    $"Invalid type [{parsedValue.GetType()}]", contextObject.ConvertedObjectContext.GetConvertedObjectPath(), parsedValue));
+                var errorMessage = $"Invalid type [{parsedValue.GetType()}]";
+                ThreadStaticLoggingContext.Context.Error(errorMessage);
 
+                AddError(contextObject, ConversionErrorType.Error, errorMessage, parsedValue);
                 return null;
         }
 
@@ -332,7 +332,6 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         CollectionItemTypeData collectionItemTypeData, int collectionItemLevel, ContextObject contextObject)
     {
         for (var i = 0; i < parsedArrayValue.Values.Count; ++i)
-       
         {
             try
             {
@@ -393,7 +392,9 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             conversionErrors = contextObject.ErrorsAndWarnings.ConversionErrors;
         }
 
-        conversionErrors.AddError(new ConversionError(conversionErrorType, error, contextObject.ConvertedObjectContext.GetConvertedObjectPath(), parsedValue));
+        conversionErrors.AddError(new ConversionError(conversionErrorType, error,
+            new List<string>(contextObject.ConvertedObjectContext.GetConvertedObjectPath()), 
+            parsedValue?.GetPath(), parsedValue?.PathInReferencedJson));
 
         if (conversionErrors == contextObject.ErrorsAndWarnings.ConversionWarnings)
             return true;

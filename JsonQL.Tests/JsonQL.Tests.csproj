@@ -145,6 +145,8 @@
 		<None Remove="JsonMutators\MergeArray\MultipleArrayIndexes\ExpectedCompiledJson.json" />
 		<None Remove="JsonMutators\MergeArray\MultipleArrayIndexes\JsonFile1.json" />
 		<None Remove="JsonMutators\MergeArray\MultipleArrayIndexes\JsonFile2.json" />
+		<None Remove="JsonValuePathTests\CopiedJsonValueTests\JsonFile1.json" />
+		<None Remove="JsonValuePathTests\CopiedJsonValueTests\JsonFile2.json" />
 		<None Remove="Operators\DefaultValue\ExpectedCompiledJson.json" />
 		<None Remove="Operators\DefaultValue\JsonFile1.json" />
 		<None Remove="Operators\IsNotNull\ExpectedCompiledJson.json" />
@@ -314,6 +316,8 @@
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromCurrentJson\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MergeCollectionIntoArrayFromParentJson\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="JsonMutators\MergeArray\MultipleArrayIndexes\ExpectedCompiledJson.json" />
+		<EmbeddedResource Include="JsonValuePathTests\CopiedJsonValueTests\JsonFile1.json" />
+		<EmbeddedResource Include="JsonValuePathTests\CopiedJsonValueTests\JsonFile2.json" />
 		<EmbeddedResource Include="Operators\DefaultValue\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Operators\DefaultValue\JsonFile1.json" />
 		<EmbeddedResource Include="Operators\IsNotNull\ExpectedCompiledJson.json" />

@@ -16,12 +16,20 @@ public class CompilationResultSerializerAmbientContext : AmbientContext<ICompila
 /// </summary>
 public class NullCompilationResultSerializer : ICompilationResultSerializer
 {
+    /// <inheritdoc />
     public string Serialize(ICompilationResult compilationResult, Func<ICompiledJsonData, bool> compiledJsonDataShouldBeIncluded)
     {
         throw new NotImplementedException();
     }
 
+    /// <inheritdoc />
     public string Serialize(IJsonValueQueryResult jsonValueQueryResult)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc />
+    public string Serialize(IObjectQueryResult objectQueryResult)
     {
         throw new NotImplementedException();
     }

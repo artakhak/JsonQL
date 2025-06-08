@@ -186,7 +186,7 @@ public class JsonCompiler : IJsonCompiler
     {
         try
         {
-            rootParsedValue = _jsonParser.Parse(jsonText);
+            rootParsedValue = _jsonParser.Parse(jsonText, jsonTextIdentifier);
             return true;
         }
         catch (Exception e)

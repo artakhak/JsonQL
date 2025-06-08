@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonObjects;
+﻿using JsonQL.JsonObjects.JsonPath;
+
+namespace JsonQL.JsonObjects;
 
 /// <summary>
 /// Represents a parsed JSON value that is a simple, non-composite type.
@@ -39,8 +41,10 @@ public class ParsedSimpleValue : ParsedValueAbstr, IParsedSimpleValue
     /// This class is commonly created during the evaluation or mutation of JSON data and is capable of representing
     /// primitive JSON values such as strings, numbers, and booleans, among others.
     /// </summary>
-    public ParsedSimpleValue(IRootParsedValue rootParsedValue, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue, string? value, bool isString): 
-        base(parentJsonValue, jsonKeyValue)
+    public ParsedSimpleValue(IRootParsedValue rootParsedValue, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue,
+        IJsonPath? pathInReferencedJson,
+        string? value, bool isString): 
+        base(parentJsonValue, jsonKeyValue, pathInReferencedJson)
     {
         RootParsedValue = rootParsedValue;
         Value = value;

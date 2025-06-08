@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using JsonQL.JsonObjects.JsonPath;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.JsonObjects;
 
@@ -15,7 +16,8 @@ public abstract class ParsedArrayValueAbstr : ParsedValueAbstr, IParsedArrayValu
     /// Serves as an abstract base class for parsed JSON array values, providing a framework for implementing
     /// functionality to handle and manipulate multiple parsed values within a JSON array structure.
     /// </summary>
-    protected ParsedArrayValueAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue) : base(parentJsonValue, jsonKeyValue)
+    protected ParsedArrayValueAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue,
+        IJsonPath? pathInReferencedJson) : base(parentJsonValue, jsonKeyValue, pathInReferencedJson)
     {
         _parsedJsonVisitor = parsedJsonVisitor;
     }

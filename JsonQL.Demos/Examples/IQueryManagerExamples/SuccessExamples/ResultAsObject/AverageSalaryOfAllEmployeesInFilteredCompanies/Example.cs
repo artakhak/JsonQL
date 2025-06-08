@@ -20,7 +20,7 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<double>
 
         var averageSalaryResult =
             _queryManager.QueryObject<double>(query,
-                new JsonTextData("Example", this.LoadExampleJsonFile("Data.json")), null);
+                new JsonTextData("Data", this.LoadExampleJsonFile("Data.json")), null);
 
         return averageSalaryResult;
     }

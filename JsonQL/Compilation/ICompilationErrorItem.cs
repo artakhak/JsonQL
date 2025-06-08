@@ -10,11 +10,6 @@ namespace JsonQL.Compilation;
 public interface ICompilationErrorItem
 {
     /// <summary>
-    /// Unique identifier.
-    /// </summary>
-    Guid Id { get; }
-
-    /// <summary>
     /// Json text identifier.
     /// </summary>
     string JsonTextIdentifier { get; }
@@ -38,14 +33,10 @@ public class CompilationErrorItem : ICompilationErrorItem
     /// </summary>
     public CompilationErrorItem(string jsonTextIdentifier, string errorMessage, IJsonLineInfo? lineInfo)
     {
-        Id = Guid.NewGuid();
         JsonTextIdentifier = jsonTextIdentifier;
         ErrorMessage = errorMessage;
         LineInfo = lineInfo;
     }
-
-    /// <inheritdoc />
-    public Guid Id { get; }
 
     /// <inheritdoc />
     public string JsonTextIdentifier { get; }

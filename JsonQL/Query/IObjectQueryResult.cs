@@ -5,19 +5,25 @@ namespace JsonQL.Query;
 /// <summary>
 /// Represents the result of an object query operation, including the queried value and any associated errors or warnings.
 /// </summary>
-public interface IObjectQueryResult<TQueryObject>
+public interface IObjectQueryResult
 {
-    /// <summary>
-    /// Gets the value of the query result. If the query does not resolve to a single object, this property will return null.
-    /// </summary>
-    TQueryObject? Value { get; }
-
     /// <summary>
     /// Gets the collection of errors and warnings associated with the query result.
     /// This property provides details regarding compilation errors, execution errors, and warnings
     /// encountered during the query processing.
     /// </summary>
     IQueryResultErrorsAndWarnings ErrorsAndWarnings { get; }
+}
+
+/// <summary>
+/// Represents the result of an object query operation, including the queried value and any associated errors or warnings.
+/// </summary>
+public interface IObjectQueryResult<TQueryObject>: IObjectQueryResult
+{
+    /// <summary>
+    /// Gets the value of the query result. If the query does not resolve to a single object, this property will return null.
+    /// </summary>
+    TQueryObject? Value { get; }
 }
 
 /// <inheritdoc />
@@ -85,6 +91,6 @@ public static class QueryResultExtensions
     public static bool HasErrors<TQueryObject>(this IObjectQueryResult<TQueryObject> objectQueryResult)
     {
         return objectQueryResult.ErrorsAndWarnings.CompilationErrors.Count > 0 ||
-               objectQueryResult.ErrorsAndWarnings.Errors.Errors.Count > 0;
+               objectQueryResult.ErrorsAndWarnings.ConversionErrors.Errors.Count > 0;
     }
 }

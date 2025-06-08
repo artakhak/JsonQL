@@ -3,7 +3,6 @@ using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 
@@ -67,7 +66,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
             }
 
             var parsedArrayValue = new ParsedArrayValue(_parsedJsonVisitor, parsedSimpleValue.RootParsedValue, parsedSimpleValue.ParentJsonValue,
-                null);
+                null, null);
 
             foreach (var parsedValue in parsedValues)
                 parsedArrayValue.AddValue(parsedValue);
@@ -100,7 +99,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
         {
             if (jsonFunctionResult.Value == null)
             {
-                parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, null, null,
+                parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, null, null, null,
                     null, false);
             }
             else
@@ -129,7 +128,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
                                 formattedValue, jsonFunctionResult.Value.GetType());
                         }
 
-                        parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, null, null,
+                        parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, null, null, null,
                             formattedValue, isStringJsonValue);
                         break;
 
@@ -146,7 +145,7 @@ public abstract class CalculatedJsonValueMutatorAbstr : JsonValueMutatorAbstr
 
         if (parsedEvaluatedValue == null)
         {
-            parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, parsedSimpleValue.ParentJsonValue, null,
+            parsedEvaluatedValue = new ParsedSimpleValue(parsedSimpleValue.RootParsedValue, parsedSimpleValue.ParentJsonValue, null, null,
                 null, false);
         }
 

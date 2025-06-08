@@ -25,9 +25,9 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
         // -Any type that implements ICollection<T>. Example: List<T>,
         // -Array T[],
         // In these examples T is either an object (value or reference type), or another collection type (one of the listed here). 
-        var employees =
+        var employeesResult =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-                new JsonTextData("Example",
+                new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")),
                 [false, false], new JsonConversionSettingsOverrides
                 {
@@ -40,6 +40,6 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
                     }
                 });
 
-        return employees;
+        return employeesResult;
     }
 }

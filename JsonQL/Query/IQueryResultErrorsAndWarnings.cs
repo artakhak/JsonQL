@@ -23,7 +23,7 @@ public interface IQueryResultErrorsAndWarnings
     /// converting JSON data into objects. The collection is managed by the IConversionErrors
     /// interface and includes methods to retrieve error details or filter errors by type.
     /// </summary>
-    IConversionErrors Errors { get; }
+    IConversionErrors ConversionErrors { get; }
 
     /// <summary>
     /// Gets a collection of warnings encountered during the object conversion phase.
@@ -32,7 +32,7 @@ public interface IQueryResultErrorsAndWarnings
     /// object type. The collection is read-only and contains instances of types
     /// implementing the IConversionError interface.
     /// </summary>
-    IConversionErrors Warnings { get; }
+    IConversionErrors ConversionWarnings { get; }
 }
 
 /// <inheritdoc />
@@ -48,16 +48,16 @@ public class QueryResultErrorsAndWarnings : IQueryResultErrorsAndWarnings
     public QueryResultErrorsAndWarnings(IReadOnlyList<ICompilationErrorItem> compilationErrors, IConversionErrors errors, IConversionErrors warnings)
     {
         CompilationErrors = compilationErrors;
-        Errors = errors;
-        Warnings = warnings;
+        ConversionErrors = errors;
+        ConversionWarnings = warnings;
     }
 
     /// <inheritdoc />
     public IReadOnlyList<ICompilationErrorItem> CompilationErrors { get; }
     
     /// <inheritdoc />
-    public IConversionErrors Errors { get; }
+    public IConversionErrors ConversionErrors { get; }
     
     /// <inheritdoc />
-    public IConversionErrors Warnings { get; }
+    public IConversionErrors ConversionWarnings { get; }
 }

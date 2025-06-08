@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using OROptimizer.Diagnostics.Log;
+﻿using JsonQL.JsonObjects.JsonPath;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.JsonObjects;
 
@@ -22,7 +22,8 @@ public abstract class ParsedJsonAbstr : ParsedValueAbstr, IParsedJson
     /// contained within a parsed JSON object. It also supports traversal and visiting
     /// of the parsed JSON structure using an <see cref="IParsedJsonVisitor"/>.
     /// </remarks>
-    protected ParsedJsonAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, IJsonKeyValue? jsonKeyValue) : base(parentJsonValue, jsonKeyValue)
+    protected ParsedJsonAbstr(IParsedJsonVisitor parsedJsonVisitor, IParsedValue? parentJsonValue, 
+        IJsonKeyValue? jsonKeyValue, IJsonPath? pathInReferencedJson) : base(parentJsonValue, jsonKeyValue, pathInReferencedJson)
     {
         _parsedJsonVisitor = parsedJsonVisitor;
     }

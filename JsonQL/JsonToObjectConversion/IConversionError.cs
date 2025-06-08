@@ -1,4 +1,4 @@
-﻿using JsonQL.JsonObjects;
+﻿using JsonQL.JsonObjects.JsonPath;
 
 namespace JsonQL.JsonToObjectConversion;
 
@@ -13,9 +13,14 @@ public interface IConversionError
     ConversionErrorType ErrorType { get; }
 
     /// <summary>
-    /// If the value is not null, parsed json value associated with error.
+    /// If the value is not null, parsed JSON value path associated with error.
     /// </summary>
-    IParsedValue? ParsedValue { get; }
+    IJsonPath? JsonPath { get; }
+
+     /// <summary>
+     /// If the value is not null, a JSON path that points out to the original JSON value.
+     /// </summary>
+     IJsonPath? PathInReferencedJson { get; }
 
     /// <summary>
     /// Error message.
@@ -41,20 +46,26 @@ public class ConversionError : IConversionError
     /// If the value is not null, path describing the object path.
     /// Example: ["Employees, "[0]", "Address", "Street"]
     /// </param>
-    /// <param name="parsedValue">If the value is not null, parsed json value associated with error.</param>
-    public ConversionError(ConversionErrorType errorType, string error, IReadOnlyList<string> objectPath, IParsedValue? parsedValue)
+    /// <param name="jsonPath">If the value is not null, parsed JSON value path associated with error.</param>
+    /// <param name="pathInReferencedJson">If the value is not null, a JSON path that points out to the original JSON value.</param>
+    public ConversionError(ConversionErrorType errorType, string error, IReadOnlyList<string> objectPath, 
+        IJsonPath? jsonPath, IJsonPath? pathInReferencedJson)
     {
         ErrorType = errorType;
         Error = error;
         ObjectPath = objectPath;
-        ParsedValue = parsedValue;
+        JsonPath = jsonPath;
+        PathInReferencedJson = pathInReferencedJson;
     }
 
     /// <inheritdoc />
     public ConversionErrorType ErrorType { get; }
 
     /// <inheritdoc />
-    public IParsedValue? ParsedValue { get; }
+    public IJsonPath? JsonPath { get; }
+
+    /// <inheritdoc />
+    public IJsonPath? PathInReferencedJson { get; }
 
     /// <inheritdoc />
     public string Error { get; }

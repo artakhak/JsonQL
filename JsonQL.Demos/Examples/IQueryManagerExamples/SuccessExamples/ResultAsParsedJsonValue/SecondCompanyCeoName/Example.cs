@@ -18,11 +18,11 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
     {
         var query = "Companies[1].CompanyData.CEO";
 
-        var averageSalary =
+        var secondCompanyCeoResult =
             _queryManager.QueryJsonValue(query,
-                new JsonTextData("Example",
+                new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")));
 
-        return averageSalary;
+        return secondCompanyCeoResult;
     }
 }

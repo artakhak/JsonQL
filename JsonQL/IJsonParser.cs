@@ -14,8 +14,9 @@ public interface IJsonParser
     /// or <see cref="IRootParsedArrayValue"/> if the root object is an array.
     /// </summary>
     /// <param name="jsonText">Parsed text.</param>
+    /// <param name="jsonTextIdentifier">Json text identifier</param>
     /// <exception cref="Exception">Throws this exception.</exception>
-    IRootParsedValue Parse(string jsonText);
+    IRootParsedValue Parse(string jsonText, string jsonTextIdentifier);
 }
 
 /// <inheritdoc />
@@ -34,7 +35,7 @@ public class JsonParser : IJsonParser
     }
 
     /// <inheritdoc />
-    public IRootParsedValue Parse(string jsonText)
+    public IRootParsedValue Parse(string jsonText, string jsonTextIdentifier)
     {
         ThreadStaticLoggingContext.Context = _logger;
 
@@ -50,7 +51,7 @@ public class JsonParser : IJsonParser
             case JTokenType.Object:
                 var jObject = ConvertToJTokenTypeOrThrowException<JObject>(parsedJToken);
 
-                var rootParsedJson = new RootParsedJson(_parsedJsonVisitor)
+                var rootParsedJson = new RootParsedJson(_parsedJsonVisitor, jsonTextIdentifier)
                 {
                     LineInfo = GetJsonLineInfo(jObject, 0)
                 };
@@ -60,7 +61,7 @@ public class JsonParser : IJsonParser
             case JTokenType.Array:
                 var jArray = ConvertToJTokenTypeOrThrowException<JArray>(parsedJToken);
 
-                var rootParsedArrayValue = new RootParsedArrayValue(_parsedJsonVisitor)
+                var rootParsedArrayValue = new RootParsedArrayValue(_parsedJsonVisitor, jsonTextIdentifier)
                 {
                     LineInfo = GetJsonLineInfo(jArray, 0)
                 };
@@ -75,7 +76,7 @@ public class JsonParser : IJsonParser
 
     private ParsedJson ConvertParsedJson(IRootParsedValue rootParsedValue, IParsedValue parentJsonValue, IJsonKeyValue? jsonKeyValue, JObject jObject)
     {
-        var parsedJson = new ParsedJson(_parsedJsonVisitor, rootParsedValue, parentJsonValue, jsonKeyValue)
+        var parsedJson = new ParsedJson(_parsedJsonVisitor, rootParsedValue, parentJsonValue, jsonKeyValue, null)
         {
             LineInfo = GetJsonLineInfo(jObject, 0)
         };
@@ -103,7 +104,7 @@ public class JsonParser : IJsonParser
 
     private ParsedArrayValue ConvertArrayValue(IRootParsedValue rootParsedValue, IParsedValue parentJsonValue, IJsonKeyValue? jsonKeyValue, JArray jArray)
     {
-        var parsedArrayValue = new ParsedArrayValue(_parsedJsonVisitor, rootParsedValue, parentJsonValue, jsonKeyValue)
+        var parsedArrayValue = new ParsedArrayValue(_parsedJsonVisitor, rootParsedValue, parentJsonValue, jsonKeyValue, null)
         {
             LineInfo = GetJsonLineInfo(jArray, 0)
         };
@@ -220,8 +221,8 @@ public class JsonParser : IJsonParser
         var jValue = ConvertToJTokenTypeOrThrowException<JValue>(jToken);
 
         var parsedSimpleValue = jValue.Value == null ?
-            new ParsedSimpleValue(rootParsedValue, parentJsonValue, jsonKeyValue, null, false) :
-            new ParsedSimpleValue(rootParsedValue, parentJsonValue, jsonKeyValue, getSimpleValueAsString(jValue), isString);
+            new ParsedSimpleValue(rootParsedValue, parentJsonValue, jsonKeyValue, null, null, false) :
+            new ParsedSimpleValue(rootParsedValue, parentJsonValue, jsonKeyValue, null, getSimpleValueAsString(jValue), isString);
 
         parsedSimpleValue.LineInfo = GetJsonLineInfo(jToken, parsedSimpleValue);
         return parsedSimpleValue;
