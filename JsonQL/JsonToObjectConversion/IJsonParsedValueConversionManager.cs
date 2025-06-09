@@ -58,7 +58,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     private readonly IJsonConversionSettingsWrapper _jsonConversionSettingsWrapper;
 
     private const string GeneralConversionError = "Conversion failed";
-    
+
     public JsonParsedValueConversionManager(ISimpleJsonValueSerializer simpleJsonValueSerializer, IJsonConversionSettings jsonConversionSettings,
         IJsonConversionSettingsWrapperFactory jsonConversionSettingsWrapperFactory,
         IValueNullabilityHelpers valueNullabilityHelpers, ICollectionTypeHelpers collectionTypeHelpers,
@@ -87,7 +87,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         var errorsAndWarnings = new ConversionErrorsAndWarnings(new ConversionErrors(), new ConversionErrors());
         var currentlyConvertedObjectContext = new CurrentlyConvertedObjectContext(
             _convertedObjectPathFactory.Create(_rootConvertedObjectPathElementFactory.Create(typeToConvertTo)),
-            _indexConvertedObjectPathElementFactory, _propertyNameConvertedObjectPathElementFactory, 
+            _indexConvertedObjectPathElementFactory, _propertyNameConvertedObjectPathElementFactory,
             _valueNullabilityHelpers, convertedValueNullability);
 
         var valueNotSetErrorReportingType = ErrorReportingType.Ignore;
@@ -224,7 +224,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             typeToConvertToImplementation = typeToConvertToImplementation2;
         }
-        
+
         string? createInstanceErrorMessage = null;
         if (typeToConvertToImplementation != null)
         {
@@ -254,7 +254,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         var allProperties = typeToConvertToImplementation.GetProperties();
 
         var modelClassCreationPropertyData = new List<IModelClassCreationPropertyData>(allProperties.Length);
-      
+
         foreach (var propertyInfo in allProperties)
         {
             try
@@ -267,7 +267,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
                 if (contextObject.MergedJsonConversionSettings.JsonPropertyFormat == JsonPropertyFormat.CamelCase)
                     propertyKey = propertyKey.Length == 1 ? propertyKey.ToLower() : string.Concat(char.ToLower(propertyKey[0]), propertyKey.Substring(1));
-                
+
                 if (parsedJson.TryGetJsonKeyValue(propertyKey, out var jsonKeyValue))
                 {
                     propertyValue = ConvertJsonValue(jsonKeyValue.Value, 0, propertyInfo.PropertyType, contextObject);
@@ -327,21 +327,8 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     private object? ConvertParsedArrayValue(IParsedArrayValue parsedArrayValue, Type collectionTypeToConvertTo,
         CollectionItemTypeData collectionItemTypeData, int collectionItemLevel, ContextObject contextObject)
     {
-        try
-        {
-            var enumerable = ConvertParsedArrayValueToEnumerable(parsedArrayValue, collectionItemTypeData, collectionItemLevel, contextObject);
-            return _collectionTypeHelpers.ConvertToCollection(enumerable, collectionTypeToConvertTo, collectionItemTypeData.ItemType);
-        }
-        catch (JsonConversionException)
-        {
-            var errorMessage = $"Failed to convert collection to [{collectionTypeToConvertTo}].";
-
-            if (!AddError(contextObject, ConversionErrorType.FailedToConvertJsonValueToExpectedType,
-                        errorMessage, parsedArrayValue))
-                throw;
-
-            return null;
-        }
+        var enumerable = ConvertParsedArrayValueToEnumerable(parsedArrayValue, collectionItemTypeData, collectionItemLevel, contextObject);
+        return _collectionTypeHelpers.ConvertToCollection(enumerable, collectionTypeToConvertTo, collectionItemTypeData.ItemType);
     }
 
     private IEnumerable<object?> ConvertParsedArrayValueToEnumerable(IParsedArrayValue parsedArrayValue,
@@ -375,7 +362,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             }
         }
     }
-   
+
     /// <summary>
     /// Adds an error and returns true if processing can continue.
     /// Returns false if added error should fail conversion.
@@ -408,7 +395,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             conversionErrors = contextObject.ErrorsAndWarnings.ConversionErrors;
         }
 
-        conversionErrors.AddError(new ConversionError(conversionErrorType, error, contextObject.ConvertedObjectContext.ConvertedObjectPath.Clone(), 
+        conversionErrors.AddError(new ConversionError(conversionErrorType, error, contextObject.ConvertedObjectContext.ConvertedObjectPath.Clone(),
             parsedValue?.GetPath(), parsedValue?.PathInReferencedJson));
 
         if (conversionErrors == contextObject.ErrorsAndWarnings.ConversionWarnings)
@@ -479,7 +466,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             ConvertedObjectPath.Push(_indexConvertedObjectPathElementFactory.Create(itemIndex, itemType));
         }
-        
+
         public void OnCollectionItemProcessingCompleted()
         {
             if (ConvertedObjectPath.Path.Count == 0)
@@ -490,7 +477,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
             ConvertedObjectPath.Pop();
         }
-        
+
         public void OnPropertyProcessingStarted(PropertyInfo propertyInfo)
         {
             ConvertedObjectPath.Push(_propertyNameConvertedObjectPathElementFactory.Create(propertyInfo.Name, propertyInfo.PropertyType));
@@ -544,7 +531,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     {
         private readonly IJsonConversionSettingsWrapper _globalJsonConversionSettingsWrapper;
         private readonly IJsonConversionSettingsWrapper _overrideJsonConversionSettingsWrapper;
-       
+
         public MergedJsonConversionSettings(IJsonConversionSettingsWrapper globalJsonConversionSettingsWrapper,
             IJsonConversionSettingsOverrides? jsonConversionSettingsOverrides)
         {
@@ -564,7 +551,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
         public bool FailOnFirstError { get; }
         public JsonPropertyFormat JsonPropertyFormat { get; }
-        
+
         public bool TryGetInterfaceToImplementationMapping(Type defaultTypeToConvertParsedJsonTo, IParsedJson convertedParsedJson, [NotNullWhen(true)] out Type? mappedType)
         {
             if (_overrideJsonConversionSettingsWrapper.JsonConversionSettings.TryMapJsonConversionType != null)
