@@ -2,6 +2,7 @@
 using JsonQL.JsonToObjectConversion.NullabilityCheck;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using JsonQL.JsonToObjectConversion.ConvertedObjectPath;
 
 namespace JsonQL.JsonToObjectConversion;
 
@@ -50,6 +51,10 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     private readonly ICollectionTypeHelpers _collectionTypeHelpers;
     private readonly IModelClassMapper _modelClassMapper;
     private readonly IModelClassInstanceCreator _modelClassInstanceCreator;
+    private readonly IConvertedObjectPathFactory _convertedObjectPathFactory;
+    private readonly IRootConvertedObjectPathElementFactory _rootConvertedObjectPathElementFactory;
+    private readonly IPropertyNameConvertedObjectPathElementFactory _propertyNameConvertedObjectPathElementFactory;
+    private readonly IIndexConvertedObjectPathElementFactory _indexConvertedObjectPathElementFactory;
     private readonly IJsonConversionSettingsWrapper _jsonConversionSettingsWrapper;
 
     private const string GeneralConversionError = "Conversion failed";
@@ -57,13 +62,21 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     public JsonParsedValueConversionManager(ISimpleJsonValueSerializer simpleJsonValueSerializer, IJsonConversionSettings jsonConversionSettings,
         IJsonConversionSettingsWrapperFactory jsonConversionSettingsWrapperFactory,
         IValueNullabilityHelpers valueNullabilityHelpers, ICollectionTypeHelpers collectionTypeHelpers,
-        IModelClassMapper modelClassMapper, IModelClassInstanceCreator modelClassInstanceCreator)
+        IModelClassMapper modelClassMapper, IModelClassInstanceCreator modelClassInstanceCreator,
+        IConvertedObjectPathFactory convertedObjectPathFactory,
+        IRootConvertedObjectPathElementFactory rootConvertedObjectPathElementFactory,
+        IPropertyNameConvertedObjectPathElementFactory propertyNameConvertedObjectPathElementFactory,
+        IIndexConvertedObjectPathElementFactory indexConvertedObjectPathElementFactory)
     {
         _simpleJsonValueSerializer = simpleJsonValueSerializer;
         _valueNullabilityHelpers = valueNullabilityHelpers;
         _collectionTypeHelpers = collectionTypeHelpers;
         _modelClassMapper = modelClassMapper;
         _modelClassInstanceCreator = modelClassInstanceCreator;
+        _convertedObjectPathFactory = convertedObjectPathFactory;
+        _rootConvertedObjectPathElementFactory = rootConvertedObjectPathElementFactory;
+        _propertyNameConvertedObjectPathElementFactory = propertyNameConvertedObjectPathElementFactory;
+        _indexConvertedObjectPathElementFactory = indexConvertedObjectPathElementFactory;
         _jsonConversionSettingsWrapper = jsonConversionSettingsWrapperFactory.Create(jsonConversionSettings);
     }
 
@@ -72,7 +85,10 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     {
         var mergedJsonConversionSettings = CreateMergedSettings(jsonConversionSettingOverrides);
         var errorsAndWarnings = new ConversionErrorsAndWarnings(new ConversionErrors(), new ConversionErrors());
-        var currentlyConvertedObjectContext = new CurrentlyConvertedObjectContext(_valueNullabilityHelpers, convertedValueNullability);
+        var currentlyConvertedObjectContext = new CurrentlyConvertedObjectContext(
+            _convertedObjectPathFactory.Create(_rootConvertedObjectPathElementFactory.Create(typeToConvertTo)),
+            _indexConvertedObjectPathElementFactory, _propertyNameConvertedObjectPathElementFactory, 
+            _valueNullabilityHelpers, convertedValueNullability);
 
         var valueNotSetErrorReportingType = ErrorReportingType.Ignore;
         var nonNullablePropertyNotSetErrorReportingType = ErrorReportingType.Ignore;
@@ -335,7 +351,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             try
             {
-                contextObject.ConvertedObjectContext.OnCollectionItemProcessingStarted(i);
+                contextObject.ConvertedObjectContext.OnCollectionItemProcessingStarted(i, collectionItemTypeData.ItemType);
                 var parsedValue = parsedArrayValue.Values[i];
 
                 var convertedItem = ConvertJsonValue(parsedValue, collectionItemLevel + 1, collectionItemTypeData.ItemType, contextObject);
@@ -392,8 +408,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             conversionErrors = contextObject.ErrorsAndWarnings.ConversionErrors;
         }
 
-        conversionErrors.AddError(new ConversionError(conversionErrorType, error,
-            new List<string>(contextObject.ConvertedObjectContext.GetConvertedObjectPath()), 
+        conversionErrors.AddError(new ConversionError(conversionErrorType, error, contextObject.ConvertedObjectContext.ConvertedObjectPath.Clone(), 
             parsedValue?.GetPath(), parsedValue?.PathInReferencedJson));
 
         if (conversionErrors == contextObject.ErrorsAndWarnings.ConversionWarnings)
@@ -438,37 +453,47 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
     private class CurrentlyConvertedObjectContext
     {
+        private readonly IIndexConvertedObjectPathElementFactory _indexConvertedObjectPathElementFactory;
+        private readonly IPropertyNameConvertedObjectPathElementFactory _propertyNameConvertedObjectPathElementFactory;
         private readonly IValueNullabilityHelpers _valueNullabilityHelpers;
         private readonly IReadOnlyList<bool>? _convertedValueNullability;
 
         private readonly Stack<IEnumerable<CustomAttributeData>> _currentlyProcessedPropertyAttributes = new();
-        private readonly List<string> _convertedObjectPath = new();
 
-        public CurrentlyConvertedObjectContext(IValueNullabilityHelpers valueNullabilityHelpers,
+        public CurrentlyConvertedObjectContext(IConvertedObjectPath convertedObjectPath,
+            IIndexConvertedObjectPathElementFactory indexConvertedObjectPathElementFactory,
+            IPropertyNameConvertedObjectPathElementFactory propertyNameConvertedObjectPathElementFactory,
+            IValueNullabilityHelpers valueNullabilityHelpers,
             IReadOnlyList<bool>? convertedValueNullability)
         {
+            ConvertedObjectPath = convertedObjectPath;
+            _indexConvertedObjectPathElementFactory = indexConvertedObjectPathElementFactory;
+            _propertyNameConvertedObjectPathElementFactory = propertyNameConvertedObjectPathElementFactory;
             _valueNullabilityHelpers = valueNullabilityHelpers;
             _convertedValueNullability = convertedValueNullability;
         }
 
-        public void OnCollectionItemProcessingStarted(int itemIndex)
-        {
-            _convertedObjectPath.Add(itemIndex.ToString());
-        }
+        public IConvertedObjectPath ConvertedObjectPath { get; }
 
+        public void OnCollectionItemProcessingStarted(int itemIndex, Type itemType)
+        {
+            ConvertedObjectPath.Push(_indexConvertedObjectPathElementFactory.Create(itemIndex, itemType));
+        }
+        
         public void OnCollectionItemProcessingCompleted()
         {
-            if (_convertedObjectPath.Count == 0)
+            if (ConvertedObjectPath.Path.Count == 0)
             {
-                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
+                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(ConvertedObjectPath));
                 return;
             }
-            _convertedObjectPath.RemoveAt(_convertedObjectPath.Count - 1);
-        }
 
+            ConvertedObjectPath.Pop();
+        }
+        
         public void OnPropertyProcessingStarted(PropertyInfo propertyInfo)
         {
-            _convertedObjectPath.Add(propertyInfo.Name);
+            ConvertedObjectPath.Push(_propertyNameConvertedObjectPathElementFactory.Create(propertyInfo.Name, propertyInfo.PropertyType));
             _currentlyProcessedPropertyAttributes.Push(CustomAttributeData.GetCustomAttributes(propertyInfo));
         }
 
@@ -480,13 +505,13 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 return;
             }
 
-            if (_convertedObjectPath.Count == 0)
+            if (ConvertedObjectPath.Path.Count == 0)
             {
-                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(_convertedObjectPath));
+                ThreadStaticLoggingContext.Context.ErrorFormat("The stack [{0}] is empty. This should never happen.", nameof(ConvertedObjectPath));
                 return;
             }
 
-            _convertedObjectPath.RemoveAt(_convertedObjectPath.Count - 1);
+            ConvertedObjectPath.Pop();
             _currentlyProcessedPropertyAttributes.Pop();
         }
 
@@ -512,11 +537,6 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 return false;
 
             return _convertedValueNullability[collectionItemsOffset];
-        }
-
-        public IReadOnlyList<string> GetConvertedObjectPath()
-        {
-            return this._convertedObjectPath;
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using JsonQL.JsonObjects.JsonPath;
+using JsonQL.JsonToObjectConversion.ConvertedObjectPath;
 
 namespace JsonQL.JsonToObjectConversion;
 
@@ -28,10 +29,10 @@ public interface IConversionError
     string Error { get; }
 
     /// <summary>
-    /// If the value is not null, path describing the object path.
-    /// Example: ["Employees, "[0]", "Address", "Street"]
+    /// If the value is not null, path describing the object path.<br/>
+    /// Example: ["Root, "[0]", "Address", "Street"] for an expression like "Employees[0].Address.Street".
     /// </summary>
-    IReadOnlyList<string>? ObjectPath { get; }
+    IConvertedObjectPath? ConvertedObjectPath { get; }
 }
 
 /// <inheritdoc />
@@ -42,18 +43,18 @@ public class ConversionError : IConversionError
     /// </summary>
     /// <param name="errorType">Error type.</param>
     /// <param name="error">Error message.</param>
-    /// <param name="objectPath">
+    /// <param name="convertedObjectPath">
     /// If the value is not null, path describing the object path.
-    /// Example: ["Employees, "[0]", "Address", "Street"]
+    /// Example: ["Root, "[0]", "Address", "Street"] for an expression like "Employees[0].Address.Street".
     /// </param>
     /// <param name="jsonPath">If the value is not null, parsed JSON value path associated with error.</param>
     /// <param name="pathInReferencedJson">If the value is not null, a JSON path that points out to the original JSON value.</param>
-    public ConversionError(ConversionErrorType errorType, string error, IReadOnlyList<string> objectPath, 
+    public ConversionError(ConversionErrorType errorType, string error, IConvertedObjectPath convertedObjectPath, 
         IJsonPath? jsonPath, IJsonPath? pathInReferencedJson)
     {
         ErrorType = errorType;
         Error = error;
-        ObjectPath = objectPath;
+        ConvertedObjectPath = convertedObjectPath;
         JsonPath = jsonPath;
         PathInReferencedJson = pathInReferencedJson;
     }
@@ -71,5 +72,5 @@ public class ConversionError : IConversionError
     public string Error { get; }
 
     /// <inheritdoc />
-    public IReadOnlyList<string>? ObjectPath { get; }
+    public IConvertedObjectPath? ConvertedObjectPath { get; }
 }
