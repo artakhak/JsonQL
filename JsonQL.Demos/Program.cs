@@ -94,7 +94,7 @@ static IContainer RegisterServices(ISettings settings)
 static void RegisterModules(ContainerBuilder containerBuilder, ISettings settings)
 {
     containerBuilder.RegisterModule(new ConfigurationModule(settings));
-    containerBuilder.RegisterModule(new IJsonQLClassRegistrationsModule(LogHelper.Context.Log));
+    containerBuilder.RegisterModule(new JsonQLClassRegistrationsModule(LogHelper.Context.Log));
     containerBuilder.RegisterModule(new ExampleManagersModule());
 }
 

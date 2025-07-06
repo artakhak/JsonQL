@@ -13,17 +13,16 @@ using JsonQL.Query;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Module = Autofac.Module;
 
 namespace JsonQL.Demos.Startup.DependencyInjection;
 
 // ReSharper disable once InconsistentNaming
-public class IJsonQLClassRegistrationsModule : Module
+public class JsonQLClassRegistrationsModule : Module
 {
     private readonly ILog _logger;
 
-    public IJsonQLClassRegistrationsModule(ILog logger)
+    public JsonQLClassRegistrationsModule(ILog logger)
     {
         _logger = logger;
     }
@@ -33,45 +32,41 @@ public class IJsonQLClassRegistrationsModule : Module
     {
         base.Load(builder);
 
-        DefaultImplementationBasedObjectFactory? defaultImplementationBasedObjectFactory = null;
-
+       
         var jsonFunctionFromExpressionParserDependencies = new List<object>();
 
-        [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
-        (bool parameterValueWasResolved, object? resolvedValue) CustomDiResolver(Type type, ParameterInfo parameterInfo)
-        {
-            if (defaultImplementationBasedObjectFactory == null)
-                throw new InvalidOperationException($"The value of [{nameof(defaultImplementationBasedObjectFactory)}] was not set.");
+        ICustomConstructorParameterResolver constructorParameterResolver = new CustomConstructorParameterResolver(Guid.NewGuid(),
+            (factory, type, parameterInfo) =>
+            {
+                if (parameterInfo.ParameterType == typeof(ICompilationResultLogger))
+                    return (true,
+                        new QueryManagerCompilationResultLogger(new CompilationResultLogger()));
 
-            if (parameterInfo.ParameterType == typeof(ICompilationResultLogger))
-                return (true,
-                    new QueryManagerCompilationResultLogger(new CompilationResultLogger()));
+                if (parameterInfo.ParameterType == typeof(ILog))
+                    return (true, _logger);
 
-            if (parameterInfo.ParameterType == typeof(ILog))
-                return (true, _logger);
+                if (parameterInfo.ParameterType == typeof(IJsonQLExpressionLanguageProvider))
+                    return (true,
+                        new CustomJsonExpressionLanguageProvider(
+                            factory.GetOrCreateInstance<IJsonQLExpressionLanguageProvider>()));
 
-            if (parameterInfo.ParameterType == typeof(IJsonQLExpressionLanguageProvider))
-                return (true, 
-                    new CustomJsonExpressionLanguageProvider(
-                        defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonQLExpressionLanguageProvider>()));
+                if (parameterInfo.ParameterType == typeof(IStringFormatter))
+                    return (true, factory.GetOrCreateInstance<IDefaultStringFormatterFactory>().Create());
 
-            if (parameterInfo.ParameterType == typeof(IStringFormatter))
-                return (true, defaultImplementationBasedObjectFactory.GetOrCreateInstance<IDefaultStringFormatterFactory>().Create());
+                if (TryResolveSimpleJsonValueSerializer(factory, parameterInfo.ParameterType, out var simpleJsonValueSerializer))
+                    return (true, simpleJsonValueSerializer);
 
-            if (TryResolveSimpleJsonValueSerializer(defaultImplementationBasedObjectFactory, parameterInfo.ParameterType, out var simpleJsonValueSerializer))
-                return (true, simpleJsonValueSerializer);
+                if (TryResolveJsonConversionSettings(factory, parameterInfo.ParameterType, out var jsonConversionSettings))
+                    return (true, jsonConversionSettings);
 
-            if (TryResolveJsonConversionSettings(defaultImplementationBasedObjectFactory, parameterInfo.ParameterType, out var jsonConversionSettings))
-                return (true, jsonConversionSettings);
-           
-            if (TryResolveJsonFunctionFactory(defaultImplementationBasedObjectFactory, jsonFunctionFromExpressionParserDependencies, parameterInfo.ParameterType, out var jsonFunctionFactory))
-                return (true, jsonFunctionFactory);
+                if (TryResolveJsonFunctionFactory(factory, jsonFunctionFromExpressionParserDependencies, parameterInfo.ParameterType, out var jsonFunctionFactory))
+                    return (true, jsonFunctionFactory);
 
-            return (false, null);
-        };
+                return (false, null);
+            }, CustomConstructorParameterResolverPriority.Medium);
 
-        defaultImplementationBasedObjectFactory = new DefaultImplementationBasedObjectFactory(_ => { },
-            CustomDiResolver, _ => true, _logger);
+        var defaultImplementationBasedObjectFactory = new DefaultImplementationBasedObjectFactory(type => true, _logger);
+        defaultImplementationBasedObjectFactory.RegisterCustomConstructorParameterResolvers(constructorParameterResolver);
 
         builder.Register(_ =>
         {
@@ -97,7 +92,7 @@ public class IJsonQLClassRegistrationsModule : Module
         return objectWithDependencyOnJsonFunctionFromExpressionParser;
     }
 
-    private static bool TryResolveJsonFunctionFactory(DefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
+    private static bool TryResolveJsonFunctionFactory(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
         List<object> jsonFunctionFromExpressionParserDependencies,
         Type parameterType, [NotNullWhen(true)] out object? jsonFunctionFactory)
     {
@@ -194,7 +189,7 @@ public class IJsonQLClassRegistrationsModule : Module
         return false;
     }
 
-    private static bool TryResolveSimpleJsonValueSerializer(DefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
+    private static bool TryResolveSimpleJsonValueSerializer(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
         Type parameterType, [NotNullWhen(true)] out object? simpleJsonValueSerializer)
     {
         if (parameterType == typeof(ISimpleJsonValueSerializer))
@@ -218,7 +213,7 @@ public class IJsonQLClassRegistrationsModule : Module
         return false;
     }
 
-    private static bool TryResolveJsonConversionSettings(DefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
+    private static bool TryResolveJsonConversionSettings(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
         Type parameterType, [NotNullWhen(true)] out object? jsonConversionSettings)
     {
         if (parameterType == typeof(IJsonConversionSettings))

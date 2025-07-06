@@ -18,14 +18,14 @@
         }
       ]
     },
-    "Errors": {
+    "ConversionErrors": {
       "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
       "Errors": {
         "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
         "$values": []
       }
     },
-    "Warnings": {
+    "ConversionWarnings": {
       "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
       "Errors": {
         "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",

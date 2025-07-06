@@ -21,6 +21,8 @@
                 "ZipCode": "85001",
                 "County": null
               },
+              "Salary": 111000,
+              "Age": 29,
               "Manager": null,
               "Phones": {
                 "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
@@ -42,6 +44,8 @@
                 "ZipCode": "78201",
                 "County": null
               },
+              "Salary": 95000,
+              "Age": 46,
               "Manager": null,
               "Phones": {
                 "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
@@ -63,6 +67,8 @@
           "ZipCode": "19101",
           "County": null
         },
+        "Salary": 160000,
+        "Age": 35,
         "Manager": null,
         "Phones": {
           "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
@@ -85,6 +91,8 @@
           "ZipCode": "78201",
           "County": null
         },
+        "Salary": 95000,
+        "Age": 46,
         "Manager": null,
         "Phones": {
           "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
@@ -101,14 +109,14 @@
       "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
       "$values": []
     },
-    "Errors": {
+    "ConversionErrors": {
       "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
       "Errors": {
         "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
         "$values": []
       }
     },
-    "Warnings": {
+    "ConversionWarnings": {
       "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
       "Errors": {
         "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",

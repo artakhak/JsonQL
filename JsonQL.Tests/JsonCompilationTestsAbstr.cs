@@ -1,6 +1,8 @@
 ﻿using JsonQL.Compilation;
 using JsonQL.DependencyInjection;
 using OROptimizer.Diagnostics.Log;
+using OROptimizer.ServiceResolver;
+using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 using TestsSharedLibrary;
 using TestsSharedLibrary.Diagnostics.Log;
 
@@ -22,9 +24,17 @@ public abstract class JsonCompilationTestsAbstr
     [SetUp]
     public virtual void Setup()
     {
-        var defaultJsonCompilerFactory = new DefaultJsonCompilerFactory(LogHelper.Context.Log);
-        JsonCompiler = defaultJsonCompilerFactory.Create();
+        DiBasedObjectFactoryParametersContext.Context = new DiBasedObjectFactoryParameters
+        {
+            LogDiagnosticsData = true
+        };
+
+        JsonQLDefaultImplementationBasedObjectFactory = new JsonQLDefaultImplementationBasedObjectFactory(
+            type => true, LogHelper.Context.Log);
+
+        JsonCompiler = JsonQLDefaultImplementationBasedObjectFactory.CreateInstance<IJsonCompiler>();
     }
    
     protected IJsonCompiler JsonCompiler { get; private set; } = null!;
+    protected IJsonQLDefaultImplementationBasedObjectFactory JsonQLDefaultImplementationBasedObjectFactory { get; private set; } = null!;
 }

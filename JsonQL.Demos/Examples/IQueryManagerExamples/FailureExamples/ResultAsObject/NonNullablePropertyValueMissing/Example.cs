@@ -25,7 +25,23 @@ public class Example : QueryObjectExampleManagerForFailureAbstr<IReadOnlyList<IE
         var query = "Employees";
         var employeesResult =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-                new JsonTextData("Employees", this.LoadExampleJsonFile("Employees.json")), null);
+                new JsonTextData("Employees", this.LoadExampleJsonFile("Employees.json")), null,
+
+                // NOTE: jsonConversionSettingOverrides parameter of type IJsonConversionSettingsOverrides
+                // is an optional, and we do not have to provide this parameter of default settings work for us (which is most of the cases).
+                // However, the parameter is specified here as an example
+                new JsonConversionSettingsOverrides
+                {
+                    ConversionErrorTypeConfigurations = [
+                        // Note, we only need to provide configurations that we want to override.
+                        // Default configurations will be used for any error type that is not specified in 
+                        // ConversionErrorTypeConfigurations collection
+                        new ConversionErrorTypeConfiguration(ConversionErrorType.FailedToConvertJsonValueToExpectedType, 
+                            // The default error reporting type of ConversionErrorType.FailedToConvertJsonValueToExpectedType is
+                            // ErrorReportingType.ReportAsError.
+                            // This is just a demo how the default configuration can be overridden
+                            ErrorReportingType.ReportAsWarning)] 
+                });
         
         return employeesResult;
     }

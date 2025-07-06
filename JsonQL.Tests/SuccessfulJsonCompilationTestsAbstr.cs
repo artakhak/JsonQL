@@ -1,7 +1,10 @@
 ﻿using JsonQL.Compilation;
+using JsonQL.DependencyInjection;
 using JsonQL.Diagnostics;
 using JsonQL.Utilities;
 using OROptimizer.Diagnostics.Log;
+using OROptimizer.ServiceResolver;
+using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 
 namespace JsonQL.Tests;
 
@@ -54,9 +57,12 @@ public abstract class SuccessfulJsonCompilationTestsAbstr : JsonCompilationTests
     private async Task DoSuccessfulTest(IJsonTextData jsonTextData, IReadOnlyList<string> expectedCompiledJsonFilePathFolderNames)
     {
         // Init
-        var jsonParser = new JsonParserFactory((_, _) => (false, null),
-                type => true, LogHelper.Context.Log)
-            .Create();
+        DiBasedObjectFactoryParametersContext.Context = new DiBasedObjectFactoryParameters
+        {
+            LogDiagnosticsData = true
+        };
+
+        var jsonParser = JsonQLDefaultImplementationBasedObjectFactory.CreateInstance<IJsonParser>();
 
         // Act
         var compilationResult = JsonCompiler.Compile(jsonTextData);

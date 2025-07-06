@@ -402,12 +402,12 @@
 		<PackageReference Include="NUnit" Version="3.14.0" />
 		<PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-		<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />
+		<!--<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />-->
+		<ProjectReference Include="..\..\TestsSharedLibrary\TestsSharedLibrary.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--<ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
-	  <ProjectReference Include="..\..\..\MyGitHubProjects\TestsSharedLibrary\TestsSharedLibrary.csproj" />-->
+		
 		<ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
 		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
@@ -425,6 +425,14 @@
 		<EmbeddedResource Include="Functions\AggregateFunctions\Any\Companies.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="CompilationResultCaching\" />
+	  <Folder Include="Errors\CompilerResult\" />
+	  <Folder Include="Errors\ResultAsParsedJsonValue\" />
+	  <Folder Include="Errors\ResultAsObject\" />
+	  <Folder Include="QueryManager\ResultAsParsedJsonValue\" />
 	</ItemGroup>
 
 	<ProjectExtensions>

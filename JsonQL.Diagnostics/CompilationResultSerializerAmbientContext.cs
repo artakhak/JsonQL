@@ -1,9 +1,8 @@
 ﻿using JsonQL.Compilation;
-using JsonQL.Diagnostics;
 using JsonQL.Query;
 using OROptimizer;
 
-namespace JsonQL.Demos;
+namespace JsonQL.Diagnostics;
 
 public class CompilationResultSerializerAmbientContext : AmbientContext<ICompilationResultSerializer, NullCompilationResultSerializer>
 {
