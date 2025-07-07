@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation.JsonFunction.SimpleTypes;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation.JsonFunction.SimpleTypes;
 
 /// <summary>
 /// Defines an interface for types that can be compared within a JSON-compatible context.

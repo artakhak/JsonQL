@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.JsonObjects;

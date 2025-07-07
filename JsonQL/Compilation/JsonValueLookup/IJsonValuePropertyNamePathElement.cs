@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation.JsonValueLookup;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation.JsonValueLookup;
 
 /// <summary>
 /// Represents a specific element in a JSON value path that refers to a property by its name.

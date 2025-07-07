@@ -1,6 +1,7 @@
-﻿using JsonQL.Compilation.JsonValueTextGenerator;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation.JsonValueTextGenerator;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator;
 

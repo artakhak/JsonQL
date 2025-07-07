@@ -1,4 +1,6 @@
-﻿using JsonQL.Compilation;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation;
 using JsonQL.JsonToObjectConversion;
 
 namespace JsonQL.Query;

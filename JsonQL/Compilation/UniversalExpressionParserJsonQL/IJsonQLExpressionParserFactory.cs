@@ -1,4 +1,6 @@
-﻿using OROptimizer.Diagnostics.Log;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using OROptimizer.Diagnostics.Log;
 using TextParser;
 using UniversalExpressionParser;
 

@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
 
 /// Defines a contract for managing and constructing a converted object path,
 /// consisting of a root element and a series of value selector elements.

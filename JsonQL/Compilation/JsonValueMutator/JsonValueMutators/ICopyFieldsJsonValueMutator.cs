@@ -1,7 +1,8 @@
-﻿using JsonQL.Compilation.JsonFunction.JsonFunctions;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.JsonObjects;
 using JsonQL.JsonObjects.JsonPath;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueMutator.JsonValueMutators;
 

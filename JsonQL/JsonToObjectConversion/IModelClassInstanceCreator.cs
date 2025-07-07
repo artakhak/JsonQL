@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.JsonToObjectConversion;
 

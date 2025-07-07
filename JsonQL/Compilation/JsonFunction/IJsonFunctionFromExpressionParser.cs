@@ -1,4 +1,6 @@
-﻿using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.JsonObjects;
 using UniversalExpressionParser.ExpressionItems;
 

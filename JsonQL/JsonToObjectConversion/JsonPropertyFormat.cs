@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonToObjectConversion;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonToObjectConversion;
 
 /// <summary>
 /// Represents a JSON property naming convention where the first letter of each word, except the first word, is capitalized.

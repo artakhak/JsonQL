@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 
 /// <summary>
 /// Represents the possible result types produced by a JSON function.

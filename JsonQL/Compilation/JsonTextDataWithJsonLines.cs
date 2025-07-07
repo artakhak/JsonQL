@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation;
 
 /// <summary>
 /// Represents JSON text data that is split into individual lines for processing.

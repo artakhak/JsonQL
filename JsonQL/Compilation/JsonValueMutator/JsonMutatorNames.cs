@@ -1,4 +1,6 @@
-﻿namespace JsonQL.Compilation.JsonValueMutator;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.Compilation.JsonValueMutator;
 
 /// <summary>
 /// Provides a set of predefined keywords used for JSON mutation operations within the JSONQL framework.

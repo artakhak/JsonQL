@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonObjects.JsonPath;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonObjects.JsonPath;
 
 /// <summary>
 /// Provides helper methods for comparing and analyzing JSON paths.

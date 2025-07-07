@@ -1,9 +1,14 @@
-﻿using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonValueTextGenerator;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 using JsonQL.Compilation;
+using JsonQL.JsonToObjectConversion.Serializers;
+using JsonQL.JsonToObjectConversion;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.DependencyInjection;
 
@@ -47,6 +52,12 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
 
                 if (parameterInfo.ParameterType == typeof(IStringFormatter))
                     return (true, _defaultImplementationBasedObjectFactory.CreateInstance<IDefaultStringFormatterFactory>().Create());
+
+                if (TryResolveSimpleJsonValueSerializer(this, parameterInfo.ParameterType, out var simpleJsonValueSerializer))
+                    return (true, simpleJsonValueSerializer);
+
+                if (TryResolveJsonConversionSettings(parameterInfo.ParameterType, out var jsonConversionSettings))
+                    return (true, jsonConversionSettings);
 
                 return (false, null);
             }, CustomConstructorParameterResolverPriority.Medium));
@@ -151,5 +162,62 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
 
         PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
             defaultImplementationBasedObjectFactory.GetOrCreateInstance<IConstantTextJsonFunctionFactory>(), jsonFunctionFromExpressionParser);
+    }
+
+    private static bool TryResolveSimpleJsonValueSerializer(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
+        Type parameterType, [NotNullWhen(true)] out object? simpleJsonValueSerializer)
+    {
+        if (parameterType == typeof(ISimpleJsonValueSerializer))
+        {
+            simpleJsonValueSerializer = new AggregateSimpleJsonValueSerializer(new List<ITypedSimpleJsonValueSerializer>
+            {
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedDoubleSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedFloatSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt16SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt32SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt64SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedDateTimeSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedBooleanSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedStringSimpleJsonValueSerializer>()
+            });
+
+            return true;
+        }
+
+        simpleJsonValueSerializer = null;
+        return false;
+    }
+
+    private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out object? jsonConversionSettings)
+    {
+        if (parameterType == typeof(IJsonConversionSettings))
+        {
+            var conversionErrorTypeConfigurations = new List<ConversionErrorTypeConfiguration>();
+
+            foreach (var conversionErrorType in Enum.GetValues<ConversionErrorType>())
+            {
+                // Set custom ErrorReportingType for ConversionErrorType here.
+                // We report all errors as ErrorReportingType.ReportAsError by default.
+                conversionErrorTypeConfigurations.Add(new ConversionErrorTypeConfiguration(conversionErrorType, ErrorReportingType.ReportAsError));
+            }
+
+            jsonConversionSettings = new JsonConversionSettings
+            {
+                JsonPropertyFormat = JsonPropertyFormat.PascalCase,
+                FailOnFirstError = true,
+                ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
+
+                // Set custom interface to implementation mappings here. Default mappings (i.e., IModelClassMapper) will 
+                // use try to find an implementation that has the same name space and class name that matches interface name
+                // without I. For example for interface JsonQL.Demos.Examples.DataModels.IEmployee implementation  
+                // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists.
+                TryMapJsonConversionType = null,
+            };
+
+            return true;
+        }
+
+        jsonConversionSettings = null;
+        return false;
     }
 }

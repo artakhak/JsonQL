@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
 
 /// Represents a factory responsible for creating instances of IConvertedObjectPath.
 public interface IConvertedObjectPathFactory

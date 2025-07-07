@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonObjects;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonObjects;
 
 /// <summary>
 /// Represents a key-value pair within a JSON object.

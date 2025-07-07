@@ -1,4 +1,6 @@
-﻿namespace JsonQL;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL;
 
 /// <summary>
 /// Temporary helpers for collection expressions that will be removed once we move to .Net 8.

@@ -1,8 +1,8 @@
-﻿using JsonQL.Compilation.JsonFunction;
-using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
-using OROptimizer.Diagnostics.Log;
 
 namespace JsonQL.Compilation.JsonValueLookup;
 

@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonToObjectConversion.ConvertedObjectPath;
 
 /// Factory interface for creating instances of IIndexConvertedObjectPathElement.
 /// Provides functionality to generate path elements representing indexed values in a converted object path.

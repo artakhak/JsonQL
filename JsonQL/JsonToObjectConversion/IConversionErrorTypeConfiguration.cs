@@ -1,4 +1,6 @@
-﻿namespace JsonQL.JsonToObjectConversion;
+﻿// Copyright (c) JsonQL Project. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the solution root for license information.
+namespace JsonQL.JsonToObjectConversion;
 
 /// <summary>
 /// Represents the configuration for a specific type of conversion error in the JSON-to-object conversion process.
