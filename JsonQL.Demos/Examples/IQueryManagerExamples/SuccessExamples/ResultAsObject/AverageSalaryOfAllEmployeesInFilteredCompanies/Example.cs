@@ -1,5 +1,4 @@
-﻿
-using JsonQL.Compilation;
+﻿using JsonQL.Compilation;
 using JsonQL.Query;
 
 namespace JsonQL.Demos.Examples.IQueryManagerExamples.SuccessExamples.ResultAsObject.AverageSalaryOfAllEmployeesInFilteredCompanies;

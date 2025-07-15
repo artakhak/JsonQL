@@ -1,18 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text;
 using Autofac;
-using JsonQL.Demos;
 using JsonQL.Demos.AppSettings;
 using JsonQL.Demos.Examples;
 using JsonQL.Demos.Startup.DependencyInjection;
 using JsonQL.Diagnostics;
 using Microsoft.Extensions.Configuration;
-using OROptimizer.Diagnostics.Log;
-using OROptimizer.Log4Net;
-using System.Text;
-using OROptimizer.ServiceResolver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using OROptimizer.Diagnostics.Log;
+using OROptimizer.Log4Net;
+using OROptimizer.ServiceResolver;
 
 RegisterLogger();
 

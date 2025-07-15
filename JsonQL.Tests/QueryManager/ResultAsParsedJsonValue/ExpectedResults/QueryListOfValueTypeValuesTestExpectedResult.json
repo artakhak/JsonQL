@@ -1,0 +1,22 @@
+{
+  "ParsedValue":
+  [
+    99500,
+    105000,
+    89000,
+    92000,
+    111000,
+    78000,
+    95000,
+    105500,
+    88000,
+    98700,
+    144186,
+    122395
+  ],
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

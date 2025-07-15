@@ -1,6 +1,6 @@
-﻿using JsonQL.Diagnostics.ResultValidation;
+﻿using System.Reflection;
+using JsonQL.Diagnostics.ResultValidation;
 using OROptimizer.Diagnostics.Log;
-using System.Reflection;
 
 namespace JsonQL.Demos.Examples;
 
@@ -23,7 +23,6 @@ public abstract class ExampleManagerAbstr : IExampleManager
                 GetJsonQlResultAsync = this.GetJsonQlResultAsync,
                 LoadExpectedResultJsonFileAsync = () => Task.FromResult(this.LoadExpectedResultJsonFile())
             });
-
         }
         catch (JsonQLResultValidationException)
         {

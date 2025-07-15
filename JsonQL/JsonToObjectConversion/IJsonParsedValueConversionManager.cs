@@ -1,10 +1,12 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
-using JsonQL.JsonObjects;
-using JsonQL.JsonToObjectConversion.NullabilityCheck;
+
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using JsonQL.JsonObjects;
 using JsonQL.JsonToObjectConversion.ConvertedObjectPath;
+using JsonQL.JsonToObjectConversion.NullabilityCheck;
 
 namespace JsonQL.JsonToObjectConversion;
 
@@ -110,16 +112,12 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
         try
         {
-            var convertedValue = ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject);
-
-            if (errorsAndWarnings.ConversionErrors.Errors.Count > 0 || convertedValue == null)
-            {
-                if (convertedValue == null && !currentlyConvertedObjectContext.IsValueNullable(typeToConvertTo) &&
-                    nonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
-                    AddError(contextObject, ConversionErrorType.ValueNotSet, "Return value is null", parsedValue);
-
+            if (!ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject, out var convertedValue))
                 return new ConversionResult<object?>(errorsAndWarnings);
-            }
+
+            if (convertedValue == null && !currentlyConvertedObjectContext.IsValueNullable(typeToConvertTo) &&
+                nonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
+                AddError(contextObject, ConversionErrorType.ValueNotSet, "Return value is null", parsedValue);
 
             return new ConversionResult<object?>(convertedValue, errorsAndWarnings);
 
@@ -137,10 +135,14 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         }
     }
 
-    private object? ConvertJsonValue(IParsedValue parsedValue, int valueLevelInType,
-        Type typeToConvertTo, ContextObject contextObject)
+    /// <summary>
+    /// If returned value is false, an error will be added to <paramref name="ContextObject"/>
+    /// </summary>
+    private bool ConvertJsonValue(IParsedValue parsedValue, int valueLevelInType,
+        Type typeToConvertTo, ContextObject contextObject, out object? convertedValue)
     {
-        object? convertedValue = null;
+        convertedValue = null;
+        //object? convertedValue = null;
         switch (parsedValue)
         {
             case IParsedSimpleValue parsedSimpleValue:
@@ -164,13 +166,17 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 ThreadStaticLoggingContext.Context.Error(errorMessage);
 
                 AddError(contextObject, ConversionErrorType.Error, errorMessage, parsedValue);
-                return null;
+                return false;
         }
 
-        if (contextObject.ErrorsAndWarnings.ConversionErrors.Errors.Count > 0 || convertedValue == null)
+        if (contextObject.ErrorsAndWarnings.ConversionErrors.Errors.Count > 0)
         {
-            return convertedValue;
+            convertedValue = null;
+            return false;
         }
+
+        if (convertedValue == null)
+            return !typeToConvertTo.IsValueType || Nullable.GetUnderlyingType(typeToConvertTo) != null;
 
         if (!typeToConvertTo.IsInstanceOfType(convertedValue))
         {
@@ -179,10 +185,10 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             ThreadStaticLoggingContext.Context.Error(errorMessage);
 
             AddError(contextObject, ConversionErrorType.Error, errorMessage, parsedValue);
-            return null;
+            return false;
         }
 
-        return convertedValue;
+        return true;
     }
 
     private object? ConvertSimpleValue(IParsedSimpleValue parsedSimpleValue, Type typeToConvertTo, ContextObject contextObject)
@@ -272,10 +278,11 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
                 if (parsedJson.TryGetJsonKeyValue(propertyKey, out var jsonKeyValue))
                 {
-                    propertyValue = ConvertJsonValue(jsonKeyValue.Value, 0, propertyInfo.PropertyType, contextObject);
-
-                    if (!CheckConversionCanContinue(contextObject))
+                    if (!ConvertJsonValue(jsonKeyValue.Value, 0, propertyInfo.PropertyType, contextObject, out propertyValue) &&
+                        !CheckConversionCanContinue(contextObject))
+                    {
                         throw new JsonConversionException();
+                    }
                 }
 
                 modelClassCreationPropertyData.Add(new ModelClassCreationPropertyData(propertyInfo, propertyValue));
@@ -342,19 +349,20 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             {
                 contextObject.ConvertedObjectContext.OnCollectionItemProcessingStarted(i, collectionItemTypeData.ItemType);
                 var parsedValue = parsedArrayValue.Values[i];
-
-                var convertedItem = ConvertJsonValue(parsedValue, collectionItemLevel + 1, collectionItemTypeData.ItemType, contextObject);
+               
+                if (ConvertJsonValue(parsedValue, collectionItemLevel + 1, collectionItemTypeData.ItemType, contextObject, out var convertedItem))
+                {
+                    if (convertedItem == null && collectionItemLevel > 0 && !collectionItemTypeData.IsNullable &&
+                        contextObject.NonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
+                    {
+                        if (!AddError(contextObject, ConversionErrorType.NonNullableCollectionItemValueNotSet,
+                                "Collection item was not set", parsedValue))
+                            throw new JsonConversionException();
+                    }
+                }
 
                 if (!CheckConversionCanContinue(contextObject))
                     throw new JsonConversionException();
-
-                if (convertedItem == null && collectionItemLevel > 0 && !collectionItemTypeData.IsNullable &&
-                    contextObject.NonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
-                {
-                    if (!AddError(contextObject, ConversionErrorType.NonNullableCollectionItemValueNotSet,
-                            "Collection item was not set", parsedValue))
-                        throw new JsonConversionException();
-                }
 
                 yield return convertedItem;
             }
@@ -519,13 +527,11 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             if (_currentlyProcessedPropertyAttributes.Count > 0)
                 return _valueNullabilityHelpers.AreCollectionItemsNullable(collectionItemType, collectionItemLevel, _currentlyProcessedPropertyAttributes.Peek());
-
-            var collectionItemsOffset = collectionItemLevel + 1;
-
-            if (_convertedValueNullability == null || _convertedValueNullability.Count <= collectionItemsOffset)
+            
+            if (_convertedValueNullability == null || collectionItemLevel >= _convertedValueNullability.Count)
                 return false;
 
-            return _convertedValueNullability[collectionItemsOffset];
+            return _convertedValueNullability[collectionItemLevel];
         }
     }
 

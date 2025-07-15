@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using JsonQL.Demos.AppSettings;
-using Microsoft.Extensions.Configuration;
 
 namespace JsonQL.Demos.Startup.DependencyInjection;
 

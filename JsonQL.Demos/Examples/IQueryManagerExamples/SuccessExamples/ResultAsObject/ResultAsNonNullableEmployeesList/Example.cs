@@ -1,5 +1,4 @@
-﻿
-using JsonQL.Compilation;
+﻿using JsonQL.Compilation;
 using JsonQL.Demos.Examples.DataModels;
 using JsonQL.JsonToObjectConversion;
 using JsonQL.Query;

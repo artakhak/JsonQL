@@ -168,6 +168,18 @@
 		<None Remove="Operators\TypeOfOperator\ExpectedCompiledJson.json" />
 		<None Remove="Operators\TypeOfOperator\JsonFile1.json" />
 		<None Remove="Operators\TypeOfOperator\JsonFile2.json" />
+		<None Remove="QueryManager\ResultAsObject\Data\JsonFile1.json" />
+		<None Remove="QueryManager\ResultAsObject\Data\JsonFile2.json" />
+		<None Remove="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOfValueTypeValues_IReadOnlyList_Test_ExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOf_NonNullable_ValueTypeValues_Array_Test_ExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOf_Nullable_ValueTypeValues_Array_Test_ExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\JsonFile1.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\JsonFile2.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\QueryListOfReferenceTypeValuesTestExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\QueryListOfValueTypeValuesTestExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\QueryObjectsInParentJsonFileTestExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\QuerySingleReferenceTypeTestExpectedResult.json" />
+		<None Remove="QueryManager\ResultAsParsedJsonValue\QuerySingleValueTypeTestExpectedResult.json" />
 		<None Remove="SharedJsonFiles\CompaniesAsArray.json" />
 		<None Remove="SharedJsonFiles\CompaniesAsArrayInJson.json" />
 		<None Remove="JsonMutators\StringInterpolation\BracesWithOperators\ExpectedCompiledJson.json" />
@@ -339,6 +351,18 @@
 		<EmbeddedResource Include="Operators\TypeOfOperator\ExpectedCompiledJson.json" />
 		<EmbeddedResource Include="Operators\TypeOfOperator\JsonFile1.json" />
 		<EmbeddedResource Include="Operators\TypeOfOperator\JsonFile2.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\Data\JsonFile1.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\Data\JsonFile2.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOfValueTypeValues_IReadOnlyList_Test_ExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOf_Nullable_ValueTypeValues_Array_Test_ExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\ExpectedResults\QueryCollectionOf_NonNullable_ValueTypeValues_Array_Test_ExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\ExpectedResults\QueryListOfReferenceTypeValuesTestExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\ExpectedResults\QuerySingleReferenceTypeTestExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\ExpectedResults\QuerySingleValueTypeTestExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\ExpectedResults\QueryObjectsInParentJsonFileTestExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\ExpectedResults\QueryListOfValueTypeValuesTestExpectedResult.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\Data\JsonFile1.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsParsedJsonValue\Data\JsonFile2.json" />
 		<EmbeddedResource Include="SharedJsonFiles\CompaniesAsArray.json" />
 		<EmbeddedResource Include="SharedJsonFiles\CompaniesAsArrayInJson.json" />
 		<EmbeddedResource Include="JsonMutators\StringInterpolation\BracesWithOperators\ExpectedCompiledJson.json" />
@@ -432,7 +456,6 @@
 	  <Folder Include="Errors\CompilerResult\" />
 	  <Folder Include="Errors\ResultAsParsedJsonValue\" />
 	  <Folder Include="Errors\ResultAsObject\" />
-	  <Folder Include="QueryManager\ResultAsParsedJsonValue\" />
 	</ItemGroup>
 
 	<ProjectExtensions>

@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Diagnostics.CodeAnalysis;
+using Autofac;
 using JsonQL.Compilation;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
@@ -9,7 +10,6 @@ using JsonQL.DependencyInjection;
 using JsonQL.Query;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
-using System.Diagnostics.CodeAnalysis;
 using Module = Autofac.Module;
 
 namespace JsonQL.Demos.Startup.DependencyInjection;

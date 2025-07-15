@@ -1,14 +1,15 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
-using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
+
+using System.Diagnostics.CodeAnalysis;
+using JsonQL.Compilation;
 using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Compilation.JsonValueTextGenerator;
+using JsonQL.JsonToObjectConversion;
+using JsonQL.JsonToObjectConversion.Serializers;
 using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
-using JsonQL.Compilation;
-using JsonQL.JsonToObjectConversion.Serializers;
-using JsonQL.JsonToObjectConversion;
-using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.DependencyInjection;
 
@@ -172,12 +173,26 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
             simpleJsonValueSerializer = new AggregateSimpleJsonValueSerializer(new List<ITypedSimpleJsonValueSerializer>
             {
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedDoubleSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableDoubleSimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedFloatSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableFloatSimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt16SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableInt16SimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt32SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableInt32SimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedInt64SimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableInt64SimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedDateTimeSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableDateTimeSimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedBooleanSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableBooleanSimpleJsonValueSerializer>(),
+
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedStringSimpleJsonValueSerializer>()
             });
 

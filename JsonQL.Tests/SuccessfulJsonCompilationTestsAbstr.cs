@@ -1,8 +1,6 @@
 ﻿using JsonQL.Compilation;
-using JsonQL.DependencyInjection;
 using JsonQL.Diagnostics;
 using JsonQL.Utilities;
-using OROptimizer.Diagnostics.Log;
 using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 

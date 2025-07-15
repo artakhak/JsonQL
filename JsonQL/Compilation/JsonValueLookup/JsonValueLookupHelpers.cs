@@ -1,9 +1,10 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+
+using System.Diagnostics.CodeAnalysis;
+using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
-using JsonQL.Compilation.JsonFunction;
-using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.Compilation.JsonValueLookup;
 

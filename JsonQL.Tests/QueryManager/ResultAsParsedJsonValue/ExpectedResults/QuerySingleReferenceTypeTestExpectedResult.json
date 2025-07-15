@@ -1,0 +1,14 @@
+{
+  "ParsedValue":
+  {
+    "Street":  "456 Oak Avenue",
+    "City":  "Chicago",
+    "State":  "IL",
+    "ZipCode":  "60601"
+  },
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

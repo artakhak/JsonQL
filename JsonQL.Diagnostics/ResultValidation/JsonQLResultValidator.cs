@@ -1,6 +1,6 @@
-﻿using JsonQL.Compilation;
+﻿using System.Text;
+using JsonQL.Compilation;
 using JsonQL.Query;
-using System.Text;
 
 namespace JsonQL.Diagnostics.ResultValidation;
 
@@ -13,9 +13,7 @@ public static class JsonQLResultValidator
         var result = await jsonQlResultValidationParameters.GetJsonQlResultAsync();
 
         var serializedResult = RemoveLineEndSpaces(SerializeResult(result));
-
-        await ResourceFileHelpers.SaveAsync(serializedResult, SerializedFileName);
-
+       
         await SaveResultToApplicationOutputFolderAsync(serializedResult);
         var expectedJsonFile = RemoveLineEndSpaces(await jsonQlResultValidationParameters.LoadExpectedResultJsonFileAsync());
 
@@ -31,7 +29,7 @@ public static class JsonQLResultValidator
     /// <returns></returns>
     private static string RemoveLineEndSpaces(string text)
     {
-        var lines = text.Split(System.Environment.NewLine);
+        var lines = text.Split(Environment.NewLine);
         var result = new StringBuilder(text.Length);
 
         foreach (var line in lines)

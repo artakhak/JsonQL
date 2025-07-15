@@ -1,5 +1,6 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
 

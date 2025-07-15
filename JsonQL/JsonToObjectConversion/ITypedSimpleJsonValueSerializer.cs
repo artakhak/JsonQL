@@ -1,5 +1,6 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+
 using System.Diagnostics.CodeAnalysis;
 
 namespace JsonQL.JsonToObjectConversion;
@@ -31,5 +32,5 @@ public interface ITypedSimpleJsonValueSerializer
     /// <returns>
     /// <c>true</c> if the value was successfully serialized; otherwise, <c>false</c>.
     /// </returns>
-    bool TrySerialize(object value, [NotNullWhen(true)] out object? serializedValue);
+    bool TrySerialize(object? value, [NotNullWhen(true)] out object? serializedValue);
 }

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+
 using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonValueTextGenerator;
 
@@ -19,9 +20,9 @@ public class TypedStringSimpleJsonValueSerializer : ITypedSimpleJsonValueSeriali
     }
     
     /// <inheritdoc />
-    public bool TrySerialize(object value, [NotNullWhen(true)] out object? serializedValue)
+    public bool TrySerialize(object? value, [NotNullWhen(true)] out object? serializedValue)
     {
-        if (_stringFormatter.TryFormat(value, out var formattedText))
+        if (value != null && _stringFormatter.TryFormat(value, out var formattedText))
         {
             serializedValue = formattedText;
             return true;

@@ -1,10 +1,12 @@
 ﻿// Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
-namespace JsonQL;
 
 using OROptimizer;
+using OROptimizer.Diagnostics.Log;
 
-internal class ThreadStaticLoggingContext : ThreadStaticAmbientContext<OROptimizer.Diagnostics.Log.ILog, OROptimizer.Diagnostics.Log.LogToConsole>
+namespace JsonQL;
+
+internal class ThreadStaticLoggingContext : ThreadStaticAmbientContext<ILog, LogToConsole>
 {
 
 }
