@@ -1,0 +1,41 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IEnumerable`1[[System.Nullable`1[[System.Double, System.Private.CoreLib]], System.Private.CoreLib]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[System.Nullable`1[[System.Double, System.Private.CoreLib]], System.Private.CoreLib]], System.Private.CoreLib",
+    "$values": [
+      45.0,
+      null,
+      50.0,
+      null,
+      29.0,
+      null,
+      46.0,
+      null,
+      41.0,
+      null,
+      63.0,
+      null
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

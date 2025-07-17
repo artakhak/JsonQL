@@ -1,0 +1,76 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[JsonQL.Tests.QueryManager.ResultAsObject.Models.IAddress[], JsonQL.Tests]], JsonQL",
+  "Value": {
+    "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.IAddress[], JsonQL.Tests",
+    "$values": [
+      null,
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+        "Street": "123 Maple Street",
+        "City": "New York",
+        "State": "NY",
+        "ZipCode": "10001",
+        "County": null
+      },
+      null,
+      null,
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+        "Street": "654 Cedar Road",
+        "City": "Phoenix",
+        "State": "AZ",
+        "ZipCode": "85001",
+        "County": null
+      },
+      null,
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+        "Street": "147 Birch Street",
+        "City": "San Antonio",
+        "State": "TX",
+        "ZipCode": "78201",
+        "County": null
+      },
+      null,
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+        "Street": "369 Spruce Drive",
+        "City": "Dallas",
+        "State": "TX",
+        "ZipCode": "75201",
+        "County": null
+      },
+      null,
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+        "Street": "Main St",
+        "City": "San Jose",
+        "State": "PA",
+        "ZipCode": "95101",
+        "County": null
+      },
+      null
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}
