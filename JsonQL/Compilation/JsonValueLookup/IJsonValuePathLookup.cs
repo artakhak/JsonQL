@@ -237,7 +237,11 @@ public class JsonValuePathLookup : IJsonValuePathLookup
             if (lookedUpValuesResult.Errors.Count > 0)
                 return lookedUpValuesResult;
 
-            if (!(lookedUpValuesResult.Value?.HasValue ?? false))
+            // For collection results we want to keep going since 
+            // we want te get the correct type of result (IParsedArrayValue, IParsedSimpleValue, etc) 
+            // based on full evaluation of expression.
+            if (lookedUpValuesResult.Value == null ||
+                lookedUpValuesResult is ISingleItemJsonValuePathLookupResult && !(lookedUpValuesResult.Value?.HasValue ?? false))
             {
                 return lookedUpValuesResult;
             }

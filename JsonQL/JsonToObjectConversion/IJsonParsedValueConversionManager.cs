@@ -136,7 +136,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
     }
 
     /// <summary>
-    /// If returned value is false, an error will be added to <paramref name="ContextObject"/>
+    /// If returned value is false, an error will be added to <paramref name="contextObject"/>
     /// </summary>
     private bool ConvertJsonValue(IParsedValue parsedValue, int valueLevelInType,
         Type typeToConvertTo, ContextObject contextObject, out object? convertedValue)
@@ -154,10 +154,8 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 break;
 
             case IParsedArrayValue parsedArrayValue:
-                var collectionItemLevel = valueLevelInType + 1;
-
-                if (TryGetCollectionItemTypeData(parsedArrayValue, typeToConvertTo, collectionItemLevel, contextObject, out var itemTypeData))
-                    convertedValue = ConvertParsedArrayValue(parsedArrayValue, typeToConvertTo, itemTypeData, collectionItemLevel, contextObject);
+                if (TryGetCollectionItemTypeData(parsedArrayValue, typeToConvertTo, valueLevelInType + 1, contextObject, out var itemTypeData))
+                    convertedValue = ConvertParsedArrayValue(parsedArrayValue, typeToConvertTo, itemTypeData, valueLevelInType, contextObject);
 
                 break;
 

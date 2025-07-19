@@ -12,6 +12,9 @@ public class Employee : IEmployee
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public IAddress? Address { get; set; } = null!;
+
+    public IReadOnlyList<Address>? EmergencyContacts { get; set; }
+
     public int Salary { get; set; }
     public int? Age { get; set; }
     public IManager? Manager { get; set; }

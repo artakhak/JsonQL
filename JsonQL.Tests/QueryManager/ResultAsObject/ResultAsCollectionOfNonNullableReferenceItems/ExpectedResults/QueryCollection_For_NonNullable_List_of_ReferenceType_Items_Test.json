@@ -16,6 +16,7 @@
           "ZipCode": "60601",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 99500,
         "Age": 45,
         "Manager": null,
@@ -39,6 +40,7 @@
           "ZipCode": "10001",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 105000,
         "Age": 38,
         "Manager": null,
@@ -62,6 +64,7 @@
           "ZipCode": "77001",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 92000,
         "Age": 42,
         "Manager": null,
@@ -86,6 +89,7 @@
           "ZipCode": "85001",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 111000,
         "Age": 29,
         "Manager": null,
@@ -109,6 +113,7 @@
           "ZipCode": "19101",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 78000,
         "Age": 35,
         "Manager": null,
@@ -133,6 +138,7 @@
           "ZipCode": "78201",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 95000,
         "Age": 46,
         "Manager": null,
@@ -156,6 +162,7 @@
           "ZipCode": "92101",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 105500,
         "Age": 32,
         "Manager": null,
@@ -180,6 +187,7 @@
           "ZipCode": "75201",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 88000,
         "Age": 41,
         "Manager": null,
@@ -203,6 +211,7 @@
           "ZipCode": "73301",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 98700,
         "Age": 37,
         "Manager": null,
@@ -227,6 +236,7 @@
           "ZipCode": "95101",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 144186,
         "Age": 63,
         "Manager": null,
@@ -250,6 +260,7 @@
           "ZipCode": "90001",
           "County": null
         },
+        "EmergencyContacts": null,
         "Salary": 122395,
         "Age": 58,
         "Manager": null,

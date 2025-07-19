@@ -14,7 +14,9 @@
       "Employees": [
         {
           "Id": 100000001,
-          "Name": "John Smith",
+          "FirstName": "John",
+          "LastName": "Smith",
+          "Phones": [ "+1-202-555-0183" ],
           "Address": {
             "Street": "456 Oak Avenue",
             "City": "Chicago",
@@ -26,7 +28,9 @@
         },
         {
           "Id": 100000002,
-          "Name": "Alice Johnson",
+          "FirstName": "Alice",
+          "LastName": "Johnson",
+          "Phones": [ "+1-202-555-0183" ],
           "Address": {
             "Street": "123 Maple Street",
             "City": "New York",
@@ -34,23 +38,22 @@
             "ZipCode": "10001"
           },
           "Salary": 105000,
-          "Age": 38
+          "Age": null
         },
         {
           "Id": 100000003,
-          "Name": "Michael Brown",
-          "Address": {
-            "Street": "789 Pine Lane",
-            "City": "Los Angeles",
-            "State": "CA",
-            "ZipCode": "90001"
-          },
+          "FirstName": "Michael",
+          "LastName": "Brown",
+          "Phones": [ "+1-415-555-0198" ],
+          "Address": null,
           "Salary": 89000,
           "Age": 50
         },
         {
           "Id": 100000004,
-          "Name": "Emily Davis",
+          "FirstName": "Emily",
+          "LastName": "Davis",
+          "Phones": [ "+1-212-555-0156", "+1-718-555-0147" ],
           "Address": {
             "Street": "321 Elm Drive",
             "City": "Houston",
@@ -76,7 +79,9 @@
       "Employees": [
         {
           "Id": 100000005,
-          "Name": "Christopher Garcia",
+          "FirstName": "Christopher",
+          "LastName": "Garcia",
+          "Phones": [ "+1-713-555-0165" ],
           "Address": {
             "Street": "654 Cedar Road",
             "City": "Phoenix",
@@ -88,19 +93,37 @@
         },
         {
           "Id": 100000006,
-          "Name": "Sarah Wilson",
+          "FirstName": "Sarah",
+          "LastName": "Wilson",
+          "Phones": [ "+1-602-555-0192", "+1-213-555-0176" ],
           "Address": {
             "Street": "987 Ash Boulevard",
             "City": "Philadelphia",
             "State": "PA",
             "ZipCode": "19101"
           },
+          "EmergencyContacts": [
+            {
+              "Street": "123 Maple Street",
+              "City": "Springfield",
+              "State": "IL",
+              "ZipCode": "62701"
+            },
+            {
+              "Street": "456 Oak Avenue",
+              "City": "Chicago",
+              "State": "IL",
+              "ZipCode": "60601"
+            }
+          ],
           "Salary": 78000,
           "Age": 35
         },
         {
           "Id": 100000007,
-          "Name": "David Martinez",
+          "FirstName": "David",
+          "LastName": "Martinez",
+          "Phones": [ "+1-505-555-0193" ],
           "Address": {
             "Street": "147 Birch Street",
             "City": "San Antonio",
@@ -126,7 +149,9 @@
       "Employees": [
         {
           "Id": 100000008,
-          "Name": "Laura Lee",
+          "FirstName": "Laura",
+          "LastName": "Lee",
+          "Phones": [ "+1-408-555-0184", "+1-212-555-0195" ],
           "Address": {
             "Street": "258 Willow Lane",
             "City": "San Diego",
@@ -138,7 +163,9 @@
         },
         {
           "Id": 100000009,
-          "Name": "Andrew Harris",
+          "FirstName": "Andrew",
+          "LastName": "Harris",
+          "Phones": [ "+1-424-555-0129" ],
           "Address": {
             "Street": "369 Spruce Drive",
             "City": "Dallas",
@@ -150,7 +177,9 @@
         },
         {
           "Id": 100000010,
-          "Name": "Jessica Thompson",
+          "FirstName": "Jessica",
+          "LastName": "Thompson",
+          "Phones": [ "+1-813-555-0142", "+1-312-555-0112" ],
           "Address": {
             "Street": "159 Cherry Lane",
             "City": "Austin",
@@ -162,7 +191,9 @@
         },
         {
           "Id": 250150245,
-          "Name": "Jane Doe",
+          "FirstName": "Jane",
+          "LastName": "Doe",
+          "Phones": [ "+1-925-555-0119" ],
           "Address": {
             "Street": "Main St",
             "City": "San Jose",
@@ -174,7 +205,9 @@
         },
         {
           "Id": 783328759,
-          "Name": "Robert Brown",
+          "FirstName": "Robert",
+          "LastName": "Brown",
+          "Phones": [ "+1-202-555-0140", "+1-415-555-0180" ],
           "Address": {
             "Street": "Pine St",
             "City": "Los Angeles",
@@ -186,7 +219,5 @@
         }
       ]
     }
-  ],
-  "NumericValues": [ null, 0, 2, 15, null, 17, 33 ],
-  "Texts": [ null, "Test 1", "Test 2", null, "Test 3" ]
+  ]
 }

@@ -4,7 +4,7 @@ using JsonQL.Tests.QueryManager.ResultAsObject.Models;
 namespace JsonQL.Tests.QueryManager.ResultAsObject.ResultAsCollectionOfNonNullableReferenceItems;
 
 [TestFixture]
-public class ResultAsCollectionOfNonNullableReferenceItemsTests : ResultValidatingTestsAbstr
+public class ResultAsObjectTests : ResultValidatingTestsAbstr
 {
     private static readonly List<string> TestDataFilesRelativePath = ["QueryManager", "ResultAsObject", "ResultAsCollectionOfNonNullableReferenceItems", "Data"];
     private static readonly List<string> TestExpectedResultFilesRelativePath = ["QueryManager", "ResultAsObject", "ResultAsCollectionOfNonNullableReferenceItems", "ExpectedResults"];
