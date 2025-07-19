@@ -207,8 +207,8 @@
 		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Nullable_Collections_With_Nullable_Collection_Items_Test.json" />
 		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Nullable_ReferenceType_Value_Test.json" />
 		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Nullable_Value_Type_Value_Test.json" />
-		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Nullable_Value_Type.json" />
-		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Reference_Type.json" />
+		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Reference_Type_Test.json" />
+		<None Remove="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Value_Type_Test.json" />
 		<None Remove="QueryManager\ResultAsParsedJsonValue\JsonFile1.json" />
 		<None Remove="QueryManager\ResultAsParsedJsonValue\JsonFile2.json" />
 		<None Remove="QueryManager\ResultAsParsedJsonValue\QueryListOfReferenceTypeValuesTestExpectedResult.json" />
@@ -399,8 +399,8 @@
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Non_Nullable_Collections_of_Collections_of_Collections_Test.json" />
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Nullable_ReferenceType_Value_Test.json" />
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Non_Nullable_ReferenceType_Value_Test.json" />
-		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Reference_Type.json" />
-		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Nullable_Value_Type.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Value_Type_Test.json" />
+		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Reference_Type_Test.json" />
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Nullable_Value_Type_Value_Test.json" />
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Result_As_Non_Nullable_Value_Type_Value_Test.json" />
 		<EmbeddedResource Include="QueryManager\ResultAsObject\SuccessfulQueryResults\ExpectedResults\Deserializing_Class_And_Interface_Property_Types_Test.json" />

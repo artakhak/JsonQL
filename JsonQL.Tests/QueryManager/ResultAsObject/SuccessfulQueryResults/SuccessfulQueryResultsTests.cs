@@ -159,34 +159,33 @@ public class SuccessfulQueryResultsTests : ResultValidatingTestsAbstr
     }
 
     [Test]
-    public Task Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Nullable_Value_Type()
+    public Task Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Value_Type_Test()
     {
-        var employeesWithNullAgeQuery = "Companies.Select(c => c.Select(x => x.Employees)).Where(e => e.Age is null)";
-        //var employeesWithNullAgeQuery = "Companies.Select(c => c.Select(x => x.Employees))";
+        var employeesWithNullAgeQuery = "Companies.Select(c => c.Select(x => x.Employees.Where(x => x.Age is null)))";
 
         return ValidateQueryResultAsync(employeesWithNullAgeQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile2.json"),
 
             (query, jsonTextData) => QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData),
-            new JsonFilePath("Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Nullable_Value_Type.json", TestExpectedResultFilesRelativePath));
+            new JsonFilePath("Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Value_Type_Test.json", TestExpectedResultFilesRelativePath));
     }
 
     [Test]
-    public Task Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Reference_Type()
+    public Task Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Reference_Type_Test()
     {
-        var employeesWithNullAddressQuery = "Companies.Select(c => c.Select(x => x.Employees)).Where(x => x.Address is null)";
+        var employeesWithNullAddressQuery = "Companies.Select(c => c.Select(x => x.Employees.Where(x => x.Address is null)))";
 
         return ValidateQueryResultAsync(employeesWithNullAddressQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile2.json"),
 
             (query, jsonTextData) => QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData),
-            new JsonFilePath("Result_As_Reference_Type_Value_With_Null_Value_of_Nullable_Property_of_Reference_Type.json", TestExpectedResultFilesRelativePath));
+            new JsonFilePath("Result_As_Reference_Type_Value_With_Null_Value_of_Property_of_Nullable_Reference_Type_Test.json", TestExpectedResultFilesRelativePath));
     }
 
     [Test]
     public Task Result_As_Non_Nullable_Collections_of_Collections_of_Collections_Test()
     {
-        var collectionsOfCollectionsQuery = "ArraysOfArrays1.Where(x => x is not null && !Any(x, y => y is null))";
+        var collectionsOfCollectionsQuery = "ArraysOfArrays1.Where(x => x is not null && !Any(x, y => y is null || Any(y, z => z is null)))";
 
         return ValidateQueryResultAsync(collectionsOfCollectionsQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "CollectionsOfCollections.json"),
