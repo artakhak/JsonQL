@@ -112,15 +112,16 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
         try
         {
-            if (!ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject, out var convertedValue))
-                return new ConversionResult<object?>(errorsAndWarnings);
+            var isConversionSuccess = ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject, out var convertedValue);
 
             if (convertedValue == null && !currentlyConvertedObjectContext.IsValueNullable(typeToConvertTo) &&
                 nonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
                 AddError(contextObject, ConversionErrorType.ValueNotSet, "Return value is null", parsedValue);
 
-            return new ConversionResult<object?>(convertedValue, errorsAndWarnings);
+            if (!isConversionSuccess && convertedValue != null)
+                return new ConversionResult<object?>(errorsAndWarnings);
 
+            return new ConversionResult<object?>(convertedValue, errorsAndWarnings);
         }
         catch (JsonConversionException)
         {
@@ -142,7 +143,6 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         Type typeToConvertTo, ContextObject contextObject, out object? convertedValue)
     {
         convertedValue = null;
-        //object? convertedValue = null;
         switch (parsedValue)
         {
             case IParsedSimpleValue parsedSimpleValue:
@@ -154,8 +154,10 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 break;
 
             case IParsedArrayValue parsedArrayValue:
-                if (TryGetCollectionItemTypeData(parsedArrayValue, typeToConvertTo, valueLevelInType + 1, contextObject, out var itemTypeData))
-                    convertedValue = ConvertParsedArrayValue(parsedArrayValue, typeToConvertTo, itemTypeData, valueLevelInType, contextObject);
+                var collectionItemLevelInType = valueLevelInType + 1;
+
+                if (TryGetCollectionItemTypeData(parsedArrayValue, typeToConvertTo, collectionItemLevelInType, contextObject, out var itemTypeData))
+                    convertedValue = ConvertParsedArrayValue(parsedArrayValue, typeToConvertTo, itemTypeData, collectionItemLevelInType, contextObject);
 
                 break;
 
@@ -331,7 +333,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         return true;
     }
 
-    private object? ConvertParsedArrayValue(IParsedArrayValue parsedArrayValue, Type collectionTypeToConvertTo,
+    private object ConvertParsedArrayValue(IParsedArrayValue parsedArrayValue, Type collectionTypeToConvertTo,
         CollectionItemTypeData collectionItemTypeData, int collectionItemLevel, ContextObject contextObject)
     {
         var enumerable = ConvertParsedArrayValueToEnumerable(parsedArrayValue, collectionItemTypeData, collectionItemLevel, contextObject);
@@ -347,8 +349,8 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             {
                 contextObject.ConvertedObjectContext.OnCollectionItemProcessingStarted(i, collectionItemTypeData.ItemType);
                 var parsedValue = parsedArrayValue.Values[i];
-               
-                if (ConvertJsonValue(parsedValue, collectionItemLevel + 1, collectionItemTypeData.ItemType, contextObject, out var convertedItem))
+
+                if (ConvertJsonValue(parsedValue, collectionItemLevel, collectionItemTypeData.ItemType, contextObject, out var convertedItem))
                 {
                     if (convertedItem == null && collectionItemLevel > 0 && !collectionItemTypeData.IsNullable &&
                         contextObject.NonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
@@ -525,7 +527,7 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         {
             if (_currentlyProcessedPropertyAttributes.Count > 0)
                 return _valueNullabilityHelpers.AreCollectionItemsNullable(collectionItemType, collectionItemLevel, _currentlyProcessedPropertyAttributes.Peek());
-            
+
             if (_convertedValueNullability == null || collectionItemLevel >= _convertedValueNullability.Count)
                 return false;
 

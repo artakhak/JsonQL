@@ -205,7 +205,8 @@ public class SuccessfulQueryResultsTests : ResultValidatingTestsAbstr
         return ValidateQueryResultAsync(collectionsOfCollectionsQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "CollectionsOfCollections.json"),
 
-            (query, jsonTextData) => QueryManager.QueryObject<IReadOnlyList<List<IEmployee>>?>(query, jsonTextData),
+            (query, jsonTextData) => 
+                QueryManager.QueryObject<IReadOnlyList<List<IEmployee>>?>(query, jsonTextData, [true, false, false]),
             new JsonFilePath("Result_As_Nullable_Collections_of_Collections_of_Collections_Test.json", TestExpectedResultFilesRelativePath));
     }
 
@@ -247,6 +248,4 @@ public class SuccessfulQueryResultsTests : ResultValidatingTestsAbstr
                 [false, false, false, true]),
             new JsonFilePath("Result_As_Collections_of_Collections_of_Collections_With_Third_Level_Items_Nullable_Test.json", TestExpectedResultFilesRelativePath));
     }
-
-    
 }

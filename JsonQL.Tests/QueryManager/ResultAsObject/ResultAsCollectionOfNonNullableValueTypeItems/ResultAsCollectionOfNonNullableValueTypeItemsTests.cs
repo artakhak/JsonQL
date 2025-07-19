@@ -19,7 +19,7 @@ public class ResultAsCollectionOfNonNullableValueTypeItemsTests : ResultValidati
 
             (query, jsonTextData) =>
              // The call to QueryManager.QueryObject<double[]> below returns double[] in IObjectQueryResult<double[]>.Value
-             QueryManager.QueryObject<double[]>(query, jsonTextData),
+             QueryManager.QueryObject<double[]>(query, jsonTextData, [false, false]),
             new JsonFilePath("QueryCollection_For_NonNullable_Array_Of_ValueType_Items_Test.json", TestExpectedResultFilesRelativePath));
     }
 
@@ -30,7 +30,7 @@ public class ResultAsCollectionOfNonNullableValueTypeItemsTests : ResultValidati
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile1.json"),
 
             (query, jsonTextData) =>
-                QueryManager.QueryObject<List<double>>(query, jsonTextData),
+                QueryManager.QueryObject<List<double>>(query, jsonTextData, [false, false]),
             new JsonFilePath("QueryCollection_For_NonNullable_List_Of_ValueType_Items_Test.json", TestExpectedResultFilesRelativePath));
     }
 
@@ -41,7 +41,7 @@ public class ResultAsCollectionOfNonNullableValueTypeItemsTests : ResultValidati
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile1.json"),
 
             (query, jsonTextData) =>
-                QueryManager.QueryObject<IReadOnlyList<double>>(query, jsonTextData),
+                QueryManager.QueryObject<IReadOnlyList<double>>(query, jsonTextData, [false, false]),
             new JsonFilePath("QueryCollection_For_NonNullable_IReadOnlyList_Of_ValueType_Items_Test.json", TestExpectedResultFilesRelativePath));
     }
 
@@ -52,7 +52,7 @@ public class ResultAsCollectionOfNonNullableValueTypeItemsTests : ResultValidati
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile1.json"),
 
             (query, jsonTextData) =>
-                QueryManager.QueryObject<IEnumerable<double>>(query, jsonTextData),
+                QueryManager.QueryObject<IEnumerable<double>>(query, jsonTextData, [false, false]),
             new JsonFilePath("QueryCollection_For_NonNullable_IEnumerable_Of_ValueType_Items_Test.json", TestExpectedResultFilesRelativePath));
     }
 }

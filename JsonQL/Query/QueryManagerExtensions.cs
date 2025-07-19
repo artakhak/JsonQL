@@ -52,7 +52,8 @@ public static class QueryManagerExtensions
     /// specifies nullability of second level items (such as items in lists of lists), etc.<br/>
     /// For example if returned type is <b>IEnumerable&lt;IReadOnlyList&lt;IEmployee&gt;&gt; Employees {get; set}</b>,<br/>
     /// then [true, false, true] will result in implementation assuming that the returned value can be nullable,<br/>
-    /// lists <b>IReadOnlyList&lt;IEmployee&gt;</b> in returned value are not nullable, and <b>IEmployee</b> items in <b>IReadOnlyList&lt;IEmployee&gt;</b> are nullable.
+    /// lists <b>IReadOnlyList&lt;IEmployee&gt;</b> in returned value are not nullable, and <b>IEmployee</b> items in <b>IReadOnlyList&lt;IEmployee&gt;</b> are nullable.<br/>
+    /// Null value of this parameter results in nullability checks not being enforced.
     /// </param> 
     /// <param name="jsonConversionSettingOverrides">Override conversion settings. If the value is null, the default settings will be used.
     /// The settings will be merged with default settings in <see cref="IJsonConversionSettings"/> which normally can be injected into the constructor of <see cref="IQueryManager"/> implementation.

@@ -16,6 +16,6 @@ public static class ResourcePathExtensions
     /// <returns></returns>
     public static string GetFilePath(this ResourcePath resourcePath)
     {
-        return string.Concat(typeof(JsonFileIdentifiers).Namespace, '.', string.Join('.', resourcePath.PathFolderNames), '.', resourcePath.ResourceFileName);
+        return string.Concat(typeof(ResourcePathExtensions).Namespace, '.', string.Join('.', resourcePath.PathFolderNames), '.', resourcePath.ResourceFileName);
     }
 }

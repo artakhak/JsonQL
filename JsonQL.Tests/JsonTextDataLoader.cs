@@ -45,22 +45,22 @@ public class JsonTextDataLoader
 
     private IJsonTextData GetJsonTextDataWithNoParent(string compiledFileName)
     {
-        return LoadJsonTextData(JsonFileIdentifiers.JsonFile1, compiledFileName);
+        return LoadJsonTextData(compiledFileName, compiledFileName);
     }
 
     private IJsonTextData GetJsonTextDataWithParent(string compiledFileName, string parentFileName)
     {
-        return new JsonTextData(JsonFileIdentifiers.JsonFile2, ResourceFileLoader.LoadJsonFile(new ResourcePath(compiledFileName, _folderNames)),
-            LoadJsonTextData(JsonFileIdentifiers.JsonFile1, parentFileName));
+        return new JsonTextData(compiledFileName, ResourceFileLoader.LoadJsonFile(new ResourcePath(compiledFileName, _folderNames)),
+            LoadJsonTextData(parentFileName, parentFileName));
     }
 
     private IJsonTextData GetJsonTextDataWithTwoLevelParents(string compiledFileName, string parentFileName, string parentParentFileName)
     {
-        return new JsonTextData(JsonFileIdentifiers.JsonFile3, ResourceFileLoader.LoadJsonFile(new ResourcePath(compiledFileName, _folderNames)),
-            LoadJsonTextData(JsonFileIdentifiers.JsonFile2, parentFileName,
-                LoadJsonTextData(JsonFileIdentifiers.JsonFile1, parentParentFileName)));
+        return new JsonTextData(compiledFileName, ResourceFileLoader.LoadJsonFile(new ResourcePath(compiledFileName, _folderNames)),
+            LoadJsonTextData(parentFileName, parentFileName,
+                LoadJsonTextData(parentParentFileName, parentParentFileName)));
     }
-    
+
     private IJsonTextData LoadJsonTextData(string fileIdentifier, string fileName, IJsonTextData? parenTextData = null)
     {
         return new JsonTextData(fileIdentifier, ResourceFileLoader.LoadJsonFile(new ResourcePath(fileName, _folderNames)), parenTextData);

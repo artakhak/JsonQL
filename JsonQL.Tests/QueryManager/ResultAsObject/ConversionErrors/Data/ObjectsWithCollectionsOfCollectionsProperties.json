@@ -1,0 +1,67 @@
+{
+  "TestObject": {
+    "CollectionOfCollections":  [null]
+  },
+  "TestObjects": [
+    {      
+      "CollectionOfCollections": [
+        [
+          [
+            {
+              "Id": 100000005,
+              "FirstName": "Christopher",
+              "LastName": "Garcia",
+              "Phones": [ "+1-713-555-0165" ],
+              "Address": {
+                "Street": "654 Cedar Road",
+                "City": "Phoenix",
+                "State": "AZ",
+                "ZipCode": "85001"
+              },
+              "Salary": 111000,
+              "Age": 29
+            },
+            {
+              "Id": 100000001,
+              "FirstName": "John",
+              "LastName": "Smith",
+              "Phones": [ "+1-202-555-0183" ],
+              "Address": {
+                "Street": "456 Oak Avenue",
+                "City": "Chicago",
+                "State": "IL",
+                "ZipCode": "60601"
+              },
+              "Salary": 99500,
+              "Age": 45
+            }
+          ],
+          [
+            {
+              "Id": 100000002,
+              "FirstName": "Alice",
+              "LastName": "Johnson",
+              "Phones": [ "+1-202-555-0183" ],
+              "Address": {
+                "Street": "123 Maple Street",
+                "City": "New York",
+                "State": "NY",
+                "ZipCode": "10001"
+              },
+              "Salary": 105000,
+              "Age": 38
+            }
+          ]
+        ],
+        null,
+        [
+          null,
+          []
+        ],
+        [
+          [ null ]
+        ]
+      ]
+    }
+  ]  
+}
