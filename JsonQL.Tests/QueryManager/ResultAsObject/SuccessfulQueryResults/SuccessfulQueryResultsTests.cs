@@ -6,7 +6,7 @@ using JsonQL.Tests.QueryManager.ResultAsObject.Models;
 namespace JsonQL.Tests.QueryManager.ResultAsObject.SuccessfulQueryResults;
 
 [TestFixture]
-public class SuccessfulQueryResultsTests : ResultValidatingTestsAbstr
+public class JsonConversionSettingsOverridesTests : ResultValidatingTestsAbstr
 {
     private static readonly List<string> TestDataFilesRelativePath = ["QueryManager", "ResultAsObject", "SuccessfulQueryResults", "Data"];
     private static readonly List<string> TestExpectedResultFilesRelativePath = ["QueryManager", "ResultAsObject", "SuccessfulQueryResults", "ExpectedResults"];

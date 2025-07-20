@@ -112,14 +112,17 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
 
         try
         {
-            var isConversionSuccess = ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject, out var convertedValue);
+            var isConversionSuccess = 
+                ConvertJsonValue(parsedValue, 0, typeToConvertTo, contextObject, out var convertedValue);
 
             if (convertedValue == null && !currentlyConvertedObjectContext.IsValueNullable(typeToConvertTo) &&
                 nonNullableCollectionItemValueNotSetErrorReportingType != ErrorReportingType.Ignore)
                 AddError(contextObject, ConversionErrorType.ValueNotSet, "Return value is null", parsedValue);
 
-            if (!isConversionSuccess && convertedValue != null)
+            if (!isConversionSuccess && contextObject.MergedJsonConversionSettings.FailOnFirstError)
+            {
                 return new ConversionResult<object?>(errorsAndWarnings);
+            }
 
             return new ConversionResult<object?>(convertedValue, errorsAndWarnings);
         }
@@ -143,6 +146,9 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
         Type typeToConvertTo, ContextObject contextObject, out object? convertedValue)
     {
         convertedValue = null;
+
+        var errorsCountBeforeConversion = contextObject.ErrorsAndWarnings.ConversionErrors.Errors.Count;
+
         switch (parsedValue)
         {
             case IParsedSimpleValue parsedSimpleValue:
@@ -169,12 +175,6 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
                 return false;
         }
 
-        if (contextObject.ErrorsAndWarnings.ConversionErrors.Errors.Count > 0)
-        {
-            convertedValue = null;
-            return false;
-        }
-
         if (convertedValue == null)
             return !typeToConvertTo.IsValueType || Nullable.GetUnderlyingType(typeToConvertTo) != null;
 
@@ -185,10 +185,11 @@ public class JsonParsedValueConversionManager : IJsonParsedValueConversionManage
             ThreadStaticLoggingContext.Context.Error(errorMessage);
 
             AddError(contextObject, ConversionErrorType.Error, errorMessage, parsedValue);
+            convertedValue = null;
             return false;
         }
 
-        return true;
+        return errorsCountBeforeConversion == contextObject.ErrorsAndWarnings.ConversionErrors.Errors.Count;
     }
 
     private object? ConvertSimpleValue(IParsedSimpleValue parsedSimpleValue, Type typeToConvertTo, ContextObject contextObject)

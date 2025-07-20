@@ -63,14 +63,12 @@ public static class QueryManagerExtensions
     {
         var queryResult = queryManager.QueryObject(query, queriedJsonTextData, typeof(T), convertedValueNullability, jsonConversionSettingOverrides);
 
-        if (queryResult.HasErrors() || queryResult.Value == null)
+        if (queryResult.Value == null)
             return new ObjectQueryResult<T>(queryResult.ErrorsAndWarnings);
 
         if (queryResult.Value is not T convertedValue)
-        {
             throw new ApplicationException($"Internal error. The query result is expected to be of type [{typeof(T)}]. Actual type is [{queryResult.Value.GetType()}]. This exception should never happen and if happens it is due to some bug.");
-        }
-        
+
         return new ObjectQueryResult<T>(convertedValue, queryResult.ErrorsAndWarnings);
     }
     
@@ -123,7 +121,7 @@ public static class QueryManagerExtensions
     {
         var queryResult = queryManager.QueryObject(query, compiledJsonDataToQuery, typeof(T), convertedValueNullability, jsonConversionSettingOverrides);
 
-        if (queryResult.HasErrors() || queryResult.Value == null)
+        if (queryResult.Value == null)
             return new ObjectQueryResult<T>(queryResult.ErrorsAndWarnings);
 
         if (queryResult.Value is not T convertedValue)

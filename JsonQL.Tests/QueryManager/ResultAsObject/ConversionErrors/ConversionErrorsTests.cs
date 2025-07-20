@@ -9,8 +9,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 {
     private static readonly List<string> TestDataFilesRelativePath = ["QueryManager", "ResultAsObject", "ConversionErrors", "Data"];
     private static readonly List<string> TestExpectedResultFilesRelativePath = ["QueryManager", "ResultAsObject", "ConversionErrors", "ExpectedResults"];
-
-
+    
     [Test]
     public async Task Non_Nullable_Reference_Type_Property_Not_Set_Test()
     {
@@ -22,7 +21,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData);
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false]);
                 ValidateConversionErrorIsReportedAtErrorLevel(queryResult, ConversionErrorType.NonNullablePropertyNotSet);
 
                 return queryResult;
@@ -35,8 +34,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -56,8 +55,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -82,7 +81,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData);
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false]);
                 ValidateConversionErrorIsReportedAtErrorLevel(queryResult, ConversionErrorType.NonNullablePropertyNotSet);
 
                 return queryResult;
@@ -95,8 +94,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -116,8 +115,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -155,8 +154,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IReadOnlyList<IEmployee[]>>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IReadOnlyList<IEmployee[]>>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -176,8 +175,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<List<IReadOnlyList<IEmployee[]>>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<List<IReadOnlyList<IEmployee[]>>>(query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -202,7 +201,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(query, jsonTextData);
+                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(
+                    query, jsonTextData, [false, false]);
                 ValidateConversionErrorIsReportedAtErrorLevel(queryResult, ConversionErrorType.NonNullableCollectionItemValueNotSet);
 
                 return queryResult;
@@ -215,8 +215,9 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(
+                    query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -236,8 +237,9 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
 
             (query, jsonTextData) =>
             {
-                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(query, jsonTextData, null,
-                    new JsonConversionSettingsOverrides
+                var queryResult = QueryManager.QueryObject<IReadOnlyList<TestClassWithCollectionOfCollectionsProperty>>(
+                    query, jsonTextData, [false, false],
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -277,7 +279,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<double>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -298,7 +300,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<double>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -338,7 +340,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<IEmployee>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -359,7 +361,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<IEmployee>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -399,7 +401,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<EmployeeAbstr>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -421,7 +423,7 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
             (query, jsonTextData) =>
             {
                 var queryResult = QueryManager.QueryObject<EmployeeAbstr>(query, jsonTextData, [false],
-                    new JsonConversionSettingsOverrides
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
                     {
                         ConversionErrorTypeConfigurations = new List<IConversionErrorTypeConfiguration>
                         {
@@ -434,18 +436,6 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
                 return queryResult;
             },
             new JsonFilePath("Cannot_Create_Instance_of_Class_Error_Type_Turned_Off.json", TestExpectedResultFilesRelativePath));
-    }
-
-    [Test]
-    public Task Failed_to_Convert_Json_Value_to_ExpectedType_Test()
-    {
-        throw new NotImplementedException();
-    }
-
-    [Test]
-    public Task Generic_Conversion_Error_Test()
-    {
-        throw new NotImplementedException();
     }
 
     private void ValidateConversionErrorIsReportedAtErrorLevel<T>(IObjectQueryResult<T> queryResult, ConversionErrorType conversionErrorType)
@@ -473,7 +463,8 @@ public class ConversionErrorsTests : ResultValidatingTestsAbstr
     {
         Assert.That(queryResult.Value, valueIsNotNull ? Is.Not.Null : Is.Null);
 
-        Assert.That(!queryResult.ErrorsAndWarnings.ConversionErrors.Errors.Any(), Is.True);
+        Assert.That(queryResult.ErrorsAndWarnings.ConversionErrors.Errors.All(
+            x => x.ErrorType != conversionErrorType), Is.True);
         Assert.That(queryResult.ErrorsAndWarnings.ConversionWarnings.Errors.All(
             x => x.ErrorType != conversionErrorType), Is.True);
     }

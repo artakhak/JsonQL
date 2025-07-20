@@ -1,0 +1,45 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.JsonConversionSettingsOverrides.Models.IEmployee, JsonQL.Tests]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.JsonConversionSettingsOverrides.Models.IEmployee, JsonQL.Tests]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.JsonConversionSettingsOverrides.Models.Employee, JsonQL.Tests",
+        "Id": 100000003,
+        "FirstName": "James",
+        "LastName": "Brown",
+        "Address": null,
+        "Salary": 89000,
+        "Age": 50,
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "+1-415-555-0198"
+          ]
+        }
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}
