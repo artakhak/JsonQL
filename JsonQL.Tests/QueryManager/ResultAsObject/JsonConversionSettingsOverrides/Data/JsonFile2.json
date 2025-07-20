@@ -4,7 +4,7 @@
       "Id": 100000001,
       "FirstName": "John",
       "LastName": "Smith",
-      "Phones": null,
+      "Phones": ["111-222-4589"],
       "Address": null,
       "Salary": null,
       "Age": 45
@@ -16,7 +16,8 @@
       "Phones": null,
       "Address": null,
       "Salary": 105000,
-      "Age": null
+      "Age": 35,
+      "Ssn":  "111-222-33333"
     }
   ]
 }

@@ -98,12 +98,11 @@ public class JsonConversionSettingsOverridesTests : ResultValidatingTestsAbstr
     [Test]
     public async Task FailOnFirstError_Test()
     {
-        var allEmployeesInAllCompaniesQuery = "Companies.Select(c => c.Employees.Where(x => x.Id != 100000001))";
-        // var allEmployeesInAllCompaniesQuery = "Employees";
-
+        var employeesInAllCompaniesQueryExceptOneQuery = "Companies.Select(c => c.Employees.Where(x => x.Id != 100000001))";
+        
         // A query which will result in errors. If we do not override FailOnFirstError configuration
         // the result will be null
-        await ValidateQueryResultAsync(allEmployeesInAllCompaniesQuery,
+        await ValidateQueryResultAsync(employeesInAllCompaniesQueryExceptOneQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile.json"),
 
             (query, jsonTextData) =>
@@ -119,7 +118,7 @@ public class JsonConversionSettingsOverridesTests : ResultValidatingTestsAbstr
 
         // Same query with true value used for FailOnFirstError configuration
         // The result will have errors, but the conversion will not stop on first error.
-        await ValidateQueryResultAsync(allEmployeesInAllCompaniesQuery,
+        await ValidateQueryResultAsync(employeesInAllCompaniesQueryExceptOneQuery,
             new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile.json"),
 
             (query, jsonTextData) =>
@@ -139,74 +138,69 @@ public class JsonConversionSettingsOverridesTests : ResultValidatingTestsAbstr
             new JsonFilePath("FailOnFirstError_False.json", TestExpectedResultFilesRelativePath));
     }
 
-    //[Test]
-    //public async Task Query_Json_InParent_Json_File_Test()
-    //{
-    //    var parentJsonFile = new JsonTextData(Guid.NewGuid().ToString(),
-    //         ResourceFileLoader.LoadJsonFile(new ResourcePath("JsonFile1.json", TestDataFilesRelativePath)));
+    [Test]
+    public async Task TryMapJsonConversionType_Test()
+    {
+        var employeesQuery = "Employees";
+       
+        await ValidateQueryResultAsync(employeesQuery,
+            new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile2.json"),
 
-    //    var mainJsonFile = new JsonTextData(Guid.NewGuid().ToString(),
-    //        ResourceFileLoader.LoadJsonFile(new ResourcePath("JsonFile2.json", TestDataFilesRelativePath)), parentJsonFile);
+            (query, jsonTextData) =>
+            {
+                // public delegate Type? TryMapTypeDelegate(Type defaultTypeToConvertParsedJsonTo, IParsedJson convertedParsedJson);
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
+                    {
+                        TryMapJsonConversionType = (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
+                        {
+                            if (convertedParsedJson.HasKey(nameof(EmployeeWithSsn.Ssn)))
+                                return typeof(EmployeeWithSsn);
 
-    //    // NOTE: CompaniesInParentJson is in JsonFile1.txt which is used as a parent json in JsonFile1 loaded into parentJsonFile
-    //    var selectEmployeesInFilteredCompaniesOlderThan40Query =
-    //        "CompaniesInParentJson.Where(x => x.CompanyData.Name != 'Tech Innovations, LLC').Select(c => c.Employees.Where(e => e.Age > 40))";
+                            return defaultTypeToConvertParsedJsonTo;
+                        },
+                        FailOnFirstError = false
+                    });
 
-    //    var queryResult = QueryManager.QueryObject<IReadOnlyList<IEmployee>>(selectEmployeesInFilteredCompaniesOlderThan40Query, mainJsonFile);
+                Assert.That(queryResult.Value, Is.Not.Null);
+                Assert.That(queryResult.Value.Count, Is.EqualTo(2));
 
-    //    await JsonQLResultValidator.ValidateResultAsync(new JsonQLResultValidationParameters
-    //    {
-    //        GetJsonQlResultAsync = () => Task.FromResult<object>(queryResult),
-    //        LoadExpectedResultJsonFileAsync = () => Task.FromResult(
-    //            ResourceFileLoader.LoadJsonFile(new ResourcePath("Query_Json_InParent_Json_File_Test.json", TestExpectedResultFilesRelativePath)))
-    //    });
+                Assert.That(queryResult.Value[0].GetType() == typeof(Employee));
 
-    //    Assert.That(queryResult.Value, Is.InstanceOf<IReadOnlyList<IEmployee>>());
-    //}
+                var employeeWithSsn = queryResult.Value[1] as EmployeeWithSsn;
 
-    //[Test]
-    //public async Task Query_Json_InParent_Json_File_Test()
-    //{
-    //    var parentJsonFile = new JsonTextData(Guid.NewGuid().ToString(),
-    //         ResourceFileLoader.LoadJsonFile(new ResourcePath("JsonFile1.json", TestDataFilesRelativePath)));
 
-    //    var mainJsonFile = new JsonTextData(Guid.NewGuid().ToString(),
-    //        ResourceFileLoader.LoadJsonFile(new ResourcePath("JsonFile2.json", TestDataFilesRelativePath)), parentJsonFile);
+                Assert.That(employeeWithSsn, Is.Not.Null);
+                Assert.That(employeeWithSsn.Ssn, Is.EqualTo("111-222-33333"));
+                return queryResult;
+            },
+            new JsonFilePath("TryMapJsonConversionType.json", TestExpectedResultFilesRelativePath));
 
-    //    // NOTE: CompaniesInParentJson is in JsonFile1.txt which is used as a parent json in JsonFile1 loaded into parentJsonFile
-    //    var selectEmployeesInFilteredCompaniesOlderThan40Query =
-    //        "CompaniesInParentJson.Where(x => x.CompanyData.Name != 'Tech Innovations, LLC').Select(c => c.Employees.Where(e => e.Age > 40))";
+    }
 
-    //    var queryResult = QueryManager.QueryObject<IReadOnlyList<IEmployee>>(selectEmployeesInFilteredCompaniesOlderThan40Query, mainJsonFile);
+    [Test]
+    public async Task JsonPropertyFormat_Properties_Initialized_From_CamelCase_Json_Test()
+    {
+        var employeesQuery = "Employees";
 
-    //    await JsonQLResultValidator.ValidateResultAsync(new JsonQLResultValidationParameters
-    //    {
-    //        GetJsonQlResultAsync = () => Task.FromResult<object>(queryResult),
-    //        LoadExpectedResultJsonFileAsync = () => Task.FromResult(
-    //            ResourceFileLoader.LoadJsonFile(new ResourcePath("Query_Json_InParent_Json_File_Test.json", TestExpectedResultFilesRelativePath)))
-    //    });
+        // JSON in JsonFile3.json uses camel case format field names.
+        await ValidateQueryResultAsync(employeesQuery,
+            new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile3.json"),
 
-    //    Assert.That(queryResult.Value, Is.InstanceOf<IReadOnlyList<IEmployee>>());
-    //}
+            (query, jsonTextData) =>
+            {
+                // public delegate Type? TryMapTypeDelegate(Type defaultTypeToConvertParsedJsonTo, IParsedJson convertedParsedJson);
+                var queryResult = QueryManager.QueryObject<List<IEmployee>>(query, jsonTextData, null,
+                    new JsonToObjectConversion.JsonConversionSettingsOverrides
+                    {
+                        JsonPropertyFormat = JsonPropertyFormat.CamelCase
+                    });
 
-    //[Test]
-    //public Task Query_for_ReferenceType_Implementation_Instance_Test()
-    //{
-    //    var selectFirstEmployeeInInFilteredCompaniesOlderThan40Query =
-    //        "Companies.Where(x => x.CompanyData.Name != 'Strange Things, Inc').Select(c => c.Employees.Where(e => e.Age > 40)).First()";
-
-    //    return ValidateQueryResultAsync(selectFirstEmployeeInInFilteredCompaniesOlderThan40Query,
-    //        new TestJsonTextDataPath(TestDataFilesRelativePath, "JsonFile2.json"),
-    //        (query, jsonTextData) =>
-    //        {
-    //            var queryResult = QueryManager.QueryObject<Employee>(query, jsonTextData);
-
-    //            // Note, this line is not necessary, but servers as a demo that 
-    //            // queryResult.Value is of type Employee
-    //            Employee? firstEmployee = queryResult.Value;
-    //            Assert.That(firstEmployee, Is.Not.Null);
-    //            return queryResult;
-    //        },
-    //        new JsonFilePath("Query_for_ReferenceType_Implementation_Instance_Test.json", TestExpectedResultFilesRelativePath));
-    //}
+                Assert.That(queryResult.Value, Is.Not.Null);
+                Assert.That(queryResult.Value.Count, Is.EqualTo(2));
+                Assert.That(queryResult.HasErrors(), Is.False);
+                return queryResult;
+            },
+            new JsonFilePath("JsonPropertyFormat_Properties_Initialized_From_CamelCase_Json.json", TestExpectedResultFilesRelativePath));
+    }
 }
