@@ -1,1 +1,43 @@
-{}
+{
+  "Object1": {
+    "DateTime1":  "2022-05-23T18:25:43.511Z",
+    "Number1":  15.39,
+    "TrueText":  "true",
+    "TrueValue":  true,
+    "FalseText":  "false",
+    "FalseValue":  false
+  },
+  "Array1": [
+    "x",
+    "2022-05-23T18:25:43.511Z",
+    5,
+    [
+      1,
+      2,
+      3
+    ],
+    6,
+    "2022-05-23T18:26:43.511Z",
+    true,
+    "true",
+    false,
+    "false"
+  ],
+  "DefaultValueOfValidValueIsOriginalValue_DateTime":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime1":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime2":  "true is true",
+  "DefaultValueOfValidValueIsOriginalValue_Double":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double1":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double2":  "true is true",
+  "DefaultValueOfValidValueIsOriginalValue_Boolean":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean1":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean2":  "true is true",
+  "DefaultValueOfValidValueIsOriginalValue_String":  "true is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_String":  "true is true",
+  "DefaultValueOfAnyType":  "true is true",
+  "ArrayInitializedFromDefaultArray": [
+    1,
+    2,
+    3
+  ]
+}
