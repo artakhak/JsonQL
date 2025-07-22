@@ -1,0 +1,72 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": [
+    ]
+  },
+  "SumOfArrayEvenNumbers1": "12 is 12",
+  "SumOfArrayEvenNumbers2": "12 is 12",
+  "SumOfEmptyArray": "'' is null",
+  "SumOfEmptyArrayWithDefault": "0 is 0",
+  "SumOfEmptyCollection": "'' is null",
+  "SumOfEmptyCollectionWithDefault": "0 is 0",
+  "SumOfArrayOddNumbers": "14 is 14",
+  "SumOfAllArrayValuesWithoutCriteria": "26 is 26",
+  "SumOfAllCollectionValuesWithoutCriteria": "13 is 13",
+  "SubArraysWithSumOfEvenNumbersLessThan_56": [
+    [
+      -1,
+      2
+    ],
+    [
+      5,
+      8,
+      10
+    ]
+  ],
+  "SubArraysWithSumOfOddNumbersLessThan_43": [
+    [
+      -1,
+      2
+    ],
+    [
+      5,
+      8,
+      10
+    ],
+    [
+      10,
+      11,
+      7,
+      8,
+      true,
+      20
+    ]
+  ],
+  "Sum_InMultipleArrays1": "99 is 99",
+  "Sum_InMultipleArrays2": "'' is null",
+  "SumOfSalariesOfEmployeesEarningLessThan_120000_1": "586000 is 586000",
+  "SumOfSalariesOfEmployeesEarningMoreThan_120000_2": "586000 is 586000",
+  "SumOfSalariesOfEmployeesEarningMoreThan_20000": "'' is null"
+}

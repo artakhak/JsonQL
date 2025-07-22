@@ -1,0 +1,146 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="appsettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\MissingClosingBracesError\Example.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\MissingClosingBracesError\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Companies.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\CustomFeaturesOverview.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Result.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
+	  <None Remove="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\Companies.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Employees.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\InvalidParametersError\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\InvalidParametersError\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\MissingClosingBracesError\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\MissingClosingBracesError\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Result.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Data.json" />
+	  <None Remove="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Result.json" />
+	  <None Remove="JosnQL.log4net.config" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\MissingClosingBracesError\Example.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\MissingClosingBracesError\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\GlobalSettings.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\MyServiceSettings.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CompiledAppSettings\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Companies.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\CustomFeaturesOverview.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Result.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\AdditionalTestData.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Overview.json" />
+		<EmbeddedResource Include="Examples\IJsonCompilerExamples\SuccessExamples\Overview\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Employees.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\NonNullablePropertyValueMissing\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsObject\FailedAssert\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\FailedAssert\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\InvalidParametersError\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\InvalidParametersError\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\MissingClosingBracesError\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\FailureExamples\ResultAsParsedJsonValue\MissingClosingBracesError\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsListOfDoubles\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\SalariesOfAllEmployeesInAllCompaniesAsArrayOfDoubles\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\AverageSalaryOfAllEmployeesInFilteredCompanies\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompanyFilteredByCeoName\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompanyCeoName\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SecondCompany\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\CompaniesWithLimitOnMaxSalary\Result.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Data.json" />
+		<EmbeddedResource Include="Examples\IQueryManagerExamples\SuccessExamples\ResultAsParsedJsonValue\SalariesOfAllEmployeesInAllCompanies\Result.json" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="JosnQL.log4net.config">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="bin\Debug\net8.0\QueryResult.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="8.0.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.3" />
+		<PackageReference Include="NUnit" Version="3.14.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <!--<ProjectReference Include="..\..\..\MyGitHubProjects\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+	  <ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />-->
+	  <ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
+	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
+	</ItemGroup>
+
+</Project>

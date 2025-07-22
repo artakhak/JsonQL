@@ -1,0 +1,17 @@
+{
+  "Variables": {
+    "x": null,
+    "y": 10
+  },
+  "Comment1": "'is null' operator returns true only if the path references an existing json null value",
+  "Comment2": "To check if path is invalid, All other cases, like path is invalid, 'is undefined' can be used.",
+  "NullJsonValue_IsNotNull_Test": "false is false",
+  "NullJsonValue_InParent_IsNotNull_Test": "false is false",
+  "NonNullJsonValue_IsNotNull_Test": "true is true",
+  "NonNullJsonValue_InParent_IsNotNull_Test": "true is true",
+  "InvalidPathValue_IsNotNull_Test": "true is true",
+  "InvalidPathValue_InParent_IsNotNull_Test": "true is true",
+  "Comment": "Tests for operator 'is undefined' are in a different file.",
+  "InvalidPathValue_IsNotNull_ButIsUndefined": "true is true",
+  "InvalidPathValue_InParent_IsNotNull_ButIsUndefined": "true is true"
+}

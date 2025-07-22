@@ -1,0 +1,31 @@
+{
+  "Object1": {
+    "InvalidDoubleText": "Double",
+    "DoubleText1": "1.36",
+    "NegativeDoubleText1": "-1.36",
+    "IntText1": "15",
+    "NegativeIntText1": "-15",
+    "Double1": 1.36,
+    "NegativeDouble1": -1.36,
+    "Int1": 15,
+    "NegativeInt1": -15
+  },
+  "ConvertToDouble1": "'' is ToDouble('InvalidDoubleText')==null",
+  "ConvertToDouble2": "'' is ToDouble('InvalidDoubleText')==null",
+  "ConvertToDouble3": "true is (ToDouble(Object1.DoubleText1)==1.36)==true",
+  "ConvertToDouble4": "true is (ToDouble('1.36')==1.36)==true",
+  "ConvertToDouble5": "true is (ToDouble(Object1.NegativeDoubleText1)==-1.36)==true",
+  "ConvertToDouble6": "true is (ToDouble('-1.36')==-1.36)==true",
+  "ConvertToDouble7": "true is (ToDouble(Object1.IntText1)==15)==true",
+  "ConvertToDouble8": "true is (ToDouble('15')==15)==true",
+  "ConvertToDouble9": "true is (ToDouble(Object1.NegativeIntText1)==-15)==true",
+  "ConvertToDouble10": "true is (ToDouble('-15')==-15)==true",
+  "ConvertToDouble11": "true is (ToDouble(Object1.Double1)==1.36)==true",
+  "ConvertToDouble12": "true is (ToDouble(1.36)==1.36)==true",
+  "ConvertToDouble13": "true is (ToDouble(Object1.NegativeDouble1)==-1.36)==true",
+  "ConvertToDouble14": "true is (ToDouble(-1.36)==-1.36)==true",
+  "ConvertToDouble15": "true is (ToDouble(Object1.Int1)==15)==true",
+  "ConvertToDouble16": "true is (ToDouble(15)==15)==true",
+  "ConvertToDouble17": "true is (ToDouble(Object1.NegativeInt1)==-15)==true",
+  "ConvertToDouble18": "true is (ToDouble(-15)==-15)==true"
+}

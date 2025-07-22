@@ -1,0 +1,15 @@
+{
+  "Example": {
+    "Object1": {
+      "Int1": 123,
+      "Int2": 456,
+      "String1": "String 1",
+      "String2": "String 2"
+    }
+  },
+  "Array1": [
+    1,
+    "Value 2",
+    3
+  ]
+}

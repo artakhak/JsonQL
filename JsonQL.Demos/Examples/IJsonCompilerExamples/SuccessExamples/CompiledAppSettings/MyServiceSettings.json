@@ -1,0 +1,46 @@
+{
+  "AppSettings": {
+    "copyFields": "$copyFields(parent.AppSettings)",
+    "ServicePublicUrl": "http://$(parent.DefaultValues.HostName2:'localhost'):$(parent.DefaultValues.PortNumber2:5121)"
+  },
+  "WebRequestLogger": [
+    {
+      "comments": "We copy all the key values from parent, and then override the value of LogWebRequest to true.",
+      "copyFields": "$copyFields(parent.WebRequestLogger.First(x => x.Id=='Default'))",
+      "LogWebRequest": true
+    },
+    {
+      "copyFields": "$copyFields(parent.WebRequestLogger.First(x => x.Id=='IsAlive'))"
+    },
+    {
+      "Id": "Login",
+      "Paths": [
+        "/account/login",
+        "/account/login-no-redirect"
+      ],
+      "LogWebRequest": true,
+      "LogWebRequestBody": false
+    }
+  ],
+  "Comment_RabbitMq": "Copy RabbitMq from prent as is.",
+  "RabbitMq": "$value(parent.RabbitMq)",
+  "Rebus": {
+    "comments": "Copy Rebus key/values from parent JSON, and add new key/values",
+    "copyFields": "$copyFields(parent.Rebus)",
+    "BusConfigurations": [
+      {
+        "BusName": "DefaultMessageSender",
+        "QueueName": "AuthorizationServer_DefaultMessageSender",
+        "ErrorQueueName": "AuthorizationServer_DefaultMessageSender_Errors",
+        "RebusNumberOfWorkers": 1,
+        "RebusMaxParallelism": 1,
+        "MaxDeliveryAttempts": 5,
+        "SentMessageResponseTimeoutSeconds": 10
+      }
+    ]
+  },
+  "ConnectionStrings": [
+    "$merge(parent.ConnectionStrings)",
+    "Server=NewServerForMyService, Database=MyServiceDB"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "TestData": [
+          1,
+          3,
+          4,
+          "5",
+          "TEST",
+          7
+        ],
+        "ValidFunctionCallExample":  "[ToInt(TestData[3]) + 1]==6==6",
+        "InvalidFunctionCallExample_ClosingBraceMissing":  "[ToInt(TestData[3]) + 1]==$(ToInt(TestData[3] + 1)==6"
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
+        "JsonTextIdentifier": "Example",
+        "LineInfo": {
+          "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
+          "LineNumber": 4,
+          "LinePosition": 81
+        },
+        "ErrorMessage": "Closing brace ')' is missing."
+      }
+    ]
+  }
+}

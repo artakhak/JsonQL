@@ -1,0 +1,42 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      4
+    ]
+  },
+  "AllNumbersAreEven": "true is true",
+  "AllItemsAreNumbers": "false is false",
+  "SubArraysWithOnlyNumbers": [
+    [
+      -1,
+      2
+    ],
+    [
+      5,
+      8,
+      10
+    ]
+  ],
+  "All_InMultipleArrays1": "true is true",
+  "All_InMultipleArrays2": "false is false",
+  "AllEmployeesEarnMoreThan_60000": "true is true",
+  "AllEmployeesEarnMoreThan_100000": "false is false"
+}

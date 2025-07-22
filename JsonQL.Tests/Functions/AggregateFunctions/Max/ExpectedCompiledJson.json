@@ -1,0 +1,72 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": [
+    ]
+  },
+  "MaxOfArrayEvenNumbers1": "6 is 6",
+  "MaxOfArrayEvenNumbers2": "6 is 6",
+  "MaxOfEmptyArray": "'' is null",
+  "MaxOfEmptyArrayWithDefault": "0 is 0",
+  "MaxOfEmptyCollection": "'' is null",
+  "MaxOfEmptyCollectionWithDefault": "0 is 0",
+  "MaxOfArrayOddNumbers": "13 is 13",
+  "MaxOfAllArrayValuesWithoutCriteria": "13 is 13",
+  "MaxOfAllCollectionValuesWithoutCriteria": "6 is 6",
+  "SubArraysWithMaxOfEvenNumbersLessThan_20": [
+    [
+      -1,
+      2
+    ],
+    [
+      5,
+      8,
+      10
+    ]
+  ],
+  "SubArraysWithMaxOfOddNumbersLessThan_19": [
+    [
+      -1,
+      2
+    ],
+    [
+      5,
+      8,
+      10
+    ],
+    [
+      10,
+      11,
+      7,
+      8,
+      true,
+      20
+    ]
+  ],
+  "Max_InMultipleArrays1": "13 is 13",
+  "Max_InMultipleArrays2": "'' is null",
+  "MaxOfSalariesOfEmployeesEarningLessThan_120000_1": "110000 is 110000",
+  "MaxOfSalariesOfEmployeesEarningMoreThan_120000_2": "110000 is 110000",
+  "MaxOfSalariesOfEmployeesEarningMoreThan_200000": "'' is null"
+}

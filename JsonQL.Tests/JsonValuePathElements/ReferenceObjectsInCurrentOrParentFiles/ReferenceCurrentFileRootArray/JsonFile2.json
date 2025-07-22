@@ -1,0 +1,29 @@
+[
+  1, 2, 7, 9, [11, 17],
+  {
+    "WhereAppliedToRootArrayImplicitly": "$value(Where(x => x > 1))",
+    "WhereAppliedToRootArrayExplicitly": "$value(this.Where(x => x > 1))",
+
+    "FlattenAppliedToRootArrayImplicitly": "$value(Flatten().Where(x => x > 1))",
+    "FlattenAppliedToRootArrayExplicitly": "$value(this.Flatten().Where(x => x > 1))",
+
+    "IndexerAppliedToRootArrayImplicitly": "$value([1])",
+    "IndexerAppliedToRootArrayExplicitly": "$value(this[1])",
+
+    "AtAppliedToRootArrayImplicitly": "$value(At(1))",
+    "AtAppliedToRootArrayExplicitly": "$value(this.At(1))",
+
+    "FirstAppliedToRootArrayImplicitly": "$value(First())",
+    "FirstAppliedToRootArrayExplicitly": "$value(this.First())",
+
+    "LastAppliedToRootArrayImplicitly": "$value(Last())",
+    "LastAppliedToRootArrayExplicitly": "$value(this.Last())",
+
+    "SelectAppliedToRootArrayImplicitly": "$value(Select(x=>x[1]))",
+    "SelectAppliedToRootArrayExplicitly": "$value(this.Select(x=>x[1]))",
+
+    "ReverseAppliedToRootArrayImplicitly": "$value(Reverse().Where(x => x > 1))",
+    "ReverseAppliedToRootArrayExplicitly": "$value(this.Reverse().Where(x => x > 1))"
+  },
+  15  
+]

@@ -1,0 +1,10 @@
+{
+  "Object1": {
+    "replaceWithCopiedFields": "$copyFields(parent.Examples.Object1)",
+    "NewInt1": 7,
+    "NewString1": "New string 1",
+    "Object1_1": {
+      "Int1": 1
+    }
+  }
+}

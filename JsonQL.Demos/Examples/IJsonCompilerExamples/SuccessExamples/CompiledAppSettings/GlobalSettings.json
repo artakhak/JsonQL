@@ -1,0 +1,63 @@
+{
+  "DefaultValues": {
+    "HostName": "PC2-DELL",
+    "PortNumber": 1111
+  },
+  "AppSettings": {
+    "AdminUsername": "admin",
+    "ServicePublicUrl": "http://$(DefaultValues.HostName):$(DefaultValues.PortNumber)"
+  },
+  "WebRequestLogger": [
+    {
+      "Id": "Default",
+      "Paths": [],
+      "LogWebRequest": true,
+      "LogWebRequestHeaders": true,
+      "LogWebRequestBody": false,
+      "LogWebRequestClaims": false,
+      "RequestHeadersNotToLog": [
+        "authorization",
+        "Cookie"
+      ],
+      "ClaimsNotToLog": [
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ]
+    },
+    {
+      "Id": "IsAlive",
+      "Paths": [
+        "/ServiceAliveCheck/is-alive"
+      ],
+      "LogWebRequest": false
+    }
+  ],
+  "RabbitMq": {
+    "RabbitMqConfigPath": {
+      "ServerVarName": "RABBITMQ_HOSTNAME"
+    },
+    "RabbitMqUser": {
+      "ServerVarName": "RABBITMQ_USER"
+    },
+    "RabbitMqPassword": {
+      "ServerVarName": "RABBITMQ_PASSWORD"
+    }
+  },
+  "Rebus": {
+    "DataBusDirectoryPath": "K:\\RabbitMq\\Docker",
+    "IncomingMessageLoggerConfiguration": {
+      "LogRebusMessages": true,
+      "LogMessageHeaders": true,
+      "LogMessageBody": true,
+      "LogMessageHandlers": false
+    },
+    "OutgoingMessageLoggerConfiguration": {
+      "LogRebusMessages": true,
+      "LogMessageHeaders": true,
+      "LogMessageBody": true
+    }
+  },
+  "ConnectionStrings": [
+    "Server=$(DefaultValues.HostName), Database=DB1",
+    "Server=Server2, Database=DB2"
+  ]
+}

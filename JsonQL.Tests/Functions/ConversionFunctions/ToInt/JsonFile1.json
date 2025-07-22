@@ -1,0 +1,34 @@
+{
+  "Object1": {
+    "InvalidIntText": "Int",
+    "DoubleText1": "17.36",
+    "NegativeDoubleText1": "-17.36",
+
+    "IntText1": "17",
+    "NegativeIntText1": "-17",
+
+    "Double1": 17.36,
+    "NegativeDouble1": -17.36,
+
+    "Int1": 17,
+    "NegativeInt1": -17
+  },
+
+  "ConvertToInt3_TEST": "$(ToInt(Object1.DoubleText1))",
+  
+
+  "ConvertToInt1": "'$(ToInt(Object1.InvalidIntText, false))' is ToInt('InvalidIntText')==null",
+  "ConvertToInt2": "'$(ToInt(Object1.InvalidIntText))' is ToInt('InvalidIntText')==null",
+
+  "ConvertToInt3": "$(ToInt(Object1.DoubleText1) == 17) is (ToInt('17.36')==17)==true",
+  "ConvertToInt4": "$(ToInt(Object1.NegativeDoubleText1) == -17) is (ToInt('-17.36')==-17)==true",
+
+  "ConvertToInt5": "$(ToInt(Object1.IntText1) == 17) is (ToInt('17')==17)==true",
+  "ConvertToInt6": "$(ToInt(Object1.NegativeIntText1) == -17) is (ToInt('-17')==-17)==true",
+
+  "ConvertToInt7": "$(ToInt(Object1.Double1) == 17) is (ToInt(17.36)==17)==true",
+  "ConvertToInt8": "$(ToInt(Object1.NegativeDouble1) == -17) is (ToInt(-17.36)==-17)==true",
+
+  "ConvertToInt9": "$(ToInt(Object1.Int1) == 17) is (ToInt(17)==17)==true",
+  "ConvertToInt10": "$(ToInt(Object1.NegativeInt1) == -17) is (ToInt(-17)==-17)==true"
+}

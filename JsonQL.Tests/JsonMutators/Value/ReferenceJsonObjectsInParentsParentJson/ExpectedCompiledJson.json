@@ -1,0 +1,26 @@
+{
+  "Object4": {
+    "Copy_Object3_FromParent_JsonFile2_Referencing_JsonFile1": {
+      "CopiedObjectExample": [
+        5,
+        6,
+        7
+      ],
+      "Int1": 2
+    },
+    "Copy_CopiedObjectExample_FromParent_JsonFile2_Referencing_JsonFile1": [
+      5,
+      6,
+      7
+    ],
+    "Int1": 2,
+    "CopyArray_FromParentsParent_JsonFile1": [
+      1,
+      2,
+      3
+    ],
+    "CopyString_FromParentsParent_JsonFile1": "Test1",
+    "CopyInt_FromParentsParent_JsonFile1": 15,
+    "CopyBoolean_FromParentsParent_JsonFile1": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Object2": {
+    "NoDefault": "$(parent.Example.Object1.Int1:(parent.Array1[1000]:parent.Array1[2])) is not defaulted and is 123",
+    "NoDefaultWithoutBraces": "$(parent.Example.Object1.Int1:parent.Array1[1000]:parent.Array1[2]) is not defaulted and is 123",
+    
+    "FirstDefaultValueExists": "$(parent.Example.NonExistentObject.NonExistentInt:(parent.Array1[0]:parent.Array1[2])) is defaulted to parent.Array1[0]=1",
+    "FirstDefaultValueExistsWithoutBraces": "$(parent.Example.NonExistentObject.NonExistentInt:parent.Array1[0]:parent.Array1[2]) is defaulted to parent.Array1[0]=1",
+
+    "SecondDefaultValueExists": "$(parent.Example.NonExistentObject.NonExistentInt:(parent.Array1[1000]:parent.Array1[2])) is defaulted to parent.Array1[2]=3",
+    "SecondDefaultValueExistsWithoutBraces": "$(parent.Example.NonExistentObject.NonExistentInt:parent.Array1[1000]:parent.Array1[2]) is defaulted to parent.Array1[2]=3"
+  }
+}

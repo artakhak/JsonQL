@@ -1,0 +1,33 @@
+{
+  "Example": {
+    "Object1": {
+      "Int1": 123,
+      "Int2": 456,
+      "String1": "String 1",
+      "String2": "String 2",
+      "DateTime1": "2012-04-23T18:25:43.511Z"
+    }
+  },
+  "Array1": [
+    1,
+    "Value 2",
+    {
+      "Int1": 15
+    },
+    3
+  ],
+  "Object2": {   
+    "Value1_MainValue": "123 is 123 and did not default to 17",
+    "Value1_DefaultValue": "17 is defaulted to 17",
+    "Value2_MainValue": "'String 1' is 'String 1' and did not default to 'Default string'",
+    "Value2_DefaultValue": "'Default string' defaulted to 'Default string'",
+    "Value3_MainValue": "1 is 1 and did not default to 19",
+    "Value3_DefaultValue": "19 is defaulted to 19",
+    "Value4_MainValue": "'Value 2' is 'Value 2' and did not default to 'Default string'",
+    "Value4_DefaultValue": "'Default string' is defaulted to 'Default string'",
+    "Value5_MainValue": "15 is 15 and did not default to -1",
+    "Value5_DefaultValue": "-1 is defaulted to -1",
+    "Value6_MainValue": "'2012-04-23 14:25:43.5110000' is '2012-04-23T18:25:43.511Z0000' and did not default to '2022-05-23T18:25:43.511Z0000'",
+    "Value6_DefaultValue": "'2022-05-23 14:25:43.5110000' is defaulted to '2022-05-23T18:25:43.511Z'"
+  }
+}

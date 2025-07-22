@@ -1,0 +1,144 @@
+{
+  "CompaniesInParentJson": [
+    {
+      "CompanyData": {
+        "Name": "Tech Innovations, LLC",
+        "CEO": "Lisa Kier",
+        "Address": {
+          "Street": "500 Innovation Way",
+          "City": "Seattle",
+          "State": "WA",
+          "ZipCode": "98101"
+        }
+      },
+      "Employees": [
+        {
+          "Id": 200000001,
+          "FirstName": "Daniel",
+          "LastName": "Adams",
+          "Phones": [ "+1-303-555-0171" ],
+          "Address": {
+            "Street": "1010 Inventor Ave",
+            "City": "Seattle",
+            "State": "WA",
+            "ZipCode": "98109"
+          },
+          "Salary": 130000,
+          "Age": 45
+        },
+        {
+          "Id": 200000002,
+          "FirstName": "Megan",
+          "LastName": "Clark",
+          "Phones": [ "+1-212-555-0178" ],
+          "Address": {
+            "Street": "2020 New Street",
+            "City": "Boston",
+            "State": "MA",
+            "ZipCode": "02108"
+          },
+          "Salary": 95000,
+          "Age": 37
+        }
+      ]
+    },
+    {
+      "CompanyData": {
+        "Name": "Green Energy Solutions, Inc",
+        "CEO": "Pauline Greene",
+        "Address": {
+          "Street": "901 Greenway Blvd",
+          "City": "Austin",
+          "State": "TX",
+          "ZipCode": "73301"
+        }
+      },
+      "Employees": [
+        {
+          "Id": 200000003,
+          "FirstName": "Olivia",
+          "LastName": "Smith",
+          "Phones": [ "+1-415-555-0123" ],
+          "Address": {
+            "Street": "1313 Solar St",
+            "City": "Austin",
+            "State": "TX",
+            "ZipCode": "73301"
+          },
+          "Salary": 102000,
+          "Age": 29
+        },
+        {
+          "Id": 200000004,
+          "FirstName": "Lucas",
+          "LastName": "Miller",
+          "Phones": [ "+1-718-555-0124" ],
+          "Address": {
+            "Street": "2424 Eco Rd",
+            "City": "Dallas",
+            "State": "TX",
+            "ZipCode": "75201"
+          },
+          "Salary": 88000,
+          "Age": 39
+        }
+      ]
+    },
+    {
+      "CompanyData": {
+        "Name": "Coastal Logistics, LLC",
+        "CEO": "Samantha Oceans",
+        "Address": {
+          "Street": "300 Seaside Avenue",
+          "City": "Miami",
+          "State": "FL",
+          "ZipCode": "33101"
+        }
+      },
+      "Employees": [
+        {
+          "Id": 200000005,
+          "FirstName": "Chloe",
+          "LastName": "Johnson",
+          "Phones": [ "+1-305-555-0190", "+1-206-555-0154" ],
+          "Address": {
+            "Street": "404 Shoreline Rd",
+            "City": "San Francisco",
+            "State": "CA",
+            "ZipCode": "94102"
+          },
+          "Salary": 113000,
+          "Age": 47
+        },
+        {
+          "Id": 200000006,
+          "FirstName": "Ethan",
+          "LastName": "Williams",
+          "Phones": [ "+1-917-555-0128" ],
+          "Address": {
+            "Street": "505 Anchor Ln",
+            "City": "Miami",
+            "State": "FL",
+            "ZipCode": "33102"
+          },
+          "Salary": 97000,
+          "Age": 31
+        },
+        {
+          "Id": 200000007,
+          "FirstName": "Liam",
+          "LastName": "Harris",
+          "Phones": [ "+1-212-555-0193" ],
+          "Address": {
+            "Street": "606 Wave Blvd",
+            "City": "New York",
+            "State": "NY",
+            "ZipCode": "10001"
+          },
+          "Salary": 104000,
+          "Age": 50
+        }
+      ]
+    }
+  ]
+}

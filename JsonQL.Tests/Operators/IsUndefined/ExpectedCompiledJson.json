@@ -1,0 +1,45 @@
+{
+  "Variables": {
+    "x": null,
+    "y": 10,
+    "Array1": [
+      1,
+      "a",
+      3,
+      [
+        5,
+        2
+      ]
+    ]
+  },
+  "Comment1": "'is null' operator returns true only if the path references an existing json null value",
+  "Comment2": "To check if path is invalid, All other cases, like path is invalid, 'is undefined' can be used.",
+  "InvalidPath_IsUndefined_true": "true is true",
+  "InvalidPath_InParentTest_IsUndefined_true": "true is true",
+  "ValidPath_IsUndefined_false": "false is false",
+  "ValidPath_InParent_IsUndefined_false": "false is false",
+  "SelectedCollectionEmpty_IsUndefined_false": "false is false",
+  "ValidArrayIndex_IsUndefined_false_1": "false is false",
+  "ValidArrayIndex_InParent_IsUndefined_false_1": "false is false",
+  "ValidArrayIndex_IsUndefined_false_2": "false is false",
+  "ValidArrayIndex_InParent_IsUndefined_false_2": "false is false",
+  "ValidArrayIndex_IsUndefined_false_3": "false is false",
+  "ValidArrayIndex_InParent_IsUndefined_false_3": "false is false",
+  "IndexOutOfRange_IsUndefined_true_1": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_1": "true is true",
+  "IndexOutOfRange_IsUndefined_true_2": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_2": "true is true",
+  "IndexOutOfRange_IsUndefined_true_3": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_3": "true is true",
+  "IndexOutOfRange_IsUndefined_true_4": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_4": "true is true",
+  "IndexOutOfRange_IsUndefined_true_5": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_5": "true is true",
+  "IndexOutOfRange_IsUndefined_true_6": "true is true",
+  "IndexOutOfRange_InParent_IsUndefined_true_6": "true is true",
+  "IndexUsedWithNonArray_IsUndefined_true": "true is true",
+  "IndexUsedWithNonArray_InParent_IsUndefined_true": "true is true",
+  "IndexUsedWithNullValue_IsUndefined_true": "true is true",
+  "IndexUsedWithNullValue_InParent_IsUndefined_true": "true is true",
+  "ArithmeticValueWithUndefinedValue_IsIndefined": "true is true"
+}

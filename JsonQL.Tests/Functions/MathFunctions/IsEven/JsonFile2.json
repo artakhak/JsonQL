@@ -1,0 +1,6 @@
+{
+  "IsEvent_1": "$(IsEven(Object1.Array1[0])) is false",
+  "IsEvent_2": "$(IsEven(Object1.Array1[3])) is true",
+  "IsEvent_3": "'$(IsEven(Object1.Array1[1]))' is ''",
+  "SelectEvenNumbers": "$value(Object1.Array1.Where(x => IsEven(x)))"
+}

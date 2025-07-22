@@ -1,0 +1,82 @@
+{
+  "ParsedValue":
+  [
+    {
+      "Street":  "456 Oak Avenue",
+      "City":  "Chicago",
+      "State":  "IL",
+      "ZipCode":  "60601"
+    },
+    {
+      "Street":  "123 Maple Street",
+      "City":  "New York",
+      "State":  "NY",
+      "ZipCode":  "10001"
+    },
+    {
+      "Street":  "789 Pine Lane",
+      "City":  "Los Angeles",
+      "State":  "CA",
+      "ZipCode":  "90001"
+    },
+    {
+      "Street":  "321 Elm Drive",
+      "City":  "Houston",
+      "State":  "TX",
+      "ZipCode":  "77001"
+    },
+    {
+      "Street":  "654 Cedar Road",
+      "City":  "Phoenix",
+      "State":  "AZ",
+      "ZipCode":  "85001"
+    },
+    {
+      "Street":  "987 Ash Boulevard",
+      "City":  "Philadelphia",
+      "State":  "PA",
+      "ZipCode":  "19101"
+    },
+    {
+      "Street":  "147 Birch Street",
+      "City":  "San Antonio",
+      "State":  "TX",
+      "ZipCode":  "78201"
+    },
+    {
+      "Street":  "258 Willow Lane",
+      "City":  "San Diego",
+      "State":  "CA",
+      "ZipCode":  "92101"
+    },
+    {
+      "Street":  "369 Spruce Drive",
+      "City":  "Dallas",
+      "State":  "TX",
+      "ZipCode":  "75201"
+    },
+    {
+      "Street":  "159 Cherry Lane",
+      "City":  "Austin",
+      "State":  "TX",
+      "ZipCode":  "73301"
+    },
+    {
+      "Street":  "Main St",
+      "City":  "San Jose",
+      "State":  "PA",
+      "ZipCode":  "95101"
+    },
+    {
+      "Street":  "Pine St",
+      "City":  "Los Angeles",
+      "State":  "CA",
+      "ZipCode":  "90001"
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

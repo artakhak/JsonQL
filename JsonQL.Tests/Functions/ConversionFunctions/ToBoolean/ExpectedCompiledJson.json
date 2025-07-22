@@ -1,0 +1,25 @@
+{
+  "Object1": {
+    "InvalidBooleanText": "TRue",
+    "TrueText1": "True",
+    "TrueText2": "true",
+    "FalseText1": "False",
+    "FalseText2": "false",
+    "TrueValue": true,
+    "FalseValue": false
+  },
+  "ConvertToBoolean1": "'' is ToBoolean('InvalidBooleanText')==null",
+  "ConvertToBoolean2": "'' is ToBoolean('InvalidBooleanText')==null",
+  "ConvertToBoolean3": "true is (ToBoolean('True')==true)==true",
+  "ConvertToBoolean4": "true is (ToBoolean('true')==true)==true",
+  "ConvertToBoolean5": "true is (ToBoolean('False')==false)==true",
+  "ConvertToBoolean6": "true is (ToBoolean('false')==false)==true",
+  "ConvertToBoolean7": "true is (ToBoolean(true)==true)==true",
+  "ConvertToBoolean8": "true is (ToBoolean(false)==false)==true",
+  "ConvertToBoolean9": "true is (ToBoolean('True')==true)==true",
+  "ConvertToBoolean10": "true is (ToBoolean('true')==true)==true",
+  "ConvertToBoolean11": "true is (ToBoolean('False')==false)==true",
+  "ConvertToBoolean12": "true is (ToBoolean('false')==false)==true",
+  "ConvertToBoolean13": "true is (ToBoolean(true)==true)==true",
+  "ConvertToBoolean14": "true is (ToBoolean(false)==false)==true"
+}

@@ -1,0 +1,36 @@
+{
+  "Employees": [
+    {
+      "EmplyeeId": 1,
+      "Salary": 99000
+    },
+    {
+      "EmplyeeId": 2,
+      "Salary": 110000
+    },
+    {
+      "EmplyeeId": 3,
+      "Salary": 120000
+    },
+    {
+      "EmplyeeId": 4,
+      "Salary": 140000
+    }
+  ],
+  "Salaries": [
+    99000,
+    110000,
+    120000,
+    140000
+  ],
+  "AllParametersSpecifiedInOriginalOrder_1": "123333.33333333333 is 123333.33333333333",
+  "AllParametersSpecifiedInOriginalOrder_2": "117250 is 117250",
+  "OptionalParameters_criteria_and_value_Not_Specified": "117250 is 117250",
+  "LastOptionalParameter_value_Not_Specified": "123333.33333333333 is 123333.33333333333",
+  "AllParametersSpecifiedAsnamedParameters_OriginalOrder": "123333.33333333333 is 123333.33333333333",
+  "AllParametersSpecifiedAsnamedParameters_ReversedOrder": "123333.33333333333 is 123333.33333333333",
+  "SecondOptionalParameterMisingAndThirdParameterSpecifiedViaNamedParameter_1": "117250 is 117250",
+  "SecondOptionalParameterMisingAndThirdParameterSpecifiedViaNamedParameter_2": "117250 is 117250",
+  "ThirdOptionalParameterMisingAndSecondParameterSpecifiedViaNamedParameter_1": "123333.33333333333 is 123333.33333333333",
+  "ThirdOptionalParameterMisingAndSecondParameterSpecifiedViaNamedParameter_2": "123333.33333333333 is 123333.33333333333"
+}

@@ -1,0 +1,16 @@
+{
+  "Object1": {
+    "InvalidDateTimeText": "DateTime",
+    "DateTimeText1": "2022-05-23T18:25:43.511Z",
+    "DateTimeText2": "2022-05-23T18:25:43",
+    "DateTimeText3": "2022-05-23"
+  },
+  "ConvertToDate1": "'' is ToDate('InvalidDateTimeText')==null",
+  "ConvertToDate2": "'' is ToDate('InvalidDateTimeText')==null",
+  "ConvertToDate3": "ToDate(Object1.DateTimeText1) is '2022-05-23 00:00:00.0000000' and (typeof ToDate(Object1.DateTimeText1)) is 'DateTime'",
+  "ConvertToDate4": "ToDate(Object1.DateTimeText2) is '2022-05-23 00:00:00.0000000' and (typeof ToDate(Object1.DateTimeText2)) is 'DateTime'",
+  "ConvertToDate5": "ToDate(Object1.DateTimeText3) is '2022-05-23 00:00:00.0000000' and (typeof ToDate(Object1.DateTimeText3)) is 'DateTime'",
+  "ConvertToDate6": "ToDate('2022-05-23T18:25:43.511Z') is '2022-05-23 00:00:00.0000000' and (typeof ToDate('2022-05-23T18:25:43.511Z')) is 'DateTime'",
+  "ConvertToDate7": "ToDate('2022-05-23T18:25:43') is '2022-05-23 00:00:00.0000000' and (typeof ToDate('2022-05-23T18:25:43')) is 'DateTime'",
+  "ConvertToDate8": "ToDate('2022-05-23') is '2022-05-23 00:00:00.0000000' and (typeof ToDate('2022-05-23')) is 'DateTime'"
+}

@@ -1,0 +1,32 @@
+{
+  "Employees": [
+    {
+      "id": 100000001,
+      "firstName": "John",
+      "lastName": "Smith",
+      "phones": [ "+1-202-555-0183" ],
+      "address": {
+        "street": "456 Oak Avenue",
+        "city": "Chicago",
+        "state": "IL",
+        "zipCode": "60601"
+      },
+      "salary": 100000,
+      "age": 45
+    },
+    {
+      "id": 100000004,
+      "firstName": "Emily",
+      "lastName": "Davis",
+      "phones": [ "+1-212-555-0156", "+1-718-555-0147" ],
+      "address": {
+        "street": "321 Elm Drive",
+        "city": "Houston",
+        "state": "TX",
+        "zipCode": "77001"
+      },
+      "salary": 92000,
+      "age": 42
+    }
+  ]
+}

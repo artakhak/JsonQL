@@ -1,0 +1,121 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [
+        5,
+        "test",
+        20
+      ],
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": [
+    ]
+  },
+  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not on collections resulted from using Where(), Flatten() and others,",
+  "Comment_Line2": "and the following expression will not work",
+  "Comment_Line3": "(Object1.Array1.Where(x => x != 2)[2]))",
+  "Comment_Line4": "and At(2) function should be used instead as shown below",
+  "Get_Third_Item_In_Result_Of_Where": {
+    "EmployeeId": 1
+  },
+  "GetFirstEmployeeWithSalaryGreaterThan_100000": {
+    "EmployeeId": 3,
+    "Age": 75,
+    "Salary": 120000
+  },
+  "GetThirdEmployeeWithSalaryGreaterThan_100000": {
+    "EmployeeId": 201,
+    "Age": 39,
+    "Salary": 103000
+  },
+  "GetThirdItemInArray": {
+    "EmployeeId": 1
+  },
+  "GetCompanyWithFirstEmpoyeeId_100_UsingAt_1": [
+    {
+      "Name": "Company2"
+    },
+    {
+      "EmployeeId": 100,
+      "Age": 47,
+      "Salary": 110000
+    },
+    {
+      "EmployeeId": 102,
+      "Age": 65,
+      "Salary": 95000
+    },
+    {
+      "EmployeeId": 103,
+      "Age": 715,
+      "Salary": 98000
+    }
+  ],
+  "GetCompanyWithFirstEmpoyeeId_100_UsingAt_2": [
+    {
+      "Name": "Company2"
+    },
+    {
+      "EmployeeId": 100,
+      "Age": 47,
+      "Salary": 110000
+    },
+    {
+      "EmployeeId": 102,
+      "Age": 65,
+      "Salary": 95000
+    },
+    {
+      "EmployeeId": 103,
+      "Age": 715,
+      "Salary": 98000
+    }
+  ],
+  "GetCompanyWithFirstEmpoyeeId_100_UsingIndex": [
+    {
+      "Name": "Company2"
+    },
+    {
+      "EmployeeId": 100,
+      "Age": 47,
+      "Salary": 110000
+    },
+    {
+      "EmployeeId": 102,
+      "Age": 65,
+      "Salary": 95000
+    },
+    {
+      "EmployeeId": 103,
+      "Age": 715,
+      "Salary": 98000
+    }
+  ],
+  "UseArrayIndexerOnResultOfAt": "test",
+  "PredicateWith_At": 4,
+  "PredicateWith_And_ReverseSearch_With_At": [
+    5,
+    "test",
+    20
+  ],
+  "ReverseSearch_With_At": 6
+}

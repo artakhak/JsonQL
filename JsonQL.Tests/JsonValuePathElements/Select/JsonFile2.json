@@ -1,0 +1,60 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [ 5, "test", 20 ],
+      6,
+      13,
+      4
+    ],
+    "Object2": [
+      { "Value": 1 },
+      { "Value": 3 },
+      { "Value": 2 },
+      { "Value": 9 },
+      { "Test": 17 }
+    ]
+
+  },
+
+  "SelectAllEmployeeIds": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Select(x => x.EmployeeId))"
+  ],
+  "SelectAllEmployeeIds_WithSalariesGreaterThan_80000": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => x.Salary > 80000).Select(x => x.EmployeeId))"
+  ],
+  "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => x.Salary > 80000).Select(x => x.Address))"
+  ],
+  "SelectAllEmployeeStreets_WithSalariesGreaterThan_80000": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => x.Salary > 80000).Select(x => x.Address.Street))"
+  ],
+  "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000_InCity1_or_City3_1": [
+    "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Where(x => x.Salary > 80000).Select(x => x.Address).Where(x => x.City == 'City 1' || x.City == 'City 3'))"
+  ],
+  "AverageEmpoyeeAgee_In_Company_1_or_Company3": "$(Average(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Select(x => x.Age)))",
+  "MaxNumberOfHomesOfEmployees_In_Company_1_or_Company3": "$(Max(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Select(x => x.Assets.NumberOfHomes)))",
+
+  "SelectWithWhere": [
+    "$merge(Object1.Select(x => x.Object2.Where(y => HasField(y, 'Value'))))"
+  ],
+
+  "AverageSalaryAcrossCompanies": {
+    "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
+    "AverageSalary": "$(Average(Companies.Select(x => x.Employees.Select(x => x.Salary))))"
+  }
+}

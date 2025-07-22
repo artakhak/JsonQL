@@ -1,0 +1,2 @@
+The projects in Dependencies folder are projects for Nuget packages that can be found in different Git repositories using the project names.
+Just unload these projects if you see error messages.

@@ -1,0 +1,126 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.List`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests]], System.Private.CoreLib]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests]], System.Private.CoreLib]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests",
+            "$values": [
+              {
+                "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Employee, JsonQL.Tests",
+                "Id": 100000005,
+                "FirstName": "Christopher",
+                "LastName": "Garcia",
+                "Address": {
+                  "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+                  "Street": "654 Cedar Road",
+                  "City": "Phoenix",
+                  "State": "AZ",
+                  "ZipCode": "85001",
+                  "County": null
+                },
+                "EmergencyContacts": null,
+                "Salary": 111000,
+                "Age": 29,
+                "Manager": null,
+                "Phones": {
+                  "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+                  "$values": [
+                    "+1-713-555-0165"
+                  ]
+                }
+              },
+              {
+                "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Employee, JsonQL.Tests",
+                "Id": 100000001,
+                "FirstName": "John",
+                "LastName": "Smith",
+                "Address": {
+                  "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+                  "Street": "456 Oak Avenue",
+                  "City": "Chicago",
+                  "State": "IL",
+                  "ZipCode": "60601",
+                  "County": null
+                },
+                "EmergencyContacts": null,
+                "Salary": 99500,
+                "Age": 45,
+                "Manager": null,
+                "Phones": {
+                  "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+                  "$values": [
+                    "+1-202-555-0183"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests",
+            "$values": [
+              {
+                "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Employee, JsonQL.Tests",
+                "Id": 100000002,
+                "FirstName": "Alice",
+                "LastName": "Johnson",
+                "Address": {
+                  "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.Address, JsonQL.Tests",
+                  "Street": "123 Maple Street",
+                  "City": "New York",
+                  "State": "NY",
+                  "ZipCode": "10001",
+                  "County": null
+                },
+                "EmergencyContacts": null,
+                "Salary": 105000,
+                "Age": 38,
+                "Manager": null,
+                "Phones": {
+                  "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+                  "$values": [
+                    "+1-202-555-0183"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests]], System.Private.CoreLib",
+        "$values": [
+          null,
+          {
+            "$type": "JsonQL.Tests.QueryManager.ResultAsObject.Models.IEmployee[], JsonQL.Tests",
+            "$values": []
+          }
+        ]
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

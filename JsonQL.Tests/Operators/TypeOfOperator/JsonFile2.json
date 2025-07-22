@@ -1,0 +1,16 @@
+{
+  "TypeOf_MissingValue": "'$(typeof parent.MissingValue)' is 'Undefined'",
+  "TypeOf_DoubleJsonValue": "'$(typeof parent.Double1)' is 'Number'",
+  "TypeOf_DoubleFunction": "'$(typeof (parent.Double1 + 10))' is 'Number'",
+  "TypeOf_NullValueInJsonObject": "'$(typeof parent.NullValue1)' is 'JsonNull'",
+  "TypeOf_NullValueInArray": "'$(typeof parent.Array1[1])' is 'JsonNull'",
+  "TypeOf_Array1": "'$(typeof parent.Array1)' is 'JsonArray'",
+  "TypeOf_CollectionType": "'$(typeof parent.Array1.Where(x => x > 0))' is 'Collection'",
+  "TypeOf_DateTime1": "'$(typeof parent.DateTime1)' is 'String'",
+  "TypeOf_DateTimeFunction": "'$(typeof ToDateTime(parent.DateTime1))' is 'DateTime'",
+  "TypeOf_Boolean_True": "'$(typeof parent.Boolean_True)' is 'Boolean'",
+  "TypeOf_Boolean_False": "'$(typeof parent.Boolean_False)' is 'Boolean'",
+  "TypeOf_BooleanFunction": "'$(typeof (parent.Double1 > 1))' is 'Boolean'",
+  "TypeOf_String1": "'$(typeof parent.String1)' is 'String'",
+  "TypeOf_StringFunction": "'$(typeof Concatenate(parent.String1, '_', parent.Array1[0]))' is 'String'"
+}

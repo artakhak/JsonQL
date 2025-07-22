@@ -1,0 +1,36 @@
+{
+  "Example": {
+    "Object1": {
+      "Int1": 123,
+      "Int2": 456,
+      "String1": "String 1",
+      "String2": "String 2",
+      "DateTime1": "2012-04-23T18:25:43.511Z"
+    }
+  },
+  "Array1": [
+    1,
+    "Value 2",
+    { "Int1": 15 },
+    3
+  ],
+  "Object2": {
+    "Value1_MainValue": "$(Example.Object1.Int1:17) is 123 and did not default to 17",
+    "Value1_DefaultValue": "$(Example.Object1.NonExistentInt:17) is defaulted to 17",
+
+    "Value2_MainValue": "'$(Example.Object1.String1:'Default string')' is 'String 1' and did not default to 'Default string'",
+    "Value2_DefaultValue": "'$(Example.InvalidObject.String1:'Default string')' defaulted to 'Default string'",
+
+    "Value3_MainValue": "$(Array1[0]:19) is 1 and did not default to 19",
+    "Value3_DefaultValue": "$(Array1[1000]:19) is defaulted to 19",
+
+    "Value4_MainValue": "'$(Array1[1]:'Defaul string')' is 'Value 2' and did not default to 'Default string'",
+    "Value4_DefaultValue": "'$(NonExistentArray1[1000]:'Default string')' is defaulted to 'Default string'",
+
+    "Value5_MainValue": "$(Array1[2].Int1:-1) is 15 and did not default to -1",
+    "Value5_DefaultValue": "$(Array1[2].IntInvalid:-1) is defaulted to -1",
+
+    "Value6_MainValue": "'$(ToDateTime(Example.Object1.DateTime1):ToDateTime('2022-05-23T18:25:43.511Z'))' is '2012-04-23T18:25:43.511Z0000' and did not default to '2022-05-23T18:25:43.511Z0000'",
+    "Value6_DefaultValue": "'$(ToDateTime(Example.Object1.DateTimeInvalid):ToDateTime('2022-05-23T18:25:43.511Z'))' is defaulted to '2022-05-23T18:25:43.511Z'"
+  }
+}

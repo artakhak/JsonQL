@@ -1,0 +1,49 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+
+  "SumOfArrayEvenNumbers1": "$(Sum(Object1.Array1.Where(x => typeof x == 'Number'), x => IsEven(x))) is 12",
+  "SumOfArrayEvenNumbers2": "$(Sum(Object1.Array1, x => IsEven(x))) is 12",
+  "SumOfEmptyArray": "'$(Sum(Object1EmptyArray))' is null",
+  "SumOfEmptyArrayWithDefault": "$(Sum(Object1EmptyArray):0) is 0",
+  "SumOfEmptyCollection": "'$(Sum(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000))' is null",
+  "SumOfEmptyCollectionWithDefault": "$(Sum(Object1.Array1.Where(x => typeof x == 'Number'), x => x > 1000):0) is 0",
+  "SumOfArrayOddNumbers": "$(Sum(Object1.Array1, x => IsOdd(x))) is 14",
+  "SumOfAllArrayValuesWithoutCriteria": "$(Sum(Object1.Array1)) is 26",
+  "SumOfAllCollectionValuesWithoutCriteria": "$(Sum(Object1.Array1.Where(x => x != 13))) is 13",
+  "SubArraysWithSumOfEvenNumbersLessThan_56": [
+    "$merge(parent.Object1.Array2.Where(x => Sum(x, y => typeof y == 'Number' && IsEven(y)) < 38))"
+  ],
+  "SubArraysWithSumOfOddNumbersLessThan_43": [
+    "$merge(parent.Object1.Array2.Where(x => Sum(x, y => IsOdd(y)) < 43))"
+  ],
+
+
+  "Sum_InMultipleArrays1": "$(Sum(parent.Object1.Array2.Flatten(), x => x < 19)) is 99",
+  "Sum_InMultipleArrays2": "'$(Sum(parent.Object1.Array2.Flatten(), x => x == 'test2'))' is null",
+
+  "SumOfSalariesOfEmployeesEarningLessThan_120000_1": "$(Sum(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary < 120000, x => x.Salary)) is 586000",
+  "SumOfSalariesOfEmployeesEarningMoreThan_120000_2": "$(Sum(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')  && x.Salary < 120000), value->x => x.Salary)) is 586000",
+  "SumOfSalariesOfEmployeesEarningMoreThan_20000": "'$(Sum(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId') && x.Salary > 200000), value->x => x.Salary))' is null"
+}

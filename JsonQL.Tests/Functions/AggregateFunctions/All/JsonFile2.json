@@ -1,0 +1,32 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      4
+    ]
+  },
+  "AllNumbersAreEven": "$(All(Object1.EvenNumbersArray.Where(x => typeof x == 'Number'), x => x % 2 == 0)) is true",
+  "AllItemsAreNumbers": "$(All(Object1.EvenNumbersArray, x => typeof x == 'Number')) is false",
+  "SubArraysWithOnlyNumbers": [
+    "$merge(parent.Object1.Array2.Where(x => All(x, y => typeof y == 'Number')))"
+  ],
+  "All_InMultipleArrays1": "$(All(parent.Object1.Array2.Flatten().Where(x => x != 'test1' && x != true), x => typeof x == 'Number')) is true",
+  "All_InMultipleArrays2": "$(All(parent.Object1.Array2.Flatten().Where(x => x != 'test1'), x => typeof x == 'Number')) is false",
+  "AllEmployeesEarnMoreThan_60000": "$(All(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 60000)) is true",
+  "AllEmployeesEarnMoreThan_100000": "$(All(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 100000)) is false"
+}

@@ -1,0 +1,36 @@
+{
+  "Comment1": "value mutation function can be used both with a space without opening/closing bracases ",
+  "Comment2": "as in this example:",
+  "ExampleWithoutBraces": "$value Object1.Array2[1, 1, 2] + 1",
+  "Comment4": "as well as using opening/closing braces, such as in this example:",
+  "ExampleWithBraces": "$value(Object1.Array2[1, 1, 2] + 1)",
+
+  "AverageSalary": "$value Average(Companies.Select(x => x.Employees.Select(x => x.Salary)))",
+  "AverageSalaryPlus10": "$value Average(Companies.Select(x => x.Employees.Select(x => x.Salary))) + 10",
+  "StringExpression": "$value Concatenate('Average is :', Average(Companies.Select(x => x.Employees.Select(x => x.Salary))))",
+
+  "ResultOfMultipleItemsSelectorQuery1": "$value Object1.Array2[1, 1].Where(x => x > 10)",
+  "ResultOfMultipleItemsSelectorQuery2": "$value Object1.Array2.Flatten().Where(x => Max(x) >= 9)",
+  "ResultOfSingleItemSelectorQuery1": "$value Object1.Array2",
+  "ResultOfSingleItemSelectorQuery2": "$value Object1.Array2[1, 1]",
+  "ResultOfSingleItemSelectorQuery3": "$value(Object1.Array2.Flatten().At(2))",
+  "ResultOfNonPathNumericExpression1": "$value(Object1.Array2[1, 1, 2] + 1)",
+  "ResultOfNonPathBooleanExpression1": "$value(Object1.Array2[1, 1, 2] == 12)",
+  "ResultOfNonPathDateTimeExpression1": "$value(ToDateTime('2022-05-23T18:25:43.511Z'))",
+  "ResultOfNonPathStringExpression1": "$value Concatenate('Date time is :''', ToDateTime('2022-05-23T18:25:43.511Z'), '''')",
+  "ArrayValueInAnotherArray": [
+    "START",
+    "$value Object1.Array2[1, 1]",
+    "END"
+  ],
+  "SingleValueInArray": [
+    "START",
+    "$value  Object1.Array2[1, 1, 0]",
+    "END"
+  ],
+  "ExpressionInArray": [
+    "START",
+    "$value  Object1.Array2[1, 1, 0] + 1",
+    "END"
+  ]
+}

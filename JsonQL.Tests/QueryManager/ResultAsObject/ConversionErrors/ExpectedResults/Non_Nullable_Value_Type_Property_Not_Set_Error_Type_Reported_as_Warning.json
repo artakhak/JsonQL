@@ -1,0 +1,146 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.IEmployee, JsonQL.Tests]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.IEmployee, JsonQL.Tests]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.Employee, JsonQL.Tests",
+        "Id": 100000002,
+        "FirstName": "Alice",
+        "LastName": "Johnson",
+        "Address": {
+          "$type": "JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.Address, JsonQL.Tests",
+          "Street": "123 Maple Street",
+          "City": "New York",
+          "State": "NY",
+          "ZipCode": "10001",
+          "County": null
+        },
+        "Salary": 105000,
+        "Age": 0,
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "+1-202-555-0183"
+          ]
+        }
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.JsonToObjectConversion.ConversionError, JsonQL",
+            "ErrorType": 3,
+            "JsonPath": {
+              "$type": "JsonQL.JsonObjects.JsonPath.JsonPath, JsonQL",
+              "JsonTextIdentifier": "Query_849E0817-3256-483D-8E97-01744EBC3F76",
+              "Path": {
+                "$type": "System.Collections.Generic.List`1[[JsonQL.JsonObjects.JsonPath.IJsonPathElement, JsonQL]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "Root"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "query"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL",
+                    "Indexes": {
+                      "$type": "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib",
+                      "$values": [
+                        0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "PathInReferencedJson": {
+              "$type": "JsonQL.JsonObjects.JsonPath.JsonPath, JsonQL",
+              "JsonTextIdentifier": "JsonFile1.json",
+              "Path": {
+                "$type": "System.Collections.Generic.List`1[[JsonQL.JsonObjects.JsonPath.IJsonPathElement, JsonQL]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "Root"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "Companies"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL",
+                    "Indexes": {
+                      "$type": "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib",
+                      "$values": [
+                        0
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "Employees"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL",
+                    "Indexes": {
+                      "$type": "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib",
+                      "$values": [
+                        1
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "Error": "Failed to retrieve and set the value of non-nullable property [Age] in type [JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.Employee].",
+            "ConvertedObjectPath": {
+              "$type": "JsonQL.JsonToObjectConversion.ConvertedObjectPath.ConvertedObjectPath, JsonQL",
+              "RootConvertedObjectPathElement": {
+                "$type": "JsonQL.JsonToObjectConversion.ConvertedObjectPath.RootConvertedObjectPathElement, JsonQL",
+                "Name": "Root",
+                "ObjectType": "System.Collections.Generic.List`1[[JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.IEmployee, JsonQL.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+              },
+              "Path": {
+                "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.ConvertedObjectPath.IConvertedObjectPathValueSelectorElement, JsonQL]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$type": "JsonQL.JsonToObjectConversion.ConvertedObjectPath.IndexConvertedObjectPathElement, JsonQL",
+                    "Name": "0",
+                    "ObjectType": "JsonQL.Tests.QueryManager.ResultAsObject.ConversionErrors.Models.IEmployee, JsonQL.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+                  },
+                  {
+                    "$type": "JsonQL.JsonToObjectConversion.ConvertedObjectPath.PropertyNameConvertedObjectPathElement, JsonQL",
+                    "Name": "Age",
+                    "ObjectType": "System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

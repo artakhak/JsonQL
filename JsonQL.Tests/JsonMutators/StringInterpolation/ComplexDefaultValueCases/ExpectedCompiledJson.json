@@ -1,0 +1,10 @@
+{
+  "Object2": {
+    "NoDefault": "123 is not defaulted and is 123",
+    "NoDefaultWithoutBraces": "123 is not defaulted and is 123",
+    "FirstDefaultValueExists": "1 is defaulted to parent.Array1[0]=1",
+    "FirstDefaultValueExistsWithoutBraces": "1 is defaulted to parent.Array1[0]=1",
+    "SecondDefaultValueExists": "3 is defaulted to parent.Array1[2]=3",
+    "SecondDefaultValueExistsWithoutBraces": "3 is defaulted to parent.Array1[2]=3"
+  }
+}

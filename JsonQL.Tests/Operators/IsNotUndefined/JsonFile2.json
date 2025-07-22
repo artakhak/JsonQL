@@ -1,0 +1,58 @@
+{
+  "Variables": {
+    "x": null,
+    "y": 10,
+    "Array1": [
+      1,
+      "a",
+      3,
+      [ 5, 2 ]
+    ]
+  },
+
+  "Comment1": "'is null' operator returns true only if the path references an existing json null value",
+  "Comment2": "To check if path is invalid, All other cases, like path is invalid, 'is undefined' can be used.",
+
+  "InvalidPath_IsNotUndefined_false": "$(this.Variables.Invalid is not undefined) is false",
+  "InvalidPath_InParent_IsNotUndefined_false": "$(parent.Variables.Invalid is not undefined) is false",
+
+  "ValidPath_IsNotUndefined_true": "$(this.Variables.x is not undefined) is true",
+  "ValidPath_InParent_IsNotUndefined_true": "$(parent.Variables.x is not undefined) is true",
+
+  "SelectedCollectionEmpty_IsNotUndefined_true": "$(this.Variables.Array1.Where(x => false) is not undefined) is true",
+
+  "ValidArrayIndex_IsNotUndefined_true_1": "$(this.Variables.Array1[1] is not undefined) is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_1": "$(parent.Variables.Array1[1] is not undefined) is true",
+
+  "ValidArrayIndex_IsNotUndefined_true_2": "$(this.Variables.Array1[3, 1] is not undefined) is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_2": "$(parent.Variables.Array1[3, 1] is not undefined) is true",
+
+  "ValidArrayIndex_IsNotUndefined_true_3": "$(this.Variables.Array1.Where(x => x != 'a').At(2) is not undefined) is true",
+  "ValidArrayIndex_InParent_IsNotUndefined_true_3": "$(parent.Variables.Array1.Where(x => x != 'a').At(2) is not undefined) is true",
+
+  "IndexOutOfRange_IsNotUndefined_false_1": "$(this.Variables.Array1[4] is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_1": "$(parent.Variables.Array1[4] is not undefined) is false",
+
+  "IndexOutOfRange_IsNotUndefined_false_2": "$(this.Variables.Array1[3, 2] is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_true_2": "$(parent.Variables.Array1[3, 2] is not undefined) is false",
+
+  "IndexOutOfRange_IsNotUndefined_false_3": "$(this.Variables.Array1[3, 2, 0] is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_3": "$(parent.Variables.Array1[3, 2, 0] is not undefined) is false",
+
+  "IndexOutOfRange_IsNotUndefined_false_4": "$(this.Variables.Array1.Where(x => x != 'a').At(3) is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_4": "$(parent.Variables.Array1.Where(x => x != 'a').At(3) is not undefined) is false",
+
+  "IndexOutOfRange_IsNotUndefined_false_5": "$(this.Variables.Array1.Where(x => x != 'a').First(x => false) is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_5": "$(parent.Variables.Array1.Where(x => x != 'a').First(x => false) is not undefined) is false",
+
+  "IndexOutOfRange_IsNotUndefined_false_6": "$(this.Variables.Array1.Where(x => x != 'a').Last(x => false) is not undefined) is false",
+  "IndexOutOfRange_InParent_IsNotUndefined_false_6": "$(parent.Variables.Array1.Where(x => x != 'a').Last(x => false) is not undefined) is false",
+
+  "IndexUsedWithNonArray_IsNotUndefined_false": "$(this.Variables.y[0] is not undefined) is false",
+  "IndexUsedWithNonArray_InParent_IsNotUndefined_false": "$(parent.Variables.y[0] is not undefined) is false",
+
+  "IndexUsedWithNullValue_IsNotUndefined_false": "$(this.Variables.x[0] is not undefined) is false",
+  "IndexUsedWithNullValue_InParent_IsNotUndefined_false": "$(parent.Variables.x[0] is not undefined) is false",
+
+  "ArithmeticValueWithUndefinedValue_IsNotIndefined": "$((this.Variables.y + this.Variables.Invalid) is not undefined) is false"
+}

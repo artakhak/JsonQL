@@ -1,0 +1,76 @@
+[
+  [ 1 ],
+  [
+    {
+      "Company": "Company1",
+      "Capitalization": 300
+    },
+    {
+      "EmployeeId": 1,
+      "Age": 20,
+      "Address": "Street 1"
+    },
+    {
+      "EmployeeId": 2,
+      "CompanyId": "Company1",
+      "Age": 65,
+      "Address": "Street 2"
+    },
+    {
+      "EmployeeId": 3,
+      "CompanyId": "Company1",
+      "Age": 62,
+      "Address": "Street 3"
+    }
+  ],
+  [
+    {
+      "Company": "Company2",
+      "Capitalization": 500
+    },
+    {
+      "EmployeeId": 1,
+      "CompanyId": "Company2",
+      "Name": "John",
+      "Age": 20,
+      "Address": "Street 4"
+    },
+    {
+      "EmployeeId": 2,
+      "CompanyId": "Company2",
+      "Age": 65,
+      "Address": "Street 5"
+    },
+    {
+      "EmployeeId": 3,
+      "CompanyId": "Company2",
+      "Age": 66,
+      "Address": "Street 6"
+    }
+  ],
+  [ 1, 2, 3 ],
+  [
+    {
+      "Company": "Company3",
+      "Capitalization": 600
+    },
+    {
+      "EmployeeId": 1,
+      "CompanyId": "Company3",
+      "Age": 69,
+      "Address": "Street 7"
+    },
+    {
+      "EmployeeId": 2,
+      "CompanyId": "Company3",
+      "Age": 32,
+      "Address": "Street 8"
+    },
+    {
+      "EmployeeId": 3,
+      "CompanyId": "Company3",
+      "Age": 67,
+      "Address": "Street 9"
+    }
+  ]
+]

@@ -1,0 +1,112 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [
+        1,
+        3
+      ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [
+        5,
+        "test",
+        20
+      ],
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": [
+    ]
+  },
+  "GetAllValues_Between_2_And_6": [
+    2,
+    6,
+    4
+  ],
+  "GetAllValues_In_Array_And_Sub_Arrays_Between_2_And_6": [
+    2,
+    5,
+    6,
+    4
+  ],
+  "GetAllCompaniesWithName_Company1_or_Company3": [
+    "START",
+    [
+      {
+        "Name": "Company1"
+      },
+      {
+        "EmployeeId": 1,
+        "Age": 55,
+        "Salary": 100000
+      },
+      {
+        "EmployeeId": 2,
+        "Age": 45,
+        "Salary": 80000
+      },
+      {
+        "EmployeeId": 3,
+        "Age": 75,
+        "Salary": 120000
+      }
+    ],
+    [
+      {
+        "Name": "Company3"
+      },
+      {
+        "EmployeeId": 201,
+        "Age": 39,
+        "Salary": 103000
+      },
+      {
+        "EmployeeId": 202,
+        "Age": 59,
+        "Salary": 175000
+      }
+    ],
+    "END"
+  ],
+  "GetAllEmployees_in_Company1_and_Company3": [
+    {
+      "EmployeeId": 1,
+      "Age": 55,
+      "Salary": 100000
+    },
+    {
+      "EmployeeId": 2,
+      "Age": 45,
+      "Salary": 80000
+    },
+    {
+      "EmployeeId": 3,
+      "Age": 75,
+      "Salary": 120000
+    },
+    {
+      "EmployeeId": 201,
+      "Age": 39,
+      "Salary": 103000
+    },
+    {
+      "EmployeeId": 202,
+      "Age": 59,
+      "Salary": 175000
+    }
+  ],
+  "GetAverageEmployeeSallary_in_Company1_and_Company3": "115600",
+  "GetAverageValueOfArrayAndSubArrays": "4.25"
+}

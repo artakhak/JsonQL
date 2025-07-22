@@ -1,0 +1,8 @@
+{
+  "Object1": {
+    "String1": "TEST_1"
+  },
+
+  "Test1": "$(Lower(Object1.String1)) is 'test_1'",
+  "Test2": "$(Lower('TEST_1')) is 'test_1'"
+}

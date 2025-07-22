@@ -1,0 +1,33 @@
+{
+  "Object1": {
+    "InvalidBooleanText": "TRue",
+    "TrueText1": "True",
+    "TrueText2": "true",
+    "FalseText1": "False",
+    "FalseText2": "false",
+    "TrueValue": true,
+    "FalseValue": false
+
+  },
+
+  "ConvertToBoolean1": "'$(ToBoolean(Object1.InvalidBooleanText, false))' is ToBoolean('InvalidBooleanText')==null",
+  "ConvertToBoolean2": "'$(ToBoolean(Object1.InvalidBooleanText))' is ToBoolean('InvalidBooleanText')==null",
+
+  "ConvertToBoolean3": "$(ToBoolean(Object1.TrueText1) == true) is (ToBoolean('True')==true)==true",
+  "ConvertToBoolean4": "$(ToBoolean(Object1.TrueText2) == true) is (ToBoolean('true')==true)==true",
+
+  "ConvertToBoolean5": "$(ToBoolean(Object1.FalseText1) == false) is (ToBoolean('False')==false)==true",
+  "ConvertToBoolean6": "$(ToBoolean(Object1.FalseText2) == false) is (ToBoolean('false')==false)==true",
+
+  "ConvertToBoolean7": "$(ToBoolean(Object1.TrueValue) == true) is (ToBoolean(true)==true)==true",
+  "ConvertToBoolean8": "$(ToBoolean(Object1.FalseValue) == false) is (ToBoolean(false)==false)==true",
+
+  "ConvertToBoolean9": "$(ToBoolean('True') == true) is (ToBoolean('True')==true)==true",
+  "ConvertToBoolean10": "$(ToBoolean('true') == true) is (ToBoolean('true')==true)==true",
+
+  "ConvertToBoolean11": "$(ToBoolean('False') == false) is (ToBoolean('False')==false)==true",
+  "ConvertToBoolean12": "$(ToBoolean('false') == false) is (ToBoolean('false')==false)==true",
+
+  "ConvertToBoolean13": "$(ToBoolean(true) == true) is (ToBoolean(true)==true)==true",
+  "ConvertToBoolean14": "$(ToBoolean(false) == false) is (ToBoolean(false)==false)==true"
+}

@@ -1,0 +1,41 @@
+{
+  "Object1": {
+    "DateTime1": "2022-05-23T18:25:43.511Z",
+    "Number1": 15.39,
+    "TrueText": "true",
+    "TrueValue": true,
+    "FalseText": "false",
+    "FalseValue": false
+
+  },
+  "Array1": [
+    "x",
+    "2022-05-23T18:25:43.511Z",
+    5,
+    [ 1, 2, 3 ],
+    6,
+    "2022-05-23T18:26:43.511Z",
+    true,
+    "true",
+    false,
+    "false"
+  ],
+
+  "DefaultValueOfValidValueIsOriginalValue_DateTime": "$(ToDateTime(Object1.DateTime1):ToDateTime('2000-01-01T00:00:00.000Z') == ToDateTime(Object1.DateTime1) && typeof (ToDateTime(Object1.DateTime1):ToDateTime('2000-01-01T00:00:00.000Z')) == 'DateTime') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime1": "$(ToDateTime(Object1.DateTime1_Invalid):ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1) && typeof (ToDateTime(Object1.DateTime1_Invalid):ToDateTime(Object1.DateTime1)) == 'DateTime') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime2": "$(Object1.DateTime1_Invalid:ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1) && typeof (Object1.DateTime1_Invalid:ToDateTime(Object1.DateTime1)) == 'DateTime') is true",
+
+  "DefaultValueOfValidValueIsOriginalValue_Double": "$(Object1.Number1:17.26 == Object1.Number1 && typeof (Object1.Number1:17.26) == 'Number') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double1": "$(ToDouble(Object1.Number1_Invalid):Object1.Number1 == Object1.Number1 && typeof (ToDouble(Object1.Number1_Invalid):Object1.Number1) == 'Number') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double2": "$(Object1.Number1_Invalid:Object1.Number1 == Object1.Number1 && typeof (Object1.Number1_Invalid:Object1.Number1) == 'Number') is true",
+
+  "DefaultValueOfValidValueIsOriginalValue_Boolean": "$(Object1.TrueValue:false == true && typeof (Object1.TrueValue:false) == 'Boolean') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean1": "$(ToBoolean(Object1.TrueValue_Invalid):ToBoolean(Object1.TrueText) == true && typeof (ToBoolean(Object1.TrueValue_Invalid):ToBoolean(Object1.TrueText)) == 'Boolean') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean2": "$(Object1.TrueValue_Invalid:ToBoolean(Object1.TrueText) == true && typeof (Object1.TrueValue_Invalid:ToBoolean(Object1.TrueText)) == 'Boolean') is true",
+
+  "DefaultValueOfValidValueIsOriginalValue_String": "$(Array1[0]:'y' == 'x' && typeof (Array1[0]:'y') == 'String') is true",
+  "DefaultValueOfInvalidValueIsDefaultValue_String": "$(Array1_Invalid[0]:'y' == 'y' && typeof (Array1_Invalid[0]:'y') == 'String') is true",
+
+  "DefaultValueOfAnyType": "$(Array1_Invalid[0]:Array1[0] == 'x' && typeof (Array1_Invalid[0]:Array1[0]) == 'String') is true",
+  "ArrayInitializedFromDefaultArray": "$value(NonExistentArray:Array1[3])"
+}

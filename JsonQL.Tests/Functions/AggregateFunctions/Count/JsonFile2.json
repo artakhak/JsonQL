@@ -1,0 +1,29 @@
+{
+  "Object1": {
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      6,
+      4
+    ]
+  },
+
+  "CountNumbers_1": "$(Count(Object1.Array1, x => typeof x == 'Number'))==4",
+  "CountNumbers_2": "$(Count(Object1.Array1, x => x > 1 && x <= 4))==2",
+  "CountAllItems": "$(Count(parent.Object1.Array1))==10",
+  "CountAllItems_GreaterThan_1": "$(Count(parent.Object1.Array1, x => x > 1))==2",  
+
+  "SubArrays_WithCount_Greater_Than_3": [
+    "$merge(parent.Object1.Array2.Where(x => Count(x) > 3))"
+  ],
+  "SubArrays_WithCountOfPositiveNumbersGreaterThan_2": [
+    "$merge(parent.Object1.Array2.Where(x => Count(x, y => y > 0) > 2))"
+  ],
+
+  "CountAllItemsInMultipleArrays": "$(Count(parent.Object1.Array2.Where(x => Count(x, y => y >= 0) >= 2).Flatten().Where(x => x % 2 == 0))) is (count of [8, 10, 2, 6, 10, 8, 20]) == 7)",
+  "CountNumberOfEmployeesInAllCompanies_Age_40_Or_Older": "$(Count(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId') && x.Age >= 40))) is 7"
+}

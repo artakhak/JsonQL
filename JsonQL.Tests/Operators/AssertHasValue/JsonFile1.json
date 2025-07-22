@@ -1,0 +1,31 @@
+{
+  "Object1": {
+    "DateTime1": "2022-05-23T18:25:43.511Z",
+    "Number1": 15.39,
+    "TrueText": "true",
+    "TrueValue": true,
+    "FalseText": "false",
+    "FalseValue": false
+
+  },
+  "Array1": [
+    "x",
+    "2022-05-23T18:25:43.511Z",
+    5,
+    [ 1, 2, 3 ],
+    6,
+    "2022-05-23T18:26:43.511Z",
+    true,
+    "true",
+    false,
+    "false"
+  ],
+  "AssertHasValue1": "$(ToDateTime(Object1.DateTime1) assert == ToDateTime(Object1.DateTime1) && typeof ToDateTime(Object1.DateTime1) assert == 'DateTime') is true",
+  "AssertHasValue2": "$(ToDouble(Object1.Number1) assert == ToDouble(Object1.Number1) && typeof ToDouble(Object1.Number1) assert == 'Number') is true",
+  "AssertHasValue3": "$(ToBoolean(Object1.TrueText) assert == ToBoolean(Object1.TrueText) && typeof ToBoolean(Object1.TrueText) assert == 'Boolean') is true",
+  "AssertHasValue4": "$(ToBoolean(Object1.FalseText) assert == ToBoolean(Object1.FalseText) && typeof ToBoolean(Object1.FalseText) assert == 'Boolean') is true",
+  "AssertHasValue5": "$(ToBoolean(Object1.TrueValue) assert == ToBoolean(Object1.TrueValue) && typeof ToBoolean(Object1.TrueValue) assert == 'Boolean') is true",
+  "AssertHasValue6": "$(ToBoolean(Object1.FalseValue) assert == ToBoolean(Object1.FalseValue) && typeof ToBoolean(Object1.FalseValue) assert == 'Boolean') is true",
+  "AssertHasValue7": "$(Object1.Setting1:Array1[2] assert) is 5",
+  "AssertHasValue8": "$(typeof Array1.Where(x => x > 5) assert == 'Collection') is true"
+}

@@ -1,0 +1,20 @@
+{
+  "Examples": {
+    "Object1": {
+      "Int1": 1,
+      "Int2": 2,
+      "String1": "String 1",
+      "Object1_1": {
+        "Int1": 3,
+        "String1": "String 2"
+      },
+      "Array1": [
+        1,
+        2,
+        {
+          "Int2": 22
+        }
+      ]
+    }
+  }
+}

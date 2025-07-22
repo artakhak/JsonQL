@@ -1,0 +1,14 @@
+{
+  "Array1": [
+    "Merge all items in array parent.Object1.Array1[1]",
+    "$merge(parent.Object1.Array1[1])"
+  ],
+  "Array2": [
+    "Merge all items in array parent.Object1.Array2[1, 1]",
+    "$merge(parent.Object1.Array2[1, 1])"
+  ],
+  "Array3": [
+    "Merge all items in array parent.Object1.Array2[1, 1] that are greater than 10 and are not equal to 13",
+    "$merge(parent.Object1.Array2[1, 1].Where(x => x > 10 && x != 13))"
+  ]
+}

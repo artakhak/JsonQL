@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <!--<PackageReference Include="OROptimizer.Shared" Version="2.3.0" />-->
+	  <ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+	  
+	  <!--<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />-->
+	  <ProjectReference Include="..\..\UniversalExpressionParser\UniversalExpressionParser\UniversalExpressionParser.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+{
+  "Object_1": {
+    "Int1": 14
+  },
+
+  "ParentReference": "$value(parent)",
+  "ArrayThatIncludesParent": [
+    "START",
+    "$merge(parent)",
+    "END"
+  ],
+  "ParentMergedIntoJson": {
+    "START": "START",
+    "copyFields": "$copyFields(parent)",
+    "END": "END"
+  },
+  "ReferenceParentKeyValue": "$value(parent.Object_1)"
+}

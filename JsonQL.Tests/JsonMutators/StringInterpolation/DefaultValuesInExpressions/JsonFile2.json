@@ -1,0 +1,6 @@
+{
+  "Object2": {
+    "DefaultInDefault_WithoutUsingBraces": "$(parent.Example.NonExistentObject.NonExistentInt:parent.Array1[1000]:parent.Array1[2]) is defaulted to 3",
+    "DefaultInDefault_WithUsingBraces": "$(parent.Example.NonExistentObject.NonExistentInt:(parent.Array1[1000]:parent.Array1[2])) is defaulted to 3"
+  }
+}

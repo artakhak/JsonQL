@@ -1,0 +1,33 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "TestData": [
+          1,
+          3,
+          4
+        ],
+        "SucceededAssert":  "Array item at index 1 is 3==3",
+        "FailedAssert":  "$(TestData[1000] assert)"
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
+        "JsonTextIdentifier": "Example",
+        "LineInfo": {
+          "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
+          "LineNumber": 4,
+          "LinePosition": 22
+        },
+        "ErrorMessage": "Value not-null assertion failed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "Person": {
+    "Id": 10,
+    "CopyJackyChan": "$copyFields(parent.Array1[1])"
+  }
+}
