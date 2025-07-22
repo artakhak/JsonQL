@@ -22,16 +22,16 @@ public static class JsonFunctionNames
     public const string StringToLowerCase = "Lower";
 
     /// <summary>
-    /// Represents the JSON function name "Concatenate", which is used to combine multiple string values
-    /// into a single string during JSON function evaluation in the JsonQL compilation process.
-    /// </summary>
-    public const string Concatenate = "Concatenate";
-
-    /// <summary>
     /// Represents the JSON function name "Upper", which is used to convert a given string to its uppercase equivalent
     /// during JSON function evaluation in the JsonQL compilation process.
     /// </summary>
     public const string StringToUpperCase = "Upper";
+
+    /// <summary>
+    /// Represents the JSON function name "Concatenate", which is used to combine multiple string values
+    /// into a single string during JSON function evaluation in the JsonQL compilation process.
+    /// </summary>
+    public const string Concatenate = "Concatenate";
 
     /// <summary>
     /// Represents the JSON function name "Len", which is used to determine the length of a text value
