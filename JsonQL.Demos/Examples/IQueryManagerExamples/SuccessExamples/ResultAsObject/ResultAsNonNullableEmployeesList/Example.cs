@@ -32,6 +32,10 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
                 {
                     TryMapJsonConversionType = (type, parsedJson) =>
                     {
+                        // If we always return null, or just do not set the value of TryMapJsonConversionType
+                        // IEmployee will always be bound to Employee
+                        // In this example, we make sure that in some cases th default implementation of IManager 
+                        // is used (we can also specify Manager)
                         if (parsedJson.HasKey(nameof(IManager.Employees)))
                             return typeof(IManager);
 

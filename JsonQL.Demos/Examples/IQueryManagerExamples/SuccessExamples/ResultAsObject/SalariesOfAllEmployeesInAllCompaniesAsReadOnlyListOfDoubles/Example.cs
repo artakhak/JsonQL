@@ -15,10 +15,11 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<do
     /// <inheritdoc />
     protected override IObjectQueryResult<IReadOnlyList<double>> QueryObject()
     {
-        var query = "Companies.Select(x => x.Employees.Select(x => x.Salary))";
+        var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+            "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
 
         var salariesResult =
-            _queryManager.QueryObject<IReadOnlyList<double>>(query,
+            _queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,
                 new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")), null);
 

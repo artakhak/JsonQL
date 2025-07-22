@@ -6,33 +6,17 @@
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<PackageVersion>1.0.0-rc1</PackageVersion>
-		<Version>1.0.0-rc1</Version>
+		<PackageVersion>1.0.0-rc2</PackageVersion>
+		<Version>1.0.0-rc2</Version>
 		<PackageTags>Json Json+Query+Language Json+path</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
 		<Description>
 			JsonQL is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL-like syntax with rich function support.
-
-			## Features
-
-			- Rich set of built-in functions for JSON manipulation
-			- Support for aggregate functions (COUNT, AVG, MIN, MAX, SUM)
-			- Collection manipulation with ANY and ALL operations
-			- String operations (ToUpper, ToLower, Length, Concatenate, etc)
-			- Type conversion functions (DateTime, Date, Double, Int, Boolean, String)
-			- Mathematical operations (Abs, IsEven, IsOdd)
-			- Object property inspection (HasField)
-			- Lambda expression support for complex queries
-			- Extensible function architecture
-			- Built-in conversion of query results to C# objects
-			-Also, allows auto-binding interfaces to default implementations or non-default implementations via configuration
-			- Mutating JSON files by replacing Json field values by evaluated Json values
-			- Extending the API to provide custom operators, functions, as well as customizing any part of JsonQL implementation
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-			Small fix to README.md
+			Added couple of more details README.md file
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>
@@ -44,9 +28,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="C:\Users\artak\.nuget\packages\oroptimizer.shared\2.5.0\contentFiles\any\netstandard2.0\README.md" />
+		<None Include="README.md" Pack="true" PackagePath=""/>
 	</ItemGroup>
-
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
