@@ -18,37 +18,70 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - Lambda expression support for complex queries
 - Extensible function architecture
 - Built-in conversion of query results to C# objects
-	-Also, allows auto-binding interfaces to default implementations or non-default implementations via configuration
+  -Also, allows auto-binding interfaces to default implementations or non-default implementations via configuration
 - Mutating JSON files by replacing Json field values by evaluated Json values
 - Extending the API to provide custom operators, functions, as well as customizing any part of JsonQL implementation
 
 ## Json Path Elements
 ### Built-in Path Elements (new functions can be added)
-- `Array indexes`   - Examples: "$(Object1.Array1[0])", "$(parent.Object1.Array2[4, 1])"  
-- `Where`           - Applied to json objects to filter out Json objects. Example: "$merge(Object1.Array1.Where(x => x >= 2 && x <= 6))"
-- `Select`          - Applied to map Json objects to other json objects. Example: "$merge(Object1.Select(x => x.Object2.Where(y => HasField(y, 'Value'))))"
-- `Flatten`         - Applied to flatten multidimensional arrays. "$merge(Object1.Array1.Flatten().Where(x => x >= 4 && x <= 19))"
-- `First`           - Applied to select the first item in collection. Examples: "$(Object1.Array1.First())" or "$(Object1.Array1.First(x => x > 1))"
-- `Last`            - Applied to select the last item in collection. Examples: "$(Object1.Array1.Where(x => x.Value > 10).Last())" or "$(Object1.Array1.Last(x => x > 1))"
-- `Reverse`         - Applied to reverse the collection. Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6).Reverse())"  
+- `Array indexes`   
+    Examples: "$(Object1.Array1[0])", "$(parent.Object1.Array2[4, 1])"
+  
+- `Where`           - Applied to json objects to filter out Json objects. 
+  Examples: "$merge(Object1.Array1.Where(x => x >= 2 && x <= 6))"
+  
+- `Select`          - Applied to map Json objects to other json objects.
+  Examples: "$merge(Object1.Select(x => x.Object2.Where(y => HasField(y, 'Value'))))"
+  
+- `Flatten`         - Applied to flatten multidimensional arrays.
+  Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 4 && x <= 19))"
+  
+- `First`           - Applied to select the first item in collection.
+  Examples: "$(Object1.Array1.First())" or "$(Object1.Array1.First(x => x > 1))"
+  
+- `Last`            - Applied to select the last item in collection.
+  Examples: "$(Object1.Array1.Where(x => x.Value > 10).Last())" or "$(Object1.Array1.Last(x => x > 1))"
+  
+- `Reverse`         - Applied to reverse the collection.
+  Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6).Reverse())"  
 
 ## Mutation operators.
-- `$copyFields`     - Copies fields in one Json object into another Json object. Example: {"Object1": {"replaceWithCopiedFields": "$copyFields(parent.Examples.Object1)", "Field2": 1 }}
-- `$merge`          - Merges items in one array into another array  Example: { "Array1": [1, "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))", 3] }
-- `$value`          - Replaces a Json field value with evaluated value. Example: {"Employees": "$value(Example.Employees.Where(x => x.Salary > 100000))"}
-- `$`               - String interpolation mutator operator. Example: { "MyCalculatedValue": "$(parent.Array1[1, 1000]:parent.Array1[1, 2]) is 6"}
+- `$copyFields`     - Copies fields in one Json object into another Json object.
+  Examples: {"Object1": {"replaceWithCopiedFields": "$copyFields(parent.Examples.Object1)", "Field2": 1 }}
+  
+- `$merge`          - Merges items in one array into another array.
+  Examples: { "Array1": [1, "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))", 3] }
+
+- `$value`          - Replaces a Json field value with evaluated value. 
+  Examples: {"Employees": "$value(Example.Employees.Where(x => x.Salary > 100000))"}
+  
+- `$`               - String interpolation mutator operator. 
+  Examples: { "MyCalculatedValue": "$(parent.Array1[1, 1000]:parent.Array1[1, 2]) is 6"}
 
 
 ## Built-in Functions
 
 ### Aggregate Functions
 - `Count()` - Counts elements in a collection
+  Examples: {"array1": [1, "$merge(parent.Object1.Array2.Where(x => Count(x) > 3)), 2]}
+  
 - `Average()` - Calculates average of numeric values
+  Examples: {"array1": [1, $merge(parent.Object1.Array2.Where(x => Average(x, y => typeof y == 'Number' && y % 2 == 0) >= 8))", 2]} 
+
 - `Min()` - Finds minimum value
+  Examples: {"field1": "$(Min(Object1.Array1.Where(x => typeof x == 'Number'), x => x % 2 == 0)) is 2"}
+  
 - `Max()` - Finds maximum value
+  Examples: {"field1": "$(Max(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary < 120000, x => x.Salary)) is 110000"}
+  
 - `Sum()` - Calculates sum of numeric values
+  Examples: {"field1": "$(Sum(parent.Object1.Array2.Flatten(), x => x < 19))"}
+  
 - `All()` - Tests if all elements match a condition
+  Examples: {"AllEmployeesEarnMoreThan_60000": "$(All(parent.Object1.Companies.Flatten().Where(x => HasField(x, 'EmployeeId')), x => x.Salary > 60000))"}
+  
 - `Any()` - Tests if any elements match a condition
+  Examples: {"CompaniesWithEmployeeWithSalaryOf_88000": [ "$merge(Companies.Where(x => Any(x.Employees, y => y.Salary == 88000)))" ]}
 
 ### String Functions
 - `Lower()` - Converts text to lowercase
@@ -93,8 +126,6 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - `contains`		 - Contains operator
 - `starts with`		 - Starts with operator
 - `ends with`		 - Ends with operator
-- `contains`		 - Contains operator
-- `contains`		 - Contains operator
 - `contains`		 - Contains operator
 - `is null`			 - 'is null' operator
 - `is not null`		 - 'is not null' operator

@@ -6,8 +6,8 @@
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<PackageVersion>1.0.0-rc2</PackageVersion>
-		<Version>1.0.0-rc2</Version>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Version>1.0.0</Version>
 		<PackageTags>Json Json+Query+Language Json+path</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
