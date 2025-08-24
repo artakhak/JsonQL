@@ -6,8 +6,8 @@
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<PackageVersion>1.0.0</PackageVersion>
-		<Version>1.0.0</Version>
+		<PackageVersion>1.1.0</PackageVersion>
+		<Version>1.1.0</Version>
 		<PackageTags>Json Json+Query+Language Json+path</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
@@ -16,7 +16,21 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-			Added couple of more details README.md file
+            Added support for expressions in Select statements. Before, Select statements could have only JSON paths (e.g., Employees.Select(x => x.Salary)).
+
+            With these changes Select statements can have any expressions that evaluate to one of the types: String, Double, Boolean and DateTime.
+
+            Examples:
+            {"EmployeeRaisedSalaries": ""$value(Employees.Select(x => 1.1 * x.Salary))"}
+
+            {"RaisedSalariesOfAllCompanyEmployees": "$value(parent.Object1.Companies.Select(c => c.Where(x => HasField(x, 'EmployeeId')).Select(e => 2 * e.Salary).Where(s => s > 170000)))"}
+
+            {"MaxSalariesOfCompanies": "$value(parent.Object1.Companies.Select(c => Max(c.Where(x => HasField(x, 'EmployeeId')).Select(e => e.Salary))))"}
+
+            {"CompanyNamesWithMaxSalary": "$value(parent.Object1.Companies.Select(c => Concatenate(c[0].Name, ', MaxSalary:', Max(c.Where(e => index > 0).Select(e => e.Salary)))))",
+            "DateTimeExpressionsInSelect": "$value(Object1.DateTimeValues.Select(x => ToDate(x)))"}
+
+            {"BooleanExpressionsInSelect": "$value(parent.Object1.Companies.Select(c => 150000 == Max(c.Where(x => HasField(x, 'EmployeeId')).Select(e => e.Salary))))"}
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>
