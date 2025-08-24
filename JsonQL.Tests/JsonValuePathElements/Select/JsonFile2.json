@@ -27,10 +27,9 @@
       { "Value": 2 },
       { "Value": 9 },
       { "Test": 17 }
-    ]
-
+    ],
+    "DateTimeValues": [ "2022-05-23T18:25:43.511Z", "2025-08-23T13:15:15.355Z", "2025-08-23T13:16:15.355Z" ]
   },
-
   "SelectAllEmployeeIds": [
     "$merge(parent.Object1.Companies.Where(x => Any(x, y => y.Name == 'Company1' || y.Name == 'Company3')).Flatten().Select(x => x.EmployeeId))"
   ],
@@ -56,5 +55,10 @@
   "AverageSalaryAcrossCompanies": {
     "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
     "AverageSalary": "$(Average(Companies.Select(x => x.Employees.Select(x => x.Salary))))"
-  }
+  },
+  "RaisedSalariesOfAllCompanyEmployees": "$value(parent.Object1.Companies.Select(c => c.Where(x => HasField(x, 'EmployeeId')).Select(e => 2 * e.Salary).Where(s => s > 170000)))",
+  "MaxSalariesOfCompanies": "$value(parent.Object1.Companies.Select(c => Max(c.Where(x => HasField(x, 'EmployeeId')).Select(e => e.Salary))))",
+  "CompanyNamesWithMaxSalary": "$value(parent.Object1.Companies.Select(c => Concatenate(c[0].Name, ', MaxSalary:', Max(c.Where(e => index > 0).Select(e => e.Salary)))))",
+  "DateTimeExpressionsInSelect": "$value(Object1.DateTimeValues.Select(x => ToDate(x)))",
+  "BooleanExpressionsInSelect": "$value(parent.Object1.Companies.Select(c => 150000 <= Max(c.Where(x => HasField(x, 'EmployeeId')).Select(e => e.Salary))))"
 }

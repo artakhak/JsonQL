@@ -32,10 +32,10 @@
             "NumberOfHomes":  3
           },
           "Address": {
-              "Street": "Stree 1",
+              "Street": "Street 1",
               "City": "City 1"
-            }
-          },
+          }
+        },
         {
           "EmployeeId": 2,
           "Age": 45,
@@ -44,7 +44,7 @@
             "NumberOfHomes": 1
           },
           "Address": {
-            "Street": "Stree 2",
+            "Street": "Street 2",
             "City": "City 2"
           }
         },
@@ -56,7 +56,7 @@
             "NumberOfHomes": 2
           },
           "Address": {
-            "Street": "Stree 3",
+            "Street": "Street 3",
             "City": "City 3"
           }
         }

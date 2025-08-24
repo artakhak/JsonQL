@@ -1,5 +1,7 @@
 // Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+using JsonQL.JsonObjects;
+
 namespace JsonQL.Compilation.JsonFunction;
 
 /// <summary>
@@ -152,5 +154,12 @@ public static class JsonFunctionNames
     /// is an odd number during JSON function evaluation in the JsonQL compilation process.
     /// </summary>
     public const string IsOdd = "IsOdd";
+    #endregion
+
+    #region Expressions converted to JSON Values
+    /// <summary>
+    /// Function name for expressions converted to <see cref="IParsedSimpleValue"/>
+    /// </summary>
+    public const string ExpressionConvertedToParsedSimpleValue = "ExpressionConvertedToParsedSimpleValue";
     #endregion
 }

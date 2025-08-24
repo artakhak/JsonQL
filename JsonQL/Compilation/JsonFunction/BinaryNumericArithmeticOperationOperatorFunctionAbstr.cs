@@ -7,45 +7,77 @@ using JsonQL.JsonObjects;
 namespace JsonQL.Compilation.JsonFunction;
 
 /// <summary>
-/// Abstract base class representing a binary arithmetic operation for numeric operands.
-/// This class is designed to handle calculations involving two numeric values (doubles).
+/// Base class for binary arithmetic operator operations for operators such as '+', '-', '/', '*', that return double value etc.
 /// </summary>
 /// <remarks>
 /// Classes that inherit from this abstract class should implement the abstract <c>Calculate</c> method
 /// to define specific arithmetic operations (e.g., addition, multiplication, etc.).
 /// </remarks>
-public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : BinaryArithmeticOperationOperatorFunctionAbstr
+public abstract class BinaryNumericArithmeticOperationOperatorFunctionAbstr : JsonFunctionAbstr, IDoubleJsonFunction
 {
-    protected BinaryNumericArithmeticOperationOperatorFunctionAbstr(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
+    /// <summary>
+    /// Abstract base class representing a binary arithmetic operation for operators such as '+', '-', '/', '*', etc.
+    /// Inherits from <see cref="JsonFunctionAbstr" /> and provides common properties and operations
+    /// for evaluating binary arithmetic expressions.
+    /// </summary>
+    protected BinaryNumericArithmeticOperationOperatorFunctionAbstr(string operatorName,
+        IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
-        IJsonLineInfo? lineInfo) :
-        base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)
+        IJsonLineInfo? lineInfo) : base(operatorName, jsonFunctionContext, lineInfo)
     {
-    }
-
-    /// <inheritdoc />
-    protected sealed override IParseResult<object?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value)
-    {
-        if (operand1Value.Value is not double operand1DoubleValue || operand2Value.Value is not double operand2DoubleValue)
-            return new ParseResult<object?>((bool?)null);
-
-        try
-        {
-            return Calculate(operand1DoubleValue, operand2DoubleValue);
-        }
-        catch (Exception e) // OverflowException
-        {
-            var errorMessage = $"Failed to evaluate the operator [{this.FunctionName}] for values [{operand1Value}] and [{operand2Value}].";
-            ThreadStaticLoggingContext.Context.Error(errorMessage, e);
-            return new ParseResult<object?>(CollectionExpressionHelpers.Create(new JsonObjectParseError(errorMessage, this.LineInfo)));
-        }
+        Operand1 = operand1;
+        Operand2 = operand2;
     }
 
     /// <summary>
-    /// Calculates the result of an arithmetic operation using two provided double operands.
+    /// Gets the first operand for the binary arithmetic operation.
+    /// This represents the left-hand side of the operation and is evaluated during the execution of the operation.
     /// </summary>
-    /// <param name="operand1Value">The first operand in the arithmetic operation.</param>
-    /// <param name="operand2Value">The second operand in the arithmetic operation.</param>
-    /// <returns>The result of the arithmetic operation as an implementation of <see cref="IParseResult{TValue}"/>.</returns>
-    protected abstract IParseResult<object?> Calculate(double operand1Value, double operand2Value);
+    protected IJsonFunction Operand1 { get; }
+
+    /// <summary>
+    /// Gets the second operand for the binary arithmetic operation.
+    /// This represents the right-hand side of the operation and is evaluated during the execution of the operation.
+    /// </summary>
+    protected IJsonFunction Operand2 { get; }
+
+    /// <inheritdoc />
+    protected override IParseResult<object?> DoEvaluateValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    {
+        var doubleValueResult = this.EvaluateDoubleValue(rootParsedValue, compiledParentRootParsedValues, contextData);
+
+        if (doubleValueResult.Errors.Count > 0)
+            return new ParseResult<object?>(doubleValueResult.Errors);
+
+        return new ParseResult<object?>(doubleValueResult.Value);
+    }
+
+    /// <summary>
+    /// Performs the calculation based on the two provided JSON-comparable operand values.
+    /// </summary>
+    /// <param name="operand1Value">The first operand as an instance of <see cref="IJsonComparable"/>.</param>
+    /// <param name="operand2Value">The second operand as an instance of <see cref="IJsonComparable"/>.</param>
+    /// <returns>An instance of <see cref="IParseResult{TValue}"/> containing the result of the calculation or any errors encountered during the process.</returns>
+    protected abstract IParseResult<double?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value);
+
+    public IParseResult<double?> EvaluateDoubleValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
+    {
+        var evaluatedOperand1ValueResult = Operand1.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
+
+        if (evaluatedOperand1ValueResult.Errors.Count > 0)
+            return new ParseResult<double?>(evaluatedOperand1ValueResult.Errors);
+
+        var evaluatedOperand2ValueResult = Operand2.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
+
+        if (evaluatedOperand2ValueResult.Errors.Count > 0)
+            return new ParseResult<double?>(evaluatedOperand2ValueResult.Errors);
+
+        if (!JsonFunctionHelpers.TryConvertValueToJsonComparable(evaluatedOperand1ValueResult.Value, null, out var jsonComparable1) ||
+            !JsonFunctionHelpers.TryConvertValueToJsonComparable(evaluatedOperand2ValueResult.Value, null, out var jsonComparable2))
+        {
+            return new ParseResult<double?>((double?)null);
+        }
+
+        return Calculate(jsonComparable1, jsonComparable2);
+    }
 }

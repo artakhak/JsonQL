@@ -9,22 +9,12 @@ namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
 /// <summary>
 /// Represents a JSON function that operates based on a JSON value path.
 /// </summary>
-public interface IJsonValuePathJsonFunction: IJsonFunction
+public interface IJsonValuePathJsonFunction: IEvaluatesJsonValuePathLookupResult
 {
     /// <summary>
     /// Gets the path information used for JSON value lookups within the function implementation.
     /// </summary>
-    JsonValuePath JsonValuePath { get; }
-
-    /// <summary>
-    /// Evaluates the JSON value path function based on the provided parsed values and evaluation context.
-    /// </summary>
-    /// <param name="rootParsedValue">The root parsed value to evaluate.</param>
-    /// <param name="compiledParentRootParsedValues">A collection of compiled parent root parsed values required for evaluation.</param>
-    /// <param name="contextData">The optional context data used during the evaluation process.</param>
-    /// <returns>A parse result containing the lookup result for the JSON value path.</returns>
-    IParseResult<IJsonValuePathLookupResult> Evaluate(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues,
-        IJsonFunctionEvaluationContextData? contextData);
+    IJsonValuePath JsonValuePath { get; }
 }
 
 /// <summary>
@@ -59,7 +49,7 @@ public class JsonValuePathJsonFunction: JsonFunctionAbstr, IJsonValuePathJsonFun
     }
 
     /// <inheritdoc />
-    public JsonValuePath JsonValuePath { get; }
+    public IJsonValuePath JsonValuePath { get; }
 
     /// <inheritdoc />
     public IParseResult<IJsonValuePathLookupResult> Evaluate(IRootParsedValue rootParsedValue, 

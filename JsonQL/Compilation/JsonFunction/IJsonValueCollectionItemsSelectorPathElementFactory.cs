@@ -42,6 +42,7 @@ public interface IJsonValueCollectionItemsSelectorPathElementFactory
 /// <inheritdoc />
 public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueCollectionItemsSelectorPathElementFactory
 {
+    private readonly IJsonValueLookupHelpers _jsonValueLookupHelpers;
     private IJsonFunctionFromExpressionParser? _jsonFunctionFromExpressionParser;
 
     private static readonly HashSet<string> _collectionItemSelectorFunctionNames = new HashSet<string>(StringComparer.Ordinal)
@@ -54,6 +55,11 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         {JsonValuePathFunctionNames.LastCollectionItemSelectorFunction},
         {JsonValuePathFunctionNames.CollectionItemSelectorFunction}
     };
+
+    public JsonValueCollectionItemsSelectorPathElementFactory(IJsonValueLookupHelpers jsonValueLookupHelpers)
+    {
+        _jsonValueLookupHelpers = jsonValueLookupHelpers;
+    }
 
     /// <summary>
     /// This value cannot be injected in the constructor because of circular dependencies.
@@ -143,7 +149,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value != null)
         {
-            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
+            if (!_jsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -182,7 +188,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(parametersParseResult.Errors);
 
-        if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value!, out var lambdaPredicate,
+        if (!_jsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value!, out var lambdaPredicate,
                 out var jsonObjectParseError))
         {
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -206,7 +212,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
         if (parametersParseResult.Errors.Count > 0)
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(parametersParseResult.Errors);
 
-        if (!JsonValueLookupHelpers.TryGetJsonPathLambdaFunctionFromParameter(functionName, parametersParseResult.Value!, out var jsonPathLambdaFunction,
+        if (!_jsonValueLookupHelpers.TryGetJsonPathLambdaFunctionFromParameter(functionName, parametersParseResult.Value!, jsonFunctionContext, lineInfo, out var jsonPathLambdaFunction,
                 out var jsonObjectParseError))
         {
             return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -235,7 +241,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value != null)
         {
-            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
+            if (!_jsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));
@@ -269,7 +275,7 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
 
         if (parametersParseResult.Value.parameter2 != null)
         {
-            if (!JsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value.parameter2, out lambdaPredicate,
+            if (!_jsonValueLookupHelpers.TryGetLambdaPredicateFromParameter(functionName, parametersParseResult.Value.parameter2, out lambdaPredicate,
                     out var jsonObjectParseError))
             {
                 return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(jsonObjectParseError));

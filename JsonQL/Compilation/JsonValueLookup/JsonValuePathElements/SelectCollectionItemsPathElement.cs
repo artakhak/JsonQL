@@ -13,7 +13,7 @@ namespace JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
 /// </summary>
 public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelectorPathElementAbstr, IResolvesVariableValue
 {
-    private readonly IJsonPathLambdaFunction _jsonPathLambdaFunction;
+    private readonly ISelectCollectionItemsPathElementLambdaFunction _selectCollectionItemsPathElementLambdaFunction;
     private readonly IVariablesManager _variablesManager;
 
     /// <summary>
@@ -22,11 +22,11 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
     /// </summary>
     public SelectCollectionItemsPathElement(
         string selectorName,
-        IJsonPathLambdaFunction jsonPathLambdaFunction,
+        ISelectCollectionItemsPathElementLambdaFunction selectCollectionItemsPathElementLambdaFunction,
         IVariablesManager variablesManager,
         IJsonLineInfo? lineInfo) : base(selectorName, lineInfo)
     {
-        _jsonPathLambdaFunction = jsonPathLambdaFunction;
+        _selectCollectionItemsPathElementLambdaFunction = selectCollectionItemsPathElementLambdaFunction;
         _variablesManager = variablesManager;
     }
 
@@ -44,11 +44,11 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
                 var parsedValue = parenParsedValues[i];
                 var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
-                this._variablesManager.RegisterVariableValue(this, this._jsonPathLambdaFunction.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
+                this._variablesManager.RegisterVariableValue(this, this._selectCollectionItemsPathElementLambdaFunction.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 
                 try
                 {
-                    var pathParsedValuesResult = _jsonPathLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
+                    var pathParsedValuesResult = _selectCollectionItemsPathElementLambdaFunction.LambdaExpressionFunction.Evaluate(rootParsedValue, compiledParentRootParsedValues, itemContextData);
 
                     if (pathParsedValuesResult.Errors.Count > 0)
                         return new ParseResult<ICollectionJsonValuePathLookupResult>(pathParsedValuesResult.Errors);
@@ -68,7 +68,7 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
                 }
                 finally
                 {
-                    this._variablesManager.UnregisterVariableValue(this, this._jsonPathLambdaFunction.ParameterJsonFunction.Name);
+                    this._variablesManager.UnregisterVariableValue(this, this._selectCollectionItemsPathElementLambdaFunction.ParameterJsonFunction.Name);
                 }
             }
 

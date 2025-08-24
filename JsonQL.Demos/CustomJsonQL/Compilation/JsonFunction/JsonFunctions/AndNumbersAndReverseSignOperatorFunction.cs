@@ -1,4 +1,5 @@
 using JsonQL.Compilation.JsonFunction;
+using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Demos.CustomJsonQL.Compilation.JsonFunction.JsonFunctions;
@@ -12,8 +13,11 @@ public class AndNumbersAndReverseSignOperatorFunction: BinaryNumericArithmeticOp
     }
 
     /// <inheritdoc />
-    protected override IParseResult<object?> Calculate(double operand1Value, double operand2Value)
+    protected override IParseResult<double?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value)
     {
-        return new ParseResult<object?>(-(operand1Value + operand2Value));
+        if (operand1Value.Value is not double operand1DoubleValue || operand2Value.Value is not double operand2DoubleValue)
+            return new ParseResult<double?>((double?)null);
+
+        return new ParseResult<double?>(-(operand1DoubleValue + operand2DoubleValue));
     }
 }

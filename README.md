@@ -4,7 +4,7 @@
 
 # JsonQL
 
-JsonQL is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL-like syntax with rich function support.
+JsonQL is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
 
 ## Features
 

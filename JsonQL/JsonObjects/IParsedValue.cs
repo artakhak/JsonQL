@@ -42,12 +42,14 @@ public interface IParsedValue
     IRootParsedValue RootParsedValue { get; }
 
     /// <summary>
-    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null, and vice versa.
+    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null.<br/>
+    /// If <see cref="JsonKeyValue"/> is not null, then <see cref="ParentJsonValue"/> should be null.
     /// </summary>
     IParsedValue? ParentJsonValue { get; }
 
     /// <summary>
-    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null, and vice versa.
+    /// If the value of <see cref="ParentJsonValue"/> is not null, then the value of <see cref="JsonKeyValue"/> should be null.<br/>
+    /// If <see cref="JsonKeyValue"/> is not null, then <see cref="ParentJsonValue"/> should be null.
     /// </summary>
     IJsonKeyValue? JsonKeyValue { get; }
 

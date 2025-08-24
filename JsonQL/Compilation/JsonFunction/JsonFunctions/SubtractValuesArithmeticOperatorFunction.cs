@@ -1,6 +1,7 @@
 // Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
+using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.JsonObjects;
 
@@ -37,8 +38,11 @@ public class SubtractValuesArithmeticOperatorFunction : BinaryNumericArithmeticO
     }
 
     /// <inheritdoc />
-    protected override IParseResult<object?> Calculate(double operand1Value, double operand2Value)
+    protected override IParseResult<double?> Calculate(IJsonComparable operand1Value, IJsonComparable operand2Value)
     {
-        return new ParseResult<object?>(operand1Value - operand2Value);
+        if (operand1Value.Value is not double operand1DoubleValue || operand2Value.Value is not double operand2DoubleValue)
+            return new ParseResult<double?>((double?)null);
+
+        return new ParseResult<double?>(operand1DoubleValue - operand2DoubleValue);
     }
 }

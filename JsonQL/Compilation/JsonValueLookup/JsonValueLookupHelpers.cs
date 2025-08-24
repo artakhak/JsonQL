@@ -5,13 +5,14 @@ using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonValueLookup;
 
 /// <summary>
 /// Helper methods that can be used in implementations of <see cref="IJsonValueCollectionItemsSelectorPathElementFactory"/>
 /// </summary>
-public static class JsonValueLookupHelpers
+public interface IJsonValueLookupHelpers
 {
     /// <summary>
     /// Creates an instance of <see cref="IPredicateLambdaFunction"/> from <see cref="ILambdaExpressionFunction"/>. 
@@ -27,7 +28,42 @@ public static class JsonValueLookupHelpers
     /// These methods might be modified later to support more general use cases, such as predicates with more than one parameter.
     /// Therefore, use these method with this understanding in mind.
     /// </remarks>
-    public static bool TryGetLambdaPredicateFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction, [NotNullWhen(true)] out IPredicateLambdaFunction? lambdaPredicate, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
+    bool TryGetLambdaPredicateFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction, [NotNullWhen(true)] out IPredicateLambdaFunction? lambdaPredicate, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError);
+
+    /// <summary>
+    /// Creates an instance of <see cref="IPredicateLambdaFunction"/> from <see cref="ILambdaExpressionFunction"/>. 
+    /// </summary>
+    /// <param name="selectorName">Selector name.</param>
+    /// <param name="lambdaExpressionFunction">Lambda expression function.</param>
+    /// <param name="jsonPathLambdaFunction">
+    /// Output parameter for generated <see cref="ISelectCollectionItemsPathElementLambdaFunction"/>.
+    /// The value is not null if the return value is true.
+    /// </param>
+    /// <param name="jsonObjectParseError">Error details. The value is not null if the return value is false.</param>
+    /// <param name="jsonFunctionContext">Json function context</param>
+    /// <param name="lineInfo">Line info.</param>
+    /// <remarks>
+    /// These methods might be modified later to support more general use cases, such as predicates with more than one parameter.
+    /// Therefore, use these method with this understanding in mind.
+    /// </remarks>
+    bool TryGetJsonPathLambdaFunctionFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction,
+        IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo,
+        [NotNullWhen(true)] out ISelectCollectionItemsPathElementLambdaFunction? jsonPathLambdaFunction, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError);
+}
+
+/// <inheritdoc />
+public class JsonValueLookupHelpers: IJsonValueLookupHelpers
+{
+    private readonly IEvaluatesJsonValuePathLookupResultFactory _evaluatesJsonValuePathLookupResultFactory;
+
+    public JsonValueLookupHelpers(IEvaluatesJsonValuePathLookupResultFactory evaluatesJsonValuePathLookupResultFactory)
+    {
+        _evaluatesJsonValuePathLookupResultFactory = evaluatesJsonValuePathLookupResultFactory;
+    }
+
+    /// <inheritdoc />
+    public bool TryGetLambdaPredicateFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction,
+        [NotNullWhen(true)] out IPredicateLambdaFunction? lambdaPredicate, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
     {
         lambdaPredicate = null;
         jsonObjectParseError = null;
@@ -55,21 +91,10 @@ public static class JsonValueLookupHelpers
         return true;
     }
 
-    /// <summary>
-    /// Creates an instance of <see cref="IPredicateLambdaFunction"/> from <see cref="ILambdaExpressionFunction"/>. 
-    /// </summary>
-    /// <param name="selectorName">Selector name.</param>
-    /// <param name="lambdaExpressionFunction">Lambda expression function.</param>
-    /// <param name="jsonPathLambdaFunction">
-    /// Output parameter for generated <see cref="IJsonPathLambdaFunction"/>.
-    /// The value is not null if the return value is true.
-    /// </param>
-    /// <param name="jsonObjectParseError">Error details. The value is not null if the return value is false.</param>
-    /// <remarks>
-    /// These methods might be modified later to support more general use cases, such as predicates with more than one parameter.
-    /// Therefore, use these method with this understanding in mind.
-    /// </remarks>
-    public static bool TryGetJsonPathLambdaFunctionFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction, [NotNullWhen(true)] out IJsonPathLambdaFunction? jsonPathLambdaFunction, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
+    /// <inheritdoc />
+    public bool TryGetJsonPathLambdaFunctionFromParameter(string selectorName, ILambdaExpressionFunction lambdaExpressionFunction,
+        IJsonFunctionValueEvaluationContext jsonFunctionContext, IJsonLineInfo? lineInfo,
+        [NotNullWhen(true)] out ISelectCollectionItemsPathElementLambdaFunction? jsonPathLambdaFunction, [NotNullWhen(false)] out JsonObjectParseError? jsonObjectParseError)
     {
         jsonPathLambdaFunction = null;
         jsonObjectParseError = null;
@@ -82,18 +107,25 @@ public static class JsonValueLookupHelpers
 
             return false;
         }
-
-        if (lambdaExpressionFunction.Expression is not IJsonValuePathJsonFunction jsonValuePathJsonFunction)
+        
+        if (lambdaExpressionFunction.Expression is not IEvaluatesJsonValuePathLookupResult evaluatesJsonValuePathLookupResult)
         {
-            jsonObjectParseError = new JsonObjectParseError(
-                $"Lambda expression in function [{selectorName}] is expected to be a json path. Example of valid lambda expression: 'x => x[1].Object1'.",
-                lambdaExpressionFunction.Expression.LineInfo);
+            var evaluatesJsonValuePathLookupResultGenerated = _evaluatesJsonValuePathLookupResultFactory.TryCreate(lambdaExpressionFunction.Expression, jsonFunctionContext, lineInfo);
 
-            return false;
+            if (evaluatesJsonValuePathLookupResultGenerated == null)
+            {
+                jsonObjectParseError = new JsonObjectParseError(
+                    $"Lambda expression in function [{selectorName}] is expected to be a json path or an expression that can be converted to json object. Examples of valid lambda expression are: 'x => x[1].Object1', 'x => 0.1 * employee.Salary', x => Concat('$', x.Salary).",
+                    lambdaExpressionFunction.Expression.LineInfo);
+
+                return false;
+            }
+
+            evaluatesJsonValuePathLookupResult = evaluatesJsonValuePathLookupResultGenerated;
         }
 
-        jsonPathLambdaFunction = new JsonPathLambdaFunction(
-            lambdaExpressionFunction.Parameters[0], jsonValuePathJsonFunction);
+        jsonPathLambdaFunction = new SelectCollectionItemsPathElementLambdaFunction(
+            lambdaExpressionFunction.Parameters[0], evaluatesJsonValuePathLookupResult);
         return true;
     }
 }

@@ -16,7 +16,7 @@
       2,
       "Test",
       {
-        "EmployeeId": 1
+        "EmployeeId":  1
       },
       [
         5,
@@ -29,20 +29,25 @@
     ],
     "Object2": [
       {
-        "Value": 1
+        "Value":  1
       },
       {
-        "Value": 3
+        "Value":  3
       },
       {
-        "Value": 2
+        "Value":  2
       },
       {
-        "Value": 9
+        "Value":  9
       },
       {
-        "Test": 17
+        "Test":  17
       }
+    ],
+    "DateTimeValues": [
+      "2022-05-23T18:25:43.511Z",
+      "2025-08-23T13:15:15.355Z",
+      "2025-08-23T13:16:15.355Z"
     ]
   },
   "SelectAllEmployeeIds": [
@@ -60,56 +65,85 @@
   ],
   "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000": [
     {
-      "Street": "Stree 1",
-      "City": "City 1"
+      "Street":  "Street 1",
+      "City":  "City 1"
     },
     {
-      "Street": "Stree 3",
-      "City": "City 3"
+      "Street":  "Street 3",
+      "City":  "City 3"
     },
     {
-      "Street": "Stree 201",
-      "City": "City 201"
+      "Street":  "Stree 201",
+      "City":  "City 201"
     },
     {
-      "Street": "Stree 202",
-      "City": "City 202"
+      "Street":  "Stree 202",
+      "City":  "City 202"
     }
   ],
   "SelectAllEmployeeStreets_WithSalariesGreaterThan_80000": [
-    "Stree 1",
-    "Stree 3",
+    "Street 1",
+    "Street 3",
     "Stree 201",
     "Stree 202"
   ],
   "SelectAllEmployeeAddresses_WithSalariesGreaterThan_80000_InCity1_or_City3_1": [
     {
-      "Street": "Stree 1",
-      "City": "City 1"
+      "Street":  "Street 1",
+      "City":  "City 1"
     },
     {
-      "Street": "Stree 3",
-      "City": "City 3"
+      "Street":  "Street 3",
+      "City":  "City 3"
     }
   ],
-  "AverageEmpoyeeAgee_In_Company_1_or_Company3": "54.6",
-  "MaxNumberOfHomesOfEmployees_In_Company_1_or_Company3": "4",
+  "AverageEmpoyeeAgee_In_Company_1_or_Company3":  "54.6",
+  "MaxNumberOfHomesOfEmployees_In_Company_1_or_Company3":  "4",
   "SelectWithWhere": [
     {
-      "Value": 1
+      "Value":  1
     },
     {
-      "Value": 3
+      "Value":  3
     },
     {
-      "Value": 2
+      "Value":  2
     },
     {
-      "Value": 9
+      "Value":  9
     }
   ],
   "AverageSalaryAcrossCompanies": {
-    "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
-    "AverageSalary": "102356.75"
-  }
+    "Comment":  "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
+    "AverageSalary":  "102356.75"
+  },
+  "RaisedSalariesOfAllCompanyEmployees": [
+    200000,
+    240000,
+    220000,
+    190000,
+    196000,
+    206000,
+    350000
+  ],
+  "MaxSalariesOfCompanies": [
+    120000,
+    110000,
+    175000
+  ],
+  "CompanyNamesWithMaxSalary": [
+    "Company1, MaxSalary:120000",
+    "Company2, MaxSalary:110000",
+    "Company3, MaxSalary:175000"
+  ],
+  "DateTimeExpressionsInSelect": [
+    "2022-05-23 00:00:00.0000000",
+    "2025-08-23 00:00:00.0000000",
+    "2025-08-23 00:00:00.0000000"
+  ],
+  "BooleanExpressionsInSelect": [
+    false,
+    false,
+    true
+  ]
 }

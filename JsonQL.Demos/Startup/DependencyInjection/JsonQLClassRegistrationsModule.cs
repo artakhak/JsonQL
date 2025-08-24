@@ -3,6 +3,7 @@ using Autofac;
 using JsonQL.Compilation;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
+using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.Demos.CustomJsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Demos.CustomJsonQL.Compilation.UniversalExpressionParserJsonQL;
@@ -28,7 +29,6 @@ public class JsonQLClassRegistrationsModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         base.Load(builder);
-
 
         var jsonFunctionFromExpressionParserDependencies = new List<object>();
 
@@ -132,11 +132,12 @@ public class JsonQLClassRegistrationsModule : Module
 
         if (parameterType == typeof(IJsonValueCollectionItemsSelectorPathElementFactory))
         {
+            var jsonValueLookupHelpers = defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonValueLookupHelpers>();
             var defaultJsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonValueCollectionItemsSelectorPathElementFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomJsonValueCollectionItemsSelectorPathElementFactory(defaultJsonFunctionFactory));
+                () => new CustomJsonValueCollectionItemsSelectorPathElementFactory(defaultJsonFunctionFactory, jsonValueLookupHelpers));
 
             return true;
         }
