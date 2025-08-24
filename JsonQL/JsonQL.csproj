@@ -6,8 +6,8 @@
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<PackageVersion>1.1.1</PackageVersion>
-		<Version>1.1.1</Version>
+		<PackageVersion>1.2.0</PackageVersion>
+		<Version>1.2.0</Version>
 		<PackageTags>Json JsonQL Json+QL Query Json+Query+Language Json+path Json+Query</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
@@ -16,7 +16,12 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-			Added couple of more tags
+			A change to make sure that a query of type "$value(Companies.Select(c => c.Employees))" produces a flattened array of
+			employees across all companies rather than array of arrays with each array having list of employees in specific company.
+			This behavior is more natural and useful in most cases.
+			If we want to group data by keys (company data) this will be done with a Group function (path element), that will be introduced
+			in future release.
+			NOTE: This was already working as expected when Where clause was using as in this example:$value(Companies.Select(c => c.Employees.Where(x => x.Salary > 100000))".
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>

@@ -56,6 +56,15 @@
     "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
     "AverageSalary": "$(Average(Companies.Select(x => x.Employees.Select(x => x.Salary))))"
   },
+
+  "EmployeesInAllCompanies": {
+    "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
+    "AllEmployees": "$value(Companies.Select(c => c.Employees))"
+  },
+  "EmployeesInAllCompaniesWithSalaryGreaterThan_100000": {
+    "Comment": "This query uses Companies in 'SharedJsonFiles/CompaniesAsArrayInJson.json'",
+    "First5EmployeesAccroessCompaniesFilteredBySalary": "$value(Companies.Select(c => c.Employees.Where(e => e.Salary > 100000)).Where(e => index <= 5))"
+  },
   "RaisedSalariesOfAllCompanyEmployees": "$value(parent.Object1.Companies.Select(c => c.Where(x => HasField(x, 'EmployeeId')).Select(e => 2 * e.Salary).Where(s => s > 170000)))",
   "MaxSalariesOfCompanies": "$value(parent.Object1.Companies.Select(c => Max(c.Where(x => HasField(x, 'EmployeeId')).Select(e => e.Salary))))",
   "CompanyNamesWithMaxSalary": "$value(parent.Object1.Companies.Select(c => Concatenate(c[0].Name, ', MaxSalary:', Max(c.Where(e => index > 0).Select(e => e.Salary)))))",

@@ -55,7 +55,21 @@ public class SelectCollectionItemsPathElement : JsonValueCollectionItemsSelector
 
                     if (pathParsedValuesResult.Value != null)
                     {
-                        var parsedValuesResult = pathParsedValuesResult.Value.GetResultAsParsedValuesList(false, this.LineInfo);
+                        if (pathParsedValuesResult.Value is ISingleItemJsonValuePathLookupResult singleItemJsonValuePathLookupResult &&
+                            singleItemJsonValuePathLookupResult.ParsedValue is IParsedArrayValue parsedArrayValue)
+                        {
+                            pathParsedValuesResult = new ParseResult<ICollectionJsonValuePathLookupResult>(
+                                new CollectionJsonValuePathLookupResult(parsedArrayValue.Values));
+                        }
+
+                        if (pathParsedValuesResult.Value == null)
+                        {
+                            // pathParsedValuesResult.Value will not be null here, but adding this check in case something breaks in logic
+                            return new ParseResult<ICollectionJsonValuePathLookupResult>(
+                                CollectionExpressionHelpers.Create(new JsonObjectParseError($"The value of [pathParsedValuesResult.Value] cannot be null here. This is a bug!", this.LineInfo)));
+                        }
+
+                        var parsedValuesResult = pathParsedValuesResult.Value!.GetResultAsParsedValuesList(false, this.LineInfo);
 
                         if (parsedValuesResult.Errors.Count > 0)
                             return new ParseResult<ICollectionJsonValuePathLookupResult>(parsedValuesResult.Errors);
