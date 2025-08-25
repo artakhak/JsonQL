@@ -1,0 +1,49 @@
+{
+  "MultilineQueryWith_$": {
+    "$multiline": [
+      "Max salary of all employees in all companies except one", 
+      "is $(Max(Companies.Where",
+      "(x => x.Name != 'Sherwood Forest Timber, Inc')",
+      ".Select(c => c.Employees.Where(e => e.Salary > 100000))",
+      ".Select(x => x.Salary)))"      
+    ]
+  },
+
+  "MultilineQueryWith_$value": {
+    "$multiline": [
+      "$value(",
+      "Companies.Where",
+      "(x => x.Name != 'Sherwood Forest Timber, Inc').",
+      "Select(c => c.Employees.Where(e => e.Salary",
+      "> 100000))",
+      ".Select(x => x.Salary))"
+    ]
+  },
+  "MultilineQueryWith_$merge": [
+    "START",
+    {
+      "$multiline": [
+        "$merge",
+        "(Companies.Where(",
+        "x => x.Name != 'Sherwood Forest Timber, Inc')",
+        ".Select(c => c.Employees.Where",
+        "(e => e.Salary > 100000))",
+        ".Select(x => x.Salary))"
+      ]
+    },
+    "END"
+  ],
+  "MultilineQueryWith_$copyFields": {
+    "CarPlates": ["ABC-1122", "DEF-3344"],
+    "employeeFields": {
+      "$multiline": [
+        "$copyFields",
+        "(Companies.Where(x => c.CompanyData.Name !=",
+        " 'Sherwood Forest Timber, Inc')",
+        ".Select(c => c.Employees.Where",
+        "(e => e.Salary > 100000)).First())"
+      ]
+    },
+    "NumberOfCompanyTripsThisYear":  5
+  }  
+}

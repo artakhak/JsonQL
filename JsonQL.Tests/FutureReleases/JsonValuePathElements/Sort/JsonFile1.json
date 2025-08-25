@@ -1,0 +1,43 @@
+{
+  "TestData": {
+    "ArrayOfEmployeesAndOffices": [
+      {
+        "Id": 100000001,
+        "Name": "John Smith",
+        "Address": {
+          "Street": "456 Oak Avenue",
+          "City": "Chicago",
+          "State": "IL",
+          "ZipCode": "60601"
+        },
+        "Salary": 99500,
+        "Age": 45
+      },
+      { "OfficeName": "Office2" },
+      {
+        "Id": 100000002,
+        "Name": "Alice Johnson",
+        "Address": {
+          "Street": "123 Maple Street",
+          "City": "New York",
+          "State": "NY",
+          "ZipCode": "10001"
+        },
+        "Salary": 105000,
+        "Age": 38
+      },
+
+      { "OfficeName": "Office1" }
+    ]
+  },
+  "AllCompanyEmployeesSortedBySalary": "$value(Companies.Where(x => x.CompanyData.Name == 'Strange Things, Inc' || x.CompanyData.Name == 'Atlantic Transfers, Inc').Select(x => x.Employees.Where(x => x.Salary is not null)).Sort(x => x.Salary))",
+  "AllCompanyEmployeesSortedDescBySalary": "$value(Companies.Where(x => x.CompanyData.Name == 'Strange Things, Inc' || x.CompanyData.Name == 'Atlantic Transfers, Inc').Select(x => x.Employees.Where(x => x.Salary is not null)).SortDesc(x => x.Salary))",
+
+  "CompanyNamesSortedByMaxSalary": "$value(Companies.Sort(c => Max(c.Employees.Select(e => e.Salary))).Select(x => x.CompanyData.Name))",
+  "CompanyNamesSortedInDescendingOrderOfMaxSalary": "$value(Companies.SortDesc(c => Max(c.Employees.Select(e => e.Salary))).Select(x => x.CompanyData.Name))",
+
+  "AdvancedSort": {
+    "Comment": "Sorts offices first, and then employees in TestData.ArrayOfEmployeesAndOffices. Offices are sorted by ascending order of ''OfficeName'' field name. Employees are sorted by descending order of ''Id'' field value.",
+    "SortedOfficesAndEmployees": "$value(TestData.ArrayOfEmployeesAndOffices.Sort((x, y) => if (HasField(x, 'OfficeName'), if (HasField(y, 'OfficeName'), x.OfficeName - y.OfficeName, 1), if (HasField(y, 'OfficeName'), 1, y.Id - x.Id))))"
+  }
+}

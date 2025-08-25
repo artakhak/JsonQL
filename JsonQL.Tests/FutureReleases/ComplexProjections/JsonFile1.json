@@ -1,0 +1,75 @@
+{
+  "ProjectEmployeesToNewJsonObject": {
+    "$multiline":  [
+      "$value(Companies.Select(c => c.Employees.Where(e => e.Salary > 100000).Select(e =>",
+      "{'Id': e.Id, 'Name': Concatenate(e.FirstName, ' ', e.LastName)",
+      "'Salary': e.Salary",
+      "'AddressCities': ['NY', Merge(e.Addresses.Select(x => c.City))],",
+      "'AddressCitiesAsString': Join(', ', e.Addresses.Select(x => c.City)),",      
+      "'Index': index",
+      "})))"
+    ]
+  },
+  "ProjectEmployeesToNewJsonObjectAndFilterOnNewProjectedFields": {
+    "$multiline":  [
+      "$value(Companies.Select(c => c.Employees.Where(e => e.Salary > 100000).Select(e =>",
+      "{'Id': e.Id, 'Name': Concatenate(e.FirstName, ' ', e.LastName)",
+      "'Salary': e.Salary",
+      "'AddressCities': ['NY', Merge(e.Addresses.Select(x => c.City))],",
+      "'AddressCitiesAsString': Join(', ', e.Addresses.Select(x => c.City)),",
+      "'Index': index",
+      "}).Where(e => !Any(e.AddressCities.Where(x => x == 'Phoenix')))))"
+    ]
+  },
+  "ProjectCompanyToDataAndAverageSalary": {
+    "$multiline":  [
+      "$value(Companies.Where(e => e.CompanyData.Name != 'Sherwood Forest Timber, Inc').",
+      "Select(c => {'CompanyName': c.CompanyData.Name, 'CEO': c.CEO,'",
+      "'AverageSalary': Average(c.Employees.Select(e => e.Salary))",
+      "}))"
+    ]
+  },
+  "ProjectCompanyToDataAndAverageSalaryAndFilterOnNewProjectedFields": {
+    "$multiline":  [
+      "$value(Companies.Where(e => e.CompanyData.Name != 'Sherwood Forest Timber, Inc').",
+      "Select(c => {'CompanyName': c.CompanyData.Name, 'CEO': c.CEO,'",
+      "'AverageSalary': Average(c.Employees.Select(e => e.Salary))",
+      "}).Where(c => c.AverageSalary > 100000))"
+    ]
+  },
+  "QueryProjectedArray": {
+    "Comments": "Merges arrays Companies[0].Employee and Companies[2].Employees and applies a Where filter using ToQueryable.",
+    "Query": {
+      "$multiline": [
+        "$value(ToQueryable([Merge(Companies[0].Employees, Companies[2].Employees)]).Where(e => e.FirstName != 'Robert'))"
+      ]
+    }
+  },
+  "CopyFieldsWithFilter": {
+    "Comments": "Tests projection using CopyFields with filter.",
+    "Query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name == 'Sherwood Forest Timber, Inc')",
+        ".Select(c => c.Employees.Select(e =>",
+        "{",
+        "'Name': Concatenate(e.FirstName, ' ', e.LastName)",
+        "'employeeFields': CopyFields(e, x => x.metadata.name != 'FirstName'",
+        "&& x.metadata.name != 'LastName' && !(x.metadata.path match '^Addresses[(\\d+)].Street$')",
+        "&& (x.metadata.path != 'Age' || x.value != 29))",
+        "})))"
+      ]
+    }
+  },
+  "QueryProjectedJson": {
+    "Comments": "Projects a JSON to a new JSON object and accesses fields from the new object using ToQueryable() function. The example does not make much sense, but is good enough for testing.",
+    "Query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name == 'Sherwood Forest Timber, Inc')",
+        ".Select(c => c.Employees.Select(e =>",
+        "ToQueryable({",
+        "'Name': Concatenate(e.FirstName, ' ', e.LastName)",       
+        "}).Name)))"
+      ]
+    }
+  }
+}

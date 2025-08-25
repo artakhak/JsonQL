@@ -1,0 +1,47 @@
+{
+  "EmployeesGroupedByCompaniesWithValuesNotFlattened": {
+    "Comments1": "The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.",
+    "Comments2": "We group employees of companies with similar name.",
+    "query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name != 'Atlantic Transfers, Inc')", 
+        ".Group(c => c.CompanyData.Name, c => c.Employees,",
+        "(key, value) => {'CompanyName': key, 'CompanyEmployees': value}, flattenValues->false))"        
+      ]
+    }
+  },
+  "EmployeesGroupedByCompaniesWithValuesFlattened": {
+    "Comments1": "The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.",
+    "Comments2": "We group employees of companies with similar name.",
+    "query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name != 'Atlantic Transfers, Inc')",
+        ".Group(c => c.CompanyData.Name, c => c.Employees,",
+        "(key, value) => {'CompanyName': key, 'CompanyEmployees': value}, flattenValues->true))"
+      ]
+    }
+  },
+  "EmployeesGroupedByCompaniesWithCompanyDataUsedAsKey": {
+    "Comments1": "The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.",
+    "Comments2": "We group employees of companies with similar name.",
+    "query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name != 'Atlantic Transfers, Inc')",
+        ".Group(c => c.CompanyData, c => c.Employees,",
+        "(key, value) => {'CompanyData': key, 'CompanyEmployees': value}, flattenValues->true))"
+      ]
+    }
+  },
+  "CompanyEmployeesStats": {
+    "Comments1": "The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.",
+    "Comments2": "We group employees of companies with similar name.",
+    "query": {
+      "$multiline": [
+        "$value(Companies.Where(c => c.CompanyData.Name != 'Atlantic Transfers, Inc')",
+        ".Group(c => c.CompanyData.Name, c => c.Employees,",
+        "(key, value) => {'CompanyName': key,  'EmployeesCount': Count(value),",
+        "'MaxSalary': Max(value.Select(e => e.Salary))}, flattenValues -> true))"
+      ]
+    }
+  }
+}

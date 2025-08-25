@@ -1,0 +1,1 @@
+﻿Story for this feature: https://artakhak.atlassian.net/browse/JE-7

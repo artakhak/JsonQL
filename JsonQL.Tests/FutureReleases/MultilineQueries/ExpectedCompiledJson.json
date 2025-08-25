@@ -1,0 +1,36 @@
+{
+  "MultilineQueryWith_$":  "Max salary of all employees in all companies except one is 144186",
+  "MultilineQueryWith_$value": [
+    105000,
+    111000,
+    105500,
+    144186,
+    122395
+  ],
+  "MultilineQueryWith_$merge": [
+    "START",
+    105000,
+    111000,
+    105500,
+    144186,
+    122395,
+    "END"
+  ],
+  "MultilineQueryWith_$copyFields": {
+    "CarPlates": [
+      "ABC-1122",
+      "DEF-3344"
+    ],
+    "Id":  100000002,
+    "Name":  "Alice Johnson",
+    "Address": {
+      "Street":  "123 Maple Street",
+      "City":  "New York",
+      "State":  "NY",
+      "ZipCode":  "10001"
+    },
+    "Salary":  105000,
+    "Age":  38,
+    "NumberOfCompanyTripsThisYear":  5
+  }
+}

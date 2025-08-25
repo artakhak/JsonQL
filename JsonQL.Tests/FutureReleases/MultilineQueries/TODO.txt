@@ -1,0 +1,6 @@
+﻿Add tests that test error messages with invalid format.
+When we load JSON (before JSON is parsed to JsonQL expressions), we should 
+concatenate the values in "$multiline" array (see test files), and replace the JSON value which contains
+$multiline" field with concatenated string.
+However, if any errors happen, we should map the error location info to original location data before
+the lines were concatenated using the position data of replaced JSON values. 

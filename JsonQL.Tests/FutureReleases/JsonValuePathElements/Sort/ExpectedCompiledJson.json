@@ -1,0 +1,295 @@
+{
+  "TestData": {
+    "ArrayOfEmployeesAndOffices": [
+      {
+        "Id": 100000002,
+        "Name": "Alice Johnson",
+        "Address": {
+          "Street": "123 Maple Street",
+          "City": "New York",
+          "State": "NY",
+          "ZipCode": "10001"
+        },
+        "Salary": 105000,
+        "Age": 38
+      },
+      { "OfficeName": "Office2" },
+      {
+        "Id": 100000001,
+        "Name": "John Smith",
+        "Address": {
+          "Street": "456 Oak Avenue",
+          "City": "Chicago",
+          "State": "IL",
+          "ZipCode": "60601"
+        },
+        "Salary": 99500,
+        "Age": 45
+      },
+      { "OfficeName": "Office1" }
+    ]
+  },
+  "AllCompanyEmployeesSortedBySalary": [
+    {
+      "Id": 100000009,
+      "Name": "Andrew Harris",
+      "Address": {
+        "Street": "369 Spruce Drive",
+        "City": "Dallas",
+        "State": "TX",
+        "ZipCode": "75201"
+      },
+      "Salary": 88000,
+      "Age": 41
+    },
+    {
+      "Id": 100000003,
+      "Name": "Michael Brown",
+      "Address": {
+        "Street": "789 Pine Lane",
+        "City": "Los Angeles",
+        "State": "CA",
+        "ZipCode": "90001"
+      },
+      "Salary": 89000,
+      "Age": 50
+    },
+    {
+      "Id": 100000004,
+      "Name": "Emily Davis",
+      "Address": {
+        "Street": "321 Elm Drive",
+        "City": "Houston",
+        "State": "TX",
+        "ZipCode": "77001"
+      },
+      "Salary": 92000,
+      "Age": 42
+    },
+    {
+      "Id": 100000010,
+      "Name": "Jessica Thompson",
+      "Address": {
+        "Street": "159 Cherry Lane",
+        "City": "Austin",
+        "State": "TX",
+        "ZipCode": "73301"
+      },
+      "Salary": 98700,
+      "Age": 37
+    },
+    {
+      "Id": 100000001,
+      "Name": "John Smith",
+      "Address": {
+        "Street": "456 Oak Avenue",
+        "City": "Chicago",
+        "State": "IL",
+        "ZipCode": "60601"
+      },
+      "Salary": 99500,
+      "Age": 45
+    },
+    {
+      "Id": 100000002,
+      "Name": "Alice Johnson",
+      "Address": {
+        "Street": "123 Maple Street",
+        "City": "New York",
+        "State": "NY",
+        "ZipCode": "10001"
+      },
+      "Salary": 105000,
+      "Age": 38
+    },
+    {
+      "Id": 100000008,
+      "Name": "Laura Lee",
+      "Address": {
+        "Street": "258 Willow Lane",
+        "City": "San Diego",
+        "State": "CA",
+        "ZipCode": "92101"
+      },
+      "Salary": 105500,
+      "Age": 32
+    },
+    {
+      "Id": 783328759,
+      "Name": "Robert Brown",
+      "Address": {
+        "Street": "Pine St",
+        "City": "Los Angeles",
+        "State": "CA",
+        "ZipCode": "90001"
+      },
+      "Salary": 122395,
+      "Age": 58
+    },
+    {
+      "Id": 250150245,
+      "Name": "Jane Doe",
+      "Address": {
+        "Street": "Main St",
+        "City": "San Jose",
+        "State": "PA",
+        "ZipCode": "95101"
+      },
+      "Salary": 144186,
+      "Age": 63
+    }
+  ],
+  "AllCompanyEmployeesSortedDescBySalary": [
+    {
+      "Id": 250150245,
+      "Name": "Jane Doe",
+      "Address": {
+        "Street": "Main St",
+        "City": "San Jose",
+        "State": "PA",
+        "ZipCode": "95101"
+      },
+      "Salary": 144186,
+      "Age": 63
+    },
+    {
+      "Id": 783328759,
+      "Name": "Robert Brown",
+      "Address": {
+        "Street": "Pine St",
+        "City": "Los Angeles",
+        "State": "CA",
+        "ZipCode": "90001"
+      },
+      "Salary": 122395,
+      "Age": 58
+    },
+    {
+      "Id": 100000008,
+      "Name": "Laura Lee",
+      "Address": {
+        "Street": "258 Willow Lane",
+        "City": "San Diego",
+        "State": "CA",
+        "ZipCode": "92101"
+      },
+      "Salary": 105500,
+      "Age": 32
+    },
+    {
+      "Id": 100000002,
+      "Name": "Alice Johnson",
+      "Address": {
+        "Street": "123 Maple Street",
+        "City": "New York",
+        "State": "NY",
+        "ZipCode": "10001"
+      },
+      "Salary": 105000,
+      "Age": 38
+    },
+    {
+      "Id": 100000001,
+      "Name": "John Smith",
+      "Address": {
+        "Street": "456 Oak Avenue",
+        "City": "Chicago",
+        "State": "IL",
+        "ZipCode": "60601"
+      },
+      "Salary": 99500,
+      "Age": 45
+    },
+    {
+      "Id": 100000010,
+      "Name": "Jessica Thompson",
+      "Address": {
+        "Street": "159 Cherry Lane",
+        "City": "Austin",
+        "State": "TX",
+        "ZipCode": "73301"
+      },
+      "Salary": 98700,
+      "Age": 37
+    },
+    {
+      "Id": 100000004,
+      "Name": "Emily Davis",
+      "Address": {
+        "Street": "321 Elm Drive",
+        "City": "Houston",
+        "State": "TX",
+        "ZipCode": "77001"
+      },
+      "Salary": 92000,
+      "Age": 42
+    },
+    {
+      "Id": 100000003,
+      "Name": "Michael Brown",
+      "Address": {
+        "Street": "789 Pine Lane",
+        "City": "Los Angeles",
+        "State": "CA",
+        "ZipCode": "90001"
+      },
+      "Salary": 89000,
+      "Age": 50
+    },
+    {
+      "Id": 100000009,
+      "Name": "Andrew Harris",
+      "Address": {
+        "Street": "369 Spruce Drive",
+        "City": "Dallas",
+        "State": "TX",
+        "ZipCode": "75201"
+      },
+      "Salary": 88000,
+      "Age": 41
+    }
+  ],
+
+  "CompanyNamesSortedByMaxSalary": [
+    "Atlantic Transfers, Inc",
+    "Sherwood Forest Timber, Inc",
+    "Strange Things, Inc"
+  ],
+  "CompanyNamesSortedInDescendingOrderOfMaxSalary": [
+    "Strange Things, Inc",
+    "Sherwood Forest Timber, Inc",
+    "Atlantic Transfers, Inc"
+  ],
+
+  "AdvancedSort": {
+    "Comment": "Sorts offices first, and then employees in TestData.ArrayOfEmployeesAndOffices. Offices are sorted by ascending order of ''OfficeName'' field name. Employees are sorted by descending order of ''Id'' field value.",
+    "SortedOfficesAndEmployees": [
+      { "OfficeName": "Office1" },
+      { "OfficeName": "Office2" },
+      {
+        "Id": 100000002,
+        "Name": "Alice Johnson",
+        "Address": {
+          "Street": "123 Maple Street",
+          "City": "New York",
+          "State": "NY",
+          "ZipCode": "10001"
+        },
+        "Salary": 105000,
+        "Age": 38
+      },
+      {
+        "Id": 100000001,
+        "Name": "John Smith",
+        "Address": {
+          "Street": "456 Oak Avenue",
+          "City": "Chicago",
+          "State": "IL",
+          "ZipCode": "60601"
+        },
+        "Salary": 99500,
+        "Age": 45
+      }
+    ]
+  }
+}
