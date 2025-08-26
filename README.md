@@ -119,9 +119,9 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - `*`				 - Multiply operator
 - `/`				 - Divide operator
 - `+`				 - Add operator
-- `-`				 - Subtract operator or negative number operator depedning where it is used. Exampels: "-5", "a.Age-5".
+- `-`				 - Subtract binary operator or negative number unary operator based on where it is used. Examples: "-5", "a.Age-5".
 - `%`				 - Quotient operator
-- `->`				 - Named parameter specification operator. Allows changing the odrer of parameters. Usefull with some parameters being optional. Example: ReverseTextAndAddMarkers(addMarkers->false, value->TestData[4])
+- `->`				 - Named parameter specification operator. Allows changing the order of parameters. Useful with some parameters being optional. Example: ReverseTextAndAddMarkers(addMarkers->false, value->TestData[4])
 - `=>`				 - Lambda operator
 - `contains`		 - Contains operator
 - `starts with`		 - Starts with operator
@@ -133,7 +133,7 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - `is not undefined` - 'is not undefined' operator
 - `typeof`			 - 'typeof' operator. Example "typeof person.Age"
 
-NOTE: Documentation will be improved in near future to demonstrate good exanples. Before that is done, reference examples in unit tests in project JosnQL.Tests as well as examples in JsonQL.Demos.
+NOTE: Documentation will be improved in near future to demonstrate good examples. Before that is done, reference examples in unit tests in project JsonQL.Tests as well as examples in JsonQL.Demos.
 
 ## License
 
