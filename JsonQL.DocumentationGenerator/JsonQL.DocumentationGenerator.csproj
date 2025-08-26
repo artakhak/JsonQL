@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="C:\Users\artak\.nuget\packages\oroptimizer.shared.log4net\1.0.0\contentFiles\any\net6.0\README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FileInclude" Version="1.0.5" />
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="JsonQLReadMeGenerator.log4net.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

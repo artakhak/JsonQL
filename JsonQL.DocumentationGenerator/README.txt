@@ -1,0 +1,1 @@
+﻿Run this application in debug mode for now.
