@@ -8,8 +8,9 @@ internal class DocumentsGenerator
     private readonly (string teplateFileRelativePath, string generatedFileRelativePath)[] _filesRelativePathsData = 
     {
         (@"JsonQL.Tests\doc-files\README.md.template", "README.md"),
+        (@"JsonQL.Tests\doc-files\README.md.template", @"JsonQL\README.md"),
         (@"JsonQL.Tests\doc-files\index.rst.template", @"docs\index.rst"),
-        (@"JsonQL.Tests\doc-files\summary.rst.template", @"docs\summary.rst"),
+        (@"JsonQL.Tests\doc-files\json-file-mutation\index.rst.template", @"docs\json-file-mutation\index.rst")
         /*("README.md.template", "README.md"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\index.rst.template", @"docs\index.rst"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\summary.rst.template", @"docs\summary.rst"),

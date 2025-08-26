@@ -46,7 +46,6 @@ This is a Sphinx project for JsonQL documentation.
         python -m http.server
 
       - Open this page: http://localhost:8000/
-
         
 ### Publishing to Git
       -Before committing to git run "make clean" to clean the generated files. ReadTheDcos will build the docs.
