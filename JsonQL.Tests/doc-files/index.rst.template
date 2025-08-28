@@ -1,6 +1,10 @@
 ﻿JsonQL
 ======
 
+.. contents::
+   :local:
+   :depth: 2
+   
 - **JsonQL** is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
 - All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.
 - Allows using JsonQL expressions in one or more JSON files to mutate JSON files. JsonQL parses the mutated JSON files with JsonQL expressions to generate a JSON structure.
@@ -11,7 +15,8 @@
 
 - Errors are reported in JsonQL error classes that have error position data as well as additional data.
 
-**Below is an example of "Overview.json" JSON file that uses JsonQL expressions to mutate the JSON being parsed by JsonQL:**
+Example of using JsonQL expressions in JSON file **Overview.json** to mutate the JSON being parsed by **JsonQL**
+================================================================================================================
 
   .. note::
           JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
@@ -36,9 +41,42 @@
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>csharp-code-samples\parse-json-with-json-ql-expressions-1.cs</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>csharp-code-samples\json-with-json-ql-expressions-1.cs.example</IncludedFilePlaceHolder>
 
-- Continue (remove summary.rst and replace with other links) ...
+
+Example of querying a JSON data in one or more JSON files and converting the result to C# objects
+=================================================================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>csharp-code-samples\query-with-conversion-to-csharp-types-1.cs.example</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
+
+Example of querying a JSON data in one or more JSON files and converting the result of collection of double values
+==================================================================================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>csharp-code-samples\query-with-conversion-to-csharp-types-2.cs.example</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
 
 .. toctree::
 

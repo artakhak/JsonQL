@@ -212,39 +212,45 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ***Here is a C# code example that evaluates the Json in file above***
 ```csharp
-public static void ParseJsonWithJsonQLExpressions()
-{
-    var additionalTestData = new JsonTextData(
-        "AdditionalTestData",
-        this.LoadExampleJsonFile("AdditionalTestData.json"));
+var additionalTestData = new JsonTextData(
+    "AdditionalTestData",
+    this.LoadExampleJsonFile("AdditionalTestData.json"));
 
-    var countriesJsonTextData = new JsonTextData(
-        "Countries",
-        this.LoadExampleJsonFile("Countries.json"), additionalTestData);
+var countriesJsonTextData = new JsonTextData(
+    "Countries",
+    this.LoadExampleJsonFile("Countries.json"), additionalTestData);
 
-    var companiesJsonTextData = new JsonTextData("Companies",
-        this.LoadExampleJsonFile("Companies.json"), countriesJsonTextData);
+var companiesJsonTextData = new JsonTextData("Companies",
+    this.LoadExampleJsonFile("Companies.json"), countriesJsonTextData);
 
-    JsonQL.Compilation.IJsonCompiler jsonCompiler = null!; // Create an instance of JsonQL.Compilation.JsonCompiler here.
-                                    //This is normally done once on application start.
-    var result = jsonCompiler.Compile(new JsonTextData("Overview",
-        this.LoadExampleJsonFile("Overview.json"), companiesJsonTextData));
-}
+// Create an instance of JsonQL.Compilation.JsonCompiler here.
+//This is normally done once on application start.
+JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
+
+var result = jsonCompiler.Compile(new JsonTextData("Overview",
+    this.LoadExampleJsonFile("Overview.json"), companiesJsonTextData));
+
 ```
 
 ***Below is an example of querying a JSON data in one or more JSON files and converting the result to C# objects***
 
 ```csharp
+// NOTE: Data.json has a root JSON with a collection of employees. 
+// If the JSON had a JSON object with the "Employees" field, the
+// query would be: "Employees.Where(...)" instead of "Where(...)"
 var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
 
-IQueryManager queryManager = null!; // Create an instance of JsonQL.Query.QueryManager here.
-                                    //This is normally done once on application start.
-
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally setup in DI normally using a singletone binding done on application start.
+IQueryManager queryManager = null!; 
+                                    
 // We can convert to the following collection types:
-// -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, ICollection<T>, IReadOnlyCollection<T>
+// -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+// ICollection<T>, IReadOnlyCollection<T>
 // -Any type that implements ICollection<T>. Example: List<T>,
 // -Array T[],
-// In these examples T is either an object (value or reference type), or another collection type (one of the listed here). 
+// In these examples T is either an object (value or reference type) or another collection 
+// type (one of the listed here). 
 var employeesResult =
     queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
         new JsonTextData("Data",
@@ -252,26 +258,30 @@ var employeesResult =
         [false, false], new JsonConversionSettingsOverrides
         {
             TryMapJsonConversionType = (type, parsedJson) =>
-            {   
-                // If we always return null, or just do not set the value of TryMapJsonConversionType
+            {
+                // If we always return null, or just do not set the value, of TryMapJsonConversionType
                 // IEmployee will always be bound to Employee
-                // In this example, we make sure that in some cases th default implementation of IManager 
-                // is used (we can also specify Manager)
+                // In this example, we ensure that if parsed JSON has "Employees" field,
+                // then the default implementation of IManager (i.e., Manager) is used to
+                // deserialize the JSON.
+                // We can also specify Manager explicitly.
                 if (parsedJson.HasKey(nameof(IManager.Employees)))
                     return typeof(IManager);
                 return null;
             }
         });
+
 ```
 
 ***Below is an example of querying a JSON data in one or more JSON files and converting the result of collection of double values***
 
 ```csharp
-var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
+var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+    "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
 
-IQueryManager queryManager = null!; // Create an instance of JsonQL.Query.QueryManager here.
-                                    //This is normally done once on application start.
-
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally done once on application start.
+IQueryManager queryManager = null!;
 
 var salariesResult =
     queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,

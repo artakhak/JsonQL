@@ -1,6 +1,10 @@
 JsonQL
 ======
 
+.. contents::
+   :local:
+   :depth: 2
+   
 - **JsonQL** is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
 - All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.
 - Allows using JsonQL expressions in one or more JSON files to mutate JSON files. JsonQL parses the mutated JSON files with JsonQL expressions to generate a JSON structure.
@@ -11,7 +15,8 @@ JsonQL
 
 - Errors are reported in JsonQL error classes that have error position data as well as additional data.
 
-**Below is an example of "Overview.json" JSON file that uses JsonQL expressions to mutate the JSON being parsed by JsonQL:**
+Example of using JsonQL expressions in JSON file **Overview.json** to mutate the JSON being parsed by **JsonQL**
+================================================================================================================
 
   .. note::
           JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
@@ -95,26 +100,104 @@ JsonQL
 
 .. sourcecode:: csharp
 
-    public static void ParseJsonWithJsonQLExpressions()
-    {
-        var additionalTestData = new JsonTextData(
-            "AdditionalTestData",
-            this.LoadExampleJsonFile("AdditionalTestData.json"));
+    var additionalTestData = new JsonTextData(
+        "AdditionalTestData",
+        this.LoadExampleJsonFile("AdditionalTestData.json"));
 
-        var countriesJsonTextData = new JsonTextData(
-            "Countries",
-            this.LoadExampleJsonFile("Countries.json"), additionalTestData);
+    var countriesJsonTextData = new JsonTextData(
+        "Countries",
+        this.LoadExampleJsonFile("Countries.json"), additionalTestData);
 
-        var companiesJsonTextData = new JsonTextData("Companies",
-            this.LoadExampleJsonFile("Companies.json"), countriesJsonTextData);
+    var companiesJsonTextData = new JsonTextData("Companies",
+        this.LoadExampleJsonFile("Companies.json"), countriesJsonTextData);
 
-        JsonQL.Compilation.IJsonCompiler jsonCompiler = null!; // Create an instance of JsonQL.Compilation.JsonCompiler here.
-                                        //This is normally done once on application start.
-        var result = jsonCompiler.Compile(new JsonTextData("Overview",
-            this.LoadExampleJsonFile("Overview.json"), companiesJsonTextData));
-    }
+    // Create an instance of JsonQL.Compilation.JsonCompiler here.
+    //This is normally done once on application start.
+    JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
-- Continue (remove summary.rst and replace with other links) ...
+    var result = jsonCompiler.Compile(new JsonTextData("Overview",
+        this.LoadExampleJsonFile("Overview.json"), companiesJsonTextData));
+
+
+
+Example of querying a JSON data in one or more JSON files and converting the result to C# objects
+=================================================================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    // NOTE: Data.json has a root JSON with a collection of employees. 
+    // If the JSON had a JSON object with the "Employees" field, the
+    // query would be: "Employees.Where(...)" instead of "Where(...)"
+    var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
+
+    // Create an instance of JsonQL.Query.QueryManager here.
+    // This is normally setup in DI normally using a singletone binding done on application start.
+    IQueryManager queryManager = null!; 
+                                        
+    // We can convert to the following collection types:
+    // -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+    // ICollection<T>, IReadOnlyCollection<T>
+    // -Any type that implements ICollection<T>. Example: List<T>,
+    // -Array T[],
+    // In these examples T is either an object (value or reference type) or another collection 
+    // type (one of the listed here). 
+    var employeesResult =
+        queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+            new JsonTextData("Data",
+                this.LoadExampleJsonFile("Data.json")),
+            [false, false], new JsonConversionSettingsOverrides
+            {
+                TryMapJsonConversionType = (type, parsedJson) =>
+                {
+                    // If we always return null, or just do not set the value, of TryMapJsonConversionType
+                    // IEmployee will always be bound to Employee
+                    // In this example, we ensure that if parsed JSON has "Employees" field,
+                    // then the default implementation of IManager (i.e., Manager) is used to
+                    // deserialize the JSON.
+                    // We can also specify Manager explicitly.
+                    if (parsedJson.HasKey(nameof(IManager.Employees)))
+                        return typeof(IManager);
+                    return null;
+                }
+            });
+
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
+
+Example of querying a JSON data in one or more JSON files and converting the result of collection of double values
+==================================================================================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+        "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
+
+    // Create an instance of JsonQL.Query.QueryManager here.
+    // This is normally done once on application start.
+    IQueryManager queryManager = null!;
+
+    var salariesResult =
+        queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,
+            new JsonTextData("Data",
+                this.LoadExampleJsonFile("Data.json")), null);
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
 
 .. toctree::
 

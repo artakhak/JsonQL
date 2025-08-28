@@ -55,7 +55,9 @@
 </li>
 <li><p>Errors are reported in JsonQL error classes that have error position data as well as additional data.</p></li>
 </ul>
-<p><strong>Below is an example of “Overview.json” JSON file that uses JsonQL expressions to mutate the JSON being parsed by JsonQL:</strong></p>
+</section>
+<section id="example-of-using-jsonql-expressions-in-json-file-overview-json-to-mutate-the-json-being-parsed-by-jsonql">
+<h1>Example of using JsonQL expressions in JSON file <strong>Overview.json</strong> to mutate the JSON being parsed by <strong>JsonQL</strong><a class="headerlink" href="#example-of-using-jsonql-expressions-in-json-file-overview-json-to-mutate-the-json-being-parsed-by-jsonql" title="Link to this heading">¶</a></h1>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -132,30 +134,94 @@
 </pre></div>
 </div>
 <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a><p><strong>Here is a C# code example that evaluates the Json in file above</strong></p>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">ParseJsonWithJsonQLExpressions</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">additionalTestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;AdditionalTestData&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;AdditionalTestData.json&quot;</span><span class="p">));</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">additionalTestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;AdditionalTestData&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;AdditionalTestData.json&quot;</span><span class="p">));</span>
 
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">additionalTestData</span><span class="p">);</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">additionalTestData</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span><span class="w"> </span><span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="w">                                    </span><span class="c1">//This is normally done once on application start.</span>
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Overview&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Overview.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
-<span class="p">}</span>
+<span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="c1">//This is normally done once on application start.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Overview&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Overview.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Continue (remove summary.rst and replace with other links) …</p></li>
+</section>
+<section id="example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-to-c-objects">
+<h1>Example of querying a JSON data in one or more JSON files and converting the result to C# objects<a class="headerlink" href="#example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-to-c-objects" title="Link to this heading">¶</a></h1>
+<ul>
+<li><dl>
+<dt>Files evaluated in JsonQL query below are listed here:</dt><dd><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a></dd>
+</dl>
+</li>
 </ul>
-<div class="toctree-wrapper compound">
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// NOTE: Data.json has a root JSON with a collection of employees.</span>
+<span class="c1">// If the JSON had a JSON object with the &quot;Employees&quot; field, the</span>
+<span class="c1">// query would be: &quot;Employees.Where(...)&quot; instead of &quot;Where(...)&quot;</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Where(x =&gt; x.Id==100000006 || x.Id==100000007)&quot;</span><span class="p">;</span>
+
+<span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
+<span class="c1">// This is normally setup in DI normally using a singletone binding done on application start.</span>
+<span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// We can convert to the following collection types:</span>
+<span class="c1">// -One of the following interfaces: IReadOnlyList&lt;T&gt;, IEnumerable&lt;T&gt;, IList&lt;T&gt;,</span>
+<span class="c1">// ICollection&lt;T&gt;, IReadOnlyCollection&lt;T&gt;</span>
+<span class="c1">// -Any type that implements ICollection&lt;T&gt;. Example: List&lt;T&gt;,</span>
+<span class="c1">// -Array T[],</span>
+<span class="c1">// In these examples T is either an object (value or reference type) or another collection</span>
+<span class="c1">// type (one of the listed here).</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="na">[false, false]</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonConversionSettingsOverrides</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TryMapJsonConversionType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">parsedJson</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// If we always return null, or just do not set the value, of TryMapJsonConversionType</span>
+<span class="w">                </span><span class="c1">// IEmployee will always be bound to Employee</span>
+<span class="w">                </span><span class="c1">// In this example, we ensure that if parsed JSON has &quot;Employees&quot; field,</span>
+<span class="w">                </span><span class="c1">// then the default implementation of IManager (i.e., Manager) is used to</span>
+<span class="w">                </span><span class="c1">// deserialize the JSON.</span>
+<span class="w">                </span><span class="c1">// We can also specify Manager explicitly.</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parsedJson</span><span class="p">.</span><span class="n">HasKey</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">IManager</span><span class="p">.</span><span class="n">Employees</span><span class="p">)))</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nf">typeof</span><span class="p">(</span><span class="n">IManager</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a></section>
+<section id="example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-of-collection-of-double-values">
+<h1>Example of querying a JSON data in one or more JSON files and converting the result of collection of double values<a class="headerlink" href="#example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-of-collection-of-double-values" title="Link to this heading">¶</a></h1>
+<ul>
+<li><dl>
+<dt>Files evaluated in JsonQL query below are listed here:</dt><dd><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json"><p class="codeSnippetRefText">Data.json</p></a></dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="s">&quot;Companies.Select(x =&gt; x.Employees.Where(x =&gt; x.Age &gt; 35).Select(x =&gt; x.Salary))&quot;</span><span class="p">;</span>
+
+<span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
+<span class="c1">// This is normally done once on application start.</span>
+<span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">salariesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)),</span><span class="w"> </span><span class="k">null</span><span class="p">);</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a><div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="json-file-mutation/index.html">Json File Mutation</a></li>
 </ul>
@@ -181,6 +247,9 @@
     <h3><a href="#">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">JsonQL</a></li>
+<li><a class="reference internal" href="#example-of-using-jsonql-expressions-in-json-file-overview-json-to-mutate-the-json-being-parsed-by-jsonql">Example of using JsonQL expressions in JSON file <strong>Overview.json</strong> to mutate the JSON being parsed by <strong>JsonQL</strong></a></li>
+<li><a class="reference internal" href="#example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-to-c-objects">Example of querying a JSON data in one or more JSON files and converting the result to C# objects</a></li>
+<li><a class="reference internal" href="#example-of-querying-a-json-data-in-one-or-more-json-files-and-converting-the-result-of-collection-of-double-values">Example of querying a JSON data in one or more JSON files and converting the result of collection of double values</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
