@@ -15,8 +15,8 @@ JsonQL
 
 - Errors are reported in JsonQL error classes that have error position data as well as additional data.
 
-Example of using JsonQL expressions in JSON file **Overview.json** to mutate the JSON being parsed by **JsonQL**
-================================================================================================================
+Example: JsonQL expressions to mutate JSON
+==========================================
 
   .. note::
           JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
@@ -120,8 +120,8 @@ Example of using JsonQL expressions in JSON file **Overview.json** to mutate the
 
 
 
-Example of querying a JSON data in one or more JSON files and converting the result to C# objects
-=================================================================================================
+Example: Query and convert JSON to C# objects
+=============================================
 
 - Files evaluated in JsonQL query below are listed here:
     .. raw:: html
@@ -172,8 +172,8 @@ Example of querying a JSON data in one or more JSON files and converting the res
     <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
 
 
-Example of querying a JSON data in one or more JSON files and converting the result of collection of double values
-==================================================================================================================
+Example: Query and convert JSON to collection of double values
+==============================================================
 
 - Files evaluated in JsonQL query below are listed here:
     .. raw:: html
