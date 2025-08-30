@@ -17,11 +17,11 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
     {
         var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
 
-        var companyResult =
+        var companiesResult =
             _queryManager.QueryJsonValue(query,
                 new JsonTextData("Data",
                     this.LoadExampleJsonFile("Data.json")));
 
-        return companyResult;
+        return companiesResult;
     }
 }

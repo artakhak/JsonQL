@@ -7,7 +7,7 @@ public static class CustomJsonFunctionNames
     /// <summary>
     /// Note, we could use a better example of special function, such as Now, however
     /// it might result in conflicts with core (non-custom) functions in the future,
-    /// is similar function in introduced in jsonQL library.
+    /// is similar function in introduced in JsonQL library.
     /// Therefore, to avoid future conflicts, impractical examples are used. 
     /// </summary>
     public const string JsonQLReleaseDateFunction = "JsonQLReleaseDate";

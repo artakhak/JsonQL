@@ -1,10 +1,17 @@
 ## NOTE, following is a very high level description of **JsonQL**. For more details please refer to examples in JsonQL.Demo and JsonQL.Tests projects in [https://github.com/artakhak/JsonQL](https://github.com/artakhak/JsonQL).
 
-```markdown
-
-# JsonQL
+## Overview
 
 JsonQL is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
+
+- **JsonQL** is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
+- All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.
+- Allows using JsonQL expressions in one or more JSON files to mutate JSON files. JsonQL parses the mutated JSON files with JsonQL expressions to generate a JSON structure.
+- Supports executing JsonQL queries against one or more JSON files. The query result is converted either to C# model classes (depending on API used).
+
+  **NOTE**: Model classes used for deserialization can be either C# classes or interfaces, and the properties can be of class or interface types. JsonQL will either use default implementations of interfaces or will use classes specified by the developer.
+
+- Errors are reported in JsonQL error classes that have error position data as well as additional data.
 
 ## Features
 
@@ -17,20 +24,21 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - Object property inspection (HasField)
 - Lambda expression support for complex queries
 - Extensible function architecture
-- Built-in conversion of query results to C# objects
-  -Also, allows auto-binding interfaces to default implementations or non-default implementations via configuration
-- Mutating JSON files by replacing Json field values by evaluated Json values
+- Built-in conversion of query results to C# objects  
+  **NOTE: Binds interfaces to default implementations and also supports binding interfaces to any class via configuration**
+- Mutating JSON files by replacing JSON field values by evaluated JSON values
 - Extending the API to provide custom operators, functions, as well as customizing any part of JsonQL implementation
 
-## Json Path Elements
-### Built-in Path Elements (new functions can be added)
+## JSON Path Elements (custom JSON path elements can be implemented)
+
+```markdown
 - `Array indexes`   
   Examples: "$(Object1.Array1[0])", "$(parent.Object1.Array2[4, 1])"
 
-- `Where`           - Applied to json objects to filter out Json objects.
+- `Where`           - Applied to JSON objects to filter out JSON objects.
   Examples: "$merge(Object1.Array1.Where(x => x >= 2 && x <= 6))"
 
-- `Select`          - Applied to map Json objects to other json objects.
+- `Select`          - Applied to map JSON objects to other JSON objects.
   Examples: "$merge(Object1.Select(x => x.Object2.Where(y => HasField(y, 'Value'))))"
 
 - `Flatten`         - Applied to flatten multidimensional arrays.
@@ -44,24 +52,29 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 
 - `Reverse`         - Applied to reverse the collection.
   Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6).Reverse())"
+```
 
-## Mutation operators.
-- `$copyFields`     - Copies fields in one Json object into another Json object.
+## Mutation operators
+
+```markdown
+- `$copyFields`     - Copies fields in one JSON object into another JSON object.
   Examples: {"Object1": {"replaceWithCopiedFields": "$copyFields(parent.Examples.Object1)", "Field2": 1 }}
 
 - `$merge`          - Merges items in one array into another array.
   Examples: { "Array1": [1, "$merge(parent.Where(x => Count(x) >= 2 && Any(x, y => y.Capitalization > 300)).Flatten().Where(x => x.Age > 60))", 3] }
 
-- `$value`          - Replaces a Json field value with evaluated value.
+- `$value`          - Replaces a JSON field value with evaluated value.
   Examples: {"Employees": "$value(Example.Employees.Where(x => x.Salary > 100000))"}
 
 - `$`               - String interpolation mutator operator.
   Examples: { "MyCalculatedValue": "$(parent.Array1[1, 1000]:parent.Array1[1, 2]) is 6"}
+```
 
-
-## Built-in Functions
+## Functions (custom functions can be implemented)
 
 ### Aggregate Functions
+
+```markdown
 - `Count()` - Counts elements in a collection
   Examples: {"array1": [1, "$merge(parent.Object1.Array2.Where(x => Count(x) > 3)), 2]}
 
@@ -82,31 +95,38 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 
 - `Any()` - Tests if any elements match a condition
   Examples: {"CompaniesWithEmployeeWithSalaryOf_88000": [ "$merge(Companies.Where(x => Any(x.Employees, y => y.Salary == 88000)))" ]}
+```
 
 ### String Functions
+```markdown
 - `Lower()` - Converts text to lowercase
 - `Upper()` - Converts text to uppercase
 - `Length()` - Returns text length
 - `Concatenate()` - Joins multiple strings
+```
 
 ### Conversion Functions
+```markdown
 - `ConvertToDateTime()` - Converts to DateTime
 - `ConvertToDate()` - Converts to Date
 - `ConvertToDouble()` - Converts to Double
 - `ConvertToInt()` - Converts to Integer
 - `ConvertToBoolean()` - Converts to Boolean
 - `ConvertToString()` - Converts to String
+```
 
 ### Mathematical Functions
+```markdown
 - `Abs()` - Returns absolute value
 - `IsEven()` - Checks if number is even
 - `IsOdd()` - Checks if number is odd
 
 ### Object Functions
 - `HasField()` - Checks if JSON object has specified field
+```
 
-
-## Built-in Operators
+## Operators (custom operators can be implemented)
+```markdown
 - `.`				 - Accesses field value
 - `!`				 - Negate operator
 - `==`				 - Equals operator
@@ -132,8 +152,8 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - `is undefined`	 - 'is undefined' operator
 - `is not undefined` - 'is not undefined' operator
 - `typeof`			 - 'typeof' operator. Example "typeof person.Age"
-
-NOTE: Documentation will be improved in near future to demonstrate good examples. Before that is done, reference examples in unit tests in project JsonQL.Tests as well as examples in JsonQL.Demos.
+```
+**NOTE:** Documentation will be improved in near future to demonstrate good examples. Before that is done, reference examples in unit tests in project JsonQL.Tests as well as examples in JsonQL.Demos.
 
 ## License
 
@@ -142,7 +162,9 @@ This project is licensed under the MIT License - see the LICENSE file in the sol
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-```
+
+
+OLD DOCS BELOW 
 
 ## Here are some examples
 ***Below is an example of Json file with JsonQL expressions that the C# code below evaluates***
@@ -235,22 +257,30 @@ var result = jsonCompiler.Compile(new JsonTextData("Overview",
 ***Below is an example of querying a JSON data in one or more JSON files and converting the result to C# objects***
 
 ```csharp
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally setup in DI normally using a singletone binding done on application start.
+IQueryManager queryManager = null!; 
+
 // NOTE: Data.json has a root JSON with a collection of employees. 
 // If the JSON had a JSON object with the "Employees" field, the
 // query would be: "Employees.Where(...)" instead of "Where(...)"
 var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
-
-// Create an instance of JsonQL.Query.QueryManager here.
-// This is normally setup in DI normally using a singletone binding done on application start.
-IQueryManager queryManager = null!; 
                                     
-// We can convert to the following collection types:
-// -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
-// ICollection<T>, IReadOnlyCollection<T>
-// -Any type that implements ICollection<T>. Example: List<T>,
-// -Array T[],
-// In these examples T is either an object (value or reference type) or another collection 
-// type (one of the listed here). 
+// We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+// -Class (value or reference type). We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<Manager?>(...)",
+//      "_queryManager.QueryObject<Manager>(...)"
+// -Interface. We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<IManager?>(...)",
+//      "_queryManager.QueryObject<IManager>(...)"
+// The following collection types:
+//          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+//          ICollection<T>, IReadOnlyCollection<T>
+// -Any type that implements ICollection<T>. Example: List<T>, Array T[]
+// If collection type is used for "T", "T" can be either an object (value or reference type)
+// or another collection listed above. Also, nullability keyword "?" can be used for
+// collection items as well as for collection type itself.
+// The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
 var employeesResult =
     queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
         new JsonTextData("Data",
@@ -276,13 +306,13 @@ var employeesResult =
 ***Below is an example of querying a JSON data in one or more JSON files and converting the result of collection of double values***
 
 ```csharp
-var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
-    "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
-
 // Create an instance of JsonQL.Query.QueryManager here.
 // This is normally done once on application start.
 IQueryManager queryManager = null!;
 
+var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+    "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
+    
 var salariesResult =
     queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,
         new JsonTextData("Data",

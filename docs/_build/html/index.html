@@ -1,48 +1,85 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JsonQL &mdash; jsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
-    <title>JsonQL &#8212; jsonQL 1.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
-    
-    <script src="_static/documentation_options.js?v=61243dd2"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/bizstyle.js"></script>
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=61243dd2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Json File Mutation" href="json-file-mutation/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!--[if lt IE 9]>
-    <script src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head><body>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="json-file-mutation/index.html" title="Json File Mutation"
-             accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">jsonQL 1.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">JsonQL</a></li> 
-      </ul>
-    </div>  
+    <link rel="next" title="Json File Mutation" href="json-file-mutation/index.html" /> 
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            jsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="json-file-mutation/index.html">Json File Mutation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">jsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">JsonQL</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="jsonql">
-<h1>JsonQL<a class="headerlink" href="#jsonql" title="Link to this heading">¶</a></h1>
+<h1>JsonQL<a class="headerlink" href="#jsonql" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json" id="id1">Example: JsonQL expressions to mutate JSON</a></p></li>
+<li><p><a class="reference internal" href="#example-query-and-convert-json-to-c-objects" id="id2">Example: Query and convert JSON to C# objects</a></p></li>
+<li><p><a class="reference internal" href="#example-query-and-convert-json-to-collection-of-double-values" id="id3">Example: Query and convert JSON to collection of double values</a></p></li>
+<li><p><a class="reference internal" href="#example-query-json-files-with-result-as-c-json-object" id="id4">Example: Query JSON files with result as C# Json object</a></p></li>
+<li><p><a class="reference internal" href="#indices-and-tables" id="id5">Indices and tables</a></p></li>
+</ul>
+</nav>
 <ul>
 <li><p><strong>JsonQL</strong> is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.</p></li>
 <li><p>All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.</p></li>
@@ -55,9 +92,8 @@
 </li>
 <li><p>Errors are reported in JsonQL error classes that have error position data as well as additional data.</p></li>
 </ul>
-</section>
 <section id="example-jsonql-expressions-to-mutate-json">
-<h1>Example: JsonQL expressions to mutate JSON<a class="headerlink" href="#example-jsonql-expressions-to-mutate-json" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Example: JsonQL expressions to mutate JSON</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json" title="Link to this heading"></a></h2>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -155,65 +191,48 @@
 </div>
 </section>
 <section id="example-query-and-convert-json-to-c-objects">
-<h1>Example: Query and convert JSON to C# objects<a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Example: Query and convert JSON to C# objects</a><a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading"></a></h2>
 <ul>
 <li><dl>
-<dt>Files evaluated in JsonQL query below are listed here:</dt><dd><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a></dd>
+<dt>Files evaluated in JsonQL query below are listed here:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="index-rst-files/query-and-convert-json-to-csharp-objects.data-1.html"><span class="doc">Data.json</span></a></p></li>
+</ul>
+<blockquote>
+<div><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a></div></blockquote>
+</dd>
 </dl>
 </li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// NOTE: Data.json has a root JSON with a collection of employees.</span>
-<span class="c1">// If the JSON had a JSON object with the &quot;Employees&quot; field, the</span>
-<span class="c1">// query would be: &quot;Employees.Where(...)&quot; instead of &quot;Where(...)&quot;</span>
-<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Where(x =&gt; x.Id==100000006 || x.Id==100000007)&quot;</span><span class="p">;</span>
-
-<span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
 <span class="c1">// This is normally setup in DI normally using a singletone binding done on application start.</span>
 <span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
-<span class="c1">// We can convert to the following collection types:</span>
-<span class="c1">// -One of the following interfaces: IReadOnlyList&lt;T&gt;, IEnumerable&lt;T&gt;, IList&lt;T&gt;,</span>
-<span class="c1">// ICollection&lt;T&gt;, IReadOnlyCollection&lt;T&gt;</span>
-<span class="c1">// -Any type that implements ICollection&lt;T&gt;. Example: List&lt;T&gt;,</span>
-<span class="c1">// -Array T[],</span>
-<span class="c1">// In these examples T is either an object (value or reference type) or another collection</span>
-<span class="c1">// type (one of the listed here).</span>
-<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
-<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)),</span>
-<span class="w">        </span><span class="na">[false, false]</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonConversionSettingsOverrides</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="n">TryMapJsonConversionType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">parsedJson</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">// If we always return null, or just do not set the value, of TryMapJsonConversionType</span>
-<span class="w">                </span><span class="c1">// IEmployee will always be bound to Employee</span>
-<span class="w">                </span><span class="c1">// In this example, we ensure that if parsed JSON has &quot;Employees&quot; field,</span>
-<span class="w">                </span><span class="c1">// then the default implementation of IManager (i.e., Manager) is used to</span>
-<span class="w">                </span><span class="c1">// deserialize the JSON.</span>
-<span class="w">                </span><span class="c1">// We can also specify Manager explicitly.</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parsedJson</span><span class="p">.</span><span class="n">HasKey</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">IManager</span><span class="p">.</span><span class="n">Employees</span><span class="p">)))</span>
-<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nf">typeof</span><span class="p">(</span><span class="n">IManager</span><span class="p">);</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">});</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Companies.Where(x =&gt; Max(x.Employees, value-&gt; y =&gt; y.Salary) &lt; 106000)&quot;</span><span class="p">;</span>
+
+<span class="n">IJsonValueQueryResult</span><span class="w"> </span><span class="n">companiesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryJsonValue</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)));</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Result of query above can be found here: - <a class="reference internal" href="index-rst-files/query-and-convert-json-to-csharp-objects.data-1.html"><span class="doc">Data.json</span></a></p></li>
+</ul>
 <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a></section>
 <section id="example-query-and-convert-json-to-collection-of-double-values">
-<h1>Example: Query and convert JSON to collection of double values<a class="headerlink" href="#example-query-and-convert-json-to-collection-of-double-values" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Example: Query and convert JSON to collection of double values</a><a class="headerlink" href="#example-query-and-convert-json-to-collection-of-double-values" title="Link to this heading"></a></h2>
 <ul>
 <li><dl>
 <dt>Files evaluated in JsonQL query below are listed here:</dt><dd><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json"><p class="codeSnippetRefText">Data.json</p></a></dd>
 </dl>
 </li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="s">&quot;Companies.Select(x =&gt; x.Employees.Where(x =&gt; x.Age &gt; 35).Select(x =&gt; x.Salary))&quot;</span><span class="p">;</span>
-
-<span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
 <span class="c1">// This is normally done once on application start.</span>
 <span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="s">&quot;Companies.Select(x =&gt; x.Employees.Where(x =&gt; x.Age &gt; 35).Select(x =&gt; x.Salary))&quot;</span><span class="p">;</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">salariesResult</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="p">,</span>
@@ -221,81 +240,71 @@
 <span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)),</span><span class="w"> </span><span class="k">null</span><span class="p">);</span>
 </pre></div>
 </div>
-<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a><div class="toctree-wrapper compound">
+<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a></section>
+<section id="example-query-json-files-with-result-as-c-json-object">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Example: Query JSON files with result as C# Json object</a><a class="headerlink" href="#example-query-json-files-with-result-as-c-json-object" title="Link to this heading"></a></h2>
+<ul>
+<li><dl>
+<dt>Files evaluated in JsonQL query below are listed here:</dt><dd><a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a></dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
+<span class="c1">// This is normally setup in DI normally using a singletone binding done on application start.</span>
+<span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Companies.Where(x =&gt; Max(x.Employees, value-&gt; y =&gt; y.Salary) &lt; 106000)&quot;</span><span class="p">;</span>
+
+<span class="n">IJsonValueQueryResult</span><span class="w"> </span><span class="n">companiesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryJsonValue</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)));</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a><div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="json-file-mutation/index.html">Json File Mutation</a></li>
 </ul>
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="#">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">JsonQL</a></li>
-<li><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json">Example: JsonQL expressions to mutate JSON</a></li>
-<li><a class="reference internal" href="#example-query-and-convert-json-to-c-objects">Example: Query and convert JSON to C# objects</a></li>
-<li><a class="reference internal" href="#example-query-and-convert-json-to-collection-of-double-values">Example: Query and convert JSON to collection of double values</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="json-file-mutation/index.html" class="btn btn-neutral float-right" title="Json File Mutation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
   </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="json-file-mutation/index.html"
-                          title="next chapter">Json File Mutation</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="json-file-mutation/index.html" title="Json File Mutation"
-             >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">jsonQL 1.2 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">JsonQL</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2025, Artak Hakobyan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

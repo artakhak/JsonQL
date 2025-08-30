@@ -42,21 +42,24 @@ Example: JsonQL expressions to mutate JSON
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>csharp-code-samples\json-with-json-ql-expressions-1.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>index-rst-files\json-with-json-ql-expressions-1.cs.example</IncludedFilePlaceHolder>
 
 
 Example: Query and convert JSON to C# objects
 =============================================
 
 - Files evaluated in JsonQL query below are listed here:
+   - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
+    
     .. raw:: html
 
         <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>csharp-code-samples\query-with-conversion-to-csharp-types-1.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>index-rst-files\query-with-result-as-json-object-1.cs.example</IncludedFilePlaceHolder>
 
+- Result of query above can be found here: - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
 .. raw:: html
 
     <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
@@ -72,11 +75,27 @@ Example: Query and convert JSON to collection of double values
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>csharp-code-samples\query-with-conversion-to-csharp-types-2.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>index-rst-files\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
 
 .. raw:: html
 
     <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
+Example: Query JSON files with result as C# Json object
+=======================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>index-rst-files\query-with-result-as-json-object-1.cs.example</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
 
 
 .. toctree::

@@ -37,8 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{67F417B7-C
 		docs\Makefile = docs\Makefile
 		docs\README.md = docs\README.md
 		docs\requirements.txt = docs\requirements.txt
-		docs\summary.rst = docs\summary.rst
-		docs\summary.rst.generationdata = docs\summary.rst.generationdata
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonQL.DocumentationGenerator", "JsonQL.DocumentationGenerator\JsonQL.DocumentationGenerator.csproj", "{D5F18298-D244-499F-9AF2-F0E03703AD35}"
@@ -54,6 +52,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json-file-mutation", "json-
 	ProjectSection(SolutionItems) = preProject
 		docs\json-file-mutation\index.rst = docs\json-file-mutation\index.rst
 		docs\json-file-mutation\index.rst.generationdata = docs\json-file-mutation\index.rst.generationdata
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "index-rst-files", "index-rst-files", "{15804E00-3B77-4D9A-AFC4-6FA03C0D4987}"
+	ProjectSection(SolutionItems) = preProject
+		docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst = docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst
+		docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.generationdata = docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.generationdata
+		docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst = docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst
+		docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.generationdata = docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.generationdata
 	EndProjectSection
 EndProject
 Global
@@ -123,6 +129,7 @@ Global
 		{E7CDA3BB-E21D-406A-AB06-FBD4D02DC38A} = {4287B03B-CFD0-494D-921C-1787F0642A32}
 		{92954424-E942-4BC8-93D2-3728D97AF4F2} = {4287B03B-CFD0-494D-921C-1787F0642A32}
 		{72DC0651-183D-42EC-ACF7-138E8E31FA6E} = {67F417B7-CC44-4377-B22B-07F145228DFC}
+		{15804E00-3B77-4D9A-AFC4-6FA03C0D4987} = {67F417B7-CC44-4377-B22B-07F145228DFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C9CBA38-778A-4539-9798-747C4950D430}

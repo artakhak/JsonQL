@@ -125,49 +125,26 @@ Example: Query and convert JSON to C# objects
 =============================================
 
 - Files evaluated in JsonQL query below are listed here:
+   - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
+    
     .. raw:: html
 
         <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
         
 .. sourcecode:: csharp
 
-    // NOTE: Data.json has a root JSON with a collection of employees. 
-    // If the JSON had a JSON object with the "Employees" field, the
-    // query would be: "Employees.Where(...)" instead of "Where(...)"
-    var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
-
     // Create an instance of JsonQL.Query.QueryManager here.
     // This is normally setup in DI normally using a singletone binding done on application start.
     IQueryManager queryManager = null!; 
-                                        
-    // We can convert to the following collection types:
-    // -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
-    // ICollection<T>, IReadOnlyCollection<T>
-    // -Any type that implements ICollection<T>. Example: List<T>,
-    // -Array T[],
-    // In these examples T is either an object (value or reference type) or another collection 
-    // type (one of the listed here). 
-    var employeesResult =
-        queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-            new JsonTextData("Data",
-                this.LoadExampleJsonFile("Data.json")),
-            [false, false], new JsonConversionSettingsOverrides
-            {
-                TryMapJsonConversionType = (type, parsedJson) =>
-                {
-                    // If we always return null, or just do not set the value, of TryMapJsonConversionType
-                    // IEmployee will always be bound to Employee
-                    // In this example, we ensure that if parsed JSON has "Employees" field,
-                    // then the default implementation of IManager (i.e., Manager) is used to
-                    // deserialize the JSON.
-                    // We can also specify Manager explicitly.
-                    if (parsedJson.HasKey(nameof(IManager.Employees)))
-                        return typeof(IManager);
-                    return null;
-                }
-            });
 
+    var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
 
+    IJsonValueQueryResult companiesResult =
+                _queryManager.QueryJsonValue(query,
+                    new JsonTextData("Data",
+                        this.LoadExampleJsonFile("Data.json")));
+
+- Result of query above can be found here: - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
 .. raw:: html
 
     <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
@@ -183,13 +160,13 @@ Example: Query and convert JSON to collection of double values
         
 .. sourcecode:: csharp
 
-    var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
-        "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
-
     // Create an instance of JsonQL.Query.QueryManager here.
     // This is normally done once on application start.
     IQueryManager queryManager = null!;
 
+    var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+        "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
+        
     var salariesResult =
         queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,
             new JsonTextData("Data",
@@ -198,6 +175,31 @@ Example: Query and convert JSON to collection of double values
 .. raw:: html
 
     <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
+
+Example: Query JSON files with result as C# Json object
+=======================================================
+
+- Files evaluated in JsonQL query below are listed here:
+    .. raw:: html
+
+        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+        
+.. sourcecode:: csharp
+
+    // Create an instance of JsonQL.Query.QueryManager here.
+    // This is normally setup in DI normally using a singletone binding done on application start.
+    IQueryManager queryManager = null!; 
+
+    var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
+
+    IJsonValueQueryResult companiesResult =
+                _queryManager.QueryJsonValue(query,
+                    new JsonTextData("Data",
+                        this.LoadExampleJsonFile("Data.json")));
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
 
 
 .. toctree::

@@ -1,19 +1,27 @@
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally setup in DI normally using a singletone binding done on application start.
+IQueryManager queryManager = null!; 
+
 // NOTE: Data.json has a root JSON with a collection of employees. 
 // If the JSON had a JSON object with the "Employees" field, the
 // query would be: "Employees.Where(...)" instead of "Where(...)"
 var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
-
-// Create an instance of JsonQL.Query.QueryManager here.
-// This is normally setup in DI normally using a singletone binding done on application start.
-IQueryManager queryManager = null!; 
                                     
-// We can convert to the following collection types:
-// -One of the following interfaces: IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
-// ICollection<T>, IReadOnlyCollection<T>
-// -Any type that implements ICollection<T>. Example: List<T>,
-// -Array T[],
-// In these examples T is either an object (value or reference type) or another collection 
-// type (one of the listed here). 
+// We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+// -Class (value or reference type). We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<Manager?>(...)",
+//      "_queryManager.QueryObject<Manager>(...)"
+// -Interface. We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<IManager?>(...)",
+//      "_queryManager.QueryObject<IManager>(...)"
+// The following collection types:
+//          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+//          ICollection<T>, IReadOnlyCollection<T>
+// -Any type that implements ICollection<T>. Example: List<T>, Array T[]
+// If collection type is used for "T", "T" can be either an object (value or reference type)
+// or another collection listed above. Also, nullability keyword "?" can be used for
+// collection items as well as for collection type itself.
+// The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
 var employeesResult =
     queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
         new JsonTextData("Data",
