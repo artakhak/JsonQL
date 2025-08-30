@@ -2,9 +2,8 @@
 
 ## Overview
 
-JsonQL is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
+**JsonQL** is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
 
-- **JsonQL** is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.
 - All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.
 - Allows using JsonQL expressions in one or more JSON files to mutate JSON files. JsonQL parses the mutated JSON files with JsonQL expressions to generate a JSON structure.
 - Supports executing JsonQL queries against one or more JSON files. The query result is converted either to C# model classes (depending on API used).
@@ -25,7 +24,7 @@ JsonQL is a powerful JSON query language implementation that provides a flexible
 - Lambda expression support for complex queries
 - Extensible function architecture
 - Built-in conversion of query results to C# objects  
-  **NOTE: Binds interfaces to default implementations and also supports binding interfaces to any class via configuration**
+  **NOTE: JsonQL binds interfaces to default implementations and also supports binding interfaces to any class via configuration**
 - Mutating JSON files by replacing JSON field values by evaluated JSON values
 - Extending the API to provide custom operators, functions, as well as customizing any part of JsonQL implementation
 

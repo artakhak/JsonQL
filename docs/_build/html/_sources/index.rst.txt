@@ -16,11 +16,31 @@ JsonQL
 
 - Errors are reported in JsonQL error classes that have error position data as well as additional data.
 
+Features
+========
+
+- Rich set of built-in functions for JSON manipulation
+- Support for aggregate functions (COUNT, AVG, MIN, MAX, SUM)
+- Collection manipulation with ANY and ALL operations
+- String operations (ToUpper, ToLower, Length, Concatenate, etc)
+- Type conversion functions (DateTime, Date, Double, Int, Boolean, String)
+- Mathematical operations (Abs, IsEven, IsOdd)
+- Object property inspection (HasField)
+- Lambda expression support for complex queries
+- Extensible function architecture
+- Built-in conversion of query results to C# objects
+
+  .. note:: 
+    JsonQL binds interfaces to default implementations and also supports binding interfaces to any class via configuration**
+
+- Mutating JSON files by replacing JSON field values by evaluated JSON values
+- Extending the API to provide custom operators, functions, as well as customizing any part of JsonQL implementation
+
 Example: JsonQL expressions to mutate JSON
 ==========================================
 
   .. note::
-          JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
+    JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
 
 
 - Files evaluated in JsonQL expressions in “Overview.json” file below are listed here:
@@ -126,10 +146,6 @@ Example: Query and convert JSON to C# objects
 
 - Files evaluated in JsonQL query below are listed here:
    - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
-    
-    .. raw:: html
-
-        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
         
 .. sourcecode:: csharp
 
@@ -144,11 +160,8 @@ Example: Query and convert JSON to C# objects
                     new JsonTextData("Data",
                         this.LoadExampleJsonFile("Data.json")));
 
-- Result of query above can be found here: - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
-.. raw:: html
-
-    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
-
+- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.result`
+- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
 
 Example: Query and convert JSON to collection of double values
 ==============================================================
