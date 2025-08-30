@@ -1,0 +1,1 @@
+Move this logic to a seperate shared library and use it in JsonQL, IoC.Configuration and UniversalExpressionParser

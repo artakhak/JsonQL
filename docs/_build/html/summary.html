@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Summary &#8212; jsonQL 1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
+    
+    <script src="_static/documentation_options.js?v=61243dd2"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">jsonQL 1.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Summary</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h1>
+<ul>
+<li><p><strong>JsonQL</strong> is a powerful JSON query language implementation that provides a flexible way to query and manipulate JSON data using a SQL/Linq-like syntax with rich function support.</p></li>
+<li><p>All aspects of implementations are extensible (custom operators, functions, path elements, etc. can be added). JsonQL expressions are used in JSON texts and are parsed by JsonQL library.</p></li>
+<li><p>Allows using JsonQL expressions in one or more JSON files to mutate JSON files. JsonQL parses the mutated JSON files with JsonQL expressions to generate a JSON structure.</p></li>
+<li><p>Supports executing JsonQL queries against one ore more JSON files. The query result is converted either to C# model classes (depending on API used).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Model classes used for de-serialization can be either C# classes or interfaces, and the properties can be of class or interface types. JsonQL will either use default implementations of interfaces, or will use classes specified by the developer.</p>
+</div>
+</li>
+<li><p>Errors are reported in JsonQL error classes that have error position data as well as additional data.</p></li>
+</ul>
+<p><strong>Below is an example of “Overview.json” JSON file that uses JsonQL expressions to mutate the JSON being parsed by JsonQL:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CountryNamesWithPopulationOf80MlnOrMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Population &gt;= 80000000).Select(x =&gt; x.Name))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CompanyDetailsWithAnyEmployeeWithNullAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Where(x =&gt; Any(x.Employees, x =&gt; x.Address is null)).Select(x =&gt; x.CompanyData))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesWithNonEmptyLoginsList&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; Count(x.Logins) &gt; 0)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FirstEmployeeWithLoginsField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; HasField(x, &#39;Logins&#39;))).First(x =&gt; x.Id != 100000005))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastEmployeeWithLoginsField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; HasField(x, &#39;Logins&#39;))).Last())&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FlattenExamples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Flattening arrays can be applied multiple times to execute sophisticated queries</span>
+<span class="w">    </span><span class="nt">&quot;FlattenArraysAndFilterObjects&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix.Flatten().Where(x =&gt; x &gt; 3 || x.Name == &#39;John&#39; || x.CompanyName starts with &#39;Sherwood&#39;))&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;GetAllNumericValuesInArraysFiltered&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix.Flatten().Flatten(x =&gt; typeof x != &#39;JsonArray&#39; || All(x, y =&gt; y != 12)).Where(x =&gt; typeof x == &#39;Number&#39;))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// If CompanyData.CEO field is missing or value is null for second company, compilation will fail.</span>
+<span class="w">  </span><span class="nt">&quot;SelectSecondCompanyCeoNameWithAssertionThatCeoNameFieldIsPresetAndNotNull&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Companies[1].CompanyData.CEO assert)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// Example of merging fields into a JSON object. EnhancedCompanyData has fields in CompanyData for company with Name that starts with text &#39;Sherwood&#39;</span>
+<span class="w">  </span><span class="c1">// enhanced with additonal fields</span>
+<span class="w">  </span><span class="nt">&quot;EnhancedCompanyData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Capitalization&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompanyDataCopied&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$copyFields(Companies.First(x =&gt; x.CompanyData.Name starts with &#39;Sherwood&#39;).CompanyData)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;NumberOfEmployees&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.First(x =&gt; x.CompanyData.Name starts with &#39;Sherwood&#39;).Employees))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="c1">// Example of merging array items into an array</span>
+<span class="w">  </span><span class="c1">// List of company data for companies with  max salary of employees at least 110000 will be merged into array ListOfCompaniesEnhancedWithNewCompanies</span>
+<span class="w">  </span><span class="nt">&quot;ListOfCompaniesEnhancedWithNewCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some company 1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Napoleon Bonaparte&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="c1">// Merge data of companies with max salary of employees at least 110000</span>
+<span class="w">    </span><span class="s2">&quot;$merge(Companies.Where(x =&gt; Max(x.Employees, y =&gt; true, y =&gt; y.Salary) &gt; 110000).Select(x =&gt; x.CompanyData))&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some company 2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Georges Danton&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="c1">// Example of simple value using mutator function &quot;$&quot;. In contrast to &quot;$value&quot; it generates a simple value (string, numeroc, etc) and not an object.</span>
+<span class="w">  </span><span class="nt">&quot;AverageSalaryOfAllEmployeesInFilteredCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Average(Companies.Where(x =&gt; !(x.CompanyData.Name starts with &#39;Sherwood&#39;)).Select(x =&gt; x.Employees.Select(x =&gt; x.Salary))))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AddressingObjectsInMultiDimensionalMatrix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix[1, 2].Address)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// Examples of using contextual data such a &#39;index&#39; as well as example of referencing parent lamdba function parameter</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeNamesInSecondCompanyExcludingFirstAndLastEmployee&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies[1].Select(x =&gt; x.Employees.Where(y =&gt; index != 0 &amp;&amp; index != Count(x.Employees) - 1).Select(x =&gt; x.Name)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// We can use named parameters to change the order of parameters, as well as not specified optional parameter that are before parameters we pass</span>
+<span class="w">  </span><span class="c1">// In this example both criteria and value are optional, and criteria is before value parameter. By using named parameter value, we can ommit criteria parameter</span>
+<span class="w">  </span><span class="nt">&quot;MaxRaisedSalaryAccrossAllCompaniesUsingNamedParameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(Companies.Select(x =&gt; x.Employees).Flatten(), value-&gt;x=&gt;x.Salary*1.05))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// isReverseSearch named parameter does not have to be used here, and we can use true here, since this parameter comes after the predicate.</span>
+<span class="w">  </span><span class="c1">// However, it makes the meaning clear.</span>
+<span class="w">  </span><span class="nt">&quot;ThirdEmployeeFromEndWithSalaryGreaterThan_100000_AcrossAllCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees).Flatten().At(2, x =&gt; x.Salary &gt;= 100000 &amp;&amp; x.Id != 100000008, isReverseSearch-&gt;true))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;UseOf_this_ToEnsureObjectIsLookedUpInCurrentFileAndNotInParentFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(this.CountryNamesWithPopulationOf80MlnOrMore[1])&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UseOf_parent_ToEnsureObjectIsLookedUpInParentFilesAndSearchInCurrentFilesIsSkipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(parent.Companies, x =&gt; x.CompanyData.CEO != &#39;John Malkowich&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeWithNonNullIdAndNullAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Address is null &amp;&amp; x.Id is not null))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NumberOfEmployeesWithout_Logins_Field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Logins is undefined)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NumberOfEmployeesWith_Logins_Field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Logins is not undefined)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InvalidValuesEvaluateToUndefined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Companies[0].Employees[1000].Salary is undefined) = true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ConversionExample_Datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;2022-05-22T18:25:43.511Z&#39; &lt; &#39;2022-05-23T18:25:43.511Z&#39;=$(ToDateTime(&#39;2022-05-22T18:25:43.511Z&#39;) &lt; ToDateTime(&#39;2022-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Defaulted salary to $(Companies[0].Employees[1000].Salary:100000)=100000&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a><p><strong>Here is a C# code example that evaluates the Json in file above</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>JsonQL expressions in “Overview.html” file above, as well as the following files: “Overview.json” reference JSON objects in files “Overview.json”, “Companies.json”, “Countries.json”, and “AdditionalTestData.json”.</p>
+<ul class="simple">
+<li><p>&lt;a href=”<a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Companies.json">https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Companies.json</a>”&gt;&lt;p class=”codeSnippetRefText”&gt;Companies.json&lt;/p&gt;&lt;/a&gt;</p></li>
+<li><p>&lt;a href=”<a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Countries.json">https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Countries.json</a>”&gt;&lt;p class=”codeSnippetRefText”&gt;Countries.json&lt;/p&gt;&lt;/a&gt;</p></li>
+<li><p>&lt;a href=”<a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/AdditionalTestData.json">https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/AdditionalTestData.json</a>”&gt;&lt;p class=”codeSnippetRefText”&gt;AdditionalTestData.json&lt;/p&gt;&lt;/a&gt;</p></li>
+</ul>
+</div>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">ParseJsonWithJsonQLExpressions</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">additionalTestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;AdditionalTestData&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;AdditionalTestData.json&quot;</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">additionalTestData</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span><span class="w"> </span><span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="w">                                    </span><span class="c1">//This is normally done once on application start.</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Overview&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Overview.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Continue…</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/summary.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">jsonQL 1.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Summary</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
