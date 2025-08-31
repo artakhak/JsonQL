@@ -174,7 +174,7 @@ OLD DOCS BELOW
 
 ***Here is a C# code example that evaluates the Json in file above***
 ```csharp
-<IncludedFilePlaceHolder>index-rst-files\json-with-json-ql-expressions-1.cs.example</IncludedFilePlaceHolder>
+<IncludedFilePlaceHolder>index-rst-files\json-with-json-ql-expressions.cs.example</IncludedFilePlaceHolder>
 ```
 
 ***Below is an example of querying a JSON data in one or more JSON files and converting the result to C# objects***

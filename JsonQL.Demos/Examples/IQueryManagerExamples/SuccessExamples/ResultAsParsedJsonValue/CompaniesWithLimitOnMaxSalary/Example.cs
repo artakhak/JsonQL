@@ -17,6 +17,8 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
     {
         var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
 
+        // companiesResult is of type 'JsonQL.Query.IJsonValueQueryResult'
+        // that stores information about the loaded JSON as well as errors if any.
         var companiesResult =
             _queryManager.QueryJsonValue(query,
                 new JsonTextData("Data",

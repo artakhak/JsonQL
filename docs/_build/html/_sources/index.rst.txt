@@ -153,12 +153,46 @@ Example: Query and convert JSON to C# objects
     // This is normally setup in DI normally using a singletone binding done on application start.
     IQueryManager queryManager = null!; 
 
-    var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
-
-    IJsonValueQueryResult companiesResult =
-                _queryManager.QueryJsonValue(query,
-                    new JsonTextData("Data",
-                        this.LoadExampleJsonFile("Data.json")));
+    // NOTE: Data.json has a root JSON with a collection of employees. 
+    // If the JSON had a JSON object with the "Employees" field, the
+    // query would be: "Employees.Where(...)" instead of "Where(...)"
+    var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
+                                        
+    // We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+    // -Class (value or reference type). We can use '?' for nullable values. Examples:
+    //      "_queryManager.QueryObject<Manager?>(...)",
+    //      "_queryManager.QueryObject<Manager>(...)"
+    // -Interface. We can use '?' for nullable values. Examples:
+    //      "_queryManager.QueryObject<IManager?>(...)",
+    //      "_queryManager.QueryObject<IManager>(...)"
+    // The following collection types:
+    //          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+    //          ICollection<T>, IReadOnlyCollection<T>
+    // -Any type that implements ICollection<T>. Example: List<T>, Array T[]
+    // If collection type is used for "T", "T" can be either an object (value or reference type)
+    // or another collection listed above. Also, nullability keyword "?" can be used for
+    // collection items as well as for collection type itself.
+    // The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
+    var employeesResult =
+        queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+            new JsonTextData("Data",
+                this.LoadExampleJsonFile("Data.json")),
+            [false, false], new JsonConversionSettingsOverrides
+            {
+                TryMapJsonConversionType = (type, parsedJson) =>
+                {
+                    // If we always return null, or just do not set the value, of TryMapJsonConversionType
+                    // IEmployee will always be bound to Employee
+                    // In this example, we ensure that if parsed JSON has "Employees" field,
+                    // then the default implementation of IManager (i.e., Manager) is used to
+                    // deserialize the JSON.
+                    // We can also specify Manager explicitly.
+                    if (parsedJson.HasKey(nameof(IManager.Employees)))
+                        return typeof(IManager);
+                    return null;
+                }
+            });
+     // This example is copied from 
 
 - Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.result`
 - Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
@@ -167,9 +201,7 @@ Example: Query and convert JSON to collection of double values
 ==============================================================
 
 - Files evaluated in JsonQL query below are listed here:
-    .. raw:: html
-
-        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+   - :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.data-1`
         
 .. sourcecode:: csharp
 
@@ -185,17 +217,14 @@ Example: Query and convert JSON to collection of double values
             new JsonTextData("Data",
                 this.LoadExampleJsonFile("Data.json")), null);
 
-.. raw:: html
+- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.result`
+- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
 
-    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
-
-Example: Query JSON files with result as C# Json object
+Example: Query JSON files with result as JSON structure
 =======================================================
 
 - Files evaluated in JsonQL query below are listed here:
-    .. raw:: html
-
-        <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json"><p class="codeSnippetRefText">Data.json</p></a>      
+   - :doc:`./index-rst-files/query-with-result-as-json-object-1.data`
         
 .. sourcecode:: csharp
 
@@ -205,15 +234,15 @@ Example: Query JSON files with result as C# Json object
 
     var query = "Companies.Where(x => Max(x.Employees, value-> y => y.Salary) < 106000)";
 
+    // companiesResult is of type 'JsonQL.Query.IJsonValueQueryResult'
+    // that stores information about the loaded JSON as well as errors if any.
     IJsonValueQueryResult companiesResult =
                 _queryManager.QueryJsonValue(query,
                     new JsonTextData("Data",
                         this.LoadExampleJsonFile("Data.json")));
 
-.. raw:: html
-
-    <a href="https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json"><p class="codeSnippetRefText">Click here to see the JSON generated from the JSON above </p></a>
-
+- Result of query above can be found here: :doc:`./index-rst-files/query-with-result-as-json-object.result`
+- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_
 
 .. toctree::
 
