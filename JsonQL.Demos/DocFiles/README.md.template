@@ -157,14 +157,6 @@
 - `typeof`			 - 'typeof' operator. Example "typeof person.Age"
 ```
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file in the solution root for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## Using JsonQL Expressions to Mutate JSON File
 
 - JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8).
@@ -258,3 +250,11 @@ In this example the following JSON files are processed with JSON files appearing
 
 - Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Result.json)
 - Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/961a83dec029147526c9051332c1e59b1de7a2e5/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file in the solution root for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

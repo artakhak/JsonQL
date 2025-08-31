@@ -5,8 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<PackageVersion>1.2.2</PackageVersion>
-		<Version>1.2.2</Version>
+		<PackageVersion>1.2.3</PackageVersion>
+		<Version>1.2.3</Version>
 		<PackageTags>Json JsonQL Json+QL Query Json+Query+Language Json+path Json+Query</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
