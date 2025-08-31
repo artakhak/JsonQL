@@ -138,9 +138,9 @@
 <li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11">JsonQL.Compilation.ICompiledJsonData</a> for each loaded file.</p></li>
 <li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11">JsonQL.Compilation.ICompiledJsonData</a> represents mutated JSON files (i.e., mutated by using JsonQL expressions).</p></li>
 <li><p>The property <strong>CompilationErrors</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13">JsonQL.Compilation.ICompilationErrorItem</a> with error details if any.</p></li>
-<li><p>If many JSON files are specified the the following rules and techniques are used:
-- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.</p></li>
+<li><p>If many JSON files are specified the following rules and techniques are used:
+- Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-jsonql-expressions-to-mutate-json">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Example: JsonQL expressions to mutate JSON</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json" title="Link to this heading"></a></h3>
@@ -155,7 +155,7 @@
 </ul>
 </div></blockquote>
 <ul class="simple">
-<li><p>Below is <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> file with JsonQL expressions.</p></li>
+<li><p>The file <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> file with JsonQL expressions is shown below.</p></li>
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;CountryNamesWithPopulationOf80MlnOrMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Population &gt;= 80000000).Select(x =&gt; x.Name))&quot;</span><span class="p">,</span>
@@ -219,7 +219,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Below is a C# code example that parses the JSON files above</p></li>
+<li><p>C# code example that parses the JSON files above</p></li>
 </ul>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">additionalTestData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
 <span class="w">    </span><span class="s">&quot;AdditionalTestData&quot;</span><span class="p">,</span>
@@ -262,7 +262,7 @@
 <li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
 <li><p>If many JSON files are specified the the following rules and techniques are used:
 - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.</p></li>
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-query-and-convert-json-to-c-objects">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">Example: Query and convert JSON to C# objects</a><a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading"></a></h3>
@@ -321,7 +321,7 @@
 </dl>
 </li>
 <li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-and-convert-json-to-csharp-objects.result.html"><span class="doc">Result.json</span></a></p></li>
-<li><p>Example classes and JSON files for example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList">here</a></p></li>
+<li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList">here</a></p></li>
 </ul>
 </section>
 <section id="example-query-and-convert-json-to-collection-of-double-values">
@@ -350,7 +350,7 @@
 </div>
 <ul class="simple">
 <li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-and-convert-json-to-collection-of-doubles.result.html"><span class="doc">Result.json</span></a></p></li>
-<li><p>Example classes and JSON files for example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles">here</a></p></li>
+<li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles">here</a></p></li>
 </ul>
 </section>
 </section>
@@ -358,12 +358,12 @@
 <h2><a class="toc-backref" href="#id12" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to JSON structure</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
-<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15">JsonQL.Query.JsonValueQueryResult</a>.</p></li>
+<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
 <li><p>The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.</p></li>
 <li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
 <li><p>If many JSON files are specified the the following rules and techniques are used:
 - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.</p></li>
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-query-json-files-with-result-as-json-structure">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">Example: Query JSON files with result as JSON structure</a><a class="headerlink" href="#example-query-json-files-with-result-as-json-structure" title="Link to this heading"></a></h3>
@@ -392,7 +392,7 @@
 </div>
 <ul class="simple">
 <li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-with-result-as-json-object.result.html"><span class="doc">Result.json</span></a></p></li>
-<li><p>Example classes and JSON files for example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary">here</a></p></li>
+<li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary">here</a></p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>

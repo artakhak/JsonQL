@@ -46,9 +46,9 @@ Using JsonQL Expressions to Mutate JSON File
 - The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ for each loaded file. 
 - `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
 - The property **CompilationErrors** contains collection of `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13>`_ with error details if any. 
-- If many JSON files are specified the the following rules and techniques are used:
-  - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.
+- If many JSON files are specified the following rules and techniques are used:
+  - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
+  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 
 Example: JsonQL expressions to mutate JSON
@@ -63,7 +63,7 @@ In this example the following JSON files are processed with JSON files appearing
   - :doc:`./index-rst-files/json-with-json-ql-expressions.data-3`
   - :doc:`./index-rst-files/json-with-json-ql-expressions.data-4`
 
-- Below is :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` file with JsonQL expressions.
+- The file :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` file with JsonQL expressions is shown below.
 
 .. sourcecode:: json
 
@@ -128,7 +128,7 @@ In this example the following JSON files are processed with JSON files appearing
      }
 
 
-- Below is a C# code example that parses the JSON files above
+- C# code example that parses the JSON files above
 
 .. sourcecode:: csharp
 
@@ -159,7 +159,7 @@ In this example the following JSON files are processed with JSON files appearing
 JsonQL queries of JSON Files with Result Converted to C# objects
 ================================================================
 
-- The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
 - The result is converted to `JsonQL.Query.IObjectQueryResult<T> <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs#L24>`_ a C# interface of class specified in generic parameter.
 - The result stores the query result converted to type 'T' as well as data about errors encountered during execution of the query.
 - The type parameter 'T' specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.
@@ -168,7 +168,7 @@ JsonQL queries of JSON Files with Result Converted to C# objects
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the the following rules and techniques are used:
   - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.
+  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 Example: Query and convert JSON to C# objects
 ---------------------------------------------
@@ -224,7 +224,7 @@ Example: Query and convert JSON to C# objects
    - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
    
 - Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.result`
-- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
+- Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
 
 Example: Query and convert JSON to collection of double values
 --------------------------------------------------------------
@@ -247,18 +247,18 @@ Example: Query and convert JSON to collection of double values
                 this.LoadExampleJsonFile("Data.json")), null);
 
 - Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.result`
-- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
+- Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
 
 JsonQL queries of JSON Files with Result Converted to JSON structure
 ====================================================================
 
 - The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to `JsonQL.Query.JsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15>`_.
+- The result is converted to `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15>`_.
 - The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the the following rules and techniques are used:
   - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and ten in parent JSON files.
+  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 Example: Query JSON files with result as JSON structure
 -------------------------------------------------------
@@ -282,7 +282,7 @@ Example: Query JSON files with result as JSON structure
                         this.LoadExampleJsonFile("Data.json")));
 
 - Result of query above can be found here: :doc:`./index-rst-files/query-with-result-as-json-object.result`
-- Example classes and JSON files for example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_
+- Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_
 
 .. toctree::
 
