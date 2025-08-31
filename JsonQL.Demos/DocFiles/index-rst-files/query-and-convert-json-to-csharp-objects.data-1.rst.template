@@ -1,0 +1,9 @@
+﻿:orphan:
+
+=========
+Data.json
+=========
+
+.. sourcecode:: json
+  
+  <IncludedFilePlaceHolder>..\..\Examples\IQueryManagerExamples\SuccessExamples\ResultAsObject\ResultAsNonNullableEmployeesList\Data.json</IncludedFilePlaceHolder>

@@ -1,0 +1,44 @@
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally setup in DI normally using a singletone binding done on application start.
+IQueryManager queryManager = null!; 
+
+// NOTE: Data.json has a root JSON with a collection of employees. 
+// If the JSON had a JSON object with the "Employees" field, the
+// query would be: "Employees.Where(...)" instead of "Where(...)"
+var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
+                                    
+// We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+// -Class (value or reference type). We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<Manager?>(...)",
+//      "_queryManager.QueryObject<Manager>(...)"
+// -Interface. We can use '?' for nullable values. Examples:
+//      "_queryManager.QueryObject<IManager?>(...)",
+//      "_queryManager.QueryObject<IManager>(...)"
+// The following collection types:
+//          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
+//          ICollection<T>, IReadOnlyCollection<T>
+// -Any type that implements ICollection<T>. Example: List<T>, Array T[]
+// If collection type is used for "T", "T" can be either an object (value or reference type)
+// or another collection listed above. Also, nullability keyword "?" can be used for
+// collection items as well as for collection type itself.
+// The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
+var employeesResult =
+    queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")),
+        [false, false], new JsonConversionSettingsOverrides
+        {
+            TryMapJsonConversionType = (type, parsedJson) =>
+            {
+                // If we always return null, or just do not set the value, of TryMapJsonConversionType
+                // IEmployee will always be bound to Employee
+                // In this example, we ensure that if parsed JSON has "Employees" field,
+                // then the default implementation of IManager (i.e., Manager) is used to
+                // deserialize the JSON.
+                // We can also specify Manager explicitly.
+                if (parsedJson.HasKey(nameof(IManager.Employees)))
+                    return typeof(IManager);
+                return null;
+            }
+        });
+ // This example is copied from 

@@ -10,13 +10,21 @@ internal class DocumentsGenerator
         (@"JsonQL.Demos\DocFiles\README.md.template", "README.md"),
         (@"JsonQL.Demos\DocFiles\README.md.template", @"JsonQL\README.md"),
         (@"JsonQL.Demos\DocFiles\index.rst.template", @"docs\index.rst"),
-        (@"JsonQL.Demos\DocFiles\json-file-mutation\index.rst.template", @"docs\json-file-mutation\index.rst")
         
-        /*(@"JsonQL.Tests\doc-files\README.md.template", "README.md"),
-        (@"JsonQL.Tests\doc-files\README.md.template", @"JsonQL\README.md"),
-        (@"JsonQL.Tests\doc-files\index.rst.template", @"docs\index.rst"),
-        (@"JsonQL.Tests\doc-files\json-file-mutation\index.rst.template", @"docs\json-file-mutation\index.rst")*/
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-1.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-2.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-2.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-3.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-3.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-4.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-4.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.result.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.result.rst"),
         
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst"),
+        
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-collection-of-doubles.data-1.rst.template", @"docs\index-rst-files\query-and-convert-json-to-collection-of-doubles.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-collection-of-doubles.result.rst.template", @"docs\index-rst-files\query-and-convert-json-to-collection-of-doubles.result.rst"),
+        
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-with-result-as-json-object-1.data.rst.template", @"docs\index-rst-files\query-with-result-as-json-object-1.data.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\query-with-result-as-json-object.result.rst.template", @"docs\index-rst-files\query-with-result-as-json-object.result.rst")
     };
 
     private readonly ITemplateProcessor _templateProcessor = new TemplateProcessor();
