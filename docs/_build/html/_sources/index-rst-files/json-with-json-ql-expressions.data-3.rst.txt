@@ -1,0 +1,199 @@
+:orphan:
+
+==============
+Companies.json
+==============
+
+.. sourcecode:: json
+  
+  {
+    "Companies": [
+      {
+        "CompanyData": {
+          "Name": "Strange Things, Inc",
+          "CEO": "John Malkowich",
+          "Address": {
+            "Street": "123 Maple Street",
+            "City": "Springfield",
+            "State": "IL",
+            "ZipCode": "62701"
+          },
+          "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
+        },
+        "Employees": [
+          {
+            "Id": 100000001,
+            "Name": "John Smith",
+            "Address": {
+              "Street": "456 Oak Avenue",
+              "City": "Chicago",
+              "State": "IL",
+              "ZipCode": "60601"
+            },
+            "Salary": 99500,
+            "Age": 45          
+          },
+          {
+            "Id": 100000002,
+            "Name": "Alice Johnson",
+            "Address": {
+              "Street": "123 Maple Street",
+              "City": "New York",
+              "State": "NY",
+              "ZipCode": "10001"
+            },
+            "Salary": 105000,
+            "Age": 38
+          },
+          {
+            "Id": 100000003,
+            "Name": "Michael Brown",
+            "Address": {
+              "Street": "789 Pine Lane",
+              "City": "Los Angeles",
+              "State": "CA",
+              "ZipCode": "90001"
+            },
+            "Salary": 89000,
+            "Age": 50
+          },
+          {
+            "Id": 100000004,
+            "Name": "Emily Davis",
+            "Address": {
+              "Street": "321 Elm Drive",
+              "City": "Houston",
+              "State": "TX",
+              "ZipCode": "77001"
+            },
+            "Salary": 92000,
+            "Age": 42
+          }
+        ]
+      },
+      {
+        "CompanyData": {
+          "Name": "Sherwood Forest Timber, Inc",
+          "CEO": "Robin Wood",
+          "Address": {
+            "Street": "789 Pine Lane",
+            "City": "Denver",
+            "State": "CO",
+            "ZipCode": "80203"
+          },
+          "CountryDetails": "$value(Countries.Where(x => x.Name == 'Germany'))"
+        },
+        "Employees": [
+          {
+            "Id": 100000005,
+            "Name": "Christopher Garcia",
+            "Address": {
+              "Street": "654 Cedar Road",
+              "City": "Phoenix",
+              "State": "AZ",
+              "ZipCode": "85001"
+            },
+            "Salary": 111000,
+            "Age": 29,
+            "Logins": [ "cgarcia@sherwood.com", "cgarcia@gmail.com" ]
+          },
+          {
+            "Id": 100000006,
+            "Name": "Sarah Wilson",
+            "Address": null,
+            "Salary": 78000,
+            "Age": 35
+          },
+          {
+            "Id": 100000007,
+            "Name": "David Martinez",
+            "Address": {
+              "Street": "147 Birch Street",
+              "City": "San Antonio",
+              "State": "TX",
+              "ZipCode": "78201"
+            },
+            "Salary": 95000,
+            "Age": 46,
+            "Logins": [ "dmartinez@sherwood.com", "dmartinez@gmail.com" ]
+          }
+        ]
+      },
+      {
+        "CompanyData": {
+          "Name": "Atlantic Transfers, Inc",
+          "CEO": "Black Beard",
+          "Address": {
+            "Street": "101 Elm Drive",
+            "City": "Dallas",
+            "State": "TX",
+            "ZipCode": "75201"
+          },
+          "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
+        },
+        "Employees": [
+          {
+            "Id": 100000008,
+            "Name": "Laura Lee",
+            "Address": {
+              "Street": "258 Willow Lane",
+              "City": "San Diego",
+              "State": "CA",
+              "ZipCode": "92101"
+            },
+            "Salary": 105500,
+            "Age": 32
+          },
+          {
+            "Id": 100000009,
+            "Name": "Andrew Harris",
+            "Address": {
+              "Street": "369 Spruce Drive",
+              "City": "Dallas",
+              "State": "TX",
+              "ZipCode": "75201"
+            },
+            "Salary": 88000,
+            "Age": 41
+          },
+          {
+            "Id": 100000010,
+            "Name": "Jessica Thompson",
+            "Address": {
+              "Street": "159 Cherry Lane",
+              "City": "Austin",
+              "State": "TX",
+              "ZipCode": "73301"
+            },
+            "Salary": 98700,
+            "Age": 37
+          },
+          {
+            "Id": 250150245,
+            "Name": "Jane Doe",
+            "Address": {
+              "Street": "Main St",
+              "City": "San Jose",
+              "State": "PA",
+              "ZipCode": "95101"
+            },
+            "Salary": 144186,
+            "Age": 63
+          },
+          {
+            "Id": 783328759,
+            "Name": "Robert Brown",
+            "Address": {
+              "Street": "Pine St",
+              "City": "Los Angeles",
+              "State": "CA",
+              "ZipCode": "90001"
+            },
+            "Salary": 122395,
+            "Age": 58
+          }
+        ]
+      }
+    ]
+  }
+

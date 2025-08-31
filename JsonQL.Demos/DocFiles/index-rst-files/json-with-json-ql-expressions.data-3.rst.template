@@ -1,0 +1,9 @@
+﻿:orphan:
+
+==============
+Companies.json
+==============
+
+.. sourcecode:: json
+  
+  <IncludedFilePlaceHolder>..\..\Examples\IJsonCompilerExamples\SuccessExamples\Overview\Companies.json</IncludedFilePlaceHolder>

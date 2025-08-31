@@ -11,6 +11,12 @@ internal class DocumentsGenerator
         (@"JsonQL.Demos\DocFiles\README.md.template", @"JsonQL\README.md"),
         (@"JsonQL.Demos\DocFiles\index.rst.template", @"docs\index.rst"),
         
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-1.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-2.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-2.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-3.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-3.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-4.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-4.rst"),
+        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.result.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.result.rst"),
+        
         (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst"),
         (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst"),
         

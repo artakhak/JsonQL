@@ -1,0 +1,9 @@
+﻿:orphan:
+
+==============
+Countries.json
+==============
+
+.. sourcecode:: json
+  
+  <IncludedFilePlaceHolder>..\..\Examples\IJsonCompilerExamples\SuccessExamples\Overview\Countries.json</IncludedFilePlaceHolder>
