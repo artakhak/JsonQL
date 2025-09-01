@@ -7,4 +7,12 @@ Operators
    :depth: 2
    
 - TODO: Add contents here...
-- TODO: Add toctree here...
+
+.. toctree::
+
+   default-value/index.rst
+   json-path-separator/index.rst
+   lambda/index.rst
+   named-parameter/index.rst
+   comparison-operators/index.rst
+   text-matching-operators/index.rst

@@ -1,0 +1,15 @@
+=======================
+Text Matching Operators
+=======================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+- TODO: Add contents here...
+
+.. toctree::
+   
+   contains/index.rst
+   starts-with/index.rst
+   ends-with/index.rst

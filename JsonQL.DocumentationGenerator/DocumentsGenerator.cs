@@ -160,7 +160,6 @@ internal class DocumentsGenerator
         // functions\string-functions\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\functions\string-functions\index.rst.template", @"docs\functions\string-functions\index.rst"),
         
-        //------------------------------------
         // functions\string-functions\concatenate\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\functions\string-functions\concatenate\index.rst.template", @"docs\functions\string-functions\concatenate\index.rst"),
 
@@ -172,7 +171,7 @@ internal class DocumentsGenerator
         
         // functions\string-functions\upper\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\functions\string-functions\upper\index.rst.template", @"docs\functions\string-functions\upper\index.rst"),
-        //------------------------------------
+        
         // aggregate-functions\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\aggregate-functions\index.rst.template", @"docs\aggregate-functions\index.rst"),
         
@@ -199,6 +198,53 @@ internal class DocumentsGenerator
         
         // operators\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\operators\index.rst.template", @"docs\operators\index.rst"),
+        
+        // -------------Operators Start------------------------------------
+        // operators\default-value\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\default-value\index.rst.template", @"docs\operators\default-value\index.rst"),
+        
+        // operators\json-path-separator\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\json-path-separator\index.rst.template", @"docs\operators\json-path-separator\index.rst"),
+        
+        // operators\lambda\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\lambda\index.rst.template", @"docs\operators\lambda\index.rst"),
+        
+        // operators\named-parameter\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\named-parameter\index.rst.template", @"docs\operators\named-parameter\index.rst"),
+        
+        // operators\comparison-operators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\index.rst.template", @"docs\operators\comparison-operators\index.rst"),
+        
+        // operators\comparison-operators\equals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\equals\index.rst.template", @"docs\operators\comparison-operators\equals\index.rst"),
+        
+        // operators\comparison-operators\not-equals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\not-equals\index.rst.template", @"docs\operators\comparison-operators\not-equals\index.rst"),
+        
+        // operators\comparison-operators\less-than\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\less-than\index.rst.template", @"docs\operators\comparison-operators\less-than\index.rst"),
+        
+        // operators\comparison-operators\less-than-or-equals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\less-than-or-equals\index.rst.template", @"docs\operators\comparison-operators\less-than-or-equals\index.rst"),
+        
+        // operators\comparison-operators\greater-than\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\greater-than\index.rst.template", @"docs\operators\comparison-operators\greater-than\index.rst"),
+        
+        // operators\comparison-operators\greater-than-or-equals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\greater-than-or-equals\index.rst.template", @"docs\operators\comparison-operators\greater-than-or-equals\index.rst"),
+        
+        // operators\text-matching-operators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\index.rst.template", @"docs\operators\text-matching-operators\index.rst"),
+        
+        // operators\text-matching-operators\contains\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\contains\index.rst.template", @"docs\operators\text-matching-operators\contains\index.rst"),
+        
+        // operators\text-matching-operators\starts-with\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\starts-with\index.rst.template", @"docs\operators\text-matching-operators\starts-with\index.rst"),
+        
+        // operators\ends-with\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\ends-with\index.rst.template", @"docs\operators\text-matching-operators\ends-with\index.rst"),
+        // -------------Operators End------------------------------------
         
         // optional-and-named-parameters\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\optional-and-named-parameters\index.rst.template", @"docs\optional-and-named-parameters\index.rst"),
