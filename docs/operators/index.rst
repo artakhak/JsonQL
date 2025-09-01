@@ -10,14 +10,14 @@ Operators
 
 .. toctree::
 
-   default-value/index.rst
-   json-path-separator/index.rst
-   lambda/index.rst
-   named-parameter/index.rst
-   assert/index.rst
-   typeof/index.rst
-   arithmetic-operators/index.rst
-   comparison-operators/index.rst
-   logical-operators/index.rst
-   text-matching-operators/index.rst
-   value-is-null-or-undefined-check-operators/index.rst
+   DefaultValue/index.rst
+   JsonPathSeparator/index.rst
+   Lambda/index.rst
+   NamedParameter/index.rst
+   Assert/index.rst
+   TypeOf/index.rst
+   ArithmeticOperators/index.rst
+   ComparisonOperators/index.rst
+   LogicalOperators/index.rst
+   TextMatchingOperators/index.rst
+   ValueIsNullOrUndefinedCheckOperators/index.rst

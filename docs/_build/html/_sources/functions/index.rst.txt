@@ -10,7 +10,7 @@ Functions
 
 .. toctree::
 
-   conversion-functions/index.rst
-   numeric-functions/index.rst
-   boolean-functions/index.rst
-   string-functions/index.rst
+   ConversionFunctions/index.rst
+   NumericFunctions/index.rst
+   BooleanFunctions/index.rst
+   StringFunctions/index.rst

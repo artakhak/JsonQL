@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Mutating JSON Files" href="mutating-json-files/index.html" /> 
+    <link rel="next" title="Mutating JSON Files" href="MutatingJsonFiles/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,19 +42,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="mutating-json-files/index.html">Mutating JSON Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="querying-json-files/index.html">Querying JSON Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lambda-functions/index.html">Lambda Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="special-keywords/index.html">Special Keywords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="json-mutator-operators/index.html">JSON Mutator Operators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="json-path-functions/index.html">JSON Path Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions/index.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aggregate-functions/index.html">Aggregate Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optional-and-named-parameters/index.html">Optional and Named Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dependency-injection-setup/index.html">Dependency Injection Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom-json-ql/index.html">Custom JsonQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="future-releases/index.html">Future Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FutureReleases/index.html">Future Releases</a></li>
 </ul>
 
         </div>
@@ -160,14 +160,14 @@
 <p>In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-1.html"><span class="doc">AdditionalTestData.json</span></a></p></li>
-<li><p><a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-2.html"><span class="doc">Countries.json</span></a></p></li>
-<li><p><a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-3.html"><span class="doc">Companies.json</span></a></p></li>
-<li><p><a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/json-with-json-ql-expressions.data-1.html"><span class="doc">AdditionalTestData.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/json-with-json-ql-expressions.data-2.html"><span class="doc">Countries.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/json-with-json-ql-expressions.data-3.html"><span class="doc">Companies.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a></p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
-<li><p>The file <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> file with JsonQL expressions is shown below.</p></li>
+<li><p>The file <a class="reference internal" href="Examples/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> file with JsonQL expressions is shown below.</p></li>
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;CountryNamesWithPopulationOf80MlnOrMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Population &gt;= 80000000).Select(x =&gt; x.Name))&quot;</span><span class="p">,</span>
@@ -253,10 +253,10 @@
 </pre></div>
 </div>
 <ul>
-<li><p>Result of a query above for can be found here: <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.result.html"><span class="doc">Result.json</span></a></p>
+<li><p>Result of a query above for can be found here: <a class="reference internal" href="Examples/json-with-json-ql-expressions.result.html"><span class="doc">Result.json</span></a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The serialized result in <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.result.html"><span class="doc">Result.json</span></a> was formatted to show only mutated JSON for <a class="reference internal" href="index-rst-files/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> to make the file smaller.</p>
+<p>The serialized result in <a class="reference internal" href="Examples/json-with-json-ql-expressions.result.html"><span class="doc">Result.json</span></a> was formatted to show only mutated JSON for <a class="reference internal" href="Examples/json-with-json-ql-expressions.data-4.html"><span class="doc">Overview.json</span></a> to make the file smaller.</p>
 </div>
 </li>
 </ul>
@@ -327,12 +327,12 @@
 <ul class="simple">
 <li><dl class="simple">
 <dt>Files evaluated in JsonQL query above are listed here:</dt><dd><ul>
-<li><p><a class="reference internal" href="index-rst-files/query-and-convert-json-to-csharp-objects.data-1.html"><span class="doc">Data.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/query-and-convert-json-to-csharp-objects.data-1.html"><span class="doc">Data.json</span></a></p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-and-convert-json-to-csharp-objects.result.html"><span class="doc">Result.json</span></a></p></li>
+<li><p>Result of query above can be found here: <a class="reference internal" href="Examples/query-and-convert-json-to-csharp-objects.result.html"><span class="doc">Result.json</span></a></p></li>
 <li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList">here</a></p></li>
 </ul>
 </section>
@@ -341,7 +341,7 @@
 <ul class="simple">
 <li><dl class="simple">
 <dt>Files evaluated in JsonQL query below are listed here:</dt><dd><ul>
-<li><p><a class="reference internal" href="index-rst-files/query-and-convert-json-to-collection-of-doubles.data-1.html"><span class="doc">Data.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/query-and-convert-json-to-collection-of-doubles.data-1.html"><span class="doc">Data.json</span></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -361,7 +361,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-and-convert-json-to-collection-of-doubles.result.html"><span class="doc">Result.json</span></a></p></li>
+<li><p>Result of query above can be found here: <a class="reference internal" href="Examples/query-and-convert-json-to-collection-of-doubles.result.html"><span class="doc">Result.json</span></a></p></li>
 <li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles">here</a></p></li>
 </ul>
 </section>
@@ -382,7 +382,7 @@
 <ul class="simple">
 <li><dl class="simple">
 <dt>Files evaluated in JsonQL query below are listed here:</dt><dd><ul>
-<li><p><a class="reference internal" href="index-rst-files/query-with-result-as-json-object-1.data.html"><span class="doc">Data.json</span></a></p></li>
+<li><p><a class="reference internal" href="Examples/query-with-result-as-json-object-1.data.html"><span class="doc">Data.json</span></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -403,153 +403,153 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Result of query above can be found here: <a class="reference internal" href="index-rst-files/query-with-result-as-json-object.result.html"><span class="doc">Result.json</span></a></p></li>
+<li><p>Result of query above can be found here: <a class="reference internal" href="Examples/query-with-result-as-json-object.result.html"><span class="doc">Result.json</span></a></p></li>
 <li><p>Example classes and JSON files for this example can be found <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary">here</a></p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="mutating-json-files/index.html">Mutating JSON Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mutating-json-files/error-details/index.html">Error Details</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mutating-json-files/reusing-compiled-json-files/index.html">Reusing Compiled JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MutatingJsonFiles/index.html">Mutating JSON Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="querying-json-files/index.html">Querying JSON Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="querying-json-files/result-as-csharp-object/index.html">Result as JSON Structure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="querying-json-files/result-as-csharp-object/error-details/index.html">Error Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QueryingJsonFiles/index.html">Querying JSON Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/index.html">Result as JSON Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="querying-json-files/result-as-json-structure/index.html">Result as C# Object</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="querying-json-files/result-as-json-structure/error-details/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ResultAsJsonStructure/index.html">Result as C# Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsJsonStructure/ErrorDetails/index.html">Error Details</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="querying-json-files/reusing-compiled-json-files/index.html">Reusing Compiled JSON Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lambda-functions/index.html">Lambda Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="special-keywords/index.html">Special Keywords</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="special-keywords/parent/index.html">parent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special-keywords/this/index.html">this</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special-keywords/index/index.html">index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SpecialKeywords/index.html">Special Keywords</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SpecialKeywords/Parent/index.html">parent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpecialKeywords/This/index.html">this</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpecialKeywords/Index/index.html">index</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="json-mutator-operators/index.html">JSON Mutator Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/string-interpolation/index.html">String Interpolation ‘$’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/value/index.html">Value ‘$value’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/copy-fields/index.html">Copy Fields ‘$copyFields’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/merge-array/index.html">Merge Array ‘$merge’</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonMutatorOperators/index.html">JSON Mutator Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/StringInterpolation/index.html">String Interpolation ‘$’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/Value/index.html">Value ‘$value’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/CopyFields/index.html">Copy Fields ‘$copyFields’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/MergeArray/index.html">Merge Array ‘$merge’</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="json-path-functions/index.html">JSON Path Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/array-indexers/index.html">Array Indexers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/select/index.html">Select</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/where/index.html">Where</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/at/index.html">At</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/first/index.html">First</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/last/index.html">Last</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/flatten/index.html">Flatten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json-path-functions/reverse/index.html">Reverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonPathFunctions/index.html">JSON Path Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/ArrayIndexers/index.html">Array Indexers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/Select/index.html">Select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/Where/index.html">Where</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/At/index.html">At</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/First/index.html">First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/Last/index.html">Last</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/Flatten/index.html">Flatten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JsonPathFunctions/Reverse/index.html">Reverse</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions/index.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions/conversion-functions/index.html">Conversion Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-boolean/index.html">ToBoolean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-date/index.html">ToDate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-date-time/index.html">ToDateTime</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-double/index.html">ToDouble</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-int/index.html">ToInt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/conversion-functions/to-string/index.html">ToString</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Functions/index.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Functions/ConversionFunctions/index.html">Conversion Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToBoolean/index.html">ToBoolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToDate/index.html">ToDate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToDateTime/index.html">ToDateTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToDouble/index.html">ToDouble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToInt/index.html">ToInt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/ConversionFunctions/ToString/index.html">ToString</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="functions/numeric-functions/index.html">Numeric Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions/numeric-functions/abs/index.html">Abs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Functions/NumericFunctions/index.html">Numeric Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Functions/NumericFunctions/Abs/index.html">Abs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="functions/boolean-functions/index.html">Boolean Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions/boolean-functions/has-field/index.html">HasField</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/boolean-functions/is-even/index.html">IsEven</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/boolean-functions/is-odd/index.html">IsOdd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Functions/BooleanFunctions/index.html">Boolean Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Functions/BooleanFunctions/HasField/index.html">HasField</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/BooleanFunctions/IsEven/index.html">IsEven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/BooleanFunctions/IsOdd/index.html">IsOdd</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="functions/string-functions/index.html">String Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions/string-functions/concatenate/index.html">Concatenate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/string-functions/len/index.html">Len</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/string-functions/lower/index.html">Lower</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions/string-functions/upper/index.html">Upper</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="aggregate-functions/index.html">Aggregate Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/all/index.html">All</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/average/index.html">Average</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/count/index.html">Count</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/sum/index.html">Sum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/any/index.html">Any</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/min/index.html">Min</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aggregate-functions/max/index.html">Max</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="operators/default-value/index.html">Default Value ‘:’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/json-path-separator/index.html">Json Path Seperator ‘.’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/lambda/index.html">Lambda ‘=&gt;’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/named-parameter/index.html">Named Parameter ‘-&gt;’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/assert/index.html">‘assert’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/typeof/index.html">‘typeof’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="operators/arithmetic-operators/index.html">Arithmetic Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/add/index.html">Add ‘+’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/subtract/index.html">Subtract ‘-’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/multiply/index.html">Multiply ‘*’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/divide/index.html">Divide ‘/’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/quotient/index.html">Quotient ‘%’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/arithmetic-operators/negative-sign/index.html">Negative Sign ‘-’</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="operators/comparison-operators/index.html">Comparison Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/equals/index.html">Equals ‘==’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/not-equals/index.html">Not Equals ‘!=’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/less-than/index.html">Less Than ‘&lt;’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/less-than-or-equals/index.html">Less Than of Equals ‘&lt;=’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/greater-than/index.html">Greater Than ‘&gt;’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/comparison-operators/greater-than-or-equals/index.html">Greater Than or Equals ‘&gt;=’</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="operators/logical-operators/index.html">Logical Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="operators/logical-operators/and/index.html">And ‘&amp;&amp;’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/logical-operators/or/index.html">Or ‘||’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/logical-operators/negate/index.html">Negate ‘!’</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="operators/text-matching-operators/index.html">Text Matching Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="operators/text-matching-operators/contains/index.html">‘contains’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/text-matching-operators/starts-with/index.html">‘starts with’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/text-matching-operators/ends-with/index.html">‘ends with’</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="operators/value-is-null-or-undefined-check-operators/index.html">Value is Null or Undefined Check Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="operators/value-is-null-or-undefined-check-operators/is-null/index.html">‘is null’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/value-is-null-or-undefined-check-operators/is-not-null/index.html">‘is not null’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/value-is-null-or-undefined-check-operators/is-undefined/index.html">‘is undefined’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="operators/value-is-null-or-undefined-check-operators/is-not-undefined/index.html">‘is not undefined’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Functions/StringFunctions/index.html">String Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Functions/StringFunctions/Concatenate/index.html">Concatenate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/StringFunctions/Len/index.html">Len</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/StringFunctions/Lower/index.html">Lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Functions/StringFunctions/Upper/index.html">Upper</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="optional-and-named-parameters/index.html">Optional and Named Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dependency-injection-setup/index.html">Dependency Injection Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom-json-ql/index.html">Custom JsonQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="future-releases/index.html">Future Releases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/multiline-queries/index.html">Multiline Queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/complex-projections/index.html">Complex Projections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/grouping/index.html">Grouping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/sorting/index.html">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/if-function/index.html">‘If’ function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/round-up-function/index.html">‘RoundUp’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/round-down-function/index.html">‘RoundDown’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/join-function/index.html">‘Join’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/regex-text-matching/index.html">Regex Text Matching</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/number-formatting/index.html">Number Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="future-releases/date-time-formatting/index.html">DateTime Formatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AggregateFunctions/index.html">Aggregate Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/All/index.html">All</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Average/index.html">Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Count/index.html">Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Sum/index.html">Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Min/index.html">Min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AggregateFunctions/Max/index.html">Max</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Operators/index.html">Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Operators/DefaultValue/index.html">Default Value ‘:’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/JsonPathSeparator/index.html">Json Path Seperator ‘.’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/Lambda/index.html">Lambda ‘=&gt;’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/Assert/index.html">‘assert’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/TypeOf/index.html">‘typeof’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/ArithmeticOperators/index.html">Arithmetic Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/Add/index.html">Add ‘+’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/Subtract/index.html">Subtract ‘-’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/Multiply/index.html">Multiply ‘*’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/Divide/index.html">Divide ‘/’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/Quotient/index.html">Quotient ‘%’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ArithmeticOperators/NegativeSign/index.html">Negative Sign ‘-’</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/ComparisonOperators/index.html">Comparison Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/Equals/index.html">Equals ‘==’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/NotEquals/index.html">Not Equals ‘!=’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/LessThan/index.html">Less Than ‘&lt;’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/LessThanOrEquals/index.html">Less Than of Equals ‘&lt;=’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/GreaterThan/index.html">Greater Than ‘&gt;’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ComparisonOperators/GreaterThanOrEquals/index.html">Greater Than or Equals ‘&gt;=’</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/LogicalOperators/index.html">Logical Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operators/LogicalOperators/And/index.html">And ‘&amp;&amp;’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/LogicalOperators/Or/index.html">Or ‘||’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/LogicalOperators/Negate/index.html">Negate ‘!’</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/TextMatchingOperators/index.html">Text Matching Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operators/TextMatchingOperators/Contains/index.html">‘contains’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/TextMatchingOperators/StartsWith/index.html">‘starts with’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/TextMatchingOperators/EndsWith/index.html">‘ends with’</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operators/ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ValueIsNullOrUndefinedCheckOperators/IsNull/index.html">‘is null’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ValueIsNullOrUndefinedCheckOperators/IsNotNull/index.html">‘is not null’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ValueIsNullOrUndefinedCheckOperators/IsUndefined/index.html">‘is undefined’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operators/ValueIsNullOrUndefinedCheckOperators/IsNotUndefined/index.html">‘is not undefined’</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FutureReleases/index.html">Future Releases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/MultilineQueries/index.html">Multiline Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/ComplexProjections/index.html">Complex Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/Grouping/index.html">Grouping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/Sorting/index.html">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/IfFunction/index.html">‘If’ function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/RoundUpFunction/index.html">‘RoundUp’ Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/RoundDownFunction/index.html">‘RoundDown’ Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/JoinFunction/index.html">‘Join’ Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/RegexTextMatching/index.html">Regex Text Matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/NumberFormatting/index.html">Number Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FutureReleases/DateTimeFormatting/index.html">DateTime Formatting</a></li>
 </ul>
 </li>
 </ul>
@@ -570,7 +570,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="mutating-json-files/index.html" class="btn btn-neutral float-right" title="Mutating JSON Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="MutatingJsonFiles/index.html" class="btn btn-neutral float-right" title="Mutating JSON Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

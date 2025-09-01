@@ -58,12 +58,12 @@ An overview example of mutating multiple JSON files is `here <https://github.com
 
 In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:
 
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-1`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-2`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-3`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-4`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-1`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-2`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-3`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-4`
 
-- The file :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` file with JsonQL expressions is shown below.
+- The file :doc:`./Examples/json-with-json-ql-expressions.data-4` file with JsonQL expressions is shown below.
 
 .. sourcecode:: json
 
@@ -73,12 +73,12 @@ In this example the following JSON files are processed with JSON files appearing
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>index-rst-files\json-with-json-ql-expressions.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\json-with-json-ql-expressions.cs.example</IncludedFilePlaceHolder>
 
-- Result of a query above for can be found here: :doc:`./index-rst-files/json-with-json-ql-expressions.result`
+- Result of a query above for can be found here: :doc:`./Examples/json-with-json-ql-expressions.result`
 
   .. note::
-    The serialized result in :doc:`./index-rst-files/json-with-json-ql-expressions.result` was formatted to show only mutated JSON for :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` to make the file smaller.  
+    The serialized result in :doc:`./Examples/json-with-json-ql-expressions.result` was formatted to show only mutated JSON for :doc:`./Examples/json-with-json-ql-expressions.data-4` to make the file smaller.  
 
 JsonQL queries of JSON Files with Result Converted to C# objects
 ================================================================
@@ -99,25 +99,25 @@ Example: Query and convert JSON to C# objects
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>index-rst-files\query-and-convert-json-to-csharp-objects.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-csharp-objects.cs.example</IncludedFilePlaceHolder>
 
 - Files evaluated in JsonQL query above are listed here:
-   - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
+   - :doc:`./Examples/query-and-convert-json-to-csharp-objects.data-1`
    
-- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.result`
+- Result of query above can be found here: :doc:`./Examples/query-and-convert-json-to-csharp-objects.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
 
 Example: Query and convert JSON to collection of double values
 --------------------------------------------------------------
 
 - Files evaluated in JsonQL query below are listed here:
-   - :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.data-1`
+   - :doc:`./Examples/query-and-convert-json-to-collection-of-doubles.data-1`
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>index-rst-files\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
 
-- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.result`
+- Result of query above can be found here: :doc:`./Examples/query-and-convert-json-to-collection-of-doubles.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
 
 JsonQL queries of JSON Files with Result Converted to JSON structure
@@ -135,30 +135,30 @@ Example: Query JSON files with result as JSON structure
 -------------------------------------------------------
 
 - Files evaluated in JsonQL query below are listed here:
-   - :doc:`./index-rst-files/query-with-result-as-json-object-1.data`
+   - :doc:`./Examples/query-with-result-as-json-object-1.data`
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>index-rst-files\query-with-result-as-json-object.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-with-result-as-json-object.cs.example</IncludedFilePlaceHolder>
 
-- Result of query above can be found here: :doc:`./index-rst-files/query-with-result-as-json-object.result`
+- Result of query above can be found here: :doc:`./Examples/query-with-result-as-json-object.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_
 
 .. toctree::
 
-   mutating-json-files/index.rst
-   querying-json-files/index.rst
-   lambda-functions/index.rst
-   special-keywords/index.rst
-   json-mutator-operators/index.rst
-   json-path-functions/index.rst
-   functions/index.rst
-   aggregate-functions/index.rst
-   operators/index.rst
-   optional-and-named-parameters/index.rst 
-   dependency-injection-setup/index.rst
-   custom-json-ql/index.rst
-   future-releases/index.rst
+   MutatingJsonFiles/index.rst
+   QueryingJsonFiles/index.rst
+   LambdaFunctions/index.rst
+   SpecialKeywords/index.rst
+   JsonMutatorOperators/index.rst
+   JsonPathFunctions/index.rst
+   Functions/index.rst
+   AggregateFunctions/index.rst
+   Operators/index.rst
+   OptionalAndNamedParameters/index.rst 
+   DependencyInjectionSetup/index.rst
+   CustomJsonQL/index.rst
+   FutureReleases/index.rst
 
 Indices and tables
 ==================

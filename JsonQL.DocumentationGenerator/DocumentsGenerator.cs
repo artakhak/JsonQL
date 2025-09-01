@@ -13,357 +13,354 @@ internal class DocumentsGenerator
         // index.rst file related
         (@"JsonQL.Demos\DocFiles\index.rst.template", @"docs\index.rst"),
 
-        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-1.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-1.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-2.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-2.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-3.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-3.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.data-4.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.data-4.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\json-with-json-ql-expressions.result.rst.template", @"docs\index-rst-files\json-with-json-ql-expressions.result.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-1.rst.template", @"docs\Examples\json-with-json-ql-expressions.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-2.rst.template", @"docs\Examples\json-with-json-ql-expressions.data-2.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-3.rst.template", @"docs\Examples\json-with-json-ql-expressions.data-3.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-4.rst.template", @"docs\Examples\json-with-json-ql-expressions.data-4.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.result.rst.template", @"docs\Examples\json-with-json-ql-expressions.result.rst"),
 
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.template", @"docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-and-convert-json-to-csharp-objects.data-1.rst.template", @"docs\Examples\query-and-convert-json-to-csharp-objects.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-and-convert-json-to-csharp-objects.result.rst.template", @"docs\Examples\query-and-convert-json-to-csharp-objects.result.rst"),
 
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-collection-of-doubles.data-1.rst.template", @"docs\index-rst-files\query-and-convert-json-to-collection-of-doubles.data-1.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-and-convert-json-to-collection-of-doubles.result.rst.template", @"docs\index-rst-files\query-and-convert-json-to-collection-of-doubles.result.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-and-convert-json-to-collection-of-doubles.data-1.rst.template", @"docs\Examples\query-and-convert-json-to-collection-of-doubles.data-1.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-and-convert-json-to-collection-of-doubles.result.rst.template", @"docs\Examples\query-and-convert-json-to-collection-of-doubles.result.rst"),
 
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-with-result-as-json-object-1.data.rst.template", @"docs\index-rst-files\query-with-result-as-json-object-1.data.rst"),
-        (@"JsonQL.Demos\DocFiles\index-rst-files\query-with-result-as-json-object.result.rst.template", @"docs\index-rst-files\query-with-result-as-json-object.result.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object-1.data.rst.template", @"docs\Examples\query-with-result-as-json-object-1.data.rst"),
+        (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object.result.rst.template", @"docs\Examples\query-with-result-as-json-object.result.rst"),
 
-        // mutating-json-files\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\mutating-json-files\index.rst.template", @"docs\mutating-json-files\index.rst"),
+        // MutatingJsonFiles\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\index.rst.template", @"docs\MutatingJsonFiles\index.rst"),
 
-        // mutating-json-files\error-details\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\mutating-json-files\error-details\index.rst.template", @"docs\mutating-json-files\error-details\index.rst"),
+        // MutatingJsonFiles\ErrorDetails\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\ErrorDetails\index.rst.template", @"docs\MutatingJsonFiles\ErrorDetails\index.rst"),
 
-        // mutating-json-files\reusing-compiled-json-files\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\mutating-json-files\reusing-compiled-json-files\index.rst.template", @"docs\mutating-json-files\reusing-compiled-json-files\index.rst"),
+        // MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst.template", @"docs\MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst"),
 
-        // querying-json-files\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\index.rst.template", @"docs\querying-json-files\index.rst"),
+        // QueryingJsonFiles\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\index.rst.template", @"docs\QueryingJsonFiles\index.rst"),
 
-        // querying-json-files\result-as-csharp-object\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\result-as-csharp-object\index.rst.template", @"docs\querying-json-files\result-as-csharp-object\index.rst"),
+        // QueryingJsonFiles\ResultAsCSharpObject\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\ResultAsCSharpObject\index.rst.template", @"docs\QueryingJsonFiles\ResultAsCSharpObject\index.rst"),
 
-        // querying-json-files\result-as-csharp-object\error-details\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\result-as-csharp-object\error-details\index.rst.template", @"docs\querying-json-files\result-as-csharp-object\error-details\index.rst"),
+        // QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\index.rst.template", @"docs\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\index.rst"),
 
-        // querying-json-files\result-as-json-structure\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\result-as-json-structure\index.rst.template", @"docs\querying-json-files\result-as-json-structure\index.rst"),
+        // QueryingJsonFiles\ResultAsJsonStructure\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\ResultAsJsonStructure\index.rst.template", @"docs\QueryingJsonFiles\ResultAsJsonStructure\index.rst"),
 
-        // querying-json-files\result-as-json-structure\error-details\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\result-as-json-structure\error-details\index.rst.template", @"docs\querying-json-files\result-as-json-structure\error-details\index.rst"),
+        // QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\index.rst.template", @"docs\QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\index.rst"),
 
-        // querying-json-files\reusing-compiled-json-files\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\querying-json-files\reusing-compiled-json-files\index.rst.template", @"docs\querying-json-files\reusing-compiled-json-files\index.rst"),
+        // QueryingJsonFiles\ReusingCompiledJsonFiles\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\index.rst.template", @"docs\QueryingJsonFiles\ReusingCompiledJsonFiles\index.rst"),
 
-        // querying-json-files\lambda-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\lambda-functions\index.rst.template", @"docs\lambda-functions\index.rst"),
+        // QueryingJsonFiles\LambdaFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\LambdaFunctions\index.rst.template", @"docs\LambdaFunctions\index.rst"),
 
-        // querying-json-files\special-keywords\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\special-keywords\index.rst.template", @"docs\special-keywords\index.rst"),
+        // QueryingJsonFiles\SpecialKeywords\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\SpecialKeywords\index.rst.template", @"docs\SpecialKeywords\index.rst"),
+       
+        // QueryingJsonFiles\SpecialKeywords\Index\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\SpecialKeywords\Index\index.rst.template", @"docs\SpecialKeywords\Index\index.rst"),
 
-        // querying-json-files\special-keywords\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\special-keywords\index.rst.template", @"docs\special-keywords\index.rst"),
+        // QueryingJsonFiles\SpecialKeywords\Parent\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\SpecialKeywords\Parent\index.rst.template", @"docs\SpecialKeywords\Parent\index.rst"),
 
-        // querying-json-files\special-keywords\index\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\special-keywords\index\index.rst.template", @"docs\special-keywords\index\index.rst"),
+        // QueryingJsonFiles\SpecialKeywords\This\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\SpecialKeywords\This\index.rst.template", @"docs\SpecialKeywords\This\index.rst"),
 
-        // querying-json-files\special-keywords\parent\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\special-keywords\parent\index.rst.template", @"docs\special-keywords\parent\index.rst"),
+        // JsonMutatorOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonMutatorOperators\index.rst.template", @"docs\JsonMutatorOperators\index.rst"),
 
-        // querying-json-files\special-keywords\this\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\special-keywords\this\index.rst.template", @"docs\special-keywords\this\index.rst"),
+        // JsonMutatorOperators\StringInterpolation\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonMutatorOperators\StringInterpolation\index.rst.template", @"docs\JsonMutatorOperators\StringInterpolation\index.rst"),
 
-        // json-mutator-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-mutator-operators\index.rst.template", @"docs\json-mutator-operators\index.rst"),
+        // JsonMutatorOperators\Value\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonMutatorOperators\Value\index.rst.template", @"docs\JsonMutatorOperators\Value\index.rst"),
 
-        // json-mutator-operators\string-interpolation\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-mutator-operators\string-interpolation\index.rst.template", @"docs\json-mutator-operators\string-interpolation\index.rst"),
+        // JsonMutatorOperators\CopyFields\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonMutatorOperators\CopyFields\index.rst.template", @"docs\JsonMutatorOperators\CopyFields\index.rst"),
 
-        // json-mutator-operators\value\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-mutator-operators\value\index.rst.template", @"docs\json-mutator-operators\value\index.rst"),
+        // JsonMutatorOperators\MergeArray\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonMutatorOperators\MergeArray\index.rst.template", @"docs\JsonMutatorOperators\MergeArray\index.rst"),
 
-        // json-mutator-operators\copy-fields\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-mutator-operators\copy-fields\index.rst.template", @"docs\json-mutator-operators\copy-fields\index.rst"),
+        // JsonPathFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\index.rst.template", @"docs\JsonPathFunctions\index.rst"),
 
-        // json-mutator-operators\merge-array\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-mutator-operators\merge-array\index.rst.template", @"docs\json-mutator-operators\merge-array\index.rst"),
+        // JsonPathFunctions\ArrayIndexers\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\ArrayIndexers\index.rst.template", @"docs\JsonPathFunctions\ArrayIndexers\index.rst"),
 
-        // json-path-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\index.rst.template", @"docs\json-path-functions\index.rst"),
+        // JsonPathFunctions\At\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\At\index.rst.template", @"docs\JsonPathFunctions\At\index.rst"),
 
-        // json-path-functions\array-indexers\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\array-indexers\index.rst.template", @"docs\json-path-functions\array-indexers\index.rst"),
+        // JsonPathFunctions\First\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\First\index.rst.template", @"docs\JsonPathFunctions\First\index.rst"),
 
-        // json-path-functions\at\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\at\index.rst.template", @"docs\json-path-functions\at\index.rst"),
+        // JsonPathFunctions\Last\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\Last\index.rst.template", @"docs\JsonPathFunctions\Last\index.rst"),
 
-        // json-path-functions\first\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\first\index.rst.template", @"docs\json-path-functions\first\index.rst"),
+        // JsonPathFunctions\Flatten\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\Flatten\index.rst.template", @"docs\JsonPathFunctions\Flatten\index.rst"),
 
-        // json-path-functions\last\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\last\index.rst.template", @"docs\json-path-functions\last\index.rst"),
+        // JsonPathFunctions\Reverse\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\Reverse\index.rst.template", @"docs\JsonPathFunctions\Reverse\index.rst"),
 
-        // json-path-functions\flatten\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\flatten\index.rst.template", @"docs\json-path-functions\flatten\index.rst"),
+        // JsonPathFunctions\Select\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\Select\index.rst.template", @"docs\JsonPathFunctions\Select\index.rst"),
 
-        // json-path-functions\reverse\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\reverse\index.rst.template", @"docs\json-path-functions\reverse\index.rst"),
-
-        // json-path-functions\select\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\select\index.rst.template", @"docs\json-path-functions\select\index.rst"),
-
-        // json-path-functions\where\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\json-path-functions\where\index.rst.template", @"docs\json-path-functions\where\index.rst"),
+        // JsonPathFunctions\Where\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\JsonPathFunctions\Where\index.rst.template", @"docs\JsonPathFunctions\Where\index.rst"),
 
         // functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\index.rst.template", @"docs\functions\index.rst"),
+        (@"JsonQL.Demos\DocFiles\Functions\index.rst.template", @"docs\Functions\index.rst"),
 
-        // functions\conversion-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\index.rst.template", @"docs\functions\conversion-functions\index.rst"),
+        // functions\ConversionFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\index.rst.template", @"docs\Functions\ConversionFunctions\index.rst"),
 
-        // functions\conversion-functions\to-boolean\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-boolean\index.rst.template", @"docs\functions\conversion-functions\to-boolean\index.rst"),
+        // functions\ConversionFunctions\ToBoolean\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToBoolean\index.rst.template", @"docs\Functions\ConversionFunctions\ToBoolean\index.rst"),
 
-        // functions\conversion-functions\to-date\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-date\index.rst.template", @"docs\functions\conversion-functions\to-date\index.rst"),
+        // functions\ConversionFunctions\ToDate\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToDate\index.rst.template", @"docs\Functions\ConversionFunctions\ToDate\index.rst"),
 
-        // functions\conversion-functions\to-date-time\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-date-time\index.rst.template", @"docs\functions\conversion-functions\to-date-time\index.rst"),
+        // functions\ConversionFunctions\ToDateTime\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToDateTime\index.rst.template", @"docs\Functions\ConversionFunctions\ToDateTime\index.rst"),
 
-        // functions\conversion-functions\to-double\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-double\index.rst.template", @"docs\functions\conversion-functions\to-double\index.rst"),
+        // functions\ConversionFunctions\ToDouble\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToDouble\index.rst.template", @"docs\Functions\ConversionFunctions\ToDouble\index.rst"),
 
-        // functions\conversion-functions\to-int\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-int\index.rst.template", @"docs\functions\conversion-functions\to-int\index.rst"),
+        // functions\ConversionFunctions\ToInt\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToInt\index.rst.template", @"docs\Functions\ConversionFunctions\ToInt\index.rst"),
 
-        // functions\conversion-functions\to-string\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-string\index.rst.template", @"docs\functions\conversion-functions\to-string\index.rst"),
+        // functions\ConversionFunctions\ToString\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\ConversionFunctions\ToString\index.rst.template", @"docs\Functions\ConversionFunctions\ToString\index.rst"),
 
-        // functions\numeric-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\numeric-functions\index.rst.template", @"docs\functions\numeric-functions\index.rst"),
+        // functions\NumericFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\NumericFunctions\index.rst.template", @"docs\Functions\NumericFunctions\index.rst"),
 
-        // functions\numeric-functions\abs\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\numeric-functions\abs\index.rst.template", @"docs\functions\numeric-functions\abs\index.rst"),
+        // functions\NumericFunctions\Abs\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\NumericFunctions\Abs\index.rst.template", @"docs\Functions\NumericFunctions\Abs\index.rst"),
 
-        // functions\boolean-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\index.rst.template", @"docs\functions\boolean-functions\index.rst"),
+        // functions\BooleanFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\BooleanFunctions\index.rst.template", @"docs\Functions\BooleanFunctions\index.rst"),
 
-        // functions\boolean-functions\has-field\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\has-field\index.rst.template", @"docs\functions\boolean-functions\has-field\index.rst"),
+        // functions\BooleanFunctions\HasField\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\BooleanFunctions\HasField\index.rst.template", @"docs\Functions\BooleanFunctions\HasField\index.rst"),
 
-        // functions\boolean-functions\is-even\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\is-even\index.rst.template", @"docs\functions\boolean-functions\is-even\index.rst"),
+        // functions\BooleanFunctions\IsEven\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\BooleanFunctions\IsEven\index.rst.template", @"docs\Functions\BooleanFunctions\IsEven\index.rst"),
 
-        // functions\boolean-functions\is-odd\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\is-odd\index.rst.template", @"docs\functions\boolean-functions\is-odd\index.rst"),
+        // functions\BooleanFunctions\IsOdd\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\BooleanFunctions\IsOdd\index.rst.template", @"docs\Functions\BooleanFunctions\IsOdd\index.rst"),
 
-        // functions\string-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\string-functions\index.rst.template", @"docs\functions\string-functions\index.rst"),
+        // functions\StringFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\StringFunctions\index.rst.template", @"docs\Functions\StringFunctions\index.rst"),
 
-        // functions\string-functions\concatenate\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\string-functions\concatenate\index.rst.template", @"docs\functions\string-functions\concatenate\index.rst"),
+        // functions\StringFunctions\Concatenate\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\StringFunctions\Concatenate\index.rst.template", @"docs\Functions\StringFunctions\Concatenate\index.rst"),
 
-        // functions\string-functions\len\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\string-functions\len\index.rst.template", @"docs\functions\string-functions\len\index.rst"),
+        // functions\StringFunctions\Len\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\StringFunctions\Len\index.rst.template", @"docs\Functions\StringFunctions\Len\index.rst"),
 
-        // functions\string-functions\lower\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\string-functions\lower\index.rst.template", @"docs\functions\string-functions\lower\index.rst"),
+        // functions\StringFunctions\Lower\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\StringFunctions\Lower\index.rst.template", @"docs\Functions\StringFunctions\Lower\index.rst"),
 
-        // functions\string-functions\upper\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\functions\string-functions\upper\index.rst.template", @"docs\functions\string-functions\upper\index.rst"),
+        // functions\StringFunctions\Upper\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Functions\StringFunctions\Upper\index.rst.template", @"docs\Functions\StringFunctions\Upper\index.rst"),
 
-        // aggregate-functions\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\index.rst.template", @"docs\aggregate-functions\index.rst"),
+        // AggregateFunctions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\index.rst.template", @"docs\AggregateFunctions\index.rst"),
 
-        // aggregate-functions\all\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\all\index.rst.template", @"docs\aggregate-functions\all\index.rst"),
+        // AggregateFunctions\All\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\All\index.rst.template", @"docs\AggregateFunctions\All\index.rst"),
 
-        // aggregate-functions\any\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\any\index.rst.template", @"docs\aggregate-functions\any\index.rst"),
+        // AggregateFunctions\Any\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Any\index.rst.template", @"docs\AggregateFunctions\Any\index.rst"),
 
-        // aggregate-functions\average\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\average\index.rst.template", @"docs\aggregate-functions\average\index.rst"),
+        // AggregateFunctions\Average\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Average\index.rst.template", @"docs\AggregateFunctions\Average\index.rst"),
 
-        // aggregate-functions\count\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\count\index.rst.template", @"docs\aggregate-functions\count\index.rst"),
+        // AggregateFunctions\Count\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Count\index.rst.template", @"docs\AggregateFunctions\Count\index.rst"),
 
-        // aggregate-functions\max\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\max\index.rst.template", @"docs\aggregate-functions\max\index.rst"),
+        // AggregateFunctions\Max\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Max\index.rst.template", @"docs\AggregateFunctions\Max\index.rst"),
 
-        // aggregate-functions\min\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\min\index.rst.template", @"docs\aggregate-functions\min\index.rst"),
+        // AggregateFunctions\Min\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Min\index.rst.template", @"docs\AggregateFunctions\Min\index.rst"),
 
-        // aggregate-functions\sum\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\aggregate-functions\sum\index.rst.template", @"docs\aggregate-functions\sum\index.rst"),
+        // AggregateFunctions\Sum\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\AggregateFunctions\Sum\index.rst.template", @"docs\AggregateFunctions\Sum\index.rst"),
 
         #region operators
 
         // operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\index.rst.template", @"docs\operators\index.rst"),
+        (@"JsonQL.Demos\DocFiles\Operators\index.rst.template", @"docs\Operators\index.rst"),
         
-        // operators\default-value\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\default-value\index.rst.template", @"docs\operators\default-value\index.rst"),
+        // operators\DefaultValue\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\DefaultValue\index.rst.template", @"docs\Operators\DefaultValue\index.rst"),
 
-        // operators\json-path-separator\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\json-path-separator\index.rst.template", @"docs\operators\json-path-separator\index.rst"),
+        // operators\JsonPathSeparator\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\JsonPathSeparator\index.rst.template", @"docs\Operators\JsonPathSeparator\index.rst"),
 
-        // operators\lambda\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\lambda\index.rst.template", @"docs\operators\lambda\index.rst"),
+        // operators\Lambda\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\Lambda\index.rst.template", @"docs\Operators\Lambda\index.rst"),
 
-        // operators\named-parameter\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\named-parameter\index.rst.template", @"docs\operators\named-parameter\index.rst"),
+        // operators\NamedParameter\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\NamedParameter\index.rst.template", @"docs\Operators\NamedParameter\index.rst"),
 
-        // operators\assert\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\assert\index.rst.template", @"docs\operators\assert\index.rst"),
+        // operators\Assert\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\Assert\index.rst.template", @"docs\Operators\Assert\index.rst"),
         
-        // operators\typeof\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\typeof\index.rst.template", @"docs\operators\typeof\index.rst"),
+        // operators\TypeOf\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\TypeOf\index.rst.template", @"docs\Operators\TypeOf\index.rst"),
 
         #region arithmetic-operators
-        // operators\arithmetic-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\index.rst.template", @"docs\operators\arithmetic-operators\index.rst"),
+        // operators\ArithmeticOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\index.rst.template", @"docs\Operators\ArithmeticOperators\index.rst"),
 
-        // operators\arithmetic-operators\add\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\add\index.rst.template", @"docs\operators\arithmetic-operators\add\index.rst"),
+        // operators\ArithmeticOperators\Add\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\Add\index.rst.template", @"docs\Operators\ArithmeticOperators\Add\index.rst"),
         
-        // operators\arithmetic-operators\divide\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\divide\index.rst.template", @"docs\operators\arithmetic-operators\divide\index.rst"),
+        // operators\ArithmeticOperators\Divide\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\Divide\index.rst.template", @"docs\Operators\ArithmeticOperators\Divide\index.rst"),
         
-        // operators\arithmetic-operators\multiply\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\multiply\index.rst.template", @"docs\operators\arithmetic-operators\multiply\index.rst"),
+        // operators\ArithmeticOperators\Multiply\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\Multiply\index.rst.template", @"docs\Operators\ArithmeticOperators\Multiply\index.rst"),
         
-        // operators\arithmetic-operators\negative-sign\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\negative-sign\index.rst.template", @"docs\operators\arithmetic-operators\negative-sign\index.rst"),
+        // operators\ArithmeticOperators\NegativeSign\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\NegativeSign\index.rst.template", @"docs\Operators\ArithmeticOperators\NegativeSign\index.rst"),
         
-        // operators\arithmetic-operators\quotient\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\quotient\index.rst.template", @"docs\operators\arithmetic-operators\quotient\index.rst"),
+        // operators\ArithmeticOperators\Quotient\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\Quotient\index.rst.template", @"docs\Operators\ArithmeticOperators\Quotient\index.rst"),
         
-        // operators\arithmetic-operators\subtract\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\arithmetic-operators\subtract\index.rst.template", @"docs\operators\arithmetic-operators\subtract\index.rst"),
+        // operators\ArithmeticOperators\Subtract\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ArithmeticOperators\Subtract\index.rst.template", @"docs\Operators\ArithmeticOperators\Subtract\index.rst"),
         #endregion
         
-        #region comparison-operators
+        #region ComparisonOperators
 
-        // operators\comparison-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\index.rst.template", @"docs\operators\comparison-operators\index.rst"),
+        // operators\ComparisonOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\index.rst.template", @"docs\Operators\ComparisonOperators\index.rst"),
 
-        // operators\comparison-operators\equals\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\equals\index.rst.template", @"docs\operators\comparison-operators\equals\index.rst"),
+        // operators\ComparisonOperators\Equals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\Equals\index.rst.template", @"docs\Operators\ComparisonOperators\Equals\index.rst"),
 
-        // operators\comparison-operators\not-equals\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\not-equals\index.rst.template", @"docs\operators\comparison-operators\not-equals\index.rst"),
+        // operators\ComparisonOperators\NotEquals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\NotEquals\index.rst.template", @"docs\Operators\ComparisonOperators\NotEquals\index.rst"),
 
-        // operators\comparison-operators\less-than\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\less-than\index.rst.template", @"docs\operators\comparison-operators\less-than\index.rst"),
+        // operators\ComparisonOperators\LessThan\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\LessThan\index.rst.template", @"docs\Operators\ComparisonOperators\LessThan\index.rst"),
 
-        // operators\comparison-operators\less-than-or-equals\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\less-than-or-equals\index.rst.template", @"docs\operators\comparison-operators\less-than-or-equals\index.rst"),
+        // operators\ComparisonOperators\LessThanOrEquals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\LessThanOrEquals\index.rst.template", @"docs\Operators\ComparisonOperators\LessThanOrEquals\index.rst"),
 
-        // operators\comparison-operators\greater-than\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\greater-than\index.rst.template", @"docs\operators\comparison-operators\greater-than\index.rst"),
+        // operators\ComparisonOperators\GreaterThan\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\GreaterThan\index.rst.template", @"docs\Operators\ComparisonOperators\GreaterThan\index.rst"),
 
-        // operators\comparison-operators\greater-than-or-equals\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\comparison-operators\greater-than-or-equals\index.rst.template", @"docs\operators\comparison-operators\greater-than-or-equals\index.rst"),
-
-        #endregion
-        
-        #region logical-operators
-        // operators\logical-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\logical-operators\index.rst.template", @"docs\operators\logical-operators\index.rst"),
-
-        // operators\logical-operators\and\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\logical-operators\and\index.rst.template", @"docs\operators\logical-operators\and\index.rst"),
-        
-        // operators\logical-operators\or\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\logical-operators\or\index.rst.template", @"docs\operators\logical-operators\or\index.rst"),
-
-        
-        // operators\logical-operators\negate\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\logical-operators\negate\index.rst.template", @"docs\operators\logical-operators\negate\index.rst"),
-
-        #endregion
-
-        #region text-matching-operators
-
-        // operators\text-matching-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\index.rst.template", @"docs\operators\text-matching-operators\index.rst"),
-
-        // operators\text-matching-operators\contains\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\contains\index.rst.template", @"docs\operators\text-matching-operators\contains\index.rst"),
-
-        // operators\text-matching-operators\starts-with\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\starts-with\index.rst.template", @"docs\operators\text-matching-operators\starts-with\index.rst"),
-
-        // operators\ends-with\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\text-matching-operators\ends-with\index.rst.template", @"docs\operators\text-matching-operators\ends-with\index.rst"),
+        // operators\ComparisonOperators\GreaterThanOrEquals\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ComparisonOperators\GreaterThanOrEquals\index.rst.template", @"docs\Operators\ComparisonOperators\GreaterThanOrEquals\index.rst"),
 
         #endregion
         
-        #region value-is-null-or-undefined-check-operators
+        #region LogicalOperators
+        // operators\LogicalOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\LogicalOperators\index.rst.template", @"docs\Operators\LogicalOperators\index.rst"),
 
-        // operators\value-is-null-or-undefined-check-operators\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\value-is-null-or-undefined-check-operators\index.rst.template", @"docs\operators\value-is-null-or-undefined-check-operators\index.rst"),
-
-        // operators\value-is-null-or-undefined-check-operators\is-not-null\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\value-is-null-or-undefined-check-operators\is-not-null\index.rst.template", @"docs\operators\value-is-null-or-undefined-check-operators\is-not-null\index.rst"),
-
-        // operators\value-is-null-or-undefined-check-operators\is-not-undefined\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\value-is-null-or-undefined-check-operators\is-not-undefined\index.rst.template", @"docs\operators\value-is-null-or-undefined-check-operators\is-not-undefined\index.rst"),
+        // operators\LogicalOperators\And\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\LogicalOperators\And\index.rst.template", @"docs\Operators\LogicalOperators\And\index.rst"),
         
-        // operators\value-is-null-or-undefined-check-operators\is-null\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\value-is-null-or-undefined-check-operators\is-null\index.rst.template", @"docs\operators\value-is-null-or-undefined-check-operators\is-null\index.rst"),
+        // operators\LogicalOperators\Or\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\LogicalOperators\Or\index.rst.template", @"docs\Operators\LogicalOperators\Or\index.rst"),
 
-        // operators\value-is-null-or-undefined-check-operators\is-undefined\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\operators\value-is-null-or-undefined-check-operators\is-undefined\index.rst.template", @"docs\operators\value-is-null-or-undefined-check-operators\is-undefined\index.rst"),
+        
+        // operators\LogicalOperators\Negate\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\LogicalOperators\Negate\index.rst.template", @"docs\Operators\LogicalOperators\Negate\index.rst"),
+
+        #endregion
+
+        #region TextMatchingOperators
+
+        // operators\TextMatchingOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\TextMatchingOperators\index.rst.template", @"docs\Operators\TextMatchingOperators\index.rst"),
+
+        // operators\TextMatchingOperators\Contains\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\TextMatchingOperators\Contains\index.rst.template", @"docs\Operators\TextMatchingOperators\Contains\index.rst"),
+
+        // operators\TextMatchingOperators\StartsWith\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\TextMatchingOperators\StartsWith\index.rst.template", @"docs\Operators\TextMatchingOperators\StartsWith\index.rst"),
+
+        // operators\EndsWith\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\TextMatchingOperators\EndsWith\index.rst.template", @"docs\Operators\TextMatchingOperators\EndsWith\index.rst"),
+
+        #endregion
+        
+        #region ValueIsNullOrUndefinedCheckOperators
+
+        // operators\ValueIsNullOrUndefinedCheckOperators\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ValueIsNullOrUndefinedCheckOperators\index.rst.template", @"docs\Operators\ValueIsNullOrUndefinedCheckOperators\index.rst"),
+
+        // operators\ValueIsNullOrUndefinedCheckOperators\IsNotNull\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ValueIsNullOrUndefinedCheckOperators\IsNotNull\index.rst.template", @"docs\Operators\ValueIsNullOrUndefinedCheckOperators\IsNotNull\index.rst"),
+
+        // operators\ValueIsNullOrUndefinedCheckOperators\IsNotUndefined\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ValueIsNullOrUndefinedCheckOperators\IsNotUndefined\index.rst.template", @"docs\Operators\ValueIsNullOrUndefinedCheckOperators\IsNotUndefined\index.rst"),
+        
+        // operators\ValueIsNullOrUndefinedCheckOperators\IsNull\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ValueIsNullOrUndefinedCheckOperators\IsNull\index.rst.template", @"docs\Operators\ValueIsNullOrUndefinedCheckOperators\IsNull\index.rst"),
+
+        // operators\ValueIsNullOrUndefinedCheckOperators\IsUndefined\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\Operators\ValueIsNullOrUndefinedCheckOperators\IsUndefined\index.rst.template", @"docs\Operators\ValueIsNullOrUndefinedCheckOperators\IsUndefined\index.rst"),
 
         #endregion
         #endregion
        
-        // optional-and-named-parameters\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\optional-and-named-parameters\index.rst.template", @"docs\optional-and-named-parameters\index.rst"),
+        // OptionalAndNamedParameters\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\OptionalAndNamedParameters\index.rst.template", @"docs\OptionalAndNamedParameters\index.rst"),
 
-        // dependency-injection-setup\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\dependency-injection-setup\index.rst.template", @"docs\dependency-injection-setup\index.rst"),
+        // DependencyInjectionSetup\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\DependencyInjectionSetup\index.rst.template", @"docs\DependencyInjectionSetup\index.rst"),
 
-        // custom-json-ql\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\custom-json-ql\index.rst.template", @"docs\custom-json-ql\index.rst"),
+        // CustomJsonQL\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\CustomJsonQL\index.rst.template", @"docs\CustomJsonQL\index.rst"),
 
         #region future-releases
         // future-releases\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\index.rst.template", @"docs\future-releases\index.rst"),
+        (@"JsonQL.Demos\DocFiles\FutureReleases\index.rst.template", @"docs\FutureReleases\index.rst"),
 
-        // future-releases\complex-projections\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\complex-projections\index.rst.template", @"docs\future-releases\complex-projections\index.rst"),
+        // future-releases\ComplexProjections\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\ComplexProjections\index.rst.template", @"docs\FutureReleases\ComplexProjections\index.rst"),
 
-        // future-releases\grouping\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\grouping\index.rst.template", @"docs\future-releases\grouping\index.rst"),
+        // future-releases\Grouping\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\Grouping\index.rst.template", @"docs\FutureReleases\Grouping\index.rst"),
 
-        // future-releases\multiline-queries\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\multiline-queries\index.rst.template", @"docs\future-releases\multiline-queries\index.rst"),
+        // future-releases\MultilineQueries\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\MultilineQueries\index.rst.template", @"docs\FutureReleases\MultilineQueries\index.rst"),
 
-        // future-releases\sorting\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\sorting\index.rst.template", @"docs\future-releases\sorting\index.rst"),
+        // future-releases\Sorting\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\Sorting\index.rst.template", @"docs\FutureReleases\Sorting\index.rst"),
         
-        // future-releases\if-function\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\if-function\index.rst.template", @"docs\future-releases\if-function\index.rst"),
+        // future-releases\IfFunction\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\IfFunction\index.rst.template", @"docs\FutureReleases\IfFunction\index.rst"),
 
-        // future-releases\round-up-function\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\round-up-function\index.rst.template", @"docs\future-releases\round-up-function\index.rst"),
+        // future-releases\RoundUpFunction\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\RoundUpFunction\index.rst.template", @"docs\FutureReleases\RoundUpFunction\index.rst"),
         
-        // future-releases\round-down-function\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\round-down-function\index.rst.template", @"docs\future-releases\round-down-function\index.rst"),
+        // future-releases\RoundDownFunction\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\RoundDownFunction\index.rst.template", @"docs\FutureReleases\RoundDownFunction\index.rst"),
         
-        // future-releases\join-function\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\join-function\index.rst.template", @"docs\future-releases\join-function\index.rst"),
+        // future-releases\JoinFunction\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\JoinFunction\index.rst.template", @"docs\FutureReleases\JoinFunction\index.rst"),
         
-        // future-releases\regex-text-matching\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\regex-text-matching\index.rst.template", @"docs\future-releases\regex-text-matching\index.rst"),
+        // future-releases\RegexTextMatching\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\RegexTextMatching\index.rst.template", @"docs\FutureReleases\RegexTextMatching\index.rst"),
         
-        // future-releases\number-formatting\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\number-formatting\index.rst.template", @"docs\future-releases\number-formatting\index.rst"),
+        // future-releases\NumberFormatting\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\NumberFormatting\index.rst.template", @"docs\FutureReleases\NumberFormatting\index.rst"),
         
-        // future-releases\date-time-formatting\index.rst.template file related
-        (@"JsonQL.Demos\DocFiles\future-releases\date-time-formatting\index.rst.template", @"docs\future-releases\date-time-formatting\index.rst")
+        // future-releases\DateTimeFormatting\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\FutureReleases\DateTimeFormatting\index.rst.template", @"docs\FutureReleases\DateTimeFormatting\index.rst")
         #endregion
     };
 
