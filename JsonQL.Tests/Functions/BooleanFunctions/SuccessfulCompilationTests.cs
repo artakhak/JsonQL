@@ -1,4 +1,4 @@
-namespace JsonQL.Tests.Functions.MathFunctions;
+namespace JsonQL.Tests.Functions.BooleanFunctions;
 
 [TestFixture]
 public class SuccessfulCompilationTests : SuccessfulJsonCompilationTestsAbstr

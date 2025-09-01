@@ -41,12 +41,6 @@ public static class JsonFunctionNames
     /// </summary>
     public const string TextLength = "Len";
 
-    /// <summary>
-    /// Represents the JSON function name "HasField", utilized to determine whether a specific field exists
-    /// during the JSON function evaluation within the JsonQL compilation process.
-    /// </summary>
-    public const string HasField = "HasField";
-
     // Implement 'If' in future release
     //public const string If = "If";
 
@@ -142,7 +136,15 @@ public static class JsonFunctionNames
     /// during JSON function evaluation in the JsonQL compilation process.
     /// </summary>
     public const string Abs = "Abs";
-
+    #endregion
+    
+    #region Boolean functions
+    /// <summary>
+    /// Represents the JSON function name "HasField", utilized to determine whether a specific field exists
+    /// during the JSON function evaluation within the JsonQL compilation process.
+    /// </summary>
+    public const string HasField = "HasField";
+    
     /// <summary>
     /// Represents the JSON function name "IsEven", used to determine whether a given numeric value is an even number
     /// during JSON function evaluation in the JsonQL compilation process.

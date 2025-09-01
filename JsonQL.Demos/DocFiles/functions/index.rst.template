@@ -7,4 +7,10 @@ Functions
    :depth: 2
    
 - TODO: Add contents here...
-- TODO: Add toctree here...
+
+.. toctree::
+
+   conversion-functions/index.rst
+   numeric-functions/index.rst
+   boolean-functions/index.rst
+   string-functions/index.rst

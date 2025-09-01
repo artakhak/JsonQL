@@ -118,6 +118,85 @@ internal class DocumentsGenerator
         // functions\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\functions\index.rst.template", @"docs\functions\index.rst"),
         
+        // functions\conversion-functions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\index.rst.template", @"docs\functions\conversion-functions\index.rst"),
+        
+        // functions\conversion-functions\to-boolean\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-boolean\index.rst.template", @"docs\functions\conversion-functions\to-boolean\index.rst"),
+
+        // functions\conversion-functions\to-date\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-date\index.rst.template", @"docs\functions\conversion-functions\to-date\index.rst"),
+        
+        // functions\conversion-functions\to-date-time\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-date-time\index.rst.template", @"docs\functions\conversion-functions\to-date-time\index.rst"),
+        
+        // functions\conversion-functions\to-double\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-double\index.rst.template", @"docs\functions\conversion-functions\to-double\index.rst"),
+        
+        // functions\conversion-functions\to-int\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-int\index.rst.template", @"docs\functions\conversion-functions\to-int\index.rst"),
+        
+        // functions\conversion-functions\to-string\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\conversion-functions\to-string\index.rst.template", @"docs\functions\conversion-functions\to-string\index.rst"),
+        
+        // functions\numeric-functions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\numeric-functions\index.rst.template", @"docs\functions\numeric-functions\index.rst"),
+        
+        // functions\numeric-functions\abs\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\numeric-functions\abs\index.rst.template", @"docs\functions\numeric-functions\abs\index.rst"),
+        
+        // functions\boolean-functions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\index.rst.template", @"docs\functions\boolean-functions\index.rst"),
+        
+        // functions\boolean-functions\has-field\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\has-field\index.rst.template", @"docs\functions\boolean-functions\has-field\index.rst"),
+        
+        // functions\boolean-functions\is-even\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\is-even\index.rst.template", @"docs\functions\boolean-functions\is-even\index.rst"),
+        
+        // functions\boolean-functions\is-odd\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\boolean-functions\is-odd\index.rst.template", @"docs\functions\boolean-functions\is-odd\index.rst"),
+
+        // functions\string-functions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\string-functions\index.rst.template", @"docs\functions\string-functions\index.rst"),
+        
+        //------------------------------------
+        // functions\string-functions\concatenate\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\string-functions\concatenate\index.rst.template", @"docs\functions\string-functions\concatenate\index.rst"),
+
+        // functions\string-functions\len\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\string-functions\len\index.rst.template", @"docs\functions\string-functions\len\index.rst"),
+        
+        // functions\string-functions\lower\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\string-functions\lower\index.rst.template", @"docs\functions\string-functions\lower\index.rst"),
+        
+        // functions\string-functions\upper\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\functions\string-functions\upper\index.rst.template", @"docs\functions\string-functions\upper\index.rst"),
+        //------------------------------------
+        // aggregate-functions\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\index.rst.template", @"docs\aggregate-functions\index.rst"),
+        
+        // aggregate-functions\all\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\all\index.rst.template", @"docs\aggregate-functions\all\index.rst"),
+        
+        // aggregate-functions\any\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\any\index.rst.template", @"docs\aggregate-functions\any\index.rst"),
+        
+        // aggregate-functions\average\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\average\index.rst.template", @"docs\aggregate-functions\average\index.rst"),
+        
+        // aggregate-functions\count\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\count\index.rst.template", @"docs\aggregate-functions\count\index.rst"),
+
+        // aggregate-functions\max\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\max\index.rst.template", @"docs\aggregate-functions\max\index.rst"),
+
+        // aggregate-functions\min\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\min\index.rst.template", @"docs\aggregate-functions\min\index.rst"),
+
+        // aggregate-functions\sum\index.rst.template file related
+        (@"JsonQL.Demos\DocFiles\aggregate-functions\sum\index.rst.template", @"docs\aggregate-functions\sum\index.rst"),
+        
         // operators\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\operators\index.rst.template", @"docs\operators\index.rst"),
         

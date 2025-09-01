@@ -1,5 +1,5 @@
 ======
-Parent
+parent
 ======
 
 .. contents::

@@ -293,6 +293,7 @@ Example: Query JSON files with result as JSON structure
    json-mutator-operators/index.rst
    json-path-functions/index.rst
    functions/index.rst
+   aggregate-functions/index.rst
    operators/index.rst
    optional-and-named-parameters/index.rst 
    dependency-injection-setup/index.rst
