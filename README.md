@@ -157,7 +157,7 @@
 - `typeof`			 - 'typeof' operator. Example "typeof person.Age"
 ```
 
-## Using JsonQL Expressions to Mutate JSON File
+## Using JsonQL Expressions to Mutate JSON Files
 
 - JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8).
 - The property **CompiledJsonFiles** contains a collection of [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11) for each loaded file. 
@@ -168,7 +168,7 @@
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 
-### Example: JsonQL expressions to mutate JSON
+### Example: JsonQL expressions to mutate JSON files
 
 An overview example of mutating multiple JSON files is [Overview](https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview).
 

@@ -39,8 +39,8 @@ Features
 .. note::
   JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
 
-Using JsonQL Expressions to Mutate JSON File 
-============================================
+Using JsonQL Expressions to Mutate JSON Files 
+=============================================
 
 - JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8>`_.
 - The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ for each loaded file. 
@@ -51,8 +51,8 @@ Using JsonQL Expressions to Mutate JSON File
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 
-Example: JsonQL expressions to mutate JSON
-------------------------------------------
+Example: JsonQL expressions to mutate JSON files
+------------------------------------------------
 
 An overview example of mutating multiple JSON files is `here <https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview>`_.
 
@@ -286,7 +286,18 @@ Example: Query JSON files with result as JSON structure
 
 .. toctree::
 
-   json-file-mutation/index.rst
+   mutating-json-files/index.rst
+   querying-json-files/index.rst
+   lambda-functions/index.rst
+   special-keywords/index.rst
+   json-mutator-operators/index.rst
+   json-path-functions/index.rst
+   functions/index.rst
+   operators/index.rst
+   optional-and-named-parameters/index.rst 
+   dependency-injection-setup/index.rst
+   custom-json-ql/index.rst
+   future-releases/index.rst
 
 Indices and tables
 ==================

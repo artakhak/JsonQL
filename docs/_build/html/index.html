@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Json File Mutation" href="json-file-mutation/index.html" /> 
+    <link rel="next" title="Mutating JSON Files" href="mutating-json-files/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +42,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="json-file-mutation/index.html">Json File Mutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutating-json-files/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="querying-json-files/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda-functions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="special-keywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-mutator-operators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-path-functions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional-and-named-parameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependency-injection-setup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom-json-ql/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future-releases/index.html">Future Releases</a></li>
 </ul>
 
         </div>
@@ -74,9 +85,9 @@
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#features" id="id6">Features</a></p></li>
-<li><p><a class="reference internal" href="#using-jsonql-expressions-to-mutate-json-file" id="id7">Using JsonQL Expressions to Mutate JSON File</a></p>
+<li><p><a class="reference internal" href="#using-jsonql-expressions-to-mutate-json-files" id="id7">Using JsonQL Expressions to Mutate JSON Files</a></p>
 <ul>
-<li><p><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json" id="id8">Example: JsonQL expressions to mutate JSON</a></p></li>
+<li><p><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json-files" id="id8">Example: JsonQL expressions to mutate JSON files</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" id="id9">JsonQL queries of JSON Files with Result Converted to C# objects</a></p>
@@ -131,8 +142,8 @@
 <p>JsonQL Expressions start with ‘$’. Example “$value(Employees.Select(x =&gt; x.Salary &gt;= 100000))”.</p>
 </div>
 </section>
-<section id="using-jsonql-expressions-to-mutate-json-file">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Using JsonQL Expressions to Mutate JSON File</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-file" title="Link to this heading"></a></h2>
+<section id="using-jsonql-expressions-to-mutate-json-files">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Using JsonQL Expressions to Mutate JSON Files</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8">JsonQL.Compilation.ICompilationResult</a>.</p></li>
 <li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11">JsonQL.Compilation.ICompiledJsonData</a> for each loaded file.</p></li>
@@ -142,8 +153,8 @@
 - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
-<section id="example-jsonql-expressions-to-mutate-json">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Example: JsonQL expressions to mutate JSON</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json" title="Link to this heading"></a></h3>
+<section id="example-jsonql-expressions-to-mutate-json-files">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Example: JsonQL expressions to mutate JSON files</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h3>
 <p>An overview example of mutating multiple JSON files is <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview">here</a>.</p>
 <p>In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:</p>
 <blockquote>
@@ -396,7 +407,60 @@
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="json-file-mutation/index.html">Json File Mutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutating-json-files/index.html">Mutating JSON Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mutating-json-files/error-details/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mutating-json-files/reusing-compiled-json-files/index.html">Reusing Compiled JSON Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="querying-json-files/index.html">Querying JSON Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="querying-json-files/result-as-csharp-object/index.html">Result as JSON Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="querying-json-files/result-as-csharp-object/error-details/index.html">Error Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="querying-json-files/result-as-json-structure/index.html">Result as C# Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="querying-json-files/result-as-json-structure/error-details/index.html">Error Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="querying-json-files/reusing-compiled-json-files/index.html">Reusing Compiled JSON Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lambda-functions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="special-keywords/index.html">Special Keywords</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="special-keywords/parent/index.html">Parent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="special-keywords/this/index.html">this</a></li>
+<li class="toctree-l2"><a class="reference internal" href="special-keywords/index/index.html">index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="json-mutator-operators/index.html">JSON Mutator Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/string-interpolation/index.html">String Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/value/index.html">Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/copy-fields/index.html">Copy Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-mutator-operators/merge-array/index.html">Merge Array</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="json-path-functions/index.html">JSON Path Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/array-indexers/index.html">Array Indexers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/select/index.html">Select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/where/index.html">Where</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/at/index.html">At</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/first/index.html">First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/last/index.html">Last</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/flatten/index.html">Flatten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json-path-functions/reverse/index.html">Reverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional-and-named-parameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependency-injection-setup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom-json-ql/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future-releases/index.html">Future Releases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="future-releases/multiline-queries/index.html">Multiline Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="future-releases/complex-projections/index.html">Complex Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="future-releases/grouping/index.html">Grouping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="future-releases/sorting/index.html">Sorting</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -415,7 +479,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="json-file-mutation/index.html" class="btn btn-neutral float-right" title="Json File Mutation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mutating-json-files/index.html" class="btn btn-neutral float-right" title="Mutating JSON Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
