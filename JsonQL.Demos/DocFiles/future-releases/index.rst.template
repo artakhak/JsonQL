@@ -12,3 +12,10 @@ Future Releases
    complex-projections/index.rst
    grouping/index.rst
    sorting/index.rst
+   if-function/index.rst
+   round-up-function/index.rst
+   round-down-function/index.rst
+   join-function/index.rst
+   regex-text-matching/index.rst   
+   number-formatting/index.rst
+   date-time-formatting/index.rst

@@ -14,5 +14,10 @@ Operators
    json-path-separator/index.rst
    lambda/index.rst
    named-parameter/index.rst
+   assert/index.rst
+   typeof/index.rst
+   arithmetic-operators/index.rst
    comparison-operators/index.rst
+   logical-operators/index.rst
    text-matching-operators/index.rst
+   value-is-null-or-undefined-check-operators/index.rst

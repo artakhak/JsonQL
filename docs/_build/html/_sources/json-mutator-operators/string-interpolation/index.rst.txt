@@ -1,6 +1,6 @@
-====================
-String Interpolation
-====================
+========================
+String Interpolation '$'
+========================
 
 .. contents::
    :local:

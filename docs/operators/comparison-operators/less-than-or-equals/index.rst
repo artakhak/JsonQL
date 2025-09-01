@@ -1,5 +1,5 @@
 ========================
-Less than of Equals '<='
+Less Than of Equals '<='
 ========================
 
 .. contents::

@@ -1,5 +1,5 @@
 ====================
-Named parameter '->'
+Named Parameter '->'
 ====================
 
 .. contents::
