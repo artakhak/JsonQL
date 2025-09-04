@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Error Details" href="ErrorDetails/index.html" />
+    <link rel="next" title="Sample Files" href="SampleFiles/index.html" />
     <link rel="prev" title="JsonQL" href="../index.html" /> 
 </head>
 
@@ -44,6 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Mutating JSON Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 </ul>
@@ -88,11 +89,49 @@
              
   <section id="mutating-json-files">
 <h1>Mutating JSON Files<a class="headerlink" href="#mutating-json-files" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All JSON files used in examples in this section can be found here <a class="reference internal" href="SampleFiles/index.html"><span class="doc">Sample Files</span></a></p>
+</div>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p>JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8">JsonQL.Compilation.ICompilationResult</a>.</p></li>
+<li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11">JsonQL.Compilation.ICompiledJsonData</a>: one per loaded file.</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11">JsonQL.Compilation.ICompiledJsonData</a> represents mutated JSON files (i.e., mutated by using JsonQL expressions).</p></li>
+<li><p>The property <strong>CompilationErrors</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13">JsonQL.Compilation.ICompilationErrorItem</a> with error details if any.</p></li>
+<li><p>If many JSON files are specified the following rules and techniques are used:
+- Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
+</ul>
+<p>As an example lets consider the following JSON files.</p>
+<ul>
+<li><p><a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> - a JSON file for data on number of companies</p></li>
+<li><p><a class="reference internal" href="SampleFiles/countries.html"><span class="doc">Countries.json</span></a> - a JSON file for data on number of countries</p></li>
+<li><p><a class="reference internal" href="SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a> - a JSON file with lists “FilteredCountryNames” and “FilteredCompanyNames” referenced in other JSON files below in JsonQL expressions.</p></li>
+<li><p><a class="reference internal" href="SampleFiles/Example1/filtered-companies.html"><span class="doc">Example1/FilteredCompanies.json</span></a> - a JSON file with JsonQL expressions that filter companies in <a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> to include only some companies using data in <a class="reference internal" href="SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a>.</p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;AdditionalCompanyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;Atlantic Transfers, Inc&quot;</span><span class="w"> </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;comments1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;FilteredCompanyNames&#39; is in parent JSON &#39;Parameters.json&#39;.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;comments2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We filter companies that are either in FilteredCompanyNames or in AdditionalCompanyNames in this file.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FilteredCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Where(c =&gt; Any(FilteredCompanyNames, x =&gt; x == c.CompanyData.Name) || Any(AdditionalCompanyNames, x =&gt; x == c.CompanyData.Name)))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/parameters.html">Example1/Parameters.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/filtered-companies.html">Example1/FilteredCompanies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/example.html">Example1/Example.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/result.html">Example1/Result.json</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 </ul>
@@ -104,7 +143,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="JsonQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ErrorDetails/index.html" class="btn btn-neutral float-right" title="Error Details" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="SampleFiles/index.html" class="btn btn-neutral float-right" title="Sample Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

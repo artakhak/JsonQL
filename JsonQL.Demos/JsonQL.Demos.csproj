@@ -10,6 +10,10 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="DocFiles\MutatingJsonFiles\Examples\AdditionalTestData.json" />
+	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example1\Example.json" />
+	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Overview.json" />
+	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
@@ -62,6 +66,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Companies.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Countries.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Example1\Example.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Example1\Parameters.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Example1\FilteredCompanies.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Example1\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />

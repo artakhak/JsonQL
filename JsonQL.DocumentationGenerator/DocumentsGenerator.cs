@@ -28,8 +28,29 @@ internal class DocumentsGenerator
         (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object-1.data.rst.template", @"docs\Examples\query-with-result-as-json-object-1.data.rst"),
         (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object.result.rst.template", @"docs\Examples\query-with-result-as-json-object.result.rst"),
 
+        #region MutatingJsonFiles files
+
         // MutatingJsonFiles\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\index.rst.template", @"docs\MutatingJsonFiles\index.rst"),
+
+        // MutatingJsonFiles\Examples\ files
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Companies.json", @"docs\MutatingJsonFiles\Examples\Companies.json"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Countries.json", @"docs\MutatingJsonFiles\Examples\Countries.json"),
+        
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\Example.json", @"docs\MutatingJsonFiles\Examples\Example1\Example.json"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\FilteredCompanies.json", @"docs\MutatingJsonFiles\Examples\Example1\FilteredCompanies.json"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\Parameters.json", @"docs\MutatingJsonFiles\Examples\Example1\Parameters.json"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\Result.json", @"docs\MutatingJsonFiles\Examples\Example1\Result.json"),
+        
+        // MutatingJsonFiles\SampleFiles\ files
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\index.rst.template", @"docs\MutatingJsonFiles\SampleFiles\index.rst"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\companies.rst.template", @"docs\MutatingJsonFiles\SampleFiles\companies.rst"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\countries.rst.template", @"docs\MutatingJsonFiles\SampleFiles\countries.rst"),
+
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\Example1\example.rst.template", @"docs\MutatingJsonFiles\SampleFiles\Example1\example.rst"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\Example1\parameters.rst.template", @"docs\MutatingJsonFiles\SampleFiles\Example1\parameters.rst"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\Example1\filtered-companies.rst.template", @"docs\MutatingJsonFiles\SampleFiles\Example1\filtered-companies.rst"),
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\SampleFiles\Example1\result.rst.template", @"docs\MutatingJsonFiles\SampleFiles\Example1\result.rst"),
 
         // MutatingJsonFiles\ErrorDetails\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\ErrorDetails\index.rst.template", @"docs\MutatingJsonFiles\ErrorDetails\index.rst"),
@@ -37,6 +58,8 @@ internal class DocumentsGenerator
         // MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst.template", @"docs\MutatingJsonFiles\ReusingCompiledJsonFiles\index.rst"),
 
+        #endregion
+        
         // QueryingJsonFiles\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\QueryingJsonFiles\index.rst.template", @"docs\QueryingJsonFiles\index.rst"),
 

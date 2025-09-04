@@ -56,6 +56,6 @@ public static class LoadJsonFileHelpers
         // Exclude "JsonQL.Demos" from namespaces.
         // For example, if type is JsonQL.Demos.Examples.IQueryManagerExamples.Example1
         // then the returned path will be ["Examples", "IQueryManagerExamples"]
-        return exampleType!.Namespace!.Split(".")[2..];
+        return exampleType.Namespace!.Split(".")[2..];
     }
 }
