@@ -42,10 +42,10 @@ Features
 Using JsonQL Expressions to Mutate JSON Files 
 =============================================
 
-- JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8>`_.
-- The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_: one per loaded file. 
-- `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
-- The property **CompilationErrors** contains collection of `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13>`_ with error details if any. 
+- JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_.
+- The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_: one per loaded file. 
+- `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_ represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
+- The property **CompilationErrors** contains collection of `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs>`_ with error details if any. 
 - If many JSON files are specified the following rules and techniques are used:
   - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
@@ -159,8 +159,8 @@ In this example the following JSON files are processed with JSON files appearing
 JsonQL queries of JSON Files with Result Converted to C# objects
 ================================================================
 
-- The interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to `JsonQL.Query.IObjectQueryResult<T> <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs#L24>`_ a C# interface of class specified in generic parameter.
+- The interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to `JsonQL.Query.IObjectQueryResult<T> <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs>`_ a C# interface of class specified in generic parameter.
 - The result stores the query result converted to type 'T' as well as data about errors encountered during execution of the query.
 - The type parameter 'T' specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.
 - The type parameter 'T' specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type). 
@@ -252,8 +252,8 @@ Example: Query and convert JSON to collection of double values
 JsonQL queries of JSON Files with Result Converted to JSON structure
 ====================================================================
 
-- The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15>`_.
+- The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs>`_.
 - The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the the following rules and techniques are used:

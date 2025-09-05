@@ -8,11 +8,11 @@ public static class JsonQLResultValidator
 {
     public const string SerializedFileName = "QueryResult.json";
 
-    public static async Task ValidateResultAsync(JsonQLResultValidationParameters jsonQlResultValidationParameters)
+    public static async Task ValidateResultAsync(JsonQLResultValidationParameters jsonQlResultValidationParameters, bool serializeOnlyTheLastParsedFile = true)
     {
         var result = await jsonQlResultValidationParameters.GetJsonQlResultAsync();
 
-        var serializedResult = RemoveLineEndSpaces(SerializeResult(result));
+        var serializedResult = RemoveLineEndSpaces(SerializeResult(result, serializeOnlyTheLastParsedFile));
        
         await SaveResultToApplicationOutputFolderAsync(serializedResult);
         var expectedJsonFile = RemoveLineEndSpaces(await jsonQlResultValidationParameters.LoadExpectedResultJsonFileAsync());
@@ -48,12 +48,13 @@ public static class JsonQLResultValidator
         return result.ToString();
     }
 
-    private static string SerializeResult(object result)
+    private static string SerializeResult(object result, bool serializeOnlyTheLastParsedFile = true)
     {
         if (result is ICompilationResult compilationResult)
         {
             return CompilationResultSerializerAmbientContext.Context.Serialize(compilationResult,
                 x =>
+                    !serializeOnlyTheLastParsedFile ? true : 
                     // Lets output only the most recently compiled file
                     x.TextIdentifier == compilationResult.CompiledJsonFiles[^1].TextIdentifier);
         }

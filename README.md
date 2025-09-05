@@ -159,7 +159,7 @@
 
 ## Using JsonQL Expressions to Mutate JSON Files
 
-- JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8).
+- JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8).
 - The property **CompiledJsonFiles** contains a collection of [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11): one per loaded file. 
 - [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11) represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
 - The property **CompilationErrors** contains a collection of [JsonQL.Compilation.ICompilationErrorItem](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13) with error details if any. 

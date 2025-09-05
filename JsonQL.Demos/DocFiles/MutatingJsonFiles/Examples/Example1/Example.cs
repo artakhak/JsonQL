@@ -35,4 +35,6 @@ public class Example : JsonCompilerExampleManagerForSuccessAbstr
             this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));
         return result;
     }
+
+    protected override bool SerializeOnlyTheLastParsedFile => false;
 }

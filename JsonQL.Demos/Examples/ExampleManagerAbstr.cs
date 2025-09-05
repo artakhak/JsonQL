@@ -22,7 +22,7 @@ public abstract class ExampleManagerAbstr : IExampleManager
             {
                 GetJsonQlResultAsync = this.GetJsonQlResultAsync,
                 LoadExpectedResultJsonFileAsync = () => Task.FromResult(this.LoadExpectedResultJsonFile())
-            });
+            }, SerializeOnlyTheLastParsedFile);
         }
         catch (JsonQLResultValidationException)
         {
@@ -41,4 +41,6 @@ public abstract class ExampleManagerAbstr : IExampleManager
 
     public static string GetOutputFilePath() =>
         Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, JsonQLResultValidator.SerializedFileName);
+
+    protected virtual bool SerializeOnlyTheLastParsedFile => true;
 }
