@@ -1,15 +1,32 @@
 using FileInclude;
 using OROptimizer.Diagnostics.Log;
+using System.IO;
 
 namespace JsonQL.DocumentationGenerator;
 
 internal class DocumentsGenerator
 {
-    private readonly (string teplateFileRelativePath, string generatedFileRelativePath)[] _filesRelativePathsData =
+    private static readonly string DocumentationGeneratorPathRelativeToSolutionFolder = $"{Path.DirectorySeparatorChar}JsonQL.DocumentationGenerator{Path.DirectorySeparatorChar}";
+    private static readonly string SrcDocFilesPathRelativeToSolutionFolder = $"{Path.DirectorySeparatorChar}JsonQL.Demos{Path.DirectorySeparatorChar}DocFiles{Path.DirectorySeparatorChar}";
+
+    /// <summary>
+    /// Path of generated documentation files relative to project folder.
+    /// </summary>
+    private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}";
+    private const string TemplateExtension = ".template";
+
+    /*private readonly (string teplateFileRelativePath, string generatedFileRelativePath)[] _filesRelativePathsData =
     {
         (@"JsonQL.Demos\DocFiles\README.md.template", "README.md"),
         (@"JsonQL.Demos\DocFiles\README.md.template", @"JsonQL\README.md"),
 
+        #region ImportantInterfaces files
+        (@"JsonQL.Demos\DocFiles\ImportantInterfaces\ICompilationResult\index.rst.template", @"docs\ImportantInterfaces\ICompilationResult\index.rst"),
+        (@"JsonQL.Demos\DocFiles\ImportantInterfaces\ICompiledJsonData\index.rst.template", @"docs\ImportantInterfaces\ICompiledJsonData\index.rst"),
+        (@"JsonQL.Demos\DocFiles\ImportantInterfaces\IParsedValue\index.rst.template", @"docs\ImportantInterfaces\IParsedValue\index.rst"),
+        (@"JsonQL.Demos\DocFiles\ImportantInterfaces\IRootParsedValue\index.rst.template", @"docs\ImportantInterfaces\IRootParsedValue\index.rst"),
+        #endregion
+        
         // index.rst file related
         (@"JsonQL.Demos\DocFiles\index.rst.template", @"docs\index.rst"),
 
@@ -27,16 +44,19 @@ internal class DocumentsGenerator
 
         (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object-1.data.rst.template", @"docs\Examples\query-with-result-as-json-object-1.data.rst"),
         (@"JsonQL.Demos\DocFiles\Examples\query-with-result-as-json-object.result.rst.template", @"docs\Examples\query-with-result-as-json-object.result.rst"),
-
+        
         #region MutatingJsonFiles files
 
         // MutatingJsonFiles\index.rst.template file related
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\index.rst.template", @"docs\MutatingJsonFiles\index.rst"),
 
+        // MutatingJsonFiles\ParsedResultDataStructure\ files
+        (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\ParsedResultDataStructure\index.rst.template", @"docs\MutatingJsonFiles\ParsedResultDataStructure\index.rst"),
+
         // MutatingJsonFiles\Examples\ files
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Companies.json", @"docs\MutatingJsonFiles\Examples\Companies.json"),
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Countries.json", @"docs\MutatingJsonFiles\Examples\Countries.json"),
-        
+
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\Example.json", @"docs\MutatingJsonFiles\Examples\Example1\Example.json"),
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\FilteredCompanies.json", @"docs\MutatingJsonFiles\Examples\Example1\FilteredCompanies.json"),
         (@"JsonQL.Demos\DocFiles\MutatingJsonFiles\Examples\Example1\Parameters.json", @"docs\MutatingJsonFiles\Examples\Example1\Parameters.json"),
@@ -386,9 +406,10 @@ internal class DocumentsGenerator
         (@"JsonQL.Demos\DocFiles\FutureReleases\DateTimeFormatting\index.rst.template", @"docs\FutureReleases\DateTimeFormatting\index.rst")
         #endregion
     };
-
+    */
     private readonly ITemplateProcessor _templateProcessor = new TemplateProcessor();
     private readonly DocumentGenerator _documentGenerator;
+    private readonly string _solutionFolderPath;
 
     public DocumentsGenerator()
     {
@@ -397,24 +418,118 @@ internal class DocumentsGenerator
         if (assemblyFilePath == null)
             throw new Exception("Failed to get assembly location.");
 
-        var indexOfDocumentationGenerator = assemblyFilePath.IndexOf(@"\JsonQL.DocumentationGenerator\", StringComparison.Ordinal);
+        var indexOfDocumentationGenerator = assemblyFilePath.IndexOf(DocumentationGeneratorPathRelativeToSolutionFolder, StringComparison.Ordinal);
 
-        var solutionFolderPath = assemblyFilePath.Substring(0, indexOfDocumentationGenerator);
+        _solutionFolderPath = assemblyFilePath.Substring(0, indexOfDocumentationGenerator);
+        _documentGenerator = new DocumentGenerator(_templateProcessor, _solutionFolderPath);
+    }
 
-        _documentGenerator = new DocumentGenerator(_templateProcessor, solutionFolderPath);
+    void IterateFolderFiles(string folderToIterate, Action<string> fileProcessor)
+    {
+        // Add all filePathsToCopy in the current solutionFolderPath
+        var currentFiles = System.IO.Directory.GetFiles(folderToIterate);
+
+        foreach (var currentFile in currentFiles)
+            fileProcessor(currentFile);
+
+        // Recursively process subdirectories
+        foreach (var subDirectory in Directory.GetDirectories(folderToIterate))
+        {
+            IterateFolderFiles(subDirectory, fileProcessor);
+        }
+    }
+
+    bool IsTemplateFile(string filePath)
+    {
+        var fileExtension = Path.GetExtension(filePath);
+        return String.Equals(fileExtension, TemplateExtension);
+    }
+
+
+    void CopyDocFileToDocsFolder(string srcRootFolderRelativePath, string srcFilePath)
+    {
+        // Example of how the values of srcFileRelativePath and generatedFileRelativePath are calculated in this method below:
+        // Consider example values of DocsRootRelativePath, srcRootFolderRelativePath, and srcFilePath shown here.
+        // DocsRootRelativePath="\docs" (this is the value of constant DocsRootRelativePath and is the root destination folder relative to solution folder)
+        // srcRootFolderRelativePath="\JsonQL.Demos\"
+        // srcFilePath = "c:\JsonQL\JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-1.rst.template"
+        // We want to calculate srcFileRelativePath and generatedFileRelativePath from DocsRootRelativePath, srcRootFolderRelativePath and srcFilePath 
+        // to have these values:
+        // srcFileRelativePath = "JsonQL.Demos\DocFiles\Examples\json-with-json-ql-expressions.data-1.rst.template"
+        // generatedFileRelativePath = "docs\DocFiles\Examples\json-with-json-ql-expressions.data-1.rst.template"
+
+        string? srcFileRelativePath = null;
+        string? generatedFileRelativePath = null;
+
+        try
+        {
+            var indexOfSrcFolder = srcFilePath.IndexOf(srcRootFolderRelativePath, StringComparison.Ordinal);
+
+            if (indexOfSrcFolder < 0)
+                throw new ApplicationException($"The value of '{srcRootFolderRelativePath}' is not in '{srcFilePath}'");
+
+            srcFileRelativePath = srcFilePath.Substring(indexOfSrcFolder);
+
+            if (srcFileRelativePath.StartsWith(Path.DirectorySeparatorChar))
+                srcFileRelativePath = srcFileRelativePath.Substring(1);
+
+            generatedFileRelativePath = Path.Join(DocsRootRelativePath, srcFilePath.Substring(indexOfSrcFolder + srcRootFolderRelativePath.Length));
+
+            if (generatedFileRelativePath.EndsWith(TemplateExtension))
+                generatedFileRelativePath = generatedFileRelativePath.Substring(0, generatedFileRelativePath.Length - TemplateExtension.Length);
+
+            if (!_documentGenerator.GenerateFileFromTemplate(srcFileRelativePath, generatedFileRelativePath))
+            {
+                throw new ApplicationException("Template generation failed.");
+            }
+        }
+        catch
+        {
+            LogHelper.Context.Log.ErrorFormat("Template generation failed. Src file path: '{0}', Src file relative path: '{1}', Generated relative path: '{2}'.",
+                srcFilePath, srcFileRelativePath, generatedFileRelativePath);
+            throw;
+        }
     }
 
     public bool GenerateDocumentsFromTemplates()
     {
-        foreach (var filesRelativePathData in _filesRelativePathsData)
+        try
         {
-            if (!_documentGenerator.GenerateFileFromTemplate(filesRelativePathData.teplateFileRelativePath, filesRelativePathData.generatedFileRelativePath))
+            
+            // Copy non-template files first
+            IterateFolderFiles(
+                Path.Join(_solutionFolderPath, SrcDocFilesPathRelativeToSolutionFolder), srcFilePath =>
             {
-                LogHelper.Context.Log.Error("Template generation failed.");
-                return false;
-            }
-        }
+                if (IsTemplateFile(srcFilePath))
+                    return;
 
-        return true;
+                CopyDocFileToDocsFolder(SrcDocFilesPathRelativeToSolutionFolder, srcFilePath);
+            });
+
+            // Copy template files next
+            IterateFolderFiles(Path.Join(_solutionFolderPath, SrcDocFilesPathRelativeToSolutionFolder), srcFilePath =>
+            {
+                if (!IsTemplateFile(srcFilePath))
+                    return;
+
+                CopyDocFileToDocsFolder(SrcDocFilesPathRelativeToSolutionFolder, srcFilePath);
+            });
+
+            //foreach (var filesRelativePathData in _filesRelativePathsData)
+            //{
+            //    if (!_documentGenerator.GenerateFileFromTemplate(filesRelativePathData.teplateFileRelativePath, filesRelativePathData.generatedFileRelativePath))
+            //    {
+            //        LogHelper.Context.Log.Error("Template generation failed.");
+            //        return false;
+            //    }
+            //}
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            LogHelper.Context.Log.Error("Failed to generate documents", e);
+            return false;
+        }
     }
 }
