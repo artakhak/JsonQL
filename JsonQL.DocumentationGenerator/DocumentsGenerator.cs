@@ -11,7 +11,8 @@ internal class DocumentsGenerator
     /// <summary>
     /// Path of generated documentation files relative to project folder.
     /// </summary>
-    private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}GeneratedDocFiles{Path.DirectorySeparatorChar}";
+    //private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}GeneratedDocFiles{Path.DirectorySeparatorChar}";
+    private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}";
     private const string TemplateExtension = ".template";
     
     private readonly ITemplateProcessor _templateProcessor = new TemplateProcessor();

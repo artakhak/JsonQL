@@ -98,8 +98,36 @@
   <section id="parsed-result-data-structure">
 <h1>Parsed Result Data Structure<a class="headerlink" href="#parsed-result-data-structure" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p>The result of loading JSON files is stored in an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>.</p></li>
 </ul>
+<p>Consider the following C# code snippet that loads <a class="reference internal" href="../SampleFiles/Example1/example.html"><span class="doc">Example1/Example.json</span></a> that depends on these JSON files (i.e., has JsonQL expressions that reference JSON objects in these files).</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a> - a JSON file with lists “FilteredCountryNames” and “FilteredCompanyNames” referenced in other JSON files below in JsonQL expressions.</p></li>
+<li><p><a class="reference internal" href="../SampleFiles/countries.html"><span class="doc">Countries.json</span></a> - a JSON file for data on number of countries</p></li>
+<li><p><a class="reference internal" href="../SampleFiles/companies.html"><span class="doc">Companies.json</span></a> - a JSON file for data on number of companies</p></li>
+<li><p><a class="reference internal" href="../SampleFiles/Example1/filtered-companies.html"><span class="doc">Example1/FilteredCompanies.json</span></a> - a JSON file shown below with JsonQL expressions that filter companies in <a class="reference internal" href="../SampleFiles/companies.html"><span class="doc">Companies.json</span></a> to include only some companies using data in <a class="reference internal" href="../SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a>.</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">parametersJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Parameters&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Parameters.json&quot;</span><span class="p">));</span>
+
+<span class="c1">// countriesJsonTextData has uses parametersJsonTextData for parameter parentJsonTextData</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">parametersJsonTextData</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">filteredCompaniesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;FilteredCompanies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;FilteredCompanies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">);</span>
+
+<span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="c1">//This is normally done once on application start.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Example.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">filteredCompaniesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ImportantInterfaces/ICompilationResult/index.html">JsonQL.Compilation.ICompilationResult</a></li>
