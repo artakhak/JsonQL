@@ -1,6 +1,6 @@
-===================
-Result as C# Object 
-===================
+========================
+Result as JSON Structure 
+========================
 
 .. contents::
    :local:
@@ -10,4 +10,5 @@ Result as C# Object
 
 .. toctree::
 
+   ../../ImportantInterfaces/IJsonValueQueryResult/index.rst
    ErrorDetails/index.rst

@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Parsed Result Data Structure" href="ParsedResultDataStructure/index.html" />
+    <link rel="next" title="Result Data Structure: JsonQL.Compilation.ICompilationResult" href="../ImportantInterfaces/ICompilationResult/index.html" />
     <link rel="prev" title="JsonQL" href="../index.html" /> 
 </head>
 
@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Mutating JSON Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ParsedResultDataStructure/index.html">Parsed Result Data Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/index.html">Result Data Structure: JsonQL.Compilation.ICompilationResult</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a></li>
@@ -168,62 +168,14 @@ loads <a class="reference internal" href="SampleFiles/Example1/parameters.html">
 <ul class="simple">
 <li><p>The value <strong>result</strong> in C# snippet above is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> and the serialized value of <strong>result</strong> can be found here <a class="reference internal" href="SampleFiles/Example1/result.html"><span class="doc">Example1/Result.json</span></a>.</p></li>
 <li><p>To retrieve the details of loaded JSON files in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> you need to retrieve an item in <strong>CompiledJsonFiles</strong> property for compiled JSON file. The items in this list are ordered in such a way that parent JSON file items appear before child JSON file items.</p></li>
-<li><p>For more details on data structure used for loading multiple JSON files see <a class="reference internal" href="ParsedResultDataStructure/index.html"><span class="doc">Parsed Result Data Structure</span></a></p></li>
+<li><p>For more details on data structure used for loading multiple JSON files see <a class="reference internal" href="../ImportantInterfaces/ICompilationResult/index.html"><span class="doc">Result Data Structure: JsonQL.Compilation.ICompilationResult</span></a></p></li>
 </ul>
-<p><strong>TEXT TO DELETE START</strong></p>
-<ul class="simple">
-<li><p>The value <strong>result</strong> in C# snippet above is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> and the serialized value of <strong>result</strong> can be found here <a class="reference internal" href="SampleFiles/Example1/result.html"><span class="doc">Example1/Result.json</span></a>.</p></li>
-<li><p>To retrieve the details of loaded JSON files in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> you need to retrieve an item in <strong>CompiledJsonFiles</strong> property for compiled JSON file. The items in this list are ordered in such a way that parent JSON file items appear before child JSON file items.</p></li>
-<li><p>Each item in <strong>CompiledJsonFiles</strong> list in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a>.</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a> has properties <strong>TextIdentifier</strong> and <strong>CompiledParsedValue</strong> (among other properties).</p></li>
-<li><p>Property <strong>TextIdentifier</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a> stores parsed file identifier.</p></li>
-<li><p>Property <strong>CompiledParsedValue</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a> stores the compiled JSON structure after applying all JsonQL expressions.</p></li>
-<li><p>The type of <strong>CompiledParsedValue</strong> property is <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedValue.cs">JsonQL.JsonObjects.IRootParsedValue</a>.</p></li>
-<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedValue.cs">JsonQL.JsonObjects.IRootParsedValue</a> that stores loaded parsed JSON extends interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedValue.cs">JsonQL.JsonObjects.IParsedValue</a>.</p></li>
-<li><dl class="simple">
-<dt>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedValue.cs">JsonQL.JsonObjects.IParsedValue</a> is a base interface for all interfaces used to store parsed JSON values. Here is a list of all interfaces that extend <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedValue.cs">JsonQL.JsonObjects.IParsedValue</a>:</dt><dd><ul>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedValue.cs">JsonQL.JsonObjects.IRootParsedValue</a> - Stores entire parsed JSON file data.</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedJson.cs">JsonQL.JsonObjects.IRootParsedJson</a> - A subclass of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedValue.cs">JsonQL.JsonObjects.IRootParsedValue</a>. Stores entire parsed JSON file data if root object in JSON file is a JSON object enclosed that starts and ends with ‘{’ and ‘}’ braces.</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedArrayValue.cs">JsonQL.JsonObjects.IRootParsedArrayValue</a> - A subclass of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IRootParsedValue.cs">JsonQL.JsonObjects.IRootParsedValue</a>. Stores entire parsed JSON file data if root object in JSON file is a JSON array object that starts and ends with ‘[’ and ‘]’ braces.</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedJson.cs">JsonQL.JsonObjects.IParsedJson</a> - Stores parsed JSON object data (i.e., JSON object that starts and ends with ‘{’ and ‘}’ braces).</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedArrayValue.cs">JsonQL.JsonObjects.IParsedArrayValue</a> - Stores parsed JSON array data (i.e., JSON object that starts and ends with ‘[’ and ‘]’ braces).</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedSimpleValue.cs">JsonQL.JsonObjects.IParsedSimpleValue</a> - Stores parsed JSON simple value, such a string value, numeric value, boolean value.</p></li>
-<li><dl class="simple">
-<dt>Test <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedCalculatedValue.cs">JsonQL.JsonObjects.IParsedCalculatedValue</a> - Stores calculated value for which a JSON object is created during JsonQL expression evaluation, but for which there is no corresponding JSON object in JSON files loaded.</dt><dd><ul>
-<li><dl class="simple">
-<dt>Any instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedCalculatedValue.cs">JsonQL.JsonObjects.IParsedCalculatedValue</a> also implements one of the following interfaces:</dt><dd><ul>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedSimpleValue.cs">JsonQL.JsonObjects.IParsedSimpleValue</a></p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedJson.cs">JsonQL.JsonObjects.IParsedJson</a></p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/JsonObjects/IParsedArrayValue.cs">JsonQL.JsonObjects.IParsedArrayValue</a></p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>For example consider the following two examples demonstrating <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/1c115784fd0795c891a26ece647d92ee5125fad4/JsonQL/JsonObjects/IParsedCalculatedValue.cs">JsonQL.JsonObjects.IParsedCalculatedValue</a>:</dt><dd><ul>
-<li><p>Example with <strong>JsonQL.JsonObjects.IParsedCalculatedValue</strong>: {“MyCalculatedValue”: “$value(Employees.Select(e =&gt; 2 * e.Salary))”}. In this case an instance of <strong>JsonQL.JsonObjects.IParsedCalculatedValue</strong> is created to store the numeric value <strong>2 * e.Salary</strong>.</p></li>
-<li><p>Example with <strong>JsonQL.JsonObjects.IParsedSimpleValue</strong>: {“MySimpleJsonValue”: “$value(Employees.Select(e =&gt; e.Salary))”}. In this case an instance of <strong>JsonQL.JsonObjects.IParsedSimpleValue</strong> is created to store the numeric value <strong>e.Salary</strong> which represents a JSON value in one of the loaded JSON files.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p><strong>TEXT TO DELETE END</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ParsedResultDataStructure/index.html">Parsed Result Data Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/index.html">JsonQL.Compilation.ICompilationResult</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompiledJsonData/index.html">JsonQL.Compilation.ICompiledJsonData</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/IRootParsedValue/index.html">JsonQL.JsonObjects.IRootParsedValue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/index.html">Result Data Structure: JsonQL.Compilation.ICompilationResult</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/ICompiledJsonData/index.html">JsonQL.Compilation.ICompiledJsonData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/IRootParsedValue/index.html">JsonQL.JsonObjects.IRootParsedValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ImportantInterfaces/ICompilationResult/IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
@@ -246,7 +198,7 @@ loads <a class="reference internal" href="SampleFiles/Example1/parameters.html">
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="JsonQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ParsedResultDataStructure/index.html" class="btn btn-neutral float-right" title="Parsed Result Data Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ImportantInterfaces/ICompilationResult/index.html" class="btn btn-neutral float-right" title="Result Data Structure: JsonQL.Compilation.ICompilationResult" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
