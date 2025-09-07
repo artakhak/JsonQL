@@ -7,8 +7,6 @@ namespace JsonQL.DocumentationGenerator;
 
 internal class DocumentGenerator
 {
-    //private const string TemplateExtension = ".template";
-
     private readonly ITemplateProcessor _templateProcessor;
     private readonly string _solutionFolderPath;
 
@@ -56,7 +54,7 @@ internal class DocumentGenerator
         return true;
     }
 
-    void LogError(IErrorData errorData)
+    private void LogError(IErrorData errorData)
     {
         var contextData = new StringBuilder();
 

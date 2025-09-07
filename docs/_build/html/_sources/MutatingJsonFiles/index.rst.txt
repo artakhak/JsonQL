@@ -88,6 +88,12 @@ loads :doc:`./SampleFiles/Example1/parameters`, :doc:`./SampleFiles/Example1/fil
 
 - The value **result** in C# snippet above is of type `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ and the serialized value of **result** can be found here :doc:`./SampleFiles/Example1/result`.
 - To retrieve the details of loaded JSON files in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ you need to retrieve an item in **CompiledJsonFiles** property for compiled JSON file. The items in this list are ordered in such a way that parent JSON file items appear before child JSON file items.
+- For more details on data structure used for loading multiple JSON files see :doc:`./ParsedResultDataStructure/index`
+
+**TEXT TO DELETE START**
+
+- The value **result** in C# snippet above is of type `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ and the serialized value of **result** can be found here :doc:`./SampleFiles/Example1/result`.
+- To retrieve the details of loaded JSON files in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ you need to retrieve an item in **CompiledJsonFiles** property for compiled JSON file. The items in this list are ordered in such a way that parent JSON file items appear before child JSON file items.
 - Each item in **CompiledJsonFiles** list in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ is of type `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_.
 - `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_ has properties **TextIdentifier** and **CompiledParsedValue** (among other properties).
 - Property **TextIdentifier** in `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_ stores parsed file identifier.
@@ -111,8 +117,11 @@ loads :doc:`./SampleFiles/Example1/parameters`, :doc:`./SampleFiles/Example1/fil
             - Example with **JsonQL.JsonObjects.IParsedCalculatedValue**: {"MyCalculatedValue": "$value(Employees.Select(e => 2 * e.Salary))"}. In this case an instance of **JsonQL.JsonObjects.IParsedCalculatedValue** is created to store the numeric value **2 * e.Salary**. 
             - Example with **JsonQL.JsonObjects.IParsedSimpleValue**: {"MySimpleJsonValue": "$value(Employees.Select(e => e.Salary))"}. In this case an instance of **JsonQL.JsonObjects.IParsedSimpleValue** is created to store the numeric value **e.Salary** which represents a JSON value in one of the loaded JSON files. 
 
+**TEXT TO DELETE END**
+
 .. toctree::
    
+   ParsedResultDataStructure/index.rst
    ErrorDetails/index.rst
-   ReusingCompiledJsonFiles/index.rst
+   ReusingCompiledJsonFiles/index.rst   
    SampleFiles/index.rst
