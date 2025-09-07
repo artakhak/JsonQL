@@ -11,7 +11,7 @@ internal class DocumentsGenerator
     /// <summary>
     /// Path of generated documentation files relative to project folder.
     /// </summary>
-    private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}";
+    private static readonly string DocsRootRelativePath = $"{Path.DirectorySeparatorChar}docs{Path.DirectorySeparatorChar}GeneratedDocFiles{Path.DirectorySeparatorChar}";
     private const string TemplateExtension = ".template";
     
     private readonly ITemplateProcessor _templateProcessor = new TemplateProcessor();
@@ -50,6 +50,9 @@ internal class DocumentsGenerator
             IterateFolderFiles(
                 demoDocsFolder, SrcDocFilesPathRelativeToSolutionFolder, filesData =>
                 {
+                    if (Path.GetExtension(filesData.srcFilePathRelativeToSolutionFolder) == ".cs")
+                        return;
+
                     if (!IsTemplateFile(filesData.srcFilePathRelativeToSolutionFolder))
                         GenerateFileFromTemplate(filesData.srcFilePathRelativeToSolutionFolder, filesData.generatedFilePathRelativeToSolutionFolder);
                 });

@@ -73,7 +73,7 @@ In this example the following JSON files are processed with JSON files appearing
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>Examples\json-with-json-ql-expressions.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\json-with-json-ql-expressions.cs.snippet</IncludedFilePlaceHolder>
 
 - Result of a query above for can be found here: :doc:`./Examples/json-with-json-ql-expressions.result`
 
@@ -99,7 +99,7 @@ Example: Query and convert JSON to C# objects
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-csharp-objects.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-csharp-objects.cs.snippet</IncludedFilePlaceHolder>
 
 - Files evaluated in JsonQL query above are listed here:
    - :doc:`./Examples/query-and-convert-json-to-csharp-objects.data-1`
@@ -115,7 +115,7 @@ Example: Query and convert JSON to collection of double values
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.snippet</IncludedFilePlaceHolder>
 
 - Result of query above can be found here: :doc:`./Examples/query-and-convert-json-to-collection-of-doubles.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
@@ -139,7 +139,7 @@ Example: Query JSON files with result as JSON structure
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>Examples\query-with-result-as-json-object.cs.example</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>Examples\query-with-result-as-json-object.cs.snippet</IncludedFilePlaceHolder>
 
 - Result of query above can be found here: :doc:`./Examples/query-with-result-as-json-object.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_

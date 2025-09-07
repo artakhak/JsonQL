@@ -188,7 +188,7 @@ In this example the following JSON files are processed with JSON files appearing
 **C# code example that parses the JSON files above**
 
 ```csharp
-<IncludedFilePlaceHolder>Examples\json-with-json-ql-expressions.cs.example</IncludedFilePlaceHolder>
+<IncludedFilePlaceHolder>Examples\json-with-json-ql-expressions.cs.snippet</IncludedFilePlaceHolder>
 ```
 
 - Result of a query above for can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Result.json)
@@ -211,7 +211,7 @@ In this example the following JSON files are processed with JSON files appearing
 ### Example: Query and convert JSON to C# objects
 
 ```csharp
-<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-csharp-objects.cs.example</IncludedFilePlaceHolder>
+<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-csharp-objects.cs.snippet</IncludedFilePlaceHolder>
 ```
 - Files evaluated in JsonQL query above are listed here:
    - [Data.json](https://github.com/artakhak/JsonQL/blob/06587d1b2dbc817c465e703ab7ab0c122e46b1ed/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json)
@@ -222,7 +222,7 @@ In this example the following JSON files are processed with JSON files appearing
 ### Example: Query and convert JSON to collection of double values
 
 ```csharp
-<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
+<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.snippet</IncludedFilePlaceHolder>
 ```
 - Files evaluated in JsonQL query above are listed here:
    - [Data.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json)
@@ -243,7 +243,7 @@ In this example the following JSON files are processed with JSON files appearing
 ### Example: Query JSON files with result as JSON structure
 
 ```csharp
-<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.example</IncludedFilePlaceHolder>
+<IncludedFilePlaceHolder>Examples\query-and-convert-json-to-collection-of-doubles.cs.snippet</IncludedFilePlaceHolder>
 ```
 - Files evaluated in JsonQL query above are listed here:
    - [Data.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Data.json)

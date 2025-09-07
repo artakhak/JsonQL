@@ -1,0 +1,81 @@
+:orphan:
+
+===========
+Result.json
+===========
+
+.. sourcecode:: json
+  
+  {
+    "ParsedValue":
+    [
+      {
+        "CompanyData": {
+          "Name":  "Strange Things, Inc",
+          "CEO":  "John Malkowich",
+          "Address": {
+            "Street":  "123 Maple Street",
+            "City":  "Springfield",
+            "State":  "IL",
+            "ZipCode":  "62701"
+          }
+        },
+        "Employees": [
+          {
+            "Id":  100000001,
+            "Name":  "John Smith",
+            "Address": {
+              "Street":  "456 Oak Avenue",
+              "City":  "Chicago",
+              "State":  "IL",
+              "ZipCode":  "60601"
+            },
+            "Salary":  99500,
+            "Age":  45
+          },
+          {
+            "Id":  100000002,
+            "Name":  "Alice Johnson",
+            "Address": {
+              "Street":  "123 Maple Street",
+              "City":  "New York",
+              "State":  "NY",
+              "ZipCode":  "10001"
+            },
+            "Salary":  105000,
+            "Age":  38
+          },
+          {
+            "Id":  100000003,
+            "Name":  "Michael Brown",
+            "Address": {
+              "Street":  "789 Pine Lane",
+              "City":  "Los Angeles",
+              "State":  "CA",
+              "ZipCode":  "90001"
+            },
+            "Salary":  89000,
+            "Age":  50
+          },
+          {
+            "Id":  100000004,
+            "Name":  "Emily Davis",
+            "Address": {
+              "Street":  "321 Elm Drive",
+              "City":  "Houston",
+              "State":  "TX",
+              "ZipCode":  "77001"
+            },
+            "Salary":  92000,
+            "Age":  42
+          }
+        ]
+      }
+    ],
+    "CompilationErrors":
+    {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    }
+  }
+
