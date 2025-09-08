@@ -1,0 +1,11 @@
+﻿====================
+Example1/Result.json
+====================
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>..\..\Examples\Example1\Result.json</IncludedFilePlaceHolder>

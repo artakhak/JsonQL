@@ -7,8 +7,6 @@ namespace JsonQL.DocumentationGenerator;
 
 internal class DocumentGenerator
 {
-    private const string TemplateExtension = ".template";
-
     private readonly ITemplateProcessor _templateProcessor;
     private readonly string _solutionFolderPath;
 
@@ -20,12 +18,6 @@ internal class DocumentGenerator
 
     internal bool GenerateFileFromTemplate(string templateFileRelativePath, string generatedFileRelativePath)
     {
-        if (!templateFileRelativePath.EndsWith(TemplateExtension) || templateFileRelativePath.Length == TemplateExtension.Length)
-        {
-            LogHelper.Context.Log.ErrorFormat("Template files should end with '.template'. Invalid file relative path is '{0}'.", templateFileRelativePath);
-            return false;
-        }
-
         var templateAbsoluteFilePathResult = FilePathHelpers.TryGetAbsoluteFilePath(_solutionFolderPath, templateFileRelativePath);
 
         if (!templateAbsoluteFilePathResult.isSuccess)
@@ -62,7 +54,7 @@ internal class DocumentGenerator
         return true;
     }
 
-    void LogError(IErrorData errorData)
+    private void LogError(IErrorData errorData)
     {
         var contextData = new StringBuilder();
 

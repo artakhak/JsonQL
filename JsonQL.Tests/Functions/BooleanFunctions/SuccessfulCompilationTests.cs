@@ -1,0 +1,17 @@
+namespace JsonQL.Tests.Functions.BooleanFunctions;
+
+[TestFixture]
+public class SuccessfulCompilationTests : SuccessfulJsonCompilationTestsAbstr
+{
+    [Test]
+    public async Task MathFunctions_IsEven_Tests()
+    {
+        await DoSuccessfulTest(["Functions", "BooleanFunctions", "IsEven"], "JsonFile2.json", "JsonFile1.json");
+    }
+
+    [Test]
+    public async Task MathFunctions_IsOdd_Tests()
+    {
+        await DoSuccessfulTest(["Functions", "BooleanFunctions", "IsOdd"], "JsonFile2.json", "JsonFile1.json");
+    }
+}

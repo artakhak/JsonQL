@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using System.Text;
 using JsonQL.Compilation;
 using JsonQL.JsonObjects;
@@ -73,8 +74,12 @@ public class CompilationResultSerializer : ICompilationResultSerializer
             .Append("\":")
             .Append("[");
 
-        foreach (var compiledJsonData in compilationResult.CompiledJsonFiles.Where(compiledJsonDataShouldBeIncluded))
+        var compiledJsonFilesData = compilationResult.CompiledJsonFiles.Where(compiledJsonDataShouldBeIncluded).ToList();
+        
+        for (var currentFileIndex = 0; currentFileIndex < compiledJsonFilesData.Count; ++currentFileIndex)
         {
+            var compiledJsonData = compilationResult.CompiledJsonFiles[currentFileIndex];
+
             var level1Indention = string.Concat(indention, indention);
             var level2Indention = string.Concat(indention, indention, indention);
 
@@ -102,10 +107,14 @@ public class CompilationResultSerializer : ICompilationResultSerializer
             serializedText.Append(level2Indention);
             serializedText.Append(this._jsonSerializer.Serialize(compiledJsonData.CompiledParsedValue, jsonSerializerParameters));
 
-
             serializedText.AppendLine()
                 .Append(level1Indention)
-                .AppendLine("}");
+                .Append("}");
+
+            if (currentFileIndex < compiledJsonFilesData.Count - 1)
+                serializedText.AppendLine(",");
+
+            serializedText.AppendLine();
         }
 
         serializedText.AppendLine();

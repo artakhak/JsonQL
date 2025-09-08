@@ -28,17 +28,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonQL.Diagnostics", "JsonQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OROptimizer.Shared.Log4Net", "..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj", "{E7CDA3BB-E21D-406A-AB06-FBD4D02DC38A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{67F417B7-CC44-4377-B22B-07F145228DFC}"
-	ProjectSection(SolutionItems) = preProject
-		docs\conf.py = docs\conf.py
-		docs\index.rst = docs\index.rst
-		docs\index.rst.generationdata = docs\index.rst.generationdata
-		docs\make.bat = docs\make.bat
-		docs\Makefile = docs\Makefile
-		docs\README.md = docs\README.md
-		docs\requirements.txt = docs\requirements.txt
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonQL.DocumentationGenerator", "JsonQL.DocumentationGenerator\JsonQL.DocumentationGenerator.csproj", "{D5F18298-D244-499F-9AF2-F0E03703AD35}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B35CD0F9-6BCD-4CAA-A454-FE4409527676}"
@@ -48,19 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileInclude", "..\FileInclude\FileInclude\FileInclude.csproj", "{92954424-E942-4BC8-93D2-3728D97AF4F2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json-file-mutation", "json-file-mutation", "{72DC0651-183D-42EC-ACF7-138E8E31FA6E}"
-	ProjectSection(SolutionItems) = preProject
-		docs\json-file-mutation\index.rst = docs\json-file-mutation\index.rst
-		docs\json-file-mutation\index.rst.generationdata = docs\json-file-mutation\index.rst.generationdata
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "index-rst-files", "index-rst-files", "{15804E00-3B77-4D9A-AFC4-6FA03C0D4987}"
-	ProjectSection(SolutionItems) = preProject
-		docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst = docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst
-		docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.generationdata = docs\index-rst-files\query-and-convert-json-to-csharp-objects.data-1.rst.generationdata
-		docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst = docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst
-		docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.generationdata = docs\index-rst-files\query-and-convert-json-to-csharp-objects.result.rst.generationdata
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "docs", "docs\docs.csproj", "{8AD9B10C-7693-4FCA-872D-C1B5A8AA365B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +93,10 @@ Global
 		{92954424-E942-4BC8-93D2-3728D97AF4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92954424-E942-4BC8-93D2-3728D97AF4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92954424-E942-4BC8-93D2-3728D97AF4F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD9B10C-7693-4FCA-872D-C1B5A8AA365B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD9B10C-7693-4FCA-872D-C1B5A8AA365B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD9B10C-7693-4FCA-872D-C1B5A8AA365B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD9B10C-7693-4FCA-872D-C1B5A8AA365B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,8 +109,6 @@ Global
 		{301D8260-D2C0-4A6C-86A2-AE783921A99D} = {4287B03B-CFD0-494D-921C-1787F0642A32}
 		{E7CDA3BB-E21D-406A-AB06-FBD4D02DC38A} = {4287B03B-CFD0-494D-921C-1787F0642A32}
 		{92954424-E942-4BC8-93D2-3728D97AF4F2} = {4287B03B-CFD0-494D-921C-1787F0642A32}
-		{72DC0651-183D-42EC-ACF7-138E8E31FA6E} = {67F417B7-CC44-4377-B22B-07F145228DFC}
-		{15804E00-3B77-4D9A-AFC4-6FA03C0D4987} = {67F417B7-CC44-4377-B22B-07F145228DFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C9CBA38-778A-4539-9798-747C4950D430}

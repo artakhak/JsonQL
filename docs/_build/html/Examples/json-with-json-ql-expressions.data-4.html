@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview.json &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview.json</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Examples/json-with-json-ql-expressions.data-4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview-json">
+<h1>Overview.json<a class="headerlink" href="#overview-json" title="Link to this heading"></a></h1>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CountryNamesWithPopulationOf80MlnOrMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Population &gt;= 80000000).Select(x =&gt; x.Name))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CompanyDetailsWithAnyEmployeeWithNullAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Where(x =&gt; Any(x.Employees, x =&gt; x.Address is null)).Select(x =&gt; x.CompanyData))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesWithNonEmptyLoginsList&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; Count(x.Logins) &gt; 0)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FirstEmployeeWithLoginsField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; HasField(x, &#39;Logins&#39;))).First(x =&gt; x.Id != 100000005))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastEmployeeWithLoginsField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees.Where(x =&gt; HasField(x, &#39;Logins&#39;))).Last())&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FlattenExamples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Flattening arrays can be applied multiple times to execute sophisticated queries</span>
+<span class="w">    </span><span class="nt">&quot;FlattenArraysAndFilterObjects&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix.Flatten().Where(x =&gt; x &gt; 3 || x.Name == &#39;John&#39; || x.CompanyName starts with &#39;Sherwood&#39;))&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;GetAllNumericValuesInArraysFiltered&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix.Flatten().Flatten(x =&gt; typeof x != &#39;JsonArray&#39; || All(x, y =&gt; y != 12)).Where(x =&gt; typeof x == &#39;Number&#39;))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// If CompanyData.CEO field is missing or value is null for second company, compilation will fail.</span>
+<span class="w">  </span><span class="nt">&quot;SelectSecondCompanyCeoNameWithAssertionThatCeoNameFieldIsPresetAndNotNull&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Companies[1].CompanyData.CEO assert)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// Example of merging fields into a JSON object. EnhancedCompanyData has fields in CompanyData for company with Name that starts with text &#39;Sherwood&#39;</span>
+<span class="w">  </span><span class="c1">// enhanced with additonal fields</span>
+<span class="w">  </span><span class="nt">&quot;EnhancedCompanyData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Capitalization&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompanyDataCopied&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$copyFields(Companies.First(x =&gt; x.CompanyData.Name starts with &#39;Sherwood&#39;).CompanyData)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;NumberOfEmployees&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.First(x =&gt; x.CompanyData.Name starts with &#39;Sherwood&#39;).Employees))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="c1">// Example of merging array items into an array</span>
+<span class="w">  </span><span class="c1">// List of company data for companies with  max salary of employees at least 110000 will be merged into array ListOfCompaniesEnhancedWithNewCompanies</span>
+<span class="w">  </span><span class="nt">&quot;ListOfCompaniesEnhancedWithNewCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some company 1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Napoleon Bonaparte&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="c1">// Merge data of companies with max salary of employees at least 110000</span>
+<span class="w">    </span><span class="s2">&quot;$merge(Companies.Where(x =&gt; Max(x.Employees, y =&gt; true, y =&gt; y.Salary) &gt; 110000).Select(x =&gt; x.CompanyData))&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some company 2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Georges Danton&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="c1">// Example of simple value using mutator function &quot;$&quot;. In contrast to &quot;$value&quot; it generates a simple value (string, numeroc, etc) and not an object.</span>
+<span class="w">  </span><span class="nt">&quot;AverageSalaryOfAllEmployeesInFilteredCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Average(Companies.Where(x =&gt; !(x.CompanyData.Name starts with &#39;Sherwood&#39;)).Select(x =&gt; x.Employees.Select(x =&gt; x.Salary))))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AddressingObjectsInMultiDimensionalMatrix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(MultiDimensionalMatrix[1, 2].Address)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// Examples of using contextual data such a &#39;index&#39; as well as example of referencing parent lamdba function parameter</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeNamesInSecondCompanyExcludingFirstAndLastEmployee&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies[1].Select(x =&gt; x.Employees.Where(y =&gt; index != 0 &amp;&amp; index != Count(x.Employees) - 1).Select(x =&gt; x.Name)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// We can use named parameters to change the order of parameters, as well as not specified optional parameter that are before parameters we pass</span>
+<span class="w">  </span><span class="c1">// In this example both criteria and value are optional, and criteria is before value parameter. By using named parameter value, we can ommit criteria parameter</span>
+<span class="w">  </span><span class="nt">&quot;MaxRaisedSalaryAccrossAllCompaniesUsingNamedParameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(Companies.Select(x =&gt; x.Employees).Flatten(), value-&gt;x=&gt;x.Salary*1.05))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="c1">// isReverseSearch named parameter does not have to be used here, and we can use true here, since this parameter comes after the predicate.</span>
+<span class="w">  </span><span class="c1">// However, it makes the meaning clear.</span>
+<span class="w">  </span><span class="nt">&quot;ThirdEmployeeFromEndWithSalaryGreaterThan_100000_AcrossAllCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees).Flatten().At(2, x =&gt; x.Salary &gt;= 100000 &amp;&amp; x.Id != 100000008, isReverseSearch-&gt;true))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;UseOf_this_ToEnsureObjectIsLookedUpInCurrentFileAndNotInParentFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(this.CountryNamesWithPopulationOf80MlnOrMore[1])&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UseOf_parent_ToEnsureObjectIsLookedUpInParentFilesAndSearchInCurrentFilesIsSkipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(parent.Companies, x =&gt; x.CompanyData.CEO != &#39;John Malkowich&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeWithNonNullIdAndNullAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Address is null &amp;&amp; x.Id is not null))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NumberOfEmployeesWithout_Logins_Field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Logins is undefined)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NumberOfEmployeesWith_Logins_Field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Count(Companies.Select(x =&gt; x.Employees).Flatten().Where(x =&gt; x.Logins is not undefined)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InvalidValuesEvaluateToUndefined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(Companies[0].Employees[1000].Salary is undefined) = true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ConversionExample_Datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;2022-05-22T18:25:43.511Z&#39; &lt; &#39;2022-05-23T18:25:43.511Z&#39;=$(ToDateTime(&#39;2022-05-22T18:25:43.511Z&#39;) &lt; ToDateTime(&#39;2022-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Defaulted salary to $(Companies[0].Employees[1000].Salary:100000)=100000&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

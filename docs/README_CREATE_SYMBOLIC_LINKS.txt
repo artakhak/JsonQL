@@ -1,0 +1,1 @@
+Execute create-symbolic-links.bat once to create symbolic first, before trying to generate documentation

@@ -1,0 +1,30 @@
+﻿===========================
+Reusing Compiled JSON Files
+===========================
+
+.. contents::
+   :local:
+   :depth: 2
+
+Example in code snippet below is copied from section :doc:`../index` and uses one of overladed methods **ICompilationResult Compile(IJsonTextData jsonTextData)** in interface `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_ to parse **"Example.json**.
+This example also parses parent JSON files **Parameters.json**, **Countries**, **Companies**, **FilteredCompanies**.   
+        
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>..\Examples\Example1\Example.cs.snippet</IncludedFilePlaceHolder>
+
+Now consider scenario when we want to reuse all or some of compiled parent JSON files to parse some other JSON file.
+We could use the same method as above, however doing this would result in parent JSON files being compiled again.
+To re-use the compiled parent JSON files without compiling them again we can call **ICompilationResult Compile(IJsonTextData jsonTextData)** the method to compile only parent JSON files,
+and then use another overloaded version **ICompilationResult Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)** of that method which takes **IReadOnlyList<ICompiledJsonData> compiledParents** instead of **IJsonTextData jsonTextData** as a parameter.
+
+Here is a code snippet demonstrating this approach:
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>..\Examples\Example2\Example.cs.snippet</IncludedFilePlaceHolder>
+
+- In this example we do the following:
+    - Compile parent JSON files and store the result in **cachedCompilationResult**
+    - Compile a child JSON in variable **jsonThatDependsOnCompanies** by passing collection of **JsonQL.JsonObjects.JsonQL.Compilation** retrieved from **cachedCompilationResult** for only **Companies.json** as parents.
+    - Compile a child JSON in file **Example.json** by passing collection of **JsonQL.JsonObjects.JsonQL.Compilation** retrieved from **cachedCompilationResult** for **Parameters**, **Companies.json**, **Companies**, **FilteredCompanies** as parents, since JsonQL expressions in **Example.json** depend on JSON objects in all these fies.

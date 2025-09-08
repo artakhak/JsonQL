@@ -39,31 +39,31 @@ Features
 .. note::
   JsonQL Expressions start with '$'. Example "$value(Employees.Select(x => x.Salary >= 100000))".
 
-Using JsonQL Expressions to Mutate JSON File 
-============================================
+Using JsonQL Expressions to Mutate JSON Files 
+=============================================
 
-- JsonQL expressions are used in one or many JSON files. JsonQL loads the JSON files into an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8>`_.
-- The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ for each loaded file. 
-- `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11>`_ represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
-- The property **CompilationErrors** contains collection of `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13>`_ with error details if any. 
+- JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_.
+- The property **CompiledJsonFiles** contains collection of `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs>`_: one per loaded file. 
+- `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs>`_ represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
+- The property **CompilationErrors** contains collection of `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs>`_ with error details if any. 
 - If many JSON files are specified the following rules and techniques are used:
   - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
 
-Example: JsonQL expressions to mutate JSON
-------------------------------------------
+Example: JsonQL expressions to mutate JSON files
+------------------------------------------------
 
-An overview example of mutating multiple JSON files is `here <https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview>`_.
+An overview example of mutating multiple JSON files is `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview>`_.
 
 In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:
 
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-1`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-2`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-3`
-  - :doc:`./index-rst-files/json-with-json-ql-expressions.data-4`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-1`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-2`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-3`
+  - :doc:`./Examples/json-with-json-ql-expressions.data-4`
 
-- The file :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` file with JsonQL expressions is shown below.
+- The file :doc:`./Examples/json-with-json-ql-expressions.data-4` file with JsonQL expressions is shown below.
 
 .. sourcecode:: json
 
@@ -151,16 +151,16 @@ In this example the following JSON files are processed with JSON files appearing
         this.LoadExampleJsonFile("Overview.json"), companiesJsonTextData));
 
 
-- Result of a query above for can be found here: :doc:`./index-rst-files/json-with-json-ql-expressions.result`
+- Result of a query above for can be found here: :doc:`./Examples/json-with-json-ql-expressions.result`
 
   .. note::
-    The serialized result in :doc:`./index-rst-files/json-with-json-ql-expressions.result` was formatted to show only mutated JSON for :doc:`./index-rst-files/json-with-json-ql-expressions.data-4` to make the file smaller.  
+    The serialized result in :doc:`./Examples/json-with-json-ql-expressions.result` was formatted to show only mutated JSON for :doc:`./Examples/json-with-json-ql-expressions.data-4` to make the file smaller.  
 
 JsonQL queries of JSON Files with Result Converted to C# objects
 ================================================================
 
-- The interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to `JsonQL.Query.IObjectQueryResult<T> <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs#L24>`_ a C# interface of class specified in generic parameter.
+- The interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to `JsonQL.Query.IObjectQueryResult<T> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ a C# interface of class specified in generic parameter.
 - The result stores the query result converted to type 'T' as well as data about errors encountered during execution of the query.
 - The type parameter 'T' specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.
 - The type parameter 'T' specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type). 
@@ -221,16 +221,16 @@ Example: Query and convert JSON to C# objects
      // This example is copied from 
 
 - Files evaluated in JsonQL query above are listed here:
-   - :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.data-1`
+   - :doc:`./Examples/query-and-convert-json-to-csharp-objects.data-1`
    
-- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-csharp-objects.result`
+- Result of query above can be found here: :doc:`./Examples/query-and-convert-json-to-csharp-objects.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList>`_
 
 Example: Query and convert JSON to collection of double values
 --------------------------------------------------------------
 
 - Files evaluated in JsonQL query below are listed here:
-   - :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.data-1`
+   - :doc:`./Examples/query-and-convert-json-to-collection-of-doubles.data-1`
         
 .. sourcecode:: csharp
 
@@ -246,14 +246,14 @@ Example: Query and convert JSON to collection of double values
             new JsonTextData("Data",
                 this.LoadExampleJsonFile("Data.json")), null);
 
-- Result of query above can be found here: :doc:`./index-rst-files/query-and-convert-json-to-collection-of-doubles.result`
+- Result of query above can be found here: :doc:`./Examples/query-and-convert-json-to-collection-of-doubles.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles>`_
 
 JsonQL queries of JSON Files with Result Converted to JSON structure
 ====================================================================
 
-- The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15>`_.
+- The interface `JsonQL.Query.IQueryManager  <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>`_ and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
 - The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the the following rules and techniques are used:
@@ -264,7 +264,7 @@ Example: Query JSON files with result as JSON structure
 -------------------------------------------------------
 
 - Files evaluated in JsonQL query below are listed here:
-   - :doc:`./index-rst-files/query-with-result-as-json-object-1.data`
+   - :doc:`./Examples/query-with-result-as-json-object-1.data`
         
 .. sourcecode:: csharp
 
@@ -281,12 +281,24 @@ Example: Query JSON files with result as JSON structure
                     new JsonTextData("Data",
                         this.LoadExampleJsonFile("Data.json")));
 
-- Result of query above can be found here: :doc:`./index-rst-files/query-with-result-as-json-object.result`
+- Result of query above can be found here: :doc:`./Examples/query-with-result-as-json-object.result`
 - Example classes and JSON files for this example can be found `here <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary>`_
 
 .. toctree::
 
-   json-file-mutation/index.rst
+   MutatingJsonFiles/index.rst
+   QueryingJsonFiles/index.rst
+   LambdaFunctions/index.rst
+   SpecialKeywords/index.rst
+   JsonMutatorOperators/index.rst
+   JsonPathFunctions/index.rst
+   Functions/index.rst
+   AggregateFunctions/index.rst
+   Operators/index.rst
+   OptionalAndNamedParameters/index.rst 
+   DependencyInjectionSetup/index.rst
+   CustomJsonQL/index.rst
+   FutureReleases/index.rst
 
 Indices and tables
 ==================

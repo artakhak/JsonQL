@@ -12,8 +12,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FileInclude" Version="1.0.5" />
+		<PackageReference Include="FileInclude" Version="1.2.0" />
 		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <!--<ProjectReference Include="..\..\FileInclude\FileInclude\FileInclude.csproj" />-->
 	</ItemGroup>
 
 	<ItemGroup>

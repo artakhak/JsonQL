@@ -1,0 +1,11 @@
+// Create an instance of JsonQL.Query.QueryManager here.
+// This is normally done once on application start.
+IQueryManager queryManager = null!;
+
+var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
+    "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";
+    
+var salariesResult =
+    queryManager.QueryObject<IReadOnlyList<double>>(salariesOfAllEmployeesOlderThan35InAllCompaniesQuery,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")), null);

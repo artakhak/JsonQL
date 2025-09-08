@@ -1,0 +1,21 @@
+string[] sharedExamplesFolderPath = new string[] { "DocFiles", "MutatingJsonFiles", "Examples"};
+
+var parametersJsonTextData = new JsonTextData("Parameters",
+            this.LoadExampleJsonFile("Parameters.json"));
+
+// countriesJsonTextData uses parametersJsonTextData for parameter parentJsonTextData
+var countriesJsonTextData = new JsonTextData("Countries",
+    LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
+
+var companiesJsonTextData = new JsonTextData("Companies",
+    LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
+
+var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
+    this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData);      
+
+// Create an instance of JsonQL.Compilation.JsonCompiler here.
+// This is normally done once on application start.
+JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
+
+var result = jsonCompiler.Compile(new JsonTextData("Example",
+    this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));
