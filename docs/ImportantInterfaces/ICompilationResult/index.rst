@@ -6,7 +6,7 @@ Result Data Structure: JsonQL.Compilation.ICompilationResult
    :local:
    :depth: 2
 
-- The result of loading JSON files is stored in an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_.
+- The result of loading JSON files is stored in an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_.
 
 Consider the following C# code snippet that loads :doc:`../../MutatingJsonFiles/SampleFiles/Example1/example` that depends on these JSON files (i.e., has JsonQL expressions that reference JSON objects in these files).
 
@@ -17,28 +17,30 @@ Consider the following C# code snippet that loads :doc:`../../MutatingJsonFiles/
 
 .. sourcecode:: csharp
 
+    string[] sharedExamplesFolderPath = new string[] { "DocFiles", "MutatingJsonFiles", "Examples"};
+
     var parametersJsonTextData = new JsonTextData("Parameters",
                 this.LoadExampleJsonFile("Parameters.json"));
 
-    // countriesJsonTextData has uses parametersJsonTextData for parameter parentJsonTextData
+    // countriesJsonTextData uses parametersJsonTextData for parameter parentJsonTextData
     var countriesJsonTextData = new JsonTextData("Countries",
-        LoadJsonFileHelpers.LoadJsonFile("Countries.json", _sharedExamplesFolderPath), parametersJsonTextData);
+        LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
 
     var companiesJsonTextData = new JsonTextData("Companies",
-        LoadJsonFileHelpers.LoadJsonFile("Companies.json", _sharedExamplesFolderPath), countriesJsonTextData);
+        LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
 
     var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
         this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData);      
 
     // Create an instance of JsonQL.Compilation.JsonCompiler here.
-    //This is normally done once on application start.
+    // This is normally done once on application start.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
     var result = jsonCompiler.Compile(new JsonTextData("Example",
         this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));
 
-- The value **result** in C# snippet above is of type `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ and the serialized value of **result** can be found here :doc:`../../MutatingJsonFiles/SampleFiles/Example1/result`.
-- To retrieve the details of loaded JSON files in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs>`_ you need to retrieve an item in **CompiledJsonFiles** property for compiled JSON file. The items in this list are of type `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs>`_ are ordered in such a way that parent JSON file items appear before child JSON file items.
+- The value **result** in C# snippet above is of type `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_ and the serialized value of **result** can be found here :doc:`../../MutatingJsonFiles/SampleFiles/Example1/result`.
+- To retrieve the details of loaded JSON files in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_ you need to retrieve an item in **CompiledJsonFiles** property for compiled JSON file. The items in this list are of type `JsonQL.Compilation.ICompiledJsonData <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs>`_ are ordered in such a way that parent JSON file items appear before child JSON file items.
 - See :doc:`ICompiledJsonData/index` to learn more about this interface.
 - Property **CompilationErrors** stores details of errors encountered during compilation process, if any.
 

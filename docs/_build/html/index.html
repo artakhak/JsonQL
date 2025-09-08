@@ -147,16 +147,16 @@
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Using JsonQL Expressions to Mutate JSON Files</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>.</p></li>
-<li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a>: one per loaded file.</p></li>
-<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a> represents mutated JSON files (i.e., mutated by using JsonQL expressions).</p></li>
-<li><p>The property <strong>CompilationErrors</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> with error details if any.</p></li>
+<li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a>: one per loaded file.</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a> represents mutated JSON files (i.e., mutated by using JsonQL expressions).</p></li>
+<li><p>The property <strong>CompilationErrors</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> with error details if any.</p></li>
 <li><p>If many JSON files are specified the following rules and techniques are used:
 - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-jsonql-expressions-to-mutate-json-files">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Example: JsonQL expressions to mutate JSON files</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h3>
-<p>An overview example of mutating multiple JSON files is <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview">here</a>.</p>
+<p>An overview example of mutating multiple JSON files is <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview">here</a>.</p>
 <p>In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:</p>
 <blockquote>
 <div><ul class="simple">
@@ -265,8 +265,8 @@
 <section id="jsonql-queries-of-json-files-with-result-converted-to-c-objects">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to C# objects</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
-<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter.</p></li>
+<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
+<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter.</p></li>
 <li><p>The result stores the query result converted to type ‘T’ as well as data about errors encountered during execution of the query.</p></li>
 <li><p>The type parameter ‘T’ specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.</p></li>
 <li><p>The type parameter ‘T’ specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
@@ -369,8 +369,8 @@
 <section id="jsonql-queries-of-json-files-with-result-converted-to-json-structure">
 <h2><a class="toc-backref" href="#id12" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to JSON structure</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
-<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
+<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
+<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
 <li><p>The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.</p></li>
 <li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
 <li><p>If many JSON files are specified the the following rules and techniques are used:
@@ -415,7 +415,13 @@
 <li class="toctree-l3"><a class="reference internal" href="ImportantInterfaces/ICompilationResult/IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/ErrorDetails/index.html#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="MutatingJsonFiles/ErrorDetails/index.html#missing-closing-braces-error">Missing closing braces error</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/index.html">Sample Files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/countries.html">Countries.json</a></li>

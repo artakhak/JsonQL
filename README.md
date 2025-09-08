@@ -159,10 +159,10 @@
 
 ## Using JsonQL Expressions to Mutate JSON Files
 
-- JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs#L8).
-- The property **CompiledJsonFiles** contains a collection of [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11): one per loaded file. 
-- [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompiledJsonData.cs#L11) represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
-- The property **CompilationErrors** contains a collection of [JsonQL.Compilation.ICompilationErrorItem](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationErrorItem.cs#L13) with error details if any. 
+- JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of [JsonQL.Compilation.ICompilationResult](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs#L8).
+- The property **CompiledJsonFiles** contains a collection of [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs#L11): one per loaded file. 
+- [JsonQL.Compilation.ICompiledJsonData](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs#L11) represents mutated JSON files (i.e., mutated by using JsonQL expressions).  
+- The property **CompilationErrors** contains a collection of [JsonQL.Compilation.ICompilationErrorItem](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs#L13) with error details if any. 
 - If many JSON files are specified, the following rules and techniques are used:
   - Parent/child relationships between JSON files are maintained, and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
@@ -170,16 +170,16 @@
 
 ### Example: JsonQL expressions to mutate JSON files
 
-An overview example of mutating multiple JSON files is [Overview](https://github.com/artakhak/JsonQL/tree/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview).
+An overview example of mutating multiple JSON files is [Overview](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview).
 
 In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:
 
-  - [AdditionalTestData.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/AdditionalTestData.json)
-  - [Countries.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Countries.json)
-  - [Companies.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Companies.json)
-  - [Overview.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Overview.json)
+  - [AdditionalTestData.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/AdditionalTestData.json)
+  - [Countries.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Countries.json)
+  - [Companies.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Companies.json)
+  - [Overview.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Overview.json)
 
-**The file [Overview.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Overview.json) file with JsonQL expressions is shown below.**
+**The file [Overview.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview/Overview.json) file with JsonQL expressions is shown below.**
 
 ```json
 {
@@ -273,8 +273,8 @@ var result = jsonCompiler.Compile(new JsonTextData("Overview",
 
 ## JsonQL queries of JSON Files with Result Converted to C# objects
 
-- The interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15) and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to [JsonQL.Query.IObjectQueryResult<T>](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IObjectQueryResult.cs#L24) a C# interface of class specified in generic parameter.
+- The interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs#L15) and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to [JsonQL.Query.IObjectQueryResult<T>](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs#L24) a C# interface of class specified in generic parameter.
 - The result stores the query result converted to type 'T' as well as data about errors encountered during execution of the query.
 - The type parameter 'T' specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.
 - The type parameter 'T' specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type). 
@@ -333,10 +333,10 @@ var employeesResult =
  // This example is copied from 
 ```
 - Files evaluated in JsonQL query above are listed here:
-   - [Data.json](https://github.com/artakhak/JsonQL/blob/06587d1b2dbc817c465e703ab7ab0c122e46b1ed/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json)
+   - [Data.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json)
 
-- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/06587d1b2dbc817c465e703ab7ab0c122e46b1ed/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json)
-- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/005d5165493d4a38eb252ad3ec9d4a46646d82df/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList)
+- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Result.json)
+- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList)
 
 ### Example: Query and convert JSON to collection of double values
 
@@ -354,15 +354,15 @@ var salariesResult =
             this.LoadExampleJsonFile("Data.json")), null);
 ```
 - Files evaluated in JsonQL query above are listed here:
-   - [Data.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json)
+   - [Data.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Data.json)
 
-- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json)
-- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/e1aad02aab48e9c32e5cd58a6d22101a4a742e7d/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles)
+- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json)
+- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles)
 
 ## JsonQL queries of JSON Files with Result Converted to JSON structure
 
-- The interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IQueryManager.cs#L15) and its extensions are used to query one or more JSON files using a JsonQL query expression.
-- The result is converted to [JsonQL.Query.IJsonValueQueryResult](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Query/IJsonValueQueryResult.cs#L15).
+- The interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs#L15) and its extensions are used to query one or more JSON files using a JsonQL query expression.
+- The result is converted to [JsonQL.Query.IJsonValueQueryResult](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs#L15).
 - The result stores the query result as a JSON structure as well as data about errors encountered during execution of the query.
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the the following rules and techniques are used:
@@ -385,10 +385,10 @@ var salariesResult =
             this.LoadExampleJsonFile("Data.json")), null);
 ```
 - Files evaluated in JsonQL query above are listed here:
-   - [Data.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Data.json)
+   - [Data.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Data.json)
 
-- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Result.json)
-- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/961a83dec029147526c9051332c1e59b1de7a2e5/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary)
+- Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary/Result.json)
+- Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsParsedJsonValue/CompaniesWithLimitOnMaxSalary)
 
 ## License
 
