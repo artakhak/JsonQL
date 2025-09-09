@@ -89,6 +89,22 @@ Data.json
       "Phones": [
         "515-100-0001"
       ]
+    },
+    {
+      "Id": 100000008,
+      "FirstName": "Emma",
+      "LastName": "Johnson",
+      "Address": {
+        "Street": "58 Maple Avenue",
+        "City": "Austin",
+        "State": "TX",
+        "ZipCode": "73301"
+      },
+      "Salary": 88000,
+      "Age": 32,
+      "Phones": [
+        "512-200-0002"
+      ]
     }
   ]
 

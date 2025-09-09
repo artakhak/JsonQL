@@ -280,7 +280,7 @@ var result = jsonCompiler.Compile(new JsonTextData("Overview",
 - The type parameter 'T' specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type). 
 - Nullable syntax '?' can be specified for return type (including collection item types, if return type is a collection).
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
-- If many JSON files are specified the the following rules and techniques are used:
+- If many JSON files are specified the following rules and techniques are used:
   - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 
@@ -294,8 +294,8 @@ IQueryManager queryManager = null!;
 // NOTE: Data.json has a root JSON with a collection of employees. 
 // If the JSON had a JSON object with the "Employees" field, the
 // query would be: "Employees.Where(...)" instead of "Where(...)"
-var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
-                                    
+var query = "Where(e => e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p => p == e.Id))";
+
 // We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
 // -Class (value or reference type). We can use '?' for nullable values. Examples:
 //      "_queryManager.QueryObject<Manager?>(...)",
@@ -313,8 +313,9 @@ var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
 // The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
 var employeesResult =
     queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-        new JsonTextData("Data",
-            this.LoadExampleJsonFile("Data.json")),
+                new JsonTextData("Data",
+                    this.LoadExampleJsonFile("Data.json"),
+                    new JsonTextData("Parameters", this.LoadExampleJsonFile("Parameters.json"))),
         [false, false], new JsonConversionSettingsOverrides
         {
             TryMapJsonConversionType = (type, parsedJson) =>
@@ -330,7 +331,8 @@ var employeesResult =
                 return null;
             }
         });
- // This example is copied from 
+
+// This example is copied from https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Example.cs
 ```
 - Files evaluated in JsonQL query above are listed here:
    - [Data.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Data.json)

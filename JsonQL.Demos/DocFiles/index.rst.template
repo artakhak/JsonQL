@@ -90,7 +90,7 @@ JsonQL queries of JSON Files with Result Converted to C# objects
 - The type parameter 'T' specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type). 
 - Nullable syntax '?' can be specified for return type (including collection item types, if return type is a collection).
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
-- If many JSON files are specified the the following rules and techniques are used:
+- If many JSON files are specified the following rules and techniques are used:
   - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
 

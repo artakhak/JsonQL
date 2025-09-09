@@ -272,7 +272,7 @@
 <li><p>The type parameter ‘T’ specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
 <li><p>Nullable syntax ‘?’ can be specified for return type (including collection item types, if return type is a collection).</p></li>
 <li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
-<li><p>If many JSON files are specified the the following rules and techniques are used:
+<li><p>If many JSON files are specified the following rules and techniques are used:
 - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
@@ -285,7 +285,7 @@
 <span class="c1">// NOTE: Data.json has a root JSON with a collection of employees.</span>
 <span class="c1">// If the JSON had a JSON object with the &quot;Employees&quot; field, the</span>
 <span class="c1">// query would be: &quot;Employees.Where(...)&quot; instead of &quot;Where(...)&quot;</span>
-<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Where(x =&gt; x.Id==100000006 || x.Id==100000007)&quot;</span><span class="p">;</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Where(e =&gt; e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p =&gt; p == e.Id))&quot;</span><span class="p">;</span>
 
 <span class="c1">// We can call _queryManager.QueryObject&lt;T&gt; with the following values for &quot;T&quot; generic parameter</span>
 <span class="c1">// -Class (value or reference type). We can use &#39;?&#39; for nullable values. Examples:</span>
@@ -304,8 +304,9 @@
 <span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;&quot;.</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
-<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)),</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">),</span>
+<span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Parameters&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Parameters.json&quot;</span><span class="p">))),</span>
 <span class="w">        </span><span class="na">[false, false]</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonConversionSettingsOverrides</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TryMapJsonConversionType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">parsedJson</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
@@ -321,7 +322,8 @@
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
-<span class="w"> </span><span class="c1">// This example is copied from</span>
+
+<span class="c1">// This example is copied from https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Example.cs</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -426,10 +428,12 @@
 <li class="toctree-l2"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/index.html">Sample Files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/countries.html">Countries.json</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/companies.html">Companies.json</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/Example1/parameters.html">Example1/Parameters.json</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/Example1/filtered-companies.html">Example1/FilteredCompanies.json</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/Example1/example.html">Example1/Example.json</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/Example1/result.html">Example1/Result.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/MainExample/example.html">MainExample/Example.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/MainExample/result.html">MainExample/Result.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/ReusingCompiledJsonFilesExample/example.html">ReusingCompiledJsonFilesExample/Example.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MutatingJsonFiles/SampleFiles/ReusingCompiledJsonFilesExample/result.html">ReusingCompiledJsonFilesExample/Result.json</a></li>
 </ul>
 </li>
 </ul>
@@ -437,6 +441,16 @@
 <li class="toctree-l1"><a class="reference internal" href="QueryingJsonFiles/index.html">Querying JSON Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/index.html">Result as C# Object</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/NullableValueSupport/index.html">Nullable Value Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ConversionSettings/index.html">Conversion Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/MainExample/example.html">MainExample/Example.json</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ResultAsJsonStructure/index.html">Result as JSON Structure</a><ul>

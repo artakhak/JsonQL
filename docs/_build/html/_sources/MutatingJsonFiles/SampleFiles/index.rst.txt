@@ -12,7 +12,9 @@ The following files are used in examples in this section.
 
    countries.rst
    companies.rst
-   Example1/parameters.rst
-   Example1/filtered-companies.rst
-   Example1/example.rst
-   Example1/result.rst
+   parameters.rst
+   filtered-companies.rst
+   MainExample/example.rst
+   MainExample/result.rst
+   ReusingCompiledJsonFilesExample/example.rst
+   ReusingCompiledJsonFilesExample/result.rst

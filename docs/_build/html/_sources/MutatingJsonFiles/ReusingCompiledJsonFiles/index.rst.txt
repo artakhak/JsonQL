@@ -14,7 +14,7 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
     string[] sharedExamplesFolderPath = new string[] { "DocFiles", "MutatingJsonFiles", "Examples"};
 
     var parametersJsonTextData = new JsonTextData("Parameters",
-                this.LoadExampleJsonFile("Parameters.json"));
+        LoadJsonFileHelpers.LoadJsonFile("Parameters.json", sharedExamplesFolderPath));
 
     // countriesJsonTextData uses parametersJsonTextData for parameter parentJsonTextData
     var countriesJsonTextData = new JsonTextData("Countries",
@@ -24,7 +24,7 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
         LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
 
     var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
-        this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData);      
+        LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json",  sharedExamplesFolderPath), companiesJsonTextData);
 
     // Create an instance of JsonQL.Compilation.JsonCompiler here.
     // This is normally done once on application start.
@@ -32,7 +32,6 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
 
     var result = jsonCompiler.Compile(new JsonTextData("Example",
         this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));
-
 
 Now consider scenario when we want to reuse all or some of compiled parent JSON files to parse some other JSON file.
 We could use the same method as above, however doing this would result in parent JSON files being compiled again.
@@ -79,13 +78,19 @@ Here is a code snippet demonstrating this approach:
     var jsonThatDependsOnCompaniesResult = jsonCompiler.Compile(jsonThatDependsOnCompanies, "Json1", compiledParents);
     // Do something with jsonThatDependsOnCompaniesResult here.
 
-    compiledParents = new List<ICompiledJsonData>
-    {
-        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Parameters"),
-        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Countries"),
-        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Companies"),
+    // NOTE: The list of parents compiledParents passed to _jsonCompiler.Compile() is organized in such a way
+    // that child JSON files appear earlier, and parent JSON files appear later.
+    // In this example "Example.json" will be treated as a child of "FilteredCompanies", "FilteredCompanies" will be treated as a child of
+    // "Companies" and so forth. 
+    // This relationship will ensure that JSON objects referenced in JsonQL expressions in "Example.json" will
+    // be looked up first in "Example.json", then in "FilteredCompanies", and so forth.
+    compiledParents =
+    [
         cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "FilteredCompanies"),
-    };
+        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Companies"),
+        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Countries"),
+        cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Parameters")
+    ];
 
     // Compile jsonThatDependsOnCompanies JSON using all four compiled JSON files as parents (in compiledParents)
     var exampleJsonResult = jsonCompiler.Compile(this.LoadExampleJsonFile("Example.json"), "Example", compiledParents);

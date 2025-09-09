@@ -11,7 +11,7 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
         
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>..\Examples\Example1\Example.cs.snippet</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>..\Examples\MainExample\Example.cs.snippet</IncludedFilePlaceHolder>
 
 Now consider scenario when we want to reuse all or some of compiled parent JSON files to parse some other JSON file.
 We could use the same method as above, however doing this would result in parent JSON files being compiled again.
@@ -22,7 +22,7 @@ Here is a code snippet demonstrating this approach:
 
 .. sourcecode:: csharp
 
-    <IncludedFilePlaceHolder>..\Examples\Example2\Example.cs.snippet</IncludedFilePlaceHolder>
+    <IncludedFilePlaceHolder>..\Examples\ReusingCompiledJsonFilesExample\Example.cs.snippet</IncludedFilePlaceHolder>
 
 - In this example we do the following:
     - Compile parent JSON files and store the result in **cachedCompilationResult**

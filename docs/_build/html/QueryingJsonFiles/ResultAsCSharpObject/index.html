@@ -47,6 +47,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Querying JSON Files</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Result as C# Object</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NullableValueSupport/index.html">Nullable Value Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionSettings/index.html">Conversion Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ResultAsJsonStructure/index.html">Result as JSON Structure</a></li>
@@ -94,11 +97,41 @@
   <section id="result-as-c-object">
 <h1>Result as C# Object<a class="headerlink" href="#result-as-c-object" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
+<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter.</p></li>
+<li><p>The result stores the query result converted to type ‘T’ as well as data about errors encountered during execution of the query.</p></li>
+<li><p>The type parameter ‘T’ specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.</p></li>
+<li><p>The type parameter ‘T’ specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
+<li><p>Nullable syntax ‘?’ can be specified for return type (including collection item types, if return type is a collection).</p></li>
+<li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
+<li><p>If many JSON files are specified the following rules and techniques are used:
+- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>For more examples look at examples at these links:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples">Successful query examples in JsonQL.Demos project</a></p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/FailureExamples/ResultAsObject">Failed query examples in JsonQL.Demos project</a></p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/QueryManager/ResultAsObject">Examples in JsonQL.Tests project</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NullableValueSupport/index.html">Nullable Value Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConversionSettings/index.html">Conversion Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/MainExample/example.html">MainExample/Example.json</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
