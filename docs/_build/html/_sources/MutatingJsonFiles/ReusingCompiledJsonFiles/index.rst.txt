@@ -50,45 +50,33 @@ Here is a code snippet demonstrating this approach:
 
     // countriesJsonTextData uses parametersJsonTextData for parameter parentJsonTextData
     var countriesJsonTextData = new JsonTextData("Countries",
-        LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
+                LoadJsonFileHelpers.LoadJsonFile("Countries.json", _sharedExamplesFolderPath), parametersJsonTextData);
 
     var companiesJsonTextData = new JsonTextData("Companies",
-        LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
-
-    var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
-        this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData);      
+                LoadJsonFileHelpers.LoadJsonFile("Companies.json", _sharedExamplesFolderPath), countriesJsonTextData);
 
     // Create an instance of JsonQL.Compilation.JsonCompiler here.
     // This is normally done once on application start.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
-    var result = jsonCompiler.Compile(new JsonTextData("Example",
-        this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));
-
-    var parametersJsonTextData = new JsonTextData("Parameters", this.LoadExampleJsonFile("Parameters.json"));
-
-    var countriesJsonTextData = new JsonTextData("Countries",
-                LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
-
-    var companiesJsonTextData = new JsonTextData("Companies",
-        LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
-
-    var cachedCompilationResult = _jsonCompiler.Compile(new JsonTextData("FilteredCompanies",
-        this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData));
+    var cachedCompilationResult = jsonCompiler.Compile(new JsonTextData("FilteredCompanies",
+                this.LoadExampleJsonFile("FilteredCompanies.json"), companiesJsonTextData));
 
     if (cachedCompilationResult.CompilationErrors.Count > 0)
-        throw new ApplicationException("Compilation failed");
-
+                throw new ApplicationException("Compilation failed");
+            
     var compiledParents = new List<ICompiledJsonData>
     {
         cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Companies")
     };
 
     var jsonThatDependsOnCompanies = 
-        string.Concat("{\"AllCompanyNames:\": \"$value(Companies.Select(x => x.CompanyData.Name))\"," +
-        "\"AllCompanyEmployees:\": \"$value(Companies.Where(x => !(x.CompanyData.Name starts with 'Strange')).Select(x => x.Employees))\"}");
+           string.Concat(
+           "{\"AllCompanyNames:\": \"$value(Companies.Select(x => x.CompanyData.Name))\"," +
+           "\"AllCompanyEmployees:\": \"$value(Companies.Where(x => !(x.CompanyData.Name starts with 'Strange')).Select(x => x.Employees))\"}");
 
-    var jsonThatDependsOnCompaniesResult = _jsonCompiler.Compile(jsonThatDependsOnCompanies, "Json1", compiledParents);
+    // Compile jsonThatDependsOnCompanies JSON using only compiled "Companies.json" as parents (in compiledParents)
+    var jsonThatDependsOnCompaniesResult = jsonCompiler.Compile(jsonThatDependsOnCompanies, "Json1", compiledParents);
     // Do something with jsonThatDependsOnCompaniesResult here.
 
     compiledParents = new List<ICompiledJsonData>
@@ -99,7 +87,9 @@ Here is a code snippet demonstrating this approach:
         cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "FilteredCompanies"),
     };
 
-    var exampleJsonResult = _jsonCompiler.Compile(this.LoadExampleJsonFile("Example.json"), "Example", compiledParents);
+    // Compile jsonThatDependsOnCompanies JSON using all four compiled JSON files as parents (in compiledParents)
+    var exampleJsonResult = jsonCompiler.Compile(this.LoadExampleJsonFile("Example.json"), "Example", compiledParents);
+    // Do something with exampleJsonResult here.
 
 
 - In this example we do the following:
