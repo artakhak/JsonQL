@@ -7,10 +7,6 @@ public class Example : JsonCompilerExampleManagerForSuccessAbstr
 {
     private readonly IJsonCompiler _jsonCompiler;
 
-    private static readonly string[] _sharedExamplesFolderPath = new string[] {
-        "DocFiles", "MutatingJsonFiles", "Examples"
-    };
-
     public Example(IJsonCompiler jsonCompiler)
     {
         _jsonCompiler = jsonCompiler;
@@ -19,17 +15,22 @@ public class Example : JsonCompilerExampleManagerForSuccessAbstr
     /// <inheritdoc />
     protected override ICompilationResult Compile()
     {
+        var sharedExamplesFolderPath = new []
+        {
+            "DocFiles", "MutatingJsonFiles", "Examples"
+        };
+
         var parametersJsonTextData = new JsonTextData("Parameters",
-            LoadJsonFileHelpers.LoadJsonFile("Parameters.json", _sharedExamplesFolderPath));
+            LoadJsonFileHelpers.LoadJsonFile("Parameters.json", sharedExamplesFolderPath));
 
         var countriesJsonTextData = new JsonTextData("Countries",
-            LoadJsonFileHelpers.LoadJsonFile("Countries.json", _sharedExamplesFolderPath), parametersJsonTextData);
+            LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
 
         var companiesJsonTextData = new JsonTextData("Companies",
-            LoadJsonFileHelpers.LoadJsonFile("Companies.json", _sharedExamplesFolderPath), countriesJsonTextData);
+            LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
 
         var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
-            LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json",  _sharedExamplesFolderPath), companiesJsonTextData);
+            LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json",  sharedExamplesFolderPath), companiesJsonTextData);
       
         var result = _jsonCompiler.Compile(new JsonTextData("Example",
             this.LoadExampleJsonFile("Example.json"), filteredCompaniesJsonTextData));

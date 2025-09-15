@@ -14,5 +14,5 @@ The following files are used in examples in this section.
    companies.rst
    parameters.rst
    filtered-companies.rst
-   MainExample/example.rst
-   MainExample/result.rst
+   QueryReferenceTypeValue/result.rst
+   QueryValueTypeValue/result.rst

@@ -39,6 +39,7 @@ As an example lets consider the following JSON files. These files will be evalua
     }
 
 
+
 - :doc:`./SampleFiles/MainExample/example` - a JSON file shown below with JsonQL expressions that reference JSON objects in this file as well as in files listed above. The expressions in this file can also reference JSON objects from files above that are generated using JSON expressions (for example companies in **FilteredCompanies** in :doc:`./SampleFiles/filtered-companies`)
 
 .. sourcecode:: json
@@ -62,6 +63,7 @@ As an example lets consider the following JSON files. These files will be evalua
 The code snippet below shows how to load the the five files above in such a way that JsonQL loads :doc:`./SampleFiles/countries` first, then loads :doc:`./SampleFiles/companies` as a child of :doc:`./SampleFiles/countries` (i.e., can use JsonQL expressions that reference JSON objects in evaluated file :doc:`./SampleFiles/countries`), then
 loads :doc:`./SampleFiles/parameters`, :doc:`./SampleFiles/filtered-companies` and finally loads :doc:`./SampleFiles/MainExample/example` using similar parent child relationship rules.
 
+
 .. sourcecode:: csharp
 
     string[] sharedExamplesFolderPath = new string[] { "DocFiles", "MutatingJsonFiles", "Examples"};
@@ -81,6 +83,10 @@ loads :doc:`./SampleFiles/parameters`, :doc:`./SampleFiles/filtered-companies` a
 
     // Create an instance of JsonQL.Compilation.JsonCompiler here.
     // This is normally done once on application start.
+
+    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
+    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
     var result = jsonCompiler.Compile(new JsonTextData("Example",

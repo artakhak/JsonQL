@@ -15,7 +15,8 @@
       "Employees": [
         {
           "Id": 100000001,
-          "Name": "John Smith",
+          "FirstName": "John",
+          "LastName": "Smith",
           "Address": {
             "Street": "456 Oak Avenue",
             "City": "Chicago",
@@ -23,11 +24,16 @@
             "ZipCode": "60601"
           },
           "Salary": 99500,
-          "Age": 45          
+          "Age": 45,
+          "Phones": [
+            "312-555-0134",
+            "312-555-0178"
+          ]
         },
         {
           "Id": 100000002,
-          "Name": "Alice Johnson",
+          "FirstName": "Alice",
+          "LastName": "Johnson",
           "Address": {
             "Street": "123 Maple Street",
             "City": "New York",
@@ -35,11 +41,15 @@
             "ZipCode": "10001"
           },
           "Salary": 105000,
-          "Age": 38
+          "Age": 38,
+          "Phones": [
+            "212-555-0199"
+          ]
         },
         {
           "Id": 100000003,
-          "Name": "Michael Brown",
+          "FirstName": "Michael",
+          "LastName": "Brown",
           "Address": {
             "Street": "789 Pine Lane",
             "City": "Los Angeles",
@@ -47,11 +57,13 @@
             "ZipCode": "90001"
           },
           "Salary": 89000,
-          "Age": 50
+          "Age": 50,
+          "Phones": []
         },
         {
           "Id": 100000004,
-          "Name": "Emily Davis",
+          "FirstName": "Emily",
+          "LastName": "Davis",
           "Address": {
             "Street": "321 Elm Drive",
             "City": "Houston",
@@ -59,7 +71,11 @@
             "ZipCode": "77001"
           },
           "Salary": 92000,
-          "Age": 42
+          "Age": 42,
+          "Phones": [
+            "713-555-0147",
+            "713-555-0112"
+          ]
         }
       ]
     },
@@ -78,7 +94,8 @@
       "Employees": [
         {
           "Id": 100000005,
-          "Name": "Christopher Garcia",
+          "FirstName": "Christopher",
+          "LastName": "Garcia",
           "Address": {
             "Street": "654 Cedar Road",
             "City": "Phoenix",
@@ -87,18 +104,28 @@
           },
           "Salary": 111000,
           "Age": 29,
-          "Logins": [ "cgarcia@sherwood.com", "cgarcia@gmail.com" ]
+          "Logins": [
+            "cgarcia@sherwood.com",
+            "cgarcia@gmail.com"
+          ],
+          "Phones": [
+            "602-555-0166",
+            "602-555-0188"
+          ]
         },
         {
           "Id": 100000006,
-          "Name": "Sarah Wilson",
+          "FirstName": "Sarah",
+          "LastName": "Wilson",
           "Address": null,
           "Salary": 78000,
-          "Age": 35
+          "Age": 35,
+          "Phones": []
         },
         {
           "Id": 100000007,
-          "Name": "David Martinez",
+          "FirstName": "David",
+          "LastName": "Martinez",
           "Address": {
             "Street": "147 Birch Street",
             "City": "San Antonio",
@@ -107,7 +134,13 @@
           },
           "Salary": 95000,
           "Age": 46,
-          "Logins": [ "dmartinez@sherwood.com", "dmartinez@gmail.com" ]
+          "Logins": [
+            "dmartinez@sherwood.com",
+            "dmartinez@gmail.com"
+          ],
+          "Phones": [
+            "210-555-0123"
+          ]
         }
       ]
     },
@@ -126,7 +159,8 @@
       "Employees": [
         {
           "Id": 100000008,
-          "Name": "Laura Lee",
+          "FirstName": "Laura",
+          "LastName": "Lee",
           "Address": {
             "Street": "258 Willow Lane",
             "City": "San Diego",
@@ -134,11 +168,16 @@
             "ZipCode": "92101"
           },
           "Salary": 105500,
-          "Age": 32
+          "Age": 32,
+          "Phones": [
+            "619-555-0155",
+            "619-555-0122"
+          ]
         },
         {
           "Id": 100000009,
-          "Name": "Andrew Harris",
+          "FirstName": "Andrew",
+          "LastName": "Harris",
           "Address": {
             "Street": "369 Spruce Drive",
             "City": "Dallas",
@@ -146,11 +185,15 @@
             "ZipCode": "75201"
           },
           "Salary": 88000,
-          "Age": 41
+          "Age": 41,
+          "Phones": [
+            "214-555-0180"
+          ]
         },
         {
           "Id": 100000010,
-          "Name": "Jessica Thompson",
+          "FirstName": "Jessica",
+          "LastName": "Thompson",
           "Address": {
             "Street": "159 Cherry Lane",
             "City": "Austin",
@@ -158,11 +201,13 @@
             "ZipCode": "73301"
           },
           "Salary": 98700,
-          "Age": 37
+          "Age": 37,
+          "Phones": []
         },
         {
           "Id": 250150245,
-          "Name": "Jane Doe",
+          "FirstName": "Jane",
+          "LastName": "Doe",
           "Address": {
             "Street": "Main St",
             "City": "San Jose",
@@ -170,11 +215,16 @@
             "ZipCode": "95101"
           },
           "Salary": 144186,
-          "Age": 63
+          "Age": 63,
+          "Phones": [
+            "408-555-0133",
+            "408-555-0190"
+          ]
         },
         {
           "Id": 783328759,
-          "Name": "Robert Brown",
+          "FirstName": "Robert",
+          "LastName": "Brown",
           "Address": {
             "Street": "Pine St",
             "City": "Los Angeles",
@@ -182,7 +232,10 @@
             "ZipCode": "90001"
           },
           "Salary": 122395,
-          "Age": 58
+          "Age": 58,
+          "Phones": [
+            "323-555-0177"
+          ]
         }
       ]
     }

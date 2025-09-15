@@ -85,24 +85,24 @@
 <h1>JsonQL<a class="headerlink" href="#jsonql" title="Link to this heading"></a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#features" id="id6">Features</a></p></li>
-<li><p><a class="reference internal" href="#using-jsonql-expressions-to-mutate-json-files" id="id7">Using JsonQL Expressions to Mutate JSON Files</a></p>
+<li><p><a class="reference internal" href="#features" id="id7">Features</a></p></li>
+<li><p><a class="reference internal" href="#using-jsonql-expressions-to-mutate-json-files" id="id8">Using JsonQL Expressions to Mutate JSON Files</a></p>
 <ul>
-<li><p><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json-files" id="id8">Example: JsonQL expressions to mutate JSON files</a></p></li>
+<li><p><a class="reference internal" href="#example-jsonql-expressions-to-mutate-json-files" id="id9">Example: JsonQL expressions to mutate JSON files</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" id="id9">JsonQL queries of JSON Files with Result Converted to C# objects</a></p>
+<li><p><a class="reference internal" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" id="id10">JsonQL queries of JSON Files with Result Converted to C# objects</a></p>
 <ul>
-<li><p><a class="reference internal" href="#example-query-and-convert-json-to-c-objects" id="id10">Example: Query and convert JSON to C# objects</a></p></li>
-<li><p><a class="reference internal" href="#example-query-and-convert-json-to-collection-of-double-values" id="id11">Example: Query and convert JSON to collection of double values</a></p></li>
+<li><p><a class="reference internal" href="#example-query-and-convert-json-to-c-objects" id="id11">Example: Query and convert JSON to C# objects</a></p></li>
+<li><p><a class="reference internal" href="#example-query-and-convert-json-to-collection-of-double-values" id="id12">Example: Query and convert JSON to collection of double values</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" id="id12">JsonQL queries of JSON Files with Result Converted to JSON structure</a></p>
+<li><p><a class="reference internal" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" id="id13">JsonQL queries of JSON Files with Result Converted to JSON structure</a></p>
 <ul>
-<li><p><a class="reference internal" href="#example-query-json-files-with-result-as-json-structure" id="id13">Example: Query JSON files with result as JSON structure</a></p></li>
+<li><p><a class="reference internal" href="#example-query-json-files-with-result-as-json-structure" id="id14">Example: Query JSON files with result as JSON structure</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#indices-and-tables" id="id14">Indices and tables</a></p></li>
+<li><p><a class="reference internal" href="#indices-and-tables" id="id15">Indices and tables</a></p></li>
 </ul>
 </nav>
 <ul>
@@ -118,7 +118,7 @@
 <li><p>Errors are reported in JsonQL error classes that have error position data as well as additional data.</p></li>
 </ul>
 <section id="features">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Rich set of built-in functions for JSON manipulation</p></li>
 <li><p>Support for aggregate functions (COUNT, AVG, MIN, MAX, SUM)</p></li>
@@ -144,7 +144,7 @@
 </div>
 </section>
 <section id="using-jsonql-expressions-to-mutate-json-files">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Using JsonQL Expressions to Mutate JSON Files</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Using JsonQL Expressions to Mutate JSON Files</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>.</p></li>
 <li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a>: one per loaded file.</p></li>
@@ -155,7 +155,7 @@
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-jsonql-expressions-to-mutate-json-files">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Example: JsonQL expressions to mutate JSON files</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Example: JsonQL expressions to mutate JSON files</a><a class="headerlink" href="#example-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h3>
 <p>An overview example of mutating multiple JSON files is <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/Overview">here</a>.</p>
 <p>In this example the following JSON files are processed with JSON files appearing earlier being processed as parents JSON files appearing later:</p>
 <blockquote>
@@ -237,16 +237,17 @@
 <span class="w">    </span><span class="s">&quot;AdditionalTestData&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;AdditionalTestData.json&quot;</span><span class="p">));</span>
 
-<span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">additionalTestData</span><span class="p">);</span>
-
 <span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
 
-<span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">//This is normally done once on application start.</span>
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">additionalTestData</span><span class="p">);</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Overview&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Overview.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
@@ -263,13 +264,22 @@
 </section>
 </section>
 <section id="jsonql-queries-of-json-files-with-result-converted-to-c-objects">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to C# objects</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to C# objects</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
-<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter.</p></li>
-<li><p>The result stores the query result converted to type ‘T’ as well as data about errors encountered during execution of the query.</p></li>
-<li><p>The type parameter ‘T’ specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.</p></li>
-<li><p>The type parameter ‘T’ specified in query is for a collection type, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
+<li><p>The overloaded methods <strong>QueryObject</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and similarly named overloaded extension methods with generic parameter <strong>QueryObject&lt;T&gt;</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs">JsonQL.Query.QueryManagerExtensions</a> can be used to to query one or more JSON files using a JsonQL query expressions.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The extension methods with generic parameter <strong>T</strong> are easier to use. The methods in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> might be easier to use with reflection.</p></li>
+<li><p>Moving forward the extension methods will be discussed.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter where <strong>T</strong> is the generic type argument, which implement used in call to <strong>IJsonQL.Query.QueryManager.QueryObject&lt;T&gt;</strong> method.</p></li>
+<li><p>The result stores the query result converted to type <strong>T</strong> as well as data about errors encountered during execution of the query.</p></li>
+<li><p>The type parameter <strong>T</strong> specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.</p></li>
+<li><p>If collection type is used for type parameter <strong>T</strong> in in call to <strong>IJsonQL.Query.QueryManager.QueryObject&lt;T&gt;</strong> method, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
 <li><p>Nullable syntax ‘?’ can be specified for return type (including collection item types, if return type is a collection).</p></li>
 <li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
 <li><p>If many JSON files are specified the following rules and techniques are used:
@@ -277,9 +287,10 @@
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-query-and-convert-json-to-c-objects">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Example: Query and convert JSON to C# objects</a><a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading"></a></h3>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
-<span class="c1">// This is normally setup in DI normally using a singletone binding done on application start.</span>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Example: Query and convert JSON to C# objects</a><a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading"></a></h3>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
 <span class="c1">// NOTE: Data.json has a root JSON with a collection of employees.</span>
@@ -339,7 +350,7 @@
 </ul>
 </section>
 <section id="example-query-and-convert-json-to-collection-of-double-values">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Example: Query and convert JSON to collection of double values</a><a class="headerlink" href="#example-query-and-convert-json-to-collection-of-double-values" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Example: Query and convert JSON to collection of double values</a><a class="headerlink" href="#example-query-and-convert-json-to-collection-of-double-values" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Files evaluated in JsonQL query below are listed here:</dt><dd><ul>
@@ -349,8 +360,9 @@
 </dl>
 </li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
-<span class="c1">// This is normally done once on application start.</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="w"> </span><span class="o">=</span>
@@ -369,7 +381,7 @@
 </section>
 </section>
 <section id="jsonql-queries-of-json-files-with-result-converted-to-json-structure">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to JSON structure</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to JSON structure</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
 <li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
@@ -380,7 +392,7 @@
 - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <section id="example-query-json-files-with-result-as-json-structure">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Example: Query JSON files with result as JSON structure</a><a class="headerlink" href="#example-query-json-files-with-result-as-json-structure" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Example: Query JSON files with result as JSON structure</a><a class="headerlink" href="#example-query-json-files-with-result-as-json-structure" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Files evaluated in JsonQL query below are listed here:</dt><dd><ul>
@@ -390,8 +402,9 @@
 </dl>
 </li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an instance of JsonQL.Query.QueryManager here.</span>
-<span class="c1">// This is normally setup in DI normally using a singletone binding done on application start.</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Companies.Where(x =&gt; Max(x.Employees, value-&gt; y =&gt; y.Salary) &lt; 106000)&quot;</span><span class="p">;</span>
@@ -440,7 +453,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="QueryingJsonFiles/index.html">Querying JSON Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/index.html">Result as C# Object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/Examples/index.html">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/Examples/index.html#example-of-querying-for-a-c-reference-type-object">Example of querying for a C# reference type object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/Examples/index.html#example-of-querying-for-value-type-value">Example of querying for value type value</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/TypeBinding/index.html">Type Binding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/NullableValueSupport/index.html">Nullable Value Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ConversionSettings/index.html">Conversion Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/index.html">Sample Files</a><ul>
@@ -448,7 +467,8 @@
 <li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/companies.html">Companies.json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/parameters.html">Parameters.json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
-<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/MainExample/example.html">MainExample/Example.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/QueryReferenceTypeValue/result.html">QueryReferenceTypeValue/Result.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/SampleFiles/QueryValueTypeValue/result.html">QueryValueTypeValue/Result.json</a></li>
 </ul>
 </li>
 </ul>
@@ -596,7 +616,7 @@
 </section>
 </section>
 <section id="indices-and-tables">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>

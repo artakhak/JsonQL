@@ -18,6 +18,7 @@
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example2\Result.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Overview.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Result.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
@@ -82,8 +83,10 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Companies.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Countries.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\FilteredCompanies.json" />
-		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\MainExample\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryReferenceTypeValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Parameters.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\CustomInterfaceImplementation\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />

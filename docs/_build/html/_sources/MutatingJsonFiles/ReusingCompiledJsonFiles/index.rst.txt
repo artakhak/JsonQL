@@ -28,6 +28,10 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
 
     // Create an instance of JsonQL.Compilation.JsonCompiler here.
     // This is normally done once on application start.
+
+    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
+    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
     var result = jsonCompiler.Compile(new JsonTextData("Example",
@@ -54,8 +58,9 @@ Here is a code snippet demonstrating this approach:
     var companiesJsonTextData = new JsonTextData("Companies",
                 LoadJsonFileHelpers.LoadJsonFile("Companies.json", _sharedExamplesFolderPath), countriesJsonTextData);
 
-    // Create an instance of JsonQL.Compilation.JsonCompiler here.
-    // This is normally done once on application start.
+    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
+    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
     var cachedCompilationResult = jsonCompiler.Compile(new JsonTextData("FilteredCompanies",
