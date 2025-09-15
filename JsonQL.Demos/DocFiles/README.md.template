@@ -197,19 +197,33 @@ In this example the following JSON files are processed with JSON files appearing
 
 ## JsonQL queries of JSON Files with Result Converted to C# objects
 
-- The overloaded methods **QueryObject** in interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>) and similarly named overloaded extension methods with generic parameter **QueryObject<T>** in [JsonQL.Query.QueryManagerExtensions](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs) can be used to to query one or more JSON files using a JsonQL query expressions.
+- The overloaded methods **QueryObject** in interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs) and similarly named overloaded extension methods with generic parameter **QueryObject<TQueryObject>** in [JsonQL.Query.QueryManagerExtensions](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs) can be used to to query one or more JSON files using a JsonQL query expressions.
 
-  **NOTE**: The extension methods with generic parameter **T** are easier to use. The methods in [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs) might be easier to use with reflection. Moving forward the extension methods will be discussed.
+**NOTE**: The extension methods with generic parameter **TQueryObject** are easier to use. The methods in [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs) might be easier to use with reflection. Moving forward the extension methods will be discussed.
 
-- The result is converted to [JsonQL.Query.IObjectQueryResult<T>](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs) a C# interface of class specified in generic parameter where **T** is the generic type argument, which implement used in call to **IJsonQL.Query.QueryManager.QueryObject<T>** method.
-- The result stores the query result converted to type **T** as well as data about errors encountered during execution of the query.
-- The type parameter **T** specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.
-- If collection type is used for type parameter **T** in in call to **IJsonQL.Query.QueryManager.QueryObject<T>** method, the collection item parameters can be interfaces or classes as well  (value of reference type). 
-- Nullable syntax '?' can be specified for return type (including collection item types, if return type is a collection).
 - One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
 - If many JSON files are specified the following rules and techniques are used:
   - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
   - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
+       
+- The result of a query is stored in an instance of [JsonQL.Query.IObjectQueryResult<TQueryObject>](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs) a C# interface, where  **TQueryObject** is the value of generic type argument passed to one of overloaded methods **QueryObject<TQueryObject>**.
+- Interface [JsonQL.Query.IObjectQueryResult<TQueryObject>](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs) has a property **ErrorsAndWarnings** of type [JsonQL.Query.IQueryResultErrorsAndWarnings](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs) that stores data about query result, if any.
+    
+    **NOTE:** The errors might contain both errors in queried files, if queried files use JsonQL expressions (or are not well formed), as well as errors in query itself, or errors encountered when converting result JSON to a C# object.
+
+- Interface [JsonQL.Query.IObjectQueryResult<TQueryObject>](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs) has a property **Value** of generic type **TQueryObject** which contains de-serialized query result.
+- The type parameter **TQueryObject** specified in overloaded query methods **TQueryObject<TQueryObject>** in [JsonQL.Query.QueryManagerExtensions](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs) specifies the type to which the query result should be converted. 
+    
+    - **TQueryObject** can be any class (value or reference type) including collection types.
+    - Both interface and implementation class can be used for **TQueryObject**.
+    - Nullable syntax **?** can be specified with type argument value for **TQueryObject**: this includes also using nullable syntax for collection item types, if return type is a collection.
+    - If collection type is used for type parameter **TQueryObject** in a call to **IJsonQL.Query.QueryManager.QueryObject<TQueryObject>** method, the collection item parameters can be interfaces or classes as well (both value or reference type). 
+    
+**NOTE:**
+    For more examples look at examples at these links:
+        - [Successful query examples in JsonQL.Demos project](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples)
+        - [Failed query examples in JsonQL.Demos project](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/FailureExamples/ResultAsObject)
+        - [Examples in JsonQL.Tests project](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/QueryManager/ResultAsObject)
 
 ### Example: Query and convert JSON to C# objects
 
@@ -233,7 +247,7 @@ In this example the following JSON files are processed with JSON files appearing
 - Result of query above can be found here: [Result.json](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles/Result.json)
 - Example classes and JSON files for this example can be found [here](https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/SalariesOfAllEmployeesInAllCompaniesAsReadOnlyListOfDoubles)
 
-## JsonQL queries of JSON Files with Result Converted to JSON structure
+## JsonQL Queries of JSON Files with Result Converted to JSON structure
 
 - The interface [JsonQL.Query.IQueryManager](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs) and its extensions are used to query one or more JSON files using a JsonQL query expression.
 - The result is converted to [JsonQL.Query.IJsonValueQueryResult](https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs).

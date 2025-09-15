@@ -19,10 +19,10 @@ lets consider example with the following four files
 - :doc:`../SampleFiles/filtered-companies` - a JSON file shown below with JsonQL expressions that filter companies in :doc:`../SampleFiles/companies` to include only some companies using data in :doc:`../SampleFiles/parameters`.
 
 Example of querying for a C# reference type object
---------------------------------------------------
+==================================================
 
 - The code snippet below shows how to query for list of employees of type **System.Collections.Generic.IReadOnlyList<IEmployee>** in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
-- :doc:`./SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
+- :doc:`../SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
 - Parent/child relationship of queried files set up in **filteredCompaniesJsonTextData** in code snippet is set up as follows:
     
     - :doc:`../SampleFiles/filtered-companies` => :doc:`../SampleFiles/companies` => :doc:`../SampleFiles/countries` => :doc:`../SampleFiles/parameters`.
@@ -81,14 +81,25 @@ Example of querying for a C# reference type object
 
    
 Example of querying for value type value
-----------------------------------------
+========================================
 
-- The code snippet below shows how to query for average salary as  **System.Double** value in JSON array **Companies** in :doc:`./SampleFiles/companies` JSON file.
+- The code snippet below shows how to query for average salary as  **System.Double** value in JSON array **Companies** in :doc:`../SampleFiles/companies` JSON file.
   
 .. sourcecode:: csharp
 
-    
+    string[] sharedExamplesFolderPath = ["DocFiles", "QueryingJsonFiles", "JsonFiles"];
+
+    // Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+    // The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+    // and it is normally configured as a singleton.
+
+    var query =
+          "Average(Companies.Select(c => c.Employees.Where(e => e.Name != 'John Smith').Select(e => e.Salary)))";
+
+    var averageSalaryResult =
+        _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query, new JsonTextData("Companies",
+            LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath)));
+
+    LogHelper.Context.Log.InfoFormat("Average salary is {0}", averageSalaryResult.Value);
 
 - The serialized value of **employeesResult** can be found here :doc:`../SampleFiles/QueryValueTypeValue/result`
-
-

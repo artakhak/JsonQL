@@ -145,6 +145,10 @@
 </section>
 <section id="using-jsonql-expressions-to-mutate-json-files">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Using JsonQL Expressions to Mutate JSON Files</a><a class="headerlink" href="#using-jsonql-expressions-to-mutate-json-files" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This section is a short summary with couple of examples. For more details reference this section:</strong> <a class="reference internal" href="MutatingJsonFiles/index.html"><span class="doc">Mutating JSON Files</span></a></p>
+</div>
 <ul class="simple">
 <li><p>JsonQL expressions are used in one or many JSON files. JsonQL evaluates JsonQL expressions and loads the parsed JSON files with expressions replaced with calculated JSON objects into an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/f4341606f1a14f355c13eb35c717bba55e8c76e3/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>.</p></li>
 <li><p>The property <strong>CompiledJsonFiles</strong> contains collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompiledJsonData.cs">JsonQL.Compilation.ICompiledJsonData</a>: one per loaded file.</p></li>
@@ -265,27 +269,20 @@
 </section>
 <section id="jsonql-queries-of-json-files-with-result-converted-to-c-objects">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to C# objects</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-c-objects" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This section is a short summary with couple of examples. For more details reference this section:</strong> <a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/index.html"><span class="doc">Result as C# Object</span></a></p>
+</div>
 <ul class="simple">
 <li><p>The overloaded methods <strong>QueryObject</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and similarly named overloaded extension methods with generic parameter <strong>QueryObject&lt;T&gt;</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs">JsonQL.Query.QueryManagerExtensions</a> can be used to to query one or more JSON files using a JsonQL query expressions.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>The extension methods with generic parameter <strong>T</strong> are easier to use. The methods in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> might be easier to use with reflection.</p></li>
+<li><p>The extension methods with generic parameter <strong>TQueryObject</strong> are easier to use. The methods in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> might be easier to use with reflection.</p></li>
 <li><p>Moving forward the extension methods will be discussed.</p></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;T&gt;</a> a C# interface of class specified in generic parameter where <strong>T</strong> is the generic type argument, which implement used in call to <strong>IJsonQL.Query.QueryManager.QueryObject&lt;T&gt;</strong> method.</p></li>
-<li><p>The result stores the query result converted to type <strong>T</strong> as well as data about errors encountered during execution of the query.</p></li>
-<li><p>The type parameter <strong>T</strong> specified in query method specifies the return object type from query. It can be any class (value of reference type) including collection types.</p></li>
-<li><p>If collection type is used for type parameter <strong>T</strong> in in call to <strong>IJsonQL.Query.QueryManager.QueryObject&lt;T&gt;</strong> method, the collection item parameters can be interfaces or classes as well  (value of reference type).</p></li>
-<li><p>Nullable syntax ‘?’ can be specified for return type (including collection item types, if return type is a collection).</p></li>
-<li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
-<li><p>If many JSON files are specified the following rules and techniques are used:
-- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
-</ul>
 <section id="example-query-and-convert-json-to-c-objects">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Example: Query and convert JSON to C# objects</a><a class="headerlink" href="#example-query-and-convert-json-to-c-objects" title="Link to this heading"></a></h3>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
@@ -382,6 +379,10 @@
 </section>
 <section id="jsonql-queries-of-json-files-with-result-converted-to-json-structure">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">JsonQL queries of JSON Files with Result Converted to JSON structure</a><a class="headerlink" href="#jsonql-queries-of-json-files-with-result-converted-to-json-structure" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This section is a short summary with couple of examples. For more details reference this section:</strong> <a class="reference internal" href="QueryingJsonFiles/ResultAsJsonStructure/index.html"><span class="doc">Result as JSON Structure</span></a></p>
+</div>
 <ul class="simple">
 <li><p>The interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> and its extensions are used to query one or more JSON files using a JsonQL query expression.</p></li>
 <li><p>The result is converted to <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
