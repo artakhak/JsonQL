@@ -99,10 +99,149 @@
              
   <section id="error-details">
 <h1>Error Details<a class="headerlink" href="#error-details" title="Link to this heading"></a></h1>
+<ul>
+<li><dl>
+<dt>Data about errors resulted from executing the the method <strong>JsonQL.Query.IQueryManager.QueryObject&lt;QueryObject&gt;(…)</strong>  is stored in property <strong>ErrorsAndWarnings</strong> in type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult[TQueryObject]</a>.</dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-<li><p>TODO: Add toctree here</p></li>
+<li><p>The property is actually in parent interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult</a></p></li>
 </ul>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>The property <strong>ErrorsAndWarnings</strong> is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs">JsonQL.Query.IQueryResultErrorsAndWarnings</a></p></li>
+<li><p>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs">JsonQL.Query.IQueryResultErrorsAndWarnings</a> has the following properties for error details:</p>
+<ul class="simple">
+<li><p><strong>CompilationErrors</strong>: stores collection of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> for errors occurred while evaluating queried JSON files and JsonQL expressions (both expressions in queried JSON files as well as JsonQL expressions in query itself). These errors happen before jsonQL attempts to convert resulted JSON value (e.g., simple JSON value, JSON object or JSON array) to a C# type instance.</p></li>
+<li><p><strong>ConversionErrors</strong>: stores a property of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionErrors.cs">JsonQL.JsonToObjectConversion.IConversionErrors</a> for errors occurred while converting query result to specified C# type instance.</p></li>
+<li><p><strong>ConversionWarnings</strong>: stores a property of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionErrors.cs">JsonQL.JsonToObjectConversion.IConversionErrors</a> for warnings occurred while converting query result to specified C# type instance.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Properties <strong>ConversionErrors</strong> and <strong>ConversionWarnings</strong> are of the same type. The only difference is that errors that do not result in query failure. Classification of some error types (error or warning) can be configured using settings (see <a class="reference internal" href="../ConversionSettings/index.html"><span class="doc">Conversion Settings</span></a> for more details).</p>
+</div>
+</li>
+</ul>
+<p>For example the following JSON file stores serialized instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs">JsonQL.Query.IQueryResultErrorsAndWarnings</a> for a failed query due to non-nullable property value missing in query result.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example stores number of details about an error that help identify the source of the error, but a summary error message is <strong>“Failed to retrieve and set the value of non-nullable property [Address] in type [JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.Employee].”</strong>.</p>
+</div>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ErrorsAndWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.ICompilationErrorItem[], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionError, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ErrorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NonNullablePropertyNotSet&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;JsonPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPath, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;JsonTextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Query_849E0817-3256-483D-8E97-01744EBC3F76&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonObjects.JsonPath.IJsonPathElement, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span>
+<span class="w">                  </span><span class="p">},</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query&quot;</span>
+<span class="w">                  </span><span class="p">},</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Indexes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="mi">1</span>
+<span class="w">                      </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;PathInReferencedJson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPath, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;JsonTextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Employees&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonObjects.JsonPath.IJsonPathElement, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span>
+<span class="w">                  </span><span class="p">},</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Employees&quot;</span>
+<span class="w">                  </span><span class="p">},</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Indexes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="mi">1</span>
+<span class="w">                      </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Failed to retrieve and set the value of non-nullable property [Address] in type [JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.Employee].&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ConvertedObjectPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConvertedObjectPath.ConvertedObjectPath, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;RootConvertedObjectPathElement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConvertedObjectPath.RootConvertedObjectPathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.IEmployee, JsonQL.Demos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e&quot;</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;Path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.ConvertedObjectPath.IConvertedObjectPathValueSelectorElement, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConvertedObjectPath.IndexConvertedObjectPathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.IEmployee, JsonQL.Demos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;</span>
+<span class="w">                  </span><span class="p">},</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConvertedObjectPath.PropertyNameConvertedObjectPathElement, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Address&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.IAddress, JsonQL.Demos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&quot;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more examples demonstrating errors look at examples in this folder: <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/FailureExamples/ResultAsObject">FailureExamples:</a></p>
+</div>
 </section>
 
 
