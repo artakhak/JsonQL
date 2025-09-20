@@ -89,15 +89,15 @@ Example of querying for value type value
 
     string[] sharedExamplesFolderPath = ["DocFiles", "QueryingJsonFiles", "JsonFiles"];
 
+    var query =
+          "Average(Companies.Select(c => c.Employees.Where(e => e.Name != 'John Smith').Select(e => e.Salary)))";
+    JsonQL.Query.IQueryManager queryManager = null!;
+
     // Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
     // The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
     // and it is normally configured as a singleton.
-
-    var query =
-          "Average(Companies.Select(c => c.Employees.Where(e => e.Name != 'John Smith').Select(e => e.Salary)))";
-
     var averageSalaryResult =
-        _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query, new JsonTextData("Companies",
+        queryManager.QueryObject<IReadOnlyList<IEmployee>>(query, new JsonTextData("Companies",
             LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath)));
 
     LogHelper.Context.Log.InfoFormat("Average salary is {0}", averageSalaryResult.Value);

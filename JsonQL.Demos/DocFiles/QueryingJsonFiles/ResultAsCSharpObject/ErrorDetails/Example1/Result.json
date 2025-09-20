@@ -1,0 +1,36 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.IQueryManagerExamples.FailureExamples.ResultAsObject.NonNullablePropertyValueMissing.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL",
+  "Value": null,
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+      "$values": [
+        {
+          "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
+          "JsonTextIdentifier": "Query_849E0817-3256-483D-8E97-01744EBC3F76",
+          "LineInfo": {
+            "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
+            "LineNumber": 2,
+            "LinePosition": 33
+          },
+          "ErrorMessage": "Closing brace ')' is missing."
+        }
+      ]
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

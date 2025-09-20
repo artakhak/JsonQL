@@ -141,8 +141,8 @@ In this example the following JSON files are processed with JSON files appearing
     var companiesJsonTextData = new JsonTextData("Companies",
         this.LoadExampleJsonFile("Companies.json"), countriesJsonTextData);
 
-    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
-    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.
+    // The value of JsonQL.Compilation.IJsonCompiler is normally created by Dependency Injection container 
     // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 
@@ -238,10 +238,10 @@ Example: Query and convert JSON to collection of double values
         
 .. sourcecode:: csharp
 
-    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
-    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+    // The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
     // and it is normally configured as a singleton.
-    IQueryManager queryManager = null!;
+    JsonQL.Query.IQueryManager queryManager = null!;
 
     var salariesOfAllEmployeesOlderThan35InAllCompaniesQuery = 
         "Companies.Select(x => x.Employees.Where(x => x.Age > 35).Select(x => x.Salary))";

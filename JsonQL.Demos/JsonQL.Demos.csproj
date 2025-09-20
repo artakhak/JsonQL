@@ -83,6 +83,9 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Companies.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Countries.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\FilteredCompanies.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\Employees.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\Example1\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\Example2\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryReferenceTypeValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Parameters.json" />

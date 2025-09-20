@@ -244,8 +244,8 @@
 <span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
 
-<span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.IJsonCompiler is normally created by Dependency Injection container</span>
 <span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
@@ -357,10 +357,10 @@
 </dl>
 </li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
 <span class="c1">// and it is normally configured as a singleton.</span>
-<span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">salariesOfAllEmployeesOlderThan35InAllCompaniesQuery</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="s">&quot;Companies.Select(x =&gt; x.Employees.Where(x =&gt; x.Age &gt; 35).Select(x =&gt; x.Salary))&quot;</span><span class="p">;</span>
@@ -459,7 +459,14 @@
 <li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/Examples/index.html#example-of-querying-for-value-type-value">Example of querying for value type value</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html#compilation-error">Compilation error</a></li>
+<li class="toctree-l5"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ErrorDetails/index.html#conversion-error">Conversion error</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/TypeBinding/index.html">Type Binding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/NullableValueSupport/index.html">Nullable Value Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="QueryingJsonFiles/ResultAsCSharpObject/ConversionSettings/index.html">Conversion Settings</a></li>

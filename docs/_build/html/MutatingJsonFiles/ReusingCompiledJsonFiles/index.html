@@ -108,10 +108,7 @@ This example also parses parent JSON files <strong>Parameters.json</strong>, <st
 <span class="kt">var</span><span class="w"> </span><span class="n">filteredCompaniesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;FilteredCompanies&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;FilteredCompanies.json&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">);</span>
 
-<span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">// This is normally done once on application start.</span>
-
-<span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
+<span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
 <span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
 <span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
@@ -137,8 +134,8 @@ and then use another overloaded version <strong>ICompilationResult Compile(strin
 <span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
 
-<span class="c1">// Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.IJsonCompiler is normally created by Dependency Injection container</span>
 <span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 

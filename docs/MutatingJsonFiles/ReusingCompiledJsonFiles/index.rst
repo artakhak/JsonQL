@@ -26,10 +26,7 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
     var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
         LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json",  sharedExamplesFolderPath), companiesJsonTextData);
 
-    // Create an instance of JsonQL.Compilation.JsonCompiler here.
-    // This is normally done once on application start.
-
-    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
+    // Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.
     // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
     // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
@@ -58,8 +55,8 @@ Here is a code snippet demonstrating this approach:
     var companiesJsonTextData = new JsonTextData("Companies",
                 LoadJsonFileHelpers.LoadJsonFile("Companies.json", _sharedExamplesFolderPath), countriesJsonTextData);
 
-    // Set the value of queryManager to an instance of JsonQL.Compilation.JsonCompiler here.
-    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.
+    // The value of JsonQL.Compilation.IJsonCompiler is normally created by Dependency Injection container 
     // and it is normally configured as a singleton.
     JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
 

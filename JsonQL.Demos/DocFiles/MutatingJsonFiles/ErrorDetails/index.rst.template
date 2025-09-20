@@ -49,7 +49,9 @@ The result **result** is serialized in JSON file `Result.json <https://github.co
 The screenshot below shows the error details logged using the error data in `Result.json <https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/FailureExamples/MissingClosingBracesError/Result.json>`_.
 
  .. image:: missing-closing-brace-error.jpg
-
-
+ 
+.. note::
+    Errors are logged by `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ and custom implementation of this interface can be provided.
+     
 .. note::
     For more examples demonstrating errors look at examples in this folder: `FailureExamples: <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/FailureExamples>`_

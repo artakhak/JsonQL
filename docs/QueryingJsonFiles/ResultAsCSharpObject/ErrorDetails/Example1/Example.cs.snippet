@@ -1,0 +1,13 @@
+// This query will result in compilation error since closing brace is missing for open brace.
+var query = "Employees.Where(x => x.Salary >= 100000";
+
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+var employeesResult =
+    queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+        new JsonTextData("Employees", this.LoadExampleJsonFile("Employees.json")));
+
+Assert.That(employeesResult.ErrorsAndWarnings.CompilationErrors.Count, Is.GreaterThan(0));
