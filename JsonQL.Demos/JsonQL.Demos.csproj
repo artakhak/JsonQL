@@ -103,7 +103,7 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryReferenceTypeValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Parameters.json" />
-		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueriedObjectProperties\Examples\PropertyNullability\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueriedObjectProperties\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsArraysOfReferenceTypeItems\Employees.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsArraysOfReferenceTypeItems\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsListOfArraysOfValueTypeItems\Data.json" />
