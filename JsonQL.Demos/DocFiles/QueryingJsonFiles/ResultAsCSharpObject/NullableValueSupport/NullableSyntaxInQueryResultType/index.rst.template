@@ -1,0 +1,23 @@
+﻿====================================
+Nullable Syntax in Query Result Type
+====================================
+
+.. contents::
+   :local:
+   :depth: 3
+
+- To specify return type nullability we should pass non-null optional parameter **convertedValueNullability** in calls to overloaded method **JsonQL.Query.IQueryManager.QueryObject<TQueriedObject>(...)**.
+- **convertedValueNullability** parameter type is a collection of boolean values with the following meaning: The first value indicates if return value can be null, the second value indicates if items in collection in returned value can be null, the third value indicates if items in collections of collection in returned type can be null and so forth (examples below will clarify this).
+- The nullability syntax ("?" symbols) used with queried object (i.e., generic parameter type value used for **TQueriedObject** in call to **JsonQL.Query.IQueryManager.QueryObject<TQueriedObject>(...)**) should correspond to values in parameter **convertedValueNullability**, however only the values in **convertedValueNullability** will result in errors being reported if values are null.
+    
+    .. note::
+        We normally should not have to use parameter **convertedValueNullability** and should instead just derive nullability from the return type (using "?" syntax attributes), but during development of JsonQL it was difficult to derive this information for reference return types (this is no issue for nullable value types). This information is derived currently for nullable properties, but not reference return types. In tne future we might be able to derive nullability for return reference types as well, and the parameter might be removed at that point.
+
+- If optional parameter **convertedValueNullability** is not used or is null, return type is assumed to be nullable (both type as well as collection item types). In other words, no errors will be reported if value is null or any collection item value is null. 
+- If the returned type is specified to have non-nullable, and the value is missing, there will be conversion error(s) of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to **ValueNotSet**.
+- If a collection item type nullability is specified as non-nullable, and collection item is not set in returned value, there will be conversion error(s) of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to **NonNullableCollectionItemValueNotSet**.
+
+.. toctree::
+
+   Examples/index.rst
+   

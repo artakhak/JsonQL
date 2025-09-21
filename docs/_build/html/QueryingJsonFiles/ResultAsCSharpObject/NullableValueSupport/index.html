@@ -19,7 +19,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Conversion Settings" href="../ConversionSettings/index.html" />
+    <link rel="next" title="Nullable Syntax in Query Result Type" href="NullableSyntaxInQueryResultType/index.html" />
     <link rel="prev" title="Type Binding" href="../TypeBinding/index.html" /> 
 </head>
 
@@ -49,7 +49,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ErrorDetails/index.html">Error Details</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../TypeBinding/index.html">Type Binding</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Nullable Value Support</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Nullable Value Support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NullableSyntaxInQueryResultType/index.html">Nullable Syntax in Query Result Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NullableSyntaxInQueriedObjectProperties/index.html">Nullable Syntax in Queried Object Properties</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../ConversionSettings/index.html">Conversion Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../SampleFiles/index.html">Sample Files</a></li>
 </ul>
@@ -100,9 +104,25 @@
   <section id="nullable-value-support">
 <h1>Nullable Value Support<a class="headerlink" href="#nullable-value-support" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-<li><p>TODO: Add toctree here</p></li>
+<li><p>JsonQL supports using nullable syntax using ‘?’ with types returned by overloaded methods <strong>JsonQL.Query.IQueryManager.QueryObject&lt;TQueriedObject&gt;(…)</strong> (e.g., <strong>queryManager.QueryObject&lt;IEmployee?[]&gt;(…)</strong>, <strong>queryManager.QueryObject&lt;IReadOnlyList&lt;double?[]&gt;&gt;(…)</strong>) as well as nullable syntax with properties in returned type.</p></li>
+<li><p>Nullable syntax can be used with both C# reference types as well as value types (e.g., <strong>System.Double</strong>, <strong>System.Boolean</strong>).</p></li>
+<li><p>If the returned type is specified to have non-nullable, and the value is missing, there will be conversion errors of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs">JsonQL.JsonToObjectConversion.IConversionError</a> in result with value of <strong>ErrorType</strong> equal to one of the following enum values: <strong>ValueNotSet</strong>, <strong>NonNullableCollectionItemValueNotSet</strong>.</p></li>
+<li><p>If the property is non-nullable in returned type (or in one of the classes used by return type class), there will be conversion errors of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs">JsonQL.JsonToObjectConversion.IConversionError</a> in result with value of <strong>ErrorType</strong> equal to one of the following enum values: <strong>ValueNotSet</strong>, <strong>NonNullablePropertyNotSet</strong>.</p></li>
+<li><p>Errors related to non-nullable values being null in result are reported as errors by default, however specific errors can be configured to be reported as warnings, or to be ignored (not reported at all) in conversion settings configuration or in setting overrides in calls to <strong>JsonQL.Query.IQueryManager.QueryObject&lt;T&gt;(…)</strong>. See <a class="reference internal" href="../ConversionSettings/index.html"><span class="doc">Conversion Settings</span></a> for more configuring conversion rules.</p></li>
 </ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="NullableSyntaxInQueryResultType/index.html">Nullable Syntax in Query Result Type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NullableSyntaxInQueryResultType/Examples/index.html">Examples 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NullableSyntaxInQueryResultType/Examples/index.html#result-as-value-type">Result as Value Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NullableSyntaxInQueryResultType/Examples/index.html#result-as-reference-type">Result as Reference Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="NullableSyntaxInQueriedObjectProperties/index.html">Nullable Syntax in Queried Object Properties</a></li>
+</ul>
+</div>
 </section>
 
 
@@ -110,7 +130,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../TypeBinding/index.html" class="btn btn-neutral float-left" title="Type Binding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ConversionSettings/index.html" class="btn btn-neutral float-right" title="Conversion Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="NullableSyntaxInQueryResultType/index.html" class="btn btn-neutral float-right" title="Nullable Syntax in Query Result Type" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

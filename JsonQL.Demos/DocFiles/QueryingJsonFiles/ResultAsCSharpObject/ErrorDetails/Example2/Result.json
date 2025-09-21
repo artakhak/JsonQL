@@ -43,13 +43,26 @@
             },
             "PathInReferencedJson": {
               "$type": "JsonQL.JsonObjects.JsonPath.JsonPath, JsonQL",
-              "JsonTextIdentifier": "Employees",
+              "JsonTextIdentifier": "Companies",
               "Path": {
                 "$type": "System.Collections.Generic.List`1[[JsonQL.JsonObjects.JsonPath.IJsonPathElement, JsonQL]], System.Private.CoreLib",
                 "$values": [
                   {
                     "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
                     "Name": "Root"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",
+                    "Name": "Companies"
+                  },
+                  {
+                    "$type": "JsonQL.JsonObjects.JsonPath.JsonArrayIndexesPathElement, JsonQL",
+                    "Indexes": {
+                      "$type": "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib",
+                      "$values": [
+                        1
+                      ]
+                    }
                   },
                   {
                     "$type": "JsonQL.JsonObjects.JsonPath.JsonPropertyNamePathElement, JsonQL",

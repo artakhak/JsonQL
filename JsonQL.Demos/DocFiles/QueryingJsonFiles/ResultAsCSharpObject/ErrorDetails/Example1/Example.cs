@@ -18,20 +18,13 @@ public class Example : QueryObjectExampleManagerForFailureAbstr<IReadOnlyList<IE
     /// <inheritdoc />
     protected override IObjectQueryResult<IReadOnlyList<IEmployee>> QueryObject()
     {
-        /*var sharedExamplesFolderPath = new []
-           {
-               "DocFiles", "MutatingJsonFiles", "Examples"
-           };
-           
-           var parametersJsonTextData = new JsonTextData("Parameters",
-               LoadJsonFileHelpers.LoadJsonFile("Parameters.json", sharedExamplesFolderPath));*/
-
         // This query will result in compilation error since closing brace is missing for the open brace.
-        var query = "Employees.Where(x => x.Salary >= 100000";
+        var query = "Companies.Select(c => c.Employees.Where(e => e.Address is null)";
+        
         var employeesResult =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-                new JsonTextData("Employees", LoadJsonFileHelpers.LoadJsonFile("Employees.json", 
-                    ["DocFiles", "QueryingJsonFiles", "ResultAsCSharpObject", "ErrorDetails"])));
+                new JsonTextData("Companies", 
+                    LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["DocFiles", "QueryingJsonFiles", "JsonFiles"])));
 
         Assert.That(employeesResult.ErrorsAndWarnings.CompilationErrors.Count, Is.GreaterThan(0));
         return employeesResult;

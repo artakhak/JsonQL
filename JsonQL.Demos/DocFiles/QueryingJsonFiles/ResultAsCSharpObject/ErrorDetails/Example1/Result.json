@@ -12,7 +12,7 @@
           "LineInfo": {
             "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
             "LineNumber": 2,
-            "LinePosition": 33
+            "LinePosition": 34
           },
           "ErrorMessage": "Closing brace ')' is missing."
         }
