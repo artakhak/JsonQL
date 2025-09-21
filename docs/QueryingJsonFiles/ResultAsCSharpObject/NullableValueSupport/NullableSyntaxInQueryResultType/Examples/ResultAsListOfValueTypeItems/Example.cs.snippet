@@ -1,0 +1,20 @@
+var query = "ListOfListsOfDoubles.Flatten().Where(x => x is null || x > 10)";
+
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+// The result "listOfNumbersResult" is a nullable list of nullable double values. 
+// Result of type "IReadOnlyList<double?>?" can be null, and each double value
+// in list "IReadOnlyList<double?>" can be null according to value used for parameter
+// "convertedValueNullability"
+var listOfNumbersResult =
+    queryManager.QueryObject<IReadOnlyList<double?>?>(query,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")),
+        convertedValueNullability: [
+            // The result of type "IReadOnlyList<double?>?" can be null.
+            false,
+            // "double" values in list "IReadOnlyList<double?>" can be null.
+            true]);

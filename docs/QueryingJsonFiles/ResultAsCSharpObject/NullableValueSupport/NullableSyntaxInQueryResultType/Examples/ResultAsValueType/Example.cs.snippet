@@ -1,0 +1,18 @@
+// Select average salary of all employees across all companies
+        var query =
+             "Average(Companies.Select(c => c.Employees.Select(e => e.Salary)))";
+
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+// The result "averageSalaryResult" is a non-nullable double value according to value
+// used for parameter "convertedValueNullability"
+var averageSalaryResult =
+    queryManager.QueryObject<double>(query,
+        new JsonTextData("Companies",
+            LoadJsonFileHelpers.LoadJsonFile("Companies.json", ["DocFiles", "QueryingJsonFiles", "JsonFiles"])),
+        convertedValueNullability: [
+            // The result of type "double" cannot be null. An error will be reported if the value is null.
+            false]);

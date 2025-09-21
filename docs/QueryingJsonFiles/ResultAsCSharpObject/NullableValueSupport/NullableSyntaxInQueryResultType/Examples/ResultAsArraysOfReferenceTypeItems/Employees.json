@@ -1,0 +1,53 @@
+{
+  "Employees": [
+    {
+      "Id": 100000008,
+      "FirstName": "Laura",
+      "LastName": "Lee",
+      "Address": {
+        "Street": "258 Willow Lane",
+        "City": "San Diego",
+        "State": "CA",
+        "ZipCode": "92101"
+      },
+      "Salary": 105500,
+      "Age": 32,
+      "Phones": [
+        "619-555-0155",
+        "619-555-0122"
+      ]
+    },
+    null,
+    {
+      "Id": 100000010,
+      "FirstName": "Jessica",
+      "LastName": "Thompson",
+      "Address": {
+        "Street": "159 Cherry Lane",
+        "City": "Austin",
+        "State": "TX",
+        "ZipCode": "73301"
+      },
+      "Salary": 98700,
+      "Age": 37,
+      "Phones": []
+    },
+    {
+      "Id": 250150245,
+      "FirstName": "Jane",
+      "LastName": "Doe",
+      "Address": {
+        "Street": "Main St",
+        "City": "San Jose",
+        "State": "PA",
+        "ZipCode": "95101"
+      },
+      "Salary": 144186,
+      "Age": 63,
+      "Phones": [
+        "408-555-0133",
+        "408-555-0190"
+      ]
+    }
+  ]
+}
