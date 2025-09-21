@@ -1,0 +1,47 @@
+:orphan:
+
+===========
+Result.json
+===========
+
+.. sourcecode:: json
+  
+  {
+    "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[System.Double, System.Private.CoreLib]], System.Private.CoreLib]], JsonQL",
+    "Value": {
+      "$type": "System.Collections.Generic.List`1[[System.Double, System.Private.CoreLib]], System.Private.CoreLib",
+      "$values": [
+        99500.0,
+        105000.0,
+        89000.0,
+        92000.0,
+        95000.0,
+        88000.0,
+        98700.0,
+        144186.0,
+        122395.0
+      ]
+    },
+    "ErrorsAndWarnings": {
+      "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+      "CompilationErrors": {
+        "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+        "$values": []
+      },
+      "ConversionErrors": {
+        "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+        "Errors": {
+          "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+          "$values": []
+        }
+      },
+      "ConversionWarnings": {
+        "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+        "Errors": {
+          "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+          "$values": []
+        }
+      }
+    }
+  }
+
