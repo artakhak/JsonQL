@@ -23,7 +23,7 @@ public static class ConversionSettingsSetup
         
         var jsonConversionSettings = new JsonConversionSettings
         {
-            JsonPropertyFormat = JsonPropertyFormat.PascalCase,
+            JsonPropertyFormat = JsonQL.JsonToObjectConversion.JsonPropertyFormat.PascalCase,
             FailOnFirstError = true,
 
             // conversionErrorTypeConfigurations was setup above to report all error types as errors.

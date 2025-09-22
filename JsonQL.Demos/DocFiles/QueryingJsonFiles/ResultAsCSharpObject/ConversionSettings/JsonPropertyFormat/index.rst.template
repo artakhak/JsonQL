@@ -5,3 +5,42 @@ Setting **JsonPropertyFormat**
 .. contents::
    :local:
    :depth: 2
+
+Setting **JsonPropertyFormat** determines the format of JSON keys for the deserialization of query result to C# object to succeed.
+
+The value of setting **JsonPropertyFormat** (a property in `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ or in `JsonQL./JsonToObjectConversion.IJsonConversionSettingsOverrides <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs>`_) is of enum type `JsonQL.JsonToObjectConversion.JsonPropertyFormat <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/JsonPropertyFormat.cs>`_ which has the following values:
+  - CamelCase. Specifies a JSON property naming convention where words are concatenated without spaces, and each word following the first starts with an uppercase letter.
+  - PascalCase. Specifies a JSON property naming convention where the first letter of each word, including the first word, is capitalized.
+
+Lets assume an instance of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ injected into `JsonQL.Query.QueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManager.cs>`_ was created using a code like the one shown below.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\ConversionSettingsSetup.cs.snippet</IncludedFilePlaceHolder>
+
+Also, lets assume the queries in examples below query the JSON file **Employees.json** shown below, which follows  camel case format:
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>Example\Employees.json</IncludedFilePlaceHolder>
+     
+The example below executes a query and converts the result to **IReadOnlyList<IEmployee>**. As it can be seen, the setting **JsonPropertyFormat** was overridden to use **JsonToObjectConversion.JsonPropertyFormat.CamelCase** value. 
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>
+     
+The result (an instance of `JsonQL.Query.IObjectQueryResult[IReadOnlyList[IEmployee]] <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

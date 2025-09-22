@@ -6,6 +6,7 @@ using JsonQL.Compilation;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Compilation.JsonValueTextGenerator;
+using JsonQL.JsonObjects;
 using JsonQL.JsonToObjectConversion;
 using JsonQL.JsonToObjectConversion.Serializers;
 using OROptimizer.Diagnostics.Log;
@@ -166,7 +167,7 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
     }
 
     private static bool TryResolveSimpleJsonValueSerializer(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
-        Type parameterType, [NotNullWhen(true)] out object? simpleJsonValueSerializer)
+        Type parameterType, [NotNullWhen(true)] out ISimpleJsonValueSerializer? simpleJsonValueSerializer)
     {
         if (parameterType == typeof(ISimpleJsonValueSerializer))
         {
@@ -203,7 +204,11 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
         return false;
     }
 
-    private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out object? jsonConversionSettings)
+#if DEBUG
+    private static bool TEMP_TEST_FAILS_IN_RELEASE = true; 
+#endif
+
+    private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out JsonConversionSettings? jsonConversionSettings)
     {
         if (parameterType == typeof(IJsonConversionSettings))
         {
@@ -228,8 +233,37 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
                 // For example for interface JsonQL.Demos.Examples.DataModels.IEmployee class
                 // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists and it implements JsonQL.Demos.Examples.DataModels.IEmployee.
                 // If defaultTypeToConvertParsedJsonTo is a class, the default mapping mechanism will use the class itself.
-                TryMapJsonConversionType = null,
+                TryMapJsonConversionType = null
             };
+
+            // DONOT COMMIT BEFORE COMMENTING OUT.
+            // Added temporarily to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
+            if (TEMP_TEST_FAILS_IN_RELEASE)
+            {
+                jsonConversionSettings.TryMapJsonConversionType = (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
+                {
+                    if (defaultTypeToConvertParsedJsonTo.FullName == "JsonQL.Demos.Examples.DataModels.IEmployee")
+                    {
+                        if (convertedParsedJson.HasKey("Employees"))
+                            return Type.GetType("JsonQL.Demos.Examples.DataModels.IManager");
+
+                        if (convertedParsedJson.TryGetJsonKeyValue("Type", out var employeeType) &&
+                            employeeType is IParsedSimpleValue parsedSimpleValue &&
+                            parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
+                        {
+                            var convertedType = Type.GetType(parsedSimpleValue.Value);
+
+                            if (convertedType != null)
+                                return convertedType;
+                        }
+                    }
+
+                    // Returning null will result default mapping mechanism picking a type to use.
+                    return null;
+                };
+
+
+            }
 
             return true;
         }

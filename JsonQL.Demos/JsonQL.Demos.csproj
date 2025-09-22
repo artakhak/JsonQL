@@ -23,6 +23,8 @@
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\IgnoreErrors\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\ReportErrorsAsWarnings\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\Result.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\JsonPropertyFormat\Example\Employees.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\JsonPropertyFormat\Example\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\SummaryExample\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\Examples\PropertyNullability\Result.json" />
@@ -110,7 +112,11 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\ReportErrorsAsWarnings\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\FailOnFirstError\Example\EmployeesWithMissingData.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\FailOnFirstError\Example\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\JsonPropertyFormat\Example\Employees.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\JsonPropertyFormat\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\SummaryExample\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\TryMapJsonConversionType\Example\Employees.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\TryMapJsonConversionType\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\Example1\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ErrorDetails\Example2\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\Examples\QueryValueTypeValue\Result.json" />

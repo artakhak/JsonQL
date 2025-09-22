@@ -1,4 +1,5 @@
 ﻿using JsonQL.Demos.Examples.DataModels;
+using JsonQL.JsonObjects;
 using JsonQL.JsonToObjectConversion;
 
 namespace JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.ConversionSettings.SummaryExample;
@@ -24,7 +25,7 @@ public static class ConversionSettingsExample
 
         return new JsonConversionSettings
         {
-            JsonPropertyFormat = JsonPropertyFormat.PascalCase,
+            JsonPropertyFormat = JsonQL.JsonToObjectConversion.JsonPropertyFormat.PascalCase,
             FailOnFirstError = true,
             ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
 
@@ -41,13 +42,20 @@ public static class ConversionSettingsExample
             TryMapJsonConversionType =
                 (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
             {
-                if (defaultTypeToConvertParsedJsonTo == typeof(Employee))
+                if (defaultTypeToConvertParsedJsonTo == typeof(IEmployee))
                 {
                     if (convertedParsedJson.HasKey(nameof(IManager.Employees)))
                         return typeof(IManager);
 
-                    if (!convertedParsedJson.HasKey(nameof(Employee.Id)))
-                        return typeof(EmployeeWithoutId);
+                    if (convertedParsedJson.TryGetJsonKeyValue("Type", out var employeeType) &&
+                        employeeType is IParsedSimpleValue parsedSimpleValue &&
+                        parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
+                    {
+                        var convertedType = Type.GetType(parsedSimpleValue.Value);
+
+                        if (convertedType != null)
+                            return convertedType;
+                    }
                 }
 
                 // Returning null will result default mapping mechanism picking a type to use.

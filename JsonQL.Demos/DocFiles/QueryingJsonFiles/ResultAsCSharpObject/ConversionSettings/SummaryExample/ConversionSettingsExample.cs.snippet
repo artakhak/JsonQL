@@ -28,7 +28,7 @@
         TryMapJsonConversionType =
                 (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
         {
-            if (defaultTypeToConvertParsedJsonTo == typeof(Employee))
+            if (defaultTypeToConvertParsedJsonTo == typeof(IEmployee))
             {
                 if (convertedParsedJson.HasKey(nameof(IManager.Employees)))
                     return typeof(IManager);
