@@ -10,7 +10,8 @@ public class JsonConversionSettings : IJsonConversionSettings
     public TryMapTypeDelegate? TryMapJsonConversionType { get; set; }
 
     /// <inheritdoc />
-    public IReadOnlyList<IConversionErrorTypeConfiguration> ConversionErrorTypeConfigurations { get; set; } = Array.Empty<IConversionErrorTypeConfiguration>();
+    public IReadOnlyList<IConversionErrorTypeConfiguration> ConversionErrorTypeConfigurations { get; set; } = 
+        Array.Empty<IConversionErrorTypeConfiguration>();
 
     /// <inheritdoc />
     public bool FailOnFirstError { get; set; } = true;

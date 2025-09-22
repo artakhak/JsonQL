@@ -1,0 +1,101 @@
+﻿=============================================
+Setting **ConversionErrorTypeConfigurations**
+=============================================
+
+.. contents::
+   :local:
+   :depth: 2
+
+Setting **ConversionErrorTypeConfigurations** can be used to configure specific conversion error type as error, warning, or to configure the error to be ignored (not reported at all).
+
+The configured error types are in enum `JsonQL.JsonToObjectConversion.ConversionErrorType <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/ConversionErrorType.cs>`_:
+
+.. note::
+    **ConversionErrorTypeConfigurations** affects the query execution only for conversion errors, after the JSON files (that might include JsonQL expressions) as well as the JsonQL query itself have been parsed. Therefore if errors happen during parsing of a file, the query might fail before conversion is done.
+
+Lets assume an instance of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ injected into `JsonQL.Query.QueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManager.cs>`_ was created using a code like the one shown below.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>ConversionSettingsSetup.cs.snippet</IncludedFilePlaceHolder>
+
+Also, lets assume the queries in examples below query the JSON file **EmployeesWithMissingData.json** shown below with some null or missing values for employee addresses or phone numbers list:
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>EmployeesWithMissingData.json</IncludedFilePlaceHolder>
+
+The examples below execute the same query with different configurations for error types **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullablePropertyNotSet** and **NonNullableCollectionItemValueNotSet** to demonstrate the usage of **ConversionErrorTypeConfigurations** setting.
+
+Report Errors as Warnings Example
+---------------------------------
+
+The example below executes a query to get collection of **IEmployee** with reporting errors of types  **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullablePropertyNotSet** and **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullableCollectionItemValueNotSet** as warnings to be able to generate query result even if some non-nullable property values are missing, or some collection items are null in resulted JSON.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>ReportErrorsAsWarnings\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result serialized below to **Result.json** shows that the errors were reported as warnings and not errors, and the query result is not null.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>ReportErrorsAsWarnings\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+Ignore Errors Example
+---------------------
+
+The example below executes a query to get collection of **IEmployee** with ignoring errors of types  **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullablePropertyNotSet** and **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullableCollectionItemValueNotSet** to be able to generate query result even if some non-nullable property values are missing, or some collection items are null in resulted JSON.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>IgnoreErrors\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result serialized below to **Result.json** shows that the errors were not reported at all, and the query result is not null.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>IgnoreErrors\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+
+Report Errors Example
+---------------------
+
+The example below executes a query to get collection of **IEmployee** without no overriding of setting **ConversionErrorTypeConfigurations**. This results in query execution failing with an error of type **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullablePropertyNotSet**. Query evaluation stops after the first error.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>ReportErrorsAsErrors\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result serialized below to **Result.json** shows that an error of type  **JsonQL.JsonToObjectConversion.ConversionErrorType.NonNullablePropertyNotSet** is reported and the query result is null.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>ReportErrorsAsErrors\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+

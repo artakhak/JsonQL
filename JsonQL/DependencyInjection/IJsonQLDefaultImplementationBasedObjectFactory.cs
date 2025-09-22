@@ -222,10 +222,12 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
                 FailOnFirstError = true,
                 ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
 
-                // Set custom interface to implementation mappings here. Default mappings (i.e., IModelClassMapper) will 
-                // use try to find an implementation that has the same name space and class name that matches interface name
-                // without I. For example for interface JsonQL.Demos.Examples.DataModels.IEmployee implementation  
-                // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists.
+                // Set custom interface to implementation mappings here. Default mapping mechanism (i.e., IModelClassMapper) will 
+                // try to find an implementation that has the same name space and class name that matches interface name
+                // without "I" prefix (if the mapped type defaultTypeToConvertParsedJsonTo is an interface).
+                // For example for interface JsonQL.Demos.Examples.DataModels.IEmployee class
+                // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists and it implements JsonQL.Demos.Examples.DataModels.IEmployee.
+                // If defaultTypeToConvertParsedJsonTo is a class, the default mapping mechanism will use the class itself.
                 TryMapJsonConversionType = null,
             };
 
