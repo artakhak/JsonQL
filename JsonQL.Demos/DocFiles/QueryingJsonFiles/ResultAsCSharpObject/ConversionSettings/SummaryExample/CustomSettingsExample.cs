@@ -45,7 +45,7 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
                         if (defaultTypeToConvertParsedJsonTo == typeof(Employee) &&
                             convertedParsedJson.HasKey(nameof(IManager.Employees)) &&
                             !(convertedParsedJson.TryGetJsonKeyValue(nameof(IManager.Employees), out var employees) &&
-                              employees is IParsedArrayValue employeesArray &&
+                              employees.Value is IParsedArrayValue employeesArray &&
                               employeesArray.Values.Count > 0))
                         {
                             return typeof(ManagerWithoutEmployees);

@@ -5,3 +5,81 @@ Setting **TryMapJsonConversionType**
 .. contents::
    :local:
    :depth: 2
+   
+Setting **TryMapJsonConversionType** allows customizing the types used for deserialization of JSON query result when setting the value of property **Value** in `JsonQL.Query.IObjectQueryResult<TQueryObject> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_. 
+By default JsonQL uses the model class types to de-serialize query result JSON to specified C# model class (i.e., uses the model class type, its property types, continuing this way recursively until the object is constructed and values are set). 
+
+- JsonQL tries to resolve the type to use for conversion by trying number of resolutions below. The first resolution that resolves a type wins:
+   - If custom settings are setup, resolve type via a call to delegate in property **TryMapJsonConversionType** in `JsonQL.JsonToObjectConversion.IJsonConversionSettingsOverrides <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs>`_.
+       
+      .. note::
+           To resolve a type using `JsonQL.JsonToObjectConversion.IJsonConversionSettingsOverrides <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs>`_, use optional parameter **jsonConversionSettingOverrides** of type `JsonQL.JsonToObjectConversion.IJsonConversionSettingsOverrides <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs>`_ when calling one of the overloaded methods **JsonQL.Query.IQueryManager.QueryObject<TQueryObject>(...)**
+   
+   - If settings are setup, resolve the type via a call to delegate in property **TryMapJsonConversionType** in `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_.
+   - If the type currently being de-serialized to is a concrete model class, then JsonQL uses the class (simple C# class. See :doc:`../../TypeBinding/index` for more details).
+   - If a type a JSON object should de de-serialized is an interface, then JsonQL tries to find concrete implementation of the interface in the same namespace.
+   - Otherwise, if object of a type cannot be created using any rules above, an error is reported.
+
+Example
+-------
+
+Lets assume an instance of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ injected into `JsonQL.Query.QueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManager.cs>`_ was created using a code like the one shown below.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\ConversionSettingsSetup.cs.snippet</IncludedFilePlaceHolder>
+
+Also, lets assume the queries in examples below query the JSON file **Employees.json** shown below:
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the <b>Employees.json</b> file being queried</summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Example\Employees.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+  
+
+The example below executes a query and converts the result to **IReadOnlyList<IEmployee>**.
+
+In this example the type to use to de-serialize JSON array items in query result to employee instances in result of type **IReadOnlyList<IEmployee>** is determined as follows:
+
+- JSON object with "Id"=100000001
+    - Custom version of **TryMapJsonConversionType** returns **IEmployee** type, since the **JSON** object for this employee has **Employees** field, but it is empty.
+    - If the custom version of **TryMapJsonConversionType** returned null for this JSON object, the delegate **TryMapJsonConversionType** configured in setup of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ would return **IManager** as a type for this JSON object.
+    - JsonQL maps the **IEmployee** type to default implementation **Employee**
+    
+- JSON object with "Id"=100000002
+    - Custom version returns **IManager** type since the JSON object has **Employees** key with a value as a non-empty JSON array.
+    - The delegate **TryMapJsonConversionType** configured in setup of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ does not execute, since the custom version in code snippet below does not return null. Otherwise, if null was returned, JsonQL would execute the non-custom version of the delegate. 
+
+- JSON object with "Id"=100000003
+    - Custom version of **TryMapJsonConversionType** returns null, since the JSON being converted to **IEmployee** has no **Employees** key.
+    - The call to delegate **TryMapJsonConversionType** configured in setup of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ returns type **CustomEmployee** since the JSON object has a key **$type** with a value equal to the full name of this type. 
+
+- JSON object with "Id"=100000004
+    - Both custom version of **TryMapJsonConversionType** and the non-custom version return null. JsonQL uses the default implementation **Employee** of **IEmployee**.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>
+  
+The result (an instance of `JsonQL.Query.IObjectQueryResult[IReadOnlyList[IEmployee]] <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_) is serialized to a **Result.json** file below.
+     
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

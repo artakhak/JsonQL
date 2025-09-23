@@ -204,10 +204,6 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
         return false;
     }
 
-#if DEBUG
-    private static bool TEMP_TEST_FAILS_IN_RELEASE = true; 
-#endif
-
     private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out JsonConversionSettings? jsonConversionSettings)
     {
         if (parameterType == typeof(IJsonConversionSettings))
@@ -236,35 +232,31 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
                 TryMapJsonConversionType = null
             };
 
-            // DONOT COMMIT BEFORE COMMENTING OUT.
-            // Added temporarily to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
-            if (TEMP_TEST_FAILS_IN_RELEASE)
+#if DEBUG && TURN_ON_DOCUMENTATION_TEST_SETTINGS
+            // TODO: Temporary code to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
+            // and delete this code as part of JE-19
+            jsonConversionSettings.TryMapJsonConversionType = (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
             {
-                jsonConversionSettings.TryMapJsonConversionType = (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
+                if (defaultTypeToConvertParsedJsonTo.FullName == "JsonQL.Demos.Examples.DataModels.IEmployee")
                 {
-                    if (defaultTypeToConvertParsedJsonTo.FullName == "JsonQL.Demos.Examples.DataModels.IEmployee")
+                    if (convertedParsedJson.HasKey("Employees"))
+                        return Type.GetType("JsonQL.Demos.Examples.DataModels.IManager, JsonQL.Demos");
+            
+                    if (convertedParsedJson.TryGetJsonKeyValue("$type", out var employeeType) &&
+                        employeeType.Value is IParsedSimpleValue parsedSimpleValue &&
+                        parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
                     {
-                        if (convertedParsedJson.HasKey("Employees"))
-                            return Type.GetType("JsonQL.Demos.Examples.DataModels.IManager");
-
-                        if (convertedParsedJson.TryGetJsonKeyValue("Type", out var employeeType) &&
-                            employeeType is IParsedSimpleValue parsedSimpleValue &&
-                            parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
-                        {
-                            var convertedType = Type.GetType(parsedSimpleValue.Value);
-
-                            if (convertedType != null)
-                                return convertedType;
-                        }
+                        var convertedType = Type.GetType(parsedSimpleValue.Value);
+            
+                        if (convertedType != null)
+                            return convertedType;
                     }
-
-                    // Returning null will result default mapping mechanism picking a type to use.
-                    return null;
-                };
-
-
-            }
-
+                }
+            
+                // Returning null will result default mapping mechanism picking a type to use.
+                return null;
+            };
+#endif
             return true;
         }
 

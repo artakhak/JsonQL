@@ -27,10 +27,10 @@ public static class ConversionSettingsSetup
         {
             JsonPropertyFormat = JsonQL.JsonToObjectConversion.JsonPropertyFormat.PascalCase,
             FailOnFirstError = true,
-
+            
             // conversionErrorTypeConfigurations was setup above to report all error types as errors.
             ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
-
+            
             // Set custom interface to implementation mappings here.
             // Default mapping mechanism (i.e., IModelClassMapper) will 
             // try to find an implementation that has the same name space and class
@@ -44,13 +44,13 @@ public static class ConversionSettingsSetup
             TryMapJsonConversionType =
                 (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
                 {
-                    if (defaultTypeToConvertParsedJsonTo == typeof(JsonQL.Demos.Examples.DataModels.IEmployee))
+                    if (defaultTypeToConvertParsedJsonTo.FullName == "JsonQL.Demos.Examples.DataModels.IEmployee")
                     {
                         if (convertedParsedJson.HasKey("Employees"))
-                            return typeof(IManager);
+                            return Type.GetType("JsonQL.Demos.Examples.DataModels.IManager, JsonQL.Demos");
 
-                        if (convertedParsedJson.TryGetJsonKeyValue("Type", out var employeeType) &&
-                            employeeType is IParsedSimpleValue parsedSimpleValue &&
+                        if (convertedParsedJson.TryGetJsonKeyValue("$type", out var employeeType) &&
+                            employeeType.Value is IParsedSimpleValue parsedSimpleValue &&
                             parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
                         {
                             var convertedType = Type.GetType(parsedSimpleValue.Value);
@@ -59,7 +59,7 @@ public static class ConversionSettingsSetup
                                 return convertedType;
                         }
                     }
-
+                    
                     // Returning null will result default mapping mechanism picking a type to use.
                     return null;
                 }

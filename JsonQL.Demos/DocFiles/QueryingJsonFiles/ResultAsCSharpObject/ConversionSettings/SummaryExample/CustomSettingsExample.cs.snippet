@@ -7,7 +7,7 @@ var query =
 // and it is normally configured as a singleton.
 JsonQL.Query.IQueryManager queryManager = null!;
 
-var employeesResult = _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+var employeesResult = queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
     new JsonTextData("Companies",
         LoadJsonFileHelpers.LoadJsonFile("Companies.json", 
         ["DocFiles", "QueryingJsonFiles", "JsonFiles"])),
@@ -28,7 +28,7 @@ var employeesResult = _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
             if (defaultTypeToConvertParsedJsonTo == typeof(Employee) &&
                 convertedParsedJson.HasKey(nameof(IManager.Employees)) &&
                 !(convertedParsedJson.TryGetJsonKeyValue(nameof(IManager.Employees), out var employees) &&
-                  employees is IParsedArrayValue employeesArray &&
+                  employees.Value is IParsedArrayValue employeesArray &&
                   employeesArray.Values.Count > 0))
             {
                 return typeof(ManagerWithoutEmployees);

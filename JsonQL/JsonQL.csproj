@@ -26,8 +26,15 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<!--Added temporarily to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
+		SET TO TURN_ON_DOCUMENTATION_TEST_SETTINGS_NO BEFORE COMMITING
+		-->
+		<DefineConstants>$(DefineConstants);TURN_ON_DOCUMENTATION_TEST_SETTINGS</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath=""/>
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>

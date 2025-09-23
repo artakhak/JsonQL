@@ -45,7 +45,7 @@ Code snippet example demonstrating configuring `JsonQL.JsonToObjectConversion.IJ
              TryMapJsonConversionType =
                      (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
              {
-                 if (defaultTypeToConvertParsedJsonTo == typeof(Employee))
+                 if (defaultTypeToConvertParsedJsonTo == typeof(IEmployee))
                  {
                      if (convertedParsedJson.HasKey(nameof(IManager.Employees)))
                          return typeof(IManager);
@@ -74,7 +74,7 @@ Code snippet example demonstrating overriding some settings configured in `JsonQ
      // and it is normally configured as a singleton.
      JsonQL.Query.IQueryManager queryManager = null!;
 
-     var employeesResult = _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+     var employeesResult = queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
          new JsonTextData("Companies",
              LoadJsonFileHelpers.LoadJsonFile("Companies.json", 
              ["DocFiles", "QueryingJsonFiles", "JsonFiles"])),
@@ -95,7 +95,7 @@ Code snippet example demonstrating overriding some settings configured in `JsonQ
                  if (defaultTypeToConvertParsedJsonTo == typeof(Employee) &&
                      convertedParsedJson.HasKey(nameof(IManager.Employees)) &&
                      !(convertedParsedJson.TryGetJsonKeyValue(nameof(IManager.Employees), out var employees) &&
-                       employees is IParsedArrayValue employeesArray &&
+                       employees.Value is IParsedArrayValue employeesArray &&
                        employeesArray.Values.Count > 0))
                  {
                      return typeof(ManagerWithoutEmployees);

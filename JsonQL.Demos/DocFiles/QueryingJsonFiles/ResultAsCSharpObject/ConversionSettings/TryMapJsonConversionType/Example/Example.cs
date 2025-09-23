@@ -20,9 +20,9 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
     /// <inheritdoc />
     protected override IObjectQueryResult<IReadOnlyList<IEmployee>> QueryObject()
     {
-        // Select the employees with null or missing values for non-null properties
+        // Select all employees
         var query = "Employees";
-
+        
         var employeesResult =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
                 new JsonTextData("EmployeesWithMissingData",
@@ -41,10 +41,10 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
                                 // array Employees is either null or is empty.
                                 if (convertedParsedJson.HasKey(nameof(IManager.Employees)) &&
                                     !(convertedParsedJson.TryGetJsonKeyValue(nameof(IManager.Employees), out var employeesJson) &&
-                                      employeesJson is IParsedArrayValue parsedArrayValue && parsedArrayValue.Values.Count == 0))
+                                      employeesJson.Value is IParsedArrayValue parsedArrayValue && parsedArrayValue.Values.Count > 0))
                                     return typeof(IEmployee);
                             }
-
+                
                             // Returning null will result in either delegate used for
                             // JsonQL.JsonToObjectConversion.IJsonConversionSettings.TryMapJsonConversionType being used to map the type,
                             // or if the call to JsonQL.JsonToObjectConversion.IJsonConversionSettings.TryMapJsonConversionType returns 
@@ -52,11 +52,17 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
                             return null;
                         }
                 });
-
-        Assert.That(employeesResult.ErrorsAndWarnings.ConversionErrors.Errors.Count, Is.EqualTo(4));
+        
+        Assert.That(employeesResult.ErrorsAndWarnings.ConversionErrors.Errors.Count, Is.EqualTo(0));
         Assert.That(employeesResult.ErrorsAndWarnings.ConversionWarnings.Errors.Count, Is.EqualTo(0));
         Assert.That(employeesResult.Value, Is.Not.Null);
-        Assert.That(employeesResult.Value!.Count, Is.EqualTo(2));
+        Assert.That(employeesResult.Value!.Count, Is.EqualTo(4));
+        
+        Assert.That(employeesResult.Value[0].GetType() == typeof(Employee));
+        Assert.That(employeesResult.Value[1].GetType() == typeof(Manager));
+        Assert.That(employeesResult.Value[2].GetType() == typeof(CustomEmployee));
+        Assert.That(employeesResult.Value[3].GetType() == typeof(Employee));
+        
         return employeesResult;
     }
 }
