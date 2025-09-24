@@ -97,7 +97,14 @@
   <section id="result-as-json-structure">
 <h1>Result as JSON Structure<a class="headerlink" href="#result-as-json-structure" title="Link to this heading"></a></h1>
 <ul>
-<li><p>The overloaded methods <strong>QueryJsonValue</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> can be used to to query one or more JSON files using a JsonQL query expressions and return the result as a JSON structure.</p></li>
+<li><p>The overloaded methods <strong>QueryJsonValue</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> can be used to to query one or more JSON files using a JsonQL query expressions and return the result as a JSON structure.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../ImportantInterfaces/IJsonValueQueryResult/index.html"><span class="doc">Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult</span></a> for more details on data structure used for the result.</p>
+</div>
+</div></blockquote>
+</li>
 <li><p>The result of a query is stored in an instance of C# interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
 <li><dl>
 <dt>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a> has a property <strong>CompilationErrors</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> that stores data about query execution errors, if any.</dt><dd><div class="admonition note">
@@ -140,7 +147,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Examples/index.html#example-of-querying-for-simple-json-value">Example of querying for simple JSON value</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ErrorDetails/index.html#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="SampleFiles/countries.html">Countries.json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SampleFiles/companies.html">Companies.json</a></li>

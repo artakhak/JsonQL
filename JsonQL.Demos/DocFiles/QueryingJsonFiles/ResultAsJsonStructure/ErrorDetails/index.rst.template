@@ -6,5 +6,23 @@ Error Details
    :local:
    :depth: 2
 
-- TODO: Add contents here...
-- TODO: Add toctree here
+- If evaluated query or referenced JSON files have errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
+    .. note::
+        See :doc:`../../../ImportantInterfaces/IJsonValueQueryResult/index` for more details on data structure used for the result.
+
+- Each item in property **CompilationErrors** in `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_ is of type `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs>`_ which has details on an error such as:
+    - JSON file identifier that resulted in error.
+    - Position in JSON file or query for the error.
+    - Error message.
+    
+- Errors can happen for number of reasons, some of which are listed here:
+    - Missing or extra closing braces for functions or arrays.
+    - Unknown symbols used in JsonQL expressions.
+    - :doc:`../../../Operators/Assert/index` functions failing the evaluated expressions.
+    
+- JsonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log the error details. The implementation of this interface can be replaced if necessary.
+
+Example
+=======
+
+Continue with example from previous section...

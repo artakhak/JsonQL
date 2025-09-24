@@ -49,7 +49,10 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Result as JSON Structure</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../../ImportantInterfaces/IJsonValueQueryResult/index.html">Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Error Details</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Error Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../SampleFiles/index.html">Sample Files</a></li>
 </ul>
 </li>
@@ -97,10 +100,44 @@
              
   <section id="error-details">
 <h1>Error Details<a class="headerlink" href="#error-details" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-<li><p>TODO: Add toctree here</p></li>
+<li><p><a class="reference internal" href="#example" id="id1">Example</a></p></li>
 </ul>
+</nav>
+<ul>
+<li><dl>
+<dt>If evaluated query or referenced JSON files have errors, the error details are stored in property <strong>CompilationErrors</strong> of interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../../ImportantInterfaces/ICompilationResult/index.html"><span class="doc">Result Data Structure: JsonQL.Compilation.ICompilationResult</span></a> for more details on data structure used for the result.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Each item in property <strong>CompilationErrors</strong> in`JsonQL.Compilation.ICompilationResult &lt;<a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs</a>&gt;`_ is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> which has details on an error such as:</dt><dd><ul class="simple">
+<li><p>JSON file identifier that resulted in error.</p></li>
+<li><p>Position in JSON file for the error.</p></li>
+<li><p>Error message.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Errors can happen for number of reasons, some of which are listed here:</dt><dd><ul class="simple">
+<li><p>Missing or extra closing braces for functions or arrays.</p></li>
+<li><p>Unknown symbols used in JsonQL expressions.</p></li>
+<li><p><a class="reference internal" href="../../../Operators/Assert/index.html"><span class="doc">‘assert’</span></a> functions failing the evaluated expressions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>JonQL uses <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs">JsonQL.Compilation.ICompilationResultLogger</a> to log error details, the implementation of which can be replaced if necessary.</p></li>
+</ul>
+<section id="example">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>Continue with example from previous section.</p>
+</section>
 </section>
 
 

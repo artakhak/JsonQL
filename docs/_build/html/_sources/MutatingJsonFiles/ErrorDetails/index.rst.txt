@@ -6,7 +6,7 @@ Error Details
    :local:
    :depth: 2
 
-- If evaluated JSON files contain errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_.
+- If evaluated JSON files have errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_.
     .. note::
         See :doc:`../../ImportantInterfaces/ICompilationResult/index` for more details on data structure used for the result.
 

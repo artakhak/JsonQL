@@ -7,6 +7,10 @@ Result as JSON Structure
    :depth: 2
 
 - The overloaded methods **QueryJsonValue** in interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>`_ can be used to to query one or more JSON files using a JsonQL query expressions and return the result as a JSON structure.
+    
+    .. note::
+            See :doc:`../../ImportantInterfaces/IJsonValueQueryResult/index` for more details on data structure used for the result.
+    
 - The result of a query is stored in an instance of C# interface `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
 - Interface `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_ has a property **CompilationErrors** of type `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs>`_ that stores data about query execution errors, if any.
     .. note::

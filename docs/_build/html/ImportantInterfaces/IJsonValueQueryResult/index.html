@@ -100,6 +100,13 @@
              
   <section id="query-result-data-structure-jsonql-query-ijsonvaluequeryresult">
 <h1>Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult<a class="headerlink" href="#query-result-data-structure-jsonql-query-ijsonvaluequeryresult" title="Link to this heading"></a></h1>
+<p>The result of executing a query using one of the overloaded methods <strong>QueryJsonValue</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> is stored in an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult.cs</a>.
+- The property <strong>CompilationErrors</strong> is a list of items of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> stores the data about errors in a query or JSON files used by the query.
+- If the query succeeds, the property <strong>ParsedValue</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonObjects/IParsedValue.cs">JsonQL.JsonObjects.IParsedValue</a> stores the resulted value as a JSON structure. The value might be null if there are errors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="IParsedValue/index.html"><span class="doc">JsonQL.JsonObjects.IParsedValue</span></a> for more details on the structure of</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
