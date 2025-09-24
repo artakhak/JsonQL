@@ -1,0 +1,76 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+        "Id": 100000006,
+        "FirstName": "Emily",
+        "LastName": "Nguyen",
+        "Address": {
+          "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+          "Street": "241 Maple Avenue",
+          "City": "Seattle",
+          "State": "WA",
+          "ZipCode": "98101",
+          "County": null
+        },
+        "Salary": 95000,
+        "Age": 50,
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "206-555-0123",
+            "206-555-0456"
+          ]
+        }
+      },
+      {
+        "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+        "Id": 100000007,
+        "FirstName": "Daniel",
+        "LastName": "O'Connor",
+        "Address": {
+          "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+          "Street": "18 Birch Lane",
+          "City": "Denver",
+          "State": "CO",
+          "ZipCode": "80202",
+          "County": null
+        },
+        "Salary": 78000,
+        "Age": 41,
+        "Manager": null,
+        "Phones": {
+          "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+          "$values": [
+            "303-555-0789"
+          ]
+        }
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

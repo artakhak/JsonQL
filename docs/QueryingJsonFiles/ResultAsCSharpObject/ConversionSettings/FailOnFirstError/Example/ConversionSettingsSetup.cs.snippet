@@ -1,0 +1,19 @@
+﻿var conversionErrorTypeConfigurations = new List<ConversionErrorTypeConfiguration>();
+        
+foreach (var conversionErrorType in Enum.GetValues<ConversionErrorType>())
+{
+    // Set custom ErrorReportingType for ConversionErrorType here.
+    // We report all errors as ErrorReportingType.ReportAsError by default.
+    conversionErrorTypeConfigurations.Add(new ConversionErrorTypeConfiguration(conversionErrorType, ErrorReportingType.ReportAsError));
+}
+
+var jsonConversionSettings = new JsonConversionSettings
+{
+    JsonPropertyFormat = JsonPropertyFormat.PascalCase,
+    FailOnFirstError = true,
+
+    // conversionErrorTypeConfigurations was setup above to report all error types as errors.
+    ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
+
+    TryMapJsonConversionType = null
+};
