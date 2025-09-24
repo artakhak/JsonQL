@@ -109,18 +109,14 @@
 </ul>
 </div>
 <ul>
-<li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
-<li><p>If many JSON files are specified the following rules and techniques are used:
-- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 <li><p>The result of a query is stored in an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;TQueryObject&gt;</a> a C# interface, where  <strong>TQueryObject</strong> is the value of generic type argument passed to one of overloaded methods <strong>QueryObject&lt;TQueryObject&gt;</strong>.</p></li>
-<li><dl>
-<dt>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;TQueryObject&gt;</a> has a property <strong>ErrorsAndWarnings</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs">JsonQL.Query.IQueryResultErrorsAndWarnings</a> that stores data about query result, if any.</dt><dd><div class="admonition note">
+<li><p>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;TQueryObject&gt;</a> has a property <strong>ErrorsAndWarnings</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs">JsonQL.Query.IQueryResultErrorsAndWarnings</a> that stores data about query execution errors, if any.</p>
+<blockquote>
+<div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The errors might contain both errors in queried files, if queried files use JsonQL expressions (or are not well formed), as well as errors in query itself, or errors encountered when converting result JSON to a C# object.</p>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><p>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;TQueryObject&gt;</a> has a property <strong>Value</strong> of generic type <strong>TQueryObject</strong> which contains de-serialized query result.</p></li>
 <li><p>The type parameter <strong>TQueryObject</strong> specified in overloaded query methods <strong>TQueryObject</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs">JsonQL.Query.QueryManagerExtensions</a> specifies the type to which the query result should be converted.</p>
@@ -133,6 +129,10 @@
 </ul>
 </div></blockquote>
 </li>
+<li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
+<li><p>If many JSON files are specified the following rules and techniques are used:
+- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

@@ -306,7 +306,7 @@ Result as Value Type
 .. raw:: html
 
    <details>
-   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;double&gt;</b>) serialized into <b>Result.json</b></summary>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;double&gt;</b>) serialized into <b>Result.json</b></summary>
 
 .. code-block:: json
 
@@ -625,7 +625,7 @@ Result as Reference Type
 .. raw:: html
 
    <details>
-   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IEmployee&gt;</b>) serialized into <b>Result.json</b></summary>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IEmployee&gt;</b>) serialized into <b>Result.json</b></summary>
 
 .. code-block:: json
 
@@ -743,7 +743,7 @@ In the example below the query result is expected to be of type **IReadOnlyList<
 .. raw:: html
 
    <details>
-   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;double&gt;</b>) serialized into <b>Result.json</b></summary>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;double&gt;</b>) serialized into <b>Result.json</b></summary>
 
 .. code-block:: json
 
@@ -1029,7 +1029,7 @@ In the example below the query result is expected to be of type **IReadOnlyList<
 .. raw:: html
 
    <details>
-   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;double?[]&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;double?[]&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
 
 .. code-block:: json
 

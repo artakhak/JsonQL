@@ -11,13 +11,9 @@ Result as C# Object
     - The extension methods with generic parameter **TQueryObject** are easier to use. The methods in `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>`_ might be easier to use with reflection.
     - Moving forward the extension methods will be discussed.
 
-- One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
-- If many JSON files are specified the following rules and techniques are used:
-  - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
-  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
-       
 - The result of a query is stored in an instance of `JsonQL.Query.IObjectQueryResult<TQueryObject> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ a C# interface, where  **TQueryObject** is the value of generic type argument passed to one of overloaded methods **QueryObject<TQueryObject>**.
-- Interface `JsonQL.Query.IObjectQueryResult<TQueryObject> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ has a property **ErrorsAndWarnings** of type `JsonQL.Query.IQueryResultErrorsAndWarnings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs>`_ that stores data about query result, if any.
+- Interface `JsonQL.Query.IObjectQueryResult<TQueryObject> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ has a property **ErrorsAndWarnings** of type `JsonQL.Query.IQueryResultErrorsAndWarnings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryResultErrorsAndWarnings.cs>`_ that stores data about query execution errors, if any.
+    
     .. note::
         The errors might contain both errors in queried files, if queried files use JsonQL expressions (or are not well formed), as well as errors in query itself, or errors encountered when converting result JSON to a C# object.
 
@@ -28,7 +24,12 @@ Result as C# Object
     - Both interface and implementation class can be used for **TQueryObject**.
     - Nullable syntax **?** can be specified with type argument value for **TQueryObject**: this includes also using nullable syntax for collection item types, if return type is a collection.
     - If collection type is used for type parameter **TQueryObject** in a call to **IJsonQL.Query.QueryManager.QueryObject<TQueryObject>** method, the collection item parameters can be interfaces or classes as well (both value or reference type). 
-    
+
+- One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.
+- If many JSON files are specified the following rules and techniques are used:
+  - Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
+  - Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.
+   
 .. note::
     For more examples look at examples at these links:
         - `Successful query examples in JsonQL.Demos project <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples>`_
