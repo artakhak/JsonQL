@@ -27,7 +27,7 @@ public interface IParsedJson : IParsedValue
     /// If the value is not null, and the value of this parameter is between 0, and number of items in <see cref="KeyValues"/>,<br/>
     /// and key <param name="key"></param> is not in this json object, the value will be inserted at position <param name="index"></param>.<br/>
     /// Otherwise, the value is ignored.<br/>
-    /// NOTE: IN most cases, no value should be provided for <param name="index"></param>. The only reason this
+    /// NOTE: In most cases, no value should be provided for <param name="index"></param>. The only reason this
     /// parameter was added was to preserve the structure of json, when doing transformations.
     /// </param>
     /// <remarks>The method is not thread safe. The caller is responsible for providing synchronized access to this method.</remarks>

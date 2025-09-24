@@ -1,8 +1,5 @@
-var sharedExamplesFolderPath = new string[]
-{
-    "DocFiles", "MutatingJsonFiles", "Examples"
-};
-
+string[] sharedExamplesFolderPath = ["DocFiles", "QueryingJsonFiles", "JsonFiles"];
+        
 var parametersJsonTextData = new JsonTextData("Parameters",
     LoadJsonFileHelpers.LoadJsonFile("Parameters.json", sharedExamplesFolderPath));
 
@@ -13,35 +10,20 @@ var companiesJsonTextData = new JsonTextData("Companies",
     LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
 
 var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
-    LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json", sharedExamplesFolderPath), companiesJsonTextData);       
+    LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json", sharedExamplesFolderPath), companiesJsonTextData);
+
+var query = "FilteredCompanies.Select(c => c.Employees.Where(e => e.Name !=  'John Smith'))";
 
 // Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
 // The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
 // and it is normally configured as a singleton.
-
-// We can call queryManager.QueryObject<T> with the following values for "T" generic parameter
-// -Class (value or reference type). We can use '?' for nullable values. Examples:
-//      "queryManager.QueryObject<Manager?>(...)",
-//      "queryManager.QueryObject<Manager>(...)"
-// -Interface. We can use '?' for nullable values. Examples:
-//      "queryManager.QueryObject<IManager?>(...)",
-//      "queryManager.QueryObject<IManager>(...)"
-// The following collection types:
-//          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
-//          ICollection<T>, IReadOnlyCollection<T>
-// -Any type that implements ICollection<T>. Example: List<T>, Array T[]
-// If collection type is used for "T", "T" can be either an object (value or reference type)
-// or another collection listed above. Also, nullability keyword "?" can be used for
-// collection items as well as for collection type itself.
-
-var query = "FilteredCompanies.Select(c => c.Employees.Where(e => e.Name !=  'John Smith'))";
+JsonQL.Query.IQueryManager queryManager = null!;
 
 var employeesResult =
-    queryManager.QueryObject<IReadOnlyList<IEmployee>>(query, filteredCompaniesJsonTextData);
+    queryManager.QueryJsonValue(query, filteredCompaniesJsonTextData);
 
-// The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
-// The value employeesResult.Value contains the result of the query and is of type IReadOnlyList<IEmployee>.
-
-LogHelper.Context.Log.InfoFormat("Number of employees is {0}", employeesResult.Value?.Count ?? 
-                                     throw new ApplicationException(
-                                         $"Query failed. The serialized [{nameof(employeesResult)}] has the error details."));
+Assert.That(employeesResult, Is.Not.Null);
+Assert.That(employeesResult.CompilationErrors.Count, Is.EqualTo(0));
+Assert.That(employeesResult.ParsedValue, Is.Not.Null);
+Assert.That(employeesResult.ParsedValue, Is.InstanceOf<IParsedArrayValue>());
+Assert.That(((IParsedArrayValue)employeesResult.ParsedValue!).Values.Count, Is.EqualTo(9));

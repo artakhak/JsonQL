@@ -21,9 +21,9 @@ Lets consider example with the following four files
 Example of querying for a JSON array
 ====================================
 
-- The code snippet below shows how to query for list of employees of type **System.Collections.Generic.IReadOnlyList<IEmployee>** in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
+- The code snippet below shows how to query for list of employees (JSON array) in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
 - :doc:`../SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
-- Parent/child relationship of queried files set up in **filteredCompaniesJsonTextData** in code snippet is set up as follows:
+- Parent/child relationship of queried files set up in variable **filteredCompaniesJsonTextData** in code snippet is set up as follows:
     
     - :doc:`../SampleFiles/filtered-companies` => :doc:`../SampleFiles/companies` => :doc:`../SampleFiles/countries` => :doc:`../SampleFiles/parameters`.
   
@@ -49,9 +49,9 @@ The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.c
 Example of querying for a JSON object
 =====================================
 
-- The code snippet below shows how to query for list of employees of type **System.Collections.Generic.IReadOnlyList<IEmployee>** in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
+- The code snippet below shows how to query for an employee (JSON object) in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
 - :doc:`../SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
-- Parent/child relationship of queried files set up in **filteredCompaniesJsonTextData** in code snippet is set up as follows:
+- Parent/child relationship of queried files set up in variable **filteredCompaniesJsonTextData** in code snippet is set up as follows:
     
     - :doc:`../SampleFiles/filtered-companies` => :doc:`../SampleFiles/companies` => :doc:`../SampleFiles/countries` => :doc:`../SampleFiles/parameters`.
   
@@ -77,7 +77,7 @@ The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.c
 Example of querying for simple JSON value
 =========================================
 
-- The code snippet below shows how to query for average salary as  **System.Double** value in JSON array **Companies** in :doc:`../SampleFiles/companies` JSON file.
+- The code snippet below shows how to query for average salary (simple JSON numeric value) in JSON array **Companies** in :doc:`../SampleFiles/companies` JSON file.
   
 .. sourcecode:: csharp
 
