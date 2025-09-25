@@ -20,7 +20,7 @@ Error Details
     - Unknown symbols used in JsonQL expressions.
     - :doc:`../../Operators/Assert/index` functions failing the evaluated expressions.
     
-- JonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log error details, the implementation of which can be replaced if necessary.
+- JsonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log the error details. The implementation of this interface can be replaced if necessary.
 
 Example
 =======

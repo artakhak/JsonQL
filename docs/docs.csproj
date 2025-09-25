@@ -14,4 +14,8 @@
     <None Remove="_build\**" />
     <None Remove="_static\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\" />
+  </ItemGroup>
 </Project>

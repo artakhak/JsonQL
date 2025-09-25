@@ -10,9 +10,9 @@
         "LineInfo": {
           "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
           "LineNumber": 2,
-          "LinePosition": 34
+          "LinePosition": 18
         },
-        "ErrorMessage": "Closing brace ')' is missing."
+        "ErrorMessage": "Too many parameters provided for function [Lower]. Expected at most 1 parameters."
       }
     ]
   }

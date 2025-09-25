@@ -1,0 +1,22 @@
+var query = "Lower(TestData[3])";
+
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+// This query will succeed.
+var queryResult =
+    queryManager.QueryJsonValue(query,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")));
+
+Assert.That(queryResult.ParsedValue is IParsedSimpleValue {Value: "test"});
+
+// This query will fail as it has extra parameter.
+query = "Lower(TestData[3], 7)";
+
+queryResult =
+    _queryManager.QueryJsonValue(query,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")));
