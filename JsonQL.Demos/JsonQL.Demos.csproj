@@ -46,6 +46,8 @@
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\MossingBraceInQueriedFileExample\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\InvalidParameterInQueryExample\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QueryJsonObject\Result.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Example.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
@@ -149,6 +151,8 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QueryJsonObject\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QueryJsonArray\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QuerySimpleValue\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Example.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />

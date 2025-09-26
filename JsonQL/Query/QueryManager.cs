@@ -54,7 +54,7 @@ public class QueryManager : IQueryManager
     public IJsonValueQueryResult QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)
     {
         ThreadStaticLoggingContext.Context = _logger;
-        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) => _jsonCompiler.Compile(queryTextIdentifier, queryJsonText, compiledJsonDataToQuery));
+        return ExecuteQuery(query, (queryTextIdentifier, queryJsonText) => _jsonCompiler.Compile(queryJsonText, queryTextIdentifier, compiledJsonDataToQuery));
     }
 
     /// <inheritdoc />
