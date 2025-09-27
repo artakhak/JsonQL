@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Result as C# Object" href="ResultAsCSharpObject/index.html" />
-    <link rel="prev" title="Example1/Result.json" href="../MutatingJsonFiles/SampleFiles/Example1/result.html" /> 
+    <link rel="prev" title="ReusingCompiledJsonFilesExample/Result.json" href="../MutatingJsonFiles/SampleFiles/ReusingCompiledJsonFilesExample/result.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -89,11 +89,91 @@
              
   <section id="querying-json-files">
 <h1>Querying JSON Files<a class="headerlink" href="#querying-json-files" title="Link to this heading"></a></h1>
-<p>TODO: Add contents here…</p>
+<p>Section <a class="reference internal" href="../MutatingJsonFiles/index.html"><span class="doc">Mutating JSON Files</span></a> demonstrated using interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a> to load one or more JSON files that have child/parent relationship with JsonQL expressions (the expressions mutate JSON files to new JSON structure).
+JsonQL also has an interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> which can be used to execute queries against one or more JSON files that have child/parent relationship with JsonQL expressions.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> methods are extension methods in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManagerExtensions.cs">JsonQL.Query.QueryManagerExtensions</a></p>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>Section <a class="reference internal" href="ResultAsCSharpObject/index.html"><span class="doc">Result as C# Object</span></a> describes using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> to query JSON files and convert the query result to a C# object.</p></li>
+<li><p>Section <a class="reference internal" href="ResultAsJsonStructure/index.html"><span class="doc">Result as JSON Structure</span></a> describes using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> to query JSON files and convert the query to JSON structure.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>For more examples of querying JSON files look at demo and unit test examples at these links:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples">Examples in JsonQL.Demos project</a></p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/QueryManager">Examples in JsonQL.Tests project</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ResultAsCSharpObject/index.html">Result as C# Object</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/Examples/index.html">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/Examples/index.html#example-of-querying-for-a-c-reference-type-object">Example of querying for a C# reference type object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/Examples/index.html#example-of-querying-for-value-type-value">Example of querying for value type value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/ErrorDetails/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ErrorDetails/index.html#compilation-error">Compilation error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ErrorDetails/index.html#conversion-error">Conversion error</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/TypeBinding/index.html">Type Binding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/TypeBinding/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/TypeBinding/index.html#convert-to-classes">Convert to Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/TypeBinding/index.html#convert-to-classes-interfaces">Convert to Classes Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/TypeBinding/index.html#replace-interface-implementation">Replace Interface Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/index.html">Nullable Value Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html">Nullable Syntax in Query Result Type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-value-type">Result as Value Type</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-reference-type">Result as Reference Type</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-list-of-value-type-items">Result as List of Value Type Items</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-arrays-of-reference-type-items">Result as Arrays of Reference Type Items</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-list-of-arrays-of-value-type-items">Result as List of Arrays of Value Type Items</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueryResultType/index.html#result-as-list-of-lists-of-reference-type-items">Result as List of Lists of Reference Type Items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueriedObjectProperties/index.html">Nullable Syntax in Queried Object Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/index.html">Conversion Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/ConversionErrorTypeConfigurations/index.html">Setting <strong>ConversionErrorTypeConfigurations</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/ConversionErrorTypeConfigurations/index.html#report-errors-as-warnings-example">Report Errors as Warnings Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/ConversionErrorTypeConfigurations/index.html#ignore-errors-example">Ignore Errors Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/ConversionErrorTypeConfigurations/index.html#report-errors-example">Report Errors Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/FailOnFirstError/index.html">Setting <strong>FailOnFirstError</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/JsonPropertyFormat/index.html">Setting <strong>JsonPropertyFormat</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/TryMapJsonConversionType/index.html">Setting <strong>TryMapJsonConversionType</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsCSharpObject/ConversionSettings/TryMapJsonConversionType/index.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsCSharpObject/SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsCSharpObject/SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ResultAsJsonStructure/index.html">Result as JSON Structure</a><ul>
@@ -101,7 +181,27 @@
 <li class="toctree-l3"><a class="reference internal" href="../ImportantInterfaces/IJsonValueQueryResult/IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="ResultAsJsonStructure/ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsJsonStructure/Examples/index.html">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/Examples/index.html#example-of-querying-for-a-json-array">Example of querying for a JSON array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/Examples/index.html#example-of-querying-for-a-json-object">Example of querying for a JSON object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/Examples/index.html#example-of-querying-for-simple-json-value">Example of querying for simple JSON value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsJsonStructure/ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/ErrorDetails/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsJsonStructure/ErrorDetails/index.html#missing-closing-brace-in-queried-json-file">Missing closing brace in queried JSON file:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ResultAsJsonStructure/ErrorDetails/index.html#invalid-parameters-in-query">Invalid parameters in query</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ResultAsJsonStructure/SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResultAsJsonStructure/SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
@@ -113,7 +213,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../MutatingJsonFiles/SampleFiles/Example1/result.html" class="btn btn-neutral float-left" title="Example1/Result.json" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../MutatingJsonFiles/SampleFiles/ReusingCompiledJsonFilesExample/result.html" class="btn btn-neutral float-left" title="ReusingCompiledJsonFilesExample/Result.json" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ResultAsCSharpObject/index.html" class="btn btn-neutral float-right" title="Result as C# Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

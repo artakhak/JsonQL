@@ -6,7 +6,7 @@ Error Details
    :local:
    :depth: 2
 
-- If evaluated JSON files contain errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_.
+- If evaluated JSON files have errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_.
     .. note::
         See :doc:`../../ImportantInterfaces/ICompilationResult/index` for more details on data structure used for the result.
 
@@ -20,7 +20,7 @@ Error Details
     - Unknown symbols used in JsonQL expressions.
     - :doc:`../../Operators/Assert/index` functions failing the evaluated expressions.
     
-- JonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log error details, the implementation of which can be replaced if necessary.
+- JsonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log the error details. The implementation of this interface can be replaced if necessary.
 
 Example
 =======
@@ -54,7 +54,9 @@ The result **result** is serialized in JSON file `Result.json <https://github.co
 The screenshot below shows the error details logged using the error data in `Result.json <https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/FailureExamples/MissingClosingBracesError/Result.json>`_.
 
  .. image:: missing-closing-brace-error.jpg
-
-
+ 
+.. note::
+    Errors are logged by `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ and custom implementation of this interface can be provided.
+     
 .. note::
     For more examples demonstrating errors look at examples in this folder: `FailureExamples: <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/FailureExamples>`_

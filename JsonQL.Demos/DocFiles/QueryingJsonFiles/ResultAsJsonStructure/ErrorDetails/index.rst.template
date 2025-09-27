@@ -6,5 +6,94 @@ Error Details
    :local:
    :depth: 2
 
-- TODO: Add contents here...
-- TODO: Add toctree here
+- If evaluated query or referenced JSON files have errors, the error details are stored in property **CompilationErrors** of interface `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
+    .. note::
+        See :doc:`../../../ImportantInterfaces/IJsonValueQueryResult/index` for more details on data structure used for the result.
+
+- Each item in property **CompilationErrors** in `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_ is of type `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs>`_ which has details on an error such as:
+    - JSON file identifier that resulted in error.
+    - Position in JSON file or query for the error.
+    - Error message.
+    
+- Errors can happen for number of reasons, some of which are listed here:
+    - Missing or extra closing braces for functions or arrays.
+    - Unknown symbols used in JsonQL expressions.
+    - :doc:`../../../Operators/Assert/index` functions failing the evaluated expressions.
+    
+- JsonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log the error details. The implementation of this interface can be replaced if necessary.
+
+Examples
+========
+
+Below are couple of examples showing errors in queried files as well as in query itself.
+
+.. note::
+    For more examples demonstrating errors look at examples in this folder: `FailureExamples <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IJsonCompilerExamples/FailureExamples>`_
+ 
+Missing closing brace in queried JSON file:
+-------------------------------------------
+
+The C# code snippet below queries JSON file **Data.json** below. The query results in errors since the referenced file has a JsonQL function with missing closing braces.
+
+Queried **Data.json** file:
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples\MissingBraceInQueriedFileExample\Data.json</IncludedFilePlaceHolder>
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Examples\MissingBraceInQueriedFileExample\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_) is serialized to a **Result.json** file below.
+    
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\MissingBraceInQueriedFileExample\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+The screenshot below shows the error details logged using the data in property **CompilationErrors** in `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
+
+ .. image:: Examples/MissingBraceInQueriedFileExample/missing-closing-brace-error.jpg
+
+Invalid parameters in query
+---------------------------
+
+The C# code snippet below queries JSON file **Data.json**. The query results in errors since the query uses invalid number of parameter in a call to a JsonQL function.
+
+Queried **Data.json** file:
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples\InvalidParameterInQueryExample\Data.json</IncludedFilePlaceHolder>
+    
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Examples\InvalidParameterInQueryExample\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_) is serialized to a **Result.json** file below.
+    
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\InvalidParameterInQueryExample\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+The screenshot below shows the error details logged using the data in property **CompilationErrors** in `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
+
+ .. image:: Examples/InvalidParameterInQueryExample/invalid-parameter-error.jpg

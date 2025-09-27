@@ -1,0 +1,25 @@
+{
+  "ParsedValue":
+  {
+    "Id":  100000001,
+    "FirstName":  "John",
+    "LastName":  "Smith",
+    "Address": {
+      "Street":  "456 Oak Avenue",
+      "City":  "Chicago",
+      "State":  "IL",
+      "ZipCode":  "60601"
+    },
+    "Salary":  99500,
+    "Age":  45,
+    "Phones": [
+      "312-555-0134",
+      "312-555-0178"
+    ]
+  },
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

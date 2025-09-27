@@ -1,0 +1,362 @@
+{
+  "$type": "JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.List`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], System.Private.CoreLib]], JsonQL",
+  "Value": {
+    "$type": "System.Collections.Generic.List`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000026,
+            "FirstName": "John",
+            "LastName": "Smith",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "456 Oak Avenue",
+              "City": "Chicago",
+              "State": "IL",
+              "ZipCode": "60601",
+              "County": null
+            },
+            "Salary": 99500,
+            "Age": 45,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "312-555-0134",
+                "312-555-0178"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000027,
+            "FirstName": "Megan",
+            "LastName": "Reed",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "12 Lakeview Dr",
+              "City": "Chicago",
+              "State": "IL",
+              "ZipCode": "60602",
+              "County": null
+            },
+            "Salary": 86000,
+            "Age": 33,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "312-555-0311"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000028,
+            "FirstName": "Carlos",
+            "LastName": "Diaz",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "98 Wacker Pl",
+              "City": "Chicago",
+              "State": "IL",
+              "ZipCode": "60603",
+              "County": null
+            },
+            "Salary": 72000,
+            "Age": 29,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "312-555-0322",
+                "312-555-0333"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+        "$values": [
+          null
+        ]
+      },
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000037,
+            "FirstName": "Ava",
+            "LastName": "Mitchell",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "142 Willow Lane",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97205",
+              "County": null
+            },
+            "Salary": 81500,
+            "Age": 33,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0616",
+                "503-555-0627"
+              ]
+            }
+          },
+          null,
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000038,
+            "FirstName": "Lucas",
+            "LastName": "Freeman",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "88 Cedar Court",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97206",
+              "County": null
+            },
+            "Salary": 74250,
+            "Age": 29,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0738"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000029,
+            "FirstName": "Liam",
+            "LastName": "Grant",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "210 Oak Blvd",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97201",
+              "County": null
+            },
+            "Salary": 78000,
+            "Age": 30,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0414"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000030,
+            "FirstName": "Nora",
+            "LastName": "Singh",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "7 Pine Street",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97202",
+              "County": null
+            },
+            "Salary": 69500,
+            "Age": 27,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0425",
+                "503-555-0436"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000031,
+            "FirstName": "Owen",
+            "LastName": "Park",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "55 River Rd",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97203",
+              "County": null
+            },
+            "Salary": 84500,
+            "Age": 38,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0447"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000032,
+            "FirstName": "Zara",
+            "LastName": "Khan",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "300 Harbor Ln",
+              "City": "Portland",
+              "State": "OR",
+              "ZipCode": "97204",
+              "County": null
+            },
+            "Salary": 71000,
+            "Age": 28,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "503-555-0458",
+                "503-555-0469"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000033,
+            "FirstName": "Hannah",
+            "LastName": "Brooks",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "12 Beacon St",
+              "City": "Boston",
+              "State": "MA",
+              "ZipCode": "02108",
+              "County": null
+            },
+            "Salary": 91000,
+            "Age": 41,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "617-555-0510",
+                "617-555-0521"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000034,
+            "FirstName": "Ethan",
+            "LastName": "Cole",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "77 Harborview Rd",
+              "City": "Boston",
+              "State": "MA",
+              "ZipCode": "02110",
+              "County": null
+            },
+            "Salary": 76000,
+            "Age": 32,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "617-555-0532"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000035,
+            "FirstName": "Maya",
+            "LastName": "Patel",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "233 Commonwealth Ave",
+              "City": "Boston",
+              "State": "MA",
+              "ZipCode": "02115",
+              "County": null
+            },
+            "Salary": 68500,
+            "Age": 29,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "617-555-0543",
+                "617-555-0554"
+              ]
+            }
+          },
+          {
+            "$type": "JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos",
+            "Id": 100000036,
+            "FirstName": "Noah",
+            "LastName": "Ortiz",
+            "Address": {
+              "$type": "JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos",
+              "Street": "14 Beacon St",
+              "City": "Boston",
+              "State": "MA",
+              "ZipCode": "02116",
+              "County": null
+            },
+            "Salary": 73000,
+            "Age": 35,
+            "Manager": null,
+            "Phones": {
+              "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+              "$values": [
+                "617-555-0565"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ErrorsAndWarnings": {
+    "$type": "JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL",
+    "CompilationErrors": {
+      "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+      "$values": []
+    },
+    "ConversionErrors": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    },
+    "ConversionWarnings": {
+      "$type": "JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL",
+      "Errors": {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+  }
+}

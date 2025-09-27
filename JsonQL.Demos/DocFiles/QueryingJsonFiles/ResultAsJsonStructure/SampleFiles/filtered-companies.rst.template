@@ -1,0 +1,11 @@
+﻿======================
+FilteredCompanies.json
+======================
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>..\..\JsonFiles\FilteredCompanies.json</IncludedFilePlaceHolder>

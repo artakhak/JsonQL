@@ -1,0 +1,22 @@
+{
+  "ParsedValue":
+  [
+    {
+      "Name":  "United States",
+      "Population":  331000000,
+      "Area":  9833520,
+      "GDP":  21.43
+    },
+    {
+      "Name":  "Germany",
+      "Population":  83000000,
+      "Area":  357022,
+      "GDP":  3.86
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "JsonQL.Compilation.ICompilationErrorItem[], JsonQL",
+    "$values": []
+  }
+}

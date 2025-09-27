@@ -1,0 +1,119 @@
+﻿============
+Type Binding
+============
+
+.. contents::
+   :local:
+   :depth: 2
+
+JsonQL tries converts the result of a query executed by calling method one of overloaded methods **IJsonQL.Query.QueryManager.QueryObject<TQueryObject>** to an instance of **TQueryObject** and store it in property **Value** of type **TQueryObject** in result of type `JsonQL.Query.IObjectQueryResult[TQueryObject] <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_
+
+The following rules are applied when converting JSON compiled as a result of executing the query to an instance of **TQueryObject**.
+
+- Any interface is deserialized using the default implementation model classes found in the same namespace (this includes both **TQueryObject** if it is an interface, as well as any properties used in **TQueryObject**).
+- Model classes should have either properties with public setters, or property value should be injected in constructors for the values in JSON to be stored in de-serialized objects (if public setter is missing, the value will not be deserialized).
+
+    Below is an example of model class **Employee** with a property **Employee** that has public getter/setter, and a property **Id** with only a public getter, and a constructor with injected parameter **id** which sets the value of **Id** property.
+
+    .. sourcecode:: csharp
+
+        <IncludedFilePlaceHolder>..\..\..\..\Examples\DataModels\Employee.cs</IncludedFilePlaceHolder>
+     
+- Class or interface used to deserialize a JSON value can be replaced with custom provided class or interface by either setting the value of **TryMapTypeDelegate** property in `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ (normally done once in dependency injection setup on application start) or in `JsonQL.JsonToObjectConversion.IJsonConversionSettingsOverrides <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs>`_ (can be done with each query execution, and overrides the value set in `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_).
+    
+    .. note::
+        See :doc:`../ConversionSettings/index` for examples of configuring settings.
+        See :ref:`replace-serialization-type` for example of replacing the de-serialization type per query execution. 
+
+- Types used for serialization (both value types like 'System.Double' as well as reference types) can use use nullable syntax. See :doc:`../NullableValueSupport/index` for more details on nullable syntax in types used for de-serialization.
+- If result fails to de-serialize into C# object specified, there will be conversion errors of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to one of the following enum values: **CannotCreateInstanceOfClass**, **FailedToConvertJsonValueToExpectedType**, or in some cases **Error** (normally more specific error type will be reported).
+
+Examples
+--------
+
+Convert to Classes
+~~~~~~~~~~~~~~~~~~
+
+This example queries the JSON file :doc:`../SampleFiles/companies` and converts the result to **IReadOnlyList<Employee>**.
+
+.. note::
+    The following Microsoft collection types can be used in query results, as well as for any property in model classes: **System.Collections.Generic.List<T>**, **System.Collections.Generic.IReadOnlyList<T>**, **System.Collections.Generic.IEnumerable<T>**, as well as arrays (e.g., **IEmployee[]**).
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Examples\ConvertToClasses\Example.cs.snippet</IncludedFilePlaceHolder>
+     
+The **Result.json** below stores serialized instance of `JsonQL.Query.IObjectQueryResult<IReadOnlyList<Employee> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ for the query in example above.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand <b>Result.json</b> </summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\ConvertToClasses\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+
+Convert to Classes Interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This example queries the JSON file :doc:`../SampleFiles/companies` and converts the result to **IReadOnlyList<IEmployee>**.
+-JsonQL will use default implementation **Employee** of **Employee** when creating instances in **IReadOnlyList<IEmployee>**.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Examples\ConvertToInterfaces\Example.cs.snippet</IncludedFilePlaceHolder>
+     
+The **Result.json** below stores serialized instance of `JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ for the query in example above.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand <b>Result.json</b> </summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\ConvertToInterfaces\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+
+
+.. _replace-serialization-type:
+
+Replace Interface Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This example queries the JSON file :doc:`Examples/ReplaceInterfaceImplementation/employees` and converts the result to **IReadOnlyList<IEmployee>**.
+
+- We use **jsonConversionSettingOverrides** parameter in call to method **queryManager.QueryObject<IReadOnlyList<IEmployee>>()** to use **IManager** instead of **IEmployee** if converted JSON object in query result has **Employees** key with a value as a non-empty array.
+
+    .. note::
+        We could do the same thing by setting the value of **TryMapJsonConversionType** of property `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ to the same lambda expression we used for parameter **jsonConversionSettingOverrides** when creating an instance of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_. See :doc:`../ConversionSettings/index` for more details on configuring settings. 
+    
+- JsonQL will use default implementation **Employee** of **IEmployee** when creating instances in **IReadOnlyList<IEmployee>** in all other cases.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Examples\ReplaceInterfaceImplementation\Example.cs.snippet</IncludedFilePlaceHolder>
+     
+The **Result.json** below stores serialized instance of `JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee> <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_ for the query in example above.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand <b>Result.json</b> </summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\ReplaceInterfaceImplementation\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

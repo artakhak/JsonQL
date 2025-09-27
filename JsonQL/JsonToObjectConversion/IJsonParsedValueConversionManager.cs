@@ -1,7 +1,6 @@
 // Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using JsonQL.JsonObjects;
@@ -18,7 +17,7 @@ namespace JsonQL.JsonToObjectConversion;
 public interface IJsonParsedValueConversionManager
 {
     /// <summary>
-    /// 
+    /// Stores the details of conversion result.
     /// </summary>
     /// <param name="parsedValue"></param>
     /// <param name="typeToConvertTo">TYpe to convert too.</param>

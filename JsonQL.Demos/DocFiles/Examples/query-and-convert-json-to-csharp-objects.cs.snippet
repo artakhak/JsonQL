@@ -1,12 +1,13 @@
-// Create an instance of JsonQL.Query.QueryManager here.
-// This is normally setup in DI normally using a singletone binding done on application start.
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
 IQueryManager queryManager = null!; 
 
 // NOTE: Data.json has a root JSON with a collection of employees. 
 // If the JSON had a JSON object with the "Employees" field, the
 // query would be: "Employees.Where(...)" instead of "Where(...)"
-var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
-                                    
+var query = "Where(e => e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p => p == e.Id))";
+
 // We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
 // -Class (value or reference type). We can use '?' for nullable values. Examples:
 //      "_queryManager.QueryObject<Manager?>(...)",
@@ -24,8 +25,9 @@ var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
 // The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<IEmployee>>".
 var employeesResult =
     queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
-        new JsonTextData("Data",
-            this.LoadExampleJsonFile("Data.json")),
+                new JsonTextData("Data",
+                    this.LoadExampleJsonFile("Data.json"),
+                    new JsonTextData("Parameters", this.LoadExampleJsonFile("Parameters.json"))),
         [false, false], new JsonConversionSettingsOverrides
         {
             TryMapJsonConversionType = (type, parsedJson) =>
@@ -41,4 +43,5 @@ var employeesResult =
                 return null;
             }
         });
- // This example is copied from 
+
+// This example is copied from https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples/ResultAsObject/ResultAsNonNullableEmployeesList/Example.cs

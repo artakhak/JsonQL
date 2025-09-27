@@ -1,0 +1,19 @@
+{
+  "ParsedValue": null,
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": [
+      {
+        "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
+        "JsonTextIdentifier": "Data",
+        "LineInfo": {
+          "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
+          "LineNumber": 3,
+          "LinePosition": 53
+        },
+        "ErrorMessage": "Closing brace ')' is missing."
+      }
+    ]
+  }
+}

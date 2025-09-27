@@ -1,0 +1,99 @@
+﻿========
+Examples
+========
+
+.. contents::
+   :local:
+   :depth: 2
+
+Similar to how we did this in section :doc:`../../../MutatingJsonFiles/index` we will use the following four files in our examples
+
+    .. note::
+        :doc:`../../../MutatingJsonFiles/index` also uses Example.json, which has expressions that reference JSON objects in that file as well as the four files mentioned.
+
+Lets consider example with the following four files
+
+- :doc:`../SampleFiles/parameters` - a JSON file with lists "FilteredCountryNames" and "FilteredCompanyNames" referenced in other JSON files below in JsonQL expressions.
+- :doc:`../SampleFiles/countries` - a JSON file for data on number of countries
+- :doc:`../SampleFiles/companies` - a JSON file for data on number of companies
+- :doc:`../SampleFiles/filtered-companies` - a JSON file shown below with JsonQL expressions that filter companies in :doc:`../SampleFiles/companies` to include only some companies using data in :doc:`../SampleFiles/parameters`.
+
+Example of querying for a JSON array
+====================================
+
+- The code snippet below shows how to query for list of employees (JSON array) in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
+- :doc:`../SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
+- Parent/child relationship of queried files set up in variable **filteredCompaniesJsonTextData** in code snippet is set up as follows:
+    
+    - :doc:`../SampleFiles/filtered-companies` => :doc:`../SampleFiles/companies` => :doc:`../SampleFiles/countries` => :doc:`../SampleFiles/parameters`.
+  
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>QueryJsonArray\Example.cs.snippet</IncludedFilePlaceHolder>
+ 
+The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>QueryJsonArray\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+
+Example of querying for a JSON object
+=====================================
+
+- The code snippet below shows how to query for an employee (JSON object) in JSON array **FilteredCompanies** in :doc:`../SampleFiles/filtered-companies` JSON file.
+- :doc:`../SampleFiles/filtered-companies` itself has JsonQL expressions that reference "FilteredCompanyNames" array in :doc:`../SampleFiles/parameters` and **Companies** array in :doc:`../SampleFiles/companies`
+- Parent/child relationship of queried files set up in variable **filteredCompaniesJsonTextData** in code snippet is set up as follows:
+    
+    - :doc:`../SampleFiles/filtered-companies` => :doc:`../SampleFiles/companies` => :doc:`../SampleFiles/countries` => :doc:`../SampleFiles/parameters`.
+  
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>QueryJsonObject\Example.cs.snippet</IncludedFilePlaceHolder>
+ 
+The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>QueryJsonObject\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+Example of querying for simple JSON value
+=========================================
+
+- The code snippet below shows how to query for average salary (simple JSON numeric value) in JSON array **Companies** in :doc:`../SampleFiles/companies` JSON file.
+  
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>QuerySimpleValue\Example.cs.snippet</IncludedFilePlaceHolder>
+
+The result (an instance of `JsonQL.Query.IJsonValueQueryResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IJsonValueQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>QuerySimpleValue\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

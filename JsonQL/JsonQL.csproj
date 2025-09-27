@@ -5,8 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<PackageVersion>1.2.3</PackageVersion>
-		<Version>1.2.3</Version>
+		<PackageVersion>1.3.0</PackageVersion>
+		<Version>1.3.0</Version>
 		<PackageTags>Json JsonQL Json+QL Query Json+Query+Language Json+path Json+Query</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
@@ -15,7 +15,10 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-			Some README.md improvements and in progress changes to documentation for  https://jsonql.readthedocs.io/
+            - Fixed an issue JsonQL.Query.QueryManager related re-using compiled queried JSON files when executing quetries (small change in method "QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)" to switch two string parameters.
+            - Bumped the version to 1.3.0 because of the small fix            
+			- Some README.md improvements and in progress changes to documentation for  https://jsonql.readthedocs.io/
+            - Moved some interface implemenbtations to seperate files, so make sure the links to interfaces in documentation show only interfaces.
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>
@@ -26,8 +29,15 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<!--Added temporarily to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
+		SET TO TURN_ON_DOCUMENTATION_TEST_SETTINGS_NO BEFORE COMMITING
+		-->
+		<DefineConstants>$(DefineConstants);TURN_ON_DOCUMENTATION_TEST_SETTINGS_NO</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath=""/>
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>

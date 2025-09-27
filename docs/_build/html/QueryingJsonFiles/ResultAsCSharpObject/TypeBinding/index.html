@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Type Binding &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Nullable Value Support" href="../NullableValueSupport/index.html" />
+    <link rel="prev" title="Error Details" href="../ErrorDetails/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Querying JSON Files</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Result as C# Object</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Type Binding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../NullableValueSupport/index.html">Nullable Value Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ConversionSettings/index.html">Conversion Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SampleFiles/index.html">Sample Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ResultAsJsonStructure/index.html">Result as JSON Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Querying JSON Files</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Result as C# Object</a></li>
+      <li class="breadcrumb-item active">Type Binding</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/QueryingJsonFiles/ResultAsCSharpObject/TypeBinding/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="type-binding">
+<h1>Type Binding<a class="headerlink" href="#type-binding" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#examples" id="id5">Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#convert-to-classes" id="id6">Convert to Classes</a></p></li>
+<li><p><a class="reference internal" href="#convert-to-classes-interfaces" id="id7">Convert to Classes Interfaces</a></p></li>
+<li><p><a class="reference internal" href="#replace-interface-implementation" id="id8">Replace Interface Implementation</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>JsonQL tries converts the result of a query executed by calling method one of overloaded methods <strong>IJsonQL.Query.QueryManager.QueryObject&lt;TQueryObject&gt;</strong> to an instance of <strong>TQueryObject</strong> and store it in property <strong>Value</strong> of type <strong>TQueryObject</strong> in result of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult[TQueryObject]</a></p>
+<p>The following rules are applied when converting JSON compiled as a result of executing the query to an instance of <strong>TQueryObject</strong>.</p>
+<ul>
+<li><p>Any interface is deserialized using the default implementation model classes found in the same namespace (this includes both <strong>TQueryObject</strong> if it is an interface, as well as any properties used in <strong>TQueryObject</strong>).</p></li>
+<li><p>Model classes should have either properties with public setters, or property value should be injected in constructors for the values in JSON to be stored in de-serialized objects (if public setter is missing, the value will not be deserialized).</p>
+<blockquote>
+<div><p>Below is an example of model class <strong>Employee</strong> with a property <strong>Employee</strong> that has public getter/setter, and a property <strong>Id</strong> with only a public getter, and a constructor with injected parameter <strong>id</strong> which sets the value of <strong>Id</strong> property.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">JsonQL.Demos.Examples.DataModels</span><span class="p">;</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IEmployee</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Example when property can be set in constructor.</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">Employee</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">FirstName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">LastName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IAddress</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IManager</span><span class="o">?</span><span class="w"> </span><span class="n">Manager</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">    </span><span class="c1">/// Example of &lt;see cref=&quot;List{T}&quot;/&gt; property. Other examples use &lt;see cref=&quot;IReadOnlyList{T}&quot;/&gt;</span>
+<span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Phones</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Class or interface used to deserialize a JSON value can be replaced with custom provided class or interface by either setting the value of <strong>TryMapTypeDelegate</strong> property in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs">JsonQL.JsonToObjectConversion.IJsonConversionSettings</a> (normally done once in dependency injection setup on application start) or in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettingsOverrides.cs">JsonQL.JsonToObjectConversion.IJsonConversionSettingsOverrides</a> (can be done with each query execution, and overrides the value set in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs">JsonQL.JsonToObjectConversion.IJsonConversionSettings</a>).</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../ConversionSettings/index.html"><span class="doc">Conversion Settings</span></a> for examples of configuring settings.
+See <a class="reference internal" href="#replace-serialization-type"><span class="std std-ref">Replace Interface Implementation</span></a> for example of replacing the de-serialization type per query execution.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Types used for serialization (both value types like ‘System.Double’ as well as reference types) can use use nullable syntax. See <a class="reference internal" href="../NullableValueSupport/index.html"><span class="doc">Nullable Value Support</span></a> for more details on nullable syntax in types used for de-serialization.</p></li>
+<li><p>If result fails to de-serialize into C# object specified, there will be conversion errors of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs">JsonQL.JsonToObjectConversion.IConversionError</a> in result with value of <strong>ErrorType</strong> equal to one of the following enum values: <strong>CannotCreateInstanceOfClass</strong>, <strong>FailedToConvertJsonValueToExpectedType</strong>, or in some cases <strong>Error</strong> (normally more specific error type will be reported).</p></li>
+</ul>
+<section id="examples">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="convert-to-classes">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Convert to Classes</a><a class="headerlink" href="#convert-to-classes" title="Link to this heading"></a></h3>
+<p>This example queries the JSON file <a class="reference internal" href="../SampleFiles/companies.html"><span class="doc">Companies.json</span></a> and converts the result to <strong>IReadOnlyList&lt;Employee&gt;</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following Microsoft collection types can be used in query results, as well as for any property in model classes: <strong>System.Collections.Generic.List&lt;T&gt;</strong>, <strong>System.Collections.Generic.IReadOnlyList&lt;T&gt;</strong>, <strong>System.Collections.Generic.IEnumerable&lt;T&gt;</strong>, as well as arrays (e.g., <strong>IEmployee[]</strong>).</p>
+</div>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Salary &gt;= 100000))&quot;</span><span class="p">;</span>
+
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;Employee&gt;&gt;&quot;.</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="na">[&quot;DocFiles&quot;, &quot;QueryingJsonFiles&quot;, &quot;JsonFiles&quot;]</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>The <strong>Result.json</strong> below stores serialized instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;Employee&gt;</a> for the query in example above.</p>
+<details>
+<summary>Click to expand <b>Result.json</b> </summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;212-555-0199&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0166&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0188&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000008</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laura&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lee&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;258 Willow Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;92101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0155&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0122&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250150245</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Main St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Jose&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0133&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0190&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">783328759</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.DocFiles.QueryingJsonFiles.ResultAsCSharpObject.TypeBinding.Examples.ConvertToClasses.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pine St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">122395</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;323-555-0177&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ErrorsAndWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.ICompilationErrorItem[], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/></section>
+<section id="convert-to-classes-interfaces">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Convert to Classes Interfaces</a><a class="headerlink" href="#convert-to-classes-interfaces" title="Link to this heading"></a></h3>
+<p>This example queries the JSON file <a class="reference internal" href="../SampleFiles/companies.html"><span class="doc">Companies.json</span></a> and converts the result to <strong>IReadOnlyList&lt;IEmployee&gt;</strong>.
+-JsonQL will use default implementation <strong>Employee</strong> of <strong>Employee</strong> when creating instances in <strong>IReadOnlyList&lt;IEmployee&gt;</strong>.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Salary &gt;= 100000))&quot;</span><span class="p">;</span>
+
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;Employee&gt;&gt;&quot;.</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="na">[&quot;DocFiles&quot;, &quot;QueryingJsonFiles&quot;, &quot;JsonFiles&quot;]</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>The <strong>Result.json</strong> below stores serialized instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;</a> for the query in example above.</p>
+<details>
+<summary>Click to expand <b>Result.json</b> </summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;212-555-0199&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0166&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0188&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000008</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laura&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lee&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;258 Willow Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;92101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0155&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0122&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250150245</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Main St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Jose&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0133&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0190&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">783328759</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pine St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">122395</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;323-555-0177&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ErrorsAndWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.ICompilationErrorItem[], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/></section>
+<section id="replace-interface-implementation">
+<span id="replace-serialization-type"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">Replace Interface Implementation</a><a class="headerlink" href="#replace-interface-implementation" title="Link to this heading"></a></h3>
+<p>This example queries the JSON file <a class="reference internal" href="Examples/ReplaceInterfaceImplementation/employees.html"><span class="doc">Employees.json</span></a> and converts the result to <strong>IReadOnlyList&lt;IEmployee&gt;</strong>.</p>
+<ul>
+<li><p>We use <strong>jsonConversionSettingOverrides</strong> parameter in call to method <strong>queryManager.QueryObject&lt;IReadOnlyList&lt;IEmployee&gt;&gt;()</strong> to use <strong>IManager</strong> instead of <strong>IEmployee</strong> if converted JSON object in query result has <strong>Employees</strong> key with a value as a non-empty array.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We could do the same thing by setting the value of <strong>TryMapJsonConversionType</strong> of property <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs">JsonQL.JsonToObjectConversion.IJsonConversionSettings</a> to the same lambda expression we used for parameter <strong>jsonConversionSettingOverrides</strong> when creating an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs">JsonQL.JsonToObjectConversion.IJsonConversionSettings</a>. See <a class="reference internal" href="../ConversionSettings/index.html"><span class="doc">Conversion Settings</span></a> for more details on configuring settings.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>JsonQL will use default implementation <strong>Employee</strong> of <strong>IEmployee</strong> when creating instances in <strong>IReadOnlyList&lt;IEmployee&gt;</strong> in all other cases.</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Employees.Where(e =&gt; e.Salary &gt;= 100000)&quot;</span><span class="p">;</span>
+
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;&quot;.</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Employees&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Employees.json&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">convertedValueNullability</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="k">false</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">],</span>
+<span class="w">        </span><span class="n">jsonConversionSettingOverrides</span><span class="p">:</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">JsonConversionSettingsOverrides</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">TryMapJsonConversionType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">parsedJson</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// If we always return null, or just do not set the value, of TryMapJsonConversionType</span>
+<span class="w">                </span><span class="c1">// IEmployee will always be bound to Employee</span>
+<span class="w">                </span><span class="c1">// In this example, we ensure that if parsed JSON has &quot;Employees&quot; as a non-empty array,</span>
+<span class="w">                </span><span class="c1">// then the default implementation of IManager (i.e., Manager) is used to</span>
+<span class="w">                </span><span class="c1">// deserialize the JSON.</span>
+<span class="w">                </span><span class="c1">// We can also specify Manager explicitly.</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="c1">//parsedJson.HasKey(nameof(IManager.Employees))</span>
+<span class="w">                    </span><span class="n">parsedJson</span><span class="p">.</span><span class="n">TryGetJsonKeyValue</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">IManager</span><span class="p">.</span><span class="n">Employees</span><span class="p">),</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">employees</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                    </span><span class="n">employees</span><span class="p">.</span><span class="n">Value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">IParsedArrayValue</span><span class="w"> </span><span class="n">employeesArray</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">employeesArray</span><span class="p">.</span><span class="n">Values</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nf">typeof</span><span class="p">(</span><span class="n">IManager</span><span class="p">);</span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="n">Is</span><span class="p">.</span><span class="n">Not</span><span class="p">.</span><span class="n">Null</span><span class="p">);</span>
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="o">!</span><span class="p">.</span><span class="n">Count</span><span class="p">,</span><span class="w"> </span><span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">Is</span><span class="p">.</span><span class="n">Not</span><span class="p">.</span><span class="n">InstanceOf</span><span class="o">&lt;</span><span class="n">IManager</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">Is</span><span class="p">.</span><span class="n">InstanceOf</span><span class="o">&lt;</span><span class="n">IManager</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">Is</span><span class="p">.</span><span class="n">TypeOf</span><span class="o">&lt;</span><span class="n">Manager</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>The <strong>Result.json</strong> below stores serialized instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs">JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;</a> for the query in example above.</p>
+<details>
+<summary>Click to expand <b>Result.json</b> </summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;525-000-0001&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Manager, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Employees&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">&quot;525-000-0001&quot;</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000007</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Martinez&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;147 Birch Street&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Antonio&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;78201&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">95000</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">&quot;515-100-0001&quot;</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000006</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sarah&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wilson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;987 Ash Boulevard&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Philadelphia&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;19101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">160000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;632-111-1112&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;632-111-1113&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ErrorsAndWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.ICompilationErrorItem[], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ErrorDetails/index.html" class="btn btn-neutral float-left" title="Error Details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../NullableValueSupport/index.html" class="btn btn-neutral float-right" title="Nullable Value Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

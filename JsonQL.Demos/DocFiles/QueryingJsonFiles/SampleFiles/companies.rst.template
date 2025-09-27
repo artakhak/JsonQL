@@ -1,0 +1,13 @@
+﻿:orphan:
+
+==============
+Companies.json
+==============
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>..\JsonFiles\Companies.json</IncludedFilePlaceHolder>

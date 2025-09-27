@@ -1,0 +1,20 @@
+// Select the employees with null or missing values for non-null properties
+var query =
+    "Employees.Where(e => e.Address is null || e.Address is undefined || e.Phones is null || e.Phones is undefined)";
+
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+var employeesResult =
+    queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
+        new JsonTextData("EmployeesWithMissingData",
+            LoadJsonFileHelpers.LoadJsonFile("EmployeesWithMissingData.json", 
+                ["DocFiles", "QueryingJsonFiles", "ResultAsCSharpObject", 
+                    "ConversionSettings", "ConversionErrorTypeConfigurations"])),
+        jsonConversionSettingOverrides: null);
+
+Assert.That(employeesResult.ErrorsAndWarnings.ConversionErrors.Errors.Count, Is.EqualTo(1));
+Assert.That(employeesResult.ErrorsAndWarnings.ConversionWarnings.Errors.Count, Is.EqualTo(0));
+Assert.That(employeesResult.Value, Is.Null);

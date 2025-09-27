@@ -1,0 +1,49 @@
+﻿============================================
+Nullable Syntax in Queried Object Properties
+============================================
+
+.. contents::
+   :local:
+   :depth: 2
+
+- Nullable syntax can be used with model class property types (with both C# reference types as well as value types such as **System.Double**) for classes used as return types in query result. 
+- Nullable syntax can be used for item types as well in model class properties that are of one of the following types: 
+    - System.Collections.Generic.List<T>
+    - System.Collections.Generic.IReadOnlyList<T>
+    - System.Collections.Generic.IEnumerable<T>
+    - Arrays
+- JsonQL will evaluate all non-nullable property values and will report conversion errors of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to one of the following enum values: **NonNullablePropertyNotSet**, **NonNullableCollectionItemValueNotSet**.
+
+In example below we query for a non-nullable collection of non-nullable **IEmployee** items. 
+
+- If the query results in **IEmployee** instances with null value for **Address** property of non-nullable type **IAddress**, of if any instance of **IEmployee** in query result has null value for **IEmployee.Address.Street** (**IAddress.Street** is of non-nullable **string** type), JsonQL will report conversion error(s) of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to one of the following enum values: **NonNullablePropertyNotSet**.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand <b>Company.json</b> used in query in example below</summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>..\..\..\JsonFiles\Companies.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

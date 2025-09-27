@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nullable Syntax in Queried Object Properties &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Conversion Settings" href="../../ConversionSettings/index.html" />
+    <link rel="prev" title="Nullable Syntax in Query Result Type" href="../NullableSyntaxInQueryResultType/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Querying JSON Files</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Result as C# Object</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../Examples/index.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../TypeBinding/index.html">Type Binding</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Nullable Value Support</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../NullableSyntaxInQueryResultType/index.html">Nullable Syntax in Query Result Type</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Nullable Syntax in Queried Object Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../ConversionSettings/index.html">Conversion Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../SampleFiles/index.html">Sample Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ResultAsJsonStructure/index.html">Result as JSON Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Querying JSON Files</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Result as C# Object</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Nullable Value Support</a></li>
+      <li class="breadcrumb-item active">Nullable Syntax in Queried Object Properties</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/QueryingJsonFiles/ResultAsCSharpObject/NullableValueSupport/NullableSyntaxInQueriedObjectProperties/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nullable-syntax-in-queried-object-properties">
+<h1>Nullable Syntax in Queried Object Properties<a class="headerlink" href="#nullable-syntax-in-queried-object-properties" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Nullable syntax can be used with model class property types (with both C# reference types as well as value types such as <strong>System.Double</strong>) for classes used as return types in query result.</p></li>
+<li><dl class="simple">
+<dt>Nullable syntax can be used for item types as well in model class properties that are of one of the following types:</dt><dd><ul>
+<li><p>System.Collections.Generic.List&lt;T&gt;</p></li>
+<li><p>System.Collections.Generic.IReadOnlyList&lt;T&gt;</p></li>
+<li><p>System.Collections.Generic.IEnumerable&lt;T&gt;</p></li>
+<li><p>Arrays</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>JsonQL will evaluate all non-nullable property values and will report conversion errors of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs">JsonQL.JsonToObjectConversion.IConversionError</a> in result with value of <strong>ErrorType</strong> equal to one of the following enum values: <strong>NonNullablePropertyNotSet</strong>, <strong>NonNullableCollectionItemValueNotSet</strong>.</p></li>
+</ul>
+<p>In example below we query for a non-nullable collection of non-nullable <strong>IEmployee</strong> items.</p>
+<ul class="simple">
+<li><p>If the query results in <strong>IEmployee</strong> instances with null value for <strong>Address</strong> property of non-nullable type <strong>IAddress</strong>, of if any instance of <strong>IEmployee</strong> in query result has null value for <strong>IEmployee.Address.Street</strong> (<strong>IAddress.Street</strong> is of non-nullable <strong>string</strong> type), JsonQL will report conversion error(s) of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs">JsonQL.JsonToObjectConversion.IConversionError</a> in result with value of <strong>ErrorType</strong> equal to one of the following enum values: <strong>NonNullablePropertyNotSet</strong>.</p></li>
+</ul>
+<details>
+<summary>Click to expand <b>Company.json</b> used in query in example below</summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Companies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;CompanyData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Strange Things, Inc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Malkowich&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Springfield&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;62701&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;CountryDetails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Name == &#39;United States&#39;))&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Employees&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000001</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99500</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;312-555-0134&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;312-555-0178&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;212-555-0199&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000003</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Michael&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">89000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000004</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Emily&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Davis&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;321 Elm Drive&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Houston&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;77001&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">92000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;713-555-0147&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;713-555-0112&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;CompanyData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sherwood Forest Timber, Inc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robin Wood&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Denver&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CO&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;80203&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;CountryDetails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Name == &#39;Germany&#39;))&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Employees&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Logins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;cgarcia@sherwood.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cgarcia@gmail.com&quot;</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0166&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0188&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000006</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sarah&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wilson&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">78000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000007</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Martinez&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;147 Birch Street&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Antonio&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;78201&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">95000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Logins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;dmartinez@sherwood.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;dmartinez@gmail.com&quot;</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;210-555-0123&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;CompanyData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Atlantic Transfers, Inc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CEO&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Black Beard&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;101 Elm Drive&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dallas&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;75201&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;CountryDetails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Countries.Where(x =&gt; x.Name == &#39;United States&#39;))&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Employees&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000008</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laura&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lee&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;258 Willow Lane&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;92101&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105500</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0155&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0122&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000009</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andrew&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Harris&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;369 Spruce Drive&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dallas&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;75201&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">88000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;214-555-0180&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000010</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jessica&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;159 Cherry Lane&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Austin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;73301&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98700</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250150245</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Main St&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Jose&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95101&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0133&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0190&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">783328759</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pine St&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">122395</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;323-555-0177&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/><div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Select the employees in all companies with non-null value for Address</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="s">&quot;Companies.Select(c =&gt; c.Employees).Where(e =&gt; e.Address is not null)&quot;</span><span class="p">;</span>
+
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// Employees in employeesResult.Value of type IReadOnlyList&lt;IEmployee&gt; can have null for</span>
+<span class="c1">// property IEmployee.Manager since this property is of type &quot;IManager?&quot; (uses nullable syntax)</span>
+<span class="c1">// Also, the values of IEmployee.Address.County can be null in result too</span>
+<span class="c1">// since the property IAddress.County is of type &quot;string?&quot; (nullable string)</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;QueryingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;JsonFiles&quot;</span><span class="p">])));</span>
+</pre></div>
+</div>
+<details>
+<summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.ObjectQueryResult`1[[System.Collections.Generic.IReadOnlyList`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib]], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Demos.Examples.DataModels.IEmployee, JsonQL.Demos]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000001</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60601&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;312-555-0134&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;312-555-0178&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;212-555-0199&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000003</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Michael&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">89000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000004</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Emily&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Davis&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;321 Elm Drive&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Houston&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;77001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">92000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;713-555-0147&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;713-555-0112&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Christopher&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0166&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;602-555-0188&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000007</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;David&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Martinez&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;147 Birch Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Antonio&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;78201&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">95000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;210-555-0123&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000008</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laura&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lee&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;258 Willow Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;92101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0155&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;619-555-0122&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000009</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Andrew&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Harris&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;369 Spruce Drive&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dallas&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;75201&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">88000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;214-555-0180&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000010</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jessica&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;159 Cherry Lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Austin&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;73301&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98700</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250150245</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Main St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;San Jose&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0133&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;408-555-0190&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Employee, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">783328759</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FirstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Demos.Examples.DataModels.Address, JsonQL.Demos&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pine St&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;90001&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;County&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">122395</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Phones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;323-555-0177&quot;</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ErrorsAndWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Query.QueryResultErrorsAndWarnings, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.ICompilationErrorItem[], JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionErrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ConversionWarnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonToObjectConversion.ConversionErrors, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.JsonToObjectConversion.IConversionError, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../NullableSyntaxInQueryResultType/index.html" class="btn btn-neutral float-left" title="Nullable Syntax in Query Result Type" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ConversionSettings/index.html" class="btn btn-neutral float-right" title="Conversion Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

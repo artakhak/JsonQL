@@ -1,0 +1,46 @@
+﻿============================
+Setting **FailOnFirstError**
+============================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+The **FailOnFirstError** setting can be used to specify whether the query should fail with the first conversion error encountered, or if execution should continue even with conversion errors.
+
+.. note::
+    Errors reported as warning (see :doc:`../ConversionErrorTypeConfigurations/index`) do not stop query result generation regardless. Therefore, this setting affects the query generation only for errors reported as errors.
+    
+Lets assume an instance of `JsonQL.JsonToObjectConversion.IJsonConversionSettings <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IJsonConversionSettings.cs>`_ injected into `JsonQL.Query.QueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/QueryManager.cs>`_ was created using a code like the one shown below.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\ConversionSettingsSetup.cs.snippet</IncludedFilePlaceHolder>
+
+Also, lets assume the queries in examples below query the JSON file **EmployeesWithMissingData.json** shown below with some null or missing values for employee addresses or phone numbers list:
+
+.. sourcecode:: json
+
+     <IncludedFilePlaceHolder>Example\EmployeesWithMissingData.json</IncludedFilePlaceHolder>
+     
+The example below executes a query and converts the result to **IReadOnlyList<IEmployee>**. The query execution result includes errors since some non-nullable properties values are not set in **IEmployee** items in query result collection. However, regardless of this fact, the value of **employeesResult.Value** is not null and is not empty, since JsonQL continues conversion, even if errors are encountered during the process.
+
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>
+     
+The result (an instance of `JsonQL.Query.IObjectQueryResult[IReadOnlyList[IEmployee]] <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IObjectQueryResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+

@@ -109,10 +109,10 @@
 <p>JsonQL Expressions start with ‘$’. Example “$value(Employees.Select(x =&gt; x.Salary &gt;= 100000))”.</p>
 </div>
 <ul class="simple">
-<li><p><a class="reference internal" href="SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a> - a JSON file with lists “FilteredCountryNames” and “FilteredCompanyNames” referenced in other JSON files below in JsonQL expressions.</p></li>
+<li><p><a class="reference internal" href="SampleFiles/parameters.html"><span class="doc">Parameters.json</span></a> - a JSON file with lists “FilteredCountryNames” and “FilteredCompanyNames” referenced in other JSON files below in JsonQL expressions.</p></li>
 <li><p><a class="reference internal" href="SampleFiles/countries.html"><span class="doc">Countries.json</span></a> - a JSON file for data on number of countries</p></li>
 <li><p><a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> - a JSON file for data on number of companies</p></li>
-<li><p><a class="reference internal" href="SampleFiles/Example1/filtered-companies.html"><span class="doc">Example1/FilteredCompanies.json</span></a> - a JSON file shown below with JsonQL expressions that filter companies in <a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> to include only some companies using data in <a class="reference internal" href="SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a>.</p></li>
+<li><p><a class="reference internal" href="SampleFiles/filtered-companies.html"><span class="doc">FilteredCompanies.json</span></a> - a JSON file shown below with JsonQL expressions that filter companies in <a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> to include only some companies using data in <a class="reference internal" href="SampleFiles/parameters.html"><span class="doc">Parameters.json</span></a>.</p></li>
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;AdditionalCompanyNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;Atlantic Transfers, Inc&quot;</span><span class="w"> </span><span class="p">],</span>
@@ -124,7 +124,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><a class="reference internal" href="SampleFiles/Example1/example.html"><span class="doc">Example1/Example.json</span></a> - a JSON file shown below with JsonQL expressions that reference JSON objects in this file as well as in files listed above. The expressions in this file can also reference JSON objects from files above that are generated using JSON expressions (for example companies in <strong>FilteredCompanies</strong> in <a class="reference internal" href="SampleFiles/Example1/filtered-companies.html"><span class="doc">Example1/FilteredCompanies.json</span></a>)</p></li>
+<li><p><a class="reference internal" href="SampleFiles/MainExample/example.html"><span class="doc">MainExample/Example.json</span></a> - a JSON file shown below with JsonQL expressions that reference JSON objects in this file as well as in files listed above. The expressions in this file can also reference JSON objects from files above that are generated using JSON expressions (for example companies in <strong>FilteredCompanies</strong> in <a class="reference internal" href="SampleFiles/filtered-companies.html"><span class="doc">FilteredCompanies.json</span></a>)</p></li>
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;FilteredCountryNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;United States&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Canada&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Australia&quot;</span><span class="w"> </span><span class="p">],</span>
@@ -143,11 +143,11 @@
 </pre></div>
 </div>
 <p>The code snippet below shows how to load the the five files above in such a way that JsonQL loads <a class="reference internal" href="SampleFiles/countries.html"><span class="doc">Countries.json</span></a> first, then loads <a class="reference internal" href="SampleFiles/companies.html"><span class="doc">Companies.json</span></a> as a child of <a class="reference internal" href="SampleFiles/countries.html"><span class="doc">Countries.json</span></a> (i.e., can use JsonQL expressions that reference JSON objects in evaluated file <a class="reference internal" href="SampleFiles/countries.html"><span class="doc">Countries.json</span></a>), then
-loads <a class="reference internal" href="SampleFiles/Example1/parameters.html"><span class="doc">Example1/Parameters.json</span></a>, <a class="reference internal" href="SampleFiles/Example1/filtered-companies.html"><span class="doc">Example1/FilteredCompanies.json</span></a> and finally loads <a class="reference internal" href="SampleFiles/Example1/example.html"><span class="doc">Example1/Example.json</span></a> using similar parent child relationship rules.</p>
+loads <a class="reference internal" href="SampleFiles/parameters.html"><span class="doc">Parameters.json</span></a>, <a class="reference internal" href="SampleFiles/filtered-companies.html"><span class="doc">FilteredCompanies.json</span></a> and finally loads <a class="reference internal" href="SampleFiles/MainExample/example.html"><span class="doc">MainExample/Example.json</span></a> using similar parent child relationship rules.</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span><span class="p">};</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">parametersJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Parameters&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Parameters.json&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Parameters.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
 
 <span class="c1">// countriesJsonTextData uses parametersJsonTextData for parameter parentJsonTextData</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
@@ -157,10 +157,11 @@ loads <a class="reference internal" href="SampleFiles/Example1/parameters.html">
 <span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">filteredCompaniesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;FilteredCompanies&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;FilteredCompanies.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">);</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;FilteredCompanies.json&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">);</span>
 
-<span class="c1">// Create an instance of JsonQL.Compilation.JsonCompiler here.</span>
-<span class="c1">// This is normally done once on application start.</span>
+<span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
 <span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
 
 <span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
@@ -168,7 +169,7 @@ loads <a class="reference internal" href="SampleFiles/Example1/parameters.html">
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The value <strong>result</strong> in C# snippet above is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> and the serialized value of <strong>result</strong> can be found here <a class="reference internal" href="SampleFiles/Example1/result.html"><span class="doc">Example1/Result.json</span></a>.</p></li>
+<li><p>The value <strong>result</strong> in C# snippet above is of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> and the serialized value of <strong>result</strong> can be found here <a class="reference internal" href="SampleFiles/MainExample/result.html"><span class="doc">MainExample/Result.json</span></a>.</p></li>
 <li><p>To retrieve the details of loaded JSON files in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> you need to retrieve an item in <strong>CompiledJsonFiles</strong> property for compiled JSON file. The items in this list are ordered in such a way that parent JSON file items appear before child JSON file items.</p></li>
 <li><p>For more details on data structure used for loading multiple JSON files see <a class="reference internal" href="../ImportantInterfaces/ICompilationResult/index.html"><span class="doc">Result Data Structure: JsonQL.Compilation.ICompilationResult</span></a>.</p></li>
 </ul>
@@ -191,10 +192,12 @@ loads <a class="reference internal" href="SampleFiles/Example1/parameters.html">
 <li class="toctree-l1"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="SampleFiles/countries.html">Countries.json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SampleFiles/companies.html">Companies.json</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/parameters.html">Example1/Parameters.json</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/filtered-companies.html">Example1/FilteredCompanies.json</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/example.html">Example1/Example.json</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SampleFiles/Example1/result.html">Example1/Result.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/MainExample/example.html">MainExample/Example.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/MainExample/result.html">MainExample/Result.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/ReusingCompiledJsonFilesExample/example.html">ReusingCompiledJsonFilesExample/Example.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/ReusingCompiledJsonFilesExample/result.html">ReusingCompiledJsonFilesExample/Result.json</a></li>
 </ul>
 </li>
 </ul>

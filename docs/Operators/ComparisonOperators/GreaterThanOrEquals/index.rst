@@ -1,9 +1,0 @@
-===========================
-Greater Than or Equals '>='
-===========================
-
-.. contents::
-   :local:
-   :depth: 2
-   
-- TODO: Add contents here

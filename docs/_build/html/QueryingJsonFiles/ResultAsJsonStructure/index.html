@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult" href="../../ImportantInterfaces/IJsonValueQueryResult/index.html" />
-    <link rel="prev" title="Error Details" href="../ResultAsCSharpObject/ErrorDetails/index.html" /> 
+    <link rel="prev" title="FilteredCompanies.json" href="../ResultAsCSharpObject/SampleFiles/filtered-companies.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,7 +48,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../ResultAsCSharpObject/index.html">Result as C# Object</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Result as JSON Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../ImportantInterfaces/IJsonValueQueryResult/index.html">Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Examples/index.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ReusingCompiledJsonFiles/index.html">Reusing Compiled JSON Files</a></li>
@@ -94,16 +96,72 @@
              
   <section id="result-as-json-structure">
 <h1>Result as JSON Structure<a class="headerlink" href="#result-as-json-structure" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<ul>
+<li><p>The overloaded methods <strong>QueryJsonValue</strong> in interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a> can be used to to query one or more JSON files using a JsonQL query expressions and return the result as a JSON structure.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../ImportantInterfaces/IJsonValueQueryResult/index.html"><span class="doc">Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult</span></a> for more details on data structure used for the result.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>The result of a query is stored in an instance of C# interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a>.</p></li>
+<li><dl>
+<dt>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a> has a property <strong>CompilationErrors</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs">JsonQL.Compilation.ICompilationErrorItem</a> that stores data about query execution errors, if any.</dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The errors might contain both errors in queried files, if queried files use JsonQL expressions (or are not well formed), as well as errors in query itself, or errors encountered when converting result JSON to a C# object.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>Interface <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs">JsonQL.Query.IJsonValueQueryResult</a> has a property <strong>ParsedValue</strong> of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonObjects/IParsedValue.cs">JsonQL.JsonObjects.IParsedValue</a> that stores query result as a JSON object.</p></li>
+<li><p>One ore more JSON files can be specified as parameters to be used when looking up JSON values referenced by JsonQL expressions.</p></li>
+<li><p>If many JSON files are specified the following rules and techniques are used:
+- Parent/child relationships between JSON files is maintained and parent JSON files are evaluated before child JSON files are evaluated.
+- Lookup of JSON values specified in JsonQL expressions starts in JSON containing the expression first, and then in parent JSON files.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>For more examples look at examples at these links:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/SuccessExamples">Successful query examples in JsonQL.Demos project</a></p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/Examples/IQueryManagerExamples/FailureExamples/ResultAsObject">Failed query examples in JsonQL.Demos project</a></p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/QueryManager/ResultAsParsedJsonValue">Examples in JsonQL.Tests project</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Querying JSON with result as a JSON structure is pretty similar to querying JSON with result as C# object describes in section <a class="reference internal" href="../ResultAsCSharpObject/index.html"><span class="doc">Result as C# Object</span></a>. The query expressions use exactly the same format. The only difference is the format of the result generated by JsonQL. Querying JSON with result as C# object involves conversion from JSON to C# classes provided by the user, and therefore the API is more involved (more ways to configure the conversion process and report errors).</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ImportantInterfaces/IJsonValueQueryResult/index.html">Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../ImportantInterfaces/IJsonValueQueryResult/IParsedValue/index.html">JsonQL.JsonObjects.IParsedValue</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Examples/index.html#example-of-querying-for-a-json-array">Example of querying for a JSON array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples/index.html#example-of-querying-for-a-json-object">Example of querying for a JSON object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples/index.html#example-of-querying-for-simple-json-value">Example of querying for simple JSON value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ErrorDetails/index.html">Error Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ErrorDetails/index.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ErrorDetails/index.html#missing-closing-brace-in-queried-json-file">Missing closing brace in queried JSON file:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ErrorDetails/index.html#invalid-parameters-in-query">Invalid parameters in query</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SampleFiles/index.html">Sample Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/countries.html">Countries.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/companies.html">Companies.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/parameters.html">Parameters.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SampleFiles/filtered-companies.html">FilteredCompanies.json</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -112,7 +170,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ResultAsCSharpObject/ErrorDetails/index.html" class="btn btn-neutral float-left" title="Error Details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ResultAsCSharpObject/SampleFiles/filtered-companies.html" class="btn btn-neutral float-left" title="FilteredCompanies.json" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../ImportantInterfaces/IJsonValueQueryResult/index.html" class="btn btn-neutral float-right" title="Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

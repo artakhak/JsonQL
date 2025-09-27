@@ -6,6 +6,7 @@ using JsonQL.Compilation;
 using JsonQL.Compilation.JsonFunction;
 using JsonQL.Compilation.JsonFunction.JsonFunctionFactories;
 using JsonQL.Compilation.JsonValueTextGenerator;
+using JsonQL.JsonObjects;
 using JsonQL.JsonToObjectConversion;
 using JsonQL.JsonToObjectConversion.Serializers;
 using OROptimizer.Diagnostics.Log;
@@ -166,7 +167,7 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
     }
 
     private static bool TryResolveSimpleJsonValueSerializer(IDefaultImplementationBasedObjectFactory defaultImplementationBasedObjectFactory,
-        Type parameterType, [NotNullWhen(true)] out object? simpleJsonValueSerializer)
+        Type parameterType, [NotNullWhen(true)] out ISimpleJsonValueSerializer? simpleJsonValueSerializer)
     {
         if (parameterType == typeof(ISimpleJsonValueSerializer))
         {
@@ -203,7 +204,7 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
         return false;
     }
 
-    private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out object? jsonConversionSettings)
+    private static bool TryResolveJsonConversionSettings(Type parameterType, [NotNullWhen(true)] out JsonConversionSettings? jsonConversionSettings)
     {
         if (parameterType == typeof(IJsonConversionSettings))
         {
@@ -222,13 +223,40 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
                 FailOnFirstError = true,
                 ConversionErrorTypeConfigurations = conversionErrorTypeConfigurations,
 
-                // Set custom interface to implementation mappings here. Default mappings (i.e., IModelClassMapper) will 
-                // use try to find an implementation that has the same name space and class name that matches interface name
-                // without I. For example for interface JsonQL.Demos.Examples.DataModels.IEmployee implementation  
-                // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists.
-                TryMapJsonConversionType = null,
+                // Set custom interface to implementation mappings here. Default mapping mechanism (i.e., IModelClassMapper) will 
+                // try to find an implementation that has the same name space and class name that matches interface name
+                // without "I" prefix (if the mapped type defaultTypeToConvertParsedJsonTo is an interface).
+                // For example for interface JsonQL.Demos.Examples.DataModels.IEmployee class
+                // JsonQL.Demos.Examples.DataModels.Employee will be used if it exists and it implements JsonQL.Demos.Examples.DataModels.IEmployee.
+                // If defaultTypeToConvertParsedJsonTo is a class, the default mapping mechanism will use the class itself.
+                TryMapJsonConversionType = null
             };
 
+#if DEBUG && TURN_ON_DOCUMENTATION_TEST_SETTINGS
+            // TODO: Temporary code to test documentation examples. Move this configuration to JsonQL.Demos project where documentation examples are.
+            // and delete this code as part of JE-19
+            jsonConversionSettings.TryMapJsonConversionType = (defaultTypeToConvertParsedJsonTo, convertedParsedJson) =>
+            {
+                if (defaultTypeToConvertParsedJsonTo.FullName == "JsonQL.Demos.Examples.DataModels.IEmployee")
+                {
+                    if (convertedParsedJson.HasKey("Employees"))
+                        return Type.GetType("JsonQL.Demos.Examples.DataModels.IManager, JsonQL.Demos");
+            
+                    if (convertedParsedJson.TryGetJsonKeyValue("$type", out var employeeType) &&
+                        employeeType.Value is IParsedSimpleValue parsedSimpleValue &&
+                        parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
+                    {
+                        var convertedType = Type.GetType(parsedSimpleValue.Value);
+            
+                        if (convertedType != null)
+                            return convertedType;
+                    }
+                }
+            
+                // Returning null will result default mapping mechanism picking a type to use.
+                return null;
+            };
+#endif
             return true;
         }
 

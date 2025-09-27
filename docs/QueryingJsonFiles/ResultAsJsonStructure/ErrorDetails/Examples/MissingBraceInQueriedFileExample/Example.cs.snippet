@@ -1,0 +1,14 @@
+// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
+// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
+
+// This query will fail since the value of JSON key "JsonQlExpressionWithMissingClosingBraces"
+// is a JsonQL "$value(ToInt(TestData[3]) + 1" that has no closing brace for
+// "$value(" function.
+var query = "JsonQlExpressionWithMissingClosingBraces";
+
+var queryResult =
+    queryManager.QueryJsonValue(query,
+        new JsonTextData("Data",
+            this.LoadExampleJsonFile("Data.json")));

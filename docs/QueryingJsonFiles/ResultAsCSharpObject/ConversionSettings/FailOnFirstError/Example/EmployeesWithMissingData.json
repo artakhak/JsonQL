@@ -1,0 +1,41 @@
+{
+  "Employees": [
+    {
+      "Id": 100000001,
+      "FirstName": "John",
+      "LastName": "Smith",
+      "Address": null,
+      "Salary": 99500,
+      "Age": 45,
+      "Phones": null
+    },
+    {
+      "Id": 100000003,
+      "FirstName": "Michael",
+      "LastName": "Brown",     
+      "Salary": 89000,
+      "Age": 50
+    },    
+    {
+      "Id": 100000005,
+      "FirstName": "Christopher",
+      "LastName": "Garcia",
+      "Address": {
+        "Street": "654 Cedar Road",
+        "City": "Phoenix",
+        "State": "AZ",
+        "ZipCode": "85001"
+      },
+      "Salary": 111000,
+      "Age": 29,
+      "Logins": [
+        "cgarcia@sherwood.com",
+        "cgarcia@gmail.com"
+      ],
+      "Phones": [
+        "602-555-0166",
+        "602-555-0188"
+      ]
+    }
+  ]
+}

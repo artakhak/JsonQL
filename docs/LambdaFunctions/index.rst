@@ -1,9 +1,0 @@
-================
-Lambda Functions
-================
-
-.. contents::
-   :local:
-   :depth: 2
-   
-- TODO: Add contents here (general description of lambda functions with couple of examples)...

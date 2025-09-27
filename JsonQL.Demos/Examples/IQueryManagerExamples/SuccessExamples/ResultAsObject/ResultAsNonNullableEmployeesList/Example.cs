@@ -20,7 +20,7 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
         // NOTE: Data.json has a root JSON with a collection of employees. 
         // If the JSON had a JSON object with the "Employees" field, the
         // query would be: "Employees.Where(...)" instead of "Where(...)"
-        var query = "Where(x => x.Id==100000006 || x.Id==100000007)";
+        var query = "Where(e => e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p => p == e.Id))";
 
         // We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
         // -Class (value or reference type). We can use '?' for nullable values. Examples:
@@ -40,7 +40,8 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
         var employeesResult =
             _queryManager.QueryObject<IReadOnlyList<IEmployee>>(query,
                 new JsonTextData("Data",
-                    this.LoadExampleJsonFile("Data.json")),
+                    this.LoadExampleJsonFile("Data.json"),
+                    new JsonTextData("Parameters", this.LoadExampleJsonFile("Parameters.json"))),
                 [false, false], new JsonConversionSettingsOverrides
                 {
                     TryMapJsonConversionType = (type, parsedJson) =>

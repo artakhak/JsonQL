@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lambda Functions" href="../../LambdaFunctions/index.html" />
-    <link rel="prev" title="Error Details" href="../ResultAsJsonStructure/ErrorDetails/index.html" /> 
+    <link rel="prev" title="FilteredCompanies.json" href="../ResultAsJsonStructure/SampleFiles/filtered-companies.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -90,9 +90,105 @@
              
   <section id="reusing-compiled-json-files">
 <h1>Reusing Compiled JSON Files<a class="headerlink" href="#reusing-compiled-json-files" title="Link to this heading"></a></h1>
+<p>Similar to how we can reuse compiled JSON files in calls to method <strong>Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList&lt;ICompiledJsonData&gt; compiledParents)</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a> (demonstrated in <a class="reference internal" href="../../MutatingJsonFiles/index.html"><span class="doc">Mutating JSON Files</span></a>) we can also pre-compile JSON files and re-use them when calling the overloaded methods <strong>QueryObject(…, IReadOnlyList&lt;ICompiledJsonData&gt; compiledJsonDataToQuery,…)</strong> and <strong>QueryJsonValue(…, IReadOnlyList&lt;ICompiledJsonData&gt; compiledJsonDataToQuery,…)</strong> in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs">JsonQL.Query.IQueryManager</a>, as well when calling extension methods for interface <strong>JsonQL.Query.IQueryManager</strong> that use the parameter <strong>IReadOnlyList&lt;ICompiledJsonData&gt; compiledJsonDataToQuery</strong>.</p>
+<p>Pre-compiling JSON files and using them in calls to the overloaded methods for queries (<strong>QueryObject&lt;TQueriedObject&gt;(…)</strong> and <strong>QueryJsonValue</strong>) makes more sense then using overloaded methods that use parameter of type <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonTextData.cs">JsonQL.Compilation.IJsonTextData.cs</a> (<strong>IJsonTextData</strong> stores JSON files as text strings) is more efficient when we need to execute multiple queries against the same JSON files.</p>
+<p>The example in code snipped below compiles the following JSON files first, and then uses these compiled files in queries:</p>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-<li><p>TODO: Add toctree here</p></li>
+<li><p><a class="reference internal" href="../SampleFiles/parameters.html"><span class="doc">Parameters.json</span></a></p></li>
+<li><p><a class="reference internal" href="../SampleFiles/countries.html"><span class="doc">Countries.json</span></a></p></li>
+<li><p><a class="reference internal" href="../SampleFiles/companies.html"><span class="doc">Companies.json</span></a></p></li>
+<li><p><a class="reference internal" href="../SampleFiles/filtered-companies.html"><span class="doc">FilteredCompanies.json</span></a></p></li>
+</ul>
+<p>To re-use the compiled parent JSON files in JsonQL queries without compiling them again do the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Call <strong>ICompilationResult Compile(IJsonTextData jsonTextData)</strong> the method to compile only parent JSON files.</p></li>
+<li><dl class="simple">
+<dt>Execute queries by calling the overloaded methods <strong>QueryObject(…, IReadOnlyList&lt;ICompiledJsonData&gt; compiledJsonDataToQuery,…)</strong> (or similar extension methods) that take <strong>IReadOnlyList&lt;ICompiledJsonData&gt; compiledParents</strong> as a parameter.</dt><dd><ul>
+<li><p>Generate the list used for parameter <strong>compiledParents</strong> from compiled JSON objects generated in first step above.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Here is a code snippet demonstrating this approach:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="c1">// Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.</span>
+<span class="c1">// The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Query</span><span class="p">.</span><span class="n">IQueryManager</span><span class="w"> </span><span class="n">queryManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;QueryingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;JsonFiles&quot;</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">parametersJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Parameters&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Parameters.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Countries&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Countries.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">parametersJsonTextData</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">countriesJsonTextData</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">cachedCompilationResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;FilteredCompanies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;FilteredCompanies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cachedCompilationResult</span><span class="p">.</span><span class="n">CompilationErrors</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">ApplicationException</span><span class="p">(</span><span class="s">&quot;Compilation failed&quot;</span><span class="p">);</span>
+
+<span class="c1">// The first query (see employeesResult below) needs only compiled and cached &quot;FilteredCompanies&quot; file.</span>
+<span class="c1">// So lets get this compiled file from cachedCompilationResult and store it in &quot;compiledParents&quot; list</span>
+<span class="c1">// that we will pass to JsonQL.Query.IQueryManager.QueryObject&lt;IReadOnlyList&lt;IEmployee&gt;&gt;(query, compiledParents) below</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">compiledParents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ICompiledJsonData</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cachedCompilationResult</span><span class="p">.</span><span class="n">CompiledJsonFiles</span><span class="p">.</span><span class="n">First</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">TextIdentifier</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;FilteredCompanies&quot;</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IEmployee</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;FilteredCompanies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">compiledParents</span><span class="p">);</span>
+
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">employeesResult</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+
+<span class="c1">// The second query below is executed using JsonQL.Query.IQueryManager.QueryJsonValue(query, parents).</span>
+<span class="c1">// The query executes against the files &quot;Countries&quot; and &quot;Parameters&quot;.</span>
+<span class="c1">// So lets get these compiled files from cachedCompilationResult and store them in &quot;compiledParents&quot; list</span>
+<span class="c1">// that we will pass to JsonQL.Query.IQueryManager.QueryJsonValue(query, parents).</span>
+<span class="c1">// NOTE: The list of parents compiledParents passed to JsonQL.Query.IQueryManager.QueryJsonValue(...)</span>
+<span class="c1">// is organized in such a way that child JSON files appear earlier, and parent JSON files appear later.</span>
+<span class="c1">// In this example &quot;Countries.json&quot; will be treated as a child of &quot;Parameters&quot;.</span>
+<span class="c1">// This relationship will ensure that JSON objects referenced in JsonQL expressions will be looked up</span>
+<span class="c1">// first in &quot;Countries.json&quot; and then in &quot;Countries&quot;.</span>
+<span class="n">compiledParents</span><span class="w"> </span><span class="o">=</span>
+<span class="na">[</span>
+<span class="na">    cachedCompilationResult.CompiledJsonFiles.First(x =&gt; x.TextIdentifier == &quot;Countries&quot;),</span>
+<span class="na">    cachedCompilationResult.CompiledJsonFiles.First(x =&gt; x.TextIdentifier == &quot;Parameters&quot;)</span>
+<span class="na">]</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">countriesResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryJsonValue</span><span class="p">(</span><span class="s">&quot;Countries.Where(c =&gt; Any(FilteredCountryNames.Where(fc =&gt; fc == c.Name)))&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">compiledParents</span><span class="p">);</span>
+
+<span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">countriesResult</span><span class="p">.</span><span class="n">ParsedValue</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">            </span><span class="n">countriesResult</span><span class="p">.</span><span class="n">ParsedValue</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">IParsedArrayValue</span><span class="w"> </span><span class="n">countriesJsonArray</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">            </span><span class="n">countriesJsonArray</span><span class="p">.</span><span class="n">Values</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>In this example we do the following:</dt><dd><ul>
+<li><p>Compile parent JSON files and store the result in <strong>cachedCompilationResult</strong></p></li>
+<li><p>Execute the first query “FilteredCompanies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40)” by passing a list generated from compiled JSON “FilteredCompanies.json” as a parameter in method call <strong>queryManager.QueryObject&lt;IReadOnlyList&lt;IEmployee&gt;&gt;</strong>.</p></li>
+<li><p>Execute the second query “Countries.Where(c =&gt; Any(FilteredCountryNames.Where(fc =&gt; fc == c.Name)))” by passing a list generated from compiled JSON files “Parameters.json” and “Countries.json” (with “Countries.json” being treated as a child of “Parameters.json”) as a parameter in method call <strong>queryManager.QueryJsonValue</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
 
@@ -100,7 +196,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ResultAsJsonStructure/ErrorDetails/index.html" class="btn btn-neutral float-left" title="Error Details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ResultAsJsonStructure/SampleFiles/filtered-companies.html" class="btn btn-neutral float-left" title="FilteredCompanies.json" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../LambdaFunctions/index.html" class="btn btn-neutral float-right" title="Lambda Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -19,13 +19,3 @@ public interface ICompilationResultMapper
     /// <returns>An instance of <see cref="ICompilationResult"/> that represents the mapped or transformed result.</returns>
     ICompilationResult Map(IReadOnlyList<string> compiledFileIdentifiers, ICompilationResult compilationResult);
 }
-
-/// <inheritdoc />
-public class CompilationResultMapper: ICompilationResultMapper
-{
-    /// <inheritdoc />
-    public ICompilationResult Map(IReadOnlyList<string> compiledFileIdentifiers, ICompilationResult compilationResult)
-    {
-        return compilationResult;
-    }
-}
