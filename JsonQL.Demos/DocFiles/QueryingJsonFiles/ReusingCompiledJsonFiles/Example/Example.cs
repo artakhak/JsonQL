@@ -26,22 +26,22 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
         {
             "DocFiles", "QueryingJsonFiles", "JsonFiles"
         };
-
+        
         var parametersJsonTextData = new JsonTextData("Parameters",
             LoadJsonFileHelpers.LoadJsonFile("Parameters.json", sharedExamplesFolderPath));
-
+        
         var countriesJsonTextData = new JsonTextData("Countries",
             LoadJsonFileHelpers.LoadJsonFile("Countries.json", sharedExamplesFolderPath), parametersJsonTextData);
-
+        
         var companiesJsonTextData = new JsonTextData("Companies",
             LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), countriesJsonTextData);
-
+        
         var cachedCompilationResult = _jsonCompiler.Compile(new JsonTextData("FilteredCompanies",
             LoadJsonFileHelpers.LoadJsonFile("FilteredCompanies.json", sharedExamplesFolderPath), companiesJsonTextData));
-
+        
         if (cachedCompilationResult.CompilationErrors.Count > 0)
             throw new ApplicationException("Compilation failed");
-
+        
         // The first query (see employeesResult below) needs only compiled and cached "FilteredCompanies" file.
         // So lets get this compiled file from cachedCompilationResult and store it in "compiledParents" list
         // that we will pass to JsonQL.Query.IQueryManager.QueryObject<IReadOnlyList<IEmployee>>(query, compiledParents) below
@@ -49,13 +49,13 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
         {
             cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "FilteredCompanies")
         };
-
+        
         var employeesResult = _queryManager.QueryObject<IReadOnlyList<IEmployee>>(
             "FilteredCompanies.Select(c => c.Employees).Where(e => e.Age >= 40)",
             compiledParents);
-
+        
         Assert.That(employeesResult.Value is not null && employeesResult.Value.Count == 6);
-
+        
         // The second query below is executed using JsonQL.Query.IQueryManager.QueryJsonValue(query, parents).
         // The query executes against the files "Countries" and "Parameters". 
         // So lets get these compiled files from cachedCompilationResult and store them in "compiledParents" list
@@ -70,13 +70,13 @@ public class Example : QueryJsonValueExampleManagerForSuccessAbstr
             cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Countries"),
             cachedCompilationResult.CompiledJsonFiles.First(x => x.TextIdentifier == "Parameters")
         ];
-
+        
         var countriesResult = _queryManager.QueryJsonValue("Countries.Where(c => Any(FilteredCountryNames.Where(fc => fc == c.Name)))", compiledParents);
 
         Assert.That(countriesResult.ParsedValue is not null && 
                     countriesResult.ParsedValue is IParsedArrayValue countriesJsonArray &&
                     countriesJsonArray.Values.Count == 2);
-
+        
         return countriesResult;
     }
 

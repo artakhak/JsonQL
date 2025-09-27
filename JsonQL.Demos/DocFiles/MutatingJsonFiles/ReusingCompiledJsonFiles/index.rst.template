@@ -15,7 +15,7 @@ This example also parses parent JSON files **Parameters.json**, **Countries**, *
 
 Now consider scenario when we want to reuse all or some of compiled parent JSON files to parse some other JSON file.
 We could use the same method as above, however doing this would result in parent JSON files being compiled again.
-To re-use the compiled parent JSON files without compiling them again we can call **ICompilationResult Compile(IJsonTextData jsonTextData)** the method to compile only parent JSON files,
+To re-use the compiled parent JSON files without compiling them again we can call the **ICompilationResult Compile(IJsonTextData jsonTextData)** method to compile only parent JSON files,
 and then use another overloaded version **ICompilationResult Compile(string jsonText, string jsonTextIdentifier, IReadOnlyList<ICompiledJsonData> compiledParents)** of that method which takes **IReadOnlyList<ICompiledJsonData> compiledParents** instead of **IJsonTextData jsonTextData** as a parameter.
 
 Here is a code snippet demonstrating this approach:

@@ -1,0 +1,256 @@
+:orphan:
+
+==============
+Companies.json
+==============
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. sourcecode:: json
+
+     {
+       "Companies": [
+         {
+           "CompanyData": {
+             "Name": "Strange Things, Inc",
+             "CEO": "John Malkowich",
+             "Address": {
+               "Street": "123 Maple Street",
+               "City": "Springfield",
+               "State": "IL",
+               "ZipCode": "62701"
+             },
+             "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
+           },
+           "Employees": [
+             {
+               "Id": 100000001,
+               "FirstName": "John",
+               "LastName": "Smith",
+               "Address": {
+                 "Street": "456 Oak Avenue",
+                 "City": "Chicago",
+                 "State": "IL",
+                 "ZipCode": "60601"
+               },
+               "Salary": 99500,
+               "Age": 45,
+               "Phones": [
+                 "312-555-0134",
+                 "312-555-0178"
+               ]
+             },
+             {
+               "Id": 100000002,
+               "FirstName": "Alice",
+               "LastName": "Johnson",
+               "Address": {
+                 "Street": "123 Maple Street",
+                 "City": "New York",
+                 "State": "NY",
+                 "ZipCode": "10001"
+               },
+               "Salary": 105000,
+               "Age": 38,
+               "Phones": [
+                 "212-555-0199"
+               ]
+             },
+             {
+               "Id": 100000003,
+               "FirstName": "Michael",
+               "LastName": "Brown",
+               "Address": {
+                 "Street": "789 Pine Lane",
+                 "City": "Los Angeles",
+                 "State": "CA",
+                 "ZipCode": "90001"
+               },
+               "Salary": 89000,
+               "Age": 50,
+               "Phones": []
+             },
+             {
+               "Id": 100000004,
+               "FirstName": "Emily",
+               "LastName": "Davis",
+               "Address": {
+                 "Street": "321 Elm Drive",
+                 "City": "Houston",
+                 "State": "TX",
+                 "ZipCode": "77001"
+               },
+               "Salary": 92000,
+               "Age": 42,
+               "Phones": [
+                 "713-555-0147",
+                 "713-555-0112"
+               ]
+             }
+           ]
+         },
+         {
+           "CompanyData": {
+             "Name": "Sherwood Forest Timber, Inc",
+             "CEO": "Robin Wood",
+             "Address": {
+               "Street": "789 Pine Lane",
+               "City": "Denver",
+               "State": "CO",
+               "ZipCode": "80203"
+             },
+             "CountryDetails": "$value(Countries.Where(x => x.Name == 'Germany'))"
+           },
+           "Employees": [
+             {
+               "Id": 100000005,
+               "FirstName": "Christopher",
+               "LastName": "Garcia",
+               "Address": {
+                 "Street": "654 Cedar Road",
+                 "City": "Phoenix",
+                 "State": "AZ",
+                 "ZipCode": "85001"
+               },
+               "Salary": 111000,
+               "Age": 29,
+               "Logins": [
+                 "cgarcia@sherwood.com",
+                 "cgarcia@gmail.com"
+               ],
+               "Phones": [
+                 "602-555-0166",
+                 "602-555-0188"
+               ]
+             },
+             {
+               "Id": 100000006,
+               "FirstName": "Sarah",
+               "LastName": "Wilson",
+               "Address": null,
+               "Salary": 78000,
+               "Age": 35,
+               "Phones": []
+             },
+             {
+               "Id": 100000007,
+               "FirstName": "David",
+               "LastName": "Martinez",
+               "Address": {
+                 "Street": "147 Birch Street",
+                 "City": "San Antonio",
+                 "State": "TX",
+                 "ZipCode": "78201"
+               },
+               "Salary": 95000,
+               "Age": 46,
+               "Logins": [
+                 "dmartinez@sherwood.com",
+                 "dmartinez@gmail.com"
+               ],
+               "Phones": [
+                 "210-555-0123"
+               ]
+             }
+           ]
+         },
+         {
+           "CompanyData": {
+             "Name": "Atlantic Transfers, Inc",
+             "CEO": "Black Beard",
+             "Address": {
+               "Street": "101 Elm Drive",
+               "City": "Dallas",
+               "State": "TX",
+               "ZipCode": "75201"
+             },
+             "CountryDetails": "$value(Countries.Where(x => x.Name == 'United States'))"
+           },
+           "Employees": [
+             {
+               "Id": 100000008,
+               "FirstName": "Laura",
+               "LastName": "Lee",
+               "Address": {
+                 "Street": "258 Willow Lane",
+                 "City": "San Diego",
+                 "State": "CA",
+                 "ZipCode": "92101"
+               },
+               "Salary": 105500,
+               "Age": 32,
+               "Phones": [
+                 "619-555-0155",
+                 "619-555-0122"
+               ]
+             },
+             {
+               "Id": 100000009,
+               "FirstName": "Andrew",
+               "LastName": "Harris",
+               "Address": {
+                 "Street": "369 Spruce Drive",
+                 "City": "Dallas",
+                 "State": "TX",
+                 "ZipCode": "75201"
+               },
+               "Salary": 88000,
+               "Age": 41,
+               "Phones": [
+                 "214-555-0180"
+               ]
+             },
+             {
+               "Id": 100000010,
+               "FirstName": "Jessica",
+               "LastName": "Thompson",
+               "Address": {
+                 "Street": "159 Cherry Lane",
+                 "City": "Austin",
+                 "State": "TX",
+                 "ZipCode": "73301"
+               },
+               "Salary": 98700,
+               "Age": 37,
+               "Phones": []
+             },
+             {
+               "Id": 250150245,
+               "FirstName": "Jane",
+               "LastName": "Doe",
+               "Address": {
+                 "Street": "Main St",
+                 "City": "San Jose",
+                 "State": "PA",
+                 "ZipCode": "95101"
+               },
+               "Salary": 144186,
+               "Age": 63,
+               "Phones": [
+                 "408-555-0133",
+                 "408-555-0190"
+               ]
+             },
+             {
+               "Id": 783328759,
+               "FirstName": "Robert",
+               "LastName": "Brown",
+               "Address": {
+                 "Street": "Pine St",
+                 "City": "Los Angeles",
+                 "State": "CA",
+                 "ZipCode": "90001"
+               },
+               "Salary": 122395,
+               "Age": 58,
+               "Phones": [
+                 "323-555-0177"
+               ]
+             }
+           ]
+         }
+       ]
+     }
+

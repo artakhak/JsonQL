@@ -18,6 +18,7 @@ var filteredCompaniesJsonTextData = new JsonTextData("FilteredCompanies",
 // Set the value of queryManager to an instance of JsonQL.Query.IQueryManager here.
 // The value of JsonQL.Query.IQueryManager is normally created by Dependency Injection container 
 // and it is normally configured as a singleton.
+JsonQL.Query.IQueryManager queryManager = null!;
 
 // We can call queryManager.QueryObject<T> with the following values for "T" generic parameter
 // -Class (value or reference type). We can use '?' for nullable values. Examples:
