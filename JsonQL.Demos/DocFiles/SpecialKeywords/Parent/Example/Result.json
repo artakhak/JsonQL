@@ -1,0 +1,69 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "Companies": [
+          {
+            "Employees": [
+              {
+                "Id":  500000001,
+                "Name":  "John Smith",
+                "Address": {
+                  "Street":  "456 Oak Avenue",
+                  "City":  "Chicago",
+                  "State":  "IL",
+                  "ZipCode":  "60601"
+                },
+                "Salary":  99500,
+                "Age":  45
+              },
+              {
+                "Id":  500000002,
+                "Name":  "Aisha Khan",
+                "Address": {
+                  "Street":  "129 Pine Street",
+                  "City":  "Boston",
+                  "State":  "MA",
+                  "ZipCode":  "02108"
+                },
+                "Salary":  88000,
+                "Age":  32
+              }
+            ]
+          }
+        ],
+        "EmployeeInParentFiles": {
+          "Id":  100000001,
+          "Name":  "John Smith",
+          "Address": {
+            "Street":  "456 Oak Avenue",
+            "City":  "Chicago",
+            "State":  "IL",
+            "ZipCode":  "60601"
+          },
+          "Salary":  99500,
+          "Age":  45
+        },
+        "EmployeeInThisFileFiles": {
+          "Id":  500000001,
+          "Name":  "John Smith",
+          "Address": {
+            "Street":  "456 Oak Avenue",
+            "City":  "Chicago",
+            "State":  "IL",
+            "ZipCode":  "60601"
+          },
+          "Salary":  99500,
+          "Age":  45
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

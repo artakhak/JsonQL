@@ -1,0 +1,35 @@
+{
+  "Companies": [
+    {
+      "Employees": [
+        {
+          "Id": 500000001,
+          "Name": "John Smith",
+          "Address": {
+            "Street": "456 Oak Avenue",
+            "City": "Chicago",
+            "State": "IL",
+            "ZipCode": "60601"
+          },
+          "Salary": 99500,
+          "Age": 45
+        },
+        {
+          "Id": 500000002,
+          "Name": "Aisha Khan",
+          "Address": {
+            "Street": "129 Pine Street",
+            "City": "Boston",
+            "State": "MA",
+            "ZipCode": "02108"
+          },
+          "Salary": 88000,
+          "Age": 32
+        }
+      ]
+    }
+  ],
+
+  "EmployeeInParentFiles": "$value(parent.Companies.Select(c => c.Employees).First())",
+  "EmployeeInThisFileFiles": "$value(Companies.Select(c => c.Employees).First())"
+}

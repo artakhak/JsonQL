@@ -19,6 +19,7 @@
 	  <None Remove="DocFiles\JsonMutatorFunctions\Value\Example\Example.json" />
 	  <None Remove="DocFiles\JsonMutatorFunctions\Value\Example\Result.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\AdditionalTestData.json" />
+	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Employees.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example1\Example.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example2\Example.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example2\FilteredCompanies.json" />
@@ -26,6 +27,8 @@
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example2\Result.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Overview.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Result.json" />
+	  <None Remove="DocFiles\OptionalAndNamedParameters\Example\Example.json" />
+	  <None Remove="DocFiles\OptionalAndNamedParameters\Example\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\EmployeesWIthMissingData.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\ReportErrorsAsErrors\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\IgnoreErrors\Result.json" />
@@ -56,6 +59,10 @@
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QueryJsonObject\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Example.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Result.json" />
+	  <None Remove="DocFiles\SpecialKeywords\Index\Example\Example.json" />
+	  <None Remove="DocFiles\SpecialKeywords\Index\Example\Result.json" />
+	  <None Remove="DocFiles\SpecialKeywords\Parent\Example\Example.json" />
+	  <None Remove="DocFiles\SpecialKeywords\Parent\Example\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 	  <None Remove="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />
@@ -117,6 +124,7 @@
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\StringInterpolation\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\Value\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\Value\Example\Result.json" />
+		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Employees.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Companies.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Countries.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\MainExample\Example.json" />
@@ -125,6 +133,8 @@
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\ReusingCompiledJsonFilesExample\Result.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\FilteredCompanies.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Parameters.json" />
+		<EmbeddedResource Include="DocFiles\OptionalAndNamedParameters\Example\Example.json" />
+		<EmbeddedResource Include="DocFiles\OptionalAndNamedParameters\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Companies.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Countries.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\FilteredCompanies.json" />
@@ -168,6 +178,10 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QueryJsonArray\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\Examples\QuerySimpleValue\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ReusingCompiledJsonFiles\Example\Result.json" />
+		<EmbeddedResource Include="DocFiles\SpecialKeywords\Index\Example\Example.json" />
+		<EmbeddedResource Include="DocFiles\SpecialKeywords\Index\Example\Result.json" />
+		<EmbeddedResource Include="DocFiles\SpecialKeywords\Parent\Example\Example.json" />
+		<EmbeddedResource Include="DocFiles\SpecialKeywords\Parent\Example\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Example.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\FailedAssert\Result.json" />
 		<EmbeddedResource Include="Examples\IJsonCompilerExamples\FailureExamples\InvalidParametersError\Example.json" />

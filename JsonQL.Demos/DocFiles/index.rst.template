@@ -153,13 +153,13 @@ Example: Query JSON files with result as JSON structure
    MutatingJsonFiles/index.rst
    QueryingJsonFiles/index.rst
    LambdaFunctions/index.rst
-   SpecialKeywords/index.rst
+   SpecialKeywords/index.rst   
    JsonMutatorFunctions/index.rst
+   OptionalAndNamedParameters/index.rst 
    JsonPathFunctions/index.rst
    Functions/index.rst
    AggregateFunctions/index.rst
-   Operators/index.rst
-   OptionalAndNamedParameters/index.rst 
+   Operators/index.rst   
    DependencyInjectionSetup/index.rst
    CustomJsonQL/index.rst
    FutureReleases/index.rst

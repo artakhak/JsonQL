@@ -5,6 +5,38 @@ Optional and Named Parameters
 .. contents::
    :local:
    :depth: 2
+
+- JsonQL functions (See :doc:`../JsonPathFunctions/index`, :doc:`../AggregateFunctions/index`,  :doc:`../Functions/index`) support both required and optional parameters.
+- Optional parameters appear after required parameters (if there are any), and can be omitted, as long as we don't have to pass other optional parameters that follow them.
+- If a function has one or more optional parameters, and we want to specify only some of the optional parameter, we can either specify the values of other optional parameters that appear before the optional parameters of interest, or we can use named parameters, and only specify values of optional parameters we care about.
+- To use named parameters, operator "->" is used between parameter name and its value (see examples below).
+- Using named parameters we can change the order in which arguments are passed.
+
+    - For example, in JsonQL expression in value of "AllParametersSpecifiedAsNamedParameters" in JSON file **Example** below we use named parameters for all three parameters. We pass a value for optional parameter 'value' first (this parameter is the the third parameter in function 'Average'), then we pass a value for optional parameter 'criteria' (this parameter is the the second parameter in function 'Average'), and finally we pass a value for required parameter 'collection' (this parameter is the the first parameter in function 'Average').
+
+Example
+=======
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Example.json** in example below:  :doc:`../../MutatingJsonFiles/SampleFiles/employees`.
+
+**Example.json** below demonstrates using optional and named parameters with JsonQL.
+
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Example.json</IncludedFilePlaceHolder>
+    
+The result (i.e.,an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Example.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+ 
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
    
-- TODO: Add contents here...
-- TODO: Add toctree here...
+The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>

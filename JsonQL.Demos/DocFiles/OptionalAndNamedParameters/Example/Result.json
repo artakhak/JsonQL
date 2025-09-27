@@ -1,0 +1,30 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "Comment1":  "In example below we pass only a value for required parameter 'collection' ",
+        "Comment2":  "to function 'Average' as unnamed parameter.",
+        "OptionalParametersNotSpecified":  96375,
+        "Comment3":  "In example below we pass only a value for required parameter 'collection' ",
+        "Comment4":  "and a value for optional parameter 'criteria' to function 'Average' as unnamed parameters.",
+        "OneOptionalParameterSpecified":  105000,
+        "SomeOptionalParametersSpecified":  0,
+        "Comment5":  "In example below, a value for required parameter 'collection' is passed as unnamed parameter,",
+        "Comment6":  "and values for optional parameters 'criteria' and 'value' are passed in order different from default order",
+        "Comment7":  " as named parameters. The default order is 'collection', 'criteria', and 'value'",
+        "MixOfNamedAndUnnamedParameters":  105000,
+        "Comment8":  "In example below, the values for required parameter 'collection' and optional parameters 'criteria' and 'value'",
+        "Comment9":  "are passed are passed in order different from default order as named parameters.",
+        "Comment10":  "The default order is 'collection', 'criteria', and 'value'",
+        "AllParametersSpecifiedAsNamedParameters":  105000
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

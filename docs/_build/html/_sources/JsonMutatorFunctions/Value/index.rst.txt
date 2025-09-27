@@ -13,9 +13,9 @@ Value '$value'
 Example
 =======
 
-Example in **Example.json** below demonstrates using '$value' function.
-
 .. note:: The following JSON files are referenced in JsonQL expressions in **Example.json** in example below:  :doc:`../../MutatingJsonFiles/SampleFiles/companies`.
+
+**Example.json** below demonstrates using **$value** function.
 
 .. sourcecode:: json
 

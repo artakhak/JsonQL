@@ -6,10 +6,9 @@ Special Keywords
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+JsonQL supports special keywords that are described in sections below.
 
 .. toctree::
 
    Parent/index.rst
-   This/index.rst
    Index/index.rst
