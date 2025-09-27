@@ -1,0 +1,8 @@
+{
+  "TestArray": [ 1, 3, 7, 9, 11, 13 ],
+
+  "Comment1": "We can have multiple occurrences of '$' functions in",
+  "Comment2": "JSON, values below. Using one in each to make lines shorter",
+  "Example1": "Sum(TestArray): $(Sum(TestArray.Where(x => x > 3)))",
+  "Example2": "Average salary: $(Average(Companies.Select(c => c.Employees.Select(e => e.Salary))))."
+}

@@ -186,13 +186,13 @@ Example: Query and convert JSON to C# objects
     // query would be: "Employees.Where(...)" instead of "Where(...)"
     var query = "Where(e => e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p => p == e.Id))";
 
-    // We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+    // We can call queryManager.QueryObject<T> with the following values for "T" generic parameter
     // -Class (value or reference type). We can use '?' for nullable values. Examples:
-    //      "_queryManager.QueryObject<Manager?>(...)",
-    //      "_queryManager.QueryObject<Manager>(...)"
+    //      "queryManager.QueryObject<Manager?>(...)",
+    //      "queryManager.QueryObject<Manager>(...)"
     // -Interface. We can use '?' for nullable values. Examples:
-    //      "_queryManager.QueryObject<IManager?>(...)",
-    //      "_queryManager.QueryObject<IManager>(...)"
+    //      "queryManager.QueryObject<IManager?>(...)",
+    //      "queryManager.QueryObject<IManager>(...)"
     // The following collection types:
     //          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
     //          ICollection<T>, IReadOnlyCollection<T>
@@ -289,7 +289,7 @@ Example: Query JSON files with result as JSON structure
     // companiesResult is of type 'JsonQL.Query.IJsonValueQueryResult'
     // that stores information about the loaded JSON as well as errors if any.
     IJsonValueQueryResult companiesResult =
-                _queryManager.QueryJsonValue(query,
+                queryManager.QueryJsonValue(query,
                     new JsonTextData("Data",
                         this.LoadExampleJsonFile("Data.json")));
 
@@ -303,7 +303,7 @@ Example: Query JSON files with result as JSON structure
    QueryingJsonFiles/index.rst
    LambdaFunctions/index.rst
    SpecialKeywords/index.rst
-   JsonMutatorOperators/index.rst
+   JsonMutatorFunctions/index.rst
    JsonPathFunctions/index.rst
    Functions/index.rst
    AggregateFunctions/index.rst

@@ -63,7 +63,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../LambdaFunctions/index.html">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../SpecialKeywords/index.html">Special Keywords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Functions/index.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -177,7 +177,7 @@ See <a class="reference internal" href="#replace-serialization-type"><span class
 
 <span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;Employee&gt;&gt;&quot;.</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
 <span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="na">[&quot;DocFiles&quot;, &quot;QueryingJsonFiles&quot;, &quot;JsonFiles&quot;]</span><span class="p">)));</span>
@@ -343,7 +343,7 @@ See <a class="reference internal" href="#replace-serialization-type"><span class
 
 <span class="c1">// The result &quot;employeesResult&quot; is of type &quot;JsonQL.Query.IObjectQueryResult&lt;IReadOnlyList&lt;Employee&gt;&gt;&quot;.</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">employeesResult</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">    </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryObject</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
 <span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="na">[&quot;DocFiles&quot;, &quot;QueryingJsonFiles&quot;, &quot;JsonFiles&quot;]</span><span class="p">)));</span>

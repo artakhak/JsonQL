@@ -1,0 +1,18 @@
+======================
+JSON Mutator Functions
+======================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+JSON mutator functions are functions that start with "$" (e.g. "$value(Employees[0])") and are used to transform a JSON value where the mutator function is used in to some other value based on JsonQL expressions used as a parameter to the mutator function.
+
+The sections below describe all available JSON mutator functions.
+
+.. toctree::
+
+   StringInterpolation/index.rst
+   Value/index.rst
+   CopyFields/index.rst
+   MergeArray/index.rst

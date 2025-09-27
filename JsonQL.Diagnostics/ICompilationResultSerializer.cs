@@ -78,7 +78,7 @@ public class CompilationResultSerializer : ICompilationResultSerializer
         
         for (var currentFileIndex = 0; currentFileIndex < compiledJsonFilesData.Count; ++currentFileIndex)
         {
-            var compiledJsonData = compilationResult.CompiledJsonFiles[currentFileIndex];
+            var compiledJsonData = compiledJsonFilesData[currentFileIndex];
 
             var level1Indention = string.Concat(indention, indention);
             var level2Indention = string.Concat(indention, indention, indention);

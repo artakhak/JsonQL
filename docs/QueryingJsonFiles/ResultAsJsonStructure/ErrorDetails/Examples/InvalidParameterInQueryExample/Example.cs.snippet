@@ -17,6 +17,6 @@ Assert.That(queryResult.ParsedValue is IParsedSimpleValue {Value: "test"});
 query = "Lower(TestData[3], 7)";
 
 queryResult =
-    _queryManager.QueryJsonValue(query,
+    queryManager.QueryJsonValue(query,
         new JsonTextData("Data",
             this.LoadExampleJsonFile("Data.json")));

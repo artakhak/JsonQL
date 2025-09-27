@@ -1,0 +1,37 @@
+﻿========================
+String Interpolation '$'
+========================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+- The string interpolation function '$' allows injecting one or more JsonQL expressions inside a string JsonValue using a format of type "$([Json QL Expression as a parameter])". 
+- JsonQL evaluates all the occurrences of "$()" in JSON string value, and replaces them with evaluated expressions.
+- The JsonQL expressions used in '$' function should evaluate to a string (e.g., string, numeric, date/time or boolean values).
+
+Example
+=======
+
+Example in **Example.json** below demonstrates using '$' function.
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Example.json** in example below:  :doc:`../../MutatingJsonFiles/SampleFiles/companies`.
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Example.json</IncludedFilePlaceHolder>
+    
+The result (i.e.,an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Example.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+ 
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+   
+The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>

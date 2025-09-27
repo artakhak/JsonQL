@@ -1,0 +1,10 @@
+{
+  "TestArray": [ 1, 3, 7, 9, 11, 13 ],
+
+  "BooleanValueExample": "$value(TestArray[1] == 3 && Sum(TestArray) == 44)",
+  "NumberValueExample": "$value(TestArray[1] + TestArray[2])",
+  "StringValueExample": "$value(ToString(TestArray[1] + TestArray[2]))",
+  "JsonObjectValueExample": "$value(Companies[0].CompanyData)",
+  "JsonArrayValueExampleDescription": "Select first 3 employees across all companies",
+  "JsonArrayValueExample": "$value(Companies.Select(c => c.Employees).Where(e => index <= 2))"
+}

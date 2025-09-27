@@ -46,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="QueryingJsonFiles/index.html">Querying JSON Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LambdaFunctions/index.html">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SpecialKeywords/index.html">Special Keywords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Functions/index.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -295,13 +295,13 @@
 <span class="c1">// query would be: &quot;Employees.Where(...)&quot; instead of &quot;Where(...)&quot;</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Where(e =&gt; e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p =&gt; p == e.Id))&quot;</span><span class="p">;</span>
 
-<span class="c1">// We can call _queryManager.QueryObject&lt;T&gt; with the following values for &quot;T&quot; generic parameter</span>
+<span class="c1">// We can call queryManager.QueryObject&lt;T&gt; with the following values for &quot;T&quot; generic parameter</span>
 <span class="c1">// -Class (value or reference type). We can use &#39;?&#39; for nullable values. Examples:</span>
-<span class="c1">//      &quot;_queryManager.QueryObject&lt;Manager?&gt;(...)&quot;,</span>
-<span class="c1">//      &quot;_queryManager.QueryObject&lt;Manager&gt;(...)&quot;</span>
+<span class="c1">//      &quot;queryManager.QueryObject&lt;Manager?&gt;(...)&quot;,</span>
+<span class="c1">//      &quot;queryManager.QueryObject&lt;Manager&gt;(...)&quot;</span>
 <span class="c1">// -Interface. We can use &#39;?&#39; for nullable values. Examples:</span>
-<span class="c1">//      &quot;_queryManager.QueryObject&lt;IManager?&gt;(...)&quot;,</span>
-<span class="c1">//      &quot;_queryManager.QueryObject&lt;IManager&gt;(...)&quot;</span>
+<span class="c1">//      &quot;queryManager.QueryObject&lt;IManager?&gt;(...)&quot;,</span>
+<span class="c1">//      &quot;queryManager.QueryObject&lt;IManager&gt;(...)&quot;</span>
 <span class="c1">// The following collection types:</span>
 <span class="c1">//          IReadOnlyList&lt;T&gt;, IEnumerable&lt;T&gt;, IList&lt;T&gt;,</span>
 <span class="c1">//          ICollection&lt;T&gt;, IReadOnlyCollection&lt;T&gt;</span>
@@ -413,7 +413,7 @@
 <span class="c1">// companiesResult is of type &#39;JsonQL.Query.IJsonValueQueryResult&#39;</span>
 <span class="c1">// that stores information about the loaded JSON as well as errors if any.</span>
 <span class="n">IJsonValueQueryResult</span><span class="w"> </span><span class="n">companiesResult</span><span class="w"> </span><span class="o">=</span>
-<span class="w">            </span><span class="n">_queryManager</span><span class="p">.</span><span class="n">QueryJsonValue</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
+<span class="w">            </span><span class="n">queryManager</span><span class="p">.</span><span class="n">QueryJsonValue</span><span class="p">(</span><span class="n">query</span><span class="p">,</span>
 <span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">)));</span>
 </pre></div>
@@ -554,11 +554,23 @@
 <li class="toctree-l2"><a class="reference internal" href="SpecialKeywords/Index/index.html">index</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="JsonMutatorOperators/index.html">JSON Mutator Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/StringInterpolation/index.html">String Interpolation ‘$’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/Value/index.html">Value ‘$value’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/CopyFields/index.html">Copy Fields ‘$copyFields’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JsonMutatorOperators/MergeArray/index.html">Merge Array ‘$merge’</a></li>
+<li class="toctree-l1"><a class="reference internal" href="JsonMutatorFunctions/index.html">JSON Mutator Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorFunctions/StringInterpolation/index.html">String Interpolation ‘$’</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JsonMutatorFunctions/StringInterpolation/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorFunctions/Value/index.html">Value ‘$value’</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JsonMutatorFunctions/Value/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorFunctions/CopyFields/index.html">Copy Fields ‘$copyFields’</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JsonMutatorFunctions/CopyFields/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JsonMutatorFunctions/MergeArray/index.html">Merge Array ‘$merge’</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JsonMutatorFunctions/MergeArray/index.html#example">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="JsonPathFunctions/index.html">JSON Path Functions</a><ul>

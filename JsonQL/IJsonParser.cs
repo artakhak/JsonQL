@@ -42,12 +42,22 @@ public class JsonParser : IJsonParser
     {
         ThreadStaticLoggingContext.Context = _logger;
 
-        var parsedJToken = _customNewtonsoftJToken.Parse(jsonText, new JsonLoadSettings
+        JToken parsedJToken;
+        try
         {
-            CommentHandling = CommentHandling.Ignore,
-            DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error,
-            LineInfoHandling = LineInfoHandling.Load
-        });
+            parsedJToken = _customNewtonsoftJToken.Parse(jsonText, new JsonLoadSettings
+            {
+                CommentHandling = CommentHandling.Ignore,
+                DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error,
+                LineInfoHandling = LineInfoHandling.Load
+            });
+        }
+        catch
+        {
+            _logger.ErrorFormat("Failed to parse JSON with {0}='{1}'. This is most likely be due to file not having a correct JSON format.",
+                nameof(jsonTextIdentifier), jsonTextIdentifier);
+            throw;
+        }
        
         switch (parsedJToken.Type)
         {

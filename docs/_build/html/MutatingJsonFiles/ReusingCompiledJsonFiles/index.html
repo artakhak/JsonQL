@@ -53,7 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -159,7 +159,7 @@ and then use another overloaded version <strong>ICompilationResult Compile(strin
 <span class="kt">var</span><span class="w"> </span><span class="n">jsonThatDependsOnCompaniesResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="n">jsonThatDependsOnCompanies</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Json1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">compiledParents</span><span class="p">);</span>
 <span class="c1">// Do something with jsonThatDependsOnCompaniesResult here.</span>
 
-<span class="c1">// NOTE: The list of parents compiledParents passed to _jsonCompiler.Compile() is organized in such a way</span>
+<span class="c1">// NOTE: The list of parents compiledParents passed to jsonCompiler.Compile() is organized in such a way</span>
 <span class="c1">// that child JSON files appear earlier, and parent JSON files appear later.</span>
 <span class="c1">// In this example &quot;Example.json&quot; will be treated as a child of &quot;FilteredCompanies&quot;, &quot;FilteredCompanies&quot; will be treated as a child of</span>
 <span class="c1">// &quot;Companies&quot; and so forth.</span>

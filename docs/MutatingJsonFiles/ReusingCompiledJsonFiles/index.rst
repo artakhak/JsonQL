@@ -81,7 +81,7 @@ Here is a code snippet demonstrating this approach:
     var jsonThatDependsOnCompaniesResult = jsonCompiler.Compile(jsonThatDependsOnCompanies, "Json1", compiledParents);
     // Do something with jsonThatDependsOnCompaniesResult here.
 
-    // NOTE: The list of parents compiledParents passed to _jsonCompiler.Compile() is organized in such a way
+    // NOTE: The list of parents compiledParents passed to jsonCompiler.Compile() is organized in such a way
     // that child JSON files appear earlier, and parent JSON files appear later.
     // In this example "Example.json" will be treated as a child of "FilteredCompanies", "FilteredCompanies" will be treated as a child of
     // "Companies" and so forth. 

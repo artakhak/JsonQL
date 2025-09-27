@@ -57,7 +57,7 @@
   Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6).Reverse())"
 ```
 
-## Mutation operators
+## Mutator functions
 
 ```markdown
 - `$copyFields`     - Copies fields in one JSON object into another JSON object.
@@ -69,7 +69,7 @@
 - `$value`          - Replaces a JSON field value with evaluated value.
   Examples: {"Employees": "$value(Example.Employees.Where(x => x.Salary > 100000))"}
 
-- `$`               - String interpolation mutator operator.
+- `$`               - String interpolation mutator function.
   Examples: { "MyCalculatedValue": "$(parent.Array1[1, 1000]:parent.Array1[1, 2]) is 6"}
 ```
 
@@ -315,13 +315,13 @@ IQueryManager queryManager = null!;
 // query would be: "Employees.Where(...)" instead of "Where(...)"
 var query = "Where(e => e.Id==100000006 || e.Id==100000007 || Any(EmployeeIds, p => p == e.Id))";
 
-// We can call _queryManager.QueryObject<T> with the following values for "T" generic parameter
+// We can call queryManager.QueryObject<T> with the following values for "T" generic parameter
 // -Class (value or reference type). We can use '?' for nullable values. Examples:
-//      "_queryManager.QueryObject<Manager?>(...)",
-//      "_queryManager.QueryObject<Manager>(...)"
+//      "queryManager.QueryObject<Manager?>(...)",
+//      "queryManager.QueryObject<Manager>(...)"
 // -Interface. We can use '?' for nullable values. Examples:
-//      "_queryManager.QueryObject<IManager?>(...)",
-//      "_queryManager.QueryObject<IManager>(...)"
+//      "queryManager.QueryObject<IManager?>(...)",
+//      "queryManager.QueryObject<IManager>(...)"
 // The following collection types:
 //          IReadOnlyList<T>, IEnumerable<T>, IList<T>, 
 //          ICollection<T>, IReadOnlyCollection<T>

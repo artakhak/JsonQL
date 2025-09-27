@@ -73,7 +73,7 @@ This example queries the JSON file :doc:`../SampleFiles/companies` and converts 
 
      // The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<Employee>>".
      var employeesResult =
-         _queryManager.QueryObject<IReadOnlyList<Employee>>(query,
+         queryManager.QueryObject<IReadOnlyList<Employee>>(query,
              new JsonTextData("Companies",
                  LoadJsonFileHelpers.LoadJsonFile("Companies.json", 
                      ["DocFiles", "QueryingJsonFiles", "JsonFiles"])));
@@ -254,7 +254,7 @@ This example queries the JSON file :doc:`../SampleFiles/companies` and converts 
 
      // The result "employeesResult" is of type "JsonQL.Query.IObjectQueryResult<IReadOnlyList<Employee>>".
      var employeesResult =
-         _queryManager.QueryObject<IReadOnlyList<Employee>>(query,
+         queryManager.QueryObject<IReadOnlyList<Employee>>(query,
              new JsonTextData("Companies",
                  LoadJsonFileHelpers.LoadJsonFile("Companies.json", 
                      ["DocFiles", "QueryingJsonFiles", "JsonFiles"])));

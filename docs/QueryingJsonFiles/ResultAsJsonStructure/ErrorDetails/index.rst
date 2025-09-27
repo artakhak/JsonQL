@@ -136,7 +136,7 @@ Queried **Data.json** file:
     query = "Lower(TestData[3], 7)";
 
     queryResult =
-        _queryManager.QueryJsonValue(query,
+        queryManager.QueryJsonValue(query,
             new JsonTextData("Data",
                 this.LoadExampleJsonFile("Data.json")));
 

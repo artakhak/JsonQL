@@ -47,7 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SpecialKeywords/index.html">Special Keywords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../JsonMutatorOperators/index.html">JSON Mutator Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Functions/index.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -84,9 +84,12 @@
              
   <section id="lambda-functions">
 <h1>Lambda Functions<a class="headerlink" href="#lambda-functions" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p>TODO: Add contents here (general description of lambda functions with couple of examples)…</p></li>
-</ul>
+<p>JsonQL uses lambda functions as parameters to functions. Therefore, a simple explanation of lambda expression is given below to help with understanding of some expressions.</p>
+<p>A lambda function is a small, anonymous function that you can use to specify behavior or operations directly inline in your code. It is often used for filtering, transforming, or selecting data from collections.</p>
+<p>For example:</p>
+<p>Employees.Where(x =&gt; x.Age &gt; 35) filters the employees to include only those older than 35.
+Employees.Select(x =&gt; x.Salary) creates a list of salaries from the employees.
+In simple terms, it’s a quick way to define what should be done with each item in a collection without writing a full separate function.</p>
 </section>
 
 

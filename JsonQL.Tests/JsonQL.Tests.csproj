@@ -600,7 +600,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		
 		<ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
 		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>

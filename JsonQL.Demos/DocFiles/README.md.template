@@ -57,7 +57,7 @@
   Examples: "$merge(Object1.Array1.Flatten().Where(x => x >= 2 && x <= 6).Reverse())"
 ```
 
-## Mutation operators
+## Mutator functions
 
 ```markdown
 - `$copyFields`     - Copies fields in one JSON object into another JSON object.
@@ -69,7 +69,7 @@
 - `$value`          - Replaces a JSON field value with evaluated value.
   Examples: {"Employees": "$value(Example.Employees.Where(x => x.Salary > 100000))"}
 
-- `$`               - String interpolation mutator operator.
+- `$`               - String interpolation mutator function.
   Examples: { "MyCalculatedValue": "$(parent.Array1[1, 1000]:parent.Array1[1, 2]) is 6"}
 ```
 

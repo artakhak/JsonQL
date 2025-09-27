@@ -1,0 +1,11 @@
+{
+  "TestArray": [ 1, 3, 7, 9, "Test 1", 11, 13 ],
+
+  "MergeArrayExample": [
+    "TestArray array merged next",
+    "$merge(TestArray)",
+    "First 3 employees across all companies merged next",
+    "$merge(Companies.Select(c => c.Employees).Where(e => index <= 2))",
+    "End"
+  ]
+}
