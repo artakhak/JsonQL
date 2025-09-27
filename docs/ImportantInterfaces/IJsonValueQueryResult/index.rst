@@ -1,0 +1,18 @@
+===============================================================
+Query Result Data Structure: JsonQL.Query.IJsonValueQueryResult
+===============================================================
+
+.. contents::
+   :local:
+   :depth: 2
+
+The result of executing a query using one of the overloaded methods **QueryJsonValue** in interface `JsonQL.Query.IQueryManager <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IQueryManager.cs>`_ is stored in an instance of `JsonQL.Query.IJsonValueQueryResult.cs <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Query/IJsonValueQueryResult.cs>`_.
+- The property **CompilationErrors** is a list of items of type `JsonQL.Compilation.ICompilationErrorItem <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationErrorItem.cs>`_ stores the data about errors in a query or JSON files used by the query.
+- If the query succeeds, the property **ParsedValue** of type `JsonQL.JsonObjects.IParsedValue <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonObjects/IParsedValue.cs>`_ stores the resulted value as a JSON structure. The value might be null if there are errors.
+
+.. note::
+    See :doc:`IParsedValue/index` for more details on the structure of 
+      
+.. toctree::   
+  
+   IParsedValue/index.rst
