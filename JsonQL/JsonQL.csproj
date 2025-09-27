@@ -15,7 +15,7 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-            - Fixed an issue JsonQL.Query.QueryManager related re-using compiled queried JSON files when executing quetries (small change in method "QueryJsonValue(string query, IReadOnlyList<ICompiledJsonData> compiledJsonDataToQuery)" to switch two string parameters.
+            - Fixed an issue JsonQL.Query.QueryManager related re-using compiled queried JSON files when executing quetries (small change in method "QueryJsonValue(string query, IReadOnlyList&gt;ICompiledJsonData&lt; compiledJsonDataToQuery)" to switch two string parameters.
             - Bumped the version to 1.3.0 because of the small fix            
 			- Some README.md improvements and in progress changes to documentation for  https://jsonql.readthedocs.io/
             - Moved some interface implemenbtations to seperate files, so make sure the links to interfaces in documentation show only interfaces.
