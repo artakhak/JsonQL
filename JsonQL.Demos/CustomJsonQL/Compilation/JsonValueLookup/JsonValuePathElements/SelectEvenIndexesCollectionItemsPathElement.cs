@@ -18,17 +18,17 @@ public class SelectEvenIndexesCollectionItemsPathElement: JsonValueCollectionIte
         _variablesManager = variablesManager;
     }
 
-    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
         this._variablesManager.Register(this);
 
         try
         {
-            var filteredParsedValues = new List<IParsedValue>(parenParsedValues.Count);
+            var filteredParsedValues = new List<IParsedValue>(parentParsedValues.Count);
 
-            for (var i = 0; i < parenParsedValues.Count; i += 2)
+            for (var i = 0; i < parentParsedValues.Count; i += 2)
             {
-                var parsedValue = parenParsedValues[i];
+                var parsedValue = parentParsedValues[i];
                 var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
                 this._variablesManager.RegisterVariableValue(this, _predicateLambdaFunction.ParameterJsonFunction.Name, itemContextData.EvaluatedValue);
 

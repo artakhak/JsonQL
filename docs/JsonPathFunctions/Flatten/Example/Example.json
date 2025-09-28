@@ -1,0 +1,22 @@
+{
+  "Array1": [
+    [
+      2,
+      4,
+      [ 3, 7 ],
+      "Test",
+      [
+        1,
+        8,
+        [ 9, 11, 14 ]
+      ],
+      6,
+      10
+    ],
+    13,
+    "Test"
+  ],
+
+  "FlattenResultOf_First_Expression_Once": "$value(Array1.First(x => typeof x == 'JsonArray').Flatten())",
+  "FlattenTwice": "$value(Array1[0].Flatten(x => typeof x != 'JsonArray' || Count(x) > 2).Flatten())"  
+}

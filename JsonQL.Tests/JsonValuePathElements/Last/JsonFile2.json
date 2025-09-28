@@ -32,5 +32,5 @@
   "GetLastEmployeeWithSalaryGreaterThan_100000": "$value(parent.Object1.Companies.Flatten().Where(x => x.EmployeeId > 0 && x.Salary > 100000).Last())",
   "GetLastItemInArray": "$(Object1.Array1.Last())",
   "Predicate_In_Last_GetLastItemInArray_NotEqualTo_4": "$(Object1.Array1.Last(x => x != 4))",
-  "Predicate_In_Last_FirstCompanyWithLastEmpoyeeId_202": "$value parent.Object1.Companies.First(x => x.Last(x => !HasField(x, 'Name')).EmployeeId == 202)"
+  "Predicate_In_Last_FirstCompanyWithLastEmployeeId_202": "$value parent.Object1.Companies.First(x => x.Last(x => !HasField(x, 'Name')).EmployeeId == 202)"
 }

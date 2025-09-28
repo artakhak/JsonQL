@@ -19,8 +19,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="At" href="../At/index.html" />
-    <link rel="prev" title="Select" href="../Select/index.html" /> 
+    <link rel="next" title="Select" href="../Select/index.html" />
+    <link rel="prev" title="Last" href="../Last/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,13 +51,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">JSON Path Functions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../ArrayIndexers/index.html">Array Indexers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Select/index.html">Select</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Where</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../At/index.html">At</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../First/index.html">First</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Last/index.html">Last</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Where</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Select/index.html">Select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Flatten/index.html">Flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Reverse/index.html">Reverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#example">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
@@ -95,17 +100,103 @@
              
   <section id="where">
 <h1>Where<a class="headerlink" href="#where" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#function-parameters" id="id1">Function Parameters</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id2">Example</a></p></li>
 </ul>
+</nav>
+<ul class="simple">
+<li><p>Path function <strong>Where</strong> is used to select items in a collection (i.e., JSON array or a collection resulted by evaluation of other JsonQL functions, such as ‘Where’, ‘Select’, etc.).</p></li>
+</ul>
+<section id="function-parameters">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Function Parameters</a><a class="headerlink" href="#function-parameters" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>criteria</strong>:</dt><dd><ul>
+<li><p>Required: No</p></li>
+<li><p>Type: lambda function of type “x =&gt; boolean”</p></li>
+<li><p>Description: A criteria used to filter the result.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="example">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Example.json</strong> in example below:  <a class="reference internal" href="../../MutatingJsonFiles/SampleFiles/companies.html"><span class="doc">Companies.json</span></a>.</p>
+</div>
+<p><strong>Example.json</strong> below demonstrates using <strong>Where</strong> path function.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;WhereExample&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.Data.Address.State != &#39;CO&#39;).Select(c =&gt; c.Employees.Where(e =&gt; e.Age &lt; 40)).Where(e =&gt; e.Id != 100000010).Last())&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Example.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;WhereExample&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000008</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Laura Lee&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;258 Willow Lane&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;92101&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">105500</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">32</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The code snippet shows how the JSON file <strong>Example.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">[]</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Example.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Select/index.html" class="btn btn-neutral float-left" title="Select" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../At/index.html" class="btn btn-neutral float-right" title="At" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Last/index.html" class="btn btn-neutral float-left" title="Last" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Select/index.html" class="btn btn-neutral float-right" title="Select" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

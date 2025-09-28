@@ -30,7 +30,7 @@
     "EmptyArray": [
     ]
   },
-  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not on collections resulted from using Where(), Flatten() and others,",
+  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not to collections resulted from using Where(), Flatten() and others,",
   "Comment_Line2": "and the following expression will not work",
   "Comment_Line3": "(Object1.Array1.Where(x => x != 2)[2]))",
   "Comment_Line4": "and At(2) function should be used instead as shown below",
@@ -50,7 +50,7 @@
   "GetThirdItemInArray": {
     "EmployeeId": 1
   },
-  "GetCompanyWithFirstEmpoyeeId_100_UsingAt_1": [
+  "GetCompanyWithFirstEmployeeId_100_UsingAt_1": [
     {
       "Name": "Company2"
     },
@@ -70,7 +70,7 @@
       "Salary": 98000
     }
   ],
-  "GetCompanyWithFirstEmpoyeeId_100_UsingAt_2": [
+  "GetCompanyWithFirstEmployeeId_100_UsingAt_2": [
     {
       "Name": "Company2"
     },
@@ -90,7 +90,7 @@
       "Salary": 98000
     }
   ],
-  "GetCompanyWithFirstEmpoyeeId_100_UsingIndex": [
+  "GetCompanyWithFirstEmployeeId_100_UsingIndex": [
     {
       "Name": "Company2"
     },

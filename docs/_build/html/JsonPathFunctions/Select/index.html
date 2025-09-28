@@ -19,8 +19,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Where" href="../Where/index.html" />
-    <link rel="prev" title="Array Indexers" href="../ArrayIndexers/index.html" /> 
+    <link rel="next" title="Flatten" href="../Flatten/index.html" />
+    <link rel="prev" title="Where" href="../Where/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,13 +51,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">JSON Path Functions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../ArrayIndexers/index.html">Array Indexers</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Select</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Where/index.html">Where</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../At/index.html">At</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../First/index.html">First</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Last/index.html">Last</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Where/index.html">Where</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Select</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../Flatten/index.html">Flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Reverse/index.html">Reverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#example">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
@@ -95,17 +100,153 @@
              
   <section id="select">
 <h1>Select<a class="headerlink" href="#select" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#function-parameters" id="id1">Function Parameters</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id2">Example</a></p></li>
 </ul>
+</nav>
+<ul>
+<li><p>Path function <strong>Select</strong> is used to project each item in a collection to another item in a collection.</p></li>
+<li><p>Currently we can use project items to calculated values that uses path functions as well as JsonQL expressions (e.g., “e =&gt; e.Salary * 2”).</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Next release will support also more complex projections to create new JSON objects and arrays (e.g., “e =&gt; {“Name” : Concatenate(e.FirstName, ‘ ‘, e.LastName)}”, “e =&gt; [e.Addresses.Where(a =&gt; a.State != ‘CO’)]”, etc.).
+This improvement will be added based on demand for jsonQL as well as on this feature, since the author might be involved with other things in near future.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<section id="function-parameters">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Function Parameters</a><a class="headerlink" href="#function-parameters" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>path</strong>:</dt><dd><ul>
+<li><p>Required: Yes</p></li>
+<li><p>Type: lambda function of type “x =&gt; any”</p></li>
+<li><p>Description: A lambda function for projecting a collection item to a valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="example">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Example.json</strong> in example below:  <a class="reference internal" href="../../MutatingJsonFiles/SampleFiles/companies.html"><span class="doc">Companies.json</span></a>.</p>
+</div>
+<p><strong>Example.json</strong> below demonstrates using <strong>Select</strong> path function.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;SelectFirstThreeEmployeesAcrossAllCompanies&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees).Where(x =&gt; index &lt;= 2))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees).Where(x =&gt; index &lt;= 2).Select(e =&gt; 2 * e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;SelectUsingNamedParameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(path -&gt; c =&gt; c.CompanyData.Name))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Example.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;SelectFirstThreeEmployeesAcrossAllCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000001</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">99500</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">45</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Alice Johnson&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;10001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">38</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000003</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Michael Brown&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;90001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">89000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">50</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">199000</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">210000</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">178000</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;SelectUsingNamedParameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;Strange Things, Inc&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;Sherwood Forest Timber, Inc&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;Atlantic Transfers, Inc&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The code snippet shows how the JSON file <strong>Example.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Example.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ArrayIndexers/index.html" class="btn btn-neutral float-left" title="Array Indexers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Where/index.html" class="btn btn-neutral float-right" title="Where" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Where/index.html" class="btn btn-neutral float-left" title="Where" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Flatten/index.html" class="btn btn-neutral float-right" title="Flatten" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

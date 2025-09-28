@@ -39,17 +39,17 @@ public class FlattenCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     }
 
     /// <inheritdoc />
-    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
         this._variablesManager.Register(this);
 
         try
         {
-            var flattenedParsedValues = new List<IParsedValue>(parenParsedValues.Count);
+            var flattenedParsedValues = new List<IParsedValue>(parentParsedValues.Count);
 
-            for (var i = 0; i < parenParsedValues.Count; ++i)
+            for (var i = 0; i < parentParsedValues.Count; ++i)
             {
-                var parsedValue = parenParsedValues[i];
+                var parsedValue = parentParsedValues[i];
                 var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
                 if (_lambdaPredicate != null)

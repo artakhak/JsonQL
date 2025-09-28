@@ -1,0 +1,7 @@
+{
+  "SelectFirstThreeEmployeesAcrossAllCompanies": 
+    "$value(Companies.Select(c => c.Employees).Where(x => index <= 2).Reverse())",
+
+  "SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies": 
+    "$value(Companies.Select(c => c.Employees).Reverse().Where(x => index <= 2))"
+}

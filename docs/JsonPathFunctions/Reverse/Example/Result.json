@@ -1,0 +1,91 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "SelectFirstThreeEmployeesAcrossAllCompanies": [
+          {
+            "Id":  100000003,
+            "Name":  "Michael Brown",
+            "Address": {
+              "Street":  "789 Pine Lane",
+              "City":  "Los Angeles",
+              "State":  "CA",
+              "ZipCode":  "90001"
+            },
+            "Salary":  89000,
+            "Age":  50
+          },
+          {
+            "Id":  100000002,
+            "Name":  "Alice Johnson",
+            "Address": {
+              "Street":  "123 Maple Street",
+              "City":  "New York",
+              "State":  "NY",
+              "ZipCode":  "10001"
+            },
+            "Salary":  105000,
+            "Age":  38
+          },
+          {
+            "Id":  100000001,
+            "Name":  "John Smith",
+            "Address": {
+              "Street":  "456 Oak Avenue",
+              "City":  "Chicago",
+              "State":  "IL",
+              "ZipCode":  "60601"
+            },
+            "Salary":  99500,
+            "Age":  45
+          }
+        ],
+        "SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies": [
+          {
+            "Id":  783328759,
+            "Name":  "Robert Brown",
+            "Address": {
+              "Street":  "Pine St",
+              "City":  "Los Angeles",
+              "State":  "CA",
+              "ZipCode":  "90001"
+            },
+            "Salary":  122395,
+            "Age":  58
+          },
+          {
+            "Id":  250150245,
+            "Name":  "Jane Doe",
+            "Address": {
+              "Street":  "Main St",
+              "City":  "San Jose",
+              "State":  "PA",
+              "ZipCode":  "95101"
+            },
+            "Salary":  144186,
+            "Age":  63
+          },
+          {
+            "Id":  100000010,
+            "Name":  "Jessica Thompson",
+            "Address": {
+              "Street":  "159 Cherry Lane",
+              "City":  "Austin",
+              "State":  "TX",
+              "ZipCode":  "73301"
+            },
+            "Salary":  98700,
+            "Age":  37
+          }
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

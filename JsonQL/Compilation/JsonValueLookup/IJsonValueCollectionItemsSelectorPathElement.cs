@@ -20,8 +20,8 @@ public interface IJsonValueCollectionItemsSelectorPathElement : IJsonValuePathEl
     bool SelectsSingleItem { get; }
 
     /// <summary>
-    /// Selects items from <param name="parenParsedValues"></param>
+    /// Selects items from <param name="parentParsedValues"></param>
     /// </summary>
-    IParseResult<IJsonValuePathLookupResult> Select(IReadOnlyList<IParsedValue> parenParsedValues,
+    IParseResult<IJsonValuePathLookupResult> Select(IReadOnlyList<IParsedValue> parentParsedValues,
         IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues);
 }

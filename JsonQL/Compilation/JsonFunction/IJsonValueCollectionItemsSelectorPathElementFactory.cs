@@ -1,6 +1,7 @@
 // Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
+using System.Diagnostics.CodeAnalysis;
 using JsonQL.Compilation.JsonFunction.JsonFunctions;
 using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.Compilation.JsonValueLookup.JsonValuePathElements;
@@ -162,15 +163,28 @@ public class JsonValueCollectionItemsSelectorPathElementFactory : IJsonValueColl
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateReverseCollectionItemsPathElement(
         IParsedSimpleValue parsedSimpleValue, string functionName, IReadOnlyList<IExpressionItemBase> functionParameters, IJsonLineInfo? lineInfo)
     {
-        if (functionParameters.Count > 0)
-        {
-            return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(CollectionExpressionHelpers.Create(
-                new JsonObjectParseError($"Function [{functionName}] does not expect any parameters.",
-                    parsedSimpleValue.LineInfo.GenerateRelativePosition(functionParameters[0]))
-            ));
-        }
+        if (!ValidateFunctionHasNoParameters<IJsonValueCollectionItemsSelectorPathElement>(parsedSimpleValue, functionName,
+                functionParameters, lineInfo, out var errorResult))
+            return errorResult;
 
         return new ParseResult<IJsonValueCollectionItemsSelectorPathElement>(new ReverseCollectionItemsPathElement(functionName, lineInfo));
+    }
+
+    private bool ValidateFunctionHasNoParameters<T>(
+        IParsedSimpleValue parsedSimpleValue, string functionName, IReadOnlyList<IExpressionItemBase> functionParameters, IJsonLineInfo? lineInfo,
+        [NotNullWhen(false)] out ParseResult<T>? errorResult)
+    {
+        if (functionParameters.Count == 0)
+        {
+            errorResult = null;
+            return true;
+        }
+
+        errorResult = new ParseResult<T>(CollectionExpressionHelpers.Create(
+            new JsonObjectParseError($"Function [{functionName}] does not expect any parameters.",
+                parsedSimpleValue.LineInfo.GenerateRelativePosition(functionParameters[0]))));
+
+        return false;
     }
 
     private IParseResult<IJsonValueCollectionItemsSelectorPathElement> CreateWhereCollectionItemsPathElement(

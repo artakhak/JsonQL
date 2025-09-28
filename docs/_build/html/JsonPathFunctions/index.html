@@ -51,13 +51,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">JSON Path Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ArrayIndexers/index.html">Array Indexers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Select/index.html">Select</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Where/index.html">Where</a></li>
 <li class="toctree-l2"><a class="reference internal" href="At/index.html">At</a></li>
 <li class="toctree-l2"><a class="reference internal" href="First/index.html">First</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Last/index.html">Last</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Where/index.html">Where</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Select/index.html">Select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Flatten/index.html">Flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Reverse/index.html">Reverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Functions/index.html">Functions</a></li>
@@ -94,21 +95,118 @@
              
   <section id="json-path-functions">
 <h1>JSON Path Functions<a class="headerlink" href="#json-path-functions" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#example" id="id1">Example</a></p></li>
 </ul>
+</nav>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ArrayIndexers/index.html">Array Indexers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Select/index.html">Select</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Where/index.html">Where</a></li>
-<li class="toctree-l1"><a class="reference internal" href="At/index.html">At</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First/index.html">First</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Last/index.html">Last</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Flatten/index.html">Flatten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Reverse/index.html">Reverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ArrayIndexers/index.html">Array Indexers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArrayIndexers/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="At/index.html">At</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="At/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="At/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="First/index.html">First</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="First/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="First/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Last/index.html">Last</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Last/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Last/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Where/index.html">Where</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Where/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Where/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Select/index.html">Select</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Select/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Select/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Flatten/index.html">Flatten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Flatten/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Flatten/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reverse/index.html">Reverse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reverse/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reverse/index.html#example">Example</a></li>
+</ul>
+</li>
 </ul>
 </div>
+<ul class="simple">
+<li><p>JsonQL path functions are used along with one or more  ‘.’ separators (i.e., multiple functions can be applied in sequence) to access values in JSON files.</p></li>
+<li><p>The sections below describe the available JsonQL path functions, but the example below is a simple example demonstrating use of multiple chained functions (i.e., ‘Where’ and ‘First’) along with chained access to JSON objects and fields (i.e, ‘Employees’, and ‘Address’) :</p></li>
+<li><p>There is no limit on how many times you may apply the JSON path functions, or access JSON objects and fields in chained manner.</p></li>
+</ul>
+<section id="example">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Example.json</strong> in example below:  <a class="reference internal" href="../MutatingJsonFiles/SampleFiles/employees.html"><span class="doc">Employees.json</span></a>.</p>
+</div>
+<p><strong>Example.json</strong> below demonstrates using optional and named parameters with JsonQL.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;FirstEmployeeAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(x =&gt; x.Age &gt;= 40).First().Address)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Example.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;FirstEmployeeAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The code snippet shows how the JSON file <strong>Example.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Employees&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Employees.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Example.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

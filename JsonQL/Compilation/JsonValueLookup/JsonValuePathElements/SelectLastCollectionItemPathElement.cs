@@ -30,16 +30,16 @@ public class SelectLastCollectionItemPathElement : JsonValueCollectionItemSelect
     }
 
     /// <inheritdoc />
-    protected override IParseResult<ISingleItemJsonValuePathLookupResult> SelectCollectionItem(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    protected override IParseResult<ISingleItemJsonValuePathLookupResult> SelectCollectionItem(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
         IParsedValue? selectedValue = null;
 
         this._variablesManager.Register(this);
         try
         {
-            for (var i = parenParsedValues.Count - 1; i >= 0; --i)
+            for (var i = parentParsedValues.Count - 1; i >= 0; --i)
             {
-                var parsedValue = parenParsedValues[i];
+                var parsedValue = parentParsedValues[i];
                 var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, i);
 
                 if (_lambdaPredicate != null)

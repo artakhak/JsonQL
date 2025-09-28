@@ -1,0 +1,3 @@
+{
+  "FirstEmployeeAddress": "$value(Employees.Where(x => x.Age >= 40).First().Address)"
+}

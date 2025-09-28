@@ -1,0 +1,38 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [ 5, "test", 20 ],
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not to collections resulted from using Where(), Flatten() and others,",
+  "Comment_Line2": "and the following expression will not work",
+  "Comment_Line3": "(Object1.Array1.Where(x => x != 1)[0]))",
+  "Comment_Line4": "and At(0) or First() function should be used instead as shown below",
+  "Get_First_Item_In_Result_Of_Where": "$value(Object1.Array1.Where(x => x != 1).First())",
+  
+  "First_Using_Named_Parameters": "$value(Object1.Array1.Where(x => x != 1).First(criteria -> x => index > 1 && x >= 4))",
+
+  "GetFirstEmployeeWithSalaryGreaterThan_100000": "$value(parent.Object1.Companies.Flatten().Where(x => x.EmployeeId > 0 && x.Salary > 100000).First())",
+  "GetFirstItemInArray": "$(Object1.Array1.First())",
+  "Predicate_In_First_GetFirstItemInArray_GreaterThan_1": "$(Object1.Array1.First(x => x > 1))",
+  "Predicate_In_First_CompanyWithFirstEmployeeId_100": "$value parent.Object1.Companies.First(x => x.First(x => !HasField(x, 'Name')).EmployeeId == 100)"
+}

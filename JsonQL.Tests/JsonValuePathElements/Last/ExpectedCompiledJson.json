@@ -42,7 +42,7 @@
   },
   "GetLastItemInArray": "4",
   "Predicate_In_Last_GetLastItemInArray_NotEqualTo_4": "13",
-  "Predicate_In_Last_FirstCompanyWithLastEmpoyeeId_202": [
+  "Predicate_In_Last_FirstCompanyWithLastEmployeeId_202": [
     {
       "Name": "Company3"
     },

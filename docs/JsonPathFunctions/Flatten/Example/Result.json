@@ -1,0 +1,67 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "Array1": [
+          [
+            2,
+            4,
+            [
+              3,
+              7
+            ],
+            "Test",
+            [
+              1,
+              8,
+              [
+                9,
+                11,
+                14
+              ]
+            ],
+            6,
+            10
+          ],
+          13,
+          "Test"
+        ],
+        "FlattenResultOf_First_Expression_Once": [
+          2,
+          4,
+          3,
+          7,
+          "Test",
+          1,
+          8,
+          [
+            9,
+            11,
+            14
+          ],
+          6,
+          10
+        ],
+        "FlattenTwice": [
+          2,
+          4,
+          "Test",
+          1,
+          8,
+          9,
+          11,
+          14,
+          6,
+          10
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

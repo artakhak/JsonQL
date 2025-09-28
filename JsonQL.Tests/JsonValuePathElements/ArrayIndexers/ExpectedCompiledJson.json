@@ -55,13 +55,13 @@
     "EmployeeId": 11,
     "Age": 35
   },
-  "MultipleIndexsExample_ReferenceJsonValue": "4 is 4",
-  "MultipleIndexsExample_ReferenceJsonArray": [
+  "MultipleIndexesExample_ReferenceJsonValue": "4 is 4",
+  "MultipleIndexesExample_ReferenceJsonArray": [
     17,
     8,
     13
   ],
-  "MultipleIndexsExample_ReferenceJsonObject": {
+  "MultipleIndexesExample_ReferenceJsonObject": {
     "EmployeeId": 1,
     "Age": 55
   },

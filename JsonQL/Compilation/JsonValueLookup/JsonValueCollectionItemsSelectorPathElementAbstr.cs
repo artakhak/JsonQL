@@ -25,9 +25,9 @@ public abstract class JsonValueCollectionItemsSelectorPathElementAbstr : IJsonVa
     }
 
     /// <inheritdoc />
-    public IParseResult<IJsonValuePathLookupResult> Select(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    public IParseResult<IJsonValuePathLookupResult> Select(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
-        return SelectCollectionItems(parenParsedValues, rootParsedValue, compiledParentRootParsedValues);
+        return SelectCollectionItems(parentParsedValues, rootParsedValue, compiledParentRootParsedValues);
     }
 
     /// <summary>
@@ -35,11 +35,11 @@ public abstract class JsonValueCollectionItemsSelectorPathElementAbstr : IJsonVa
     /// root parsed value, and compiled parent root parsed values. The implementation determines
     /// how the item selection is performed to support specific path element logic.
     /// </summary>
-    /// <param name="parenParsedValues">The list of parsed values representing the parent's context for item selection.</param>
+    /// <param name="parentParsedValues">The list of parsed values representing the parent's context for item selection.</param>
     /// <param name="rootParsedValue">The root parsed value serving as the context for the collection items.</param>
     /// <param name="compiledParentRootParsedValues">The compiled list of root parsed values providing extended context for item resolution.</param>
     /// <returns>A parse result containing the resolved collection of JSON value path lookup results.</returns>
-    protected abstract IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues);
+    protected abstract IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues);
     
     /// <inheritdoc />
     public IJsonLineInfo? LineInfo { get; }

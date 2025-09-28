@@ -26,9 +26,9 @@ public class ReverseCollectionItemsPathElement : JsonValueCollectionItemsSelecto
     }
 
     /// <inheritdoc />
-    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    protected override IParseResult<ICollectionJsonValuePathLookupResult> SelectCollectionItems(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
         return new ParseResult<ICollectionJsonValuePathLookupResult>(new CollectionJsonValuePathLookupResult(
-            parenParsedValues.Reverse().ToList()));
+            parentParsedValues.Reverse().ToList()));
     }
 }

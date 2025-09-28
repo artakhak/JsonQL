@@ -6,4 +6,43 @@ Select
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- Path function **Select** is used to project each item in a collection to another item in a collection.
+- Currently we can use project items to calculated values that uses path functions as well as JsonQL expressions (e.g., "e => e.Salary * 2").
+
+    .. note::
+        Next release will support also more complex projections to create new JSON objects and arrays (e.g., "e => {"Name" : Concatenate(e.FirstName, ' ', e.LastName)}", "e => [e.Addresses.Where(a => a.State != 'CO')]", etc.).
+        This improvement will be added based on demand for jsonQL as well as on this feature, since the author might be involved with other things in near future.
+
+Function Parameters
+===================
+
+- **path**:
+    - Required: Yes
+    - Type: lambda function of type "x => any"
+    - Description: A lambda function for projecting a collection item to a valid JsonQL expression.
+
+Example
+=======
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Example.json** in example below:  :doc:`../../MutatingJsonFiles/SampleFiles/companies`.
+
+**Example.json** below demonstrates using **Select** path function.
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Example.json</IncludedFilePlaceHolder>
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Example.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+ 
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+   
+The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>

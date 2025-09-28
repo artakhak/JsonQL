@@ -1,0 +1,4 @@
+{
+  "WhereExample": 
+    "$value(Companies.Where(c => c.Data.Address.State != 'CO').Select(c => c.Employees.Where(e => e.Age < 40)).Where(e => e.Id != 100000010).Last())"
+}

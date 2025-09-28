@@ -1,0 +1,47 @@
+{
+  "Object1": {
+    "EvenNumbersArray": [
+      2,
+      4,
+      "Test",
+      [ 1, 3 ],
+      6,
+      10
+    ],
+    "Array1": [
+      1,
+      2,
+      "Test",
+      {
+        "EmployeeId": 1
+      },
+      [ 5, "test", 20 ],
+      6,
+      13,
+      4
+    ],
+    "EmptyArray": []
+  },
+
+  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not to collections resulted from using Where(), Flatten() and others,",
+  "Comment_Line2": "and the following expression will not work",
+  "Comment_Line3": "(Object1.Array1.Where(x => x != 2)[2]))",
+  "Comment_Line4": "and At(2) function should be used instead as shown below",
+  "Get_Third_Item_In_Result_Of_Where": "$value(Object1.Array1.Where(x => x != 2).At(2))",
+
+  "At_Using_Named_Parameters": "$value(Object1.Array1.At(index -> 2, criteria -> x => index > 0, isReverseSearch -> false))",
+
+  "GetFirstEmployeeWithSalaryGreaterThan_100000": "$value(parent.Object1.Companies.Flatten().Where(x => x.EmployeeId > 0 && x.Salary > 100000).At(0))",
+  "GetThirdEmployeeWithSalaryGreaterThan_100000": "$value(parent.Object1.Companies.Flatten().Where(x => x.EmployeeId > 0 && x.Salary > 100000).At(2))",
+  "GetThirdItemInArray": "$value(Object1.Array1.At(3))",
+
+  "GetCompanyWithFirstEmployeeId_100_UsingAt_1": "$value(parent.Object1.Companies.Where(x => x.At(1).EmployeeId == 100).First())",
+  "GetCompanyWithFirstEmployeeId_100_UsingAt_2": "$value(parent.Object1.Companies.First(x => x.At(1).EmployeeId == 100))",
+  "GetCompanyWithFirstEmployeeId_100_UsingIndex": "$value(parent.Object1.Companies.Where(x => x[1].EmployeeId == 100).First())",
+
+  "UseArrayIndexerOnResultOfAt": "$value(Object1.Array1.Where(x => x != 2).At(3).[1])",
+
+  "PredicateWith_At": "$value(Object1.Array1.At(2, x => x > 2))",
+  "PredicateWith_And_ReverseSearch_With_At": "$value(Object1.Array1.At(2, x => x != 4, true))",
+  "ReverseSearch_With_At": "$value(Object1.Array1.At(2, isReverseSearch -> true))"
+}

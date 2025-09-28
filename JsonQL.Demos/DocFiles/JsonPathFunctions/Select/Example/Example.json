@@ -1,0 +1,9 @@
+{
+  "SelectFirstThreeEmployeesAcrossAllCompanies": 
+    "$value(Companies.Select(c => c.Employees).Where(x => index <= 2))",
+
+  "SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies": 
+    "$value(Companies.Select(c => c.Employees).Where(x => index <= 2).Select(e => 2 * e.Salary))",
+
+  "SelectUsingNamedParameter": "$value(Companies.Select(path -> c => c.CompanyData.Name))"
+}

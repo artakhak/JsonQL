@@ -1,0 +1,63 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "SelectFirstThreeEmployeesAcrossAllCompanies": [
+          {
+            "Id":  100000001,
+            "Name":  "John Smith",
+            "Address": {
+              "Street":  "456 Oak Avenue",
+              "City":  "Chicago",
+              "State":  "IL",
+              "ZipCode":  "60601"
+            },
+            "Salary":  99500,
+            "Age":  45
+          },
+          {
+            "Id":  100000002,
+            "Name":  "Alice Johnson",
+            "Address": {
+              "Street":  "123 Maple Street",
+              "City":  "New York",
+              "State":  "NY",
+              "ZipCode":  "10001"
+            },
+            "Salary":  105000,
+            "Age":  38
+          },
+          {
+            "Id":  100000003,
+            "Name":  "Michael Brown",
+            "Address": {
+              "Street":  "789 Pine Lane",
+              "City":  "Los Angeles",
+              "State":  "CA",
+              "ZipCode":  "90001"
+            },
+            "Salary":  89000,
+            "Age":  50
+          }
+        ],
+        "SelectRaisedSalariesOfFirstThreeEmployeesAcrossAllCompanies": [
+          199000,
+          210000,
+          178000
+        ],
+        "SelectUsingNamedParameter": [
+          "Strange Things, Inc",
+          "Sherwood Forest Timber, Inc",
+          "Atlantic Transfers, Inc"
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

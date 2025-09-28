@@ -1,0 +1,21 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "FirstEmployeeAddress": {
+          "Street":  "456 Oak Avenue",
+          "City":  "Chicago",
+          "State":  "IL",
+          "ZipCode":  "60601"
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

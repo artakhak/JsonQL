@@ -23,7 +23,7 @@
     ],
     "EmptyArray": []
   },
-  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not on collections resulted from using Where(), Flatten() and others,",
+  "Comment_Line1": "NOTE: Array indexers can be applied only to arrays, and not to collections resulted from using Where(), Flatten() and others,",
   "Comment_Line2": "and the following expression will not work",
   "Comment_Line3": "(Object1.Array1.Where(x => x != 1)[0]))",
   "Comment_Line4": "and At(0) or First() function should be used instead as shown below",
@@ -32,5 +32,5 @@
   "GetFirstEmployeeWithSalaryGreaterThan_100000": "$value(parent.Object1.Companies.Flatten().Where(x => x.EmployeeId > 0 && x.Salary > 100000).First())",
   "GetFirstItemInArray": "$(Object1.Array1.First())",
   "Predicate_In_First_GetFirstItemInArray_GreaterThan_1": "$(Object1.Array1.First(x => x > 1))",
-  "Predicate_In_First_CompanyWithFirstEmpoyeeId_100": "$value parent.Object1.Companies.First(x => x.First(x => !HasField(x, 'Name')).EmployeeId == 100)"
+  "Predicate_In_First_CompanyWithFirstEmployeeId_100": "$value parent.Object1.Companies.First(x => x.First(x => !HasField(x, 'Name')).EmployeeId == 100)"
 }

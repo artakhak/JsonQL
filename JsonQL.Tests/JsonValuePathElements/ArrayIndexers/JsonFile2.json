@@ -34,9 +34,9 @@
   "SingleIndexExample_ReferenceJsonValue": "$(Object1.Array1[0]) is 1",
   "SingleIndexExample_ReferenceJsonArray": "$value(Object1.Array1[1])",
   "SingleIndexExample_ReferenceJsonObject": "$value(Object1.Array1[2])",
-  "MultipleIndexsExample_ReferenceJsonValue": "$(Object1.Array1[1, 1]) is 4",
-  "MultipleIndexsExample_ReferenceJsonArray": "$value(Object1.Array1[3, 0, 4])",
-  "MultipleIndexsExample_ReferenceJsonObject": "$value(Object1.Array1[3, 0, 2])",
+  "MultipleIndexesExample_ReferenceJsonValue": "$(Object1.Array1[1, 1]) is 4",
+  "MultipleIndexesExample_ReferenceJsonArray": "$value(Object1.Array1[3, 0, 4])",
+  "MultipleIndexesExample_ReferenceJsonObject": "$value(Object1.Array1[3, 0, 2])",
   "UsingIndexersInWhere": [
     "$merge(Object1.Array1.Where(x => x[0, 1] == 9))"
   ],

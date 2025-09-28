@@ -6,4 +6,134 @@ Flatten
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The JSON path function 'Flatten' replaces a JSON array nested (used as an item) inside another array with items of the array. 
+    - Result of "Flatten" function is similar to removing '[' and ']' braces in internal (nested) array to make the items of nested array into items of parent array.
+- The path function 'Flatten' can be applied multiple times to keep linearizing more level in multi-dimensional arrays. Any multi-dimensional array can be made into one-dimensional array with big enough number of applications of 'Flatten' function.   
+- Flatten only linearizes arrays, and it does not remove any data form collection (result of other functions) or JSON array. Therefore, once all arrays are flattened (linearized) after several applications of 'Flatten', new applications of 'Flatten' will result in a similar collection.
+ 
+Function Parameters
+===================
+
+- **criteria**:
+    - Required: No
+    - Type: lambda function of type "x => boolean"
+    - Description: A criteria used to filter out the items array before applying flaten operation. In other words, the items in collection/array are filtered out, and **Flatten** operation is applied to sub-arrays that are not filtered out. 
+
+Example
+=======
+
+**Example.json** below demonstrates using **Flatten** path function with JsonQL.
+
+
+.. sourcecode:: json
+
+    {
+      "Array1": [
+        [
+          2,
+          4,
+          [ 3, 7 ],
+          "Test",
+          [
+            1,
+            8,
+            [ 9, 11, 14 ]
+          ],
+          6,
+          10
+        ],
+        13,
+        "Test"
+      ],
+
+      "FlattenResultOf_First_Expression_Once": "$value(Array1.First(x => typeof x == 'JsonArray').Flatten())",
+      "FlattenTwice": "$value(Array1[0].Flatten(x => typeof x != 'JsonArray' || Count(x) > 2).Flatten())"  
+    }
+
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Example.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+ 
+.. sourcecode:: json
+
+    {
+      "CompiledJsonFiles":[
+        {
+          "TextIdentifier": "Example",
+          "CompiledParsedValue":
+          {
+            "Array1": [
+              [
+                2,
+                4,
+                [
+                  3,
+                  7
+                ],
+                "Test",
+                [
+                  1,
+                  8,
+                  [
+                    9,
+                    11,
+                    14
+                  ]
+                ],
+                6,
+                10
+              ],
+              13,
+              "Test"
+            ],
+            "FlattenResultOf_First_Expression_Once": [
+              2,
+              4,
+              3,
+              7,
+              "Test",
+              1,
+              8,
+              [
+                9,
+                11,
+                14
+              ],
+              6,
+              10
+            ],
+            "FlattenTwice": [
+              2,
+              4,
+              "Test",
+              1,
+              8,
+              9,
+              11,
+              14,
+              6,
+              10
+            ]
+          }
+        }
+      ],
+      "CompilationErrors":
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+   
+The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    // Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.
+    // The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+    // and it is normally configured as a singleton.
+    JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
+
+    var result = jsonCompiler.Compile(
+                new JsonTextData("Example", this.LoadExampleJsonFile("Example.json")));

@@ -1,0 +1,74 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Example",
+      "CompiledParsedValue":
+      {
+        "Object1": {
+          "EvenNumbersArray": [
+            2,
+            4,
+            "Test",
+            [
+              1,
+              3
+            ],
+            6,
+            10
+          ],
+          "Array1": [
+            1,
+            2,
+            "Test",
+            {
+              "EmployeeId":  1
+            },
+            [
+              5,
+              "test",
+              20
+            ],
+            6,
+            13,
+            4
+          ],
+          "EmptyArray": [
+          ]
+        },
+        "Comment_Line1":  "NOTE: Array indexers can be applied only to arrays, and not on collections resulted from using Where(), Flatten() and others,",
+        "Comment_Line2":  "and the following expression will not work",
+        "Comment_Line3":  "(Object1.Array1.Where(x => x != 4)[6]))",
+        "Comment_Line4":  "and At(6) or Last() function should be used instead as shown below",
+        "Get_Last_Item_In_Result_Of_Where":  13,
+        "Last_Using_Named_Parameters":  13,
+        "GetLastEmployeeWithSalaryGreaterThan_100000": {
+          "EmployeeId":  202,
+          "Age":  59,
+          "Salary":  175000
+        },
+        "GetLastItemInArray":  "4",
+        "Predicate_In_Last_GetLastItemInArray_NotEqualTo_4":  "13",
+        "Predicate_In_Last_FirstCompanyWithLastEmployeeId_202": [
+          {
+            "Name":  "Company3"
+          },
+          {
+            "EmployeeId":  201,
+            "Age":  39,
+            "Salary":  103000
+          },
+          {
+            "EmployeeId":  202,
+            "Age":  59,
+            "Salary":  175000
+          }
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

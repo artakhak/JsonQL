@@ -48,7 +48,7 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
     }
 
     /// <inheritdoc />
-    protected override IParseResult<ISingleItemJsonValuePathLookupResult> SelectCollectionItem(IReadOnlyList<IParsedValue> parenParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
+    protected override IParseResult<ISingleItemJsonValuePathLookupResult> SelectCollectionItem(IReadOnlyList<IParsedValue> parentParsedValues, IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues)
     {
         this._variablesManager.Register(this);
 
@@ -69,7 +69,7 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
 
             var index = (int)doubleValue;
 
-            if (index < 0 || index >= parenParsedValues.Count)
+            if (index < 0 || index >= parentParsedValues.Count)
             {
                 return new ParseResult<ISingleItemJsonValuePathLookupResult>(SingleItemJsonValuePathLookupResult.CreateForInvalidPath());
             }
@@ -99,7 +99,7 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
 
             if (isReverseSearch)
             {
-                currentIndex = parenParsedValues.Count - 1;
+                currentIndex = parentParsedValues.Count - 1;
                 indexIncrement = -1;
             }
 
@@ -107,9 +107,9 @@ public class SelectCollectionItemPathElement : JsonValueCollectionItemSelectorPa
             var countOfItemsMatchingCriteria = 0;
 
             IParsedValue? selectedValue = null;
-            while (evaluatedValuesCount < parenParsedValues.Count)
+            while (evaluatedValuesCount < parentParsedValues.Count)
             {
-                var parsedValue = parenParsedValues[currentIndex];
+                var parsedValue = parentParsedValues[currentIndex];
                 var itemContextData = new JsonFunctionEvaluationContextData(parsedValue, currentIndex);
 
                 
