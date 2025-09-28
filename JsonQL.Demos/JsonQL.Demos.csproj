@@ -10,6 +10,11 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Data.json" />
+	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Example.json" />
+	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Examples.json" />
+	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Result.json" />
+	  <None Remove="DocFiles\Functions\BooleanFunctions\IsEven\Examples.json" />
 	  <None Remove="DocFiles\JsonMutatorFunctions\CopyFields\Example\Example.json" />
 	  <None Remove="DocFiles\JsonMutatorFunctions\CopyFields\Example\Result.json" />
 	  <None Remove="DocFiles\JsonMutatorFunctions\MergeArray\Example\Example.json" />
@@ -137,6 +142,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Data.json" />
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Examples.json" />
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Result.json" />
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\HasField\Examples.json" />
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\IsEven\Examples.json" />
+		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\IsOdd\Examples.json" />
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\CopyFields\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\CopyFields\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\JsonMutatorFunctions\MergeArray\Example\Example.json" />

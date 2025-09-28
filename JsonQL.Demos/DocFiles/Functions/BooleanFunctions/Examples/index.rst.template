@@ -1,0 +1,45 @@
+﻿========
+Examples
+========
+
+.. contents::
+   :local:
+   :depth: 2
+   
+
+Examples in **Examples.json** file below demonstrate boolean functions described in :doc:`../index`
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Examples.json** in example below:
+    
+    - :doc:`data`
+    - :doc:`../../../MutatingJsonFiles/SampleFiles/companies`
+
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Examples.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result in instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_ serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+
+   
+The code snippet shows how the JSON file **Examples.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Examples.cs.snippet</IncludedFilePlaceHolder>

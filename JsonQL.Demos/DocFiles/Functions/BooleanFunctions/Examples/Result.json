@@ -1,0 +1,56 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Examples",
+      "CompiledParsedValue":
+      {
+        "HasField": {
+          "HasField_1": [
+            {
+              "Id":  1,
+              "Salary":  101000,
+              "Address": {
+                "Street":  "654 Cedar Road",
+                "City":  "Phoenix",
+                "State":  "AZ",
+                "ZipCode":  "85001"
+              }
+            }
+          ],
+          "HasField_2": [
+            {
+              "Id":  1,
+              "Salary":  101000,
+              "Address": {
+                "Street":  "654 Cedar Road",
+                "City":  "Phoenix",
+                "State":  "AZ",
+                "ZipCode":  "85001"
+              }
+            }
+          ]
+        },
+        "IsEven": {
+          "IsEven_1":  true,
+          "IsEven_2": [
+            4,
+            2,
+            12
+          ]
+        },
+        "IsOdd": {
+          "IsOdd_1":  false,
+          "IsOdd_2": [
+            1,
+            3
+          ]
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}
