@@ -1,0 +1,6 @@
+{
+  "ToBoolean_1": "$(ToBoolean(value -> ToBooleanData.InvalidBooleanText) is undefined) is true",
+  "ToBoolean_2": "$(ToBoolean(ToBooleanData.TrueText1))",
+  "ToBoolean_3": "$(ToBoolean('false', assertOnFail -> true))",
+  "ToBoolean_4": "$(ToBoolean('False', assertOnFail -> true))"
+}

@@ -6,4 +6,18 @@ Len
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The function 'Len' returns length of a string.  
+
+Function Parameters
+===================
+
+- **text**:
+    - Required: Yes
+    - Type: Any JsonQL expression that evaluates to string.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

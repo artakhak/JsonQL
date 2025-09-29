@@ -1,0 +1,5 @@
+{
+  "Abs_1": "$value(AbsData.Array1.Where(x => typeof x == 'Number').Select(x => Abs(x)))",
+  "Abs_2": "$value(AbsData.Array1.Where(x => Abs(x) > 3))",
+  "Abs_3": "$(Abs(AbsData.Invalid) is undefined) is true"
+}

@@ -28,7 +28,8 @@
                 "ZipCode":  "85001"
               }
             }
-          ]
+          ],
+          "HasField_3":  "false is false"
         },
         "IsEven": {
           "IsEven_1":  true,
@@ -36,14 +37,16 @@
             4,
             2,
             12
-          ]
+          ],
+          "IsEven_3":  "true is true"
         },
         "IsOdd": {
           "IsOdd_1":  false,
           "IsOdd_2": [
             1,
             3
-          ]
+          ],
+          "IsOdd_3":  "true is true"
         }
       }
     }

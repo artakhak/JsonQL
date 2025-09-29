@@ -1,0 +1,35 @@
+{
+  "ToBooleanData": {
+    "InvalidBooleanText": "TRue",
+    "TrueText1": "True",
+    "TrueText2": "true",
+    "FalseText1": "False",
+    "FalseText2": "false",
+    "TrueValue": true,
+    "FalseValue": false
+  },
+  "ToDateTimeData": {
+    "InvalidDateTimeText": "DateTime",
+    "DateTimeText1": "2022-05-23T18:25:43.511Z",
+    "DateTimeText2": "2022-05-23T18:25:43",
+    "DateTimeText3": "2022-05-23"
+  },
+  "ToDateData": {
+    "InvalidDateTimeText": "DateTime",
+    "DateTimeText1": "2022-05-23T18:25:43.511Z",
+    "DateTimeText2": "2022-05-23T18:25:43",
+    "DateText1": "2022-05-23"
+  },
+  "ToDoubleData": {
+    "Array1": [
+    ]
+  },
+  "ToIntData": {
+    "Array1": [
+    ]
+  },
+  "ToStringData": {
+    "Array1": [
+    ]
+  }
+}

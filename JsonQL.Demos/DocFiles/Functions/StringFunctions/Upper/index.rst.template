@@ -6,4 +6,18 @@ Upper
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The function 'Upper' converts the string value to upper case.       
+
+Function Parameters
+===================
+
+- **text**:
+    - Required: Yes
+    - Type: Any JsonQL expression that evaluates to string.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

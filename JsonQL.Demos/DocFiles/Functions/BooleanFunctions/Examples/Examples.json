@@ -1,14 +1,17 @@
 {
   "HasField": {
     "HasField_1": "$value(HasFieldData.Array1.Where(x => HasField(x, 'Id')))",
-    "HasField_2": "$value(HasFieldData.Array1.Where(x => HasField(x.Address, 'Street')))"
+    "HasField_2": "$value(HasFieldData.Array1.Where(x => HasField(x.Address, 'Street')))",
+    "HasField_3": "$(HasField(HasFieldData.InvalidPath, 'Street')) is false"
   },
   "IsEven": {
     "IsEven_1": "$value(IsEven(Count(Companies.Select(c => c.Employees))))",
-    "IsEven_2": "$value(IsEvenIsOddData.Array1.Where(x => IsEven(x)))"
+    "IsEven_2": "$value(IsEvenIsOddData.Array1.Where(x => IsEven(x)))",
+    "IsEven_3": "$(IsEven(IsEvenIsOddData.InvalidPath) is undefined) is true"
   },
   "IsOdd": {
     "IsOdd_1": "$value(IsOdd(Count(Companies.Select(c => c.Employees))))",
-    "IsOdd_2": "$value(IsEvenIsOddData.Array1.Where(x => IsOdd(x)))"
+    "IsOdd_2": "$value(IsEvenIsOddData.Array1.Where(x => IsOdd(x)))",
+    "IsOdd_3": "$(IsOdd(IsEvenIsOddData.InvalidPath) is undefined) is true"
   }
 }

@@ -6,4 +6,29 @@ ToDateTime
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The function 'ToDateTime' is used to convert a value to a **DateTime** value.
+
+.. note::
+    The following interface is used to parse a value evaluated to string to a datetime (if the value is already a DateTime, it will be returned without conversion) `JsonQL.IDateTimeOperations <https://github.com/artakhak/JsonQL/blob/main/JsonQL/IDateTimeOperations.cs>`_. Provide a custom implementation of this interface to change the conversion format.
+
+
+Function Parameters
+===================
+
+- **value**:
+    - Required: Yes
+    - Type: Any valid JsonQL expression (including invalid path, null, etc).
+    - Description: If the JsonQL expression in this parameter is evaluated to a string containing a DateTime in a valid format, or to DateTime, the value will be converted to a DateTime value. Otherwise the function returns undefined.
+
+- **assertOnFail**:
+    - Required: No    
+    - Type: boolean
+    - Default value: false
+    - Description: If the value is true, and conversion fails, an error is reported that will stop compilation.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

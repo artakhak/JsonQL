@@ -1,0 +1,35 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Examples",
+      "CompiledParsedValue":
+      {
+        "ToBoolean": {
+          "ToBoolean_1":  "true is true",
+          "ToBoolean_2":  "true",
+          "ToBoolean_3":  "false",
+          "ToBoolean_4":  "false"
+        },
+        "ToDateTime": {
+          "ToDateTime_1":  "true is true",
+          "ToDateTime_2":  "2022-05-23 14:25:43.5110000",
+          "ToDateTime_3":  "2022-05-23 00:00:00.0000000",
+          "ToDateTime_4":  true
+        },
+        "ToDate": {
+          "ToDate_1":  "true is true",
+          "ToDate_2":  "2022-05-23 00:00:00.0000000",
+          "ToDate_3":  "2022-05-23 00:00:00.0000000",
+          "ToDate_4":  "2022-05-23 00:00:00.0000000",
+          "ToDate_5":  true,
+          "ToDate_6":  true
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

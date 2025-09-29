@@ -1,0 +1,31 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Examples",
+      "CompiledParsedValue":
+      {
+        "Abs": {
+          "Abs_1": [
+            1,
+            4,
+            2,
+            4,
+            3,
+            12
+          ],
+          "Abs_2": [
+            -4,
+            4,
+            12
+          ],
+          "Abs_3":  "true is true"
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

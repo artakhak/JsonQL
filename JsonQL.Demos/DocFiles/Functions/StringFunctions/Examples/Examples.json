@@ -1,0 +1,23 @@
+{
+  "Len": {
+    "Len_1": "$value(Companies.Select(c => c.Employees).First(e => Len(e.Address.Street) >= 15))",
+    "Len_2": "$value(Len(LenData.Array1[0].Address.Street))",
+    "Len_3": "$(Len(LenData.InvalidPath) is undefined) is true"
+  },
+  "Concatenate": {
+    "ConcatenateData_1": "$value(ConcatenateData.Array1.Where(x => HasField(x, 'FirstName')).Select(e => Concatenate(e.FirstName, ' ', e.LastName)))",
+    "ConcatenateData_2": "$value(Concatenate('Mr ', ConcatenateData.Array1[0].FirstName, ' ', ConcatenateData.Array1[0].LastName))",
+    "ConcatenateData_3": "$(Concatenate('Mr ', ConcatenateData.Array1[1000].FirstName, ' ', ConcatenateData.Array1[0].LastName) is undefined) is true",
+    "ConcatenateData_4": "$value(Concatenate(1, ' test', ' ', true, ' ', false))"
+  },
+  "Lower": {
+    "Lower_1": "$value(LowerUpperData.Array1.Where(x => HasField(x, 'FirstName')).Select(e => Lower(e.LastName)))",
+    "Lower_2": "$value(Lower(Concatenate('Mr ', LowerUpperData.Array1[0].FirstName, ' ', LowerUpperData.Array1[0].LastName)))",
+    "Lower_3": "$(Lower(LowerUpperData.Array1[1000].LastName) is undefined) is true"
+  },
+  "Upper": {
+    "Upper_1": "$value(LowerUpperData.Array1.Where(x => HasField(x, 'FirstName')).Select(e => Upper(e.LastName)))",
+    "Upper_2": "$value(Upper(Concatenate('Mr ', LowerUpperData.Array1[0].FirstName, ' ', LowerUpperData.Array1[0].LastName)))",
+    "Upper_3": "$(Upper(LowerUpperData.Array1[1000].LastName) is undefined) is true"
+  }
+}

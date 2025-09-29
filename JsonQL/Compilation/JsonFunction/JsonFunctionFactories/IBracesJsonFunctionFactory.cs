@@ -293,7 +293,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -320,7 +320,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -347,7 +347,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -374,7 +374,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -401,7 +401,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -428,7 +428,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assert", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 

@@ -6,4 +6,18 @@ Lower
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The function 'Lower' converts the string value to lower case.       
+
+Function Parameters
+===================
+
+- **text**:
+    - Required: Yes
+    - Type: Any JsonQL expression that evaluates to string.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

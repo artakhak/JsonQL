@@ -1,0 +1,8 @@
+{
+  "ToDate_1": "$(ToDate(value -> ToDateData.InvalidDateTimeText) is undefined) is true",
+  "ToDate_2": "$value(ToDate(ToDateData.DateTimeText1, assertOnFail -> true))",
+  "ToDate_3": "$value(ToDate(ToDateData.DateText1, assertOnFail -> true))",
+  "ToDate_4": "$value(ToDate('2022-05-23', assertOnFail -> true))",
+  "ToDate_5": "$value(ToDate('2022-05-23T18:25:43.511Z') < ToDate('2025-05-23T18:25:43.511Z'))",
+  "ToDate_6": "$value(ToDate(ToDateData.DateTimeText1) < ToDateTime(ToDateData.DateTimeText1))"
+}

@@ -1,0 +1,22 @@
+{
+  "ToBoolean": {
+    "ToBoolean_1": "$(ToBoolean(value -> ToBooleanData.InvalidBooleanText) is undefined) is true",
+    "ToBoolean_2": "$(ToBoolean(ToBooleanData.TrueText1))",
+    "ToBoolean_3": "$(ToBoolean('false', assertOnFail -> true))",
+    "ToBoolean_4": "$(ToBoolean('False', assertOnFail -> true))"
+  },
+  "ToDateTime": {
+    "ToDateTime_1": "$(ToDateTime(value -> ToDateTimeData.InvalidDateTimeText) is undefined) is true",
+    "ToDateTime_2": "$value(ToDateTime(ToDateTimeData.DateTimeText1, assertOnFail -> true))",
+    "ToDateTime_3": "$value(ToDateTime('2022-05-23', assertOnFail -> true))",
+    "ToDateTime_4": "$value(ToDateTime('2022-05-23T18:25:43.511Z') < ToDateTime('2025-05-23T18:25:43.511Z'))"
+  },
+  "ToDate": {
+    "ToDate_1": "$(ToDate(value -> ToDateData.InvalidDateTimeText) is undefined) is true",
+    "ToDate_2": "$value(ToDate(ToDateData.DateTimeText1, assertOnFail -> true))",
+    "ToDate_3": "$value(ToDate(ToDateData.DateText1, assertOnFail -> true))",
+    "ToDate_4": "$value(ToDate('2022-05-23', assertOnFail -> true))",
+    "ToDate_5": "$value(ToDate('2022-05-23T18:25:43.511Z') < ToDate('2025-05-23T18:25:43.511Z'))",
+    "ToDate_6": "$value(ToDate(ToDateData.DateTimeText1) < ToDateTime(ToDateData.DateTimeText1))"
+  }
+}
