@@ -1,0 +1,6 @@
+{
+  "ConcatenateData_1": "$value(ConcatenateData.Array1.Where(x => HasField(x, 'FirstName')).Select(e => Concatenate(e.FirstName, ' ', e.LastName)))",
+  "ConcatenateData_2": "$value(Concatenate('Mr ', ConcatenateData.Array1[0].FirstName, ' ', ConcatenateData.Array1[0].LastName))",
+  "ConcatenateData_3": "$(Concatenate('Mr ', ConcatenateData.Array1[1000].FirstName, ' ', ConcatenateData.Array1[0].LastName) is undefined) is true",
+  "ConcatenateData_4": "$value(Concatenate(1, ' test', ' ', true, ' ', false))"
+}

@@ -1,0 +1,5 @@
+{
+  "IsEven_1": "$value(IsEven(Count(Companies.Select(c => c.Employees))))",
+  "IsEven_2": "$value(IsEvenIsOddData.Array1.Where(x => IsEven(x)))",
+  "IsEven_3": "$(IsEven(IsEvenIsOddData.InvalidPath) is undefined) is true"
+}

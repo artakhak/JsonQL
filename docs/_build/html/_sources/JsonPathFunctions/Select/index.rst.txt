@@ -128,5 +128,5 @@ The code snippet shows how the JSON file **Example.json** was parsed using `Json
     var companiesJsonTextData = new JsonTextData("Companies",
         LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath));
 
-    var result = _jsonCompiler.Compile(new JsonTextData("Example",
+    var result = jsonCompiler.Compile(new JsonTextData("Example",
         this.LoadExampleJsonFile("Example.json"), companiesJsonTextData));

@@ -6,4 +6,37 @@ ToBoolean
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+- The function 'ToBoolean' is used to convert a value to a JSON **boolean** type.
+
+Function Parameters
+===================
+
+- **value**:
+    - Required: Yes
+    - Type: Any valid JsonQL expression (including invalid path, null, etc).
+    - Description: If the JsonQL expression in this parameter is evaluated to one of the valid values, the function will return a boolean type value. Otherwise the function returns undefined.
+        .. note::
+            
+            - The following values can be converted to boolean: 'True', 'true', 'False', 'false', true, false
+        
+
+- **throwOnError**:
+    - Required: No    
+    - Type: boolean
+    - Default value: false
+    - Description: Controls error handling behavior when a conversion fails. The conversion might fail if the value evaluated from parameter value is in an invalid format (or is an invalid path). The 'throwOnError' parameter determines what happens in such cases. 
+            
+            - throwOnError: false (default): If conversion fails, the function returns undefined without stopping compilation.
+            - throwOnError: true: If conversion fails, an error is reported that stops the compilation.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    {
+      "ToBoolean_1": "$(ToBoolean(value -> ToBooleanData.InvalidBooleanText) is undefined) is true",
+      "ToBoolean_2": "$(ToBoolean(ToBooleanData.TrueText1))",
+      "ToBoolean_3": "$(ToBoolean('false', throwOnError -> true))",
+      "ToBoolean_4": "$(ToBoolean('False', throwOnError -> true))"
+    }

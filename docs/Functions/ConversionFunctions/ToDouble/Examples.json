@@ -1,0 +1,15 @@
+{
+  "ToDouble_1": "$(ToDouble(value -> ToDoubleData.InvalidDoubleText) is undefined) is true",
+
+  "ToDouble_2": "$value(ToDouble(ToDoubleData.DoubleText1, throwOnError -> true) == 1.36)",
+  "ToDouble_3": "$value(ToDouble(ToDoubleData.NegativeDoubleText1, throwOnError -> true) == -1.36)",
+
+  "ToDouble_4": "$value(ToDouble(ToDoubleData.IntText1))",
+  "ToDouble_5": "$value(ToDouble(ToDoubleData.NegativeIntText1))",
+
+  "ToDouble_6": "$value(ToDouble(ToDoubleData.Double1))",
+  "ToDouble_7": "$value(ToDouble(ToDoubleData.NegativeDouble1))",
+
+  "ToDouble_8": "$value(ToDouble(ToDoubleData.Int1))",
+  "ToDouble_9": "$value(ToDouble(ToDoubleData.NegativeInt1))"
+}

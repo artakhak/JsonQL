@@ -1,0 +1,56 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Examples",
+      "CompiledParsedValue":
+      {
+        "Len": {
+          "Len_1": {
+            "Id":  100000002,
+            "Name":  "Alice Johnson",
+            "Address": {
+              "Street":  "123 Maple Street",
+              "City":  "New York",
+              "State":  "NY",
+              "ZipCode":  "10001"
+            },
+            "Salary":  105000,
+            "Age":  38
+          },
+          "Len_2":  14,
+          "Len_3":  "true is true"
+        },
+        "Concatenate": {
+          "ConcatenateData_1": [
+            "Christopher Garcia",
+            "David Martinez"
+          ],
+          "ConcatenateData_2":  "Mr Christopher Garcia",
+          "ConcatenateData_3":  "true is true",
+          "ConcatenateData_4":  "1 test True False"
+        },
+        "Lower": {
+          "Lower_1": [
+            "garcia",
+            "martinez"
+          ],
+          "Lower_2":  "mr christopher garcia",
+          "Lower_3":  "true is true"
+        },
+        "Upper": {
+          "Upper_1": [
+            "GARCIA",
+            "MARTINEZ"
+          ],
+          "Upper_2":  "MR CHRISTOPHER GARCIA",
+          "Upper_3":  "true is true"
+        }
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}

@@ -51,18 +51,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../NumericFunctions/index.html">Numeric Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../BooleanFunctions/index.html">Boolean Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../StringFunctions/index.html">String Functions</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Conversion Functions</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../ToBoolean/index.html">ToBoolean</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">ToDate</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ToDate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#function-parameters">Function Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../ToDateTime/index.html">ToDateTime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ToDouble/index.html">ToDouble</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ToInt/index.html">ToInt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ToString/index.html">ToString</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../NumericFunctions/index.html">Numeric Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../BooleanFunctions/index.html">Boolean Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../StringFunctions/index.html">String Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -100,9 +105,63 @@
              
   <section id="todate">
 <h1>ToDate<a class="headerlink" href="#todate" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#function-parameters" id="id1">Function Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id2">Examples</a></p></li>
 </ul>
+</nav>
+<ul class="simple">
+<li><p>The function ‘ToDate’ is used to convert a value to a <strong>Date</strong> value.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following interface is used to parse a value evaluated to string to a datetime (if the value is already a Date, it will be returned without conversion) <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/IDateTimeOperations.cs">JsonQL.IDateTimeOperations</a>. Provide a custom implementation of this interface to change the conversion format.</p>
+</div>
+<section id="function-parameters">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Function Parameters</a><a class="headerlink" href="#function-parameters" title="Link to this heading"></a></h2>
+<ul>
+<li><dl class="simple">
+<dt><strong>value</strong>:</dt><dd><ul class="simple">
+<li><p>Required: Yes</p></li>
+<li><p>Type: Any valid JsonQL expression (including invalid path, null, etc).</p></li>
+<li><p>Description: If the JsonQL expression in this parameter is evaluated to a DateTime or to a string containing a Date in a valid format, the value will be converted to a DateTime value. Otherwise the function returns undefined.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>throwOnError</strong>:</dt><dd><ul>
+<li><p>Required: No</p></li>
+<li><p>Type: boolean</p></li>
+<li><p>Default value: false</p></li>
+<li><p>Description: Controls error handling behavior when a conversion fails. The conversion might fail if the value evaluated from parameter value is in an invalid format (or is an invalid path). The ‘throwOnError’ parameter determines what happens in such cases.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>throwOnError: false (default): If conversion fails, the function returns undefined without stopping compilation.</p></li>
+<li><p>throwOnError: true: If conversion fails, an error is reported that stops the compilation.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(ToDate(value -&gt; ToDateData.InvalidDateTimeText) is undefined) is true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(ToDateData.DateTimeText1, throwOnError -&gt; true))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(ToDateData.DateText1, throwOnError -&gt; true))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(&#39;2022-05-23&#39;, throwOnError -&gt; true))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(&#39;2022-05-23T18:25:43.511Z&#39;) &lt; ToDate(&#39;2025-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ToDate_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(ToDateData.DateTimeText1) &lt; ToDateTime(ToDateData.DateTimeText1))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

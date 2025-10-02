@@ -1,0 +1,5 @@
+{
+  "HasField_1": "$value(HasFieldData.Array1.Where(x => HasField(x, 'Id')))",
+  "HasField_2": "$value(HasFieldData.Array1.Where(x => HasField(x.Address, 'Street')))",
+  "HasField_3": "$(HasField(HasFieldData.InvalidPath, 'Street')) is false"
+}

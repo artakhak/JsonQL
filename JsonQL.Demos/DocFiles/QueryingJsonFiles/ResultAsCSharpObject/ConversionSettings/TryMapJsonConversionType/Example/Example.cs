@@ -20,6 +20,10 @@ public class Example : QueryObjectExampleManagerForSuccessAbstr<IReadOnlyList<IE
     /// <inheritdoc />
     protected override IObjectQueryResult<IReadOnlyList<IEmployee>> QueryObject()
     {
+#if TURN_ON_DOCUMENTATION_TEST_SETTINGS
+#else
+        Assert.Fail("MAKE SURE TURN_ON_DOCUMENTATION_TEST_SETTINGS IS TURNED IN JsonQL PROJECT BEFORE RUNNING THIS TEST!!!!!!");
+#endif
         // Select all employees
         var query = "Employees";
         

@@ -38,6 +38,9 @@ public interface IBracesJsonFunctionFactory
 /// </summary>
 public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFunctionFactory
 {
+    private const string ThrowOnErrorParameterName = "throwOnError";
+    private const string ValueParameterName = "value";
+    
     /// <inheritdoc />
     public IParseResult<IJsonFunction> TryCreateBracesCustomFunction(IParsedSimpleValue parsedSimpleValue,
         IBracesExpressionItem bracesExpressionItem, IJsonFunctionValueEvaluationContext jsonFunctionContext)
@@ -162,7 +165,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
                 ValidateIsNotMultipleValuesSelectorPath = false
             },
             new JsonFunctionParameterMetadata("criteria", typeof(ILambdaExpressionFunction), criteriaIsRequired),
-            new JsonFunctionParameterMetadata("value", typeof(ILambdaExpressionFunction), false),
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(ILambdaExpressionFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -246,7 +249,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameter<IJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -288,12 +291,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -315,12 +318,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -342,12 +345,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -369,12 +372,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -396,12 +399,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -423,12 +426,12 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IBooleanJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true)
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true)
             {
                 // TODO: Check if this should be false
                 //ValidateIsNotMultipleValuesSelectorPath = false
             },
-            new JsonFunctionParameterMetadata("assertOnFail", typeof(IBooleanJsonFunction), false),
+            new JsonFunctionParameterMetadata(ThrowOnErrorParameterName, typeof(IBooleanJsonFunction), false),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -476,7 +479,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parameterParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameter<IJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -498,7 +501,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parameterParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameter<IJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             functionLineInfo);
 
@@ -520,7 +523,7 @@ public class BracesJsonFunctionFactory : JsonFunctionFactoryAbstr, IBracesJsonFu
         var parameterParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameter<IJsonFunction>(
             parsedSimpleValue, functionName,
             functionParameters,
-            new JsonFunctionParameterMetadata("value", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata(ValueParameterName, typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             functionLineInfo);
 

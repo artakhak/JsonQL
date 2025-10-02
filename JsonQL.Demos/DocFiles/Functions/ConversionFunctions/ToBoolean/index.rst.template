@@ -20,11 +20,14 @@ Function Parameters
             - The following values can be converted to boolean: 'True', 'true', 'False', 'false', true, false
         
 
-- **assertOnFail**:
+- **throwOnError**:
     - Required: No    
     - Type: boolean
     - Default value: false
-    - Description: If the value is true, and conversion fails, an error is reported that will stop compilation.
+    - Description: Controls error handling behavior when a conversion fails. The conversion might fail if the value evaluated from parameter value is in an invalid format (or is an invalid path). The 'throwOnError' parameter determines what happens in such cases. 
+            
+            - throwOnError: false (default): If conversion fails, the function returns undefined without stopping compilation.
+            - throwOnError: true: If conversion fails, an error is reported that stops the compilation.
 
 Examples
 ========

@@ -1,0 +1,15 @@
+{
+  "ToInt_1": "$(ToInt(value -> ToIntData.InvalidIntText) is undefined) is true",
+
+  "ToInt_2": "$value(ToInt(ToIntData.DoubleText1, throwOnError -> true) == 17)",
+  "ToInt_3": "$value(ToInt(ToIntData.NegativeDoubleText1, throwOnError -> true) == -17)",
+
+  "ToInt_4": "$value(ToInt(ToIntData.IntText1))",
+  "ToInt_5": "$value(ToInt(ToIntData.NegativeIntText1))",
+
+  "ToInt_6": "$value(ToInt(ToIntData.Double1))",
+  "ToInt_7": "$value(ToInt(ToIntData.NegativeDouble1))",
+
+  "ToInt_8": "$value(ToInt(ToIntData.Int1))",
+  "ToInt_9": "$value(ToInt(ToIntData.NegativeInt1))"
+}

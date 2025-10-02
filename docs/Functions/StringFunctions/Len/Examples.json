@@ -1,0 +1,5 @@
+{
+  "Len_1": "$value(Companies.Select(c => c.Employees).First(e => Len(e.Address.Street) >= 15))",
+  "Len_2": "$value(Len(LenData.Array1[0].Address.Street))",
+  "Len_3": "$(Len(LenData.InvalidPath) is undefined) is true"
+}

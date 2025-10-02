@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Conversion Functions" href="ConversionFunctions/index.html" />
+    <link rel="next" title="Numeric Functions" href="NumericFunctions/index.html" />
     <link rel="prev" title="Reverse" href="../JsonPathFunctions/Reverse/index.html" /> 
 </head>
 
@@ -51,10 +51,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/index.html">Conversion Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="NumericFunctions/index.html">Numeric Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/index.html">Boolean Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StringFunctions/index.html">String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/index.html">Conversion Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../AggregateFunctions/index.html">Aggregate Functions</a></li>
@@ -91,34 +91,95 @@
   <section id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p>JsonQL has number of out of the box functions (an more custom function can be added by configuration of the dependency injection as with everything else in JsonQL).</p></li>
+<li><p>The sections below provide details on each of the out of the box functions.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ConversionFunctions/index.html">Conversion Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToBoolean/index.html">ToBoolean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDate/index.html">ToDate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDateTime/index.html">ToDateTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDouble/index.html">ToDouble</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToInt/index.html">ToInt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToString/index.html">ToString</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericFunctions/index.html">Numeric Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NumericFunctions/Abs/index.html">Abs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NumericFunctions/Abs/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NumericFunctions/Abs/index.html#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="NumericFunctions/index.html">Numeric Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="NumericFunctions/Abs/index.html">Abs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NumericFunctions/Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="BooleanFunctions/index.html">Boolean Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/HasField/index.html">HasField</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/IsEven/index.html">IsEven</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/IsOdd/index.html">IsOdd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/HasField/index.html">HasField</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/HasField/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/HasField/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/IsEven/index.html">IsEven</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/IsEven/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/IsEven/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/IsOdd/index.html">IsOdd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/IsOdd/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BooleanFunctions/IsOdd/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BooleanFunctions/Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="StringFunctions/index.html">String Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Concatenate/index.html">Concatenate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Len/index.html">Len</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Lower/index.html">Lower</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Upper/index.html">Upper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Concatenate/index.html">Concatenate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Concatenate/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Concatenate/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Len/index.html">Len</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Len/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Len/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Lower/index.html">Lower</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Lower/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Lower/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Upper/index.html">Upper</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Upper/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StringFunctions/Upper/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="StringFunctions/Examples/index.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ConversionFunctions/index.html">Conversion Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToBoolean/index.html">ToBoolean</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToBoolean/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToBoolean/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDate/index.html">ToDate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDate/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDate/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDateTime/index.html">ToDateTime</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDateTime/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDateTime/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToDouble/index.html">ToDouble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDouble/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToDouble/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToInt/index.html">ToInt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToInt/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToInt/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/ToString/index.html">ToString</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToString/index.html#function-parameters">Function Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConversionFunctions/ToString/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ConversionFunctions/Examples/index.html">Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -130,7 +191,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../JsonPathFunctions/Reverse/index.html" class="btn btn-neutral float-left" title="Reverse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ConversionFunctions/index.html" class="btn btn-neutral float-right" title="Conversion Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="NumericFunctions/index.html" class="btn btn-neutral float-right" title="Numeric Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -18,13 +18,16 @@ Function Parameters
 - **value**:
     - Required: Yes
     - Type: Any valid JsonQL expression (including invalid path, null, etc).
-    - Description: If the JsonQL expression in this parameter is evaluated to a string containing a DateTime in a valid format, or to DateTime, the value will be converted to a DateTime value. Otherwise the function returns undefined.
+    - Description: If the JsonQL expression in this parameter is evaluated to DateTime or to a string containing a DateTime in a valid format, the value will be converted to a DateTime value. Otherwise the function returns undefined.
 
-- **assertOnFail**:
+- **throwOnError**:
     - Required: No    
     - Type: boolean
     - Default value: false
-    - Description: If the value is true, and conversion fails, an error is reported that will stop compilation.
+    - Description: Controls error handling behavior when a conversion fails. The conversion might fail if the value evaluated from parameter value is in an invalid format (or is an invalid path). The 'throwOnError' parameter determines what happens in such cases. 
+            
+            - throwOnError: false (default): If conversion fails, the function returns undefined without stopping compilation.
+            - throwOnError: true: If conversion fails, an error is reported that stops the compilation.
 
 Examples
 ========

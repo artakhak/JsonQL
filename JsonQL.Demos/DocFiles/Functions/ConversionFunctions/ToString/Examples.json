@@ -1,0 +1,16 @@
+{
+  "ToString_1": "$(ToString(value -> InvalidPath) is undefined) is true",
+
+  "ToString_2": "$value(ToString(ToStringData.Int1, throwOnError -> true) == '15')",
+  "ToString_3": "$value(ToString(ToStringData.NegativeInt1, throwOnError -> true))",
+
+  "ToString_4": "$value(ToString(ToStringData.Double1))",
+  "ToString_5": "$value(ToString(ToStringData.NegativeDouble1))",
+
+  "ToString_6": "$value(ToString(ToStringData.Text1))",
+
+  "ToString_7": "$value(ToString(ToStringData.TrueValue))",
+  "ToString_8": "'$(ToString(false))' == 'false'",
+
+  "ToString_9": "$(ToString(ToDateTime('2022-05-23T18:25:43.511Z'))=='2022-05-23 14:25:43.5110000') is true"
+}
