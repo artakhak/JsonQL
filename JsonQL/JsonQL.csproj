@@ -5,8 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<PackageVersion>1.4.0</PackageVersion>
-		<Version>1.4.0</Version>
+		<PackageVersion>1.5.0</PackageVersion>
+		<Version>1.5.0</Version>
 		<PackageTags>Json JsonQL Json+QL Query Json+Query+Language Json+path Json+Query</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
@@ -15,8 +15,8 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-            - Better logging when referenced JSON files do not follow a correct format
-            - Small fix to serialization of compilation results used in demos/tests in JsonQL.Diagnostics.CompilationResultSerializer
+            - Renamed 'assert' parameter in conversion functions (ToDouble(), ToInt(), ToDate(), ToDateTime(), ToString(), ToBoolean()) to 'throwOnError' to avoid conflicts with assert operator (and also make the meaning more clear).
+              This is a breaking change only if there are existing JsonQL expressions that use named parameter 'assert' (e.g., ToBoolean(path, assert: true) in these functions. Otherwise, no changes to JsonQL expression if unnamed parameters are used with this functions (e.g., ToBoolean(path, true)).
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>
