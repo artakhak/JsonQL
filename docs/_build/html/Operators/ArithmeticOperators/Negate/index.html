@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Negate ‘-’ &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Examples" href="../Examples/index.html" />
+    <link rel="prev" title="Modulus ‘%’" href="../Modulus/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Operators</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Arithmetic Operators</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Add/index.html">Add ‘+’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Subtract/index.html">Subtract ‘-’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Multiply/index.html">Multiply ‘*’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Divide/index.html">Divide ‘/’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Modulus/index.html">Modulus ‘%’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Negate ‘-’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ComparisonOperators/index.html">Comparison Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../LogicalOperators/index.html">Logical Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TextMatchingOperators/index.html">Text Matching Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OtherOperators/index.html">Other Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Operators</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Arithmetic Operators</a></li>
+      <li class="breadcrumb-item active">Negate ‘-’</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Operators/ArithmeticOperators/Negate/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="negate">
+<h1>Negate ‘-’<a class="headerlink" href="#negate" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id2">Examples</a></p></li>
+</ul>
+</nav>
+<p>Unary operator ‘-’ is used to negate a numeric value (integer or fractional).</p>
+<ul class="simple">
+<li><p>If the operand evaluates to a valid numeric value, the result will be the negation of the evaluated value.</p></li>
+<li><p>Otherwise the result will be <strong>undefined</strong>.</p></li>
+</ul>
+<p><strong>Operator Priority</strong>: 100</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;UnaryOperator_-_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((-text1) is undefined)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Comment_UnaryOperator_-_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(e.SalaryInvalid % 2 &gt; 0) is evaluated to false for all employees&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UnaryOperator_-_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees.Where(e =&gt; -e.SalaryInvalid &lt; -100000)))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;UnaryOperator_-_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(-1 + 17)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UnaryOperator_-4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(-Max(Companies.Select(c =&gt; c.Employees.Select(e =&gt; e.Salary))) + 100)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Modulus/index.html" class="btn btn-neutral float-left" title="Modulus ‘%’" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
