@@ -1,0 +1,29 @@
+﻿==========
+Negate '-'
+==========
+
+.. contents::
+   :local:
+   :depth: 2
+  
+Unary operator '-' is used to negate a numeric value (integer or fractional). 
+
+- If the operand evaluates to a valid numeric value, the result will be the negation of the evaluated value.
+- Otherwise the result will be **undefined**.
+
+
+**Operator Priority**: 100
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

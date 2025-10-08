@@ -103,9 +103,9 @@ public static class JsonOperatorNames
     public const string DivideOperator = "/";
 
     /// <summary>
-    /// Represents the operator name used to denote the quotient (modulus) operation in JSON expressions.
+    /// Represents the operator name used to denote the modulus operation in JSON expressions.
     /// </summary>
-    public const string QuotientOperator = "%";
+    public const string ModulusOperator = "%";
 
     // Unary postfix operators
     /// <summary>

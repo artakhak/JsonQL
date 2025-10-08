@@ -61,6 +61,9 @@
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Example2\Result.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Overview.json" />
 	  <None Remove="DocFiles\MutatingJsonFiles\Examples\Result.json" />
+	  <None Remove="DocFiles\Operators\ArithmeticOperators\Examples\Data.json" />
+	  <None Remove="DocFiles\Operators\ArithmeticOperators\Examples\Examples.json" />
+	  <None Remove="DocFiles\Operators\ArithmeticOperators\Examples\Result.json" />
 	  <None Remove="DocFiles\OptionalAndNamedParameters\Example\Example.json" />
 	  <None Remove="DocFiles\OptionalAndNamedParameters\Example\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\ConversionSettings\ConversionErrorTypeConfigurations\EmployeesWIthMissingData.json" />
@@ -200,6 +203,9 @@
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\ReusingCompiledJsonFilesExample\Result.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\FilteredCompanies.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Parameters.json" />
+		<EmbeddedResource Include="DocFiles\Operators\ArithmeticOperators\Examples\Data.json" />
+		<EmbeddedResource Include="DocFiles\Operators\ArithmeticOperators\Examples\Examples.json" />
+		<EmbeddedResource Include="DocFiles\Operators\ArithmeticOperators\Examples\Result.json" />
 		<EmbeddedResource Include="DocFiles\OptionalAndNamedParameters\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\OptionalAndNamedParameters\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\JsonFiles\Companies.json" />

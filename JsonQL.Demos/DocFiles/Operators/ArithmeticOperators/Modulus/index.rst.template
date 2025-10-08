@@ -1,0 +1,35 @@
+﻿===========
+Modulus '%'
+===========
+
+.. contents::
+   :local:
+   :depth: 2
+   
+Binary operator '%' computes the remainder after dividing the first operand by the second operand. 
+    
+    .. note::
+        Both operands are normally expected to be integers, but the operator works with fractional values too.
+
+- If both operands evaluate to valid numeric values, the result will be the remainder after dividing the first evaluated value by the second evaluated value.
+- Otherwise the result will be **undefined**.
+
+**Operator Priority**: 400
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

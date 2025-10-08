@@ -43,7 +43,7 @@ The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https:/
 .. raw:: html
 
    <details>
-   <summary>Click to expand the result in instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_ serialized into <b>Result.json</b></summary>
+   <summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary>
 
 .. code-block:: json
 

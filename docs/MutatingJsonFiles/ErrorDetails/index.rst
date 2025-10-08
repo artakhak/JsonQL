@@ -18,7 +18,7 @@ Error Details
 - Errors can happen for number of reasons, some of which are listed here:
     - Missing or extra closing braces for functions or arrays.
     - Unknown symbols used in JsonQL expressions.
-    - :doc:`../../Operators/Assert/index` functions failing the evaluated expressions.
+    - :doc:`../../Operators/OtherOperators/Assert/index` functions failing the evaluated expressions.
     
 - JsonQL uses `JsonQL.Compilation.ICompilationResultLogger <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResultLogger.cs>`_ to log the error details. The implementation of this interface can be replaced if necessary.
 

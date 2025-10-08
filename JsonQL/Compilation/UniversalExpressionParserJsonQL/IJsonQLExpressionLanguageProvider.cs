@@ -58,7 +58,7 @@ public class JsonQLExpressionLanguageProvider : IJsonQLExpressionLanguageProvide
             
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.MultiplyOperator), OperatorType.BinaryOperator, 400),
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.DivideOperator), OperatorType.BinaryOperator, 400),
-            new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.QuotientOperator), OperatorType.BinaryOperator, 500),
+            new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.ModulusOperator), OperatorType.BinaryOperator, 400),
 
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.AddOperator), OperatorType.BinaryOperator, 500),
             new OperatorInfoWithAutoId(CollectionExpressionHelpers.Create(JsonOperatorNames.SubtractOperator), OperatorType.BinaryOperator, 500),

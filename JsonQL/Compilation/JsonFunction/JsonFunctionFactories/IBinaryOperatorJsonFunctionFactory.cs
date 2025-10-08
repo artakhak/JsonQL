@@ -87,8 +87,8 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
                 return CreateMultiplyValuesArithmeticOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
             case JsonOperatorNames.DivideOperator:
                 return CreateDivideValuesArithmeticOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
-            case JsonOperatorNames.QuotientOperator:
-                return CreateQuotientArithmeticOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
+            case JsonOperatorNames.ModulusOperator:
+                return CreateModulusArithmeticOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
 
             case JsonOperatorNames.AndOperator:
                 return CreateBinaryAndLogicalOperatorFunction(parsedSimpleValue, operatorName, operand1, operand2, jsonFunctionContext, operatorLineInfo);
@@ -265,7 +265,7 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
         return new ParseResult<IJsonFunction>(parametersJsonFunctionContext.ParentJsonFunction);
     }
 
-    private IParseResult<IJsonFunction> CreateQuotientArithmeticOperatorFunction(IParsedSimpleValue parsedSimpleValue,
+    private IParseResult<IJsonFunction> CreateModulusArithmeticOperatorFunction(IParsedSimpleValue parsedSimpleValue,
         string operatorName, IExpressionItemBase operand1, IExpressionItemBase operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? operatorLineInfo)

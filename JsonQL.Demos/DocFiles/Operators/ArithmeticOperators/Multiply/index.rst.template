@@ -6,4 +6,27 @@ Multiply '*'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+Binary operator '/' is used to multiply two numeric values (integer or fractional). 
+
+- If both operands evaluate to valid numeric values, the result will be the multiplication of evaluated values.
+- Otherwise the result will be **undefined**.
+
+**Operator Priority**: 400
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>
