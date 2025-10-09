@@ -6,4 +6,33 @@ Equals '=='
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The binary operator '==' is used to evaluate whether two values are equal in JsonQL expressions. It returns a boolean result (`true` or `false`).
+
+**Operator Priority**: 600
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+
+Type Comparison Rules
+=====================
+
+- **Numeric comparisons**: Integer and double values can be compared (e.g., `15 == 15.00` returns 'true')
+- **String comparisons**: Must be exact matches; no type coercion (e.g., `15 == '15'` returns `false`)
+- **Boolean comparisons**: Must match exactly; no string conversion (e.g., `true == 'true'` returns `false`)
+- **Date/DateTime comparisons**: Date values ignore time components (e.g., `ToDate('2022-05-23')` equals `ToDate('2022-05-23T18:25:43.511Z')`)
+- **Undefined values**: Any comparison with undefined returns 'false'
+    
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

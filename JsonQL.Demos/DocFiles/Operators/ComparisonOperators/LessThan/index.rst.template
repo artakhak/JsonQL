@@ -6,4 +6,34 @@ Less Than '<'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The binary operator '<' is used to evaluate whether the first value is less than the second value in JsonQL expressions. It returns a boolean result (`true` or `false`) for valid comparisons, or `undefined` when the comparison cannot be performed.
+
+**Operator Priority**: 600
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+
+Type Comparison Rules
+=====================
+
+- **Numeric comparisons**: Integer and double values can be compared (e.g., `15 < 16.00` returns `true`)
+- **Date/DateTime comparisons**: Both Date and DateTime values can be compared; Date values ignore time components
+- **Date with DateTime comparisons**: When comparing Date with DateTime, the Date is treated as having a time component (e.g., `ToDate('2022-06-23T18:25:43.511Z') < ToDateTime('2022-06-23T18:25:43.511Z')` returns `true`)
+- **String comparisons**: Strings are compared lexicographically
+- **Undefined values**: Any comparison with undefined returns `undefined`
+- **Incompatible types**: Comparisons between incompatible types (e.g., number with string, boolean with number) return `undefined`
+    
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

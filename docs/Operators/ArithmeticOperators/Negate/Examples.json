@@ -1,8 +1,0 @@
-{
-  "UnaryOperator_-_1": "$value((-text1) is undefined)",
-  "Comment_UnaryOperator_-_2": "(e.SalaryInvalid % 2 > 0) is evaluated to false for all employees",
-  "UnaryOperator_-_2": "$value(Companies.Select(c => c.Employees.Where(e => -e.SalaryInvalid < -100000)))",
-
-  "UnaryOperator_-_3": "$value(-1 + 17)",
-  "UnaryOperator_-4": "$value(-Max(Companies.Select(c => c.Employees.Select(e => e.Salary))) + 100)"
-}

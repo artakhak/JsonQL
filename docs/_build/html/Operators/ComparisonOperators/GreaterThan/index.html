@@ -59,8 +59,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../NotEquals/index.html">Not Equals ‘!=’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../LessThan/index.html">Less Than ‘&lt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../LessThanOrEquals/index.html">Less Than of Equals ‘&lt;=’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Greater Than ‘&gt;’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Greater Than ‘&gt;’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-comparison-rules">Type Comparison Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../GreaterThanOrEquals/index.html">Greater Than or Equals ‘&gt;=’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../LogicalOperators/index.html">Logical Operators</a></li>
@@ -102,9 +108,79 @@
              
   <section id="greater-than">
 <h1>Greater Than ‘&gt;’<a class="headerlink" href="#greater-than" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#type-comparison-rules" id="id2">Type Comparison Rules</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
 </ul>
+</nav>
+<p>The binary operator ‘&gt;’ is used to evaluate whether the first value is greater than the second value in JsonQL expressions. It returns a boolean result (<cite>true</cite> or <cite>false</cite>) for valid comparisons, or <cite>undefined</cite> when the comparison cannot be performed.</p>
+<p><strong>Operator Priority</strong>: 600</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="type-comparison-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Type Comparison Rules</a><a class="headerlink" href="#type-comparison-rules" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Numeric comparisons</strong>: Integer and double values can be compared (e.g., <cite>16 &gt; 15.00</cite> returns <cite>true</cite>)</p></li>
+<li><p><strong>Date/DateTime comparisons</strong>: Both Date and DateTime values can be compared; Date values ignore time components</p></li>
+<li><p><strong>Date with DateTime comparisons</strong>: When comparing Date with DateTime, the Date is treated as having a time component (e.g., <cite>ToDateTime(‘2022-06-23T18:25:43.511Z’) &gt; ToDate(‘2022-06-23T18:25:43.511Z’)</cite> returns <cite>true</cite>)</p></li>
+<li><p><strong>String comparisons</strong>: Strings are compared lexicographically</p></li>
+<li><p><strong>Undefined values</strong>: Any comparison with undefined returns <cite>undefined</cite></p></li>
+<li><p><strong>Incompatible types</strong>: Comparisons between incompatible types (e.g., number with string, boolean with number) return <cite>undefined</cite></p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&gt;_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(15 &gt; invalid.path) is evaluated to undefined&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((15 &gt; invalid.path) is undefined)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&gt;_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(e.SalaryInvalid &gt; 100000) is evaluated to undefined for all employees&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.SalaryInvalid &gt; 100000))) == 0)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1 &gt; 14)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1 &gt; 15) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1 &gt; 14.00)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1 &gt; 15.1) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Double1 &gt; 15.20)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_8&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Double1 &gt; Double2) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_9&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(&#39;2022-06-23T18:25:43.511Z&#39;) &gt; ToDate(&#39;2022-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(&#39;2022-06-23T18:25:43.511Z&#39;) &gt; ToDate(&#39;2022-07-23T18:25:43.511Z&#39;) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_11&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDateTime(&#39;2022-06-23T18:25:43.511Z&#39;) &gt; ToDate(&#39;2022-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_12&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDateTime(&#39;2022-05-23T18:25:43.511Z&#39;) &gt; ToDateTime(&#39;2022-06-23T18:25:43.511Z&#39;) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_13&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDate(&#39;2022-06-23T18:25:43.511Z&#39;) &gt; ToDateTime(&#39;2022-05-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_14&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDateTime(&#39;2022-06-23T18:25:43.511Z&#39;) &gt; ToDate(&#39;2022-06-23T18:25:43.511Z&#39;))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_15&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 &gt; &#39;Text0&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&gt;_16&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 &gt; &#39;Text2&#39; == false)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

@@ -7,7 +7,7 @@ Examples
    :depth: 2
    
 
-Examples in **Examples.json** file below demonstrate boolean functions described in :doc:`../index`
+Examples in **Examples.json** file below demonstrate arithemetic operators described in :doc:`../index`
 
 .. note:: The following JSON files are referenced in JsonQL expressions in **Examples.json** in example below:
     
