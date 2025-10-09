@@ -1,0 +1,24 @@
+{
+  "Comment_Operator_==1": "(15 != invalid.path) is evaluated to true",
+  "Operator_!=_1": "$value((15 != invalid.path) == true)",
+  "Comment_Operator_!=_2": "(e.SalaryInvalid != 100000) is evaluated to true for all employees",
+  "Operator_!=_2": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.SalaryInvalid != 100000))) > 0)",
+
+  "Operator_!=_3": "$value((15 != Int1) == false)",
+  "Operator_!=_4": "$value((15 != '15') == true)",
+
+  "Operator_!=_5": "$value((15.00 != Int1) == false)",
+  "Operator_!=_6": "$value(15.01 != Int1)",
+
+  "Operator_!=_7": "$value(TrueValue != true == false)",
+  "Operator_!=_8": "$value((TrueValue != 'true'))",
+
+  "Operator_!=_9": "$value((FalseValue != false) == false)",
+  "Operator_!=_10": "$value(FalseValue != 'false')",
+
+  "Operator_!=_11": "$value((ToDate('2022-05-23') != ToDate('2022-05-23T18:25:43.511Z')) == false)",
+  "Operator_!=_12": "$value(ToDate('2022-05-23') != ToDate('2022-06-23T18:25:43.511Z'))",
+
+  "Operator_!=_13": "$value(Text1 != 'TExt1')",
+  "Operator_!=_14": "$value(Text1 !='Text1' == false)"
+}
