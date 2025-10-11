@@ -6,4 +6,45 @@ Or '||'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The binary operator '||' is used to perform a logical OR operation between two boolean expressions in JsonQL. It returns `true` when at least one of the operands evaluates to `true`, and `false` only when both operands evaluate to `false`.
+
+**Operator Priority**: 800
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+
+Evaluation Rules
+================
+
+The `||` operator follows these evaluation rules:
+
+- **True || True**: Returns `true`
+- **True || False**: Returns `true`
+- **False || True**: Returns `true`
+- **False || False**: Returns `false`
+- **Invalid paths**: When an operand is an invalid path, it is treated as `false`, but if the other operand is `true`, the result is `true`
+- **Null values**: When an operand is `null`, it is treated as `false`, but if the other operand is `true`, the result is `true`
+- **Non-boolean values**: Non-boolean values (like integers, strings) are treated as `false` unless they represent a truthy condition
+
+Short-circuit Evaluation
+=========================
+
+The `||` operator uses short-circuit evaluation:
+
+- If the first operand evaluates to `true`, the second operand is not evaluated and the result is `true`
+- The second operand is only evaluated when the first operand is `false`
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

@@ -19,7 +19,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Value is Null or Undefined Check Operators" href="../../ValueIsNullOrUndefinedCheckOperators/index.html" />
+    <link rel="next" title="Examples" href="../Examples/index.html" />
     <link rel="prev" title="‘starts with’" href="../StartsWith/index.html" /> 
 </head>
 
@@ -59,7 +59,13 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Text Matching Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Contains/index.html">‘contains’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../StartsWith/index.html">‘starts with’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">‘ends with’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">‘ends with’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a></li>
@@ -99,9 +105,80 @@
              
   <section id="ends-with">
 <h1>‘ends with’<a class="headerlink" href="#ends-with" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
 </ul>
+</nav>
+<p>The binary operator ‘ends with’ is used to evaluate whether a string ends with a specified suffix in JsonQL expressions. It returns a boolean result (<cite>true</cite> or <cite>false</cite>).</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator uses case sensitive comparison.</p>
+</div>
+</div></blockquote>
+<p><strong>Operator Priority</strong>: 300</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The string value to be checked (the target string).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The suffix string to search for at the end of the target string.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>ends with</cite> operator follows these evaluation rules:</p>
+<ul class="simple">
+<li><p><strong>Valid string operands</strong>: Returns <cite>true</cite> if the first operand ends with the second operand, <cite>false</cite> otherwise</p></li>
+<li><p><strong>Case sensitivity</strong>: The comparison is case-sensitive (e.g., <cite>‘Text123’ ends with ‘EXT1’</cite> returns <cite>false</cite>)</p></li>
+<li><p><strong>Invalid paths</strong>: When either operand is an invalid path, returns <cite>false</cite></p></li>
+<li><p><strong>Null values</strong>: When either operand is <cite>null</cite>, returns <cite>false</cite></p></li>
+<li><p><strong>Non-string values</strong>: The operator expects both operands to be string values</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_ends_with_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(invalid.path ends with &#39;test&#39;) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(invalid.path ends with &#39;test&#39; == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_ends_with_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(&#39;test&#39; ends with invalid.path) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;test&#39; ends with invalid.path == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_ends_with_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(NullValue ends with &#39;test&#39;) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(NullValue ends with &#39;test&#39; == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_ends_with_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(&#39;test&#39; ends with NullValue) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;test&#39; ends with NullValue == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text123&#39; ends with &#39;123&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text12&#39; ends with Text_ext12)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 ends with &#39;Text1&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_8&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text12 ends with Text_ext12)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_ends_with_9&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 ends with Text12 == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_ends_with_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Text matching is case sensitive&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_ends_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text1&#39; ends with &#39;Ext1&#39; == false)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -109,7 +186,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../StartsWith/index.html" class="btn btn-neutral float-left" title="‘starts with’" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../ValueIsNullOrUndefinedCheckOperators/index.html" class="btn btn-neutral float-right" title="Value is Null or Undefined Check Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

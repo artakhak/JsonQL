@@ -50,7 +50,7 @@ public class NegateBooleanValueOperator : BooleanJsonFunctionAbstr
 
         if (!JsonFunctionHelpers.TryConvertValueToJsonComparable(valueResult.Value, TypeCode.Boolean, out var comparableValue) ||
             comparableValue.Value is not bool boolValue)
-            return new ParseResult<bool?>((bool?)null);
+            return new ParseResult<bool?>(true);
 
         return new ParseResult<bool?>(!boolValue);
     }

@@ -24,7 +24,7 @@ Operator Operands
 Type Comparison Rules
 =====================
 
- **Numeric comparisons**: Integer and double values can be compared (e.g., `15 != 15.00` returns `false`)
+- **Numeric comparisons**: Integer and double values can be compared (e.g., `15 != 15.00` returns `false`)
 - **String comparisons**: Must be exact matches; no type coercion (e.g., `15 != '15'` returns `true`)
 - **Boolean comparisons**: Must match exactly; no string conversion (e.g., `true != 'true'` returns `true`)
 - **Date/DateTime comparisons**: Date values ignore time components (e.g., `ToDate('2022-05-23')` is not different from `ToDate('2022-05-23T18:25:43.511Z')`)
@@ -36,7 +36,7 @@ Examples
 .. sourcecode:: json
 
     {
-      "Comment_Operator_==1": "(15 != invalid.path) is evaluated to true",
+      "Comment_Operator_!=_1": "(15 != invalid.path) is evaluated to true",
       "Operator_!=_1": "$value((15 != invalid.path) == true)",
       "Comment_Operator_!=_2": "(e.SalaryInvalid != 100000) is evaluated to true for all employees",
       "Operator_!=_2": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.SalaryInvalid != 100000))) > 0)",

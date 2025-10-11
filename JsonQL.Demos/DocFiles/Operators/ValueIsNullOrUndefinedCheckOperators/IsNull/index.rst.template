@@ -6,4 +6,40 @@
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The unary postfix operator 'is null' is used to check whether a value is explicitly set to JSON null in JsonQL expressions. It returns a boolean result (`true` or `false`).
+
+**Operator Priority**: 300
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: The value to be checked for JSON null.
+
+Evaluation Rules
+================
+
+The `is null` operator follows these evaluation rules:
+
+- **JSON null value**: Returns `true` if the operand evaluates to a JSON null value
+- **Non-null values**: Returns `false` for any non-null value (including numbers, strings, booleans, objects, and arrays)
+- **Invalid paths**: Returns `false` for invalid paths (use `is undefined` to check for invalid paths)
+- **Missing values from queries**: Returns `false` even when a query returns no results (e.g., `First()` with no matches)
+
+.. important::
+    The `is null` operator only returns `true` when a JSON path explicitly references a null value. It does not return `true` for:
+    
+    - Invalid or non-existent paths
+    - Empty query results
+    - Undefined values
+    
+    Use the `is undefined` operator to check for these cases.
+
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

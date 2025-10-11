@@ -1,0 +1,22 @@
+{
+  "Comment_Operator_ends_with_1": "(invalid.path ends with 'test') is evaluated to false",
+  "Operator_ends_with_1": "$value(invalid.path ends with 'test' == false)",
+
+  "Comment_Operator_ends_with_2": "('test' ends with invalid.path) is evaluated to false",
+  "Operator_ends_with_2": "$value('test' ends with invalid.path == false)",
+
+  "Comment_Operator_ends_with_3": "(NullValue ends with 'test') is evaluated to false",
+  "Operator_ends_with_3": "$value(NullValue ends with 'test' == false)",
+
+  "Comment_Operator_ends_with_4": "('test' ends with NullValue) is evaluated to false",
+  "Operator_ends_with_4": "$value('test' ends with NullValue == false)",
+
+  "Operator_ends_with_5": "$value('Text123' ends with '123')",
+  "Operator_ends_with_6": "$value('Text12' ends with Text_ext12)",
+  "Operator_ends_with_7": "$value(Text1 ends with 'Text1')",
+  "Operator_ends_with_8": "$value(Text12 ends with Text_ext12)",
+  "Operator_ends_with_9": "$value(Text1 ends with Text12 == false)",
+
+  "Comment_Operator_ends_with_10": "Text matching is case sensitive",
+  "Operator_starts_ends_10": "$value('Text1' ends with 'Ext1' == false)"
+}

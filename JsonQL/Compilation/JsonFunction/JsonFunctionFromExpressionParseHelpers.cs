@@ -62,7 +62,7 @@ public static class JsonFunctionFromExpressionParseHelpers
     /// <param name="functionParameterMetadata2">Metadata describing the expected second function parameter to be parsed.</param>
     /// <param name="jsonFunctionContext">The evaluation context containing additional information for parsing or evaluating the JSON function, if available.</param>
     /// <param name="functionLineInfo">The line and position information of the function in the JSON source, if available.</param>
-    /// <returns>An <see cref="IParseResult{(T1?, T2?)}"/> holding a tuple with the parsed function parameters, or errors if the parsing fails.</returns>
+    /// <returns>An <see cref="IParseResult{TValue}"/> holding a tuple with the parsed function parameters, or errors if the parsing fails.</returns>
     public static IParseResult<(T1? parameter1, T2? parameter2)> TryParseJsonFunctionParameters<T1, T2>(this IJsonFunctionFromExpressionParser parser,
         IParsedSimpleValue parsedSimpleValue,
         string functionName,
@@ -393,24 +393,14 @@ public static class JsonFunctionFromExpressionParseHelpers
         {
             string? typeName = null;
 
-            switch (parameterMetadata.ExpectedParameterFunctionType)
-            {
-                case IBooleanJsonFunction:
-                    typeName = "boolean";
-                    break;
-
-                case IDoubleJsonFunction:
-                    typeName = "numeric";
-                    break;
-
-                case IDateTimeJsonFunction:
-                    typeName = "DateTime";
-                    break;
-
-                case IStringJsonFunction:
-                    typeName = "string";
-                    break;
-            }
+            if (typeof(IBooleanJsonFunction).IsAssignableFrom(parameterMetadata.ExpectedParameterFunctionType))
+                typeName = "boolean";
+            else if (typeof(IDoubleJsonFunction).IsAssignableFrom(parameterMetadata.ExpectedParameterFunctionType))
+                typeName = "numeric";
+            else if (typeof(IDateTimeJsonFunction).IsAssignableFrom(parameterMetadata.ExpectedParameterFunctionType))
+                typeName = "DateTime";
+            else if (typeof(IStringJsonFunction).IsAssignableFrom(parameterMetadata.ExpectedParameterFunctionType))
+                typeName = "string";
 
             errors.Add(new JsonObjectParseError(typeName != null ?
                     $"Expected a '{typeName}' value of parameter [{parameterMetadata.Name}] in function [{functionName}]." :

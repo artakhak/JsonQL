@@ -7,8 +7,9 @@ Arithmetic Operators
    :depth: 2
    
 Arithmetic operators are used to perform mathematical operations and are described in sections below.
-    .. note::
-        Section :doc:`Examples/index` has examples for every arithmetic operator.
+    
+.. note::
+    Section :doc:`Examples/index` has examples for every arithmetic operator.
 
 .. toctree::   
    

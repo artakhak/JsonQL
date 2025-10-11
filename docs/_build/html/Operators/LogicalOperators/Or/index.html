@@ -57,8 +57,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../ComparisonOperators/index.html">Comparison Operators</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Logical Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../And/index.html">And ‘&amp;&amp;’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Or ‘||’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Or ‘||’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#short-circuit-evaluation">Short-circuit Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../Negate/index.html">Negate ‘!’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../TextMatchingOperators/index.html">Text Matching Operators</a></li>
@@ -99,9 +106,86 @@
              
   <section id="or">
 <h1>Or ‘||’<a class="headerlink" href="#or" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#short-circuit-evaluation" id="id3">Short-circuit Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
 </ul>
+</nav>
+<p>The binary operator ‘||’ is used to perform a logical OR operation between two boolean expressions in JsonQL. It returns <cite>true</cite> when at least one of the operands evaluates to <cite>true</cite>, and <cite>false</cite> only when both operands evaluate to <cite>false</cite>.</p>
+<p><strong>Operator Priority</strong>: 800</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>||</cite> operator follows these evaluation rules:</p>
+<ul class="simple">
+<li><p><strong>True || True</strong>: Returns <cite>true</cite></p></li>
+<li><p><strong>True || False</strong>: Returns <cite>true</cite></p></li>
+<li><p><strong>False || True</strong>: Returns <cite>true</cite></p></li>
+<li><p><strong>False || False</strong>: Returns <cite>false</cite></p></li>
+<li><p><strong>Invalid paths</strong>: When an operand is an invalid path, it is treated as <cite>false</cite>, but if the other operand is <cite>true</cite>, the result is <cite>true</cite></p></li>
+<li><p><strong>Null values</strong>: When an operand is <cite>null</cite>, it is treated as <cite>false</cite>, but if the other operand is <cite>true</cite>, the result is <cite>true</cite></p></li>
+<li><p><strong>Non-boolean values</strong>: Non-boolean values (like integers, strings) are treated as <cite>false</cite> unless they represent a truthy condition</p></li>
+</ul>
+</section>
+<section id="short-circuit-evaluation">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Short-circuit Evaluation</a><a class="headerlink" href="#short-circuit-evaluation" title="Link to this heading"></a></h2>
+<p>The <cite>||</cite> operator uses short-circuit evaluation:</p>
+<ul class="simple">
+<li><p>If the first operand evaluates to <cite>true</cite>, the second operand is not evaluated and the result is <cite>true</cite></p></li>
+<li><p>The second operand is only evaluated when the first operand is <cite>false</cite></p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_||_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(invalid.path || Int1==15) is evaluated to true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(invalid.path || Int1==15)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_||_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(true || invalid.path) is evaluated to true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(true || invalid.path)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_||_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(NullValue || Int1==15) is evaluated to true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(NullValue || Int1==15)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_||_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(Int1==15 || NullValue) is evaluated to true&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1==15 || NullValue)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_||_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(e.InvalidBooleanPath &amp;&amp; 1 == 1) is evaluated to true for all employees&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.InvalidBooleanPath || 1 == 1))) == 12)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_||_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt; 40 || e.Salary &gt; 100000)).First())&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_||_7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(TrueValue || Int1==15)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_8&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(FalseValue || Int1==15)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_9&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1==15 || FalseValue)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_||_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1==16 || FalseValue) == false)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

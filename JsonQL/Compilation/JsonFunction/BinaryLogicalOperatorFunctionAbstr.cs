@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
 using JsonQL.Compilation.JsonFunction.SimpleTypes;
+using JsonQL.Compilation.JsonValueLookup;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction;
@@ -18,7 +19,7 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
     /// This class handles the evaluation of binary logical operations with two boolean operands.
     /// </remarks>
     protected BinaryLogicalOperatorFunctionAbstr(string operatorName,
-        IBooleanJsonFunction operand1, IBooleanJsonFunction operand2,
+        IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) : base(operatorName, jsonFunctionContext, lineInfo)
     {
@@ -34,7 +35,7 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
     /// such as "&&" and "||". The operand is of type <see cref="IBooleanJsonFunction"/> and
     /// is evaluated as part of the logical operation.
     /// </remarks>
-    protected IBooleanJsonFunction Operand1 { get; }
+    protected IJsonFunction Operand1 { get; }
 
     /// <summary>
     /// Gets the second operand for the binary logical operation.
@@ -44,22 +45,52 @@ public abstract class BinaryLogicalOperatorFunctionAbstr : BooleanJsonFunctionAb
     /// such as "&&" and "||". The operand is of type <see cref="IBooleanJsonFunction"/> and
     /// is evaluated as part of the logical operation.
     /// </remarks>
-    protected IBooleanJsonFunction Operand2 { get; }
+    protected IJsonFunction Operand2 { get; }
 
     /// <inheritdoc />
     public sealed override IParseResult<bool?> EvaluateBooleanValue(IRootParsedValue rootParsedValue, IReadOnlyList<IRootParsedValue> compiledParentRootParsedValues, IJsonFunctionEvaluationContextData? contextData)
     {
-        var result1 = Operand1.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData);
+        var result1 = Operand1.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
         if (result1.Errors.Count > 0)
             return new ParseResult<bool?>(result1.Errors);
 
-        var result2 = Operand2.EvaluateBooleanValue(rootParsedValue, compiledParentRootParsedValues, contextData);
+        var result2 = Operand2.EvaluateValue(rootParsedValue, compiledParentRootParsedValues, contextData);
 
         if (result2.Errors.Count > 0)
             return new ParseResult<bool?>(result2.Errors);
 
-        return DoEvaluateBooleanValue(result1.Value, result2.Value);
+        return DoEvaluateBooleanValue(TryGetBooleanValue(result1), TryGetBooleanValue(result2));
+    }
+
+    private bool? TryGetBooleanValue(IParseResult<object?> parseResult)
+    {
+        if (parseResult.Value != null)
+        {
+            if (parseResult.Value is bool booleanValue)
+                return booleanValue;
+
+            if (parseResult.Value is ISingleItemJsonValuePathLookupResult singleItemJsonValuePathLookupResult)
+            {
+                if (singleItemJsonValuePathLookupResult.ParsedValue == null || 
+                    !singleItemJsonValuePathLookupResult.IsValidPath || !singleItemJsonValuePathLookupResult.HasValue)
+                    return null;
+
+                if (singleItemJsonValuePathLookupResult.ParsedValue is IParsedSimpleValue parsedSimpleValue &&
+                    !parsedSimpleValue.IsString && parsedSimpleValue.Value != null)
+                {
+                    switch (parsedSimpleValue.Value)
+                    {
+                        case "true":
+                            return true;
+                        case "false":
+                            return false;
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     /// <summary>

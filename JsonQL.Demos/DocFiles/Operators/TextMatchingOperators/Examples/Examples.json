@@ -1,0 +1,69 @@
+{
+  "Operator_starts_with": {
+    "Comment_Operator_starts_with_1": "(invalid.path starts with 'test') is evaluated to false",
+    "Operator_starts_with_1": "$value(invalid.path starts with 'test' == false)",
+
+    "Comment_Operator_starts_with_2": "('test' starts with invalid.path) is evaluated to false",
+    "Operator_starts_with_2": "$value('test' starts with invalid.path == false)",
+
+    "Comment_Operator_starts_with_3": "(NullValue starts with 'test') is evaluated to false",
+    "Operator_starts_with_3": "$value(NullValue starts with 'test' == false)",
+
+    "Comment_Operator_starts_with_4": "('test' starts with NullValue) is evaluated to false",
+    "Operator_starts_with_4": "$value('test' starts with NullValue == false)",
+
+    "Operator_starts_with_5": "$value('Text123' starts with 'Text')",
+    "Operator_starts_with_6": "$value('Text123' starts with Text1)",
+    "Operator_starts_with_7": "$value(Text1 starts with 'Text1')",
+    "Operator_starts_with_8": "$value(Text12 starts with Text1)",
+    "Operator_starts_with_9": "$value(Text1 starts with Text12 == false)",
+
+    "Comment_Operator_starts_with_10": "Text matching is case sensitive",
+    "Operator_starts_with_10": "$value('Text1' starts with 'text' == false)"
+  },
+
+  "Operator_ends_with": {
+    "Comment_Operator_ends_with_1": "(invalid.path ends with 'test') is evaluated to false",
+    "Operator_ends_with_1": "$value(invalid.path ends with 'test' == false)",
+
+    "Comment_Operator_ends_with_2": "('test' ends with invalid.path) is evaluated to false",
+    "Operator_ends_with_2": "$value('test' ends with invalid.path == false)",
+
+    "Comment_Operator_ends_with_3": "(NullValue ends with 'test') is evaluated to false",
+    "Operator_ends_with_3": "$value(NullValue ends with 'test' == false)",
+
+    "Comment_Operator_ends_with_4": "('test' ends with NullValue) is evaluated to false",
+    "Operator_ends_with_4": "$value('test' ends with NullValue == false)",
+
+    "Operator_ends_with_5": "$value('Text123' ends with '123')",
+    "Operator_ends_with_6": "$value('Text12' ends with Text_ext12)",
+    "Operator_ends_with_7": "$value(Text1 ends with 'Text1')",
+    "Operator_ends_with_8": "$value(Text12 ends with Text_ext12)",
+    "Operator_ends_with_9": "$value(Text1 ends with Text12 == false)",
+
+    "Comment_Operator_ends_with_10": "Text matching is case sensitive",
+    "Operator_starts_ends_10": "$value('Text1' ends with 'Ext1' == false)"
+  },
+  "Operator_contains_with": {
+    "Comment_Operator_contains_1": "(invalid.path contains 'test') is evaluated to false",
+    "Operator_contains_1": "$value(invalid.path contains 'test' == false)",
+
+    "Comment_Operator_contains_2": "('test' contains invalid.path) is evaluated to false",
+    "Operator_contains_2": "$value('test' contains invalid.path == false)",
+
+    "Comment_Operator_contains_3": "(NullValue contains 'test') is evaluated to false",
+    "Operator_contains_3": "$value(NullValue contains 'test' == false)",
+
+    "Comment_Operator_contains_4": "('test' contains NullValue) is evaluated to false",
+    "Operator_contains_4": "$value('test' contains NullValue == false)",
+
+    "Operator_contains_5": "$value('Text123' contains 'ext12')",
+    "Operator_contains_6": "$value('Text12' contains Text1)",
+    "Operator_contains_7": "$value(Text1 contains 'ext')",
+    "Operator_contains_8": "$value(Text12 contains Text1)",
+    "Operator_contains_9": "$value(Text1 contains Text12 == false)",
+
+    "Comment_Operator_contains_10": "Text matching is case sensitive",
+    "Operator_contains_10": "$value('Text1' contains 'Ext1' == false)"
+  }
+}

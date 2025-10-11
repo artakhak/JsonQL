@@ -5,8 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<PackageVersion>1.6.0</PackageVersion>
-		<Version>1.6.0</Version>
+		<PackageVersion>1.7.0</PackageVersion>
+		<Version>1.7.0</Version>
 		<PackageTags>Json JsonQL Json+QL Query Json+Query+Language Json+path Json+Query</PackageTags>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
@@ -15,8 +15,13 @@
 		</Description>
 		<Copyright>Copyright 2018 (c) OROptimizer. All rights reserved.</Copyright>
 		<PackageReleaseNotes>
-			- Modified the priority of modulus operator '%' to 400 from 500 to match that of '*' and '/' (was using a priority 500 used for binary operators '-' and '+')
-			- Couple of small (non-breaking) code changes to rename quatient to modulus in code that used this text.
+			- Some changes to make sure we can use expressions like this with "&amp;&amp;" and "||" operators:
+                "MyObject.BooleanValue1 &amp;&amp; Int1 == 15" "MyObject.BooleanValue1 || Int1 == 15".
+                Before this change expressions similar to this would have to be used:
+                "MyObject.BooleanValue1 == true &amp;&amp; Int1 == 15" &amp;&amp; "MyObject.BooleanValue1 == true || Int1 == 15", since
+                Json path could not be used as an operand to "&amp;&amp;" and "||" unless it was an operand in some boolean operator or a
+                parameter in boolean function, that was itself an operand in "&amp;&amp;" or "||".
+            - Changes to make sure "!" evaluates to true for operands that evaluate to null or undefined.
 		</PackageReleaseNotes>
 		<RepositoryUrl>https://github.com/artakhak/JsonQL</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/artakhak/JsonQL</PackageProjectUrl>

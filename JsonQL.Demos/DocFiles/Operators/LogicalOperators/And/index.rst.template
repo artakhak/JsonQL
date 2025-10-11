@@ -6,4 +6,46 @@ And '&&'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The binary operator '&&' is used to perform a logical AND operation between two boolean expressions in JsonQL. It returns `true` when both operands evaluate to `true`, and `false` otherwise.
+
+**Operator Priority**: 700
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+
+Evaluation Rules
+================
+
+The `&&` operator follows these evaluation rules:
+
+- **True && True**: Returns `true` when both operands evaluate to `true`
+- **True && False**: Returns `false`
+- **False && True**: Returns `false`
+- **False && False**: Returns `false`
+- **Invalid paths**: When an operand is an invalid path, it is treated as `false`
+- **Null values**: When an operand is `null`, it is treated as `false`
+- **Non-boolean values**: Non-boolean values (like integers, strings) are treated as `false`
+
+Short-circuit Evaluation
+=========================
+
+The `&&` operator uses short-circuit evaluation:
+
+- If the first operand evaluates to `false`, the second operand is not evaluated and the result is `false`
+- Both operands are only evaluated when the first operand is `true`
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>
+

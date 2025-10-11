@@ -56,9 +56,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../ArithmeticOperators/index.html">Arithmetic Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ComparisonOperators/index.html">Comparison Operators</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Logical Operators</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">And ‘&amp;&amp;’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">And ‘&amp;&amp;’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#short-circuit-evaluation">Short-circuit Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../Or/index.html">Or ‘||’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Negate/index.html">Negate ‘!’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../TextMatchingOperators/index.html">Text Matching Operators</a></li>
@@ -99,9 +106,86 @@
              
   <section id="and">
 <h1>And ‘&amp;&amp;’<a class="headerlink" href="#and" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#short-circuit-evaluation" id="id3">Short-circuit Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
 </ul>
+</nav>
+<p>The binary operator ‘&amp;&amp;’ is used to perform a logical AND operation between two boolean expressions in JsonQL. It returns <cite>true</cite> when both operands evaluate to <cite>true</cite>, and <cite>false</cite> otherwise.</p>
+<p><strong>Operator Priority</strong>: 700</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: Any valid JsonQL expression.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>&amp;&amp;</cite> operator follows these evaluation rules:</p>
+<ul class="simple">
+<li><p><strong>True &amp;&amp; True</strong>: Returns <cite>true</cite> when both operands evaluate to <cite>true</cite></p></li>
+<li><p><strong>True &amp;&amp; False</strong>: Returns <cite>false</cite></p></li>
+<li><p><strong>False &amp;&amp; True</strong>: Returns <cite>false</cite></p></li>
+<li><p><strong>False &amp;&amp; False</strong>: Returns <cite>false</cite></p></li>
+<li><p><strong>Invalid paths</strong>: When an operand is an invalid path, it is treated as <cite>false</cite></p></li>
+<li><p><strong>Null values</strong>: When an operand is <cite>null</cite>, it is treated as <cite>false</cite></p></li>
+<li><p><strong>Non-boolean values</strong>: Non-boolean values (like integers, strings) are treated as <cite>false</cite></p></li>
+</ul>
+</section>
+<section id="short-circuit-evaluation">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Short-circuit Evaluation</a><a class="headerlink" href="#short-circuit-evaluation" title="Link to this heading"></a></h2>
+<p>The <cite>&amp;&amp;</cite> operator uses short-circuit evaluation:</p>
+<ul class="simple">
+<li><p>If the first operand evaluates to <cite>false</cite>, the second operand is not evaluated and the result is <cite>false</cite></p></li>
+<li><p>Both operands are only evaluated when the first operand is <cite>true</cite></p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&amp;&amp;_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(invalid.path &amp;&amp; Int1==15) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((invalid.path &amp;&amp; Int1==15) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&amp;&amp;_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(true &amp;&amp; invalid.path) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((true &amp;&amp; invalid.path) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&amp;&amp;_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(NullValue &amp;&amp; Int1==15) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((NullValue &amp;&amp; Int1==15) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&amp;&amp;_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(Int1==15 &amp;&amp; NullValue) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1==15 &amp;&amp; NullValue) == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_&amp;&amp;_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(e.InvalidBooleanPath &amp;&amp; 1 == 1) is evaluated to false for all employees&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.InvalidBooleanPath &amp;&amp; 1 == 1))) == 0)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt; 40 &amp;&amp; e.Salary &gt; 100000)).First())&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((TrueValue &amp;&amp; Int1==15) == true)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_8&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((FalseValue &amp;&amp; Int1==15) == false)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_9&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1==15 &amp;&amp; FalseValue) == false)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_&amp;&amp;_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value((Int1==16 &amp;&amp; FalseValue) == false)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

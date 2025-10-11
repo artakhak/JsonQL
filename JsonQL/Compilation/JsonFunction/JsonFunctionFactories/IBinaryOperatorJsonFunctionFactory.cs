@@ -296,11 +296,11 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
     {
         var parametersJsonFunctionContext = new JsonFunctionValueEvaluationContext(jsonFunctionContext.VariablesManager);
 
-        var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IBooleanJsonFunction, IBooleanJsonFunction>(
+        var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IJsonFunction>(
             parsedSimpleValue, operatorName,
             CollectionExpressionHelpers.Create(operand1, operand2),
-            new JsonFunctionParameterMetadata("operand1", typeof(IBooleanJsonFunction), true),
-            new JsonFunctionParameterMetadata("operand2", typeof(IBooleanJsonFunction), true),
+            new JsonFunctionParameterMetadata("operand1", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata("operand2", typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             operatorLineInfo);
 
@@ -320,11 +320,11 @@ public class BinaryOperatorJsonFunctionFactory : JsonFunctionFactoryAbstr, IBina
     {
         var parametersJsonFunctionContext = new JsonFunctionValueEvaluationContext(jsonFunctionContext.VariablesManager);
 
-        var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IBooleanJsonFunction, IBooleanJsonFunction>(
+        var parametersParseResult = JsonFunctionFromExpressionParser.TryParseJsonFunctionParameters<IJsonFunction, IJsonFunction>(
             parsedSimpleValue, operatorName,
             CollectionExpressionHelpers.Create(operand1, operand2),
-            new JsonFunctionParameterMetadata("operand1", typeof(IBooleanJsonFunction), true),
-            new JsonFunctionParameterMetadata("operand2", typeof(IBooleanJsonFunction), true),
+            new JsonFunctionParameterMetadata("operand1", typeof(IJsonFunction), true),
+            new JsonFunctionParameterMetadata("operand2", typeof(IJsonFunction), true),
             parametersJsonFunctionContext,
             operatorLineInfo);
 

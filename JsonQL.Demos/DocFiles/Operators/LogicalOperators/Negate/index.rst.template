@@ -6,4 +6,38 @@ Negate '!'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The unary operator '!' is used to perform a logical NOT operation on a boolean expression in JsonQL. It negates the boolean value of its operand.
+
+**Operator Priority**: 100
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: Any valid JsonQL expression.
+
+Evaluation Rules
+================
+
+The `!` operator follows these evaluation rules:
+
+- **!true**: Returns `false`
+- **!false**: Returns `true`
+- **Invalid paths**: When the operand is an invalid path, the negation returns `true`
+- **Null values**: When the operand is `null`, the negation returns `true`
+- **Non-boolean values**: Any non-boolean value (such as integers, strings, etc.) is treated as "not false", so the negation returns `true`
+
+.. note::
+    The `!` operator returns `false` only when applied to the boolean value `true`. All other values (including boolean `false`, invalid paths, null values, and non-boolean values) result in `true` when negated.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

@@ -8,8 +8,8 @@ Comparison Operators
    
 Comparison operators are used to compare values and are described in sections below.
     
-    .. note::
-        Section :doc:`Examples/index` has examples for every arithmetic operator.
+.. note::
+    Section :doc:`Examples/index` has examples for every arithmetic operator.
 
 .. toctree::
    

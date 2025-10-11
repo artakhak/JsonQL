@@ -1,0 +1,8 @@
+{
+  "Comment_Operator_is_undefined_1": "(invalid.path is undefined) evaluates to true.",
+  "Operator_is_undefined_1": "$value(invalid.path is undefined)",
+  "Operator_is_undefined_2": "$value(NullValue is undefined == false)",
+  "Operator_is_undefined_3": "$value(Int1 is undefined == false)",
+  "Operator_is_undefined_5": "$value(Companies.Select(c => c.Employees).First() is undefined == false)",
+  "Operator_is_undefined_6": "$value(Companies.Select(c => c.Employees).First(e => e.Age > 200) is undefined)"
+}

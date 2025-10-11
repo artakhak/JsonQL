@@ -26,7 +26,7 @@ public class Examples : JsonCompilerExampleManagerForSuccessAbstr
             LoadJsonFileHelpers.LoadJsonFile("Companies.json", sharedExamplesFolderPath), dataJsonTextData);
         
         var result = _jsonCompiler.Compile(new JsonTextData("Examples",
-            this.LoadExampleJsonFile("Examples.json"), companiesJsonTextData));
+            this.LoadExampleJsonFile("Examples.json") , companiesJsonTextData));
         
         return result;
     }

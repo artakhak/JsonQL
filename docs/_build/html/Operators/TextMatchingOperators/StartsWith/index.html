@@ -58,8 +58,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../LogicalOperators/index.html">Logical Operators</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Text Matching Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Contains/index.html">‘contains’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">‘starts with’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">‘starts with’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../EndsWith/index.html">‘ends with’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a></li>
@@ -99,9 +105,80 @@
              
   <section id="starts-with">
 <h1>‘starts with’<a class="headerlink" href="#starts-with" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
 </ul>
+</nav>
+<p>The binary operator ‘starts with’ is used to evaluate whether a string starts with a specified prefix in JsonQL expressions. It returns a boolean result (<cite>true</cite> or <cite>false</cite>).</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator uses case sensitive comparison.</p>
+</div>
+</div></blockquote>
+<p><strong>Operator Priority</strong>: 300</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The string value to be checked (the target string).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The prefix string to search for at the beginning of the target string.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>starts with</cite> operator follows these evaluation rules:</p>
+<ul class="simple">
+<li><p><strong>Valid string operands</strong>: Returns <cite>true</cite> if the first operand starts with the second operand, <cite>false</cite> otherwise</p></li>
+<li><p><strong>Case sensitivity</strong>: The comparison is case-sensitive (e.g., <cite>‘Text123’ starts with ‘text’</cite> returns <cite>false</cite>)</p></li>
+<li><p><strong>Invalid paths</strong>: When either operand is an invalid path, returns <cite>false</cite></p></li>
+<li><p><strong>Null values</strong>: When either operand is <cite>null</cite>, returns <cite>false</cite></p></li>
+<li><p><strong>Non-string values</strong>: The operator expects both operands to be string values</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_starts_with_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(invalid.path starts with &#39;test&#39;) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(invalid.path starts with &#39;test&#39; == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_starts_with_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(&#39;test&#39; starts with invalid.path) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;test&#39; starts with invalid.path == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_starts_with_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(NullValue starts with &#39;test&#39;) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(NullValue starts with &#39;test&#39; == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_starts_with_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(&#39;test&#39; starts with NullValue) is evaluated to false&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;test&#39; starts with NullValue == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text123&#39; starts with &#39;Text&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text123&#39; starts with Text1)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_7&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 starts with &#39;Text1&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_8&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text12 starts with Text1)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_9&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 starts with Text12 == false)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_starts_with_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Text matching is case sensitive&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_starts_with_10&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(&#39;Text1&#39; starts with &#39;text&#39; == false)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

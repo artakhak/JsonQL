@@ -1,7 +1,6 @@
 // Copyright (c) JsonQL Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JsonQL.Compilation.JsonFunction.SimpleTypes;
 using JsonQL.JsonObjects;
 
 namespace JsonQL.Compilation.JsonFunction.JsonFunctions;
@@ -23,7 +22,7 @@ public class BinaryOrLogicalOperatorFunction : BinaryLogicalOperatorFunctionAbst
     /// <param name="operand2">The second operand of the binary OR operation.</param>
     /// <param name="jsonFunctionContext">The context used for JSON function evaluation.</param>
     /// <param name="lineInfo">Optional line information for error or logging purposes.</param>
-    public BinaryOrLogicalOperatorFunction(string operatorName, IBooleanJsonFunction operand1, IBooleanJsonFunction operand2,
+    public BinaryOrLogicalOperatorFunction(string operatorName, IJsonFunction operand1, IJsonFunction operand2,
         IJsonFunctionValueEvaluationContext jsonFunctionContext,
         IJsonLineInfo? lineInfo) :
         base(operatorName, operand1, operand2, jsonFunctionContext, lineInfo)

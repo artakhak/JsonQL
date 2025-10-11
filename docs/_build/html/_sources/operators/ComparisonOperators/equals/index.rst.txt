@@ -36,7 +36,7 @@ Examples
 .. sourcecode:: json
 
     {
-      "Comment_Operator_==1": "(15 == invalid.path) is evaluated to false",
+      "Comment_Operator_==_1": "(15 == invalid.path) is evaluated to false",
       "Operator_==_1": "$value((15 == invalid.path) == false)",
       "Comment_Operator_==_2": "(e.SalaryInvalid == 100000) is evaluated to false for all employees",
       "Operator_==_2": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.SalaryInvalid == 100000))) == 0)",

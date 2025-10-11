@@ -19,7 +19,7 @@ Examples in **Examples.json** file below demonstrate comparison operators descri
 
     {
       "Operator_==": {
-        "Comment_Operator_==1": "(15 == invalid.path) is evaluated to false",
+        "Comment_Operator_==_1": "(15 == invalid.path) is evaluated to false",
         "Operator_==_1": "$value((15 == invalid.path) == false)",
         "Comment_Operator_==_2": "(e.SalaryInvalid == 100000) is evaluated to false for all employees",
         "Operator_==_2": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.SalaryInvalid == 100000))) == 0)",
@@ -43,7 +43,7 @@ Examples in **Examples.json** file below demonstrate comparison operators descri
         "Operator_==_14": "$value(Text1 == 'TExt1' == false)"
       },
       "Operator_!=": {
-        "Comment_Operator_==1": "(15 != invalid.path) is evaluated to true",
+        "Comment_Operator_!=_1": "(15 != invalid.path) is evaluated to true",
         "Operator_!=_1": "$value((15 != invalid.path) == true)",
         "Comment_Operator_!=_2": "(e.SalaryInvalid != 100000) is evaluated to true for all employees",
         "Operator_!=_2": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.SalaryInvalid != 100000))) > 0)",
@@ -207,7 +207,7 @@ The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https:/
           "CompiledParsedValue":
           {
             "Operator_==": {
-              "Comment_Operator_==1":  "(15 == invalid.path) is evaluated to false",
+              "Comment_Operator_==_1":  "(15 == invalid.path) is evaluated to false",
               "Operator_==_1":  true,
               "Comment_Operator_==_2":  "(e.SalaryInvalid == 100000) is evaluated to false for all employees",
               "Operator_==_2":  true,
@@ -225,7 +225,7 @@ The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https:/
               "Operator_==_14":  true
             },
             "Operator_!=": {
-              "Comment_Operator_==1":  "(15 != invalid.path) is evaluated to true",
+              "Comment_Operator_!=_1":  "(15 != invalid.path) is evaluated to true",
               "Operator_!=_1":  true,
               "Comment_Operator_!=_2":  "(e.SalaryInvalid != 100000) is evaluated to true for all employees",
               "Operator_!=_2":  true,

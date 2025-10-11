@@ -60,8 +60,14 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Value is Null or Undefined Check Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../IsNull/index.html">‘is null’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../IsNotNull/index.html">‘is not null’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">‘is undefined’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">‘is undefined’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../IsNotUndefined/index.html">‘is not undefined’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../OtherOperators/index.html">Other Operators</a></li>
@@ -100,9 +106,76 @@
              
   <section id="is-undefined">
 <h1>‘is undefined’<a class="headerlink" href="#is-undefined" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id1">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
 </ul>
+</nav>
+<p>The unary postfix operator ‘is not undefined’ is used to check whether a value exists and is defined in JsonQL expressions. It returns a boolean result (<cite>true</cite> or <cite>false</cite>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operator verifies that a value exists and is accessible. To check specifically that a value is not JSON null, use the <a class="reference internal" href="../IsNotNull/index.html"><span class="doc">‘is not null’</span></a> operator instead.</p>
+</div>
+<p><strong>Operator Priority</strong>: 300</p>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The value or expression to be checked for defined status.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>is not undefined</cite> operator follows these evaluation rules:</p>
+<ul class="simple">
+<li><p><strong>Invalid paths</strong>: Returns <cite>false</cite> for paths that don’t exist in the JSON structure</p></li>
+<li><p><strong>Empty query results</strong>: Returns <cite>false</cite> when a query returns no results (e.g., <cite>First()</cite> with no matching items)</p></li>
+<li><p><strong>Valid values</strong>: Returns <cite>true</cite> for any existing value, including:</p>
+<ul>
+<li><p>JSON null values</p></li>
+<li><p>Numbers, strings, booleans</p></li>
+<li><p>Objects and arrays</p></li>
+<li><p>Empty collections</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <cite>is not undefined</cite> operator is the logical inverse of <cite>is undefined</cite>:</p>
+<ul class="simple">
+<li><p>Returns <cite>true</cite> when a value or path exists and is accessible</p></li>
+<li><p>Returns <cite>false</cite> when a value is missing or a path is invalid</p></li>
+</ul>
+<p>This operator is useful for:</p>
+<ul class="simple">
+<li><p>Validating that a JSON path exists before using it</p></li>
+<li><p>Checking if a query produced any results</p></li>
+<li><p>Ensuring a value is available for further operations</p></li>
+</ul>
+<p>Note that JSON null values are considered “defined” and will return <cite>true</cite>.</p>
+</div>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Operator_is_undefined_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(invalid.path is undefined) evaluates to true.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_is_undefined_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(invalid.path is undefined)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_is_undefined_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(NullValue is undefined == false)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_is_undefined_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1 is undefined == false)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_is_undefined_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees).First() is undefined == false)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Operator_is_undefined_6&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees).First(e =&gt; e.Age &gt; 200) is undefined)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
