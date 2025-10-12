@@ -60,7 +60,18 @@
 <li class="toctree-l2"><a class="reference internal" href="../../ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Other Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Assert/index.html">‘assert’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Default Value ‘:’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Default Value ‘:’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-value">Return Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
@@ -102,9 +113,230 @@
              
   <section id="default-value">
 <h1>Default Value ‘:’<a class="headerlink" href="#default-value" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id2">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id3">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id4">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#implementation-details" id="id6">Implementation Details</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id7">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id8">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id9">Examples</a></p></li>
 </ul>
+</nav>
+<p>The default value operator <code class="docutils literal notranslate"><span class="pre">:</span></code> is a binary operator used in JsonQL to provide fallback values when the primary expression evaluates to null, undefined, or an invalid value. It enables graceful handling of missing data by substituting a default value when needed.</p>
+<p><strong>Operator Priority</strong>: 200</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>&lt;expression&gt; : &lt;default_expression&gt;</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is placed between the main expression and the default value expression.</p>
+</section>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The primary expression to evaluate. If this evaluates to a valid value, it is returned.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Operand 2</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The fallback expression to evaluate. This value is returned if the left operand is null, undefined, or invalid.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">:</span></code> operator follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Valid Main Value</strong>: If the left operand evaluates to a valid, non-null, and defined value, that value is returned</p></li>
+<li><p><strong>Invalid Main Value</strong>: If the left operand is null, undefined, or invalid (e.g., non-existent JSON path), the right operand is evaluated and returned</p></li>
+<li><p><strong>Type Preservation</strong>: The operator can work with any type (string, number, boolean, DateTime, arrays, objects)</p></li>
+<li><p><strong>Type Matching</strong>: Both operands should ideally be of compatible types, though the operator doesn’t enforce strict type matching</p></li>
+<li><p><strong>Error Propagation</strong>: If either operand has evaluation errors, those errors are propagated</p></li>
+<li><p><strong>Nested Defaults</strong>: Default operators can be chained for multiple fallback levels</p></li>
+</ol>
+</section>
+<section id="return-value">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Returns the value from the <strong>left operand</strong> if it is valid</p></li>
+<li><p>Returns the value from the <strong>right operand</strong> if the left operand is invalid, null, or undefined</p></li>
+<li><p>The return type matches the type of whichever operand is returned</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The default value operator is useful for:</p>
+<ul class="simple">
+<li><p><strong>Handling Missing Properties</strong>: Providing fallback values for optional JSON properties</p></li>
+<li><p><strong>Data Migration</strong>: Supplying default values when working with incomplete or legacy data</p></li>
+<li><p><strong>Graceful Degradation</strong>: Ensuring expressions don’t fail due to missing data</p></li>
+<li><p><strong>Configuration Defaults</strong>: Specifying fallback configuration values</p></li>
+<li><p><strong>Array/Object Defaults</strong>: Providing default complex structures when paths don’t exist</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Implementation Details</a><a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is implemented through the <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/DefaultValueOperatorFunctions/DefaultValueOperatorFunction.cs">DefaultValueOperatorFunction</a> class, which:</p>
+<ul class="simple">
+<li><p>Evaluates the main value expression first</p></li>
+<li><p>Checks if the result is valid and can be converted to a comparable value</p></li>
+<li><p>If invalid, evaluates and returns the default value expression</p></li>
+<li><p>Handles type conversion for both operands</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Use for Optional Fields</strong>: Apply the operator to handle optional properties that may not exist in all data</p></li>
+<li><p><strong>Provide Sensible Defaults</strong>: Choose default values that make semantic sense for your application</p></li>
+<li><p><strong>Avoid Complex Defaults</strong>: Keep default expressions simple for better readability</p></li>
+<li><p><strong>Consider Type Compatibility</strong>: Ensure main and default values are of compatible types</p></li>
+<li><p><strong>Chain Carefully</strong>: When chaining multiple defaults, ensure the logic is clear and maintainable</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The default value operator does <strong>not</strong> cause compilation errors when the main value is missing</p></li>
+<li><p>Unlike the <code class="docutils literal notranslate"><span class="pre">assert</span></code> operator, it provides graceful fallback rather than failing fast</p></li>
+<li><p>The operator works with all JsonQL types including primitives, arrays, and objects</p></li>
+<li><p>Both operands are expressions and can include function calls, calculations, or complex paths</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p><strong>Examples.json</strong> file below demonstrate using <cite>assert</cite> operator</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Object1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;DateTime1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-05-23T18:25:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Number1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15.39</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TrueText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TrueValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FalseText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FalseValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Array1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;2022-05-23T18:25:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;2022-05-23T18:26:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;false&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_DateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDateTime(Object1.DateTime1):ToDateTime(&#39;2000-01-01T00:00:00.000Z&#39;) == ToDateTime(Object1.DateTime1))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_DateTime1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDateTime(Object1.DateTime1_Invalid):ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_DateTime2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Object1.DateTime1_Invalid:ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_Double&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Object1.Number1:17.26 == Object1.Number1)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Double1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToDouble(Object1.Number1_Invalid):Object1.Number1 == Object1.Number1)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Double2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Object1.Number1_Invalid:Object1.Number1 == Object1.Number1)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_Boolean&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Object1.TrueValue:false == true)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Boolean1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(ToBoolean(Object1.TrueValue_Invalid):ToBoolean(Object1.TrueText) == true)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Boolean2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Object1.TrueValue_Invalid:ToBoolean(Object1.TrueText) == true)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_String&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Array1[0]:&#39;y&#39; == &#39;x&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_String&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Array1_Invalid[0]:&#39;y&#39; == &#39;y&#39;)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;DefaultValueOfAnyType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Array1_Invalid[0]:Array1[0] == &#39;x&#39;)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_ArrayInitializedFromDefaultArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NonExistentArray:Array1[3] defaults to Array1[3] which is an array [1, 2, 3]&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ArrayInitializedFromDefaultArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(NonExistentArray:Array1[3])&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Examples.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<details>
+<summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Object1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;DateTime1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;2022-05-23T18:25:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Number1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mf">15.39</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TrueText&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;TrueValue&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FalseText&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;FalseValue&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Array1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;2022-05-23T18:25:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">          </span><span class="p">[</span>
+<span class="w">            </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="mi">3</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;2022-05-23T18:26:43.511Z&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;false&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_DateTime&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_DateTime1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_DateTime2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_Double&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Double1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Double2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_Boolean&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Boolean1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_Boolean2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfValidValueIsOriginalValue_String&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfInvalidValueIsDefaultValue_String&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DefaultValueOfAnyType&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Comment_ArrayInitializedFromDefaultArray&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;NonExistentArray:Array1[3] defaults to Array1[3] which is an array [1, 2, 3]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ArrayInitializedFromDefaultArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">3</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/><p>The code snippet shows how the JSON file <strong>Examples.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Examples&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Examples.json&quot;</span><span class="p">)));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

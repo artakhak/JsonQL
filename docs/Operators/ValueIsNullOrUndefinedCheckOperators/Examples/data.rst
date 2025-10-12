@@ -11,17 +11,12 @@ Data.json
 .. sourcecode:: json
 
      {
-       "NullValue": null,
-       "Text1": "Text1",
-       "Text12": "Text12",
-       "Text_ext12": "ext12",
-       "Int1": 15,
-       "Int2": 25,
-       "NegativeInt1": -15,
-       "Double1": 15.25,
-       "Double2": 25.25,
-       "NegativeDouble1": -15.25,
-       "TrueValue": true,
-       "FalseValue": false
+       "Double1": 1.1,
+       "NullValue1": null,
+       "Array1": [ 1, null, 3, 0 ],
+       "DateTime1": "2022-05-23T18:25:43.511Z",
+       "Boolean_True": true,
+       "Boolean_False": false,
+       "String1": "Text 1"
      }
 

@@ -6,4 +6,117 @@ Default Value ':'
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The default value operator ``:`` is a binary operator used in JsonQL to provide fallback values when the primary expression evaluates to null, undefined, or an invalid value. It enables graceful handling of missing data by substituting a default value when needed.
+
+**Operator Priority**: 200
+
+Syntax
+======
+
+<expression> : <default_expression>
+
+The ``:`` operator is placed between the main expression and the default value expression.
+
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: The primary expression to evaluate. If this evaluates to a valid value, it is returned.
+    
+- **Operand 2**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: The fallback expression to evaluate. This value is returned if the left operand is null, undefined, or invalid.
+
+
+Evaluation Rules
+================
+
+The ``:`` operator follows these evaluation rules:
+
+1. **Valid Main Value**: If the left operand evaluates to a valid, non-null, and defined value, that value is returned
+2. **Invalid Main Value**: If the left operand is null, undefined, or invalid (e.g., non-existent JSON path), the right operand is evaluated and returned
+3. **Type Preservation**: The operator can work with any type (string, number, boolean, DateTime, arrays, objects)
+4. **Type Matching**: Both operands should ideally be of compatible types, though the operator doesn't enforce strict type matching
+5. **Error Propagation**: If either operand has evaluation errors, those errors are propagated
+6. **Nested Defaults**: Default operators can be chained for multiple fallback levels
+
+Return Value
+============
+
+- Returns the value from the **left operand** if it is valid
+- Returns the value from the **right operand** if the left operand is invalid, null, or undefined
+- The return type matches the type of whichever operand is returned
+
+Use Cases
+=========
+
+The default value operator is useful for:
+
+- **Handling Missing Properties**: Providing fallback values for optional JSON properties
+- **Data Migration**: Supplying default values when working with incomplete or legacy data
+- **Graceful Degradation**: Ensuring expressions don't fail due to missing data
+- **Configuration Defaults**: Specifying fallback configuration values
+- **Array/Object Defaults**: Providing default complex structures when paths don't exist
+
+Implementation Details
+======================
+
+The ``:`` operator is implemented through the `DefaultValueOperatorFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/DefaultValueOperatorFunctions/DefaultValueOperatorFunction.cs>`_ class, which:
+
+- Evaluates the main value expression first
+- Checks if the result is valid and can be converted to a comparable value
+- If invalid, evaluates and returns the default value expression
+- Handles type conversion for both operands
+
+Best Practices
+==============
+
+- **Use for Optional Fields**: Apply the operator to handle optional properties that may not exist in all data
+- **Provide Sensible Defaults**: Choose default values that make semantic sense for your application
+- **Avoid Complex Defaults**: Keep default expressions simple for better readability
+- **Consider Type Compatibility**: Ensure main and default values are of compatible types
+- **Chain Carefully**: When chaining multiple defaults, ensure the logic is clear and maintainable
+
+Notes
+=====
+
+- The default value operator does **not** cause compilation errors when the main value is missing
+- Unlike the ``assert`` operator, it provides graceful fallback rather than failing fast
+- The operator works with all JsonQL types including primitives, arrays, and objects
+- Both operands are expressions and can include function calls, calculations, or complex paths
+
+Examples
+========
+
+**Examples.json** file below demonstrate using `assert` operator
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples\Examples.json</IncludedFilePlaceHolder>
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Examples.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+   
+The code snippet shows how the JSON file **Examples.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Examples\Examples.cs.snippet</IncludedFilePlaceHolder>

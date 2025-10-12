@@ -59,7 +59,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../TextMatchingOperators/index.html">Text Matching Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ValueIsNullOrUndefinedCheckOperators/index.html">Value is Null or Undefined Check Operators</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Other Operators</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">‘assert’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">‘assert’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../DefaultValue/index.html">Default Value ‘:’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
@@ -102,9 +112,221 @@
              
   <section id="assert">
 <h1>‘assert’<a class="headerlink" href="#assert" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id2">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id3">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#implementation-details" id="id6">Implementation Details</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id7">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id8">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id9">Examples</a></p></li>
 </ul>
+</nav>
+<p>The <cite>assert</cite> unary operator is a postfix operator used in JsonQL to validate that a value is not null or undefined. When applied to an expression, it ensures the expression evaluates to a non-null and defined value. If the assertion fails (i.e., the value is null or undefined), the compilation stops with an assertion error.</p>
+<p><strong>Operator Priority</strong>: 300</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>&lt;expression&gt; assert</p>
+<p>The <cite>assert</cite> operator is placed after the expression it validates.</p>
+</section>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The expression whose result should be validated as non-null and defined</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>assert</cite> operator follows these evaluation rules:
+1. <strong>Successful Assertion</strong>: If the operand evaluates to a non-null, defined value, the assertion succeeds and returns the original value (i.e., numeric, string, boolean, DateTime or Date value).
+2. <strong>Failed Assertion</strong>: If the operand evaluates to <cite>null</cite> or is undefined (e.g., a missing JSON property), the compilation fails with the error message: <cite>“Value not-null assertion failed”</cite>
+3. <strong>Propagates Errors</strong>: If the operand expression contains evaluation errors, those errors are propagated without adding assertion errors
+4. <strong>Type Preservation</strong>: The <cite>assert</cite> operator preserves the type of the operand (boolean, string, double, DateTime, etc.)</p>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <cite>assert</cite> operator is particularly useful for:
+- <strong>Validating Required Fields</strong>: Ensuring that required JSON properties exist and are not null
+- <strong>Data Validation</strong>: Enforcing data integrity constraints during compilation
+- <strong>Filtering with Guarantees</strong>: Using in <cite>Where</cite> clauses to ensure all filtered items have required properties
+- <strong>Debugging</strong>: Identifying missing or null values early in the compilation process</p>
+</section>
+<section id="implementation-details">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Implementation Details</a><a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>The <cite>assert</cite> operator is implemented through a family of specialized classes:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorFunction.cs">AssertOperatorFunction</a>: Generic implementation for any JSON function</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorBooleanFunction.cs">AssertOperatorBooleanFunction</a>: Specialized for boolean expressions</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorStringFunction.cs">AssertOperatorStringFunction</a>: Specialized for string expressions</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorDoubleFunction.cs">AssertOperatorDoubleFunction</a>: Specialized for numeric expressions</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorDateTimeFunction.cs">AssertOperatorDateTimeFunction</a>: Specialized for DateTime expressions</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Use for Required Data</strong>: Apply <cite>assert</cite> to fields that must exist for your logic to work correctly</p></li>
+<li><p><strong>Early Validation</strong>: Place assertions early in expression chains to catch issues before complex processing</p></li>
+<li><p><strong>Avoid Over-Use</strong>: Don’t assert every value; use only where null/undefined would indicate a data problem</p></li>
+<li><p><strong>Combine with Comparisons</strong>: The <cite>assert</cite> operator works seamlessly with comparison operators (<cite>==</cite>, <cite>&gt;=</cite>, etc.)</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The <cite>assert</cite> operator causes compilation to stop immediately on the first assertion failure</p></li>
+<li><p>It provides stronger guarantees than null-coalescing or conditional operators by failing fast</p></li>
+<li><p>The operator is evaluated as part of the expression compilation phase, not at runtime</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p><strong>Examples.json</strong> file below demonstrate using <cite>assert</cite> operator</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Examples.json</strong> in example below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Examples/data.html"><span class="doc">Data.json</span></a></p></li>
+</ul>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Assert_Succeeds_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Int1 assert == 15)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Assert_Succeeds_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Text1 assert starts with &#39;Text&#39;)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comments_Assert_Succeeds_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;e.Age assert&#39; succeeds for employees since &#39;Age&#39; is not null or undefined for all employees&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Assert_Succeeds_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Age assert &gt;= 40))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comments_No_Assert_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some values e.Salary are null or undefined (keys are missing).&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Comments_No_Assert_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;e.Salary &gt;= 100000&#39; will be false for all employees with missing or null Salary value&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;No_Assert&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Salary &gt;= 100000))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comments_AssertFails_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Some values e.Salary are null or undefined (keys are missing).&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Comments_AssertFails_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check &#39;e.Salary assert &gt;= 1000000&#39; will fail the compilation (compilation will stop with assertion errors)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Comments_AssertFails_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on first employee with missing or null value for &#39;Salary&#39; (e.g., employee with Id=100000001 which has no &#39;Salary&#39; key)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AssertFails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Salary assert &gt;= 100000))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Examples.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<details>
+<summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Assert_Succeeds_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Assert_Succeeds_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Comments_Assert_Succeeds_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;&#39;e.Age assert&#39; succeeds for employees since &#39;Age&#39; is not null or undefined for all employees&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Assert_Succeeds_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000001</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">45</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000003</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Michael Brown&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;90001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">50</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000004</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Emily Davis&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;321 Elm Drive&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Houston&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;77001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">92000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">42</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;Comments_No_Assert_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Some values e.Salary are null or undefined (keys are missing).&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Comments_No_Assert_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;&#39;e.Salary &gt;= 100000&#39; will be false for all employees with missing or null Salary value&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;No_Assert&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000003</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Michael Brown&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;789 Pine Lane&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Los Angeles&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;90001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">50</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;Comments_AssertFails_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Some values e.Salary are null or undefined (keys are missing).&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Comments_AssertFails_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Check &#39;e.Salary assert &gt;= 1000000&#39; will fail the compilation (compilation will stop with assertion errors)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Comments_AssertFails_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;on first employee with missing or null value for &#39;Salary&#39; (e.g., employee with Id=100000001 which has no &#39;Salary&#39; key)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AssertFails&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Salary assert &gt;= 100000))&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.Compilation.CompilationErrorItem, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;JsonTextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LineInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQL.JsonObjects.JsonLineInfo, JsonQL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LineNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;LinePosition&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ErrorMessage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value not-null assertion failed&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/><p>The screenshot below shows the error details logged using the error data in <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a> serialized to <strong>Result.json</strong> above.</p>
+<blockquote>
+<div><img alt="../../../_images/assert-error-logs.jpg" src="../../../_images/assert-error-logs.jpg" />
+</div></blockquote>
+<p>The code snippet shows how the JSON file <strong>Examples.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">dataJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">));</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Examples&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Examples.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">dataJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

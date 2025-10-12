@@ -64,7 +64,18 @@
 <li class="toctree-l3"><a class="reference internal" href="../JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">‘typeof’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">‘typeof’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -102,9 +113,214 @@
              
   <section id="typeof">
 <h1>‘typeof’<a class="headerlink" href="#typeof" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id2">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id3">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#implementation-details" id="id6">Implementation Details</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id7">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id8">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id9">Examples</a></p></li>
 </ul>
+</nav>
+<p>The <cite>typeof</cite> unary operator is a prefix operator used in JsonQL to determine the type of a value or expression result. It returns a string representation of the type, which can be used for type checking, validation, or conditional logic.</p>
+<p><strong>Operator Priority</strong>: 100</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>typeof &lt;expression&gt;</p>
+<p>The <cite>typeof</cite> operator is placed before the expression whose type should be determined.</p>
+</section>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operand 1</strong>:</dt><dd><ul>
+<li><p>Type: any valid JsonQL expression (including invalid path).</p></li>
+<li><p>Description: The expression whose result type should be evaluated</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<p>The <cite>typeof</cite> operator returns one of the following string values representing the type:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type String</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code></p></td>
+<td><p>Value is missing or undefined (e.g., non-existent JSON path)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;JsonNull&quot;</span></code></p></td>
+<td><p>Value is JSON <code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Number&quot;</span></code></p></td>
+<td><p>Numeric value (integer or floating-point)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;String&quot;</span></code></p></td>
+<td><p>String value</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Boolean&quot;</span></code></p></td>
+<td><p>Boolean value (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;DateTime&quot;</span></code></p></td>
+<td><p>DateTime value (result of DateTime functions)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;JsonObject&quot;</span></code></p></td>
+<td><p>JSON object</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;JsonArray&quot;</span></code></p></td>
+<td><p>JSON array</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Collection&quot;</span></code></p></td>
+<td><p>Collection result from functions like <code class="docutils literal notranslate"><span class="pre">Where</span></code>, <code class="docutils literal notranslate"><span class="pre">Select</span></code>, etc.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <cite>typeof</cite> operator follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Missing Values</strong>: Returns <code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code> for non-existent properties or paths</p></li>
+<li><p><strong>Null Values</strong>: Returns <code class="docutils literal notranslate"><span class="pre">&quot;JsonNull&quot;</span></code> for explicit JSON <code class="docutils literal notranslate"><span class="pre">null</span></code> values</p></li>
+<li><p><strong>Primitive Types</strong>: Returns the appropriate type string for numbers, strings, and booleans</p></li>
+<li><p><strong>Complex Types</strong>: Distinguishes between <code class="docutils literal notranslate"><span class="pre">&quot;JsonArray&quot;</span></code> (arrays in JSON) and <code class="docutils literal notranslate"><span class="pre">&quot;Collection&quot;</span></code> (query results)</p></li>
+<li><p><strong>Function Results</strong>: Returns the type of the evaluated function result, not the function itself</p></li>
+<li><p><strong>Error Propagation</strong>: If the operand expression has errors, those errors are propagated</p></li>
+<li><p><strong>Empty Collections</strong>: Returns <code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code> for empty collections, not <code class="docutils literal notranslate"><span class="pre">&quot;Collection&quot;</span></code></p></li>
+</ol>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <cite>typeof</cite> operator is useful for:</p>
+<ul class="simple">
+<li><p><strong>Type Validation</strong>: Ensuring values have expected types before processing</p></li>
+<li><p><strong>Conditional Logic</strong>: Branching based on value types</p></li>
+<li><p><strong>Debugging</strong>: Understanding what type an expression evaluates to</p></li>
+<li><p><strong>Type Guards</strong>: Checking if a value exists before using it (checking for <code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code>)</p></li>
+<li><p><strong>Polymorphic Processing</strong>: Handling different value types appropriately</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Implementation Details</a><a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>The <cite>typeof</cite> operator is implemented through the <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/TypeOfJsonFunctionResultFunction.cs">TypeOfJsonFunctionResultFunction</a> class, which:</p>
+<ul class="simple">
+<li><p>Evaluates the operand expression</p></li>
+<li><p>Determines the result type based on the value’s characteristics</p></li>
+<li><p>Returns the appropriate type string</p></li>
+<li><p>Handles special cases like collections, parsed values, and undefined values</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Use for Type Safety</strong>: Check types before performing type-specific operations</p></li>
+<li><p><strong>Distinguish Null from Undefined</strong>: Use <cite>typeof</cite> to differentiate between <code class="docutils literal notranslate"><span class="pre">&quot;JsonNull&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code></p></li>
+<li><p><strong>Understand Array vs Collection</strong>: Be aware that JSON arrays and query collections have different type strings</p></li>
+<li><p><strong>Combine with Conditionals</strong>: Use <cite>typeof</cite> in conditional expressions to handle different types appropriately</p></li>
+<li><p><strong>Check Function Results</strong>: Use <cite>typeof</cite> to verify that functions return expected types</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The <cite>typeof</cite> operator always returns a string, never <code class="docutils literal notranslate"><span class="pre">null</span></code> or undefined</p></li>
+<li><p>String comparisons with type names are case-sensitive (use <code class="docutils literal notranslate"><span class="pre">'Number'</span></code>, not <code class="docutils literal notranslate"><span class="pre">'number'</span></code>)</p></li>
+<li><p>The operator evaluates the expression first, then determines its type</p></li>
+<li><p>For empty collections, <cite>typeof</cite> returns <code class="docutils literal notranslate"><span class="pre">&quot;Undefined&quot;</span></code>, not <code class="docutils literal notranslate"><span class="pre">&quot;Collection&quot;</span></code></p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p><strong>Examples.json</strong> file below demonstrate using <cite>assert</cite> operator</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Examples.json</strong> in example below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Examples/data.html"><span class="doc">Data.json</span></a></p></li>
+</ul>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_MissingValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.MissingValue == &#39;Undefined&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_DoubleJsonValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Double1 == &#39;Number&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_DoubleFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof (parent.Double1 + 10) == &#39;Number&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_NullValueInJsonObject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.NullValue1 == &#39;JsonNull&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_NullValueInArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Array1[1] == &#39;JsonNull&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_Array1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Array1 == &#39;JsonArray&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_CollectionType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Array1.Where(x =&gt; x &gt; 0) == &#39;Collection&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_DateTime1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.DateTime1 == &#39;String&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_DateTimeFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof ToDateTime(parent.DateTime1) == &#39;DateTime&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_Boolean_True&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Boolean_True == &#39;Boolean&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_Boolean_False&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.Boolean_False == &#39;Boolean&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_BooleanFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof (parent.Double1 &gt; 1) == &#39;Boolean&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_String1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof parent.String1 == &#39;String&#39;)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TypeOf_StringFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(typeof Concatenate(parent.String1, &#39;_&#39;, parent.Array1[0]) == &#39;String&#39;)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Examples.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<details>
+<summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_MissingValue&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_DoubleJsonValue&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_DoubleFunction&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_NullValueInJsonObject&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_NullValueInArray&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_Array1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_CollectionType&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_DateTime1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_DateTimeFunction&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_Boolean_True&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_Boolean_False&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_BooleanFunction&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_String1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TypeOf_StringFunction&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/><p>The code snippet shows how the JSON file <strong>Examples.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">dataJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Data.json&quot;</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Examples.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">dataJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

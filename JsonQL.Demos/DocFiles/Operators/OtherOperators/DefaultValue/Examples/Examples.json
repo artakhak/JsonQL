@@ -1,0 +1,43 @@
+{
+  "Object1": {
+    "DateTime1": "2022-05-23T18:25:43.511Z",
+    "Number1": 15.39,
+    "TrueText": "true",
+    "TrueValue": true,
+    "FalseText": "false",
+    "FalseValue": false
+
+  },
+  "Array1": [
+    "x",
+    "2022-05-23T18:25:43.511Z",
+    5,
+    [ 1, 2, 3 ],
+    6,
+    "2022-05-23T18:26:43.511Z",
+    true,
+    "true",
+    false,
+    "false"
+  ],
+  
+  "DefaultValueOfValidValueIsOriginalValue_DateTime": "$value(ToDateTime(Object1.DateTime1):ToDateTime('2000-01-01T00:00:00.000Z') == ToDateTime(Object1.DateTime1))",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime1": "$value(ToDateTime(Object1.DateTime1_Invalid):ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1))",
+  "DefaultValueOfInvalidValueIsDefaultValue_DateTime2": "$value(Object1.DateTime1_Invalid:ToDateTime(Object1.DateTime1) == ToDateTime(Object1.DateTime1))",
+
+  "DefaultValueOfValidValueIsOriginalValue_Double": "$value(Object1.Number1:17.26 == Object1.Number1)",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double1": "$value(ToDouble(Object1.Number1_Invalid):Object1.Number1 == Object1.Number1)",
+  "DefaultValueOfInvalidValueIsDefaultValue_Double2": "$value(Object1.Number1_Invalid:Object1.Number1 == Object1.Number1)",
+
+  "DefaultValueOfValidValueIsOriginalValue_Boolean": "$value(Object1.TrueValue:false == true)",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean1": "$value(ToBoolean(Object1.TrueValue_Invalid):ToBoolean(Object1.TrueText) == true)",
+  "DefaultValueOfInvalidValueIsDefaultValue_Boolean2": "$value(Object1.TrueValue_Invalid:ToBoolean(Object1.TrueText) == true)",
+
+  "DefaultValueOfValidValueIsOriginalValue_String": "$value(Array1[0]:'y' == 'x')",
+  "DefaultValueOfInvalidValueIsDefaultValue_String": "$value(Array1_Invalid[0]:'y' == 'y')",
+
+  "DefaultValueOfAnyType": "$value(Array1_Invalid[0]:Array1[0] == 'x')",
+
+  "Comment_ArrayInitializedFromDefaultArray": "NonExistentArray:Array1[3] defaults to Array1[3] which is an array [1, 2, 3]",
+  "ArrayInitializedFromDefaultArray": "$value(NonExistentArray:Array1[3])"
+}

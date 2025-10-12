@@ -1,0 +1,16 @@
+{
+  "TypeOf_MissingValue": "$value(typeof parent.MissingValue == 'Undefined')",
+  "TypeOf_DoubleJsonValue": "$value(typeof parent.Double1 == 'Number')",
+  "TypeOf_DoubleFunction": "$value(typeof (parent.Double1 + 10) == 'Number')",
+  "TypeOf_NullValueInJsonObject": "$value(typeof parent.NullValue1 == 'JsonNull')",
+  "TypeOf_NullValueInArray": "$value(typeof parent.Array1[1] == 'JsonNull')",
+  "TypeOf_Array1": "$value(typeof parent.Array1 == 'JsonArray')",
+  "TypeOf_CollectionType": "$value(typeof parent.Array1.Where(x => x > 0) == 'Collection')",
+  "TypeOf_DateTime1": "$value(typeof parent.DateTime1 == 'String')",
+  "TypeOf_DateTimeFunction": "$value(typeof ToDateTime(parent.DateTime1) == 'DateTime')",
+  "TypeOf_Boolean_True": "$value(typeof parent.Boolean_True == 'Boolean')",
+  "TypeOf_Boolean_False": "$value(typeof parent.Boolean_False == 'Boolean')",
+  "TypeOf_BooleanFunction": "$value(typeof (parent.Double1 > 1) == 'Boolean')",
+  "TypeOf_String1": "$value(typeof parent.String1 == 'String')",
+  "TypeOf_StringFunction": "$value(typeof Concatenate(parent.String1, '_', parent.Array1[0]) == 'String')"
+}

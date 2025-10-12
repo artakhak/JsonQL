@@ -6,4 +6,106 @@
    :local:
    :depth: 2
    
-- TODO: Add contents here
+The `assert` unary operator is a postfix operator used in JsonQL to validate that a value is not null or undefined. When applied to an expression, it ensures the expression evaluates to a non-null and defined value. If the assertion fails (i.e., the value is null or undefined), the compilation stops with an assertion error.
+
+**Operator Priority**: 300
+
+Syntax
+======
+
+<expression> assert
+
+The `assert` operator is placed after the expression it validates.
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: The expression whose result should be validated as non-null and defined
+
+Evaluation Rules
+================
+
+The `assert` operator follows these evaluation rules:
+1. **Successful Assertion**: If the operand evaluates to a non-null, defined value, the assertion succeeds and returns the original value (i.e., numeric, string, boolean, DateTime or Date value).
+2. **Failed Assertion**: If the operand evaluates to `null` or is undefined (e.g., a missing JSON property), the compilation fails with the error message: `"Value not-null assertion failed"`
+3. **Propagates Errors**: If the operand expression contains evaluation errors, those errors are propagated without adding assertion errors
+4. **Type Preservation**: The `assert` operator preserves the type of the operand (boolean, string, double, DateTime, etc.)
+
+Use Cases
+=========
+
+The `assert` operator is particularly useful for:
+- **Validating Required Fields**: Ensuring that required JSON properties exist and are not null
+- **Data Validation**: Enforcing data integrity constraints during compilation
+- **Filtering with Guarantees**: Using in `Where` clauses to ensure all filtered items have required properties
+- **Debugging**: Identifying missing or null values early in the compilation process
+
+Implementation Details
+======================
+
+The `assert` operator is implemented through a family of specialized classes:
+    - `AssertOperatorFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorFunction.cs>`_: Generic implementation for any JSON function
+    - `AssertOperatorBooleanFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorBooleanFunction.cs>`_: Specialized for boolean expressions
+    - `AssertOperatorStringFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorStringFunction.cs>`_: Specialized for string expressions
+    - `AssertOperatorDoubleFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorDoubleFunction.cs>`_: Specialized for numeric expressions
+    - `AssertOperatorDateTimeFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AssertFunctions/AssertOperatorDateTimeFunction.cs>`_: Specialized for DateTime expressions
+
+Best Practices
+==============
+
+- **Use for Required Data**: Apply `assert` to fields that must exist for your logic to work correctly
+- **Early Validation**: Place assertions early in expression chains to catch issues before complex processing
+- **Avoid Over-Use**: Don't assert every value; use only where null/undefined would indicate a data problem
+- **Combine with Comparisons**: The `assert` operator works seamlessly with comparison operators (`==`, `>=`, etc.)
+
+Notes
+=====
+
+- The `assert` operator causes compilation to stop immediately on the first assertion failure
+- It provides stronger guarantees than null-coalescing or conditional operators by failing fast
+- The operator is evaluated as part of the expression compilation phase, not at runtime
+
+Examples
+========
+
+**Examples.json** file below demonstrate using `assert` operator
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Examples.json** in example below:
+    
+    - :doc:`Examples/data`
+
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples\Examples.json</IncludedFilePlaceHolder>
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Examples.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Examples\Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+The screenshot below shows the error details logged using the error data in `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_ serialized to **Result.json** above.
+
+ .. image:: Examples/assert-error-logs.jpg
+
+   
+The code snippet shows how the JSON file **Examples.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Examples\Examples.cs.snippet</IncludedFilePlaceHolder>

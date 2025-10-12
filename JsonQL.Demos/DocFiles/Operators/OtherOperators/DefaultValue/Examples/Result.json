@@ -1,0 +1,57 @@
+{
+  "CompiledJsonFiles":[
+    {
+      "TextIdentifier": "Examples",
+      "CompiledParsedValue":
+      {
+        "Object1": {
+          "DateTime1":  "2022-05-23T18:25:43.511Z",
+          "Number1":  15.39,
+          "TrueText":  "true",
+          "TrueValue":  true,
+          "FalseText":  "false",
+          "FalseValue":  false
+        },
+        "Array1": [
+          "x",
+          "2022-05-23T18:25:43.511Z",
+          5,
+          [
+            1,
+            2,
+            3
+          ],
+          6,
+          "2022-05-23T18:26:43.511Z",
+          true,
+          "true",
+          false,
+          "false"
+        ],
+        "DefaultValueOfValidValueIsOriginalValue_DateTime":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_DateTime1":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_DateTime2":  true,
+        "DefaultValueOfValidValueIsOriginalValue_Double":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_Double1":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_Double2":  true,
+        "DefaultValueOfValidValueIsOriginalValue_Boolean":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_Boolean1":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_Boolean2":  true,
+        "DefaultValueOfValidValueIsOriginalValue_String":  true,
+        "DefaultValueOfInvalidValueIsDefaultValue_String":  true,
+        "DefaultValueOfAnyType":  true,
+        "Comment_ArrayInitializedFromDefaultArray":  "NonExistentArray:Array1[3] defaults to Array1[3] which is an array [1, 2, 3]",
+        "ArrayInitializedFromDefaultArray": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "CompilationErrors":
+  {
+    "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+    "$values": []
+  }
+}
