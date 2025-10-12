@@ -1,0 +1,54 @@
+=============
+'is not null'
+=============
+
+.. contents::
+   :local:
+   :depth: 2
+   
+The unary postfix operator 'is not null' is used to check whether a value is not explicitly set to JSON null in JsonQL expressions. It returns a boolean result (`true` or `false`).
+    .. note::
+        This operator checks that a value is not a JSON null value. Note that invalid paths and missing values are also considered "not null". To check for valid/existing values, use the :doc:`../IsNotUndefined/index` operator instead.
+
+**Operator Priority**: 300
+
+Operator Operands
+=================
+
+- **Operand 1**:    
+    - Type: any valid JsonQL expression (including invalid path).
+    - Description: The value to be checked for non-null status.
+
+Evaluation Rules
+================
+
+The `is not null` operator follows these evaluation rules:
+
+- **JSON null value**: Returns `false` if the operand evaluates to a JSON null value
+- **Non-null values**: Returns `true` for any non-null value (including numbers, strings, booleans, objects, and arrays)
+- **Invalid paths**: Returns `true` for invalid paths (they are considered "not null")
+- **Missing values from queries**: Returns `true` even when a query returns no results (e.g., `First()` with no matches)
+
+.. important::
+    The `is not null` operator returns `true` for:
+    
+    - All non-null JSON values (numbers, strings, booleans, objects, arrays)
+    - Invalid or non-existent paths
+    - Empty query results
+    - Undefined values
+    
+    It only returns `false` when the value is explicitly JSON null. Use the `is not undefined` operator if you need to verify that a path or query result actually exists.
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    {
+      "Comment_Operator_is_not_null_1": "(invalid.path is not null) evaluates to true.",
+      "Operator_is_not_null_1": "$value(invalid.path is not null)",
+      "Operator_is_not_null_2": "$value(NullValue is not null == false)",
+      "Operator_is_not_null_3": "$value(Int1 is not null)",
+      "Operator_is_not_null_5": "$value(Companies.Select(c => c.Employees).First() is not null)",
+      "Operator_is_not_null_6": "$value(Companies.Select(c => c.Employees).First(e => e.Age > 200) is not null)"
+    }

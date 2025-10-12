@@ -1,0 +1,19 @@
+=======================
+Text Matching Operators
+=======================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+Text mathing operators are used to check if text matches some pattern (e.g., starts, ends with another text, passes regex expression test, etc.)
+
+.. note::
+    Section :doc:`Examples/index` has examples for every arithmetic operator.
+
+.. toctree::
+   
+   Contains/index.rst
+   StartsWith/index.rst
+   EndsWith/index.rst
+   Examples/index.rst

@@ -1,0 +1,227 @@
+===================
+Arrow Function '=>'
+===================
+
+.. contents::
+   :local:
+   :depth: 2
+
+The lambda operator ``=>`` is a binary operator used in JsonQL to define anonymous functions (lambda expressions) that specify how collection elements should be processed. It is primarily used with collection functions like ``Where``, ``Select``, ``OrderBy``, and other functions that operate on sequences of values.
+   
+**Operator Priority**: 10000
+
+
+Syntax
+======
+
+<parameter> => <expression>
+
+The ``=>`` operator separates the parameter declaration (left side) from the expression body (right side).
+
+Operator Operands
+=================
+
+- **Left Operand (Parameter)**:    
+    - Type: Parameter identifier (variable name)
+    - Description: The parameter name that represents each element in the collection being processed. This identifier can be used within the expression body to reference the current element.
+
+- **Right Operand (Expression Body)**:    
+    - Type: Any valid JsonQL expression
+    - Description: The expression that is evaluated for each element in the collection. This expression can reference the parameter defined on the left side.
+
+Common Usage Patterns
+======================
+
+Lambda expressions are typically used within collection functions:
+
+**With Where Function**
+::
+
+    collection.Where(x => x > 10)
+
+**With Select Function**
+::
+
+    collection.Select(item => item.Property)
+
+**With OrderBy Function**
+::
+
+    collection.OrderBy(x => x.Name)
+
+**With Any Function**
+::
+
+    collection.Any(element => element.Status == 'Active')
+
+Evaluation Rules
+================
+
+The lambda operator follows these evaluation rules:
+
+1. **Parameter Scope**: The parameter is only available within the lambda expression body
+2. **Deferred Execution**: The lambda expression is not evaluated immediately; it's evaluated when the collection function processes each element
+3. **Element Context**: Within the lambda body, the parameter represents the current element being processed
+4. **Type Inference**: The parameter type is inferred from the collection being processed
+5. **Expression Evaluation**: The expression body is evaluated once for each element in the collection
+
+Use Cases
+=========
+
+The lambda operator is essential for:
+
+- **Filtering Collections**: Using ``Where`` to filter elements based on conditions
+- **Transforming Data**: Using ``Select`` to project or transform collection elements
+- **Sorting**: Using ``OrderBy`` or ``OrderByDescending`` to specify sort criteria
+- **Aggregation**: Using functions like ``Any``, ``All``, or ``Count`` with conditions
+- **Complex Queries**: Building sophisticated data processing pipelines
+- **Property Access**: Navigating nested properties for each collection element
+
+Examples
+========
+
+Filtering with Where
+--------------------
+
+.. code-block:: json
+
+    {
+      "AdultEmployees": "$value(Employees.Where(e => e.Age >= 18))"
+    }
+
+Filters employees to include only those 18 years or older. The lambda ``e => e.Age >= 18`` is evaluated for each employee.
+
+Projection with Select
+----------------------
+
+.. code-block:: json
+
+    {
+      "EmployeeNames": "$value(Employees.Select(e => e.Name))"
+    }
+
+Extracts just the names from the employee collection. The lambda ``e => e.Name`` returns the name property of each employee.
+
+Complex Filtering
+-----------------
+
+.. code-block:: json
+
+    {
+      "HighEarners": "$value(Employees.Where(emp => emp.Salary > 100000 && emp.Department == 'Engineering'))"
+    }
+
+Filters employees based on multiple conditions using a more complex lambda expression.
+
+Nested Property Access
+----------------------
+
+.. code-block:: json
+
+    {
+      "CitiesFromAddresses": "$value(Employees.Select(person => person.Address.City))"
+    }
+
+Navigates nested properties within the lambda to extract city names from employee addresses.
+
+Sorting with OrderBy
+--------------------
+
+.. code-block:: json
+
+    {
+      "EmployeesByAge": "$value(Employees.OrderBy(e => e.Age))"
+    }
+
+Sorts employees by age. The lambda ``e => e.Age`` specifies which property to use for sorting.
+
+Conditional Checks
+------------------
+
+.. code-block:: json
+
+    {
+      "HasAdults": "$value(Employees.Any(e => e.Age >= 18))"
+    }
+
+Checks if any employee is 18 or older. Returns ``true`` or ``false``.
+
+Chaining Operations
+-------------------
+
+.. code-block:: json
+
+    {
+      "TopEarnerNames": "$value(Employees.Where(e => e.Salary > 100000).OrderByDescending(e => e.Salary).Select(e => e.Name))"
+    }
+
+Chains multiple operations, each using lambda expressions to filter, sort, and project the data.
+
+Lambda with Calculations
+------------------------
+
+.. code-block:: json
+
+    {
+      "AnnualBonuses": "$value(Employees.Select(e => e.Salary * 0.1))"
+    }
+
+Calculates a value for each element. The lambda performs arithmetic on employee salaries.
+
+Best Practices
+==============
+
+- **Use Descriptive Parameter Names**: Choose parameter names that make the lambda's purpose clear (e.g., ``employee``, ``item``, ``x``)
+- **Keep Expressions Simple**: Complex logic in lambda expressions can reduce readability
+- **Avoid Side Effects**: Lambda expressions should be pure functions without side effects
+- **Consider Performance**: Lambda expressions are evaluated for each element, so expensive operations can impact performance
+- **Use Short Names for Simple Operations**: Single-letter parameters (``x``, ``e``, ``i``) are acceptable for simple, obvious operations
+- **Chain Carefully**: While chaining is powerful, too many operations can make expressions hard to understand
+
+Notes
+=====
+
+- Lambda expressions create a new scope for the parameter variable
+- The parameter is read-only within the lambda expression
+- Lambda expressions are a core feature for working with collections in JsonQL
+- The operator enables functional programming patterns in JSON queries
+- Multiple parameters are not supported; each lambda takes exactly one parameter
+- Lambda expressions cannot modify the original collection; they produce new results
+
+Advanced Examples
+=================
+
+Filtering with Multiple Conditions
+-----------------------------------
+
+.. code-block:: json
+
+    {
+      "QualifiedCandidates": "$value(Applicants.Where(a => a.Experience >= 5 && a.Education == 'Masters' && a.Skills contains 'C#'))"
+    }
+
+Uses complex boolean logic within the lambda to filter based on multiple criteria.
+
+Nested Collection Processing
+-----------------------------
+
+.. code-block:: json
+
+    {
+      "AllPhoneNumbers": "$value(Employees.Select(e => e.ContactInfo.PhoneNumbers.Where(p => p.Type == 'Mobile')))"
+    }
+
+Uses nested lambda expressions to process collections within collections.
+
+Conditional Expressions
+-----------------------
+
+.. code-block:: json
+
+    {
+      "EmployeeCategories": "$value(Employees.Select(e => e.Age >= 18 : 'Adult' : 'Minor'))"
+    }
+
+Combines lambda with the default value operator to create conditional transformations.
+
+

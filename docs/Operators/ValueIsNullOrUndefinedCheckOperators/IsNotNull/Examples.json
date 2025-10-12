@@ -1,0 +1,8 @@
+{
+  "Comment_Operator_is_not_null_1": "(invalid.path is not null) evaluates to true.",
+  "Operator_is_not_null_1": "$value(invalid.path is not null)",
+  "Operator_is_not_null_2": "$value(NullValue is not null == false)",
+  "Operator_is_not_null_3": "$value(Int1 is not null)",
+  "Operator_is_not_null_5": "$value(Companies.Select(c => c.Employees).First() is not null)",
+  "Operator_is_not_null_6": "$value(Companies.Select(c => c.Employees).First(e => e.Age > 200) is not null)"
+}

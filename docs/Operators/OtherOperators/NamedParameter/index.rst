@@ -1,0 +1,291 @@
+====================
+Named Parameter '->'
+====================
+
+.. contents::
+   :local:
+   :depth: 2
+   
+The named parameter operator ``->`` is a binary operator used in JsonQL to explicitly specify parameter names when calling functions. It creates a mapping between a parameter name and its corresponding value, enabling named parameter syntax for function calls.
+
+.. note::
+    Also, see section :doc:`../../../OptionalAndNamedParameters/index` for more details on using operator `->` to specify values for optional parameters or to specify parameter names explicitly.
+
+    
+**Operator Priority**: 20100
+
+Syntax
+======
+
+<parameter_name> -> <value_expression>
+
+The ``->`` operator maps a parameter name (left side) to a value expression (right side).
+
+Operator Operands
+=================
+
+- **Left Operand (Parameter Name)**:    
+    - Type: Identifier
+    - Description: The name of the function parameter as defined in the function signature. This must match a valid parameter name of the function being called.
+
+- **Right Operand (Value Expression)**:    
+    - Type: Any valid JsonQL expression
+    - Description: The value or expression to be passed as the argument for the named parameter.
+
+Named Parameter Structure
+==========================
+
+Named parameters in JsonQL follow this pattern when calling functions:
+
+::
+
+    FunctionName(param1 -> value1, param2 -> value2, ...)
+
+Where:
+
+- ``param1``, ``param2`` are parameter names defined by the function
+- ``value1``, ``value2`` are the values or expressions being passed
+
+Evaluation Rules
+================
+
+The named parameter operator follows these evaluation rules:
+
+1. **Parameter Matching**: The parameter name must match a parameter defined in the function signature
+2. **Order Independence**: Named parameters can be specified in any order
+3. **Mixed Syntax**: Named and positional parameters can be mixed in a single function call (positional must come first)
+4. **Expression Evaluation**: The right operand is evaluated before being passed to the function
+5. **Type Checking**: The value type must be compatible with the parameter's expected type
+6. **Optional Parameters**: Named parameters can be used to skip optional parameters and specify later ones
+
+Advantages of Named Parameters
+===============================
+
+Using named parameters provides several benefits:
+
+- **Clarity**: Makes it explicit which value corresponds to which parameter
+- **Order Independence**: Parameters can be specified in any order when all are named
+- **Optional Parameters**: Allows skipping optional parameters easily
+- **Self-Documenting**: Code is more readable and self-explanatory
+- **Refactoring Safety**: Less prone to errors when parameter order changes
+
+Use Cases
+=========
+
+The named parameter operator is useful for:
+
+- **Functions with Many Parameters**: Making calls to functions with multiple parameters more readable
+- **Functions with Optional Parameters**: Specifying only the parameters you need
+- **Improving Readability**: Making code more self-documenting
+- **Avoiding Position Errors**: Preventing mistakes when parameter order is unclear
+- **Complex Function Calls**: Clarifying what each argument represents in complex expressions
+
+Examples
+========
+
+Basic Named Parameter Usage
+----------------------------
+
+.. code-block:: json
+
+    {
+      "FormattedDate": "$value(FormatDateTime(dateTime -> Now(), format -> 'yyyy-MM-dd'))"
+    }
+
+Calls the ``FormatDateTime`` function with named parameters, making it clear which value is the date and which is the format.
+
+Multiple Named Parameters
+--------------------------
+
+.. code-block:: json
+
+    {
+      "Substring": "$value(Substring(text -> 'Hello World', startIndex -> 0, length -> 5))"
+    }
+
+Uses multiple named parameters to extract a substring, explicitly showing what each argument represents.
+
+Order Independence
+------------------
+
+.. code-block:: json
+
+    {
+      "Result1": "$value(Divide(dividend -> 100, divisor -> 5))",
+      "Result2": "$value(Divide(divisor -> 5, dividend -> 100))"
+    }
+
+Both calls produce the same result because named parameters can be specified in any order.
+
+Skipping Optional Parameters
+-----------------------------
+
+.. code-block:: json
+
+    {
+      "RoundedValue": "$value(Round(value -> 3.14159, decimals -> 2))"
+    }
+
+If ``Round`` has other optional parameters, they can be omitted when using named parameters.
+
+Mixed Named and Positional
+---------------------------
+
+.. code-block:: json
+
+    {
+      "Result": "$value(SomeFunction(arg1, arg2, optionalParam -> value3))"
+    }
+
+Combines positional arguments (``arg1``, ``arg2``) with a named argument (``optionalParam``). Positional arguments must come first.
+
+Complex Expressions as Values
+------------------------------
+
+.. code-block:: json
+
+    {
+      "FilteredData": "$value(Filter(collection -> Employees, predicate -> e => e.Age > 30))"
+    }
+
+Uses named parameters with complex expressions, including a lambda expression as a parameter value.
+
+Improving Readability
+----------------------
+
+**Without Named Parameters:**
+
+.. code-block:: json
+
+    {
+      "Result": "$value(CreatePerson('John', 'Doe', 30, 'john@example.com', 'New York'))"
+    }
+
+**With Named Parameters:**
+
+.. code-block:: json
+
+    {
+      "Result": "$value(CreatePerson(firstName -> 'John', lastName -> 'Doe', age -> 30, email -> 'john@example.com', city -> 'New York'))"
+    }
+
+The named parameter version is much more readable and self-documenting.
+
+Date/Time Functions
+-------------------
+
+.. code-block:: json
+
+    {
+      "CustomDate": "$value(CreateDateTime(year -> 2024, month -> 12, day -> 25, hour -> 10, minute -> 30, second -> 0))"
+    }
+
+Named parameters are especially useful for functions with many parameters of the same type.
+
+String Manipulation
+-------------------
+
+.. code-block:: json
+
+    {
+      "ReplacedText": "$value(Replace(input -> 'Hello World', oldValue -> 'World', newValue -> 'JsonQL'))"
+    }
+
+Makes it clear what is being replaced and what the replacement value is.
+
+Mathematical Functions
+----------------------
+
+.. code-block:: json
+
+    {
+      "Power": "$value(Pow(base -> 2, exponent -> 10))"
+    }
+
+Clarifies which value is the base and which is the exponent.
+
+Best Practices
+==============
+
+- **Use for Clarity**: Employ named parameters when function purpose isn't immediately obvious
+- **Required vs Optional**: Always use named parameters for optional parameters
+- **Long Parameter Lists**: Use named parameters for functions with more than 2-3 parameters
+- **Similar Types**: Use named parameters when multiple parameters have the same type
+- **Team Conventions**: Establish team conventions for when to use named vs positional parameters
+- **Consistency**: Be consistent in using named parameters throughout your codebase
+- **Documentation**: Named parameters serve as inline documentation
+
+Notes
+=====
+
+- Parameter names must exactly match the function's parameter names (case-sensitive)
+- Named parameters cannot be duplicated in the same function call
+- When mixing positional and named parameters, all positional parameters must come first
+- Named parameters make refactoring safer as parameter order changes don't break code
+- The operator creates a clear binding between parameter names and values
+- Named parameters are evaluated in the order they appear, not in parameter definition order
+
+Comparison with Positional Parameters
+======================================
+
+**Positional Parameters:**
+
+.. code-block:: json
+
+    {
+      "Result": "$value(Substring('Hello World', 0, 5))"
+    }
+
+- Requires knowing parameter order
+- More concise for simple cases
+- Error-prone with many parameters
+
+**Named Parameters:**
+
+.. code-block:: json
+
+    {
+      "Result": "$value(Substring(text -> 'Hello World', startIndex -> 0, length -> 5))"
+    }
+
+- Self-documenting
+- Order-independent
+- More verbose but clearer
+- Safer for complex function calls
+
+Error Scenarios
+===============
+
+Invalid Parameter Name
+----------------------
+
+.. code-block:: json
+
+    {
+      "Error": "$value(Round(val -> 3.14, decimals -> 2))"
+    }
+
+If the function expects ``value`` instead of ``val``, this will produce a compilation error.
+
+Duplicate Parameter
+-------------------
+
+.. code-block:: json
+
+    {
+      "Error": "$value(Add(a -> 5, a -> 10))"
+    }
+
+Specifying the same parameter twice is not allowed.
+
+Mixed Order Error
+-----------------
+
+.. code-block:: json
+
+    {
+      "Error": "$value(SomeFunction(param -> value, positionalArg))"
+    }
+
+Positional arguments cannot come after named arguments.
+
