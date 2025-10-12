@@ -1,0 +1,13 @@
+{
+  "Comment_Average_1": "Retrieve average salary of employees older than 40.",
+  "Average_1": "$value(Average(Companies.Select(c => c.Employees.Where(e => e.Age >= 40)).Select(e => e.Salary)))",
+
+  "Comment_Average_2": "Another way to retrieve average salary of employees older than 40.",
+  "Average_2": "$value(Average(Companies.Select(c => c.Employees), e => e.Age >= 40, e => e.Salary))",
+
+  "Comment_Average_3": "The value evaluated for the average of collection items is undefined.",
+  "Average_3": "$value(Average(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age >= 200, value -> e => e.Salary) is undefined)",
+
+  "Comment_Average_4": "Demo of using named parameters to make the intent clear.",
+  "Average_4": "$value(Average(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age >= 40, value -> e => e.Salary))"
+}

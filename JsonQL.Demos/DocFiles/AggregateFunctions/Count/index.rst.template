@@ -5,5 +5,95 @@ Count
 .. contents::
    :local:
    :depth: 2
+
+The ``Count`` function is a numeric aggregate function that returns the number of elements in a collection that satisfy an optional criteria. It can count all elements in a collection or only those that meet a specified condition.
+
+**Function Name**: ``Count``
+
+**Return Type**: Number (Double)
+
+Syntax
+======
+
+The ``Count`` function can be called with the following syntax:
+
+**Syntax 1 - Count All Elements:**
+
+::
+
+    Count(collection)
+
+**Syntax 2 - Count with Criteria:**
+
+::
+
+    Count(collection, criteria)
+
+**Named Parameter Syntax:**
+
+::
+
+    Count(collection -> <collection_expression>, criteria -> <lambda_expression>)
+
+Parameters
+==========
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 50
+
+   * - Parameter
+     - Type
+     - Required
+     - Description
+   * - ``collection``
+     - Collection
+     - Yes
+     - The collection of elements to count. Can be an array, query result, or any collection expression.
+   * - ``criteria``
+     - Lambda
+     - No
+     - A lambda expression that defines a condition for counting. Takes one parameter representing the current element and returns a boolean. If omitted, counts all elements in the collection.
+
+Return Value
+============
+
+- **Type**: ``Number`` (double precision)
+- **Returns**: 
+    - The total number of elements in the collection if no criteria is specified
+    - The number of elements that satisfy the criteria if a criteria lambda is provided
+    - ``0`` if the collection is empty
+    - ``0`` if no elements satisfy the criteria
+
+Evaluation Rules
+================
+
+The ``Count`` function follows these evaluation rules:
+
+1. **No Criteria**: When criteria is omitted, returns the total count of elements without iteration
+2. **With Criteria**: When criteria is provided, evaluates each element and counts those where the criteria returns ``true``
+3. **Empty Collections**: Returns ``0`` for empty collections
+4. **Null/Undefined Handling**: Null or undefined values are passed to the criteria lambda; the lambda determines whether to count them
+5. **Boolean Criteria**: When provided, the criteria lambda must return a boolean value
+6. **Complete Iteration**: Unlike ``Any`` or ``All``, ``Count`` always processes all elements to get an accurate count
+7. **Order Independence**: The order of elements doesn't affect the count
+
+Use Cases
+=========
+
+The ``Count`` function is useful for:
+
+- **Size Metrics**: Determining the number of elements in filtered collections
+- **Statistical Analysis**: Counting occurrences of specific conditions
+- **Validation**: Verifying expected quantities of items
+- **Business Metrics**: Calculating KPIs like "number of active customers"
+- **Data Quality**: Counting missing, invalid, or exceptional data points
+- **Conditional Reporting**: Generating counts based on complex conditions
+
    
-- TODO: Add contents here...
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

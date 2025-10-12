@@ -19,8 +19,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Any" href="../Any/index.html" />
-    <link rel="prev" title="Count" href="../Count/index.html" /> 
+    <link rel="next" title="Examples" href="../Examples/index.html" />
+    <link rel="prev" title="Average" href="../Average/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,13 +52,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Aggregate Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Overview/index.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../All/index.html">All</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Sum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Min/index.html">Min</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Max/index.html">Max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-patterns">Common Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-use-cases">Practical Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
@@ -94,17 +110,268 @@
              
   <section id="sum">
 <h1>Sum<a class="headerlink" href="#sum" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id3">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#implementation-details" id="id6">Implementation Details</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id7">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#performance-considerations" id="id8">Performance Considerations</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id9">Notes</a></p></li>
+<li><p><a class="reference internal" href="#common-patterns" id="id10">Common Patterns</a></p></li>
+<li><p><a class="reference internal" href="#practical-use-cases" id="id11">Practical Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id12">Examples</a></p></li>
 </ul>
+</nav>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function is a numeric aggregate function that calculates the total sum of numeric values in a collection. It adds all qualifying values together to produce a cumulative total.</p>
+<p><strong>Function Name</strong>: <code class="docutils literal notranslate"><span class="pre">Sum</span></code></p>
+<p><strong>Return Type</strong>: Number (Double)</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function can be called with the following syntax:</p>
+<p><strong>Syntax 1 - Direct Sum:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">numeric_collection</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Syntax 2 - With Filter Criteria:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">criteria</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Syntax 3 - With Value Selector:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">criteria</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Named Parameter Syntax:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span> <span class="o">-&gt;</span> <span class="o">&lt;</span><span class="n">collection_expression</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">criteria</span> <span class="o">-&gt;</span> <span class="o">&lt;</span><span class="n">lambda_expression</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">value</span> <span class="o">-&gt;</span> <span class="o">&lt;</span><span class="n">lambda_expression</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">collection</span></code></p></td>
+<td><p>Collection</p></td>
+<td><p>Yes</p></td>
+<td><p>The collection of elements to sum. Can be an array of numbers, query result, or any collection expression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">criteria</span></code></p></td>
+<td><p>Lambda</p></td>
+<td><p>No</p></td>
+<td><p>A lambda expression that filters which elements to include in the sum calculation. Takes one parameter representing the current element and returns a boolean.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>Lambda</p></td>
+<td><p>No</p></td>
+<td><p>A lambda expression that extracts or calculates the numeric value from each element. Takes one parameter and returns a number.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="return-value">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">Number</span></code> (double precision)</p></li>
+<li><dl class="simple">
+<dt><strong>Returns</strong>:</dt><dd><ul>
+<li><p>The total sum of all numeric values in the collection</p></li>
+<li><p>The sum of values among elements that satisfy the criteria (if criteria is provided)</p></li>
+<li><p>The sum of extracted/calculated values (if value selector is provided)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">undefined</span></code> when no elements match the criteria or when the collection is empty</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Direct Numbers</strong>: When collection contains numbers, sums them directly</p></li>
+<li><p><strong>With Criteria</strong>: Filters elements using criteria, then sums remaining values</p></li>
+<li><p><strong>With Value Selector</strong>: Extracts numeric values using the value lambda, then sums them</p></li>
+<li><p><strong>Type Conversion</strong>: Attempts to convert values to numbers; ignores non-numeric values</p></li>
+<li><p><strong>Null/Undefined Handling</strong>: Ignores <code class="docutils literal notranslate"><span class="pre">null</span></code> and <code class="docutils literal notranslate"><span class="pre">undefined</span></code> values in the calculation</p></li>
+<li><p><strong>Complete Iteration</strong>: Processes all (matching) elements to compute accurate sum</p></li>
+<li><p><strong>Accumulation</strong>: Maintains a running total that increases with each valid value</p></li>
+<li><p><strong>Empty Result</strong>: Returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code> when no values are summed</p></li>
+</ol>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function is useful for:</p>
+<ul class="simple">
+<li><p><strong>Financial Calculations</strong>: Computing total revenues, costs, or expenses</p></li>
+<li><p><strong>Inventory Management</strong>: Calculating total quantities or stock values</p></li>
+<li><p><strong>Statistical Analysis</strong>: Computing totals for further analysis</p></li>
+<li><p><strong>Payroll Processing</strong>: Calculating total salaries or compensation</p></li>
+<li><p><strong>Sales Analysis</strong>: Determining total sales amounts</p></li>
+<li><p><strong>Resource Planning</strong>: Summing resource allocations or consumption</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Implementation Details</a><a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function is implemented through the <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AggregateFunctions/SumAggregateLambdaExpressionFunction.cs">SumAggregateLambdaExpressionFunction</a> class, which:</p>
+<ul class="simple">
+<li><p>Maintains a running sum initialized to 0</p></li>
+<li><p>Iterates through all elements in the collection</p></li>
+<li><p>Applies the criteria filter if provided (only evaluates matching elements)</p></li>
+<li><p>Extracts numeric values using the value selector lambda if provided</p></li>
+<li><p>Adds each valid value to the running total</p></li>
+<li><p>Returns the final sum</p></li>
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code> if no values were summed</p></li>
+<li><p>Handles type conversion to ensure values are numeric</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Pre-Filter vs Criteria</strong>: Use <code class="docutils literal notranslate"><span class="pre">Where</span></code> before <code class="docutils literal notranslate"><span class="pre">Sum</span></code> for simple filters; use criteria parameter for integrated filtering</p></li>
+<li><p><strong>Value Selector</strong>: Use the value parameter when you need to extract or calculate the numeric value</p></li>
+<li><p><strong>Named Parameters</strong>: Use named parameters for complex expressions with all three parameters</p></li>
+<li><p><strong>Type Safety</strong>: Ensure values are numeric or can be converted to numbers</p></li>
+<li><p><strong>Null Handling</strong>: Be aware that null values are ignored; use criteria to filter them explicitly if needed</p></li>
+<li><p><strong>Empty Collections</strong>: Handle cases where filtering might result in no values (returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code>)</p></li>
+<li><p><strong>Large Numbers</strong>: Be mindful of numeric overflow with very large sums</p></li>
+</ul>
+</section>
+<section id="performance-considerations">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Performance Considerations</a><a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Complete Iteration</strong>: <code class="docutils literal notranslate"><span class="pre">Sum</span></code> must process all (matching) elements to compute the accurate total</p></li>
+<li><p><strong>Single Pass</strong>: Calculation is done in a single pass through the data</p></li>
+<li><p><strong>Criteria First</strong>: When using criteria, non-matching elements are skipped before value extraction</p></li>
+<li><p><strong>Pre-Filtering</strong>: Pre-filtering with <code class="docutils literal notranslate"><span class="pre">Where</span></code> can sometimes be more efficient than using criteria parameter</p></li>
+<li><p><strong>Accumulation Cost</strong>: Addition operations are very fast, making <code class="docutils literal notranslate"><span class="pre">Sum</span></code> efficient even for large collections</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Sum</span></code> function returns a numeric value (double precision)</p></li>
+<li><p>It ignores <code class="docutils literal notranslate"><span class="pre">null</span></code> and <code class="docutils literal notranslate"><span class="pre">undefined</span></code> values during calculation</p></li>
+<li><p>Non-numeric values are skipped (after attempting conversion)</p></li>
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code> when no values are summed (not 0)</p></li>
+<li><p>The function processes all elements to ensure an accurate sum</p></li>
+<li><p>The result is the cumulative total of all valid numeric values</p></li>
+<li><p>Useful for financial calculations, totals, and aggregations</p></li>
+</ul>
+</section>
+<section id="common-patterns">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Common Patterns</a><a class="headerlink" href="#common-patterns" title="Link to this heading"></a></h2>
+<p><strong>Simple Sum Pattern:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">numeric_collection</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Filtered Sum Pattern:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">predicate</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">selector</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Criteria-Based Sum Pattern:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">Condition</span><span class="p">,</span> <span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">NumericProperty</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Property Sum Pattern:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">Property</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Calculated Sum Pattern:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=&gt;</span> <span class="nb">filter</span><span class="o">.</span><span class="n">IsValid</span><span class="p">,</span> <span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">Value</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-use-cases">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Practical Use Cases</a><a class="headerlink" href="#practical-use-cases" title="Link to this heading"></a></h2>
+<p><strong>Payroll Calculations:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalPayroll&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Employees.Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;DepartmentPayroll&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Employees, e =&gt; e.Department == &#39;Engineering&#39;, e =&gt; e.Salary))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calculate total payroll and department-specific payroll costs.</p>
+<p><strong>Sales Analysis:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalRevenue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Orders, o =&gt; o.Status == &#39;Completed&#39;, o =&gt; o.Total))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Compute total revenue from completed orders.</p>
+<p><strong>Inventory Valuation:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalInventoryValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Products, p =&gt; p.InStock, p =&gt; p.Price * p.Quantity))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calculate total inventory value by multiplying price and quantity for in-stock products.</p>
+<p><strong>Financial Reporting:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalExpenses&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Transactions, t =&gt; t.Type == &#39;Expense&#39;, t =&gt; t.Amount))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TotalIncome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Transactions, t =&gt; t.Type == &#39;Income&#39;, t =&gt; t.Amount))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NetProfit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Transactions, t =&gt; t.Type == &#39;Income&#39;, t =&gt; t.Amount) - Sum(Transactions, t =&gt; t.Type == &#39;Expense&#39;, t =&gt; t.Amount))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calculate total expenses, income, and net profit from financial transactions.</p>
+<p><strong>Resource Allocation:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalAllocatedHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Projects.Select(p =&gt; p.AssignedHours)))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Sum allocated hours across all projects for resource planning.</p>
+<p><strong>Budget Analysis:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalBudget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Departments.Select(d =&gt; d.Budget)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;RemainingBudget&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Departments, d =&gt; d.Status == &#39;Active&#39;, d =&gt; d.Budget - d.Spent))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calculate total budgets and remaining budgets across departments.</p>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_Sum_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Sum_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40)).Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Sum_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Sum_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &gt;= 40, e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Sum_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The value evaluated for the sum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Sum_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 200, value -&gt; e =&gt; e.Salary) is undefined)&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_Sum_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Sum_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40, value -&gt; e =&gt; e.Salary))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Count/index.html" class="btn btn-neutral float-left" title="Count" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Any/index.html" class="btn btn-neutral float-right" title="Any" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Average/index.html" class="btn btn-neutral float-left" title="Average" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

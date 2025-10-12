@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="All" href="All/index.html" />
+    <link rel="next" title="Overview" href="Overview/index.html" />
     <link rel="prev" title="Examples" href="../Functions/ConversionFunctions/Examples/index.html" /> 
 </head>
 
@@ -52,13 +52,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Functions/index.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Aggregate Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Overview/index.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="All/index.html">All</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Average/index.html">Average</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Count/index.html">Count</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Sum/index.html">Sum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html">Count</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Min/index.html">Min</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Max/index.html">Max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html">Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html">Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Operators/index.html">Operators</a></li>
@@ -93,18 +95,104 @@
              
   <section id="aggregate-functions">
 <h1>Aggregate Functions<a class="headerlink" href="#aggregate-functions" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-</ul>
+<p>Aggregate functions in JsonQL perform calculations across collections of values to produce a single result. These functions are essential for data analysis, statistical computations, and summarizing information from arrays or query results.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="All/index.html">All</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Average/index.html">Average</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Count/index.html">Count</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Sum/index.html">Sum</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Any/index.html">Any</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Min/index.html">Min</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Max/index.html">Max</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overview/index.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Overview/index.html#available-aggregate-functions">Available Aggregate Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Overview/index.html#common-characteristics">Common Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Overview/index.html#usage-patterns">Usage Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="All/index.html">All</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="All/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Any/index.html">Any</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Any/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Count/index.html">Count</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Count/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Min/index.html">Min</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#common-patterns">Common Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#practical-use-cases">Practical Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Min/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Max/index.html">Max</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#common-patterns">Common Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#practical-use-cases">Practical Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Max/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Average/index.html">Average</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#calculation-formula">Calculation Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#common-patterns">Common Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#practical-use-cases">Practical Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Average/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sum/index.html">Sum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#common-patterns">Common Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#practical-use-cases">Practical Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sum/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Examples/index.html">Examples</a></li>
 </ul>
 </div>
 </section>
@@ -114,7 +202,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Functions/ConversionFunctions/Examples/index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="All/index.html" class="btn btn-neutral float-right" title="All" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Overview/index.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

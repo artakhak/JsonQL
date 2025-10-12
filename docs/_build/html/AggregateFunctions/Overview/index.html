@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="All" href="../All/index.html" />
+    <link rel="prev" title="Aggregate Functions" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Aggregate Functions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#available-aggregate-functions">Available Aggregate Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-characteristics">Common Characteristics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-patterns">Usage Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../All/index.html">All</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Min/index.html">Min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Max/index.html">Max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sum/index.html">Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Aggregate Functions</a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/AggregateFunctions/Overview/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#available-aggregate-functions" id="id1">Available Aggregate Functions</a></p></li>
+<li><p><a class="reference internal" href="#common-characteristics" id="id2">Common Characteristics</a></p></li>
+<li><p><a class="reference internal" href="#usage-patterns" id="id3">Usage Patterns</a></p></li>
+</ul>
+</nav>
+<p>Aggregate functions process collections and return computed values such as totals, averages, counts, or extreme values. They are commonly used to:</p>
+<ul class="simple">
+<li><p>Summarize large datasets into meaningful metrics</p></li>
+<li><p>Perform statistical analysis on collections</p></li>
+<li><p>Calculate business metrics and KPIs</p></li>
+<li><p>Generate reports and analytics</p></li>
+<li><p>Support data-driven decision making</p></li>
+</ul>
+<section id="available-aggregate-functions">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Available Aggregate Functions</a><a class="headerlink" href="#available-aggregate-functions" title="Link to this heading"></a></h2>
+<p>JsonQL provides the following aggregate functions:</p>
+<p><strong>Numeric Aggregations:</strong></p>
+<ul class="simple">
+<li><p><strong>Min</strong>: Returns the minimum (smallest) value in a collection</p></li>
+<li><p><strong>Max</strong>: Returns the maximum (largest) value in a collection</p></li>
+<li><p><strong>Sum</strong>: Calculates the total sum of numeric values in a collection</p></li>
+<li><p><strong>Average</strong>: Computes the arithmetic mean of numeric values in a collection</p></li>
+</ul>
+<p><strong>Counting:</strong></p>
+<ul class="simple">
+<li><p><strong>Count</strong>: Returns the number of elements in a collection</p></li>
+</ul>
+<p><strong>Boolean Aggregations:</strong></p>
+<ul class="simple">
+<li><p><strong>All</strong>: Checks if all elements in a collection satisfy a specified condition</p></li>
+<li><p><strong>Any</strong>: Checks if any element in a collection satisfies a specified condition (or if collection is non-empty)</p></li>
+</ul>
+</section>
+<section id="common-characteristics">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Common Characteristics</a><a class="headerlink" href="#common-characteristics" title="Link to this heading"></a></h2>
+<p>All aggregate functions share these characteristics:</p>
+<ul class="simple">
+<li><p><strong>Collection Input</strong>: They operate on collections (arrays or query results)</p></li>
+<li><p><strong>Single Output</strong>: They return a single scalar value as the result</p></li>
+<li><p><strong>Empty Collections</strong>: Behavior with empty collections varies by function</p></li>
+<li><p><strong>Null Handling</strong>: Typically ignore null or undefined values in calculations</p></li>
+<li><p><strong>Type-Specific</strong>: Some functions work only with specific data types (e.g., numeric values)</p></li>
+</ul>
+</section>
+<section id="usage-patterns">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Usage Patterns</a><a class="headerlink" href="#usage-patterns" title="Link to this heading"></a></h2>
+<p>Aggregate functions can be used in various contexts:</p>
+<p><strong>Direct Collection Aggregation:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TotalSales&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Sales))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>With Collection Queries:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;AverageAge&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Average(Employees.Where(e =&gt; e.Department == &#39;Engineering&#39;).Select(e =&gt; e.Age)))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Multiple Aggregations:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;MinPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Min(Products.Select(p =&gt; p.Price)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;MaxPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(Products.Select(p =&gt; p.Price)))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TotalCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Products))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The sections that follow provide detailed documentation for each aggregate function.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Aggregate Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../All/index.html" class="btn btn-neutral float-right" title="All" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

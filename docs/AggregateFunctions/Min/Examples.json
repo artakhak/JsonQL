@@ -1,0 +1,13 @@
+{
+  "Comment_Min_1": "Retrieve minimum salary of employees older than 40.",
+  "Min_1": "$value(Min(Companies.Select(c => c.Employees.Where(e => e.Age >= 40)).Select(e => e.Salary)))",
+
+  "Comment_Min_2": "Another way to retrieve minimum salary of employees older than 40.",
+  "Min_2": "$value(Min(Companies.Select(c => c.Employees), e => e.Age >= 40, e => e.Salary))",
+
+  "Comment_Min_3": "The value evaluated for the minimum of collection items is undefined.",
+  "Min_3": "$value(Min(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age >= 200, value -> e => e.Salary) is undefined)",
+
+  "Comment_Min_4": "Demo of using named parameters to make the intent clear.",
+  "Min_4": "$value(Min(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age >= 40, value -> e => e.Salary))"
+}

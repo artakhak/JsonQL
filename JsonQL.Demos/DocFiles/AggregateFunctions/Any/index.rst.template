@@ -6,4 +6,93 @@ Any
    :local:
    :depth: 2
    
-- TODO: Add contents here...
+The ``Any`` function is a boolean aggregate function that determines whether at least one element in a collection satisfies a specified condition, or whether a collection contains any elements at all. It returns ``true`` if any element meets the criteria (or if the collection is non-empty when no criteria is provided), or ``false`` otherwise.
+
+**Function Name**: ``Any``
+
+**Return Type**: Boolean
+
+Syntax
+======
+
+The ``Any`` function can be called with the following syntax:
+
+**Syntax 1 - Check for Non-Empty Collection:**
+
+::
+
+    Any(collection)
+
+**Syntax 2 - Check with Criteria:**
+
+::
+
+    Any(collection, criteria)
+
+**Named Parameter Syntax:**
+
+::
+
+    Any(collection -> <collection_expression>, criteria -> <lambda_expression>)
+
+Parameters
+==========
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 50
+
+   * - Parameter
+     - Type
+     - Required
+     - Description
+   * - ``collection``
+     - Collection
+     - Yes
+     - The collection of elements to evaluate. Can be an array, query result, or any collection expression.
+   * - ``criteria``
+     - Lambda
+     - No
+     - A lambda expression that defines the condition to check. Takes one parameter representing the current element and returns a boolean. If omitted, the function simply checks if the collection is non-empty.
+
+Return Value
+============
+
+- **Type**: ``Boolean``
+- **Returns**: 
+    - ``true`` if at least one element in the collection satisfies the criteria
+    - ``true`` if the collection is non-empty and no criteria is specified
+    - ``false`` if no elements satisfy the criteria
+    - ``false`` if the collection is empty
+
+Evaluation Rules
+================
+
+The ``Any`` function follows these evaluation rules:
+
+1. **Short-Circuit Evaluation**: Stops evaluating as soon as any element satisfies the criteria and returns ``true``
+2. **Empty Collections**: Returns ``false`` for empty collections
+3. **No Criteria**: When criteria is omitted, returns ``true`` for any non-empty collection
+4. **Null/Undefined Handling**: Null or undefined values are passed to the criteria lambda; the lambda determines how to handle them
+5. **Early Exit**: Only needs one matching element to return ``true``
+6. **Boolean Criteria**: When provided, the criteria lambda must return a boolean value
+7. **Order of Evaluation**: Elements are evaluated in the order they appear in the collection
+
+Use Cases
+=========
+
+The ``Any`` function is useful for:
+
+- **Existence Checks**: Verifying that at least one item meets certain criteria
+- **Filtering Detection**: Determining if filtering will yield any results before performing expensive operations
+- **Validation**: Checking for the presence of specific values or conditions
+- **Business Logic**: Implementing rules like "at least one item must be approved"
+- **Data Quality**: Detecting presence of invalid or problematic data
+- **Collection Testing**: Simply checking if a collection contains any elements
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

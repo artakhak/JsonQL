@@ -1,0 +1,13 @@
+{
+  "Comment_Any_1": "Check if salary of any employee older than 40 is greater than 144000.",
+  "Any_1": "$value(Any(Companies.Select(c => c.Employees).Where(e => e.Age >= 40), e => e.Salary > 144000))",
+
+  "Comment_Any_2": "Another way to check check if salary of any employee older than 40 is greater than 144000.",
+  "Any_2": "$value(Any(Companies.Select(c => c.Employees), e => e.Age < 40 || e.Salary > 144000))",
+
+  "Comment_Any_3": "Check if collection has any item. Optional 'criteria' parameter is not used.",
+  "Any_3": "$value(Any(Companies.Select(c => c.Employees)))",
+
+  "Comment_Any_4": "Demo of using named parameters to make the intent clear.",
+  "Any_4": "$value(Any(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age < 40 || e.Salary > 144000))"
+}

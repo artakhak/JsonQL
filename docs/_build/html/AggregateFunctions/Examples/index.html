@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Operators" href="../../Operators/index.html" />
+    <link rel="prev" title="Sum" href="../Sum/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Aggregate Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Overview/index.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../All/index.html">All</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Min/index.html">Min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Max/index.html">Max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sum/index.html">Sum</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Aggregate Functions</a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/AggregateFunctions/Examples/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<p>Examples in <strong>Examples.json</strong> file below demonstrate aggregate functions described in <a class="reference internal" href="../index.html"><span class="doc">Aggregate Functions</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Examples.json</strong> in example below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../MutatingJsonFiles/SampleFiles/companies.html"><span class="doc">Companies.json</span></a></p></li>
+</ul>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;All&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_All_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;All_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(Companies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40), e =&gt; e.Salary &gt; 85000))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_All_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;All_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &lt; 40 || e.Salary &gt; 85000))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_All_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;All_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &lt; 40 || e.Salary &gt; 85000))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Any&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Any_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check if salary of any employee older than 40 is greater than 144000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Any_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Any(Companies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40), e =&gt; e.Salary &gt; 144000))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Any_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to check check if salary of any employee older than 40 is greater than 144000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Any_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Any(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &lt; 40 || e.Salary &gt; 144000))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Any_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check if collection has any item. Optional &#39;criteria&#39; parameter is not used.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Any_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Any(Companies.Select(c =&gt; c.Employees)))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Any_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Any_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Any(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &lt; 40 || e.Salary &gt; 144000))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Count_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve count of all employees older than 40 with salary greater than 100000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Count_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40 &amp;&amp; e.Salary &gt; 100000))))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Count_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to Retrieve count of all employees older than 40 with salary greater than 100000.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Count_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(Companies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40), e =&gt; e.Salary &gt; 100000))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Count_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Count_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Count(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40 &amp;&amp; e.Salary &gt; 100000))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Min&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Min_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve minimum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Min_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Min(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40)).Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Min_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to retrieve minimum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Min_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Min(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &gt;= 40, e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Min_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The value evaluated for the minimum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Min_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Min(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 200, value -&gt; e =&gt; e.Salary) is undefined)&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Min_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Min_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Min(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40, value -&gt; e =&gt; e.Salary))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Max&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Max_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve maximum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Max_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40)).Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Max_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to retrieve maximum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Max_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &gt;= 40, e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Max_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The value evaluated for the maximum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Max_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 200, value -&gt; e =&gt; e.Salary) is undefined)&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Max_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Max_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Max(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40, value -&gt; e =&gt; e.Salary))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Average&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Average_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve average salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Average_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Average(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40)).Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Average_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to retrieve average salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Average_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Average(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &gt;= 40, e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Average_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The value evaluated for the average of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Average_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Average(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 200, value -&gt; e =&gt; e.Salary) is undefined)&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Average_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Average_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Average(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40, value -&gt; e =&gt; e.Salary))&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Sum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment_Sum_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Sum_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Age &gt;= 40)).Select(e =&gt; e.Salary)))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Sum_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Sum_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &gt;= 40, e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Sum_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The value evaluated for the sum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Sum_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 200, value -&gt; e =&gt; e.Salary) is undefined)&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;Comment_Sum_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Sum_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Sum(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &gt;= 40, value -&gt; e =&gt; e.Salary))&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Examples.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<details>
+<summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;All&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_All_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;All_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_All_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;All_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_All_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;All_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Any&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Any_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Check if salary of any employee older than 40 is greater than 144000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Any_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Any_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to check check if salary of any employee older than 40 is greater than 144000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Any_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Any_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Check if collection has any item. Optional &#39;criteria&#39; parameter is not used.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Any_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Any_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Any_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Count_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Retrieve count of all employees older than 40 with salary greater than 100000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Count_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Count_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to Retrieve count of all employees older than 40 with salary greater than 100000.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Count_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Count_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Count_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Min&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Min_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Retrieve minimum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Min_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">88000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Min_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to retrieve minimum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Min_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">88000</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Min_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;The value evaluated for the minimum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Min_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Min_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Min_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">88000</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Max&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Max_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Retrieve maximum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Max_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Max_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to retrieve maximum salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Max_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Max_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;The value evaluated for the maximum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Max_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Max_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Max_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">144186</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Average&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Average_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Retrieve average salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Average_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mf">104297.28571428571</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Average_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to retrieve average salary of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Average_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="mf">104297.28571428571</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Average_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;The value evaluated for the average of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Average_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Average_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Average_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="mf">104297.28571428571</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Sum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Sum_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Sum_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">730081</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Sum_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Another way to retrieve sum of all salaries of employees older than 40.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Sum_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">730081</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Sum_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;The value evaluated for the sum of collection items is undefined.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Sum_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Comment_Sum_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Sum_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">730081</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/><p>The code snippet shows how the JSON file <strong>Examples.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Companies&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Companies.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">)</span><span class="cm">/*, dataJsonTextData*/</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Examples.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Sum/index.html" class="btn btn-neutral float-left" title="Sum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Operators/index.html" class="btn btn-neutral float-right" title="Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

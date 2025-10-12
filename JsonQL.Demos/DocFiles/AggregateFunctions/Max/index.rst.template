@@ -5,5 +5,243 @@ Max
 .. contents::
    :local:
    :depth: 2
-   
-- TODO: Add contents here...
+
+The ``Max`` function is a numeric aggregate function that returns the maximum (largest) value from a collection of numeric values. It can operate on a direct collection of numbers or extract values using a lambda expression.
+
+**Function Name**: ``Max``
+
+**Return Type**: Number (Double)
+
+Syntax
+======
+
+The ``Max`` function can be called with the following syntax:
+
+**Syntax 1 - Direct Maximum:**
+
+::
+
+    Max(numeric_collection)
+
+**Syntax 2 - With Filter Criteria:**
+
+::
+
+    Max(collection, criteria)
+
+**Syntax 3 - With Value Selector:**
+
+::
+
+    Max(collection, criteria, value)
+
+**Named Parameter Syntax:**
+
+::
+
+    Max(collection -> <collection_expression>, criteria -> <lambda_expression>, value -> <lambda_expression>)
+
+Parameters
+==========
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 50
+
+   * - Parameter
+     - Type
+     - Required
+     - Description
+   * - ``collection``
+     - Collection
+     - Yes
+     - The collection of elements to evaluate. Can be an array of numbers, query result, or any collection expression.
+   * - ``criteria``
+     - Lambda
+     - No
+     - A lambda expression that filters which elements to include in the maximum calculation. Takes one parameter representing the current element and returns a boolean.
+   * - ``value``
+     - Lambda
+     - No
+     - A lambda expression that extracts or calculates the numeric value from each element. Takes one parameter and returns a number.
+
+Return Value
+============
+
+- **Type**: ``Number`` (double precision)
+- **Returns**: 
+    - The largest numeric value from the collection
+    - The largest value among elements that satisfy the criteria (if criteria is provided)
+    - The largest extracted/calculated value (if value selector is provided)
+    - ``undefined`` if the collection is empty or contains no numeric values
+
+Evaluation Rules
+================
+
+The ``Max`` function follows these evaluation rules:
+
+1. **Direct Numbers**: When collection contains numbers, finds the largest directly
+2. **With Criteria**: Filters elements using criteria, then finds maximum among remaining values
+3. **With Value Selector**: Extracts numeric values using the value lambda, then finds maximum
+4. **Type Conversion**: Attempts to convert values to numbers; ignores non-numeric values
+5. **Null/Undefined Handling**: Ignores ``null`` and ``undefined`` values in the comparison
+6. **Complete Iteration**: Processes all (matching) elements to find the true maximum
+7. **Initialization**: Starts with the minimum possible double value and updates when larger values are found
+
+Use Cases
+=========
+
+The ``Max`` function is useful for:
+
+- **Finding Highest Values**: Identifying maximum prices, ages, scores, etc.
+- **Range Analysis**: Determining the upper bound of a data range
+- **Performance Metrics**: Finding best-case performance numbers
+- **Ranking Analysis**: Identifying top performers or highest achievers
+- **Statistical Analysis**: Computing maximum values for statistical reports
+- **Threshold Detection**: Identifying if any values exceed thresholds
+
+Implementation Details
+======================
+
+The ``Max`` function is implemented through the `MinMaxAggregateLambdaExpressionFunction <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/JsonFunction/JsonFunctions/AggregateFunctions/MinMaxAggregateLambdaExpressionFunction.cs>`_ class, which:
+
+- Initializes the maximum value to ``Double.MinValue``
+- Iterates through all elements in the collection
+- Applies the criteria filter if provided (only evaluates matching elements)
+- Extracts numeric values using the value selector lambda if provided
+- Compares each value with the current maximum and updates if larger
+- Returns the final maximum value found
+- Handles type conversion to ensure values are numeric
+
+Best Practices
+==============
+
+- **Pre-Filter vs Criteria**: Use ``Where`` before ``Max`` for simple filters; use criteria parameter for integrated filtering
+- **Value Selector**: Use the value parameter when you need to extract or calculate the numeric value
+- **Named Parameters**: Use named parameters for complex expressions with all three parameters
+- **Type Safety**: Ensure values are numeric or can be converted to numbers
+- **Null Handling**: Be aware that null values are ignored; use criteria to filter them explicitly if needed
+- **Empty Collections**: Handle cases where filtering might result in empty collections
+
+Performance Considerations
+==========================
+
+- **Complete Iteration**: ``Max`` must process all (matching) elements to find the true maximum
+- **Early Conversion**: Values are converted to numbers early in the process
+- **Criteria First**: When using criteria, non-matching elements are skipped before value extraction
+- **Pre-Filtering**: Pre-filtering with ``Where`` can sometimes be more efficient than using criteria parameter
+
+Notes
+=====
+
+- The ``Max`` function returns a numeric value (double precision)
+- It ignores ``null`` and ``undefined`` values during comparison
+- Non-numeric values are skipped (after attempting conversion)
+- Empty collections or collections with no valid numeric values return ``undefined``
+- The function processes all elements to ensure the true maximum is found
+- Initialization uses ``Double.MinValue`` to ensure any actual value will be larger
+
+Common Patterns
+===============
+
+**Simple Maximum Pattern:**
+
+::
+
+    Max(numeric_collection)
+
+**Filtered Maximum Pattern:**
+
+::
+
+    Max(collection.Where(predicate).Select(selector))
+
+**Criteria-Based Maximum Pattern:**
+
+::
+
+    Max(collection, item => item.Condition, item => item.NumericProperty)
+
+**Property Maximum Pattern:**
+
+::
+
+    Max(collection.Select(item => item.Property))
+
+**Calculated Maximum Pattern:**
+
+::
+
+    Max(collection, filter => filter.IsValid, item => item.Value * factor)
+
+Practical Use Cases
+====================
+
+**Price Analysis:**
+
+.. code-block:: json
+
+    {
+      "HighestPrice": "$value(Max(Products.Select(p => p.Price)))",
+      "HighestActiveProductPrice": "$value(Max(Products, p => p.IsActive, p => p.Price))"
+    }
+
+Find the highest prices for pricing analysis.
+
+**Performance Metrics:**
+
+.. code-block:: json
+
+    {
+      "BestResponseTime": "$value(Max(ApiCalls, c => c.Status == 'Success', c => c.ResponseTime))"
+    }
+
+Identify the best (or worst, depending on context) performance metric.
+
+**Sales Analysis:**
+
+.. code-block:: json
+
+    {
+      "HighestRevenue": "$value(Max(Departments.Select(d => d.Revenue)))"
+    }
+
+Find the department with the highest revenue.
+
+**Quality Control:**
+
+.. code-block:: json
+
+    {
+      "HighestScore": "$value(Max(Inspections, i => i.IsCompleted, i => i.QualityScore))"
+    }
+
+Identify the highest quality score among completed inspections.
+
+**Age Demographics:**
+
+.. code-block:: json
+
+    {
+      "OldestEmployeeAge": "$value(Max(Employees.Where(e => e.IsActive).Select(e => e.Age)))"
+    }
+
+Find the age of the oldest active employee.
+
+**Capacity Planning:**
+
+.. code-block:: json
+
+    {
+      "PeakLoad": "$value(Max(ServerMetrics.Where(m => m.Date >= startDate), m => m.CpuUsage))"
+    }
+
+Identify peak resource usage for capacity planning.
+
+
+Examples
+========
+    
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Examples.json</IncludedFilePlaceHolder>

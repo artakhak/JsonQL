@@ -19,8 +19,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Average" href="../Average/index.html" />
-    <link rel="prev" title="Aggregate Functions" href="../index.html" /> 
+    <link rel="next" title="Any" href="../Any/index.html" />
+    <link rel="prev" title="Overview" href="../Overview/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,13 +52,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Aggregate Functions</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">All</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Sum/index.html">Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Overview/index.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">All</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../Any/index.html">Any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Count/index.html">Count</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Min/index.html">Min</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Max/index.html">Max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Average/index.html">Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sum/index.html">Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/index.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
@@ -94,17 +104,123 @@
              
   <section id="all">
 <h1>All<a class="headerlink" href="#all" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id3">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id6">Examples</a></p></li>
 </ul>
+</nav>
+<p>The <code class="docutils literal notranslate"><span class="pre">All</span></code> function is a boolean aggregate function that determines whether all elements in a collection satisfy a specified condition. It returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if every element meets the criteria, or <code class="docutils literal notranslate"><span class="pre">false</span></code> if any element fails the condition.</p>
+<p><strong>Function Name</strong>: <code class="docutils literal notranslate"><span class="pre">All</span></code></p>
+<p><strong>Return Type</strong>: Boolean</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">All</span></code> function can be called with the following syntax:</p>
+<p><strong>Basic Syntax:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">All</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">criteria</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Named Parameter Syntax:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">All</span><span class="p">(</span><span class="n">collection</span> <span class="o">-&gt;</span> <span class="o">&lt;</span><span class="n">collection_expression</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">criteria</span> <span class="o">-&gt;</span> <span class="o">&lt;</span><span class="n">lambda_expression</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">collection</span></code></p></td>
+<td><p>Collection</p></td>
+<td><p>Yes</p></td>
+<td><p>The collection of elements to evaluate. Can be an array, query result, or any collection expression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">criteria</span></code></p></td>
+<td><p>Lambda</p></td>
+<td><p>Yes</p></td>
+<td><p>A lambda expression that defines the condition each element must satisfy. Takes one parameter representing the current element and returns a boolean.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="return-value">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">Boolean</span></code></p></li>
+<li><dl class="simple">
+<dt><strong>Returns</strong>:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if all elements in the collection satisfy the criteria</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the collection is empty</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> if any element fails to satisfy the criteria</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">All</span></code> function follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Short-Circuit Evaluation</strong>: Stops evaluating as soon as any element fails the criteria and returns <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><strong>Empty Collections</strong>: Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> for empty collections (vacuous truth)</p></li>
+<li><p><strong>Null/Undefined Handling</strong>: Null or undefined values are passed to the criteria lambda; the lambda determines how to handle them</p></li>
+<li><p><strong>All Must Pass</strong>: Every single element must satisfy the criteria for the function to return <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><strong>Boolean Criteria</strong>: The criteria lambda must return a boolean value</p></li>
+<li><p><strong>Order of Evaluation</strong>: Elements are evaluated in the order they appear in the collection</p></li>
+</ol>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">All</span></code> function is useful for:</p>
+<ul class="simple">
+<li><p><strong>Validation</strong>: Verifying that all items in a collection meet required criteria</p></li>
+<li><p><strong>Quality Checks</strong>: Ensuring all data meets quality standards</p></li>
+<li><p><strong>Business Rules</strong>: Validating that all entities satisfy business rules</p></li>
+<li><p><strong>Preconditions</strong>: Checking that all elements meet prerequisites before processing</p></li>
+<li><p><strong>Data Integrity</strong>: Verifying data consistency across collections</p></li>
+<li><p><strong>Filtering Verification</strong>: Confirming that filtering logic worked correctly</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment_All_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;All_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(Companies.Select(c =&gt; c.Employees).Where(e =&gt; e.Age &gt;= 40), e =&gt; e.Salary &gt; 85000))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_All_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Another way to check if salaries of all employees older than 40 is greater than 85000.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;All_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(Companies.Select(c =&gt; c.Employees), e =&gt; e.Age &lt; 40 || e.Salary &gt; 85000))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;Comment_All_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo of using named parameters to make the intent clear.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;All_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(All(collection -&gt; Companies.Select(c =&gt; c.Employees), criteria -&gt; e =&gt; e.Age &lt; 40 || e.Salary &gt; 85000))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Aggregate Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Average/index.html" class="btn btn-neutral float-right" title="Average" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Overview/index.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Any/index.html" class="btn btn-neutral float-right" title="Any" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

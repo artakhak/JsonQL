@@ -1,0 +1,10 @@
+{
+  "Comment_Count_1": "Retrieve count of all employees older than 40 with salary greater than 100000.",
+  "Count_1": "$value(Count(Companies.Select(c => c.Employees.Where(e => e.Age >= 40 && e.Salary > 100000))))",
+
+  "Comment_Count_2": "Another way to Retrieve count of all employees older than 40 with salary greater than 100000.",
+  "Count_2": "$value(Count(Companies.Select(c => c.Employees).Where(e => e.Age >= 40), e => e.Salary > 100000))",
+
+  "Comment_Count_3": "Demo of using named parameters to make the intent clear.",
+  "Count_3": "$value(Count(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age >= 40 && e.Salary > 100000))"
+}

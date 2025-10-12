@@ -1,0 +1,10 @@
+{
+  "Comment_All_1": "Check if salaries of all employees older than 40 is greater than 85000.",
+  "All_1": "$value(All(Companies.Select(c => c.Employees).Where(e => e.Age >= 40), e => e.Salary > 85000))",
+
+  "Comment_All_2": "Another way to check if salaries of all employees older than 40 is greater than 85000.",
+  "All_2": "$value(All(Companies.Select(c => c.Employees), e => e.Age < 40 || e.Salary > 85000))",
+
+  "Comment_All_3": "Demo of using named parameters to make the intent clear.",
+  "All_3": "$value(All(collection -> Companies.Select(c => c.Employees), criteria -> e => e.Age < 40 || e.Salary > 85000))"
+}

@@ -10,6 +10,9 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="DocFiles\AggregateFunctions\Examples\Data.json" />
+	  <None Remove="DocFiles\AggregateFunctions\Examples\Examples.json" />
+	  <None Remove="DocFiles\AggregateFunctions\Examples\Result.json" />
 	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Data.json" />
 	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Example.json" />
 	  <None Remove="DocFiles\Functions\BooleanFunctions\Examples\Examples.json" />
@@ -173,6 +176,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="DocFiles\AggregateFunctions\Examples\Examples.json" />
+		<EmbeddedResource Include="DocFiles\AggregateFunctions\Examples\Result.json" />
 		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Data.json" />
 		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Examples.json" />
 		<EmbeddedResource Include="DocFiles\Functions\BooleanFunctions\Examples\Result.json" />
