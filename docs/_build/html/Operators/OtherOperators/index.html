@@ -61,7 +61,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Other Operators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Assert/index.html">‘assert’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DefaultValue/index.html">Default Value ‘:’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="TypeOf/index.html">‘typeof’</a></li>
@@ -102,7 +101,7 @@
   <section id="other-operators">
 <h1>Other Operators<a class="headerlink" href="#other-operators" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
+<li><p>Number of other operators are supported in JsonQL that were not classified under any section and were groupped in this section.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
@@ -129,9 +128,64 @@
 <li class="toctree-l2"><a class="reference internal" href="DefaultValue/index.html#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ArrowFunction/index.html">Arrow Function ‘=&gt;’</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#operator-operands">Operator Operands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#common-usage-patterns">Common Usage Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#filtering-with-where">Filtering with Where</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#projection-with-select">Projection with Select</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#complex-filtering">Complex Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#nested-property-access">Nested Property Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#sorting-with-orderby">Sorting with OrderBy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#conditional-checks">Conditional Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#chaining-operations">Chaining Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#lambda-with-calculations">Lambda with Calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ArrowFunction/index.html#advanced-examples">Advanced Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#filtering-with-multiple-conditions">Filtering with Multiple Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#nested-collection-processing">Nested Collection Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArrowFunction/index.html#conditional-expressions">Conditional Expressions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="NamedParameter/index.html">Named Parameter ‘-&gt;’</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#operator-operands">Operator Operands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#named-parameter-structure">Named Parameter Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#advantages-of-named-parameters">Advantages of Named Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#basic-named-parameter-usage">Basic Named Parameter Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#multiple-named-parameters">Multiple Named Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#order-independence">Order Independence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#skipping-optional-parameters">Skipping Optional Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#mixed-named-and-positional">Mixed Named and Positional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#complex-expressions-as-values">Complex Expressions as Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#improving-readability">Improving Readability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#date-time-functions">Date/Time Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#string-manipulation">String Manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#mathematical-functions">Mathematical Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#comparison-with-positional-parameters">Comparison with Positional Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NamedParameter/index.html#error-scenarios">Error Scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#invalid-parameter-name">Invalid Parameter Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#duplicate-parameter">Duplicate Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NamedParameter/index.html#mixed-order-error">Mixed Order Error</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TypeOf/index.html">‘typeof’</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="TypeOf/index.html#syntax">Syntax</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TypeOf/index.html#operator-operands">Operator Operands</a></li>

@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Named Parameter ‘-&gt;’" href="../NamedParameter/index.html" />
-    <link rel="prev" title="Json Path Separator ‘.’" href="../JsonPathSeparator/index.html" /> 
+    <link rel="prev" title="Default Value ‘:’" href="../DefaultValue/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,8 +61,18 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Other Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Assert/index.html">‘assert’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DefaultValue/index.html">Default Value ‘:’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Arrow Function ‘=&gt;’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Arrow Function ‘=&gt;’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-usage-patterns">Common Usage Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-examples">Advanced Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../NamedParameter/index.html">Named Parameter ‘-&gt;’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../TypeOf/index.html">‘typeof’</a></li>
 </ul>
@@ -102,14 +112,241 @@
              
   <section id="arrow-function">
 <h1>Arrow Function ‘=&gt;’<a class="headerlink" href="#arrow-function" title="Link to this heading"></a></h1>
-<p>TODO: Add contents here</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id2">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#common-usage-patterns" id="id3">Common Usage Patterns</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id5">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id6">Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filtering-with-where" id="id7">Filtering with Where</a></p></li>
+<li><p><a class="reference internal" href="#projection-with-select" id="id8">Projection with Select</a></p></li>
+<li><p><a class="reference internal" href="#complex-filtering" id="id9">Complex Filtering</a></p></li>
+<li><p><a class="reference internal" href="#nested-property-access" id="id10">Nested Property Access</a></p></li>
+<li><p><a class="reference internal" href="#sorting-with-orderby" id="id11">Sorting with OrderBy</a></p></li>
+<li><p><a class="reference internal" href="#conditional-checks" id="id12">Conditional Checks</a></p></li>
+<li><p><a class="reference internal" href="#chaining-operations" id="id13">Chaining Operations</a></p></li>
+<li><p><a class="reference internal" href="#lambda-with-calculations" id="id14">Lambda with Calculations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices" id="id15">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id16">Notes</a></p></li>
+<li><p><a class="reference internal" href="#advanced-examples" id="id17">Advanced Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filtering-with-multiple-conditions" id="id18">Filtering with Multiple Conditions</a></p></li>
+<li><p><a class="reference internal" href="#nested-collection-processing" id="id19">Nested Collection Processing</a></p></li>
+<li><p><a class="reference internal" href="#conditional-expressions" id="id20">Conditional Expressions</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The lambda operator <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> is a binary operator used in JsonQL to define anonymous functions (lambda expressions) that specify how collection elements should be processed. It is primarily used with collection functions like <code class="docutils literal notranslate"><span class="pre">Where</span></code>, <code class="docutils literal notranslate"><span class="pre">Select</span></code>, <code class="docutils literal notranslate"><span class="pre">OrderBy</span></code>, and other functions that operate on sequences of values.</p>
+<p><strong>Operator Priority</strong>: 10000</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>&lt;parameter&gt; =&gt; &lt;expression&gt;</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> operator separates the parameter declaration (left side) from the expression body (right side).</p>
+</section>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Left Operand (Parameter)</strong>:</dt><dd><ul>
+<li><p>Type: Parameter identifier (variable name)</p></li>
+<li><p>Description: The parameter name that represents each element in the collection being processed. This identifier can be used within the expression body to reference the current element.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Right Operand (Expression Body)</strong>:</dt><dd><ul>
+<li><p>Type: Any valid JsonQL expression</p></li>
+<li><p>Description: The expression that is evaluated for each element in the collection. This expression can reference the parameter defined on the left side.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="common-usage-patterns">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Common Usage Patterns</a><a class="headerlink" href="#common-usage-patterns" title="Link to this heading"></a></h2>
+<p>Lambda expressions are typically used within collection functions:</p>
+<p><strong>With Where Function</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>With Select Function</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">Property</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>With OrderBy Function</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>With Any Function</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">Any</span><span class="p">(</span><span class="n">element</span> <span class="o">=&gt;</span> <span class="n">element</span><span class="o">.</span><span class="n">Status</span> <span class="o">==</span> <span class="s1">&#39;Active&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The lambda operator follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Parameter Scope</strong>: The parameter is only available within the lambda expression body</p></li>
+<li><p><strong>Deferred Execution</strong>: The lambda expression is not evaluated immediately; it’s evaluated when the collection function processes each element</p></li>
+<li><p><strong>Element Context</strong>: Within the lambda body, the parameter represents the current element being processed</p></li>
+<li><p><strong>Type Inference</strong>: The parameter type is inferred from the collection being processed</p></li>
+<li><p><strong>Expression Evaluation</strong>: The expression body is evaluated once for each element in the collection</p></li>
+</ol>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The lambda operator is essential for:</p>
+<ul class="simple">
+<li><p><strong>Filtering Collections</strong>: Using <code class="docutils literal notranslate"><span class="pre">Where</span></code> to filter elements based on conditions</p></li>
+<li><p><strong>Transforming Data</strong>: Using <code class="docutils literal notranslate"><span class="pre">Select</span></code> to project or transform collection elements</p></li>
+<li><p><strong>Sorting</strong>: Using <code class="docutils literal notranslate"><span class="pre">OrderBy</span></code> or <code class="docutils literal notranslate"><span class="pre">OrderByDescending</span></code> to specify sort criteria</p></li>
+<li><p><strong>Aggregation</strong>: Using functions like <code class="docutils literal notranslate"><span class="pre">Any</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, or <code class="docutils literal notranslate"><span class="pre">Count</span></code> with conditions</p></li>
+<li><p><strong>Complex Queries</strong>: Building sophisticated data processing pipelines</p></li>
+<li><p><strong>Property Access</strong>: Navigating nested properties for each collection element</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="filtering-with-where">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Filtering with Where</a><a class="headerlink" href="#filtering-with-where" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;AdultEmployees&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Age &gt;= 18))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Filters employees to include only those 18 years or older. The lambda <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=&gt;</span> <span class="pre">e.Age</span> <span class="pre">&gt;=</span> <span class="pre">18</span></code> is evaluated for each employee.</p>
+</section>
+<section id="projection-with-select">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Projection with Select</a><a class="headerlink" href="#projection-with-select" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Select(e =&gt; e.Name))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Extracts just the names from the employee collection. The lambda <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=&gt;</span> <span class="pre">e.Name</span></code> returns the name property of each employee.</p>
+</section>
+<section id="complex-filtering">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Complex Filtering</a><a class="headerlink" href="#complex-filtering" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;HighEarners&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(emp =&gt; emp.Salary &gt; 100000 &amp;&amp; emp.Department == &#39;Engineering&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Filters employees based on multiple conditions using a more complex lambda expression.</p>
+</section>
+<section id="nested-property-access">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Nested Property Access</a><a class="headerlink" href="#nested-property-access" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CitiesFromAddresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Select(person =&gt; person.Address.City))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Navigates nested properties within the lambda to extract city names from employee addresses.</p>
+</section>
+<section id="sorting-with-orderby">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Sorting with OrderBy</a><a class="headerlink" href="#sorting-with-orderby" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesByAge&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.OrderBy(e =&gt; e.Age))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Sorts employees by age. The lambda <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=&gt;</span> <span class="pre">e.Age</span></code> specifies which property to use for sorting.</p>
+</section>
+<section id="conditional-checks">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Conditional Checks</a><a class="headerlink" href="#conditional-checks" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;HasAdults&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Any(e =&gt; e.Age &gt;= 18))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Checks if any employee is 18 or older. Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</section>
+<section id="chaining-operations">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Chaining Operations</a><a class="headerlink" href="#chaining-operations" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TopEarnerNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(e =&gt; e.Salary &gt; 100000).OrderByDescending(e =&gt; e.Salary).Select(e =&gt; e.Name))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Chains multiple operations, each using lambda expressions to filter, sort, and project the data.</p>
+</section>
+<section id="lambda-with-calculations">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Lambda with Calculations</a><a class="headerlink" href="#lambda-with-calculations" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;AnnualBonuses&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Select(e =&gt; e.Salary * 0.1))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calculates a value for each element. The lambda performs arithmetic on employee salaries.</p>
+</section>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Use Descriptive Parameter Names</strong>: Choose parameter names that make the lambda’s purpose clear (e.g., <code class="docutils literal notranslate"><span class="pre">employee</span></code>, <code class="docutils literal notranslate"><span class="pre">item</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>)</p></li>
+<li><p><strong>Keep Expressions Simple</strong>: Complex logic in lambda expressions can reduce readability</p></li>
+<li><p><strong>Avoid Side Effects</strong>: Lambda expressions should be pure functions without side effects</p></li>
+<li><p><strong>Consider Performance</strong>: Lambda expressions are evaluated for each element, so expensive operations can impact performance</p></li>
+<li><p><strong>Use Short Names for Simple Operations</strong>: Single-letter parameters (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>) are acceptable for simple, obvious operations</p></li>
+<li><p><strong>Chain Carefully</strong>: While chaining is powerful, too many operations can make expressions hard to understand</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Lambda expressions create a new scope for the parameter variable</p></li>
+<li><p>The parameter is read-only within the lambda expression</p></li>
+<li><p>Lambda expressions are a core feature for working with collections in JsonQL</p></li>
+<li><p>The operator enables functional programming patterns in JSON queries</p></li>
+<li><p>Multiple parameters are not supported; each lambda takes exactly one parameter</p></li>
+<li><p>Lambda expressions cannot modify the original collection; they produce new results</p></li>
+</ul>
+</section>
+<section id="advanced-examples">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Advanced Examples</a><a class="headerlink" href="#advanced-examples" title="Link to this heading"></a></h2>
+<section id="filtering-with-multiple-conditions">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Filtering with Multiple Conditions</a><a class="headerlink" href="#filtering-with-multiple-conditions" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;QualifiedCandidates&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Applicants.Where(a =&gt; a.Experience &gt;= 5 &amp;&amp; a.Education == &#39;Masters&#39; &amp;&amp; a.Skills contains &#39;C#&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Uses complex boolean logic within the lambda to filter based on multiple criteria.</p>
+</section>
+<section id="nested-collection-processing">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Nested Collection Processing</a><a class="headerlink" href="#nested-collection-processing" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;AllPhoneNumbers&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Select(e =&gt; e.ContactInfo.PhoneNumbers.Where(p =&gt; p.Type == &#39;Mobile&#39;)))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Uses nested lambda expressions to process collections within collections.</p>
+</section>
+<section id="conditional-expressions">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Conditional Expressions</a><a class="headerlink" href="#conditional-expressions" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EmployeeCategories&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Select(e =&gt; e.Age &gt;= 18 : &#39;Adult&#39; : &#39;Minor&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Combines lambda with the default value operator to create conditional transformations.</p>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../JsonPathSeparator/index.html" class="btn btn-neutral float-left" title="Json Path Separator ‘.’" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../DefaultValue/index.html" class="btn btn-neutral float-left" title="Default Value ‘:’" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../NamedParameter/index.html" class="btn btn-neutral float-right" title="Named Parameter ‘-&gt;’" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

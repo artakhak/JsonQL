@@ -61,9 +61,21 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Other Operators</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Assert/index.html">‘assert’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DefaultValue/index.html">Default Value ‘:’</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../JsonPathSeparator/index.html">Json Path Separator ‘.’</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ArrowFunction/index.html">Arrow Function ‘=&gt;’</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Named Parameter ‘-&gt;’</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Named Parameter ‘-&gt;’</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-operands">Operator Operands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#named-parameter-structure">Named Parameter Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation-rules">Evaluation Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advantages-of-named-parameters">Advantages of Named Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparison-with-positional-parameters">Comparison with Positional Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-scenarios">Error Scenarios</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../TypeOf/index.html">‘typeof’</a></li>
 </ul>
 </li>
@@ -102,9 +114,298 @@
              
   <section id="named-parameter">
 <h1>Named Parameter ‘-&gt;’<a class="headerlink" href="#named-parameter" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p>TODO: Add contents here</p></li>
+<li><p><a class="reference internal" href="#syntax" id="id1">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#operator-operands" id="id2">Operator Operands</a></p></li>
+<li><p><a class="reference internal" href="#named-parameter-structure" id="id3">Named Parameter Structure</a></p></li>
+<li><p><a class="reference internal" href="#evaluation-rules" id="id4">Evaluation Rules</a></p></li>
+<li><p><a class="reference internal" href="#advantages-of-named-parameters" id="id5">Advantages of Named Parameters</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id6">Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id7">Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#basic-named-parameter-usage" id="id8">Basic Named Parameter Usage</a></p></li>
+<li><p><a class="reference internal" href="#multiple-named-parameters" id="id9">Multiple Named Parameters</a></p></li>
+<li><p><a class="reference internal" href="#order-independence" id="id10">Order Independence</a></p></li>
+<li><p><a class="reference internal" href="#skipping-optional-parameters" id="id11">Skipping Optional Parameters</a></p></li>
+<li><p><a class="reference internal" href="#mixed-named-and-positional" id="id12">Mixed Named and Positional</a></p></li>
+<li><p><a class="reference internal" href="#complex-expressions-as-values" id="id13">Complex Expressions as Values</a></p></li>
+<li><p><a class="reference internal" href="#improving-readability" id="id14">Improving Readability</a></p></li>
+<li><p><a class="reference internal" href="#date-time-functions" id="id15">Date/Time Functions</a></p></li>
+<li><p><a class="reference internal" href="#string-manipulation" id="id16">String Manipulation</a></p></li>
+<li><p><a class="reference internal" href="#mathematical-functions" id="id17">Mathematical Functions</a></p></li>
 </ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices" id="id18">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id19">Notes</a></p></li>
+<li><p><a class="reference internal" href="#comparison-with-positional-parameters" id="id20">Comparison with Positional Parameters</a></p></li>
+<li><p><a class="reference internal" href="#error-scenarios" id="id21">Error Scenarios</a></p>
+<ul>
+<li><p><a class="reference internal" href="#invalid-parameter-name" id="id22">Invalid Parameter Name</a></p></li>
+<li><p><a class="reference internal" href="#duplicate-parameter" id="id23">Duplicate Parameter</a></p></li>
+<li><p><a class="reference internal" href="#mixed-order-error" id="id24">Mixed Order Error</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The named parameter operator <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> is a binary operator used in JsonQL to explicitly specify parameter names when calling functions. It creates a mapping between a parameter name and its corresponding value, enabling named parameter syntax for function calls.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Also, see section <a class="reference internal" href="../../../OptionalAndNamedParameters/index.html"><span class="doc">Optional and Named Parameters</span></a> for more details on using operator <cite>-&gt;</cite> to specify values for optional parameters or to specify parameter names explicitly.</p>
+</div>
+<p><strong>Operator Priority</strong>: 20100</p>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<p>&lt;parameter_name&gt; -&gt; &lt;value_expression&gt;</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> operator maps a parameter name (left side) to a value expression (right side).</p>
+</section>
+<section id="operator-operands">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Operator Operands</a><a class="headerlink" href="#operator-operands" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Left Operand (Parameter Name)</strong>:</dt><dd><ul>
+<li><p>Type: Identifier</p></li>
+<li><p>Description: The name of the function parameter as defined in the function signature. This must match a valid parameter name of the function being called.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Right Operand (Value Expression)</strong>:</dt><dd><ul>
+<li><p>Type: Any valid JsonQL expression</p></li>
+<li><p>Description: The value or expression to be passed as the argument for the named parameter.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="named-parameter-structure">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Named Parameter Structure</a><a class="headerlink" href="#named-parameter-structure" title="Link to this heading"></a></h2>
+<p>Named parameters in JsonQL follow this pattern when calling functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FunctionName</span><span class="p">(</span><span class="n">param1</span> <span class="o">-&gt;</span> <span class="n">value1</span><span class="p">,</span> <span class="n">param2</span> <span class="o">-&gt;</span> <span class="n">value2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param1</span></code>, <code class="docutils literal notranslate"><span class="pre">param2</span></code> are parameter names defined by the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value1</span></code>, <code class="docutils literal notranslate"><span class="pre">value2</span></code> are the values or expressions being passed</p></li>
+</ul>
+</section>
+<section id="evaluation-rules">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Evaluation Rules</a><a class="headerlink" href="#evaluation-rules" title="Link to this heading"></a></h2>
+<p>The named parameter operator follows these evaluation rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Parameter Matching</strong>: The parameter name must match a parameter defined in the function signature</p></li>
+<li><p><strong>Order Independence</strong>: Named parameters can be specified in any order</p></li>
+<li><p><strong>Mixed Syntax</strong>: Named and positional parameters can be mixed in a single function call (positional must come first)</p></li>
+<li><p><strong>Expression Evaluation</strong>: The right operand is evaluated before being passed to the function</p></li>
+<li><p><strong>Type Checking</strong>: The value type must be compatible with the parameter’s expected type</p></li>
+<li><p><strong>Optional Parameters</strong>: Named parameters can be used to skip optional parameters and specify later ones</p></li>
+</ol>
+</section>
+<section id="advantages-of-named-parameters">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Advantages of Named Parameters</a><a class="headerlink" href="#advantages-of-named-parameters" title="Link to this heading"></a></h2>
+<p>Using named parameters provides several benefits:</p>
+<ul class="simple">
+<li><p><strong>Clarity</strong>: Makes it explicit which value corresponds to which parameter</p></li>
+<li><p><strong>Order Independence</strong>: Parameters can be specified in any order when all are named</p></li>
+<li><p><strong>Optional Parameters</strong>: Allows skipping optional parameters easily</p></li>
+<li><p><strong>Self-Documenting</strong>: Code is more readable and self-explanatory</p></li>
+<li><p><strong>Refactoring Safety</strong>: Less prone to errors when parameter order changes</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The named parameter operator is useful for:</p>
+<ul class="simple">
+<li><p><strong>Functions with Many Parameters</strong>: Making calls to functions with multiple parameters more readable</p></li>
+<li><p><strong>Functions with Optional Parameters</strong>: Specifying only the parameters you need</p></li>
+<li><p><strong>Improving Readability</strong>: Making code more self-documenting</p></li>
+<li><p><strong>Avoiding Position Errors</strong>: Preventing mistakes when parameter order is unclear</p></li>
+<li><p><strong>Complex Function Calls</strong>: Clarifying what each argument represents in complex expressions</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="basic-named-parameter-usage">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Basic Named Parameter Usage</a><a class="headerlink" href="#basic-named-parameter-usage" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;FormattedDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(FormatDateTime(dateTime -&gt; Now(), format -&gt; &#39;yyyy-MM-dd&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">FormatDateTime</span></code> function with named parameters, making it clear which value is the date and which is the format.</p>
+</section>
+<section id="multiple-named-parameters">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Multiple Named Parameters</a><a class="headerlink" href="#multiple-named-parameters" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Substring&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Substring(text -&gt; &#39;Hello World&#39;, startIndex -&gt; 0, length -&gt; 5))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Uses multiple named parameters to extract a substring, explicitly showing what each argument represents.</p>
+</section>
+<section id="order-independence">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Order Independence</a><a class="headerlink" href="#order-independence" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Divide(dividend -&gt; 100, divisor -&gt; 5))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Result2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Divide(divisor -&gt; 5, dividend -&gt; 100))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Both calls produce the same result because named parameters can be specified in any order.</p>
+</section>
+<section id="skipping-optional-parameters">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Skipping Optional Parameters</a><a class="headerlink" href="#skipping-optional-parameters" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;RoundedValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Round(value -&gt; 3.14159, decimals -&gt; 2))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">Round</span></code> has other optional parameters, they can be omitted when using named parameters.</p>
+</section>
+<section id="mixed-named-and-positional">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Mixed Named and Positional</a><a class="headerlink" href="#mixed-named-and-positional" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(SomeFunction(arg1, arg2, optionalParam -&gt; value3))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Combines positional arguments (<code class="docutils literal notranslate"><span class="pre">arg1</span></code>, <code class="docutils literal notranslate"><span class="pre">arg2</span></code>) with a named argument (<code class="docutils literal notranslate"><span class="pre">optionalParam</span></code>). Positional arguments must come first.</p>
+</section>
+<section id="complex-expressions-as-values">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Complex Expressions as Values</a><a class="headerlink" href="#complex-expressions-as-values" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;FilteredData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Filter(collection -&gt; Employees, predicate -&gt; e =&gt; e.Age &gt; 30))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Uses named parameters with complex expressions, including a lambda expression as a parameter value.</p>
+</section>
+<section id="improving-readability">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Improving Readability</a><a class="headerlink" href="#improving-readability" title="Link to this heading"></a></h3>
+<p><strong>Without Named Parameters:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(CreatePerson(&#39;John&#39;, &#39;Doe&#39;, 30, &#39;john@example.com&#39;, &#39;New York&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>With Named Parameters:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(CreatePerson(firstName -&gt; &#39;John&#39;, lastName -&gt; &#39;Doe&#39;, age -&gt; 30, email -&gt; &#39;john@example.com&#39;, city -&gt; &#39;New York&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The named parameter version is much more readable and self-documenting.</p>
+</section>
+<section id="date-time-functions">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Date/Time Functions</a><a class="headerlink" href="#date-time-functions" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CustomDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(CreateDateTime(year -&gt; 2024, month -&gt; 12, day -&gt; 25, hour -&gt; 10, minute -&gt; 30, second -&gt; 0))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Named parameters are especially useful for functions with many parameters of the same type.</p>
+</section>
+<section id="string-manipulation">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">String Manipulation</a><a class="headerlink" href="#string-manipulation" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ReplacedText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Replace(input -&gt; &#39;Hello World&#39;, oldValue -&gt; &#39;World&#39;, newValue -&gt; &#39;JsonQL&#39;))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Makes it clear what is being replaced and what the replacement value is.</p>
+</section>
+<section id="mathematical-functions">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Mathematical Functions</a><a class="headerlink" href="#mathematical-functions" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Power&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Pow(base -&gt; 2, exponent -&gt; 10))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Clarifies which value is the base and which is the exponent.</p>
+</section>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Use for Clarity</strong>: Employ named parameters when function purpose isn’t immediately obvious</p></li>
+<li><p><strong>Required vs Optional</strong>: Always use named parameters for optional parameters</p></li>
+<li><p><strong>Long Parameter Lists</strong>: Use named parameters for functions with more than 2-3 parameters</p></li>
+<li><p><strong>Similar Types</strong>: Use named parameters when multiple parameters have the same type</p></li>
+<li><p><strong>Team Conventions</strong>: Establish team conventions for when to use named vs positional parameters</p></li>
+<li><p><strong>Consistency</strong>: Be consistent in using named parameters throughout your codebase</p></li>
+<li><p><strong>Documentation</strong>: Named parameters serve as inline documentation</p></li>
+</ul>
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Parameter names must exactly match the function’s parameter names (case-sensitive)</p></li>
+<li><p>Named parameters cannot be duplicated in the same function call</p></li>
+<li><p>When mixing positional and named parameters, all positional parameters must come first</p></li>
+<li><p>Named parameters make refactoring safer as parameter order changes don’t break code</p></li>
+<li><p>The operator creates a clear binding between parameter names and values</p></li>
+<li><p>Named parameters are evaluated in the order they appear, not in parameter definition order</p></li>
+</ul>
+</section>
+<section id="comparison-with-positional-parameters">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Comparison with Positional Parameters</a><a class="headerlink" href="#comparison-with-positional-parameters" title="Link to this heading"></a></h2>
+<p><strong>Positional Parameters:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Substring(&#39;Hello World&#39;, 0, 5))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Requires knowing parameter order</p></li>
+<li><p>More concise for simple cases</p></li>
+<li><p>Error-prone with many parameters</p></li>
+</ul>
+<p><strong>Named Parameters:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Substring(text -&gt; &#39;Hello World&#39;, startIndex -&gt; 0, length -&gt; 5))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Self-documenting</p></li>
+<li><p>Order-independent</p></li>
+<li><p>More verbose but clearer</p></li>
+<li><p>Safer for complex function calls</p></li>
+</ul>
+</section>
+<section id="error-scenarios">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Error Scenarios</a><a class="headerlink" href="#error-scenarios" title="Link to this heading"></a></h2>
+<section id="invalid-parameter-name">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Invalid Parameter Name</a><a class="headerlink" href="#invalid-parameter-name" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Round(val -&gt; 3.14, decimals -&gt; 2))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the function expects <code class="docutils literal notranslate"><span class="pre">value</span></code> instead of <code class="docutils literal notranslate"><span class="pre">val</span></code>, this will produce a compilation error.</p>
+</section>
+<section id="duplicate-parameter">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Duplicate Parameter</a><a class="headerlink" href="#duplicate-parameter" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Add(a -&gt; 5, a -&gt; 10))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Specifying the same parameter twice is not allowed.</p>
+</section>
+<section id="mixed-order-error">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Mixed Order Error</a><a class="headerlink" href="#mixed-order-error" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(SomeFunction(param -&gt; value, positionalArg))&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Positional arguments cannot come after named arguments.</p>
+</section>
+</section>
 </section>
 
 

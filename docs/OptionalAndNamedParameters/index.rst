@@ -14,6 +14,9 @@ Optional and Named Parameters
 
     - For example, in JsonQL expression in value of "AllParametersSpecifiedAsNamedParameters" in JSON file **Example** below we use named parameters for all three parameters. We pass a value for optional parameter 'value' first (this parameter is the the third parameter in function 'Average'), then we pass a value for optional parameter 'criteria' (this parameter is the the second parameter in function 'Average'), and finally we pass a value for required parameter 'collection' (this parameter is the the first parameter in function 'Average').
 
+.. note::
+    See also section :doc:`../Operators/OtherOperators/NamedParameter/index` for a detailed description of using operator `->` for named and optional parameters. 
+
 Example
 =======
 
