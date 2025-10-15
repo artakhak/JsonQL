@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Future Releases" href="../FutureReleases/index.html" />
+    <link rel="next" title="Overview" href="overview.html" />
     <link rel="prev" title="Dependency Injection Setup" href="../DependencyInjectionSetup/index.html" /> 
 </head>
 
@@ -54,7 +54,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../AggregateFunctions/index.html">Aggregate Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Operators/index.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom JsonQL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom JsonQL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Example/index.html">Example in <strong>JsonQL.Demos</strong> Project</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../FutureReleases/index.html">Future Releases</a></li>
 </ul>
 
@@ -84,10 +88,73 @@
              
   <section id="custom-jsonql">
 <h1>Custom JsonQL<a class="headerlink" href="#custom-jsonql" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p>TODO: Add contents here…</p></li>
-<li><p>TODO: Add toctree here…</p></li>
+<p>JsonQL is designed to be extensible, allowing you to create custom functions, aggregate functions, JSON path functions (e.g., functions like <cite>Where</cite>, <cite>Select</cite>), aggregate functions, operators, special literals (e.g., JsonQLReleaseDate) that evaluate to custom values, and interface implementations.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#common-patterns">Common Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#see-also">See Also</a></li>
 </ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example/index.html">Example in <strong>JsonQL.Demos</strong> Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-function-1.html">Custom Function <strong>ReverseTextAndAddMarkers</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-function-1.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-function-1.html#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-function-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-path-function-1.html">Custom Path Function <strong>SelectEvenIndexes</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#examples">Examples:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-1.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-path-function-2.html">Custom Path Function <strong>Second</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#examples">Examples:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-path-function-2.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-literal-1.html">Custom Literal <strong>JsonQLReleaseDate</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-literal-1.html#return-value">Return Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-literal-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-binary-operator-1.html">Custom Binary Operator <strong>+-</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-binary-operator-1.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-binary-operator-1.html#operands">Operands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-binary-operator-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-binary-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-postfix-operator-1.html">Custom Postfix Operator <strong>is even</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-postfix-operator-1.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-postfix-operator-1.html#operand">Operand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-postfix-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/custom-prefix-operator-1.html">Custom Prefix Operator <strong>++2</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-prefix-operator-1.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-prefix-operator-1.html#operand">Operand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-prefix-operator-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Example/custom-prefix-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/summary-examples.html">Summary Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 
 
@@ -95,7 +162,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../DependencyInjectionSetup/index.html" class="btn btn-neutral float-left" title="Dependency Injection Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../FutureReleases/index.html" class="btn btn-neutral float-right" title="Future Releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

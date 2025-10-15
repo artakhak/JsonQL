@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example in JsonQL.Demos Project &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Function ReverseTextAndAddMarkers" href="custom-function-1.html" />
+    <link rel="prev" title="Overview" href="../overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Custom JsonQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example in <strong>JsonQL.Demos</strong> Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="custom-function-1.html">Custom Function <strong>ReverseTextAndAddMarkers</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-path-function-1.html">Custom Path Function <strong>SelectEvenIndexes</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-path-function-2.html">Custom Path Function <strong>Second</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-literal-1.html">Custom Literal <strong>JsonQLReleaseDate</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-binary-operator-1.html">Custom Binary Operator <strong>+-</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-postfix-operator-1.html">Custom Postfix Operator <strong>is even</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-prefix-operator-1.html">Custom Prefix Operator <strong>++2</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="summary-examples.html">Summary Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Custom JsonQL</a></li>
+      <li class="breadcrumb-item active">Example in <strong>JsonQL.Demos</strong> Project</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CustomJsonQL/Example/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-in-jsonql-demos-project">
+<h1>Example in <strong>JsonQL.Demos</strong> Project<a class="headerlink" href="#example-in-jsonql-demos-project" title="Link to this heading"></a></h1>
+<p>Classes in namespace <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation">JsonQL.Demos.CustomJsonQL.Compilation</a> demonstrate how to add new functions, operators, and Json path functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Custom functions, custom literals (e.g., <strong>JsonQLReleaseDate</strong>), operators, path functions used in examples in <strong>JsonQL.Demos</strong> use meaningless names to avoid potential conflicts with adding similar functions, operators and path functions in JsonQL in the future.</p>
+</div>
+<p>The sections that follow provide descriptions of implemented custom functions, literal, etc, and then a summary example is provided in section <a class="reference internal" href="summary-examples.html"><span class="doc">Summary Examples</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="custom-function-1.html">Custom Function <strong>ReverseTextAndAddMarkers</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-function-1.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-function-1.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-function-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-path-function-1.html">Custom Path Function <strong>SelectEvenIndexes</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#examples">Examples:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-1.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-path-function-2.html">Custom Path Function <strong>Second</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#examples">Examples:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-path-function-2.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-literal-1.html">Custom Literal <strong>JsonQLReleaseDate</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-literal-1.html#return-value">Return Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-literal-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-binary-operator-1.html">Custom Binary Operator <strong>+-</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-binary-operator-1.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-binary-operator-1.html#operands">Operands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-binary-operator-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-binary-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-postfix-operator-1.html">Custom Postfix Operator <strong>is even</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-postfix-operator-1.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-postfix-operator-1.html#operand">Operand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-postfix-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom-prefix-operator-1.html">Custom Prefix Operator <strong>++2</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-prefix-operator-1.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-prefix-operator-1.html#operand">Operand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-prefix-operator-1.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-prefix-operator-1.html#examples">Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="summary-examples.html">Summary Examples</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom-function-1.html" class="btn btn-neutral float-right" title="Custom Function ReverseTextAndAddMarkers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

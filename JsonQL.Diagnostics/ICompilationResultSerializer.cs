@@ -33,7 +33,6 @@ public class CompilationResultSerializer : ICompilationResultSerializer
         _classSerializer = classSerializer;
     }
 
-
     private string IndentJsonValue(string jsonVale, string indention)
     {
         var lines = jsonVale.Split(Environment.NewLine);

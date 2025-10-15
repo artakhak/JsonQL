@@ -1,0 +1,26 @@
+===================================
+Example in **JsonQL.Demos** Project
+===================================
+
+.. contents::
+   :local:
+   :depth: 4  
+
+Classes in namespace `JsonQL.Demos.CustomJsonQL.Compilation <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation>`_ demonstrate how to add new functions, operators, and Json path functions.
+
+.. note::
+    Custom functions, custom literals (e.g., **JsonQLReleaseDate**), operators, path functions used in examples in **JsonQL.Demos** use meaningless names to avoid potential conflicts with adding similar functions, operators and path functions in JsonQL in the future.
+
+
+The sections that follow provide descriptions of implemented custom functions, literal, etc, and then a summary example is provided in section :doc:`summary-examples`.
+
+.. toctree::
+   
+   custom-function-1.rst
+   custom-path-function-1.rst
+   custom-path-function-2.rst
+   custom-literal-1.rst
+   custom-binary-operator-1.rst
+   custom-postfix-operator-1.rst
+   custom-prefix-operator-1.rst
+   summary-examples.rst

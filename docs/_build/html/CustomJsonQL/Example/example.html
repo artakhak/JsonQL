@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Future Releases" href="../../FutureReleases/index.html" />
+    <link rel="prev" title="Overview" href="../overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Custom JsonQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#practical-implementation-in-jsonql-demos-project">Practical Implementation in <strong>JsonQL.Demos</strong> project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-function-reversetextandaddmarkers">Custom Function <strong>ReverseTextAndAddMarkers</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-value">Return Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reversetextandaddmarkers-examples"><strong>ReverseTextAndAddMarkers</strong> Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-literal-jsonqlreleasedate">Custom Literal <strong>JsonQLReleaseDate</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Return Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jsonqlreleasedate-examples"><strong>JsonQLReleaseDate</strong> Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-postfix-operator-is-even">Custom Postfix Operator <strong>is even</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operand">Operand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#is-even-examples"><strong>is even</strong> Examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Custom JsonQL</a></li>
+      <li class="breadcrumb-item active">Example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CustomJsonQL/Example/example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#practical-implementation-in-jsonql-demos-project" id="id2">Practical Implementation in <strong>JsonQL.Demos</strong> project</a></p></li>
+<li><p><a class="reference internal" href="#custom-function-reversetextandaddmarkers" id="id3">Custom Function <strong>ReverseTextAndAddMarkers</strong></a></p>
+<ul>
+<li><p><a class="reference internal" href="#parameters" id="id4">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id5">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#reversetextandaddmarkers-examples" id="id6"><strong>ReverseTextAndAddMarkers</strong> Examples:</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#custom-literal-jsonqlreleasedate" id="id7">Custom Literal <strong>JsonQLReleaseDate</strong></a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id8">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#jsonqlreleasedate-examples" id="id9"><strong>JsonQLReleaseDate</strong> Examples:</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#custom-postfix-operator-is-even" id="id10">Custom Postfix Operator <strong>is even</strong></a></p>
+<ul>
+<li><p><a class="reference internal" href="#description" id="id11">Description</a></p></li>
+<li><p><a class="reference internal" href="#operand" id="id12">Operand</a></p></li>
+<li><p><a class="reference internal" href="#is-even-examples" id="id13"><strong>is even</strong> Examples:</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#examples" id="id14">Examples</a></p></li>
+</ul>
+</nav>
+<section id="practical-implementation-in-jsonql-demos-project">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Practical Implementation in <strong>JsonQL.Demos</strong> project</a><a class="headerlink" href="#practical-implementation-in-jsonql-demos-project" title="Link to this heading"></a></h2>
+<p>Classes in namespace <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation">JsonQL.Demos.CustomJsonQL.Compilation</a> demonstrate how to add new functions, operators, and Json path functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Custom functions, operators and path functions used in examples in <strong>JsonQL.Demos</strong> use meaningless names to avoid potential conflicts with adding similar functions, operators and path functions in JsonQL in the future.</p>
+</div>
+</section>
+<section id="custom-function-reversetextandaddmarkers">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Custom Function <strong>ReverseTextAndAddMarkers</strong></a><a class="headerlink" href="#custom-function-reversetextandaddmarkers" title="Link to this heading"></a></h2>
+<section id="parameters">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>String</p></td>
+<td><p>Yes</p></td>
+<td><p>The input string to be reversed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">addMarkers</span></code></p></td>
+<td><p>Lambda</p></td>
+<td><p>No</p></td>
+<td><p>A lambda expression that filters which elements to include in the minimum calculation. Takes one parameter representing the current element and returns a boolean.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p>No</p></td>
+<td><p>When <cite>true</cite> or omitted, the reversed string is wrapped with <cite>#</cite> markers (e.g., <cite>#tseT#</cite>). When <cite>false</cite>, returns only the reversed string without markers. <strong>Default</strong>: <cite>true</cite>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="return-value">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong>: <cite>string</cite></p></li>
+<li><dl class="simple">
+<dt><strong>Returns</strong>:</dt><dd><ul>
+<li><p>The reversed input string wrapped with <cite>#</cite> markers when <cite>addMarkers</cite> is <cite>true</cite> or omitted (e.g., <cite>#tseT#</cite>)</p></li>
+<li><p>The reversed input string without markers when <cite>addMarkers</cite> is <cite>false</cite> (e.g., <cite>tseT</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="reversetextandaddmarkers-examples">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink"><strong>ReverseTextAndAddMarkers</strong> Examples:</a><a class="headerlink" href="#reversetextandaddmarkers-examples" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="custom-literal-jsonqlreleasedate">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Custom Literal <strong>JsonQLReleaseDate</strong></a><a class="headerlink" href="#custom-literal-jsonqlreleasedate" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">JsonQLReleaseDate</span></code> function returns a constant DateTime value representing the release date of the JsonQL library.</p>
+<section id="id1">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Return Value</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">DateTime</span></code></p></li>
+<li><p><strong>Returns</strong>: A DateTime value of <code class="docutils literal notranslate"><span class="pre">2025-06-01</span> <span class="pre">00:00:00</span></code> representing the JsonQL library release date.</p></li>
+</ul>
+</section>
+<section id="jsonqlreleasedate-examples">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><strong>JsonQLReleaseDate</strong> Examples:</a><a class="headerlink" href="#jsonqlreleasedate-examples" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="custom-postfix-operator-is-even">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Custom Postfix Operator <strong>is even</strong></a><a class="headerlink" href="#custom-postfix-operator-is-even" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">even</span></code> postfix operator checks whether a numeric value is an even integer.</p>
+<section id="description">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading"></a></h3>
+<p>This operator evaluates a numeric expression and returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the value is an even integer, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. The operator checks that:</p>
+<ol class="arabic simple">
+<li><p>The operand can be converted to a numeric value</p></li>
+<li><p>The numeric value is an integer (no fractional part)</p></li>
+<li><p>The integer is divisible by 2</p></li>
+</ol>
+</section>
+<section id="operand">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Operand</a><a class="headerlink" href="#operand" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong>: Numeric expression</p></li>
+<li><p><strong>Description</strong>: A numeric value to test for evenness. The operand is placed before the operator.</p></li>
+<li><dl class="simple">
+<dt><strong>Returns</strong>:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the operand is an even integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> if the operand is an odd integer or has a fractional part</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">null</span></code> if the operand cannot be converted to a number</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="is-even-examples">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><strong>is even</strong> Examples:</a><a class="headerlink" href="#is-even-examples" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Example1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(8 is even)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Result: true</span>
+
+<span class="w">  </span><span class="nt">&quot;Example2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(5 is even)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Result: false</span>
+
+<span class="w">  </span><span class="nt">&quot;Example3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(TestData[2] is even)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Where TestData[2] = 8, Result: true</span>
+
+<span class="w">  </span><span class="nt">&quot;Example4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$(TestData[0] is even)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Where TestData[0] = 1, Result: false</span>
+
+<span class="w">  </span><span class="nt">&quot;Example5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Employees.Where(e =&gt; e.Age is even)&quot;</span>
+<span class="w">  </span><span class="c1">// Filters employees whose age is an even number</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p><strong>CustomFeaturesOverview.json</strong> file below demonstrates using custom functions, operators, and Json path functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Examples.json</strong> in example below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="companies.html"><span class="doc">Companies.json</span></a></p></li>
+</ul>
+</div>
+<p><strong>CustomFeaturesOverview.json</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TestData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;CustomBinaryOperator_+-&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(TestData[0] +- TestData[2])=$(TestData[0] +- TestData[2])==-9&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomPrefixOperator_++2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(++2 TestData[2])=$(++2 TestData[2])==10&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomPostfixOperator_is_even&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(TestData[2] is even)=$(TestData[2] is even)==true&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReverseTextAndAddMarkers(TestData[4])=&#39;$(ReverseTextAndAddMarkers(TestData[4]))&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;ReverseTextAndAddMarkers(TestData[4], true)=$(ReverseTextAndAddMarkers(TestData[4], true))&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReverseTextAndAddMarkers(TestData[4], false)=&#39;$(ReverseTextAndAddMarkers(TestData[4], false))&#39; == &#39;tseT&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReverseTextAndAddMarkers(value-&gt;TestData[4], addMarkers-&gt;true)=&#39;$(ReverseTextAndAddMarkers(value-&gt;TestData[4], addMarkers-&gt;true))&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReverseTextAndAddMarkers(addMarkers-&gt;false, value-&gt;TestData[4])=&#39;$(ReverseTextAndAddMarkers(addMarkers-&gt;false, value-&gt;TestData[4]))&#39; == &#39;tseT&#39;&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;CustomSpecialFunction_JsonQLReleaseDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JsonQLReleaseDate is &#39;$(JsonQLReleaseDate)&#39;. The type of value of &#39;JsonQLReleaseDate&#39; function is &#39;$(typeof JsonQLReleaseDate)&#39;.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomMultipleItemsSelectorExample_SelectEvenIndexes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(x =&gt; x.Employees).Flatten().SelectEvenIndexes(x =&gt; x.Id != 100000001).Where(x =&gt; x.Salary &gt; 89000))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CustomSingleItemSelectorExample_SecondItemSelector&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Second employee name with salary less than 100K is &#39;$(Companies[0].Employees.Second(x =&gt; x.Salary &lt; 100000).Name)&#39;==&#39;Michael Brown&#39;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>CustomFeaturesOverview.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<details>
+<summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CustomFeaturesOverview&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;TestData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">          </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;Test&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;CustomBinaryOperator_+-&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;(TestData[0] +- TestData[2])=-9==-9&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomPrefixOperator_++2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;(++2 TestData[2])=10==10&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomPostfixOperator_is_even&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;(TestData[2] is even)=true==true&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_1&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;ReverseTextAndAddMarkers(TestData[4])=&#39;#tseT#&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_2&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;&#39;ReverseTextAndAddMarkers(TestData[4], true)=#tseT#&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_3&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;ReverseTextAndAddMarkers(TestData[4], false)=&#39;tseT&#39; == &#39;tseT&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_4&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;ReverseTextAndAddMarkers(value-&gt;TestData[4], addMarkers-&gt;true)=&#39;#tseT#&#39; == &#39;#tseT#&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomFunction_ReverseTextAndAddMarkers_5&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;ReverseTextAndAddMarkers(addMarkers-&gt;false, value-&gt;TestData[4])=&#39;tseT&#39; == &#39;tseT&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomSpecialFunction_JsonQLReleaseDate&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;JsonQLReleaseDate is &#39;2025-06-01 00:00:00.0000000&#39;. The type of value of &#39;JsonQLReleaseDate&#39; function is &#39;DateTime&#39;.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CustomMultipleItemsSelectorExample_SelectEvenIndexes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000005</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Christopher Garcia&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;654 Cedar Road&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Phoenix&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;AZ&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;85001&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">111000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">29</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Logins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;cgarcia@sherwood.com&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;cgarcia@gmail.com&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">100000007</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;David Martinez&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;147 Birch Street&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;San Antonio&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;78201&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">95000</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">46</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Logins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;dmartinez@sherwood.com&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;dmartinez@gmail.com&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">250150245</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Main St&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;San Jose&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;PA&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;95101&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">144186</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">63</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;CustomSingleItemSelectorExample_SecondItemSelector&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Second employee name with salary less than 100K is &#39;Michael Brown&#39;==&#39;Michael Brown&#39;&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details><br/><br/></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../FutureReleases/index.html" class="btn btn-neutral float-right" title="Future Releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

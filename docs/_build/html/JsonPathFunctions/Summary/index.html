@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Array Indexers" href="../ArrayIndexers/index.html" />
+    <link rel="prev" title="JSON Path Functions" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JSON Path Functions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-characteristics">Common Characteristics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-patterns">Usage Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-differences-arrays-vs-collections">Key Differences: Arrays vs Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-limitation">Example Limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-use-cases">Common Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ArrayIndexers/index.html">Array Indexers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../At/index.html">At</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../First/index.html">First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Last/index.html">Last</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Where/index.html">Where</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Select/index.html">Select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Flatten/index.html">Flatten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Reverse/index.html">Reverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CustomJsonQL/index.html">Custom JsonQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JSON Path Functions</a></li>
+      <li class="breadcrumb-item active">Summary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/JsonPathFunctions/Summary/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#common-characteristics" id="id1">Common Characteristics</a></p></li>
+<li><p><a class="reference internal" href="#usage-patterns" id="id2">Usage Patterns</a></p></li>
+<li><p><a class="reference internal" href="#key-differences-arrays-vs-collections" id="id3">Key Differences: Arrays vs Collections</a></p></li>
+<li><p><a class="reference internal" href="#example-limitation" id="id4">Example Limitation</a></p></li>
+<li><p><a class="reference internal" href="#common-use-cases" id="id5">Common Use Cases</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id6">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id7">Example</a></p></li>
+</ul>
+</nav>
+<section id="common-characteristics">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Common Characteristics</a><a class="headerlink" href="#common-characteristics" title="Link to this heading"></a></h2>
+<p>All path functions share these characteristics:</p>
+<ul class="simple">
+<li><p><strong>Chainable</strong>: Functions can be chained together to build complex queries</p></li>
+<li><p><strong>Lambda Support</strong>: Most functions support lambda expressions for flexible filtering and transformation</p></li>
+<li><p><strong>Lazy Evaluation</strong>: Results are computed when accessed, not when the path is defined</p></li>
+<li><p><strong>Type Safety</strong>: Functions validate input types and provide meaningful error messages</p></li>
+<li><p><strong>Collection vs Array</strong>: Path functions work on both JSON arrays and query results (collections)</p></li>
+</ul>
+</section>
+<section id="usage-patterns">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Usage Patterns</a><a class="headerlink" href="#usage-patterns" title="Link to this heading"></a></h2>
+<p>Path functions are typically used in combination to build data queries:</p>
+<p><strong>Basic Navigation:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Companies</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">Employees</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Filtering:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Employees</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">e</span> <span class="o">=&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">Age</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Chaining:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Companies</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">Employees</span><span class="p">)</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">e</span> <span class="o">=&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">Salary</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">First</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Complex Queries:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Companies</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">State</span> <span class="o">!=</span> <span class="s1">&#39;CO&#39;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">Employees</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">e</span> <span class="o">=&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">Age</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">))</span>
+         <span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>
+         <span class="o">.</span><span class="n">Last</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="key-differences-arrays-vs-collections">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Key Differences: Arrays vs Collections</a><a class="headerlink" href="#key-differences-arrays-vs-collections" title="Link to this heading"></a></h2>
+<p><strong>JSON Arrays:</strong></p>
+<ul class="simple">
+<li><p>Defined directly in JSON data (e.g., <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>)</p></li>
+<li><p>Support array indexing with brackets (e.g., <code class="docutils literal notranslate"><span class="pre">array[0]</span></code>)</p></li>
+<li><p>Can be accessed using numeric indices</p></li>
+</ul>
+<p><strong>Collections (Query Results):</strong></p>
+<ul class="simple">
+<li><p>Result from path functions like <code class="docutils literal notranslate"><span class="pre">Where</span></code>, <code class="docutils literal notranslate"><span class="pre">Select</span></code>, <code class="docutils literal notranslate"><span class="pre">Flatten</span></code></p></li>
+<li><p><strong>Cannot</strong> use array indexing with brackets</p></li>
+<li><p>Must use <code class="docutils literal notranslate"><span class="pre">At</span></code>, <code class="docutils literal notranslate"><span class="pre">First</span></code>, or <code class="docutils literal notranslate"><span class="pre">Last</span></code> functions to access specific elements</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Array indexers (<code class="docutils literal notranslate"><span class="pre">[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">[1]</span></code>, etc.) can only be applied to JSON arrays, not to collections
+resulting from <code class="docutils literal notranslate"><span class="pre">Where()</span></code>, <code class="docutils literal notranslate"><span class="pre">Flatten()</span></code>, or other path functions. Use <code class="docutils literal notranslate"><span class="pre">At(index)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">First()</span></code>, or <code class="docutils literal notranslate"><span class="pre">Last()</span></code> instead.</p>
+</div>
+</section>
+<section id="example-limitation">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Example Limitation</a><a class="headerlink" href="#example-limitation" title="Link to this heading"></a></h2>
+<p><strong>This will NOT work:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Object1</span><span class="o">.</span><span class="n">Array1</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>  <span class="o">//</span> <span class="n">Error</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">index</span> <span class="n">a</span> <span class="n">collection</span>
+</pre></div>
+</div>
+<p><strong>Use this instead:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Object1</span><span class="o">.</span><span class="n">Array1</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">At</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">Object1</span><span class="o">.</span><span class="n">Array1</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">Last</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="common-use-cases">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Common Use Cases</a><a class="headerlink" href="#common-use-cases" title="Link to this heading"></a></h2>
+<p>Path functions are essential for:</p>
+<ul class="simple">
+<li><p><strong>Data Filtering</strong>: Extracting subsets of data based on criteria</p></li>
+<li><p><strong>Data Transformation</strong>: Converting data structures and extracting specific properties</p></li>
+<li><p><strong>Navigation</strong>: Traversing nested JSON structures</p></li>
+<li><p><strong>Aggregation Preparation</strong>: Preparing collections for aggregate functions</p></li>
+<li><p><strong>Complex Queries</strong>: Building sophisticated data queries with multiple conditions</p></li>
+<li><p><strong>Data Extraction</strong>: Pulling specific elements or ranges from collections</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Chain Efficiently</strong>: Order operations to minimize the number of elements processed</p></li>
+<li><p><strong>Use Appropriate Functions</strong>: Choose <code class="docutils literal notranslate"><span class="pre">First</span></code>/<code class="docutils literal notranslate"><span class="pre">Last</span></code> over <code class="docutils literal notranslate"><span class="pre">At(0)</span></code>/<code class="docutils literal notranslate"><span class="pre">At(Count(collection)</span> <span class="pre">-</span> <span class="pre">1)</span></code> for clarity</p></li>
+<li><p><strong>Leverage Predicates</strong>: Use lambda predicates for complex filtering logic</p></li>
+<li><p><strong>Consider Performance</strong>: Early filtering with <code class="docutils literal notranslate"><span class="pre">Where</span></code> can improve performance of subsequent operations</p></li>
+<li><p><strong>Type Awareness</strong>: Be aware of whether you’re working with arrays or collections</p></li>
+</ul>
+<p>The sections below provide detailed documentation for each path function.</p>
+</section>
+<section id="example">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following JSON files are referenced in JsonQL expressions in <strong>Example.json</strong> in example below:  <a class="reference internal" href="../../MutatingJsonFiles/SampleFiles/employees.html"><span class="doc">Employees.json</span></a>.</p>
+</div>
+<p><strong>Example.json</strong> below demonstrates using optional and named parameters with JsonQL.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;FirstEmployeeAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.Where(x =&gt; x.Age &gt;= 40).First().Address)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The result (i.e., an instance of <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs">JsonQL.Compilation.ICompilationResult</a>) is serialized to a <strong>Result.json</strong> file below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For brevity, the serialized result includes only serialized evaluated <strong>Example.json</strong> and does not include parent JSON files in <strong>JsonQL.Compilation.ICompilationResult.CompiledJsonFiles</strong></p>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;CompiledJsonFiles&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;TextIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;CompiledParsedValue&quot;</span><span class="p">:</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;FirstEmployeeAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;CompilationErrors&quot;</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;$values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The code snippet shows how the JSON file <strong>Example.json</strong> was parsed using <a class="reference external" href="https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs">JsonQL.Compilation.IJsonCompiler</a></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.</span>
+<span class="c1">// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container</span>
+<span class="c1">// and it is normally configured as a singleton.</span>
+<span class="n">JsonQL</span><span class="p">.</span><span class="n">Compilation</span><span class="p">.</span><span class="n">IJsonCompiler</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;DocFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MutatingJsonFiles&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Examples&quot;</span>
+<span class="p">};</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Employees&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LoadJsonFileHelpers</span><span class="p">.</span><span class="n">LoadJsonFile</span><span class="p">(</span><span class="s">&quot;Employees.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sharedExamplesFolderPath</span><span class="p">));</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonCompiler</span><span class="p">.</span><span class="n">Compile</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JsonTextData</span><span class="p">(</span><span class="s">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">LoadExampleJsonFile</span><span class="p">(</span><span class="s">&quot;Example.json&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">companiesJsonTextData</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="JSON Path Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ArrayIndexers/index.html" class="btn btn-neutral float-right" title="Array Indexers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

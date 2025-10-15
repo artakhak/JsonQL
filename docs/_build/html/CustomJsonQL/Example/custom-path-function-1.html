@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Path Function SelectEvenIndexes &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Path Function Second" href="custom-path-function-2.html" />
+    <link rel="prev" title="Custom Function ReverseTextAndAddMarkers" href="custom-function-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Custom JsonQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Example in <strong>JsonQL.Demos</strong> Project</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="custom-function-1.html">Custom Function <strong>ReverseTextAndAddMarkers</strong></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Custom Path Function <strong>SelectEvenIndexes</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-value">Return Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="custom-path-function-2.html">Custom Path Function <strong>Second</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-literal-1.html">Custom Literal <strong>JsonQLReleaseDate</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-binary-operator-1.html">Custom Binary Operator <strong>+-</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-postfix-operator-1.html">Custom Postfix Operator <strong>is even</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-prefix-operator-1.html">Custom Prefix Operator <strong>++2</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="summary-examples.html">Summary Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Custom JsonQL</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Example in <strong>JsonQL.Demos</strong> Project</a></li>
+      <li class="breadcrumb-item active">Custom Path Function <strong>SelectEvenIndexes</strong></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CustomJsonQL/Example/custom-path-function-1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="custom-path-function-selectevenindexes">
+<h1>Custom Path Function <strong>SelectEvenIndexes</strong><a class="headerlink" href="#custom-path-function-selectevenindexes" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
+<li><p><a class="reference internal" href="#syntax" id="id2">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id4">Return Value</a></p></li>
+<li><p><a class="reference internal" href="#implementation-details" id="id5">Implementation Details</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id6">Examples:</a></p></li>
+<li><p><a class="reference internal" href="#use-cases" id="id7">Use Cases</a></p></li>
+</ul>
+</nav>
+<p>The <code class="docutils literal notranslate"><span class="pre">SelectEvenIndexes</span></code> path function selects elements at even-numbered indexes (0, 2, 4, etc.) from a collection, with optional predicate filtering.</p>
+<section id="description">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>This path function iterates through a collection, selecting only elements at even indexes (starting from 0). It can optionally apply a predicate filter to further refine the selection. The function processes indexes 0, 2, 4, 6, and so on, skipping odd-indexed elements.</p>
+</section>
+<section id="syntax">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Syntax</a><a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">SelectEvenIndexes</span><span class="p">(</span><span class="n">predicate</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predicate</span></code></p></td>
+<td><p>Lambda</p></td>
+<td><p>Yes</p></td>
+<td><p>A lambda expression that takes a single parameter representing the current element and returns a boolean. Only elements at even indexes that satisfy this predicate are included in the result. <strong>Format</strong>: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=&gt;</span> <span class="pre">condition</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="return-value">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Type</strong>: Collection</p></li>
+<li><p><strong>Returns</strong>: A filtered collection containing only elements at even indexes that satisfy the optional predicate condition.</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Implementation Details</a><a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">SelectEvenIndexes</span></code> function is implemented through the <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation/JsonValueLookup/JsonValuePathElements">SelectEvenIndexesCollectionItemsPathElement</a> class, which:</p>
+<ul class="simple">
+<li><p>Iterates through the collection with a step of 2 (indexes 0, 2, 4, …)</p></li>
+<li><p>Applies the predicate filter to each even-indexed element</p></li>
+<li><p>Registers and manages lambda parameter variables</p></li>
+<li><p>Returns a new collection with the selected elements</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Examples:</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Example1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value([1, 2, 3, 4, 5, 6].SelectEvenIndexes(x =&gt; true))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Result: [1, 3, 5] (elements at indexes 0, 2, 4)</span>
+
+<span class="w">  </span><span class="nt">&quot;Example2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value([10, 20, 30, 40, 50].SelectEvenIndexes(x =&gt; x &gt; 15))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Result: [30, 50] (elements at even indexes where value &gt; 15)</span>
+
+<span class="w">  </span><span class="nt">&quot;Example3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Employees.SelectEvenIndexes(e =&gt; e.Salary &gt; 90000))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Selects employees at even indexes with salary greater than 90000</span>
+
+<span class="w">  </span><span class="nt">&quot;Example4&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees).Flatten().SelectEvenIndexes(e =&gt; e.Id != 100000001))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Flattens all employees, selects even indexes, excludes specific ID</span>
+
+<span class="w">  </span><span class="nt">&quot;Example5&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(TestData.SelectEvenIndexes(x =&gt; x != null))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Selects non-null elements at even indexes from TestData array</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="use-cases">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Use Cases</a><a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">SelectEvenIndexes</span></code> function is useful for:</p>
+<ul class="simple">
+<li><p><strong>Sampling Data</strong>: Selecting every other element for statistical sampling</p></li>
+<li><p><strong>Pattern-Based Selection</strong>: Extracting elements following a specific pattern</p></li>
+<li><p><strong>Data Reduction</strong>: Reducing dataset size while maintaining distribution</p></li>
+<li><p><strong>Alternating Processing</strong>: Processing alternate items in a sequence</p></li>
+<li><p><strong>Custom Filtering Logic</strong>: Combining index-based and predicate-based filtering</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a demonstration custom path function. The index-based selection (even indexes) combined with predicate filtering provides a unique pattern for element selection that differs from standard filtering operations.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom-function-1.html" class="btn btn-neutral float-left" title="Custom Function ReverseTextAndAddMarkers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom-path-function-2.html" class="btn btn-neutral float-right" title="Custom Path Function Second" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

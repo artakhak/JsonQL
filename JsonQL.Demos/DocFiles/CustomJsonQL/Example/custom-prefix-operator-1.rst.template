@@ -1,0 +1,59 @@
+﻿==============================
+Custom Prefix Operator **++2**
+==============================
+
+.. contents::
+   :local:
+   :depth: 4
+   
+
+The ``++2`` prefix operator increments a numeric value by 2.
+
+Description
+===========
+
+This operator evaluates a numeric expression and adds 2 to its value. The operator is applied before (prefix to) the operand.
+
+Operand
+=======
+
+- **Type**: Numeric expression
+- **Description**: A numeric value to be incremented by 2. The operand is placed after the operator.
+- **Returns**: 
+    - The operand value plus 2
+    - ``null`` if the operand cannot be converted to a number
+
+Implementation Details
+======================
+
+The ``++2`` operator is implemented through the `IncrementByTwoPrefixOperatorFunction <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation/JsonFunction/JsonFunctions>`_ class, which:
+
+- Evaluates the operand expression
+- Converts the result to a numeric (double) value
+- Adds 2 to the value
+- Returns the incremented result
+
+Examples:
+=========
+
+.. code-block:: json
+
+    {
+      "Example1": "$(++2 8)",
+      // Result: 10
+      
+      "Example2": "$(++2 5)",
+      // Result: 7
+      
+      "Example3": "$(++2 TestData[2])",
+      // Where TestData[2] = 8, Result: 10
+      
+      "Example4": "$(++2 0)",
+      // Result: 2
+      
+      "Example5": "$(++2 -3)",
+      // Result: -1
+      
+      "Example6": "Employees.Where(e => (++2 e.Age) > 50)"
+      // Filters employees whose age plus 2 is greater than 50
+    }

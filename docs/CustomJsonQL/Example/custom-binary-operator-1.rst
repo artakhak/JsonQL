@@ -1,0 +1,56 @@
+=============================
+Custom Binary Operator **+-**
+=============================
+
+.. contents::
+   :local:
+   :depth: 4
+   
+
+The ``+-`` binary operator adds two numeric values and reverses the sign of the result.
+
+Description
+===========
+
+This operator performs addition on two numeric operands and then negates the result. For example, ``3 +- 5`` evaluates to ``-8`` (negative of 3 + 5).
+
+Operands
+========
+
+- **Left Operand**: Numeric expression
+- **Right Operand**: Numeric expression
+- **Returns**: 
+    - The negated sum of the two operands (``-(operand1 + operand2)``)
+    - ``null`` if either operand cannot be converted to a number
+
+Implementation Details
+======================
+
+The ``+-`` operator is implemented through the `AndNumbersAndReverseSignOperatorFunction <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation/JsonFunction/JsonFunctions>`_ class, which:
+
+- Evaluates both operands as numeric values
+- Adds the two values together
+- Negates the result
+- Returns the final value
+
+Examples:
+=========
+
+.. code-block:: json
+
+    {
+      "Example1": "$(3 +- 5)",
+      // Result: -8
+      
+      "Example2": "$(10 +- 2)",
+      // Result: -12
+      
+      "Example3": "$(TestData[0] +- TestData[2])",
+      // Where TestData[0] = 1 and TestData[2] = 8, Result: -9
+      
+      "Example4": "$(-5 +- -3)",
+      // Result: 8 (negative of -5 + -3 = -8)
+      
+      "Example5": "$(Employees[0].Age +- Employees[1].Age)"
+      // Adds two employee ages and negates the result
+    }

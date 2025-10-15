@@ -19,8 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multiline Queries" href="MultilineQueries/index.html" />
-    <link rel="prev" title="Custom JsonQL" href="../CustomJsonQL/index.html" /> 
+    <link rel="prev" title="Summary Examples" href="../CustomJsonQL/Example/summary-examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,17 +55,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CustomJsonQL/index.html">Custom JsonQL</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Future Releases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MultilineQueries/index.html">Multiline Queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ComplexProjections/index.html">Complex Projections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Grouping/index.html">Grouping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Sorting/index.html">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="IfFunction/index.html">‘If’ function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RoundUpFunction/index.html">‘RoundUp’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RoundDownFunction/index.html">‘RoundDown’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="JoinFunction/index.html">‘Join’ Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RegexTextMatching/index.html">Regex Text Matching</a></li>
-<li class="toctree-l2"><a class="reference internal" href="NumberFormatting/index.html">Number Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DateTimeFormatting/index.html">DateTime Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jsonql-expressions-on-multiple-lines">JsonQL Expressions on Multiple Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complex-projections-using-in-select">Complex Projections Using in Select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support-for-grouping">Support for Grouping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support-for-sorting-using-labda-expressions">Support for Sorting Using Labda Expressions</a></li>
 </ul>
 </li>
 </ul>
@@ -97,29 +89,245 @@
              
   <section id="future-releases">
 <h1>Future Releases<a class="headerlink" href="#future-releases" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="MultilineQueries/index.html">Multiline Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ComplexProjections/index.html">Complex Projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Grouping/index.html">Grouping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Sorting/index.html">Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="IfFunction/index.html">‘If’ function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RoundUpFunction/index.html">‘RoundUp’ Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RoundDownFunction/index.html">‘RoundDown’ Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="JoinFunction/index.html">‘Join’ Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RegexTextMatching/index.html">Regex Text Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NumberFormatting/index.html">Number Formatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DateTimeFormatting/index.html">DateTime Formatting</a></li>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#jsonql-expressions-on-multiple-lines" id="id1">JsonQL Expressions on Multiple Lines</a></p></li>
+<li><p><a class="reference internal" href="#complex-projections-using-in-select" id="id2">Complex Projections Using in Select</a></p></li>
+<li><p><a class="reference internal" href="#support-for-grouping" id="id3">Support for Grouping</a></p></li>
+<li><p><a class="reference internal" href="#support-for-sorting-using-labda-expressions" id="id4">Support for Sorting Using Labda Expressions</a></p></li>
 </ul>
+</nav>
+<p>Number of future improvements are planned.
+The author at the moment works on other projects, but at some point will implement the planned features.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The planned features might be prioritized higher if there is a demand for these features:</p>
 </div>
+<p>Some of examples of the planned features are demonstrated in <strong>JsonQL.Tests</strong> projects at this link <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/FutureReleases">JsonQL.Tests.FutureReleases</a></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tests project <strong>JsonQL.Tests</strong> has only several features. The rest are in JIRA tickets.</p>
+</div>
+</div></blockquote>
+<p>Most important big features are demonstrated here:</p>
+<section id="jsonql-expressions-on-multiple-lines">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">JsonQL Expressions on Multiple Lines</a><a class="headerlink" href="#jsonql-expressions-on-multiple-lines" title="Link to this heading"></a></h2>
+<p>JsonQL expressions can be to large for a single in JSON string.
+To support spreading JsonQL expressions to multiple lines, a JSON object with <code class="docutils literal notranslate"><span class="pre">$multiline</span></code> key will be used, with value as array or lines with JsonQL expression as in example below.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;MultilineQueryWith_$&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Max salary of all employees in all companies except one&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;is $(Max(Companies.Where&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;(x =&gt; x.Name != &#39;Sherwood Forest Timber, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;.Select(c =&gt; c.Employees.Where(e =&gt; e.Salary &gt; 100000))&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;.Select(x =&gt; x.Salary)))&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>During compilation, JsonQL will convert the value of key <cite>MultilineQueryWith_$</cite> to a single string that is a concatenation of lines in array <cite>$multiline</cite> and will evaluate JsonQL expression in this text.</p>
+<p>For example the JSON in example above is evaluated to a JSON below.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;MultilineQueryWith_$&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;Max salary of all employees in all companies except one is 144186&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="complex-projections-using-in-select">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Complex Projections Using in Select</a><a class="headerlink" href="#complex-projections-using-in-select" title="Link to this heading"></a></h2>
+<p>Currently JsonQL has a <cite>Select</cite> path function (see <a class="reference internal" href="../JsonPathFunctions/Select/index.html"><span class="doc">Select</span></a>) that can supports projections from one value to another.
+However, <cite>Select</cite> currently does not support projections that create new JSON objects or arrays. This type of projections will be supported as part of this feature.</p>
+<p>Examples of complex projections are shown in this example (see usage of <strong>Select</strong> JsonQL path function):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ProjectEmployeesToNewJsonObject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Salary &gt; 100000).Select(e =&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;{&#39;Id&#39;: e.Id, &#39;Name&#39;: Concatenate(e.FirstName, &#39; &#39;, e.LastName)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;Salary&#39;: e.Salary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AddressCities&#39;: [&#39;NY&#39;, Merge(e.Addresses.Select(x =&gt; c.City))],&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AddressCitiesAsString&#39;: Join(&#39;, &#39;, e.Addresses.Select(x =&gt; c.City)),&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;Index&#39;: index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;})))&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProjectEmployeesToNewJsonObjectAndFilterOnNewProjectedFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;$value(Companies.Select(c =&gt; c.Employees.Where(e =&gt; e.Salary &gt; 100000).Select(e =&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;{&#39;Id&#39;: e.Id, &#39;Name&#39;: Concatenate(e.FirstName, &#39; &#39;, e.LastName)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;Salary&#39;: e.Salary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AddressCities&#39;: [&#39;NY&#39;, Merge(e.Addresses.Select(x =&gt; c.City))],&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AddressCitiesAsString&#39;: Join(&#39;, &#39;, e.Addresses.Select(x =&gt; c.City)),&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;Index&#39;: index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;}).Where(e =&gt; !Any(e.AddressCities.Where(x =&gt; x == &#39;Phoenix&#39;)))))&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProjectCompanyToDataAndAverageSalary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;$value(Companies.Where(e =&gt; e.CompanyData.Name != &#39;Sherwood Forest Timber, Inc&#39;).&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Select(c =&gt; {&#39;CompanyName&#39;: c.CompanyData.Name, &#39;CEO&#39;: c.CEO,&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AverageSalary&#39;: Average(c.Employees.Select(e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;}))&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProjectCompanyToDataAndAverageSalaryAndFilterOnNewProjectedFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;$value(Companies.Where(e =&gt; e.CompanyData.Name != &#39;Sherwood Forest Timber, Inc&#39;).&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Select(c =&gt; {&#39;CompanyName&#39;: c.CompanyData.Name, &#39;CEO&#39;: c.CEO,&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;&#39;AverageSalary&#39;: Average(c.Employees.Select(e =&gt; e.Salary))&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;}).Where(c =&gt; c.AverageSalary &gt; 100000))&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;QueryProjectedArray&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Merges arrays Companies[0].Employee and Companies[2].Employees and applies a Where filter using ToQueryable.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(ToQueryable([Merge(Companies[0].Employees, Companies[2].Employees)]).Where(e =&gt; e.FirstName != &#39;Robert&#39;))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;CopyFieldsWithFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tests projection using CopyFields with filter.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name == &#39;Sherwood Forest Timber, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Select(c =&gt; c.Employees.Select(e =&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;{&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&#39;Name&#39;: Concatenate(e.FirstName, &#39; &#39;, e.LastName)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&#39;employeeFields&#39;: CopyFields(e, x =&gt; x.metadata.name != &#39;FirstName&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&amp;&amp; x.metadata.name != &#39;LastName&#39; &amp;&amp; !(x.metadata.path match &#39;^Addresses[(\\d+)].Street$&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&amp;&amp; (x.metadata.path != &#39;Age&#39; || x.value != 29))&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;})))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;QueryProjectedJson&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Projects a JSON to a new JSON object and accesses fields from the new object using ToQueryable() function. The example does not make much sense, but is good enough for testing.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name == &#39;Sherwood Forest Timber, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Select(c =&gt; c.Employees.Select(e =&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ToQueryable({&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&#39;Name&#39;: Concatenate(e.FirstName, &#39; &#39;, e.LastName)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;}).Name)))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="support-for-grouping">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Support for Grouping</a><a class="headerlink" href="#support-for-grouping" title="Link to this heading"></a></h2>
+<p>Examples in JSON below demonstrate grouping (see usage of <strong>Group</strong> JsonQL path function):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesGroupedByCompaniesWithValuesNotFlattened&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Comments2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We group employees of companies with similar name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name != &#39;Atlantic Transfers, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Group(c =&gt; c.CompanyData.Name, c =&gt; c.Employees,&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;(key, value) =&gt; {&#39;CompanyName&#39;: key, &#39;CompanyEmployees&#39;: value}, flattenValues-&gt;false))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesGroupedByCompaniesWithValuesFlattened&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Comments2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We group employees of companies with similar name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name != &#39;Atlantic Transfers, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Group(c =&gt; c.CompanyData.Name, c =&gt; c.Employees,&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;(key, value) =&gt; {&#39;CompanyName&#39;: key, &#39;CompanyEmployees&#39;: value}, flattenValues-&gt;true))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;EmployeesGroupedByCompaniesWithCompanyDataUsedAsKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Comments2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We group employees of companies with similar name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name != &#39;Atlantic Transfers, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Group(c =&gt; c.CompanyData, c =&gt; c.Employees,&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;(key, value) =&gt; {&#39;CompanyData&#39;: key, &#39;CompanyEmployees&#39;: value}, flattenValues-&gt;true))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;CompanyEmployeesStats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comments1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The referenced Companies.json file has multiple JSON objects in Companies array with the same CompanyData.Name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Comments2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;We group employees of companies with similar name.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;$multiline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$value(Companies.Where(c =&gt; c.CompanyData.Name != &#39;Atlantic Transfers, Inc&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;.Group(c =&gt; c.CompanyData.Name, c =&gt; c.Employees,&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;(key, value) =&gt; {&#39;CompanyName&#39;: key,  &#39;EmployeesCount&#39;: Count(value),&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&#39;MaxSalary&#39;: Max(value.Select(e =&gt; e.Salary))}, flattenValues -&gt; true))&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="support-for-sorting-using-labda-expressions">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Support for Sorting Using Labda Expressions</a><a class="headerlink" href="#support-for-sorting-using-labda-expressions" title="Link to this heading"></a></h2>
+<p>Examples in JSON below demonstrate sorting using lambda functions (see usage of <strong>Sort</strong> and <strong>SortDesc</strong> JsonQL path functions):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;TestData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ArrayOfEmployeesAndOffices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000001</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;456 Oak Avenue&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IL&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60601&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99500</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;OfficeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Office2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000002</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Johnson&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Maple Street&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;City&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ZipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Salary&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span>
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;OfficeName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Office1&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;AllCompanyEmployeesSortedBySalary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Where(x =&gt; x.CompanyData.Name == &#39;Strange Things, Inc&#39; || x.CompanyData.Name == &#39;Atlantic Transfers, Inc&#39;).Select(x =&gt; x.Employees.Where(x =&gt; x.Salary is not null)).Sort(x =&gt; x.Salary))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AllCompanyEmployeesSortedDescBySalary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Where(x =&gt; x.CompanyData.Name == &#39;Strange Things, Inc&#39; || x.CompanyData.Name == &#39;Atlantic Transfers, Inc&#39;).Select(x =&gt; x.Employees.Where(x =&gt; x.Salary is not null)).SortDesc(x =&gt; x.Salary))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;CompanyNamesSortedByMaxSalary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.Sort(c =&gt; Max(c.Employees.Select(e =&gt; e.Salary))).Select(x =&gt; x.CompanyData.Name))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CompanyNamesSortedInDescendingOrderOfMaxSalary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(Companies.SortDesc(c =&gt; Max(c.Employees.Select(e =&gt; e.Salary))).Select(x =&gt; x.CompanyData.Name))&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;AdvancedSort&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sorts offices first, and then employees in TestData.ArrayOfEmployeesAndOffices. Offices are sorted by ascending order of &#39;&#39;OfficeName&#39;&#39; field name. Employees are sorted by descending order of &#39;&#39;Id&#39;&#39; field value.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SortedOfficesAndEmployees&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$value(TestData.ArrayOfEmployeesAndOffices.Sort((x, y) =&gt; if (HasField(x, &#39;OfficeName&#39;), if (HasField(y, &#39;OfficeName&#39;), x.OfficeName - y.OfficeName, 1), if (HasField(y, &#39;OfficeName&#39;), 1, y.Id - x.Id))))&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../CustomJsonQL/index.html" class="btn btn-neutral float-left" title="Custom JsonQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="MultilineQueries/index.html" class="btn btn-neutral float-right" title="Multiline Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../CustomJsonQL/Example/summary-examples.html" class="btn btn-neutral float-left" title="Summary Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -203,8 +203,6 @@
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\At\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\At\Example\Data.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\At\Example\Result.json" />
-		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Example\Example.json" />
-		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\First\Example\Data.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\First\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\First\Example\Result.json" />
@@ -217,6 +215,8 @@
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Reverse\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Select\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Select\Example\Result.json" />
+		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Summary\Example\Example.json" />
+		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Summary\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Where\Example\Example.json" />
 		<EmbeddedResource Include="DocFiles\JsonPathFunctions\Where\Example\Result.json" />
 		<EmbeddedResource Include="DocFiles\MutatingJsonFiles\Examples\Employees.json" />

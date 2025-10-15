@@ -1,0 +1,278 @@
+=======
+Example
+=======
+
+.. contents::
+   :local:
+   :depth: 4
+   
+Practical Implementation in **JsonQL.Demos** project
+====================================================
+
+Classes in namespace `JsonQL.Demos.CustomJsonQL.Compilation <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation>`_ demonstrate how to add new functions, operators, and Json path functions.
+
+.. note::
+    Custom functions, operators and path functions used in examples in **JsonQL.Demos** use meaningless names to avoid potential conflicts with adding similar functions, operators and path functions in JsonQL in the future.
+
+Custom Function **ReverseTextAndAddMarkers**
+============================================
+
+Parameters
+----------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 50
+   
+   * - Parameter
+     - Type
+     - Required
+     - Description
+   * - ``value``
+     - String
+     - Yes
+     - The input string to be reversed.
+   * - ``addMarkers``
+     - Lambda
+     - No
+     - A lambda expression that filters which elements to include in the minimum calculation. Takes one parameter representing the current element and returns a boolean.
+   * - ``value``
+     - Boolean
+     - No
+     - When `true` or omitted, the reversed string is wrapped with `#` markers (e.g., `#tseT#`). When `false`, returns only the reversed string without markers. **Default**: `true`.
+
+Return Value
+------------
+
+- **Type**: `string`
+- **Returns**:
+    - The reversed input string wrapped with `#` markers when `addMarkers` is `true` or omitted (e.g., `#tseT#`)
+    - The reversed input string without markers when `addMarkers` is `false` (e.g., `tseT`)
+
+**ReverseTextAndAddMarkers** Examples:
+--------------------------------------
+
+.. code-block:: json
+    {
+      "Example1": "$(ReverseTextAndAddMarkers('Test'))",
+      // Result: "#tseT#"
+      
+      "Example2": "$(ReverseTextAndAddMarkers('Test', true))",
+      // Result: "#tseT#"
+      
+      "Example3": "$(ReverseTextAndAddMarkers('Test', false))",
+      // Result: "tseT"
+      
+      "Example4": "$(ReverseTextAndAddMarkers(value->'Test', addMarkers->false))",
+      // Result: "tseT"
+      
+      "Example5": "$(ReverseTextAndAddMarkers(addMarkers->false, value->'Hello World'))",
+      // Result: "dlroW olleH"
+    }
+
+Custom Literal **JsonQLReleaseDate**
+====================================
+
+The ``JsonQLReleaseDate`` function returns a constant DateTime value representing the release date of the JsonQL library.
+
+Return Value
+------------
+
+- **Type**: ``DateTime``
+- **Returns**: A DateTime value of ``2025-06-01 00:00:00`` representing the JsonQL library release date.
+
+**JsonQLReleaseDate** Examples:
+-------------------------------
+
+.. code-block:: json
+    {
+      "Example1": "JsonQLReleaseDate is '$(JsonQLReleaseDate)'",
+      // Result: "JsonQLReleaseDate is '2025-06-01 00:00:00.0000000'"
+      
+      "Example2": "The type of value of 'JsonQLReleaseDate' function is '$(typeof JsonQLReleaseDate)'",
+      // Result: "The type of value of 'JsonQLReleaseDate' function is 'DateTime'"
+      
+      "Example3": "$value(JsonQLReleaseDate())",
+      // Result: 2025-06-01T00:00:00.0000000
+      
+      "Example4": "Release year: $(JsonQLReleaseDate().Year)",
+      // Result: "Release year: 2025"
+      
+      "Example5": "Days since release: $((Now() - JsonQLReleaseDate()).TotalDays)"
+      // Result: Number of days between current date and release date
+    }
+
+Custom Postfix Operator **is even**
+===================================
+
+The ``is even`` postfix operator checks whether a numeric value is an even integer.
+
+Description
+-----------
+
+This operator evaluates a numeric expression and returns ``true`` if the value is an even integer, ``false`` otherwise. The operator checks that:
+
+1. The operand can be converted to a numeric value
+2. The numeric value is an integer (no fractional part)
+3. The integer is divisible by 2
+
+Operand
+-------
+
+- **Type**: Numeric expression
+- **Description**: A numeric value to test for evenness. The operand is placed before the operator.
+- **Returns**: 
+    - ``true`` if the operand is an even integer
+    - ``false`` if the operand is an odd integer or has a fractional part
+    - ``null`` if the operand cannot be converted to a number
+
+**is even** Examples:
+---------------------
+
+.. code-block:: json
+
+    {
+      "Example1": "$(8 is even)",
+      // Result: true
+      
+      "Example2": "$(5 is even)",
+      // Result: false
+      
+      "Example3": "$(TestData[2] is even)",
+      // Where TestData[2] = 8, Result: true
+      
+      "Example4": "$(TestData[0] is even)",
+      // Where TestData[0] = 1, Result: false
+      
+      "Example5": "Employees.Where(e => e.Age is even)"
+      // Filters employees whose age is an even number
+    }
+
+
+Examples
+========
+
+**CustomFeaturesOverview.json** file below demonstrates using custom functions, operators, and Json path functions.
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Examples.json** in example below:   
+   
+    - :doc:`companies`
+
+**CustomFeaturesOverview.json**:
+
+.. code-block:: json
+
+    {
+      "TestData": [ 1, 5, 8, 17, "Test" ],
+     
+      "CustomBinaryOperator_+-": "(TestData[0] +- TestData[2])=$(TestData[0] +- TestData[2])==-9",
+      "CustomPrefixOperator_++2": "(++2 TestData[2])=$(++2 TestData[2])==10",
+      "CustomPostfixOperator_is_even": "(TestData[2] is even)=$(TestData[2] is even)==true",
+
+      "CustomFunction_ReverseTextAndAddMarkers_1": "ReverseTextAndAddMarkers(TestData[4])='$(ReverseTextAndAddMarkers(TestData[4]))' == '#tseT#'",
+      "CustomFunction_ReverseTextAndAddMarkers_2": "'ReverseTextAndAddMarkers(TestData[4], true)=$(ReverseTextAndAddMarkers(TestData[4], true))' == '#tseT#'",
+      "CustomFunction_ReverseTextAndAddMarkers_3": "ReverseTextAndAddMarkers(TestData[4], false)='$(ReverseTextAndAddMarkers(TestData[4], false))' == 'tseT'",
+      "CustomFunction_ReverseTextAndAddMarkers_4": "ReverseTextAndAddMarkers(value->TestData[4], addMarkers->true)='$(ReverseTextAndAddMarkers(value->TestData[4], addMarkers->true))' == '#tseT#'",
+      "CustomFunction_ReverseTextAndAddMarkers_5": "ReverseTextAndAddMarkers(addMarkers->false, value->TestData[4])='$(ReverseTextAndAddMarkers(addMarkers->false, value->TestData[4]))' == 'tseT'",
+
+      "CustomSpecialFunction_JsonQLReleaseDate": "JsonQLReleaseDate is '$(JsonQLReleaseDate)'. The type of value of 'JsonQLReleaseDate' function is '$(typeof JsonQLReleaseDate)'.",
+      "CustomMultipleItemsSelectorExample_SelectEvenIndexes": "$value(Companies.Select(x => x.Employees).Flatten().SelectEvenIndexes(x => x.Id != 100000001).Where(x => x.Salary > 89000))",
+      "CustomSingleItemSelectorExample_SecondItemSelector": "Second employee name with salary less than 100K is '$(Companies[0].Employees.Second(x => x.Salary < 100000).Name)'=='Michael Brown'"
+    }
+
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **CustomFeaturesOverview.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result in instance of <b>JsonQL.Compilation.ICompilationResult</b> serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    {
+      "CompiledJsonFiles":[
+        {
+          "TextIdentifier": "CustomFeaturesOverview",
+          "CompiledParsedValue":
+          {
+            "TestData": [
+              1,
+              5,
+              8,
+              17,
+              "Test"
+            ],
+            "CustomBinaryOperator_+-":  "(TestData[0] +- TestData[2])=-9==-9",
+            "CustomPrefixOperator_++2":  "(++2 TestData[2])=10==10",
+            "CustomPostfixOperator_is_even":  "(TestData[2] is even)=true==true",
+            "CustomFunction_ReverseTextAndAddMarkers_1":  "ReverseTextAndAddMarkers(TestData[4])='#tseT#' == '#tseT#'",
+            "CustomFunction_ReverseTextAndAddMarkers_2":  "'ReverseTextAndAddMarkers(TestData[4], true)=#tseT#' == '#tseT#'",
+            "CustomFunction_ReverseTextAndAddMarkers_3":  "ReverseTextAndAddMarkers(TestData[4], false)='tseT' == 'tseT'",
+            "CustomFunction_ReverseTextAndAddMarkers_4":  "ReverseTextAndAddMarkers(value->TestData[4], addMarkers->true)='#tseT#' == '#tseT#'",
+            "CustomFunction_ReverseTextAndAddMarkers_5":  "ReverseTextAndAddMarkers(addMarkers->false, value->TestData[4])='tseT' == 'tseT'",
+            "CustomSpecialFunction_JsonQLReleaseDate":  "JsonQLReleaseDate is '2025-06-01 00:00:00.0000000'. The type of value of 'JsonQLReleaseDate' function is 'DateTime'.",
+            "CustomMultipleItemsSelectorExample_SelectEvenIndexes": [
+              {
+                "Id":  100000005,
+                "Name":  "Christopher Garcia",
+                "Address": {
+                  "Street":  "654 Cedar Road",
+                  "City":  "Phoenix",
+                  "State":  "AZ",
+                  "ZipCode":  "85001"
+                },
+                "Salary":  111000,
+                "Age":  29,
+                "Logins": [
+                  "cgarcia@sherwood.com",
+                  "cgarcia@gmail.com"
+                ]
+              },
+              {
+                "Id":  100000007,
+                "Name":  "David Martinez",
+                "Address": {
+                  "Street":  "147 Birch Street",
+                  "City":  "San Antonio",
+                  "State":  "TX",
+                  "ZipCode":  "78201"
+                },
+                "Salary":  95000,
+                "Age":  46,
+                "Logins": [
+                  "dmartinez@sherwood.com",
+                  "dmartinez@gmail.com"
+                ]
+              },
+              {
+                "Id":  250150245,
+                "Name":  "Jane Doe",
+                "Address": {
+                  "Street":  "Main St",
+                  "City":  "San Jose",
+                  "State":  "PA",
+                  "ZipCode":  "95101"
+                },
+                "Salary":  144186,
+                "Age":  63
+              }
+            ],
+            "CustomSingleItemSelectorExample_SecondItemSelector":  "Second employee name with salary less than 100K is 'Michael Brown'=='Michael Brown'"
+          }
+        }
+      ],
+      "CompilationErrors":
+      {
+        "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
+        "$values": []
+      }
+    }
+
+
+.. raw:: html
+
+   </details><br/><br/>

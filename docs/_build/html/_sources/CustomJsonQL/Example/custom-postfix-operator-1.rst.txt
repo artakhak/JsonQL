@@ -1,0 +1,51 @@
+===================================
+Custom Postfix Operator **is even**
+===================================
+
+.. contents::
+   :local:
+   :depth: 4
+   
+
+The ``is even`` postfix operator checks whether a numeric value is an even integer.
+
+Description
+===========
+
+This operator evaluates a numeric expression and returns ``true`` if the value is an even integer, ``false`` otherwise. The operator checks that:
+
+1. The operand can be converted to a numeric value
+2. The numeric value is an integer (no fractional part)
+3. The integer is divisible by 2
+
+Operand
+=======
+
+- **Type**: Numeric expression
+- **Description**: A numeric value to test for evenness. The operand is placed before the operator.
+- **Returns**: 
+    - ``true`` if the operand is an even integer
+    - ``false`` if the operand is an odd integer or has a fractional part
+    - ``null`` if the operand cannot be converted to a number
+
+Examples:
+=========
+
+.. code-block:: json
+
+    {
+      "Example1": "$(8 is even)",
+      // Result: true
+      
+      "Example2": "$(5 is even)",
+      // Result: false
+      
+      "Example3": "$(TestData[2] is even)",
+      // Where TestData[2] = 8, Result: true
+      
+      "Example4": "$(TestData[0] is even)",
+      // Where TestData[0] = 1, Result: false
+      
+      "Example5": "Employees.Where(e => e.Age is even)"
+      // Filters employees whose age is an even number
+    }

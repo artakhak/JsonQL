@@ -1,0 +1,135 @@
+﻿=======
+Summary
+=======
+
+.. contents::
+   :local:
+   :depth: 2
+   
+Common Characteristics
+======================
+
+All path functions share these characteristics:
+
+- **Chainable**: Functions can be chained together to build complex queries
+- **Lambda Support**: Most functions support lambda expressions for flexible filtering and transformation
+- **Lazy Evaluation**: Results are computed when accessed, not when the path is defined
+- **Type Safety**: Functions validate input types and provide meaningful error messages
+- **Collection vs Array**: Path functions work on both JSON arrays and query results (collections)
+
+Usage Patterns
+==============
+
+Path functions are typically used in combination to build data queries:
+
+**Basic Navigation:**
+
+::
+
+    Companies.Select(c => c.Employees)
+
+**Filtering:**
+
+::
+
+    Employees.Where(e => e.Age >= 40)
+
+**Chaining:**
+
+::
+
+    Companies.Select(c => c.Employees).Where(e => e.Salary > 100000).First()
+
+**Complex Queries:**
+
+::
+
+    Companies.Where(c => c.State != 'CO')
+             .Select(c => c.Employees.Where(e => e.Age < 40))
+             .Flatten()
+             .Last()
+
+Key Differences: Arrays vs Collections
+=======================================
+
+**JSON Arrays:**
+
+- Defined directly in JSON data (e.g., ``[1, 2, 3]``)
+- Support array indexing with brackets (e.g., ``array[0]``)
+- Can be accessed using numeric indices
+
+**Collections (Query Results):**
+
+- Result from path functions like ``Where``, ``Select``, ``Flatten``
+- **Cannot** use array indexing with brackets
+- Must use ``At``, ``First``, or ``Last`` functions to access specific elements
+
+.. important::
+    Array indexers (``[0]``, ``[1]``, etc.) can only be applied to JSON arrays, not to collections
+    resulting from ``Where()``, ``Flatten()``, or other path functions. Use ``At(index)``, 
+    ``First()``, or ``Last()`` instead.
+
+Example Limitation
+==================
+
+**This will NOT work:**
+
+::
+
+    Object1.Array1.Where(x => x != 4)[6]  // Error: Cannot index a collection
+
+**Use this instead:**
+
+::
+
+    Object1.Array1.Where(x => x != 4).At(6)
+    Object1.Array1.Where(x => x != 4).Last()
+
+Common Use Cases
+================
+
+Path functions are essential for:
+
+- **Data Filtering**: Extracting subsets of data based on criteria
+- **Data Transformation**: Converting data structures and extracting specific properties
+- **Navigation**: Traversing nested JSON structures
+- **Aggregation Preparation**: Preparing collections for aggregate functions
+- **Complex Queries**: Building sophisticated data queries with multiple conditions
+- **Data Extraction**: Pulling specific elements or ranges from collections
+
+Best Practices
+==============
+
+- **Chain Efficiently**: Order operations to minimize the number of elements processed
+- **Use Appropriate Functions**: Choose ``First``/``Last`` over ``At(0)``/``At(Count(collection) - 1)`` for clarity
+- **Leverage Predicates**: Use lambda predicates for complex filtering logic
+- **Consider Performance**: Early filtering with ``Where`` can improve performance of subsequent operations
+- **Type Awareness**: Be aware of whether you're working with arrays or collections
+
+The sections below provide detailed documentation for each path function.
+
+Example
+=======
+
+.. note:: The following JSON files are referenced in JsonQL expressions in **Example.json** in example below:  :doc:`../../MutatingJsonFiles/SampleFiles/employees`.
+
+**Example.json** below demonstrates using optional and named parameters with JsonQL.
+
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Example.json</IncludedFilePlaceHolder>
+    
+The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
+
+.. note::
+    For brevity, the serialized result includes only serialized evaluated **Example.json** and does not include parent JSON files in **JsonQL.Compilation.ICompilationResult.CompiledJsonFiles**
+ 
+.. sourcecode:: json
+
+    <IncludedFilePlaceHolder>Example\Result.json</IncludedFilePlaceHolder>
+   
+The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
+
+.. sourcecode:: csharp
+
+    <IncludedFilePlaceHolder>Example\Example.cs.snippet</IncludedFilePlaceHolder>

@@ -11,7 +11,8 @@
           17,
           "Test"
         ],
-        "CustomBinaryOperator_+-":  "(TestData[0] +- TestData[2])=-9==-9",
+        "CustomBinaryOperator_+-_1":  "(TestData[0] +- TestData[2])=-9==-9",
+        "CustomBinaryOperator_+-_2":  "(-TestData[0] +- -TestData[2])=9==9",
         "CustomPrefixOperator_++2":  "(++2 TestData[2])=10==10",
         "CustomPostfixOperator_is_even":  "(TestData[2] is even)=true==true",
         "CustomFunction_ReverseTextAndAddMarkers_1":  "ReverseTextAndAddMarkers(TestData[4])='#tseT#' == '#tseT#'",

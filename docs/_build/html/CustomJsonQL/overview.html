@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; JsonQL 1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=61243dd2"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example in JsonQL.Demos Project" href="Example/index.html" />
+    <link rel="prev" title="Custom JsonQL" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            JsonQL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../MutatingJsonFiles/index.html">Mutating JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QueryingJsonFiles/index.html">Querying JSON Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LambdaFunctions/index.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SpecialKeywords/index.html">Special Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../JsonMutatorFunctions/index.html">JSON Mutator Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OptionalAndNamedParameters/index.html">Optional and Named Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../JsonPathFunctions/index.html">JSON Path Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Functions/index.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AggregateFunctions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Operators/index.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DependencyInjectionSetup/index.html">Dependency Injection Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Custom JsonQL</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-patterns">Common Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Example/index.html">Example in <strong>JsonQL.Demos</strong> Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../FutureReleases/index.html">Future Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">JsonQL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom JsonQL</a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/CustomJsonQL/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#best-practices" id="id1">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#common-patterns" id="id2">Common Patterns</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id3">Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id4">See Also</a></p></li>
+</ul>
+</nav>
+<p>JsonQL can be extended in several ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Custom Functions</strong>: Add new functions like <code class="docutils literal notranslate"><span class="pre">MyCustomFunction()</span></code></p></li>
+<li><p><strong>Custom Aggregate Functions</strong>: Add new aggregate functions like: <code class="docutils literal notranslate"><span class="pre">CountEvenIndexes(collection,</span> <span class="pre">predicate)</span></code></p></li>
+<li><p><strong>Custom Path Functions</strong>: Create collection operators like <code class="docutils literal notranslate"><span class="pre">Where</span></code> or <code class="docutils literal notranslate"><span class="pre">Select</span></code></p></li>
+<li><p><strong>Custom Operators</strong>: Define new operators: binary, unary prefix and unary postfix (e.g., <code class="docutils literal notranslate"><span class="pre">~=</span></code> for regex matching)</p></li>
+<li><p><strong>Custom Interface Implementations</strong>: Override default C# type implementations for JSON-to-object conversion</p></li>
+<li><p><strong>Custom Expression Language</strong>: Modify the JsonQL language itself</p></li>
+</ol>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Error Handling</strong>: Always return proper <code class="docutils literal notranslate"><span class="pre">IParseResult</span></code> with errors when validation fails</p></li>
+<li><p><strong>Line Information</strong>: Pass <code class="docutils literal notranslate"><span class="pre">IJsonLineInfo</span></code> through for accurate error reporting</p></li>
+<li><p><strong>Type Safety</strong>: Use appropriate base classes (<code class="docutils literal notranslate"><span class="pre">StringJsonFunctionAbstr</span></code>, <code class="docutils literal notranslate"><span class="pre">DateTimeJsonFunctionAbstr</span></code>, etc.)</p></li>
+<li><p><strong>Null Handling</strong>: Check for null values and handle appropriately</p></li>
+<li><p><strong>Parameter Validation</strong>: Validate function parameters before use</p></li>
+<li><p><strong>Documentation</strong>: Document your custom functions with XML comments</p></li>
+<li><p><strong>Testing</strong>: Write unit tests for custom extensions</p></li>
+<li><p><strong>Performance</strong>: Consider caching expensive operations</p></li>
+<li><p><strong>Thread Safety</strong>: Ensure custom implementations are thread-safe</p></li>
+<li><p><strong>Naming</strong>: Use clear, descriptive names that don’t conflict with built-in functions</p></li>
+</ol>
+</section>
+<section id="common-patterns">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Common Patterns</a><a class="headerlink" href="#common-patterns" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Couple of common patterns are demonstrated here, however this does not cover all patterns for extensions. Look at source code to see how functions, operators are implemented in JsonQL to understand how extensions can be done, as well as look at extension examples in namespace <a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation">JsonQL.Demos.CustomJsonQL.Compilation</a>.</p>
+</div>
+<p><strong>Pattern 1: Simple Value Function</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyValueFunction</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">StringJsonFunctionAbstr</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="n">IParseResult</span><span class="o">&lt;</span><span class="kt">string?</span><span class="o">&gt;</span><span class="w"> </span><span class="n">EvaluateStringValue</span><span class="p">(...)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParseResult</span><span class="o">&lt;</span><span class="kt">string?</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;my value&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Pattern 2: Function with Parameters</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyParameterizedFunction</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">StringJsonFunctionAbstr</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IJsonFunction</span><span class="w"> </span><span class="n">_parameter1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IJsonFunction</span><span class="w"> </span><span class="n">_parameter2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">MyParameterizedFunction</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">functionName</span><span class="p">,</span>
+<span class="w">        </span><span class="n">IJsonFunction</span><span class="w"> </span><span class="n">parameter1</span><span class="p">,</span>
+<span class="w">        </span><span class="n">IJsonFunction</span><span class="w"> </span><span class="n">parameter2</span><span class="p">,</span>
+<span class="w">        </span><span class="n">IJsonFunctionValueEvaluationContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span>
+<span class="w">        </span><span class="n">IJsonLineInfo</span><span class="o">?</span><span class="w"> </span><span class="n">lineInfo</span><span class="p">)</span>
+<span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">functionName</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">lineInfo</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_parameter1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameter1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_parameter2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameter2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="n">IParseResult</span><span class="o">&lt;</span><span class="kt">string?</span><span class="o">&gt;</span><span class="w"> </span><span class="n">EvaluateStringValue</span><span class="p">(...)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">param1Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_parameter1</span><span class="p">.</span><span class="n">EvaluateValue</span><span class="p">(...);</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">param2Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_parameter2</span><span class="p">.</span><span class="n">EvaluateValue</span><span class="p">(...);</span>
+
+<span class="w">        </span><span class="c1">// Process and return result</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Pattern 3: Collection Path Function</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyCollectionFunction</span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="n">JsonValueCollectionItemsSelectorPathElementAbstr</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">protected</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="n">IParseResult</span><span class="o">&lt;</span><span class="n">ICollectionJsonValuePathLookupResult</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="n">SelectCollectionItems</span><span class="p">(</span>
+<span class="w">            </span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IParsedValue</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parentParsedValues</span><span class="p">,</span>
+<span class="w">            </span><span class="n">IRootParsedValue</span><span class="w"> </span><span class="n">rootParsedValue</span><span class="p">,</span>
+<span class="w">            </span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">IRootParsedValue</span><span class="o">&gt;</span><span class="w"> </span><span class="n">compiledParentRootParsedValues</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">filteredValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IParsedValue</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Process collection</span>
+<span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">parentParsedValues</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Apply logic</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ShouldInclude</span><span class="p">(</span><span class="k">value</span><span class="p">))</span>
+<span class="w">                </span><span class="n">filteredValues</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParseResult</span><span class="o">&lt;</span><span class="n">ICollectionJsonValuePathLookupResult</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="nf">CollectionJsonValuePathLookupResult</span><span class="p">(</span><span class="n">filteredValues</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Issue: Custom Function Not Recognized</strong></p>
+<ul class="simple">
+<li><p>Verify function name in factory’s switch statement</p></li>
+<li><p>Ensure factory is registered in DI container</p></li>
+<li><p>Check that custom parameter resolver is registered</p></li>
+</ul>
+<p><strong>Issue: Type Conversion Errors</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">JsonFunctionHelpers.TryConvertValueToJsonComparable</span></code></p></li>
+<li><p>Check TypeCode parameter matches expected type</p></li>
+<li><p>Validate input before conversion</p></li>
+</ul>
+<p><strong>Issue: Null Reference Exceptions</strong></p>
+<ul class="simple">
+<li><p>Check for null in <code class="docutils literal notranslate"><span class="pre">EvaluateValue</span></code> results</p></li>
+<li><p>Handle <code class="docutils literal notranslate"><span class="pre">IJsonValuePathLookupResult</span></code> with <code class="docutils literal notranslate"><span class="pre">HasValue</span> <span class="pre">==</span> <span class="pre">false</span></code></p></li>
+<li><p>Validate all function parameters</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../DependencyInjectionSetup/index.html"><span class="doc">Dependency Injection Setup</span></a>: Setting up custom DI modules</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL">JsonQL GitHub Repository</a>: Source code and examples</p></li>
+<li><p><a class="reference external" href="https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos/CustomJsonQL/Compilation">Custom JsonQL Implementation Examples</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Custom JsonQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Example/index.html" class="btn btn-neutral float-right" title="Example in JsonQL.Demos Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Artak Hakobyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

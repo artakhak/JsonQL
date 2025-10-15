@@ -6,16 +6,76 @@ Future Releases
    :local:
    :depth: 2
    
-.. toctree::
+Number of future improvements are planned. 
+The author at the moment works on other projects, but at some point will implement the planned features.
 
-   MultilineQueries/index.rst
-   ComplexProjections/index.rst
-   Grouping/index.rst
-   Sorting/index.rst
-   IfFunction/index.rst
-   RoundUpFunction/index.rst
-   RoundDownFunction/index.rst
-   JoinFunction/index.rst
-   RegexTextMatching/index.rst   
-   NumberFormatting/index.rst
-   DateTimeFormatting/index.rst
+.. note::
+    The planned features might be prioritized higher if there is a demand for these features:
+    
+Some of examples of the planned features are demonstrated in **JsonQL.Tests** projects at this link `JsonQL.Tests.FutureReleases <https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests/FutureReleases>`_
+
+    .. note::
+        The tests project **JsonQL.Tests** has only several features. The rest are in JIRA tickets.
+
+Most important big features are demonstrated here:
+
+JsonQL Expressions on Multiple Lines
+====================================
+
+JsonQL expressions can be to large for a single in JSON string. 
+To support spreading JsonQL expressions to multiple lines, a JSON object with ``$multiline`` key will be used, with value as array or lines with JsonQL expression as in example below.
+
+.. sourcecode:: json
+    
+    {
+      "MultilineQueryWith_$": {
+        "$multiline": [
+          "Max salary of all employees in all companies except one", 
+          "is $(Max(Companies.Where",
+          "(x => x.Name != 'Sherwood Forest Timber, Inc')",
+          ".Select(c => c.Employees.Where(e => e.Salary > 100000))",
+          ".Select(x => x.Salary)))"      
+        ]
+      }
+    }
+    
+During compilation, JsonQL will convert the value of key `MultilineQueryWith_$` to a single string that is a concatenation of lines in array `$multiline` and will evaluate JsonQL expression in this text.
+
+For example the JSON in example above is evaluated to a JSON below.
+
+.. sourcecode:: json
+    
+    {
+       "MultilineQueryWith_$":  "Max salary of all employees in all companies except one is 144186"
+    }
+
+
+Complex Projections Using in Select
+===================================
+
+Currently JsonQL has a `Select` path function (see :doc:`../../JsonPathFunctions/Select/index`) that can supports projections from one value to another.
+However, `Select` currently does not support projections that create new JSON objects or arrays. This type of projections will be supported as part of this feature.
+
+Examples of complex projections are shown in this example (see usage of **Select** JsonQL path function): 
+
+.. sourcecode:: json
+    
+    <IncludedFilePlaceHolder>..\..\..\JsonQL.Tests\FutureReleases\ComplexProjections\JsonFile1.json</IncludedFilePlaceHolder>
+
+Support for Grouping 
+====================
+
+Examples in JSON below demonstrate grouping (see usage of **Group** JsonQL path function):
+
+.. sourcecode:: json
+    
+    <IncludedFilePlaceHolder>..\..\..\JsonQL.Tests\FutureReleases\Grouping\JsonFile1.json</IncludedFilePlaceHolder>
+
+Support for Sorting Using Labda Expressions 
+===========================================
+
+Examples in JSON below demonstrate sorting using lambda functions (see usage of **Sort** and **SortDesc** JsonQL path functions):
+
+.. sourcecode:: json
+    
+    <IncludedFilePlaceHolder>..\..\..\JsonQL.Tests\FutureReleases\JsonValuePathElements\Sort\JsonFile1.json</IncludedFilePlaceHolder>

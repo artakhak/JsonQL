@@ -1,0 +1,12 @@
+// Set the value of jsonCompiler to an instance of JsonQL.Compilation.IJsonCompiler here.
+// The value of JsonQL.Compilation.JsonCompiler is normally created by Dependency Injection container 
+// and it is normally configured as a singleton.
+JsonQL.Compilation.IJsonCompiler jsonCompiler = null!;
+
+// NOTE: The original source is in 
+// https://github.com/artakhak/JsonQL/blob/main/JsonQL.Demos/Examples/IJsonCompilerExamples/SuccessExamples/CustomFeaturesOverview/Example.cs
+var companiesJsonTextData = new JsonTextData("Companies",
+            this.LoadExampleJsonFile("Companies.json"));
+
+var result = _jsonCompiler.Compile(new JsonTextData("CustomFeaturesOverview",
+    this.LoadExampleJsonFile("CustomFeaturesOverview.json"), companiesJsonTextData));

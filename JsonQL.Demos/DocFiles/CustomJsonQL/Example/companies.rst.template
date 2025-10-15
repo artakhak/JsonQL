@@ -1,0 +1,14 @@
+﻿:orphan:
+
+==============
+Companies.json
+==============
+
+.. contents::
+   :local:
+   :depth: 2
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>..\..\..\Examples\IJsonCompilerExamples\SuccessExamples\CustomFeaturesOverview\Companies.json</IncludedFilePlaceHolder>
+ 
