@@ -1,8 +1,10 @@
-## NOTE, this document is a very high-level description of **JsonQL**. For better examples and documentation, please refer to these resources:
+<div style="background-color: #D4EDDA; padding: 15px; border-radius: 5px;">
+<b>NOTE, this document is a very high-level description of **JsonQL**. For better examples and documentation, please refer to these resources:</b>
 
 - Examples in JsonQL.Demo in [https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Demos).
 - Unit tests in JsonQL.Tests in [https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests](https://github.com/artakhak/JsonQL/tree/main/JsonQL.Tests).
-- Documentation **(under construction...)** in [https://jsonql.readthedocs.io/en/latest/](https://jsonql.readthedocs.io/en/latest/).
+- Documentation in [https://jsonql.readthedocs.io/en/latest/](https://jsonql.readthedocs.io/en/latest/).
+</div>
 
 ## Overview
 
