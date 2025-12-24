@@ -115,10 +115,18 @@ public class JsonValueMutatorFunctionTemplatesParser : IJsonValueMutatorFunction
             {
                 if (mutatorFunctionName.Length == 1)
                 {
-                    errors.Add(new JsonObjectParseError(
-                        $"Mutator function [{mutatorFunctionName}] should be followed by opening brace '('",
-                        parsedSimpleValue.LineInfo.GenerateRelativePosition(textSymbolsParser.PositionInText)));
-                    return new ParseResult<IReadOnlyList<IParsedExpressionData>>(errors);
+
+                    //errors.Add(new JsonObjectParseError(
+                    //    $"Mutator function [{mutatorFunctionName}] should be followed by opening brace '('",
+                    //    parsedSimpleValue.LineInfo.GenerateRelativePosition(textSymbolsParser.PositionInText)));
+                    //return new ParseResult<IReadOnlyList<IParsedExpressionData>>(errors);
+
+                    // TODO: Finish handling other mutation functions in comments as part of
+                    // JE-29-BUG: Fis the issue with not being able to include JsonQL mutation function names in comments
+                    // For now we allow operator $ to be used in non-JsonQL expression (comments, etc.).
+                    // Fix this in comprehensive way to allow other case too.
+                    // In other words we want to allow using $value, #copy, $merge to be used in non-JsonQL expressions too.
+                    continue;
                 }
 
                 if (!char.IsWhiteSpace(parsedText[templateStartIndex + mutatorFunctionName.Length]))

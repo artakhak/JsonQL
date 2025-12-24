@@ -1,6 +1,6 @@
 {
   "Double1": 1.1,
-  "NullValue1": null,
+  "NullValue": null,
   "Array1": [ 1, null, 3, 0 ],
   "DateTime1": "2022-05-23T18:25:43.511Z",
   "Boolean_True": true,

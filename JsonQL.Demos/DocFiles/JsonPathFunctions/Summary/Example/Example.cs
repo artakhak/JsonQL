@@ -1,7 +1,7 @@
 using JsonQL.Compilation;
 using JsonQL.Demos.Examples;
 
-namespace JsonQL.Demos.DocFiles.JsonPathFunctions.Example;
+namespace JsonQL.Demos.DocFiles.JsonPathFunctions.Summary.Example;
 
 public class Example : JsonCompilerExampleManagerForSuccessAbstr
 {

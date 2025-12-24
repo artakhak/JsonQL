@@ -52,28 +52,18 @@ The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https:/
             ],
             "Comment1":  "We can have multiple occurrences of '$' functions in",
             "Comment2":  "JSON, values below. Using one in each to make lines shorter",
-            "Example1":  "Sum(TestArray): $(Sum(TestArray.Where(x => x > 3)))",
-            "Example2":  "Average salary: $(Average(Companies.Select(c => c.Employees.Select(e => e.Salary))))."
+            "Example1":  "Sum(TestArray): 40",
+            "Example2":  "Average salary: 102356.75."
           }
         }
       ],
       "CompilationErrors":
       {
         "$type": "System.Collections.Generic.List`1[[JsonQL.Compilation.ICompilationErrorItem, JsonQL]], System.Private.CoreLib",
-        "$values": [
-          {
-            "$type": "JsonQL.Compilation.CompilationErrorItem, JsonQL",
-            "JsonTextIdentifier": "Example",
-            "LineInfo": {
-              "$type": "JsonQL.JsonObjects.JsonLineInfo, JsonQL",
-              "LineNumber": 4,
-              "LinePosition": 54
-            },
-            "ErrorMessage": "Mutator function [$] should be followed by opening brace '('"
-          }
-        ]
+        "$values": []
       }
     }
+
    
 The code snippet shows how the JSON file **Example.json** was parsed using `JsonQL.Compilation.IJsonCompiler <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/IJsonCompiler.cs>`_
 

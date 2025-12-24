@@ -596,7 +596,9 @@
 		<PackageReference Include="NUnit" Version="3.14.0" />
 		<PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-		<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />
+
+		<!--<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />-->
+		<ProjectReference Include="..\..\TestsSharedLibrary\TestsSharedLibrary.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

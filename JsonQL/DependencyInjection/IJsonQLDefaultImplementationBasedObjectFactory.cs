@@ -10,6 +10,7 @@ using JsonQL.JsonObjects;
 using JsonQL.JsonToObjectConversion;
 using JsonQL.JsonToObjectConversion.Serializers;
 using OROptimizer.Diagnostics.Log;
+using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 
 namespace JsonQL.DependencyInjection;
@@ -32,7 +33,7 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
 
     private readonly IDefaultImplementationBasedObjectFactoryEx _defaultImplementationBasedObjectFactory;
 
-    private readonly object _lockObject = new object();
+    private readonly object _lockObject = new ();
 
     /// Provides a default implementation for creating objects using the `DefaultImplementationBasedObjectFactory`
     /// with custom constructor parameter resolvers for JSON-QL dependency injection scenarios.
@@ -73,13 +74,13 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
 
     #region IDefaultImplementationBasedObjectFactory
     /// <inheritdoc />
-    public object CreateInstance(Type typeToResolve)
+    public object CreateInstance(Type typeToResolve, TryResolveConstructorParameterValueDelegate? tryResolveConstructorParameterValue = null)
     {
         lock (_lockObject)
         {
             if (typeToResolve == typeof(IJsonCompiler))
             {
-                var jsonCompiler = _defaultImplementationBasedObjectFactory.CreateInstance<IJsonCompiler>();
+                var jsonCompiler = _defaultImplementationBasedObjectFactory.CreateInstance<IJsonCompiler>(tryResolveConstructorParameterValue);
                 InitFunctionFactories(_defaultImplementationBasedObjectFactory);
                 return jsonCompiler;
             }
@@ -89,11 +90,11 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
     }
 
     /// <inheritdoc />
-    public object GetOrCreateInstance(Type typeToResolve)
+    public object GetOrCreateInstance(Type typeToResolve, TryResolveConstructorParameterValueDelegate? tryResolveConstructorParameterValue = null)
     {
         lock (_lockObject)
         {
-            return _defaultImplementationBasedObjectFactory.GetOrCreateInstance(typeToResolve);
+            return _defaultImplementationBasedObjectFactory.GetOrCreateInstance(typeToResolve, tryResolveConstructorParameterValue);
         }
     }
 

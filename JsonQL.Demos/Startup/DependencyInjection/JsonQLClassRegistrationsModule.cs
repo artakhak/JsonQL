@@ -10,6 +10,7 @@ using JsonQL.Demos.CustomJsonQL.Compilation.UniversalExpressionParserJsonQL;
 using JsonQL.DependencyInjection;
 using JsonQL.Query;
 using OROptimizer.Diagnostics.Log;
+using OROptimizer.ServiceResolver;
 using OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory;
 using Module = Autofac.Module;
 
@@ -74,9 +75,10 @@ public class JsonQLClassRegistrationsModule : Module
         builder.Register(_ => jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IQueryManager>()).As<IQueryManager>().SingleInstance();
     }
 
-    private static T GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser<T>(List<object> jsonFunctionFromExpressionParserDependencies, Func<T> createObject) where T: class
+    private static T GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser<T>(List<object> jsonFunctionFromExpressionParserDependencies, 
+        Func<TryResolveConstructorParameterValueDelegate?,T> createObject) where T: class
     {
-        var objectWithDependencyOnJsonFunctionFromExpressionParser = createObject();
+        var objectWithDependencyOnJsonFunctionFromExpressionParser = createObject(null);
         jsonFunctionFromExpressionParserDependencies.Add(objectWithDependencyOnJsonFunctionFromExpressionParser);
         return objectWithDependencyOnJsonFunctionFromExpressionParser;
     }
@@ -92,7 +94,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IBracesJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomBracesJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomBracesJsonFunctionFactory(defaultJsonFunctionFactory));
             
             return true;
         }
@@ -103,7 +105,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IBinaryOperatorJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomBinaryOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomBinaryOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
@@ -114,7 +116,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IUnaryPrefixOperatorJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomUnaryPrefixOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomUnaryPrefixOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
@@ -125,7 +127,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IUnaryPostfixOperatorJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomUnaryPostfixOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomUnaryPostfixOperatorJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
@@ -137,7 +139,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonValueCollectionItemsSelectorPathElementFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomJsonValueCollectionItemsSelectorPathElementFactory(defaultJsonFunctionFactory, jsonValueLookupHelpers));
+                _ => new CustomJsonValueCollectionItemsSelectorPathElementFactory(defaultJsonFunctionFactory, jsonValueLookupHelpers));
 
             return true;
         }
@@ -148,7 +150,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<ISpecialLiteralJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomSpecialLiteralJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomSpecialLiteralJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
@@ -159,7 +161,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<INumericValueJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomNumericValueJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomNumericValueJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
@@ -170,7 +172,7 @@ public class JsonQLClassRegistrationsModule : Module
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<IConstantTextJsonFunctionFactory>);
 
             jsonFunctionFactory = GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser(jsonFunctionFromExpressionParserDependencies,
-                () => new CustomConstantTextJsonFunctionFactory(defaultJsonFunctionFactory));
+                _ => new CustomConstantTextJsonFunctionFactory(defaultJsonFunctionFactory));
 
             return true;
         }
