@@ -1,0 +1,48 @@
+﻿=======================================================
+Empty Query to Convert Json to Object Without Filtering
+=======================================================
+
+.. contents::
+   :local:
+   :depth: 2
+
+There might be scenarios when we want to convert the root JSON that uses JsonQL expression (or even if it does not) to a C# object without applying any filter to the JSON file.
+In such scenarios we can use an empty string as a query.
+
+.. note:: Alternativelly we can use a query string **"parent"**.
+
+
+In example below we query for a Json file **Employee.json** and convert the JSON to an instance of **IEmployee** without applying any filtering to JSON.
+In other words, the root JSON is converted to a non-nullable **IEmployee** instance. 
+
+- If the query results in **IEmployee** instances with null value for **Address** property of non-nullable type **IAddress**, of if any instance of **IEmployee** in query result has null value for **IEmployee.Address.Street** (**IAddress.Street** is of non-nullable **string** type), JsonQL will report conversion error(s) of type `JsonQL.JsonToObjectConversion.IConversionError <https://github.com/artakhak/JsonQL/blob/main/JsonQL/JsonToObjectConversion/IConversionError.cs>`_ in result with value of **ErrorType** equal to one of the following enum values: **NonNullablePropertyNotSet**.
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand <b>Employee.json</b> used in query in example below</summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Employee.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>
+   
+.. sourcecode:: csharp
+
+     <IncludedFilePlaceHolder>Example.cs.snippet</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   <details>
+   <summary>Click to expand the result of the query in example above (i.e., instance of <b>JsonQL.Query.IObjectQueryResult&lt;IEmployee&gt;</b>) serialized into <b>Result.json</b></summary>
+
+.. code-block:: json
+
+    <IncludedFilePlaceHolder>Result.json</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+   </details><br/><br/>

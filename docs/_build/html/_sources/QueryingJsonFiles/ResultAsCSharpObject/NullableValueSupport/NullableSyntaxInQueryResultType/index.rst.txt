@@ -882,7 +882,7 @@ Result as Arrays of Reference Type Items
              new JsonTextData("Employees",
                  this.LoadExampleJsonFile("Employees.json")),
              convertedValueNullability: [
-                 // The result of type "IEmployee?[]" cannot be null. Ann error will be reported if the value is null
+                 // The result of type "IEmployee?[]" cannot be null. An error will be reported if the value is null
                  false,
                  // "IEmployee" items in list "IEmployee?[]" can be null.
                  true]);

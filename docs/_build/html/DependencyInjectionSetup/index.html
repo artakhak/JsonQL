@@ -156,6 +156,7 @@
 <span class="k">using</span><span class="w"> </span><span class="nn">JsonQL.DependencyInjection</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="nn">JsonQL.Query</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="nn">OROptimizer.Diagnostics.Log</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">OROptimizer.ServiceResolver</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="nn">OROptimizer.ServiceResolver.DefaultImplementationBasedObjectFactory</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="nn">Module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Autofac</span><span class="p">.</span><span class="n">Module</span><span class="p">;</span>
 
@@ -220,9 +221,10 @@
 <span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">jsonQlDefaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IQueryManager</span><span class="o">&gt;</span><span class="p">()).</span><span class="n">As</span><span class="o">&lt;</span><span class="n">IQueryManager</span><span class="o">&gt;</span><span class="p">().</span><span class="n">SingleInstance</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span><span class="w"> </span><span class="n">Func</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createObject</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="k">class</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Func</span><span class="o">&lt;</span><span class="n">TryResolveConstructorParameterValueDelegate</span><span class="o">?</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createObject</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="k">class</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">objectWithDependencyOnJsonFunctionFromExpressionParser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createObject</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">objectWithDependencyOnJsonFunctionFromExpressionParser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createObject</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
 <span class="w">        </span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">objectWithDependencyOnJsonFunctionFromExpressionParser</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">objectWithDependencyOnJsonFunctionFromExpressionParser</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -238,7 +240,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IBracesJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomBracesJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomBracesJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -249,7 +251,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IBinaryOperatorJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomBinaryOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomBinaryOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -260,7 +262,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IUnaryPrefixOperatorJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomUnaryPrefixOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomUnaryPrefixOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -271,7 +273,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IUnaryPostfixOperatorJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomUnaryPostfixOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomUnaryPostfixOperatorJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -283,7 +285,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IJsonValueCollectionItemsSelectorPathElementFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomJsonValueCollectionItemsSelectorPathElementFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">,</span><span class="w"> </span><span class="n">jsonValueLookupHelpers</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomJsonValueCollectionItemsSelectorPathElementFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">,</span><span class="w"> </span><span class="n">jsonValueLookupHelpers</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -294,7 +296,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">ISpecialLiteralJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomSpecialLiteralJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomSpecialLiteralJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -305,7 +307,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">INumericValueJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomNumericValueJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomNumericValueJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -316,7 +318,7 @@
 <span class="w">                </span><span class="n">defaultImplementationBasedObjectFactory</span><span class="p">.</span><span class="n">GetOrCreateInstance</span><span class="o">&lt;</span><span class="n">IConstantTextJsonFunctionFactory</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="w">            </span><span class="n">jsonFunctionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser</span><span class="p">(</span><span class="n">jsonFunctionFromExpressionParserDependencies</span><span class="p">,</span>
-<span class="w">                </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomConstantTextJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
+<span class="w">                </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomConstantTextJsonFunctionFactory</span><span class="p">(</span><span class="n">defaultJsonFunctionFactory</span><span class="p">));</span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>

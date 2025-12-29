@@ -42,7 +42,7 @@ Examples in **Examples.json** file below demonstrate logical operators described
         "Comment_Operator_is_undefined_1": "(invalid.path is undefined) evaluates to true.",
         "Operator_is_undefined_1": "$value(invalid.path is undefined)",
         "Operator_is_undefined_2": "$value(NullValue is undefined == false)",
-        "Operator_is_undefined_3": "$value(Int1 is undefined == false)",
+        "Operator_is_undefined_3": "$value(Int1 is undefined == true)",
         "Operator_is_undefined_5": "$value(Companies.Select(c => c.Employees).First() is undefined == false)",
         "Operator_is_undefined_6": "$value(Companies.Select(c => c.Employees).First(e => e.Age > 200) is undefined)"
       },
@@ -50,11 +50,12 @@ Examples in **Examples.json** file below demonstrate logical operators described
         "Comment_Operator_is_not_undefined_1": "(invalid.path is not undefined) evaluates to false.",
         "Operator_is_not_undefined_1": "$value(invalid.path is not undefined == false)",
         "Operator_is_not_undefined_2": "$value(NullValue is not undefined)",
-        "Operator_is_not_undefined_3": "$value(Int1 is not undefined)",
+        "Operator_is_not_undefined_3": "$value(Double1 is not undefined)",
         "Operator_is_not_undefined_5": "$value(Companies.Select(c => c.Employees).First() is not undefined)",
         "Operator_is_not_undefined_6": "$value(Companies.Select(c => c.Employees).First(e => e.Age > 200) is not undefined == false)"
       }
     }
+
     
 The result (i.e., an instance of `JsonQL.Compilation.ICompilationResult <https://github.com/artakhak/JsonQL/blob/main/JsonQL/Compilation/ICompilationResult.cs>`_) is serialized to a **Result.json** file below.
 

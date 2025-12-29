@@ -1,0 +1,12 @@
+﻿{
+  "Id": 100000008,
+  "FirstName": "Laura",
+  "LastName": "Lee",
+  "Address": "$value(Companies[0].Employees[0].Address)",
+  "Salary": 105500,
+  "Age": 32,
+  "Phones": [
+    "619-555-0155",
+    "619-555-0122"
+  ]
+}

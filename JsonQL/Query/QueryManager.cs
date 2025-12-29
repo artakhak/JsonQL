@@ -78,6 +78,9 @@ public class QueryManager : IQueryManager
     {
         ThreadStaticLoggingContext.Context = _logger;
 
+        if (query.Trim().Length == 0)
+            query = "parent";
+
         var jsonTextStrBldr = new StringBuilder();
 
         const string openingBrace = "{";

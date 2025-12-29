@@ -109,6 +109,8 @@
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\Examples\ResultAsListOfValueTypeItems\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\Examples\ResultAsReferenceType\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\Examples\ResultAsValueType\Result.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\EmptyQueryToConvertJsonToObjectWithoutFiltering\Employee.json" />
+	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\EmptyQueryToConvertJsonToObjectWithoutFiltering\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\ConvertToClasses\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\ConvertToInterfaces\Result.json" />
 	  <None Remove="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\ReplaceDefaultImplementation\Employees.json" />
@@ -283,6 +285,8 @@
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsListOfValueTypeItems\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsReferenceType\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\NullableValueSupport\NullableSyntaxInQueryResultType\Examples\ResultAsValueType\Result.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\EmptyQueryToConvertJsonToObjectWithoutFiltering\Employee.json" />
+		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\EmptyQueryToConvertJsonToObjectWithoutFiltering\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\ConvertToClasses\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\ConvertToInterfaces\Result.json" />
 		<EmbeddedResource Include="DocFiles\QueryingJsonFiles\ResultAsCSharpObject\TypeBinding\Examples\Employees.json" />
@@ -378,7 +382,6 @@
 
 	<ItemGroup>
 	  <Folder Include="DocFiles\QueryingJsonFiles\ResultAsJsonStructure\ErrorDetails\Examples\" />
-	  <Folder Include="Examples\AppSettingsWithJsonQLExpressions\" />
 	  <Folder Include="Examples\IJsonCompilerExamples\SuccessExamples\ReusingCompiledJsonFiles\" />
 	</ItemGroup>
 
