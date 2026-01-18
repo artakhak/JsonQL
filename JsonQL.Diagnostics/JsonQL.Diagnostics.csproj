@@ -22,7 +22,7 @@
 
 	<!--JsonQL-->
 	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
-		<PackageReference Include="JsonQL" Version="1.7.4"/>
+		<PackageReference Include="JsonQL" Version="1.7.5"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">

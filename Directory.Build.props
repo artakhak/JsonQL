@@ -1,0 +1,45 @@
+<Project>
+    <PropertyGroup>
+        <!-- Define the symbol here to apply it to all projects in the solution -->
+        <REFERENCE_OROptimizer_Shared_PROJECT>false</REFERENCE_OROptimizer_Shared_PROJECT>
+        <REFERENCE_OROptimizer_Shared_Log4Net_PROJECT>false</REFERENCE_OROptimizer_Shared_Log4Net_PROJECT>
+        <REFERENCE_FileInclude_PROJECT>false</REFERENCE_FileInclude_PROJECT>
+        <REFERENCE_ClassVisualizer_PROJECT>false</REFERENCE_ClassVisualizer_PROJECT>
+        <REFERENCE_TestsSharedLibrary_PROJECT>false</REFERENCE_TestsSharedLibrary_PROJECT>        
+        <REFERENCE_TextParser_PROJECT>false</REFERENCE_TextParser_PROJECT>
+        <REFERENCE_UniversalExpressionParser_PROJECT>false</REFERENCE_UniversalExpressionParser_PROJECT>
+        <REFERENCE_JsonQL_PROJECT>false</REFERENCE_JsonQL_PROJECT>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_OROptimizer_Shared_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_OROptimizer_Shared_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_OROptimizer_Shared_Log4Net_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_OROptimizer_Shared_Log4Net_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_FileInclude_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_FileInclude_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_ClassVisualizer_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_ClassVisualizer_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_TestsSharedLibrary_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_TestsSharedLibrary_PROJECT</DefineConstants>
+    </PropertyGroup>   
+
+    <PropertyGroup Condition="'$(REFERENCE_TextParser_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_TextParser_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_UniversalExpressionParser_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_UniversalExpressionParser_PROJECT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(REFERENCE_JsonQL_PROJECT)' == 'true'">
+        <DefineConstants>$(DefineConstants);REFERENCE_JsonQL_PROJECT</DefineConstants>
+    </PropertyGroup>
+</Project>
