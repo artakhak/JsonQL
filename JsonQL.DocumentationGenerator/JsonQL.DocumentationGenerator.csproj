@@ -5,19 +5,24 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
+	</PropertyGroup>	
 
-	<ItemGroup>
-		<Content Remove="C:\Users\artak\.nuget\packages\oroptimizer.shared.log4net\1.0.0\contentFiles\any\net6.0\README.md" />
+	<!--OROptimizer.Shared.Log4Net-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.1.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="FileInclude" Version="1.2.0" />
-		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
+		<ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <!--<ProjectReference Include="..\..\FileInclude\FileInclude\FileInclude.csproj" />-->
+	<!--FileInclude-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_FileInclude_PROJECT'))">
+		<PackageReference Include="FileInclude" Version="1.3.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_FileInclude_PROJECT'))">
+		<ProjectReference Include="..\..\FileInclude\FileInclude\FileInclude.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

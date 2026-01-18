@@ -9,11 +9,23 @@
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
-		<!--<ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />-->
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
+	<!--OROptimizer.Shared.Log4Net-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.1.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
+		<ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />
+	</ItemGroup>
+
+	<!--JsonQL-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<PackageReference Include="JsonQL" Version="1.7.4"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 </Project>

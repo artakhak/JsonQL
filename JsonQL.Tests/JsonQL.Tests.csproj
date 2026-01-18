@@ -595,15 +595,29 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
 		<PackageReference Include="NUnit" Version="3.14.0" />
 		<PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
-		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />		
+	</ItemGroup>
 
-		<!--<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />-->
+	<!--TestsSharedLibrary-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_TestsSharedLibrary_PROJECT'))">
+		<PackageReference Include="TestsSharedLibrary" Version="1.0.4" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_TestsSharedLibrary_PROJECT'))">
 		<ProjectReference Include="..\..\TestsSharedLibrary\TestsSharedLibrary.csproj" />
+	</ItemGroup>
+
+	<!--JsonQL-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<PackageReference Include="JsonQL" Version="1.7.4"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
-		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

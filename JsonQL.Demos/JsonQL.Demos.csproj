@@ -376,8 +376,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />
-	  <ProjectReference Include="..\JsonQL\JsonQL.csproj" />
+	  <ProjectReference Include="..\JsonQL.Diagnostics\JsonQL.Diagnostics.csproj" />	  
+	</ItemGroup>
+
+	<!--JsonQL-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<PackageReference Include="JsonQL" Version="1.7.4"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_JsonQL_PROJECT'))">
+		<ProjectReference Include="..\JsonQL\JsonQL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
