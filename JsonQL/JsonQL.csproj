@@ -58,7 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_UniversalExpressionParser_PROJECT'))">
-		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj"/>
+		<ProjectReference Include="..\..\UniversalExpressionParser\UniversalExpressionParser\UniversalExpressionParser.csproj" />
 	</ItemGroup>
 
 </Project>
