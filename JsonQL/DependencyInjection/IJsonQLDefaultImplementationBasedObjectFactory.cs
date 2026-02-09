@@ -195,6 +195,9 @@ public class JsonQLDefaultImplementationBasedObjectFactory : IJsonQLDefaultImple
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedBooleanSimpleJsonValueSerializer>(),
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableBooleanSimpleJsonValueSerializer>(),
 
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedGuidSimpleJsonValueSerializer>(),
+                defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedNullableGuidSimpleJsonValueSerializer>(),
+                
                 defaultImplementationBasedObjectFactory.GetOrCreateInstance<TypedStringSimpleJsonValueSerializer>()
             });
 

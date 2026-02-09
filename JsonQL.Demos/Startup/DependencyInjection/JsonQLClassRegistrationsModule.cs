@@ -57,22 +57,19 @@ public class JsonQLClassRegistrationsModule : Module
 
                     return (false, null);
                 }));
-
-        builder.Register(_ =>
+        
+        var jsonFunctionFromExpressionParser = jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonFunctionFromExpressionParser>();
+        foreach (var jsonFunctionFromExpressionParserDependency in jsonFunctionFromExpressionParserDependencies)
         {
-            var jsonCompiler = jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonCompiler>();
+            PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
+                jsonFunctionFromExpressionParserDependency, jsonFunctionFromExpressionParser);
+        }
+        
+        var jsonCompiler = jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonCompiler>();
+        var jsonQueryManager = jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IQueryManager>();
 
-            var jsonFunctionFromExpressionParser = jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IJsonFunctionFromExpressionParser>();
-            foreach (var jsonFunctionFromExpressionParserDependency in jsonFunctionFromExpressionParserDependencies)
-            {
-                PropertyDependencyHelper.SetJsonFunctionFromExpressionParser(
-                    jsonFunctionFromExpressionParserDependency, jsonFunctionFromExpressionParser);
-            }
-
-            return jsonCompiler;
-        }).As<IJsonCompiler>().SingleInstance();
-
-        builder.Register(_ => jsonQlDefaultImplementationBasedObjectFactory.GetOrCreateInstance<IQueryManager>()).As<IQueryManager>().SingleInstance();
+        builder.RegisterInstance(jsonCompiler).As<IJsonCompiler>().SingleInstance();
+        builder.RegisterInstance(jsonQueryManager).As<IQueryManager>().SingleInstance();
     }
 
     private static T GetOrCreateObjectThatDependsOnJsonFunctionFromExpressionParser<T>(List<object> jsonFunctionFromExpressionParserDependencies, 
