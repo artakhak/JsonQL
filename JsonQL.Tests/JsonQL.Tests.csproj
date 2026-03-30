@@ -600,7 +600,7 @@
 
 	<!--TestsSharedLibrary-->
 	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_TestsSharedLibrary_PROJECT'))">
-		<PackageReference Include="TestsSharedLibrary" Version="1.0.4" />
+		<PackageReference Include="TestsSharedLibrary" Version="1.0.5" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_TestsSharedLibrary_PROJECT'))">

@@ -9,7 +9,7 @@
 
 	<!--OROptimizer.Shared.Log4Net-->
 	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
-		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.1.1" />
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.1.2" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_OROptimizer_Shared_Log4Net_PROJECT'))">
@@ -18,7 +18,7 @@
 
 	<!--FileInclude-->
 	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_FileInclude_PROJECT'))">
-		<PackageReference Include="FileInclude" Version="1.3.1" />
+		<PackageReference Include="FileInclude" Version="1.3.2" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_FileInclude_PROJECT'))">
